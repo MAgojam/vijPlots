@@ -124,5 +124,7 @@
 
 ## References
 
--   Larmarange J (2025). ggstats: Extension to 'ggplot2' for Plotting Stats. R package version 0.8.0, <https://github.com/larmarange/ggstats>.
+-   Larmarange J. (2025). ggstats: Extension to 'ggplot2' for Plotting Stats. R package version 0.8.0, <https://github.com/larmarange/ggstats>.
 -   Almeida, A., Loy, A., Hofmann, H. (2023). qqplotr: Quantile-Quantile Plot Extensions for 'ggplot2'. R package version 0.0.6, <https://github.com/aloy/qqplotr>.
+-   Bernaards, C., Gilbert, P., Jennrich, R. (2025), GPArotation: Gradient Projection Factor Rotation. R package version 2025.3.1, <https://cran.r-project.org/package=GPArotation>.
+-   Greenacre, M. (2010), Biplots in Practice, Fundación BBVA. <https://www.fbbva.es/en/publicaciones/biplots-in-practice-7/>.
