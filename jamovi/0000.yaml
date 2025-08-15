@@ -1,17 +1,17 @@
 ---
 title: 'vijPlots: Yet Another jamovi Plotting Module'
 name: vijPlots
-version: 0.9.5
+version: 0.9.6
 jms: '1.0'
 authors:
   - Vincent Jalby
 maintainer: Vincent Jalby <vincent.jalby@unilim.fr>
-date: '2025-06-22'
+date: '2025-08-15'
 type: R
 description: >-
   Main statistical charts (histogram, boxplot, point, bar, line, raincloud...)
-  with many options along with Likert, multiple response barplots,
-  Correspondance plot. Project source is available at  <a
+  with many options along with Likert plot, multiple response barplot, Principal
+  Component and Correspondence Analyses. Project source is available at  <a
   href="https://github.com/vjalby/vijPlots" target="_blank">Github</a>.
 analyses:
   - title: Histogram
@@ -20,105 +20,105 @@ analyses:
     menuGroup: vijPlots
     menuTitle: Histogram
     menuSubgroup: Continuous
-    category: analyses
+    category: plots
   - title: Box Plot
     name: boxplot
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Box Plot
     menuSubgroup: Continuous
-    category: analyses
+    category: plots
   - title: Raincloud Plot
     name: raincloud
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Raincloud Plot
     menuSubgroup: Continuous
-    category: analyses
+    category: plots
   - title: Bar Plot
     name: barplot
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Bar Plot
     menuSubgroup: Categorical
-    category: analyses
+    category: plots
   - title: Pie Chart
     name: piechart
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Pie Chart
     menuSubgroup: Categorical
-    category: analyses
+    category: plots
   - title: Likert Plot
     name: likertplot
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Likert Plot
     menuSubgroup: Categorical
-    category: analyses
+    category: plots
   - title: Frequencies
     name: mrfrequencies
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Frequencies
     menuSubgroup: Multiple Response
-    category: analyses
+    category: plots
   - title: Crosstab
     name: mrcrosstabs
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Crosstab
     menuSubgroup: Multiple Response
-    category: analyses
+    category: plots
   - title: Scatter Plot
     name: scatterplot
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Scatter Plot
     menuSubgroup: Continuous
-    category: analyses
+    category: plots
   - title: Lollipop Plot
     name: lollipop
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Lollipop Plot
     menuSubgroup: Continuous
-    category: analyses
+    category: plots
   - title: Line Chart
     name: linechart
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Line Chart
     menuSubgroup: Time Series
-    category: analyses
+    category: plots
   - title: Area Chart
     name: areachart
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Area Chart
     menuSubgroup: Time Series
-    category: analyses
+    category: plots
   - title: Q-Q & P-P Plots
     name: qqplot
     ns: vijPlots
     menuGroup: vijPlots
     menuTitle: Q-Q & P-P Plots
     menuSubgroup: Continuous
-    category: analyses
-  - title: Principal Component Plot
+    category: plots
+  - title: Principal Component Analysis
     name: principal
     ns: vijPlots
     menuGroup: vijPlots
-    menuTitle: Principal Component Plot
+    menuTitle: Principal Component Analysis
     menuSubgroup: Multivariate
-    category: analyses
-  - title: Correspondence Plot
+    category: plots
+  - title: Correspondence Analysis
     name: corresp
     ns: vijPlots
     menuGroup: vijPlots
     menuSubgroup: Multivariate
-    menuTitle: Correspondence Plot
-    category: analyses
+    menuTitle: Correspondence Analysis
+    category: plots
 usesNative: true
 minApp: 1.0.8
 datasets:
@@ -141,6 +141,9 @@ datasets:
     description: A demonstration dataset for vijPlots/Raincloud plot.
   - name: Smoking
     path: smoking.omv
-    description: A demonstration dataset for vijPlots/Correspondence plot.
+    description: A demonstration dataset for vijPlots/Correspondence Analysis.
+  - name: Iris
+    path: iris.omv
+    description: A demonstration dataset for vijPlots/Principal Component Analysis.
 
 ...

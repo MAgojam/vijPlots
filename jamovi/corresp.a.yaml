@@ -1,6 +1,7 @@
 ---
 name:  corresp
-title: Correspondence Plot
+title: Correspondence Analysis
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Multivariate
 version: '1.0.0'
@@ -186,5 +187,102 @@ options:
         - title: White
           name:  white
       default: darkgray
+
+    - name: columnTitle
+      title: Column plot
+      type: String
+      default: 'default'
+
+    - name: rowTitle
+      title: Row plot
+      type: String
+      default: 'default'
+
+    - name: biplotTitle
+      title: Biplot
+      type: String
+      default: 'default'
+
+    - name: titleAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: titleFontSize
+      title: Font size
+      type: Number
+      default: 16
+
+    - name: titleFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
+
+    - name: columnSubtitle
+      title: Column plot
+      type: String
+      default: 'default'
+
+    - name: rowSubtitle
+      title: Row plot
+      type: String
+      default: 'default'
+
+    - name: biplotSubtitle
+      title: Biplot
+      type: String
+      default: 'default'
+
+    - name: subtitleAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: subtitleFontSize
+      title: Font size
+      type: Number
+      default: 12
+
+    - name: subtitleFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: italic
+
+    - name: descAsVarName
+      title: Use variable's description as name
+      type: Bool
+      default: false
 
 ...

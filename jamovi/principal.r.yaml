@@ -1,15 +1,52 @@
 ---
 name:  principal
-title: Principal Component Plot
+title: Principal Component Analysis
 jrs:   '1.1'
 refs:
-    - psych
+    - greenacre
+    - gpa
 
 items:
-    - name:  text
-      title: Principal Component Plot
-      type:  Preformatted
+    # - name:  debug
+    #   title: Debug
+    #   type:  Preformatted
+    #   visible: false
+    - name:  helpMessage
+      title: ""
+      type:  Html
+      visible: true
+      content: '
+            	<style>
+					.block {
+  						border: 2px solid gray;
+  						border-radius: 15px;
+  						background-color: WhiteSmoke;
+  						padding: 0px 20px;
+  						text-align: justify;
+					}
+				</style>
+            <div class="block">
+            <p><strong>Principal Component Plot Help</strong></p>
 
+            <p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables.
+            Computations are based on <tt>stats::prcomp</tt> function.</p>
+
+            <p>Although rotated components are not principal components, they are widely used.
+            Only orthogonal rotations are available (from GPArotation package).</p>
+
+            <p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by eigenvalues).
+
+            <p>Biplot follows "Biplots in Practice" [Michael Greenacre, 2010]:
+            <ul>
+                <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues)
+                while loadings are standard.</li>
+                <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li>
+            </ul></p>
+
+
+            <p>A sample file is included at Open > Data Library > vijPlots > Iris</p>
+
+            </div>'
     - name: summaryTable
       title: Summary
       visible: (showSummary)
@@ -18,7 +55,9 @@ items:
         - vars
         - dimNum
         - rotation
-        - missingValues
+        - stdVariables
+        - kaiser
+        - usePsych
       columns:
         - name: comp
           title: 'Component'
@@ -40,17 +79,17 @@ items:
           format: pc
         - name: loadings
           title: SS Loadings
-          superTitle: Extration Sums of Squared Loadings
+          superTitle: Extraction Sums of Squared Loadings
           type: number
           format: "zto"
         - name: varProp
           title: '% of Variance'
-          superTitle: Extration Sums of Squared Loadings
+          superTitle: Extraction Sums of Squared Loadings
           type: number
           format: pc
         - name: varCum
           title: 'Cumulative %'
-          superTitle: Extration Sums of Squared Loadings
+          superTitle: Extraction Sums of Squared Loadings
           type: number
           format: pc
 
@@ -75,25 +114,29 @@ items:
       rows: 2
       clearWith:
         - vars
-        - missingValues
 
     - name: loadingTable
-      title: Loadings
+      title: Variables
       type: Table
       visible: (showLoadings)
       rows: (vars)
       clearWith:
         - vars
+        - descAsVarName
         - rotation
         - dimNum
         - xaxis
         - yaxis
-        - missingValues
+        - stdVariables
+        - kaiser
+        - usePsych
       columns:
         - name: var
           title: ""
           type: text
           content: ($key)
+      notes:
+        p: Principal coordinates
 
     - name: obsTable
       title: Observations
@@ -102,13 +145,17 @@ items:
       clearWith:
         - vars
         - labelVar
+        - descAsVarName
         - rotation
         - dimNum
         - xaxis
         - yaxis
-        - missingValues
-        - stdScores
+        - stdVariables
+        - kaiser
+        - usePsych
       columns: []
+      notes:
+        p: Principal coordinates
 
     - name: screePlot
       title: "Scree Plot"
@@ -119,10 +166,19 @@ items:
       renderFun: .screeplot
       clearWith:
         - vars
-        - missingValues
+        - stdVariables
+        - screeTitle
+        - titleFontFace
+        - titleFontSize
+        - titleAlign
+        - screeSubtitle
+        - subtitleFontFace
+        - subtitleFontSize
+        - subtitleAlign
+        - usePsych
 
     - name: varPlot
-      title: "Loading Plot"
+      title: "Variable Plot"
       type: Image
       width:  600
       height: 600
@@ -130,11 +186,31 @@ items:
       renderFun: .varplot
       clearWith:
         - vars
+        - descAsVarName
         - rotation
         - dimNum
         - xaxis
         - yaxis
-        - missingValues
+        - stdVariables
+        - kaiser
+        - obsColor
+        - varColor
+        - colorPalette
+        - labelColor
+        - plotWidth
+        - plotHeight
+        - obsLabelSize
+        - varLabelSize
+        - pointSize
+        - varTitle
+        - titleFontFace
+        - titleFontSize
+        - titleAlign
+        - varSubtitle
+        - subtitleFontFace
+        - subtitleFontSize
+        - subtitleAlign
+        - usePsych
 
     - name: obsPlot
       title: "Observation Plot"
@@ -146,13 +222,32 @@ items:
       clearWith:
         - vars
         - labelVar
+        - descAsVarName
         - rotation
         - dimNum
         - xaxis
         - yaxis
-        - missingValues
         - groupVar
-        - stdScores
+        - stdVariables
+        - kaiser
+        - obsColor
+        - varColor
+        - colorPalette
+        - labelColor
+        - plotWidth
+        - plotHeight
+        - obsLabelSize
+        - varLabelSize
+        - pointSize
+        - obsTitle
+        - titleFontFace
+        - titleFontSize
+        - titleAlign
+        - obsSubtitle
+        - subtitleFontFace
+        - subtitleFontSize
+        - subtitleAlign
+        - usePsych
 
     - name: biPlot
       title: "Biplot"
@@ -164,11 +259,33 @@ items:
       clearWith:
         - vars
         - labelVar
+        - descAsVarName
         - rotation
         - dimNum
         - xaxis
         - yaxis
-        - missingValues
         - groupVar
-        - stdScores
+        - stdVariables
+        - biplotType
+        - biplotLines
+        - biplotStretch
+        - biplotStretchFactor
+        - obsColor
+        - varColor
+        - colorPalette
+        - labelColor
+        - plotWidth
+        - plotHeight
+        - obsLabelSize
+        - varLabelSize
+        - pointSize
+        - biplotTitle
+        - titleFontFace
+        - titleFontSize
+        - titleAlign
+        - biplotSubtitle
+        - subtitleFontFace
+        - subtitleFontSize
+        - subtitleAlign
+        - usePsych
 ...

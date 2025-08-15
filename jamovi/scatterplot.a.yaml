@@ -1,6 +1,7 @@
 ---
 name:  scatterplot
 title: Scatter Plot
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Continuous
 version: '1.0.0'

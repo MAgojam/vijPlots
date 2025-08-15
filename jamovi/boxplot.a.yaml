@@ -1,6 +1,7 @@
 ---
 name:  boxplot
 title: Box Plot
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Continuous
 version: '1.0.0'

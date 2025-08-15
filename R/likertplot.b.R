@@ -5,6 +5,20 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     "likertplotClass",
     inherit = likertplotBase,
     private = list(
+        .varName = list(),
+        .setVarNames = function(vars) {
+            if (self$options$descAsVarName) {
+                for (aVar in vars) {
+                    aVarName <- attr(self$data[[aVar]], "jmv-desc", TRUE)
+                    if (!is.null(aVarName))
+                        private$.varName[[aVar]] <- aVarName
+                    else
+                        private$.varName[[aVar]] <- aVar
+                }
+            } else {
+                private$.varName[vars] <- vars
+            }
+        },
         .mannU = function(var, group, data, level1=1, level2=2) { # Two groups
             variable <- jmvcore::toNumeric(data[[var]])
             levels <- levels(data[[group]])
@@ -49,6 +63,9 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 reject("Cannot convert text variables to integers")
             if (!canbeNum && self$options$tidyUp)
                 reject("Cannot tidy up text variables")
+
+            # Set variable names
+            private$.setVarNames(c(self$options$liks, self$options$group))
 
             # Convert to integer
             if (self$options$toInteger) {
@@ -147,13 +164,13 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
                     for (ques in questions) {
                         values = as.list(freqTable[ques,])
-                        values["ques"] = ques
+                        values["ques"] <- private$.varName[[ques]]
                         numericData <-jmvcore::toNumeric(mainData[[ques]])
                         if (self$options$showMedian)
-                            values['Median'] = as.numeric(median(numericData, na.rm = TRUE))
+                            values['Median'] <- as.numeric(median(numericData, na.rm = TRUE))
                         if (self$options$showMean) {
-                            values["Mean"] = mean(numericData, na.rm = TRUE)
-                            values["SD"] = sd(numericData, na.rm = TRUE)
+                            values["Mean"] <- mean(numericData, na.rm = TRUE)
+                            values["SD"] <- sd(numericData, na.rm = TRUE)
                         }
                         self$results$frequencies$addRow(rowKey = ques, values = values)
                     }
@@ -186,16 +203,16 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             groupAndQues <- paste0(group,ques)
                             values = as.list(freqTables[[group]][ques,])
                             if (firstGroup) # Workaround to not use combineBelow
-                                values["ques"] = ques
+                                values["ques"] <- private$.varName[[ques]]
                             else
-                                values["ques"] = " "
+                                values["ques"] <- " "
                             values[self$options$group] = group
                             numericData <- jmvcore::toNumeric(mainData[[ques]])[mainData[[groupingVar]] == group]
                             if (self$options$showMedian)
-                                values["Median"] = as.numeric(median(numericData, na.rm = TRUE))
+                                values["Median"] <- as.numeric(median(numericData, na.rm = TRUE))
                             if (self$options$showMean) {
-                                values["Mean"] = mean(numericData, na.rm = TRUE)
-                                values["SD"] = sd(numericData, na.rm = TRUE)
+                                values["Mean"] <- mean(numericData, na.rm = TRUE)
+                                values["SD"] <- sd(numericData, na.rm = TRUE)
                             }
                             self$results$frequencies$addRow(rowKey = groupAndQues, values = values)
                             if (firstGroup)
@@ -222,12 +239,13 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$comp$uTestTable$setNote("p","Mann-Whitney tests require two groups")
                     for (ques in questions) { # Empty table
                         self$results$comp$uTestTable$setRow(rowKey = ques,
-                                                            values = list(statistic = NULL, p.value = NULL, adjusted.p = NULL))
+                                                            values = list("ques" = private$.varName[[ques]], statistic = NULL, p.value = NULL, adjusted.p = NULL))
                     }
                 } else {
                     p <- c()
                     for (ques in questions) {
                         mannU <- private$.mannU(ques, groupingVar, mainData)
+                        mannU[["ques"]] <- private$.varName[[ques]]
                         self$results$comp$uTestTable$setRow(rowKey = ques, values = mannU)
                         p <- c(p, mannU[["p.value"]])
                     }
@@ -248,6 +266,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 p <- c()
                 for (ques in questions) {
                     res <- kruskal.test(jmvcore::toNumeric(mainData[[ques]]), mainData[[groupingVar]])
+                    res[["ques"]] <- private$.varName[[ques]]
                     self$results$comp$kwTable$setRow(rowKey = ques, values = res)
                     p <- c(p, res[["p.value"]])
                 }
@@ -320,7 +339,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
                 # Add table's columns
                 for (ques in questions) {
-                    superTitle <- paste0(strwrap(ques, ifelse(self$options$pValue == "overall",28,15)), collapse="<br />")
+                    superTitle <- paste0(strwrap(private$.varName[[ques]], ifelse(self$options$pValue == "overall",28,15)), collapse="<br />")
                     self$results$comp$pwTable$addColumn(name = paste(ques, "stat"), title = statString, superTitle = superTitle, type = 'number')
                     self$results$comp$pwTable$addColumn(name = paste(ques, "p"), title = "p",
                                                         superTitle = superTitle, type = 'number', format = 'zto,pvalue')
@@ -377,6 +396,10 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     mainData[[var]] <- forcats::fct_rev(mainData[[var]])
             }
 
+            # Variable Label
+            variable_labels <- c()
+            for (var in self$options$liks)
+                variable_labels[var] <- private$.varName[[var]]
             # Get the group variable name
             if( ! is.null(self$options$group) ) {
                 groupingVar <- names(mainData)[length(names(mainData))]
@@ -434,7 +457,8 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                           facet_label_wrap = vLabelWrap,
                                           y_label_wrap = hLabelWrap,
                                           add_totals = self$options$addTotals,
-                                          y = yOption, facet_rows = facetRows)
+                                          y = yOption, facet_rows = facetRows,
+                                          variable_labels = variable_labels)
             } else {
                 # Group setup
                 if( ! is.null(groupingVar) ) {
@@ -459,7 +483,8 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                   labels_color = self$options$labelColor,
                                                   y_label_wrap = hLabelWrap,
                                                   add_median_line = self$options$addMedianLine,
-                                                  y = yOption)
+                                                  y = yOption,
+                                                  variable_labels = variable_labels)
                 plot <- plot + facet_grid(rows = facetRows, labeller = label_wrap_gen(vLabelWrap))
             }
             plot <- plot + theme(text = element_text(size=textSize))

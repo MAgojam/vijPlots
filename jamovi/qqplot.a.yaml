@@ -1,6 +1,7 @@
 ---
 name:  qqplot
 title: Q-Q & P-P Plots
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Continuous
 version: '1.0.0'

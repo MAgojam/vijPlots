@@ -5,7 +5,7 @@
     `ggplots`=list(
         `type`="software", 
         `author`="Larmarange, J.", 
-        `year`=2024, 
+        `year`=2025, 
         `title`="ggstats: Extension to 'ggplot2' for Plotting Stats", 
         `publisher`="[R package]. Retrieved from https://cran.r-project.org/package=ggstats", 
         `url`="https://cran.r-project.org/package=ggstats"), 
@@ -29,4 +29,18 @@
         `year`=2025, 
         `title`="psych: Procedures for Psychological, Psychometric, and Personality Research", 
         `publisher`="[R package]. Retrieved from https://cran.r-project.org/package=psych", 
-        `url`="https://cran.r-project.org/package=psych"))
+        `url`="https://cran.r-project.org/package=psych"), 
+    `greenacre`=list(
+        `type`="book", 
+        `author`="Greenacre, M.", 
+        `year`=2010, 
+        `title`="Biplots in Practice", 
+        `publisher`="Fundaci\u00F3n BBVA. Retrieved from https://www.fbbva.es/en/publicaciones/biplots-in-practice-7/", 
+        `url`="https://www.fbbva.es/en/publicaciones/biplots-in-practice-7/"), 
+    `gpa`=list(
+        `type`="software", 
+        `author`="Bernaards, C., Gilbert, P., Jennrich, R.", 
+        `year`=2025, 
+        `title`="GPArotation: Gradient Projection Factor Rotation", 
+        `publisher`="[R package]. Retrieved from https://cran.r-project.org/package=GPArotation", 
+        `url`="https://cran.r-project.org/package=GPArotation"))

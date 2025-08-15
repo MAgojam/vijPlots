@@ -1,6 +1,7 @@
 ---
 name:  mrcrosstabs
 title: Crosstab
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Multiple Response
 version: '1.0.0'

@@ -52,12 +52,23 @@
 
 ![](img/qqplot.jpg)
 
-## Correspondence Plot
+## Correspondence Analysis
 
 ![](img/correspondence.jpg)
 
+## Principal Component Analysis
+
+![](img/principal.jpg)
+
 
 ## Version history
+
+### 2025-08-15 / 0.9.6 (beta)
+
+-   Principal Component Analysis
+-   Plot Titles & Subtitle in Correspondence Analysis
+-   "Use variable's description as name" for Liket, CA, PCA
+-   Moved vijPlots menu to Jamovi 2.7 "Plots" ribbon
 
 ### 2025-07-20 / 0.9.5 (beta)
 

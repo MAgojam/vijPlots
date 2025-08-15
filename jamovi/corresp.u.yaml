@@ -1,4 +1,4 @@
-title: Correspondence Plot
+title: Correspondence Analysis
 name: corresp
 jus: '3.0'
 stage: 0
@@ -29,6 +29,12 @@ children:
             name: counts
             maxItemCount: 1
             isTarget: true
+  - type: LayoutBox
+    margin: large
+    stretchFactor: 1
+    children:
+      - type: CheckBox
+        name: descAsVarName
   - type: LayoutBox
     margin: large
     style: inline
@@ -214,3 +220,90 @@ children:
                         name: colColor
                       - type: ComboBox
                         name: supColor
+  - type: CollapseBox
+    label: Plot Titles & Subtitles
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Title Text
+                children:
+                  - type: TextBox
+                    name: rowTitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: columnTitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: biplotTitle
+                    format: string
+                    width: large
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Title Style
+                children:
+                  - type: TextBox
+                    name: titleFontSize
+                    format: number
+                  - type: ComboBox
+                    name: titleFontFace
+                  - type: ComboBox
+                    name: titleAlign
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Subtitle Text
+                children:
+                  - type: TextBox
+                    name: rowSubtitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: columnSubtitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: biplotSubtitle
+                    format: string
+                    width: large
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Subtitle Style
+                children:
+                  - type: TextBox
+                    name: subtitleFontSize
+                    format: number
+                  - type: ComboBox
+                    name: subtitleFontFace
+                  - type: ComboBox
+                    name: subtitleAlign

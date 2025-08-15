@@ -1,6 +1,7 @@
 ---
 name:  mrfrequencies
 title: Frequencies
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Multiple Response
 version: '1.0.0'

@@ -13,6 +13,7 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             dimNum = 2,
             xaxis = 1,
             yaxis = 2,
+            stdVariables = TRUE,
             showSummary = TRUE,
             showKMO = FALSE,
             showLoadings = FALSE,
@@ -21,8 +22,35 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showVarPlot = TRUE,
             showObsPlot = TRUE,
             showBiplot = FALSE,
-            missingValues = "listwise",
-            stdScores = TRUE, ...) {
+            biplotType = "formPlot",
+            biplotLines = FALSE,
+            biplotStretch = FALSE,
+            biplotStretchFactor = 1,
+            plotWidth = 0,
+            plotHeight = 0,
+            obsLabelSize = 10,
+            varLabelSize = 12,
+            pointSize = 3,
+            varColor = "#377EB8",
+            labelColor = "none",
+            obsColor = "#E41A1C",
+            colorPalette = "jmv",
+            screeTitle = "default",
+            varTitle = "default",
+            obsTitle = "default",
+            biplotTitle = "default",
+            titleAlign = "0.5",
+            titleFontSize = 16,
+            titleFontFace = "plain",
+            screeSubtitle = " ",
+            varSubtitle = "default",
+            obsSubtitle = "default",
+            biplotSubtitle = "default",
+            subtitleAlign = "0.5",
+            subtitleFontSize = 12,
+            subtitleFontFace = "plain",
+            kaiser = FALSE,
+            descAsVarName = FALSE, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -60,11 +88,12 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 rotation,
                 options=list(
                     "none",
-                    "varimax",
+                    "Varimax",
                     "quartimax",
-                    "promax",
-                    "oblimin",
-                    "simplimax"),
+                    "equamax",
+                    "parsimax",
+                    "entropy",
+                    "bentlerT"),
                 default="none")
             private$..dimNum <- jmvcore::OptionNumber$new(
                 "dimNum",
@@ -84,6 +113,10 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 min=1,
                 max=99,
                 default=2)
+            private$..stdVariables <- jmvcore::OptionBool$new(
+                "stdVariables",
+                stdVariables,
+                default=TRUE)
             private$..showSummary <- jmvcore::OptionBool$new(
                 "showSummary",
                 showSummary,
@@ -116,18 +149,245 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showBiplot",
                 showBiplot,
                 default=FALSE)
-            private$..missingValues <- jmvcore::OptionList$new(
-                "missingValues",
-                missingValues,
+            private$..biplotType <- jmvcore::OptionList$new(
+                "biplotType",
+                biplotType,
                 options=list(
-                    "listwise",
-                    "pairwise",
-                    "mean"),
-                default="listwise")
-            private$..stdScores <- jmvcore::OptionBool$new(
-                "stdScores",
-                stdScores,
-                default=TRUE)
+                    "formPlot",
+                    "covPlot"),
+                default="formPlot")
+            private$..biplotLines <- jmvcore::OptionBool$new(
+                "biplotLines",
+                biplotLines,
+                default=FALSE)
+            private$..biplotStretch <- jmvcore::OptionBool$new(
+                "biplotStretch",
+                biplotStretch,
+                default=FALSE)
+            private$..biplotStretchFactor <- jmvcore::OptionNumber$new(
+                "biplotStretchFactor",
+                biplotStretchFactor,
+                default=1,
+                min=0.0001,
+                max=100)
+            private$..plotWidth <- jmvcore::OptionNumber$new(
+                "plotWidth",
+                plotWidth,
+                min=0,
+                max=1000,
+                default=0)
+            private$..plotHeight <- jmvcore::OptionNumber$new(
+                "plotHeight",
+                plotHeight,
+                min=0,
+                max=1000,
+                default=0)
+            private$..obsLabelSize <- jmvcore::OptionNumber$new(
+                "obsLabelSize",
+                obsLabelSize,
+                min=4,
+                max=24,
+                default=10)
+            private$..varLabelSize <- jmvcore::OptionNumber$new(
+                "varLabelSize",
+                varLabelSize,
+                min=4,
+                max=24,
+                default=12)
+            private$..pointSize <- jmvcore::OptionNumber$new(
+                "pointSize",
+                pointSize,
+                min=1,
+                max=10,
+                default=3)
+            private$..varColor <- jmvcore::OptionList$new(
+                "varColor",
+                varColor,
+                options=list(
+                    "black",
+                    "#A6C4F1",
+                    "#C5C5C5",
+                    "#F0CD8C",
+                    "#88C38B",
+                    "#E18A8A",
+                    "#E41A1C",
+                    "#377EB8",
+                    "#4DAF4A",
+                    "#984EA3",
+                    "#FF7F00",
+                    "#FFFF33",
+                    "#A65628",
+                    "#F781BF",
+                    "#999999",
+                    "#FBB4AE",
+                    "#B3CDE3",
+                    "#CCEBC5",
+                    "#DECBE4",
+                    "#FED9A6",
+                    "#FFFFCC",
+                    "#E5D8BD",
+                    "#FDDAEC",
+                    "#F2F2F2"),
+                default="#377EB8")
+            private$..labelColor <- jmvcore::OptionList$new(
+                "labelColor",
+                labelColor,
+                options=list(
+                    "black",
+                    "none"),
+                default="none")
+            private$..obsColor <- jmvcore::OptionList$new(
+                "obsColor",
+                obsColor,
+                options=list(
+                    "black",
+                    "#A6C4F1",
+                    "#C5C5C5",
+                    "#F0CD8C",
+                    "#88C38B",
+                    "#E18A8A",
+                    "#E41A1C",
+                    "#377EB8",
+                    "#4DAF4A",
+                    "#984EA3",
+                    "#FF7F00",
+                    "#FFFF33",
+                    "#A65628",
+                    "#F781BF",
+                    "#999999",
+                    "#FBB4AE",
+                    "#B3CDE3",
+                    "#CCEBC5",
+                    "#DECBE4",
+                    "#FED9A6",
+                    "#FFFFCC",
+                    "#E5D8BD",
+                    "#FDDAEC",
+                    "#F2F2F2"),
+                default="#E41A1C")
+            private$..colorPalette <- jmvcore::OptionList$new(
+                "colorPalette",
+                colorPalette,
+                options=list(
+                    "jmv",
+                    "Set1",
+                    "Set2",
+                    "Set3",
+                    "Pastel1",
+                    "Pastel2",
+                    "Accent",
+                    "Paired",
+                    "Dark2",
+                    "Spectral",
+                    "RdYlGn",
+                    "RdYlBu",
+                    "RdGy",
+                    "RdBu",
+                    "PuOr",
+                    "PRGn",
+                    "PiYG",
+                    "BrBG",
+                    "Blues",
+                    "Greens",
+                    "Greys",
+                    "Oranges",
+                    "Purples",
+                    "Reds",
+                    "BuGn",
+                    "BuPu",
+                    "GnBu",
+                    "OrRd",
+                    "PuBu",
+                    "PuBuGn",
+                    "PuRd",
+                    "RdPu",
+                    "YlGn",
+                    "YlGnBu",
+                    "YlOrBr",
+                    "YlOrRd"),
+                default="jmv")
+            private$..screeTitle <- jmvcore::OptionString$new(
+                "screeTitle",
+                screeTitle,
+                default="default")
+            private$..varTitle <- jmvcore::OptionString$new(
+                "varTitle",
+                varTitle,
+                default="default")
+            private$..obsTitle <- jmvcore::OptionString$new(
+                "obsTitle",
+                obsTitle,
+                default="default")
+            private$..biplotTitle <- jmvcore::OptionString$new(
+                "biplotTitle",
+                biplotTitle,
+                default="default")
+            private$..titleAlign <- jmvcore::OptionList$new(
+                "titleAlign",
+                titleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..titleFontSize <- jmvcore::OptionNumber$new(
+                "titleFontSize",
+                titleFontSize,
+                default=16)
+            private$..titleFontFace <- jmvcore::OptionList$new(
+                "titleFontFace",
+                titleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..screeSubtitle <- jmvcore::OptionString$new(
+                "screeSubtitle",
+                screeSubtitle,
+                default=" ")
+            private$..varSubtitle <- jmvcore::OptionString$new(
+                "varSubtitle",
+                varSubtitle,
+                default="default")
+            private$..obsSubtitle <- jmvcore::OptionString$new(
+                "obsSubtitle",
+                obsSubtitle,
+                default="default")
+            private$..biplotSubtitle <- jmvcore::OptionString$new(
+                "biplotSubtitle",
+                biplotSubtitle,
+                default="default")
+            private$..subtitleAlign <- jmvcore::OptionList$new(
+                "subtitleAlign",
+                subtitleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..subtitleFontSize <- jmvcore::OptionNumber$new(
+                "subtitleFontSize",
+                subtitleFontSize,
+                default=12)
+            private$..subtitleFontFace <- jmvcore::OptionList$new(
+                "subtitleFontFace",
+                subtitleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..kaiser <- jmvcore::OptionBool$new(
+                "kaiser",
+                kaiser,
+                default=FALSE)
+            private$..descAsVarName <- jmvcore::OptionBool$new(
+                "descAsVarName",
+                descAsVarName,
+                default=FALSE)
 
             self$.addOption(private$..vars)
             self$.addOption(private$..labelVar)
@@ -136,6 +396,7 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..dimNum)
             self$.addOption(private$..xaxis)
             self$.addOption(private$..yaxis)
+            self$.addOption(private$..stdVariables)
             self$.addOption(private$..showSummary)
             self$.addOption(private$..showKMO)
             self$.addOption(private$..showLoadings)
@@ -144,8 +405,35 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showVarPlot)
             self$.addOption(private$..showObsPlot)
             self$.addOption(private$..showBiplot)
-            self$.addOption(private$..missingValues)
-            self$.addOption(private$..stdScores)
+            self$.addOption(private$..biplotType)
+            self$.addOption(private$..biplotLines)
+            self$.addOption(private$..biplotStretch)
+            self$.addOption(private$..biplotStretchFactor)
+            self$.addOption(private$..plotWidth)
+            self$.addOption(private$..plotHeight)
+            self$.addOption(private$..obsLabelSize)
+            self$.addOption(private$..varLabelSize)
+            self$.addOption(private$..pointSize)
+            self$.addOption(private$..varColor)
+            self$.addOption(private$..labelColor)
+            self$.addOption(private$..obsColor)
+            self$.addOption(private$..colorPalette)
+            self$.addOption(private$..screeTitle)
+            self$.addOption(private$..varTitle)
+            self$.addOption(private$..obsTitle)
+            self$.addOption(private$..biplotTitle)
+            self$.addOption(private$..titleAlign)
+            self$.addOption(private$..titleFontSize)
+            self$.addOption(private$..titleFontFace)
+            self$.addOption(private$..screeSubtitle)
+            self$.addOption(private$..varSubtitle)
+            self$.addOption(private$..obsSubtitle)
+            self$.addOption(private$..biplotSubtitle)
+            self$.addOption(private$..subtitleAlign)
+            self$.addOption(private$..subtitleFontSize)
+            self$.addOption(private$..subtitleFontFace)
+            self$.addOption(private$..kaiser)
+            self$.addOption(private$..descAsVarName)
         }),
     active = list(
         vars = function() private$..vars$value,
@@ -155,6 +443,7 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         dimNum = function() private$..dimNum$value,
         xaxis = function() private$..xaxis$value,
         yaxis = function() private$..yaxis$value,
+        stdVariables = function() private$..stdVariables$value,
         showSummary = function() private$..showSummary$value,
         showKMO = function() private$..showKMO$value,
         showLoadings = function() private$..showLoadings$value,
@@ -163,8 +452,35 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showVarPlot = function() private$..showVarPlot$value,
         showObsPlot = function() private$..showObsPlot$value,
         showBiplot = function() private$..showBiplot$value,
-        missingValues = function() private$..missingValues$value,
-        stdScores = function() private$..stdScores$value),
+        biplotType = function() private$..biplotType$value,
+        biplotLines = function() private$..biplotLines$value,
+        biplotStretch = function() private$..biplotStretch$value,
+        biplotStretchFactor = function() private$..biplotStretchFactor$value,
+        plotWidth = function() private$..plotWidth$value,
+        plotHeight = function() private$..plotHeight$value,
+        obsLabelSize = function() private$..obsLabelSize$value,
+        varLabelSize = function() private$..varLabelSize$value,
+        pointSize = function() private$..pointSize$value,
+        varColor = function() private$..varColor$value,
+        labelColor = function() private$..labelColor$value,
+        obsColor = function() private$..obsColor$value,
+        colorPalette = function() private$..colorPalette$value,
+        screeTitle = function() private$..screeTitle$value,
+        varTitle = function() private$..varTitle$value,
+        obsTitle = function() private$..obsTitle$value,
+        biplotTitle = function() private$..biplotTitle$value,
+        titleAlign = function() private$..titleAlign$value,
+        titleFontSize = function() private$..titleFontSize$value,
+        titleFontFace = function() private$..titleFontFace$value,
+        screeSubtitle = function() private$..screeSubtitle$value,
+        varSubtitle = function() private$..varSubtitle$value,
+        obsSubtitle = function() private$..obsSubtitle$value,
+        biplotSubtitle = function() private$..biplotSubtitle$value,
+        subtitleAlign = function() private$..subtitleAlign$value,
+        subtitleFontSize = function() private$..subtitleFontSize$value,
+        subtitleFontFace = function() private$..subtitleFontFace$value,
+        kaiser = function() private$..kaiser$value,
+        descAsVarName = function() private$..descAsVarName$value),
     private = list(
         ..vars = NA,
         ..labelVar = NA,
@@ -173,6 +489,7 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..dimNum = NA,
         ..xaxis = NA,
         ..yaxis = NA,
+        ..stdVariables = NA,
         ..showSummary = NA,
         ..showKMO = NA,
         ..showLoadings = NA,
@@ -181,15 +498,42 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showVarPlot = NA,
         ..showObsPlot = NA,
         ..showBiplot = NA,
-        ..missingValues = NA,
-        ..stdScores = NA)
+        ..biplotType = NA,
+        ..biplotLines = NA,
+        ..biplotStretch = NA,
+        ..biplotStretchFactor = NA,
+        ..plotWidth = NA,
+        ..plotHeight = NA,
+        ..obsLabelSize = NA,
+        ..varLabelSize = NA,
+        ..pointSize = NA,
+        ..varColor = NA,
+        ..labelColor = NA,
+        ..obsColor = NA,
+        ..colorPalette = NA,
+        ..screeTitle = NA,
+        ..varTitle = NA,
+        ..obsTitle = NA,
+        ..biplotTitle = NA,
+        ..titleAlign = NA,
+        ..titleFontSize = NA,
+        ..titleFontFace = NA,
+        ..screeSubtitle = NA,
+        ..varSubtitle = NA,
+        ..obsSubtitle = NA,
+        ..biplotSubtitle = NA,
+        ..subtitleAlign = NA,
+        ..subtitleFontSize = NA,
+        ..subtitleFontFace = NA,
+        ..kaiser = NA,
+        ..descAsVarName = NA)
 )
 
 principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "principalResults",
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$.items[["text"]],
+        helpMessage = function() private$.items[["helpMessage"]],
         summaryTable = function() private$.items[["summaryTable"]],
         kmoTable = function() private$.items[["kmoTable"]],
         loadingTable = function() private$.items[["loadingTable"]],
@@ -204,13 +548,16 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Principal Component Plot",
+                title="Principal Component Analysis",
                 refs=list(
-                    "psych"))
-            self$add(jmvcore::Preformatted$new(
+                    "greenacre",
+                    "gpa"))
+            self$add(jmvcore::Html$new(
                 options=options,
-                name="text",
-                title="Principal Component Plot"))
+                name="helpMessage",
+                title="",
+                visible=TRUE,
+                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Plot Help</strong></p>\n<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by eigenvalues).\n<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n</div>"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="summaryTable",
@@ -220,7 +567,9 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "vars",
                     "dimNum",
                     "rotation",
-                    "missingValues"),
+                    "stdVariables",
+                    "kaiser",
+                    "usePsych"),
                 columns=list(
                     list(
                         `name`="comp", 
@@ -247,19 +596,19 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="loadings", 
                         `title`="SS Loadings", 
-                        `superTitle`="Extration Sums of Squared Loadings", 
+                        `superTitle`="Extraction Sums of Squared Loadings", 
                         `type`="number", 
                         `format`="zto"),
                     list(
                         `name`="varProp", 
                         `title`="% of Variance", 
-                        `superTitle`="Extration Sums of Squared Loadings", 
+                        `superTitle`="Extraction Sums of Squared Loadings", 
                         `type`="number", 
                         `format`="pc"),
                     list(
                         `name`="varCum", 
                         `title`="Cumulative %", 
-                        `superTitle`="Extration Sums of Squared Loadings", 
+                        `superTitle`="Extraction Sums of Squared Loadings", 
                         `type`="number", 
                         `format`="pc"))))
             self$add(jmvcore::Table$new(
@@ -287,27 +636,31 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `format`="zto")),
                 rows=2,
                 clearWith=list(
-                    "vars",
-                    "missingValues")))
+                    "vars")))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="loadingTable",
-                title="Loadings",
+                title="Variables",
                 visible="(showLoadings)",
                 rows="(vars)",
                 clearWith=list(
                     "vars",
+                    "descAsVarName",
                     "rotation",
                     "dimNum",
                     "xaxis",
                     "yaxis",
-                    "missingValues"),
+                    "stdVariables",
+                    "kaiser",
+                    "usePsych"),
                 columns=list(
                     list(
                         `name`="var", 
                         `title`="", 
                         `type`="text", 
-                        `content`="($key)"))))
+                        `content`="($key)")),
+                notes=list(
+                    `p`="Principal coordinates")))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="obsTable",
@@ -316,13 +669,17 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 clearWith=list(
                     "vars",
                     "labelVar",
+                    "descAsVarName",
                     "rotation",
                     "dimNum",
                     "xaxis",
                     "yaxis",
-                    "missingValues",
-                    "stdScores"),
-                columns=list()))
+                    "stdVariables",
+                    "kaiser",
+                    "usePsych"),
+                columns=list(),
+                notes=list(
+                    `p`="Principal coordinates")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="screePlot",
@@ -333,22 +690,51 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 renderFun=".screeplot",
                 clearWith=list(
                     "vars",
-                    "missingValues")))
+                    "stdVariables",
+                    "screeTitle",
+                    "titleFontFace",
+                    "titleFontSize",
+                    "titleAlign",
+                    "screeSubtitle",
+                    "subtitleFontFace",
+                    "subtitleFontSize",
+                    "subtitleAlign",
+                    "usePsych")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="varPlot",
-                title="Loading Plot",
+                title="Variable Plot",
                 width=600,
                 height=600,
                 visible="(showVarPlot)",
                 renderFun=".varplot",
                 clearWith=list(
                     "vars",
+                    "descAsVarName",
                     "rotation",
                     "dimNum",
                     "xaxis",
                     "yaxis",
-                    "missingValues")))
+                    "stdVariables",
+                    "kaiser",
+                    "obsColor",
+                    "varColor",
+                    "colorPalette",
+                    "labelColor",
+                    "plotWidth",
+                    "plotHeight",
+                    "obsLabelSize",
+                    "varLabelSize",
+                    "pointSize",
+                    "varTitle",
+                    "titleFontFace",
+                    "titleFontSize",
+                    "titleAlign",
+                    "varSubtitle",
+                    "subtitleFontFace",
+                    "subtitleFontSize",
+                    "subtitleAlign",
+                    "usePsych")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="obsPlot",
@@ -360,13 +746,32 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 clearWith=list(
                     "vars",
                     "labelVar",
+                    "descAsVarName",
                     "rotation",
                     "dimNum",
                     "xaxis",
                     "yaxis",
-                    "missingValues",
                     "groupVar",
-                    "stdScores")))
+                    "stdVariables",
+                    "kaiser",
+                    "obsColor",
+                    "varColor",
+                    "colorPalette",
+                    "labelColor",
+                    "plotWidth",
+                    "plotHeight",
+                    "obsLabelSize",
+                    "varLabelSize",
+                    "pointSize",
+                    "obsTitle",
+                    "titleFontFace",
+                    "titleFontSize",
+                    "titleAlign",
+                    "obsSubtitle",
+                    "subtitleFontFace",
+                    "subtitleFontSize",
+                    "subtitleAlign",
+                    "usePsych")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="biPlot",
@@ -378,13 +783,35 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 clearWith=list(
                     "vars",
                     "labelVar",
+                    "descAsVarName",
                     "rotation",
                     "dimNum",
                     "xaxis",
                     "yaxis",
-                    "missingValues",
                     "groupVar",
-                    "stdScores")))}))
+                    "stdVariables",
+                    "biplotType",
+                    "biplotLines",
+                    "biplotStretch",
+                    "biplotStretchFactor",
+                    "obsColor",
+                    "varColor",
+                    "colorPalette",
+                    "labelColor",
+                    "plotWidth",
+                    "plotHeight",
+                    "obsLabelSize",
+                    "varLabelSize",
+                    "pointSize",
+                    "biplotTitle",
+                    "titleFontFace",
+                    "titleFontSize",
+                    "titleAlign",
+                    "biplotSubtitle",
+                    "subtitleFontFace",
+                    "subtitleFontSize",
+                    "subtitleAlign",
+                    "usePsych")))}))
 
 principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "principalBase",
@@ -407,7 +834,7 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 weightsSupport = 'auto')
         }))
 
-#' Principal Component Plot
+#' Principal Component Analysis
 #'
 #' 
 #' @param data .
@@ -418,6 +845,7 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param dimNum .
 #' @param xaxis .
 #' @param yaxis .
+#' @param stdVariables .
 #' @param showSummary .
 #' @param showKMO .
 #' @param showLoadings .
@@ -426,11 +854,38 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showVarPlot .
 #' @param showObsPlot .
 #' @param showBiplot .
-#' @param missingValues .
-#' @param stdScores .
+#' @param biplotType .
+#' @param biplotLines .
+#' @param biplotStretch .
+#' @param biplotStretchFactor .
+#' @param plotWidth .
+#' @param plotHeight .
+#' @param obsLabelSize .
+#' @param varLabelSize .
+#' @param pointSize .
+#' @param varColor .
+#' @param labelColor .
+#' @param obsColor .
+#' @param colorPalette .
+#' @param screeTitle .
+#' @param varTitle .
+#' @param obsTitle .
+#' @param biplotTitle .
+#' @param titleAlign .
+#' @param titleFontSize .
+#' @param titleFontFace .
+#' @param screeSubtitle .
+#' @param varSubtitle .
+#' @param obsSubtitle .
+#' @param biplotSubtitle .
+#' @param subtitleAlign .
+#' @param subtitleFontSize .
+#' @param subtitleFontFace .
+#' @param kaiser .
+#' @param descAsVarName .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summaryTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$kmoTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$loadingTable} \tab \tab \tab \tab \tab a table \cr
@@ -457,6 +912,7 @@ principal <- function(
     dimNum = 2,
     xaxis = 1,
     yaxis = 2,
+    stdVariables = TRUE,
     showSummary = TRUE,
     showKMO = FALSE,
     showLoadings = FALSE,
@@ -465,8 +921,35 @@ principal <- function(
     showVarPlot = TRUE,
     showObsPlot = TRUE,
     showBiplot = FALSE,
-    missingValues = "listwise",
-    stdScores = TRUE) {
+    biplotType = "formPlot",
+    biplotLines = FALSE,
+    biplotStretch = FALSE,
+    biplotStretchFactor = 1,
+    plotWidth = 0,
+    plotHeight = 0,
+    obsLabelSize = 10,
+    varLabelSize = 12,
+    pointSize = 3,
+    varColor = "#377EB8",
+    labelColor = "none",
+    obsColor = "#E41A1C",
+    colorPalette = "jmv",
+    screeTitle = "default",
+    varTitle = "default",
+    obsTitle = "default",
+    biplotTitle = "default",
+    titleAlign = "0.5",
+    titleFontSize = 16,
+    titleFontFace = "plain",
+    screeSubtitle = " ",
+    varSubtitle = "default",
+    obsSubtitle = "default",
+    biplotSubtitle = "default",
+    subtitleAlign = "0.5",
+    subtitleFontSize = 12,
+    subtitleFontFace = "plain",
+    kaiser = FALSE,
+    descAsVarName = FALSE) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("principal requires jmvcore to be installed (restart may be required)")
@@ -491,6 +974,7 @@ principal <- function(
         dimNum = dimNum,
         xaxis = xaxis,
         yaxis = yaxis,
+        stdVariables = stdVariables,
         showSummary = showSummary,
         showKMO = showKMO,
         showLoadings = showLoadings,
@@ -499,8 +983,35 @@ principal <- function(
         showVarPlot = showVarPlot,
         showObsPlot = showObsPlot,
         showBiplot = showBiplot,
-        missingValues = missingValues,
-        stdScores = stdScores)
+        biplotType = biplotType,
+        biplotLines = biplotLines,
+        biplotStretch = biplotStretch,
+        biplotStretchFactor = biplotStretchFactor,
+        plotWidth = plotWidth,
+        plotHeight = plotHeight,
+        obsLabelSize = obsLabelSize,
+        varLabelSize = varLabelSize,
+        pointSize = pointSize,
+        varColor = varColor,
+        labelColor = labelColor,
+        obsColor = obsColor,
+        colorPalette = colorPalette,
+        screeTitle = screeTitle,
+        varTitle = varTitle,
+        obsTitle = obsTitle,
+        biplotTitle = biplotTitle,
+        titleAlign = titleAlign,
+        titleFontSize = titleFontSize,
+        titleFontFace = titleFontFace,
+        screeSubtitle = screeSubtitle,
+        varSubtitle = varSubtitle,
+        obsSubtitle = obsSubtitle,
+        biplotSubtitle = biplotSubtitle,
+        subtitleAlign = subtitleAlign,
+        subtitleFontSize = subtitleFontSize,
+        subtitleFontFace = subtitleFontFace,
+        kaiser = kaiser,
+        descAsVarName = descAsVarName)
 
     analysis <- principalClass$new(
         options = options,

@@ -16,6 +16,20 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         }
     ),
     private = list(
+        .varName = list(),
+        .setVarNames = function(vars) {
+            if (self$options$descAsVarName) {
+                for (aVar in vars) {
+                    aVarName <- attr(self$data[[aVar]], "jmv-desc", TRUE)
+                    if (!is.null(aVarName))
+                        private$.varName[[aVar]] <- aVarName
+                    else
+                        private$.varName[[aVar]] <- aVar
+                }
+            } else {
+                private$.varName[vars] <- vars
+            }
+        },
         .getData = function() {
             rowVarName <- self$options$rows
             colVarName <- self$options$cols
@@ -173,6 +187,9 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             colVarName <- self$options$cols
             countsVarName <- self$countsName
 
+            # Set variable names
+            private$.setVarNames(c(rowVarName, colVarName))
+
             #### Contingency Table (base) ####
 
             if (!is.null(countsVarName)) {
@@ -240,10 +257,10 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             fullTable <- private$.getContingencyTable(contingencyTable, supplementaryRows, supplementaryCols)
             rownames(fullTable)[nrow(fullTable)] <- .("Active Margin")
             colnames(fullTable)[length(colnames(fullTable))] <- .("Active Margin")
-            self$results$contingency$addColumn(rowVarName, type="text")
+            self$results$contingency$addColumn(rowVarName, type="text", title = private$.varName[[rowVarName]])
             for (col in colnames(fullTable)) {
                 if (col != .("Active Margin"))
-                    self$results$contingency$addColumn(col, type="integer", superTitle = colVarName)
+                    self$results$contingency$addColumn(col, type="integer", superTitle = private$.varName[[colVarName]])
                 else
                     self$results$contingency$addColumn(col, type="integer")
             }
@@ -267,9 +284,9 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if(self$options$showProfiles) {
                 # Row Profiles
                 rowProfiles <- private$.getProfile(contingencyTable, supplementaryRows, supplementaryCols)
-                self$results$rowProfiles$addColumn(rowVarName, type = "text")
+                self$results$rowProfiles$addColumn(rowVarName, type = "text", title = private$.varName[[rowVarName]])
                 for (j in seq(ncol(rowProfiles))) {
-                    self$results$rowProfiles$addColumn(colnames(rowProfiles)[j], type = "number", format = "zto", superTitle = colVarName)
+                    self$results$rowProfiles$addColumn(colnames(rowProfiles)[j], type = "number", format = "zto", superTitle = private$.varName[[colVarName]])
                 }
                 for (i in seq(nrow(rowProfiles))) {
                     self$results$rowProfiles$addRow(i, values = rowProfiles[i,])
@@ -280,9 +297,9 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$rowProfiles$setNote("supp",.("* : Supplementary rows/columns"))
                 # Column Profiles
                 colProfiles <- t(private$.getProfile(t(contingencyTable),supplementaryCols, supplementaryRows))
-                self$results$colProfiles$addColumn(rowVarName, type = "text")
+                self$results$colProfiles$addColumn(rowVarName, type = "text", title = private$.varName[[rowVarName]])
                 for (j in seq(ncol(colProfiles))) {
-                    self$results$colProfiles$addColumn(colnames(colProfiles)[j], type = "number", format = "zto", superTitle = rowVarName)
+                    self$results$colProfiles$addColumn(colnames(colProfiles)[j], type = "number", format = "zto", superTitle = private$.varName[[colVarName]])
                 }
                 for (i in seq(nrow(colProfiles))) {
                     self$results$colProfiles$addRow(i, values = colProfiles[i,])
@@ -355,7 +372,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if(self$options$showSummaries) {
                 # Row Summary Table
                 self$results$rowSummary$addColumn(name = "id", title = "#", type = "integer")
-                self$results$rowSummary$addColumn(name = "row", title = rowVarName, type = "text")
+                self$results$rowSummary$addColumn(name = "row", title = private$.varName[[rowVarName]], type = "text")
                 self$results$rowSummary$addColumn(name = "margin", title = "Mass", type = "number", format = "zto")
                 for (i in seq(nDim))
                     self$results$rowSummary$addColumn(name = paste0("score",i), title = paste("Dim",i), superTitle = .("Coordinates†"), type = "number", format = "zto")
@@ -386,7 +403,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
                 # Column Summary Table
                 self$results$colSummary$addColumn(name = "id", title = "#", type = "integer")
-                self$results$colSummary$addColumn(name = "col", title = colVarName, type = "text")
+                self$results$colSummary$addColumn(name = "col", title = private$.varName[[colVarName]], type = "text")
                 self$results$colSummary$addColumn(name = "margin", title = "Mass", type = "number", format = "zto")
                 for (i in seq_len(nDim))
                     self$results$colSummary$addColumn(name = paste0("score",i), title = paste("Dim",i), superTitle = .("Coordinates†"), type = "number", format = "zto")
@@ -415,6 +432,11 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$colSummary$setNote("supp",.("* : Supplementary columns"))
                 self$results$colSummary$setNote("norm", paste("† :", normalizationString))
             }
+            if (length(singular) < 2)
+                return()
+            if (singular[2] < .Machine$double.eps)
+                return()
+
             # Plots
             rowplot <- self$results$rowplot
             rowplot$setState(results)
@@ -423,7 +445,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             biplot <- self$results$biplot
             biplot$setState(results)
         },
-        .caplot = function(rows = TRUE, cols = TRUE, image, ggtheme, theme) {
+        .caplot = function(plotType, image, ggtheme, theme) {
             if (is.null(image$state))
                 return(FALSE)
 
@@ -432,19 +454,21 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             coord <- ca::cacoord(results, type = self$options$normalization)
             # Supplementary Row & Column Colors
             # 1 = row, 2 = rowsup, 3 = column, 4 = colsup
-            if (rows) {
+            if (plotType != 'column') { # rowplat and biplot
                 coord$rows <- cbind(coord$rows, "sup"=1)
                 coord$rows[results$rowsup,"sup"] <- 2
                 ptcoord <- as.data.frame(coord$rows)
             } else {
                 ptcoord <- NA
             }
-            if (cols) {
+            if (plotType != 'row') { # colplot and biplot
                 coord$columns <- cbind(coord$columns, "sup"=3)
-                coord$columns[results$colsup,"sup"]<-4
+                coord$columns[results$colsup,"sup"] <- 4
                 ptcoord <- as.data.frame(rbind(ptcoord,coord$columns))
             }
             ptcoord$sup <- factor(ptcoord$sup, levels = c(1,2,3,4))
+            # ptcoord dataframe containt the row and column coordinates
+            # ptcoord$sup is the type of point (1 = row, 2 = rowsup, 3 = column, 4 = colsup)
 
             # Plot inertia
             singular <- results$sv
@@ -454,10 +478,10 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Plot axis
             xaxis <- self$options$xaxis
             xaxisdim <- paste0("Dim", xaxis)
-            xaxisstr <- paste0("Dim ",xaxis, " (", percentInertia[xaxis], "%)")
+            xaxisstr <- paste0("Dimension ",xaxis, " (", percentInertia[xaxis], "%)")
             yaxis <- self$options$yaxis
             yaxisdim <- paste0("Dim", yaxis)
-            yaxisstr <- paste0("Dim ",yaxis, " (", percentInertia[yaxis], "%)")
+            yaxisstr <- paste0("Dimension ",yaxis, " (", percentInertia[yaxis], "%)")
 
             # Building the plot
             plot <-  ggplot(ptcoord, aes(x = ptcoord[,xaxisdim], y = ptcoord[,yaxisdim], color = ptcoord$sup, shape = ptcoord$sup))
@@ -465,46 +489,69 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             plot <- plot + ggrepel::geom_text_repel(aes(label = rownames(ptcoord)), show.legend = FALSE)
             plot <- plot + geom_hline(yintercept = 0, linetype = 2) + geom_vline(xintercept = 0, linetype = 2)
 
-            # Title
-            normalizationString <- private$.normalizationTitle(self$options$normalization)
-
-            if (rows & cols)
-                title = paste("Row and Column Points for", self$options$rows, "and", self$options$cols)
-            else if (rows)
-                title = paste(.("Row Points for"), self$options$rows)
-            else
-                title = paste(.("Column Points for"), self$options$cols)
-
-            plot <- plot + labs(x = xaxisstr, y = yaxisstr, title = title, subtitle = normalizationString)
-
-
-            # Fixed X/Y ratio
-            if (self$options$fixedRatio)
-                plot <- plot + coord_fixed()
             # Apply jmv theme
             plot <- plot + ggtheme
+
+            # Axes
+            plot <- plot + labs(x = xaxisstr, y = yaxisstr)
+            if (self$options$fixedRatio)
+                plot <- plot + coord_fixed()
+
             # Set point colors
             plot <- plot +
-                    scale_color_manual(
-                        values=c("1" = self$options$rowColor, "2" = self$options$supColor, "3" = self$options$colColor, "4" = self$options$supColor),
-                        breaks=c("1", "3", "2", "4"),
-                        labels = c(self$options$rows, self$options$cols, .("Suppl. Row"), .("Suppl. Column"))) + labs(color = "") +
-                    scale_shape_manual(values = c(19, 19, 17, 17), breaks = c("1","2","3","4")) +
-                    theme(legend.text = element_text(size=10))
+                scale_color_manual(
+                    values=c("1" = self$options$rowColor, "2" = self$options$supColor, "3" = self$options$colColor, "4" = self$options$supColor),
+                    breaks=c("1", "3", "2", "4"),
+                    labels = c(self$options$rows, self$options$cols, .("Suppl. Row"), .("Suppl. Column"))) + labs(color = "") +
+                scale_shape_manual(values = c(19, 19, 17, 17), breaks = c("1","2","3","4")) +
+                theme(legend.text = element_text(size=10))
             plot <- plot + guides(color = "none", shape = "none")
 
-            plot <- plot + theme(plot.subtitle=element_text(size=12, hjust = 0.5, margin = margin(0, 0, 15, 0)),
-                                 plot.title=element_text(margin = margin(0, 0, 10, 0)))
+            # Plot frame
+            plot <- plot + theme(axis.line = element_line(linewidth = 0), panel.border = element_rect(color = "black", fill = NA, size = 1))
+
+            # Plot title
+            title <- self$options$get( paste0(plotType,"Title") )
+            defaultTitle <- switch(plotType,
+                                   row = paste(.("Row Points for"), private$.varName[[self$options$rows]]),
+                                   column = paste(.("Column Points for"), private$.varName[[self$options$cols]]),
+                                   biplot = jmvcore::format(.("Row and Column Points for {rows} and {cols}"),
+                                                            rows = private$.varName[[self$options$rows]],
+                                                            cols = private$.varName[[self$options$cols]])
+            )
+            if (!(title %in% c("", " "))) {
+                if (title == "default")
+                    title <- defaultTitle
+                plot <- plot + labs(title = title)
+                plot <- plot + theme(plot.title = element_text(
+                    size = self$options$titleFontSize,
+                    face = self$options$titleFontFace,
+                    hjust = as.numeric(self$options$titleAlign)))
+            }
+            # Plot subtitle
+            subtitle <- self$options$get( paste0(plotType,"Subtitle") )
+            defaultSubtitle <- private$.normalizationTitle(self$options$normalization)
+            if (!(subtitle %in% c("", " "))) {
+                if (subtitle == "default")
+                    subtitle <- defaultSubtitle
+                plot <- plot + labs(subtitle = subtitle)
+                plot <- plot + theme(plot.subtitle = element_text(
+                    size = self$options$subtitleFontSize,
+                    face = self$options$subtitleFontFace,
+                    hjust = as.numeric(self$options$subtitleAlign),
+                    margin = margin(-5, 0, 15, 0)))
+            }
+
             return(plot)
         },
-        .biplot = function(image, ggtheme, theme, ...) {
-            return(private$.caplot(rows = TRUE, cols = TRUE,image, ggtheme, theme))
-        },
         .rowplot = function(image, ggtheme, theme, ...) {
-            return(private$.caplot(rows = TRUE, cols = FALSE,image, ggtheme, theme))
+            return(private$.caplot(plotType = 'row', image, ggtheme, theme))
         },
         .colplot = function(image, ggtheme, theme, ...) {
-            return(private$.caplot(rows = FALSE, cols = TRUE,image, ggtheme, theme))
+            return(private$.caplot(plotType = 'column', image, ggtheme, theme))
+        },
+        .biplot = function(image, ggtheme, theme, ...) {
+            return(private$.caplot(plotType = 'biplot', image, ggtheme, theme))
         },
 
         #### Helper functions ---- modified from jmv/conttables.b.R

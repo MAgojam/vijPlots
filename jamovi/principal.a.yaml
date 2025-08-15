@@ -1,6 +1,7 @@
 ---
 name:  principal
-title: Principal Component Plot
+title: Principal Component Analysis
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Multivariate
 version: '1.0.0'
@@ -45,15 +46,23 @@ options:
         - title: None
           name: none
         - title: Varimax
-          name: varimax
+          name: Varimax
         - title: Quartimax
           name: quartimax
-        - title: Promax
-          name: promax
-        - title: Oblimin
-          name: oblimin
-        - title: Simplimax
-          name: simplimax
+        - title: Equamax
+          name: equamax
+        - title: Parsimax
+          name: parsimax
+        # - title: Varimin
+        #   name: varimin
+        - title: Minimum entropy
+          name: entropy
+        # - title: Comrey's Tandem 1
+        #   name: tandemI
+        # - title: Comrey's Tandem 2
+        #   name: tandemII
+        - title: Bentler T
+          name: bentlerT
       default: none
 
     - name: dimNum
@@ -77,6 +86,11 @@ options:
       max: 99
       default: 2
 
+    - name: stdVariables
+      title: Standardize variables
+      type: Bool
+      default: true
+
     - name: showSummary
       title: Summary
       type: Bool
@@ -88,7 +102,7 @@ options:
       default: false
 
     - name: showLoadings
-      title: Loadings
+      title: Variables
       type: Bool
       default: false
 
@@ -98,12 +112,12 @@ options:
       default: false
 
     - name: showScreePlot
-      title: Scree Plot
+      title: Show Scree Plot
       type: Bool
       default: true
 
     - name: showVarPlot
-      title: Loadings
+      title: Variables
       type: Bool
       default: true
 
@@ -117,20 +131,389 @@ options:
       type: Bool
       default: false
 
-    - name: missingValues
-      title: Missing Values
+#    - name: missingValues
+#      title: Missing Values
+#      type: List
+#      options:
+#        - title: Exclude listwise
+#          name:  listwise
+#        - title: Exclude pairwise
+#          name:  pairwise
+#        - title: Replace with mean
+#          name:  mean
+#      default: listwise
+
+    - name: biplotType
+      title: Biplot Type
       type: List
       options:
-        - title: Exclude listwise
-          name:  listwise
-        - title: Exclude pairwise
-          name:  pairwise
-        - title: Replace with mean
-          name:  mean
-      default: listwise
+        - title: Form (Score principal)
+          name:  formPlot
+        - title: Covariance (Loading principal)
+          name:  covPlot
+      default: formPlot
 
-    - name: stdScores
-      title: Standardize Scores
+    - name: biplotLines
+      title: Draw arrow lines
       type: Bool
-      default: true
-...
+      default: false
+
+    - name: biplotStretch
+      title: Stretch Arrows
+      type: Bool
+      default: false
+
+    - name: biplotStretchFactor
+      title: Stretch Arrows Factor
+      type: Number
+      default: 1
+      min: 0.0001
+      max: 100
+
+    - name: plotWidth
+      type: Number
+      title: Width
+      min: 0
+      max: 1000
+      default: 0
+
+    - name: plotHeight
+      type: Number
+      title: Height
+      min: 0
+      max: 1000
+      default: 0
+
+    - name: obsLabelSize
+      type: Number
+      title: Observations
+      min: 4
+      max: 24
+      default: 10
+
+    - name: varLabelSize
+      type: Number
+      title: Variables
+      min: 4
+      max: 24
+      default: 12
+
+    - name: pointSize
+      type: Number
+      title: Point size
+      min: 1
+      max: 10
+      default: 3
+
+    - name: varColor
+      title: Arrows
+      type: List
+      options:
+        - title: Black
+          name:  black
+        - title: jmv Blue
+          name:  "#A6C4F1"
+        - title: jmv Gray
+          name:  "#C5C5C5"
+        - title: jmv Yellow
+          name:  "#F0CD8C"
+        - title: jmv Green
+          name:  "#88C38B"
+        - title: jmv Red
+          name:  "#E18A8A"
+        - title: Red
+          name: "#E41A1C"
+        - title: Blue
+          name: "#377EB8"
+        - title: Green
+          name: "#4DAF4A"
+        - title: Purple
+          name:  "#984EA3"
+        - title: Orange
+          name:  "#FF7F00"
+        - title: Yellow
+          name:  "#FFFF33"
+        - title: Brown
+          name:  "#A65628"
+        - title: Pink
+          name:  "#F781BF"
+        - title: Gray
+          name:  "#999999"
+        - title: Light Red
+          name: "#FBB4AE"
+        - title: Light Blue
+          name: "#B3CDE3"
+        - title: Light Green
+          name: "#CCEBC5"
+        - title: Light Purple
+          name:  "#DECBE4"
+        - title: Light Orange
+          name:  "#FED9A6"
+        - title: Light Yellow
+          name:  "#FFFFCC"
+        - title: Light Brown
+          name:  "#E5D8BD"
+        - title: Light Pink
+          name:  "#FDDAEC"
+        - title: Light Gray
+          name:  "#F2F2F2"
+      default: "#377EB8"
+
+    - name: labelColor
+      title: Labels
+      type: List
+      options:
+        - title: Black
+          name:  black
+        - title: Same as point/arrow
+          name:  none
+      default: none
+
+    - name: obsColor
+      title: Points
+      type: List
+      options:
+        - title: Black
+          name:  black
+        - title: jmv Blue
+          name:  "#A6C4F1"
+        - title: jmv Gray
+          name:  "#C5C5C5"
+        - title: jmv Yellow
+          name:  "#F0CD8C"
+        - title: jmv Green
+          name:  "#88C38B"
+        - title: jmv Red
+          name:  "#E18A8A"
+        - title: Red
+          name: "#E41A1C"
+        - title: Blue
+          name: "#377EB8"
+        - title: Green
+          name: "#4DAF4A"
+        - title: Purple
+          name:  "#984EA3"
+        - title: Orange
+          name:  "#FF7F00"
+        - title: Yellow
+          name:  "#FFFF33"
+        - title: Brown
+          name:  "#A65628"
+        - title: Pink
+          name:  "#F781BF"
+        - title: Gray
+          name:  "#999999"
+        - title: Light Red
+          name: "#FBB4AE"
+        - title: Light Blue
+          name: "#B3CDE3"
+        - title: Light Green
+          name: "#CCEBC5"
+        - title: Light Purple
+          name:  "#DECBE4"
+        - title: Light Orange
+          name:  "#FED9A6"
+        - title: Light Yellow
+          name:  "#FFFFCC"
+        - title: Light Brown
+          name:  "#E5D8BD"
+        - title: Light Pink
+          name:  "#FDDAEC"
+        - title: Light Gray
+          name:  "#F2F2F2"
+      default: "#E41A1C"
+
+    - name: colorPalette
+      title: Palette
+      type: List
+      options:
+        - title: jmv Default
+          name:  jmv
+        - title: Set 1
+          name:  Set1
+        - title: Set 2
+          name:  Set2
+        - title: Set 3
+          name:  Set3
+        - title: Pastel 1
+          name:  Pastel1
+        - title: Pastel 2
+          name:  Pastel2
+        - title: Accent
+          name:  Accent
+        - title: Paired
+          name:  Paired
+        - title: Dark 2
+          name:  Dark2
+        - title: Spectral
+          name:  Spectral
+        - title: Red, Yellow, Green
+          name:  RdYlGn
+        - title: Red, Yellow, Blue
+          name:  RdYlBu
+        - title: Red and Gray
+          name:  RdGy
+        - title: Red and Blue
+          name:  RdBu
+        - title: Orange and Purple
+          name:  PuOr
+        - title: Purple and Green
+          name:  PRGn
+        - title: Pink and Green
+          name:  PiYG
+        - title: Brown and Green
+          name:  BrBG
+        - title: Blues
+          name:  Blues
+        - title: Greens
+          name:  Greens
+        - title: Greys
+          name:  Greys
+        - title: Oranges
+          name:  Oranges
+        - title: Purples
+          name:  Purples
+        - title: Reds
+          name:  Reds
+        - title: Blue to Green
+          name:  BuGn
+        - title: Blue to Purple
+          name:  BuPu
+        - title: Green to Blue
+          name:  GnBu
+        - title: Orange to Red
+          name:  OrRd
+        - title: Purple to Blue
+          name:  PuBu
+        - title: Purple to Green
+          name:  PuBuGn
+        - title: Purple to Red
+          name:  PuRd
+        - title: Red to Purple
+          name:  RdPu
+        - title: Yellow to Green
+          name:  YlGn
+        - title: Yellow to Blue
+          name:  YlGnBu
+        - title: Yellow to Brown
+          name:  YlOrBr
+        - title: Yellow to Red
+          name:  YlOrRd
+      default: jmv
+
+    - name: screeTitle
+      title: Scree_plot_Title
+      type: String
+      default: 'default'
+
+    - name: varTitle
+      title: Variable_plot_Title
+      type: String
+      default: 'default'
+
+    - name: obsTitle
+      title: Observation_plot_Title
+      type: String
+      default: 'default'
+
+    - name: biplotTitle
+      title: Biplot_Title
+      type: String
+      default: 'default'
+
+    - name: titleAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: titleFontSize
+      title: Font size
+      type: Number
+      default: 16
+
+    - name: titleFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
+
+    - name: screeSubtitle
+      title: Scree_plot_Title
+      type: String
+      default: ' '
+
+    - name: varSubtitle
+      title: Variable_plot_Title
+      type: String
+      default: 'default'
+
+    - name: obsSubtitle
+      title: Observation_plot_Title
+      type: String
+      default: 'default'
+
+    - name: biplotSubtitle
+      title: Biplot_Title
+      type: String
+      default: 'default'
+
+    - name: subtitleAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: subtitleFontSize
+      title: Font size
+      type: Number
+      default: 12
+
+    - name: subtitleFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
+
+    # - name: usePsych
+    #   title: psych #Use 'psych::principal' function instead of 'prcomp'
+    #   type: Bool
+    #   default: false
+
+    - name: kaiser
+      title: Kaiser normalization
+      type: Bool
+      default: false
+
+    - name: descAsVarName
+      title: Use variable's description as name
+      type: Bool
+      default: false

@@ -41,6 +41,8 @@ children:
               - type: CheckBox
                 name: ignoreNA
                 enable: (!(!group))
+              - type: CheckBox
+                name: descAsVarName
       - type: LayoutBox
         cell:
           column: 1

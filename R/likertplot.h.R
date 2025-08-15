@@ -36,7 +36,8 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showPostHoc = FALSE,
             postHoc = "dunn",
             pValue = "none",
-            adjustMethod = "holm", ...) {
+            adjustMethod = "holm",
+            descAsVarName = FALSE, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -242,6 +243,10 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "BH",
                     "BY"),
                 default="holm")
+            private$..descAsVarName <- jmvcore::OptionBool$new(
+                "descAsVarName",
+                descAsVarName,
+                default=FALSE)
 
             self$.addOption(private$..liks)
             self$.addOption(private$..group)
@@ -274,6 +279,7 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..postHoc)
             self$.addOption(private$..pValue)
             self$.addOption(private$..adjustMethod)
+            self$.addOption(private$..descAsVarName)
         }),
     active = list(
         liks = function() private$..liks$value,
@@ -306,7 +312,8 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showPostHoc = function() private$..showPostHoc$value,
         postHoc = function() private$..postHoc$value,
         pValue = function() private$..pValue$value,
-        adjustMethod = function() private$..adjustMethod$value),
+        adjustMethod = function() private$..adjustMethod$value,
+        descAsVarName = function() private$..descAsVarName$value),
     private = list(
         ..liks = NA,
         ..group = NA,
@@ -338,7 +345,8 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showPostHoc = NA,
         ..postHoc = NA,
         ..pValue = NA,
-        ..adjustMethod = NA)
+        ..adjustMethod = NA,
+        ..descAsVarName = NA)
 )
 
 likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -383,7 +391,8 @@ likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "showMean",
                     "frequencyTable",
                     "toInteger",
-                    "tidyUp")))
+                    "tidyUp",
+                    "descAsVarName")))
             self$add(R6::R6Class(
                 inherit = jmvcore::Group,
                 active = list(
@@ -422,7 +431,8 @@ likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                                 "liks",
                                 "group",
                                 "adjustMethod",
-                                "pValue")))
+                                "pValue",
+                                "descAsVarName")))
                         self$add(jmvcore::Table$new(
                             options=options,
                             name="kwTable",
@@ -452,7 +462,8 @@ likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                                 "liks",
                                 "group",
                                 "adjustMethod",
-                                "pValue")))
+                                "pValue",
+                                "descAsVarName")))
                         self$add(jmvcore::Table$new(
                             options=options,
                             name="pwTable",
@@ -473,7 +484,8 @@ likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                                 "group",
                                 "adjustMethod",
                                 "postHoc",
-                                "pValue")))}))$new(options=options))
+                                "pValue",
+                                "descAsVarName")))}))$new(options=options))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
@@ -502,7 +514,8 @@ likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "plotColor",
                     "labelColor",
                     "vLabelWrap",
-                    "hLabelWrap")))}))
+                    "hLabelWrap",
+                    "descAsVarName")))}))
 
 likertplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "likertplotBase",
@@ -560,6 +573,7 @@ likertplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param postHoc .
 #' @param pValue .
 #' @param adjustMethod .
+#' @param descAsVarName .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
@@ -609,7 +623,8 @@ likertplot <- function(
     showPostHoc = FALSE,
     postHoc = "dunn",
     pValue = "none",
-    adjustMethod = "holm") {
+    adjustMethod = "holm",
+    descAsVarName = FALSE) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("likertplot requires jmvcore to be installed (restart may be required)")
@@ -655,7 +670,8 @@ likertplot <- function(
         showPostHoc = showPostHoc,
         postHoc = postHoc,
         pValue = pValue,
-        adjustMethod = adjustMethod)
+        adjustMethod = adjustMethod,
+        descAsVarName = descAsVarName)
 
     analysis <- likertplotClass$new(
         options = options,

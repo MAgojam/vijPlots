@@ -1,6 +1,7 @@
 ---
 name:  barplot
 title: Bar Plot
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Categorical
 version: '1.0.0'

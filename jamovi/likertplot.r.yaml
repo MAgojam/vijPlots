@@ -66,6 +66,7 @@ items:
         - frequencyTable
         - toInteger
         - tidyUp
+        - descAsVarName
 
     - name: comp
       title: Comparison Tests
@@ -93,6 +94,7 @@ items:
             - group
             - adjustMethod
             - pValue
+            - descAsVarName
 
         - name: kwTable
           title: Kruskal-Wallis Tests
@@ -119,6 +121,7 @@ items:
             - group
             - adjustMethod
             - pValue
+            - descAsVarName
 
         - name: pwTable
           title: Pairwise Comparisons
@@ -138,6 +141,7 @@ items:
             - adjustMethod
             - postHoc
             - pValue
+            - descAsVarName
 
     - name: plot
       title: "Plot"
@@ -167,5 +171,6 @@ items:
         - labelColor
         - vLabelWrap
         - hLabelWrap
+        - descAsVarName
 
 ...

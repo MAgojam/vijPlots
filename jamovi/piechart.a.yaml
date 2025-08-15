@@ -1,6 +1,7 @@
 ---
 name:  piechart
 title: Pie Chart
+category: plots
 menuGroup: vijPlots
 menuSubgroup: Categorical
 version: '1.0.0'

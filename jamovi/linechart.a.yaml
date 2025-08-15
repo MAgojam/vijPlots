@@ -1,6 +1,7 @@
 ---
 name:  linechart
 title: Line Chart
+category: plots
 menuGroup: vijPlots
 menuSubgroup: "Time Series"
 version: '1.0.0'

@@ -1,4 +1,4 @@
-title: Principal Component Plot
+title: Principal Component Analysis
 name: principal
 jus: '3.0'
 stage: 0
@@ -7,6 +7,10 @@ children:
   - type: VariableSupplier
     persistentItems: false
     stretchFactor: 1
+    permitted:
+      - numeric
+      - factor
+      - id
     children:
       - type: TargetLayoutBox
         label: Variables
@@ -33,34 +37,68 @@ children:
     style: inline
     stretchFactor: 1
     children:
-      - type: Label
-        label: Solution
+      - type: LayoutBox
+        margin: large
         stretchFactor: 1
+        cell:
+          column: 0
+          row: 0
         children:
-          - type: LayoutBox
-            cell:
-              column: 0
-              row: 0
+          - type: CheckBox
+            name: stdVariables
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 1
+          row: 0
+        children:
+          - type: CheckBox
+            name: descAsVarName
+  - type: LayoutBox
+    margin: large
+    style: inline
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 0
+          row: 0
+        children:
+          - type: Label
+            label: Solution
             stretchFactor: 1
             children:
               - type: TextBox
                 name: dimNum
                 format: number
+              - type: LayoutBox
+                stretchFactor: 1
+                style: inline
+                children:
+                  - type: TextBox
+                    name: xaxis
+                    format: number
+                  - type: TextBox
+                    name: yaxis
+                    format: number
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 1
+          row: 0
+        children:
+          - type: Label
+            label: Rotation
+            stretchFactor: 1
+            children:
               - type: ComboBox
                 name: rotation
-          - type: LayoutBox
-            cell:
-              column: 1
-              row: 0
-            stretchFactor: 1
-            style: inline
-            children:
-              - type: TextBox
-                name: xaxis
-                format: number
-              - type: TextBox
-                name: yaxis
-                format: number
+              - type: CheckBox
+                name: kaiser
   - type: LayoutBox
     margin: large
     style: inline
@@ -111,24 +149,191 @@ children:
         stretchFactor: 1
         children:
           - type: Label
-            label: Missing Values
+            label: Biplot
             children:
               - type: LayoutBox
                 children:
                   - type: RadioButton
-                    name: missingValues_listwise
-                    optionName: missingValues
-                    optionPart: listwise
-                    label: Exclude listwise
+                    name: biplotType_formPlot
+                    optionName: biplotType
+                    optionPart: formPlot
+                    label: Form (Score principal)
+                    enable: (showBiplot)
                   - type: RadioButton
-                    name: missingValues_pairwise
-                    optionName: missingValues
-                    optionPart: pairwise
-                    label: Exclude pairwise
-                  - type: RadioButton
-                    name: missingValues_mean
-                    optionName: missingValues
-                    optionPart: mean
-                    label: Replace with mean
+                    name: biplotType_covPlot
+                    optionName: biplotType
+                    optionPart: covPlot
+                    label: Cov (Loading principal)
+                    enable: (showBiplot)
                   - type: CheckBox
-                    name: stdScores
+                    name: biplotLines
+                    enable: (showBiplot)
+                  - type: LayoutBox
+                    children:
+                      - type: CheckBox
+                        name: biplotStretch
+                        label: Stretch arrows by
+                        style: inline
+                        verticalAlignment: center
+                        enable: (showBiplot)
+                        children:
+                          - type: TextBox
+                            name: biplotStretchFactor
+                            label: ''
+                            suffix: ''
+                            format: number
+                            width: small
+                            enable: (biplotStretch && showBiplot)
+  - type: CollapseBox
+    label: Plot Options
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        style: inline
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Plot Size
+                children:
+                  - type: LayoutBox
+                    children:
+                      - type: TextBox
+                        name: plotWidth
+                        format: number
+                        suffix: px
+                      - type: TextBox
+                        name: plotHeight
+                        format: number
+                        suffix: px
+                      - type: TextBox
+                        name: varLabelSize
+                        format: number
+                        suffix: pt
+                      - type: TextBox
+                        name: obsLabelSize
+                        format: number
+                        suffix: pt
+                      - type: TextBox
+                        name: pointSize
+                        format: number
+                        suffix: pt
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Plot Colors
+                children:
+                  - type: ComboBox
+                    name: obsColor
+                  - type: ComboBox
+                    name: varColor
+                  - type: ComboBox
+                    name: colorPalette
+                  - type: ComboBox
+                    name: labelColor
+  - type: CollapseBox
+    label: Plot Titles & Subtitles
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Title Text
+                children:
+                  - type: TextBox
+                    name: screeTitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: varTitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: obsTitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: biplotTitle
+                    format: string
+                    width: large
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Title Style
+                children:
+                  - type: TextBox
+                    name: titleFontSize
+                    format: number
+                  - type: ComboBox
+                    name: titleFontFace
+                  - type: ComboBox
+                    name: titleAlign
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Subtitle Text
+                children:
+                  - type: TextBox
+                    name: screeSubtitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: varSubtitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: obsSubtitle
+                    format: string
+                    width: large
+                  - type: TextBox
+                    name: biplotSubtitle
+                    format: string
+                    width: large
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Subtitle Style
+                children:
+                  - type: TextBox
+                    name: subtitleFontSize
+                    format: number
+                  - type: ComboBox
+                    name: subtitleFontFace
+                  - type: ComboBox
+                    name: subtitleAlign
