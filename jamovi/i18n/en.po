@@ -8,16 +8,7 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: corresp/options/columnTitle.default
-#: corresp/options/rowTitle.default
-#: corresp/options/biplotTitle.default
-#: corresp/options/columnSubtitle.default
-#: corresp/options/rowSubtitle.default
-#: corresp/options/biplotSubtitle.default
-#: principal/options/screeTitle.default
-#: principal/options/varTitle.default
-#: principal/options/obsTitle.default
-#: principal/options/biplotTitle.default
+#: principal/options/screeSubtitle.default
 msgid " "
 msgstr ""
 
@@ -31,20 +22,28 @@ msgstr ""
 msgid "."
 msgstr ""
 
-#: R/principal.b.R
-msgid "'{rotation}' rotation was used."
-msgstr ""
-
-#: R/principal.b.R
-msgid "'{rotation}' rotation with Kaiser normalization was used."
-msgstr ""
-
 #: R/qqplot.b.R
 msgid "{detrendStr}{distribStr} {typeStr} Plot of {varStr}"
 msgstr ""
 
 #: R/corresp.b.R
 msgid "{normalization} normalization"
+msgstr ""
+
+#: R/principal.b.R
+msgid "{rotation} rotation"
+msgstr ""
+
+#: R/principal.b.R
+msgid "{rotation} rotation was used."
+msgstr ""
+
+#: R/principal.b.R
+msgid "{rotation} rotation with Kaiser normalization"
+msgstr ""
+
+#: R/principal.b.R
+msgid "{rotation} rotation with Kaiser normalization was used."
 msgstr ""
 
 #: R/qqplot.b.R
@@ -149,12 +148,12 @@ msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-
 msgstr ""
 
 #: principal/results/helpMessage.content
-msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Plot Help</strong></p>\n"
+msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Analysis Help</strong></p>\n"
 "<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n"
 "<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n"
-"<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by eigenvalues).\n"
+"<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).\n"
 "<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n"
-"\n"
+"<p><strong>Advanced options</strong>: <ul> <li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li> <li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li> <li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (Stata way).</li> </ul> </p>\n"
 "<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n"
 "</div>"
 msgstr ""
@@ -307,7 +306,11 @@ msgid "A demonstration dataset for vijPlots module."
 msgstr ""
 
 #: package/datasets/Smoking.description
-msgid "A demonstration dataset for vijPlots/Correspondence plot."
+msgid "A demonstration dataset for vijPlots/Correspondence Analysis."
+msgstr ""
+
+#: package/datasets/Iris.description
+msgid "A demonstration dataset for vijPlots/Principal Component Analysis."
 msgstr ""
 
 #: package/datasets/Raincloud.description
@@ -352,9 +355,14 @@ msgstr ""
 msgid "Adj. p"
 msgstr ""
 
+#: principal/ui[6].label
+msgid "Advanced Options"
+msgstr ""
+
 #: corresp/options/titleAlign.title
 #: corresp/options/subtitleAlign.title
 #: principal/options/titleAlign.title
+#: principal/options/subtitleAlign.title
 msgid "Align"
 msgstr ""
 
@@ -401,6 +409,10 @@ msgstr ""
 msgid "Bar Type"
 msgstr ""
 
+#: R/principal.b.R
+msgid "Bartlett's Test of Sphericity"
+msgstr ""
+
 #: principal/options/rotation/bentlerT.title
 msgid "Bentler T"
 msgstr ""
@@ -436,6 +448,7 @@ msgid "Biplot Type"
 msgstr ""
 
 #: principal/options/biplotTitle.title
+#: principal/options/biplotSubtitle.title
 msgid "Biplot_Title"
 msgstr "Biplot"
 
@@ -510,12 +523,14 @@ msgstr ""
 #: corresp/options/titleFontFace/bold.title
 #: corresp/options/subtitleFontFace/bold.title
 #: principal/options/titleFontFace/bold.title
+#: principal/options/subtitleFontFace/bold.title
 msgid "Bold"
 msgstr ""
 
 #: corresp/options/titleFontFace/bold.italic.title
 #: corresp/options/subtitleFontFace/bold.italic.title
 #: principal/options/titleFontFace/bold.italic.title
+#: principal/options/subtitleFontFace/bold.italic.title
 msgid "Bold Italic"
 msgstr ""
 
@@ -602,6 +617,7 @@ msgstr ""
 #: corresp/options/titleAlign/0.5.title
 #: corresp/options/subtitleAlign/0.5.title
 #: principal/options/titleAlign/0.5.title
+#: principal/options/subtitleAlign/0.5.title
 msgid "Center"
 msgstr ""
 
@@ -696,16 +712,17 @@ msgstr ""
 msgid "Comparison Tests"
 msgstr ""
 
+#: R/principal.b.R
 #: principal/results/summaryTable.columns.title
 msgid "Component"
 msgstr ""
 
-#: principal/options/rotation/tandemI.title
-msgid "Comrey's Tandem 1"
+#: R/principal.b.R
+msgid "Component "
 msgstr ""
 
-#: principal/options/rotation/tandemII.title
-msgid "Comrey's Tandem 2"
+#: R/principal.b.R
+msgid "Component Plot"
 msgstr ""
 
 #: qqplot/options/band.title
@@ -803,6 +820,10 @@ msgstr ""
 msgid "Covariance (Loading principal)"
 msgstr ""
 
+#: R/principal.b.R
+msgid "Covariance Biplot"
+msgstr ""
+
 #: package/datasets/Credit Cards.name
 msgid "Credit Cards"
 msgstr ""
@@ -869,6 +890,22 @@ msgstr ""
 #: mrfrequencies/options/order/decreasing.title
 #: mrfrequencies/ui[2][1][0]/order_decreasing.label
 msgid "Decreasing"
+msgstr ""
+
+#: corresp/options/columnTitle.default
+#: corresp/options/rowTitle.default
+#: corresp/options/biplotTitle.default
+#: corresp/options/columnSubtitle.default
+#: corresp/options/rowSubtitle.default
+#: corresp/options/biplotSubtitle.default
+#: principal/options/screeTitle.default
+#: principal/options/varTitle.default
+#: principal/options/obsTitle.default
+#: principal/options/biplotTitle.default
+#: principal/options/varSubtitle.default
+#: principal/options/obsSubtitle.default
+#: principal/options/biplotSubtitle.default
+msgid "default"
 msgstr ""
 
 #: R/histogram.b.R
@@ -949,6 +986,10 @@ msgstr ""
 
 #: principal/results/summaryTable.columns.title
 msgid "Eigenvalue"
+msgstr ""
+
+#: R/principal.b.R
+msgid "Eigenvalues"
 msgstr ""
 
 #: R/areachart.b.R
@@ -1032,12 +1073,14 @@ msgstr ""
 #: corresp/options/titleFontFace.title
 #: corresp/options/subtitleFontFace.title
 #: principal/options/titleFontFace.title
+#: principal/options/subtitleFontFace.title
 msgid "Font face"
 msgstr ""
 
 #: corresp/options/titleFontSize.title
 #: corresp/options/subtitleFontSize.title
 #: principal/options/titleFontSize.title
+#: principal/options/subtitleFontSize.title
 msgid "Font size"
 msgstr ""
 
@@ -1054,6 +1097,10 @@ msgstr ""
 #: principal/options/biplotType/formPlot.title
 #: principal/ui[3][2][0][0]/biplotType_formPlot.label
 msgid "Form (Score principal)"
+msgstr ""
+
+#: R/principal.b.R
+msgid "Form Biplot"
 msgstr ""
 
 #: package/analyses/mrfrequencies.title
@@ -1321,6 +1368,10 @@ msgstr ""
 msgid "Input Format"
 msgstr ""
 
+#: package/datasets/Iris.name
+msgid "Iris"
+msgstr ""
+
 #: areachart/options/dateFormat/iso.title
 #: linechart/options/dateFormat/iso.title
 msgid "ISO (Y-M-D)"
@@ -1329,6 +1380,7 @@ msgstr ""
 #: corresp/options/titleFontFace/italic.title
 #: corresp/options/subtitleFontFace/italic.title
 #: principal/options/titleFontFace/italic.title
+#: principal/options/subtitleFontFace/italic.title
 msgid "Italic"
 msgstr ""
 
@@ -1405,6 +1457,10 @@ msgstr ""
 msgid "Kaiser normalization"
 msgstr ""
 
+#: R/principal.b.R
+msgid "Kaiser-Meyer-Olkin Measure of Sampling Adequacy (MSA)"
+msgstr ""
+
 #: principal/options/showKMO.title
 #: principal/results/kmoTable.title
 msgid "KMO & Bartlett's Test"
@@ -1450,6 +1506,7 @@ msgstr ""
 #: corresp/options/titleAlign/0.title
 #: corresp/options/subtitleAlign/0.title
 #: principal/options/titleAlign/0.title
+#: principal/options/subtitleAlign/0.title
 msgid "Left"
 msgstr ""
 
@@ -1590,7 +1647,7 @@ msgid "Lollipop Size"
 msgstr ""
 
 #: package.description
-msgid "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert, multiple response barplots, Principal Component and Correspondence plot. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
+msgid "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
 msgstr ""
 
 #: likertplot/options/showMannU.title
@@ -1736,12 +1793,14 @@ msgstr ""
 #: corresp/options/titleFontFace/plain.title
 #: corresp/options/subtitleFontFace/plain.title
 #: principal/options/titleFontFace/plain.title
+#: principal/options/subtitleFontFace/plain.title
 #: qqplot/options/distrib/norm.title
 msgid "Normal"
 msgstr ""
 
 #: corresp/options/normalization.title
 #: corresp/ui[4][0].label
+#: principal/ui[6][0][0][0].label
 msgid "Normalization"
 msgstr ""
 
@@ -1771,11 +1830,13 @@ msgstr ""
 msgid "Number of dimensions"
 msgstr ""
 
+#: R/principal.b.R
 #: principal/results/obsPlot.title
 msgid "Observation Plot"
 msgstr ""
 
 #: principal/options/obsTitle.title
+#: principal/options/obsSubtitle.title
 msgid "Observation_plot_Title"
 msgstr "Observation plot"
 
@@ -2091,11 +2152,8 @@ msgstr ""
 msgid "Plot Size"
 msgstr ""
 
-#: principal/ui[5].label
-msgid "Plot Titles"
-msgstr ""
-
 #: corresp/ui[7].label
+#: principal/ui[5].label
 msgid "Plot Titles & Subtitles"
 msgstr ""
 
@@ -2163,8 +2221,8 @@ msgstr ""
 msgid "Principal Component Analysis"
 msgstr ""
 
-#: principal/results/loadingTable.notes.p
-#: principal/results/obsTable.notes.p
+#: principal/results/loadingTable.notes.norm
+#: principal/results/obsTable.notes.norm
 msgid "Principal coordinates"
 msgstr ""
 
@@ -2172,10 +2230,6 @@ msgstr ""
 #: corresp/ui[4][0][0]/normalization_principal.label
 msgid "Principal_"
 msgstr "Principal"
-
-#: principal/options/usePsych.title
-msgid "psych"
-msgstr ""
 
 #: likertplot/ui[4][3][2]/textSize.suffix
 #: principal/ui[4][0][0][0][0]/varLabelSize.suffix
@@ -2467,7 +2521,12 @@ msgstr ""
 #: corresp/options/titleAlign/1.title
 #: corresp/options/subtitleAlign/1.title
 #: principal/options/titleAlign/1.title
+#: principal/options/subtitleAlign/1.title
 msgid "Right"
+msgstr ""
+
+#: principal/options/stataRotation.title
+msgid "Rotate eigenvectors"
 msgstr ""
 
 #: areachart/options/rotateLabels.title
@@ -2477,6 +2536,7 @@ msgstr ""
 
 #: principal/options/rotation.title
 #: principal/ui[2][1][0].label
+#: principal/ui[6][0][1][0].label
 msgid "Rotation"
 msgstr ""
 
@@ -2570,11 +2630,13 @@ msgstr ""
 msgid "Scatter Plot"
 msgstr ""
 
+#: R/principal.b.R
 #: principal/results/screePlot.title
 msgid "Scree Plot"
 msgstr ""
 
 #: principal/options/screeTitle.title
+#: principal/options/screeSubtitle.title
 msgid "Scree_plot_Title"
 msgstr "Scree plot"
 
@@ -2763,10 +2825,22 @@ msgstr ""
 msgid "Standard"
 msgstr ""
 
+#: R/principal.b.R
+msgid "Standard coordinates"
+msgstr ""
+
 #: corresp/options/normalization/standard.title
 #: corresp/ui[4][0][0]/normalization_standard.label
 msgid "Standard_"
 msgstr "Standard"
+
+#: principal/options/stdLoadings.title
+msgid "Standardize loadings (eigenvectors)"
+msgstr ""
+
+#: principal/options/stdScores.title
+msgid "Standardize scores"
+msgstr ""
 
 #: qqplot/options/standardize.title
 msgid "Standardize Values"
@@ -2809,10 +2883,12 @@ msgid "Student"
 msgstr ""
 
 #: corresp/ui[7][1][1][0].label
+#: principal/ui[5][1][1][0].label
 msgid "Subtitle Style"
 msgstr ""
 
 #: corresp/ui[7][1][0][0].label
+#: principal/ui[5][1][0][0].label
 msgid "Subtitle Text"
 msgstr ""
 
@@ -2932,7 +3008,7 @@ msgid "U"
 msgstr ""
 
 #: R/principal.b.R
-msgid "Unable to use '{rotation}' rotation."
+msgid "Unable to use {rotation} rotation."
 msgstr ""
 
 #: qqplot/options/distrib/unif.title
@@ -2987,6 +3063,7 @@ msgid "Variable Plot"
 msgstr ""
 
 #: principal/options/varTitle.title
+#: principal/options/varSubtitle.title
 msgid "Variable_plot_Title"
 msgstr "Variable plot"
 
@@ -3007,14 +3084,6 @@ msgstr ""
 
 #: principal/options/rotation/Varimax.title
 msgid "Varimax"
-msgstr ""
-
-#: principal/options/rotation/varimax.title
-msgid "Varimax (R Stats)"
-msgstr ""
-
-#: principal/options/rotation/varimin.title
-msgid "Varimin"
 msgstr ""
 
 #: likertplot/options/vLabelWrap.title

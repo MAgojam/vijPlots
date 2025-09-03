@@ -517,3 +517,18 @@ options:
       title: Use variable's description as name
       type: Bool
       default: false
+
+    - name: stdScores
+      title: Standardize scores
+      type: Bool
+      default: false
+
+    - name: stdLoadings
+      title: Standardize loadings (eigenvectors)
+      type: Bool
+      default: false
+
+    - name: stataRotation
+      title: Rotate eigenvectors
+      type: Bool
+      default: false

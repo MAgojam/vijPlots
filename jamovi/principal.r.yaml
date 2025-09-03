@@ -7,10 +7,6 @@ refs:
     - gpa
 
 items:
-    # - name:  debug
-    #   title: Debug
-    #   type:  Preformatted
-    #   visible: false
     - name:  helpMessage
       title: ""
       type:  Html
@@ -26,7 +22,7 @@ items:
 					}
 				</style>
             <div class="block">
-            <p><strong>Principal Component Plot Help</strong></p>
+            <p><strong>Principal Component Analysis Help</strong></p>
 
             <p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables.
             Computations are based on <tt>stats::prcomp</tt> function.</p>
@@ -34,7 +30,7 @@ items:
             <p>Although rotated components are not principal components, they are widely used.
             Only orthogonal rotations are available (from GPArotation package).</p>
 
-            <p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by eigenvalues).
+            <p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).
 
             <p>Biplot follows "Biplots in Practice" [Michael Greenacre, 2010]:
             <ul>
@@ -43,6 +39,14 @@ items:
                 <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li>
             </ul></p>
 
+            <p><strong>Advanced options</strong>:
+            <ul>
+                <li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li>
+                <li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li>
+                <li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings)
+                instead of principal loadings (Stata way).</li>
+            </ul>
+            </p>
 
             <p>A sample file is included at Open > Data Library > vijPlots > Iris</p>
 
@@ -57,7 +61,7 @@ items:
         - rotation
         - stdVariables
         - kaiser
-        - usePsych
+        - stataRotation
       columns:
         - name: comp
           title: 'Component'
@@ -129,14 +133,15 @@ items:
         - yaxis
         - stdVariables
         - kaiser
-        - usePsych
+        - stdLoadings
+        - stataRotation
       columns:
         - name: var
           title: ""
           type: text
           content: ($key)
       notes:
-        p: Principal coordinates
+        norm: Principal coordinates
 
     - name: obsTable
       title: Observations
@@ -152,10 +157,11 @@ items:
         - yaxis
         - stdVariables
         - kaiser
-        - usePsych
+        - stdScores
+        - stataRotation
       columns: []
       notes:
-        p: Principal coordinates
+        norm: Principal coordinates
 
     - name: screePlot
       title: "Scree Plot"
@@ -175,7 +181,6 @@ items:
         - subtitleFontFace
         - subtitleFontSize
         - subtitleAlign
-        - usePsych
 
     - name: varPlot
       title: "Variable Plot"
@@ -210,7 +215,8 @@ items:
         - subtitleFontFace
         - subtitleFontSize
         - subtitleAlign
-        - usePsych
+        - stdLoadings
+        - stataRotation
 
     - name: obsPlot
       title: "Observation Plot"
@@ -247,7 +253,8 @@ items:
         - subtitleFontFace
         - subtitleFontSize
         - subtitleAlign
-        - usePsych
+        - stdScores
+        - stataRotation
 
     - name: biPlot
       title: "Biplot"
@@ -287,5 +294,5 @@ items:
         - subtitleFontFace
         - subtitleFontSize
         - subtitleAlign
-        - usePsych
+        - stataRotation
 ...

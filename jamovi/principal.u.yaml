@@ -337,3 +337,36 @@ children:
                     name: subtitleFontFace
                   - type: ComboBox
                     name: subtitleAlign
+  - type: CollapseBox
+    label: Advanced Options
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Normalization
+                children:
+                  - type: CheckBox
+                    name: stdLoadings
+                  - type: CheckBox
+                    name: stdScores
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Rotation
+                children:
+                  - type: CheckBox
+                    name: stataRotation

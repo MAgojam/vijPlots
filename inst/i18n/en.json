@@ -49,16 +49,22 @@
             ".": [
                 ""
             ],
-            "'{rotation}' rotation was used.": [
-                ""
-            ],
-            "'{rotation}' rotation with Kaiser normalization was used.": [
-                ""
-            ],
             "{detrendStr}{distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
             "{normalization} normalization": [
+                ""
+            ],
+            "{rotation} rotation": [
+                ""
+            ],
+            "{rotation} rotation was used.": [
+                ""
+            ],
+            "{rotation} rotation with Kaiser normalization": [
+                ""
+            ],
+            "{rotation} rotation with Kaiser normalization was used.": [
                 ""
             ],
             "{stdStr}Sample Quantiles": [
@@ -118,7 +124,7 @@
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <h2>Likert Plot Help</h2> <h3>Data & Sorting</h3>\n<ul> <li>Likert variables must be of ordinal measure-type. (Continuous measure-type works as well.)</li> <li>If you plan to compute mean/median/sd or to use comparison tests, they must be of integer data-type.</li> <li><strong>Tidy up levels:</strong> when checked, try to fix the labels order in table and graph (when some variables miss some levels).</li> <li><strong>Convert variables to integer:</strong> when checked, the level labels are ignored and only integer values are used.</li> <li><strong>Sort Variables by Median:</strong> orders the list of Likert variables by median.</li> </ul>\n<h3>Comparison Tests</h3> When using a group variable, several tests are available: <ul> <li><strong>Mann-Whitney U:</strong> Two group comparison</li> <li><strong>Kruskal-Wallis:</strong> n group comparison</li> <li><strong>Post Hoc Tests:</strong> Dunn, Conover and Dwass-Steel-Critchlow-Fligner (DSCF) paiwise comparisons tests.</li> </ul>\n<p>p-Values can be adjusted <strong>groupwise</strong> (for each question) for post hoc tests or <strong>overall</strong> (groupwise and questionwise) for MannWithney U, Kruskal-Wallis and post hoc tests. DSCF p-values are already adjusted (groupwise); no other adjustment is possible.</p> </div>": [
                 ""
             ],
-            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Plot Help</strong></p>\n<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by eigenvalues).\n<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n</div>": [
+            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Analysis Help</strong></p>\n<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).\n<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n<p><strong>Advanced options</strong>: <ul> <li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li> <li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li> <li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (Stata way).</li> </ul> </p>\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n</div>": [
                 ""
             ],
             "0.01": [
@@ -175,7 +181,10 @@
             "A demonstration dataset for vijPlots module.": [
                 ""
             ],
-            "A demonstration dataset for vijPlots/Correspondence plot.": [
+            "A demonstration dataset for vijPlots/Correspondence Analysis.": [
+                ""
+            ],
+            "A demonstration dataset for vijPlots/Principal Component Analysis.": [
                 ""
             ],
             "A demonstration dataset for vijPlots/Raincloud plot.": [
@@ -202,6 +211,9 @@
             "Adj. p": [
                 ""
             ],
+            "Advanced Options": [
+                ""
+            ],
             "Align": [
                 ""
             ],
@@ -224,6 +236,9 @@
                 ""
             ],
             "Bar Type": [
+                ""
+            ],
+            "Bartlett's Test of Sphericity": [
                 ""
             ],
             "Bentler T": [
@@ -367,10 +382,10 @@
             "Component": [
                 ""
             ],
-            "Comrey's Tandem 1": [
+            "Component ": [
                 ""
             ],
-            "Comrey's Tandem 2": [
+            "Component Plot": [
                 ""
             ],
             "Confidence Band": [
@@ -418,6 +433,9 @@
             "Covariance (Loading principal)": [
                 ""
             ],
+            "Covariance Biplot": [
+                ""
+            ],
             "Credit Cards": [
                 ""
             ],
@@ -449,6 +467,9 @@
                 ""
             ],
             "Decreasing": [
+                ""
+            ],
+            "default": [
                 ""
             ],
             "Density": [
@@ -505,6 +526,9 @@
             "Eigenvalue": [
                 ""
             ],
+            "Eigenvalues": [
+                ""
+            ],
             "en_US.utf-8": [
                 ""
             ],
@@ -557,6 +581,9 @@
                 ""
             ],
             "Form (Score principal)": [
+                ""
+            ],
+            "Form Biplot": [
                 ""
             ],
             "Frequencies": [
@@ -676,6 +703,9 @@
             "Input Format": [
                 ""
             ],
+            "Iris": [
+                ""
+            ],
             "ISO (Y-M-D)": [
                 ""
             ],
@@ -710,6 +740,9 @@
                 ""
             ],
             "Kaiser normalization": [
+                ""
+            ],
+            "Kaiser-Meyer-Olkin Measure of Sampling Adequacy (MSA)": [
                 ""
             ],
             "KMO & Bartlett's Test": [
@@ -802,7 +835,7 @@
             "Lollipop Size": [
                 ""
             ],
-            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert, multiple response barplots, Principal Component and Correspondence plot. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
+            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
             ],
             "Mann-Whitney U": [
@@ -1030,9 +1063,6 @@
             "Plot Size": [
                 ""
             ],
-            "Plot Titles": [
-                ""
-            ],
             "Plot Titles & Subtitles": [
                 ""
             ],
@@ -1080,9 +1110,6 @@
             ],
             "Principal_": [
                 "Principal"
-            ],
-            "psych": [
-                ""
             ],
             "pt": [
                 ""
@@ -1172,6 +1199,9 @@
                 ""
             ],
             "Right": [
+                ""
+            ],
+            "Rotate eigenvectors": [
                 ""
             ],
             "Rotate X-Axis Labels": [
@@ -1330,8 +1360,17 @@
             "Standard": [
                 ""
             ],
+            "Standard coordinates": [
+                ""
+            ],
             "Standard_": [
                 "Standard"
+            ],
+            "Standardize loadings (eigenvectors)": [
+                ""
+            ],
+            "Standardize scores": [
+                ""
             ],
             "Standardize Values": [
                 ""
@@ -1444,7 +1483,7 @@
             "U": [
                 ""
             ],
-            "Unable to use '{rotation}' rotation.": [
+            "Unable to use {rotation} rotation.": [
                 ""
             ],
             "Uniform": [
@@ -1478,12 +1517,6 @@
                 ""
             ],
             "Varimax": [
-                ""
-            ],
-            "Varimax (R Stats)": [
-                ""
-            ],
-            "Varimin": [
                 ""
             ],
             "Vertical Label Wrap": [

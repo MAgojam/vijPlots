@@ -8,12 +8,6 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: corresp/options/columnTitle.default
-#: corresp/options/rowTitle.default
-#: corresp/options/biplotTitle.default
-#: corresp/options/columnSubtitle.default
-#: corresp/options/rowSubtitle.default
-#: corresp/options/biplotSubtitle.default
 #: principal/options/screeSubtitle.default
 msgid " "
 msgstr ""
@@ -154,12 +148,12 @@ msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-
 msgstr ""
 
 #: principal/results/helpMessage.content
-msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Plot Help</strong></p>\n"
+msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Analysis Help</strong></p>\n"
 "<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n"
 "<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n"
-"<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by eigenvalues).\n"
+"<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).\n"
 "<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n"
-"\n"
+"<p><strong>Advanced options</strong>: <ul> <li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li> <li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li> <li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (Stata way).</li> </ul> </p>\n"
 "<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n"
 "</div>"
 msgstr ""
@@ -312,7 +306,11 @@ msgid "A demonstration dataset for vijPlots module."
 msgstr "Fichier de démonstration du module vijPlots."
 
 #: package/datasets/Smoking.description
-msgid "A demonstration dataset for vijPlots/Correspondence plot."
+msgid "A demonstration dataset for vijPlots/Correspondence Analysis."
+msgstr ""
+
+#: package/datasets/Iris.description
+msgid "A demonstration dataset for vijPlots/Principal Component Analysis."
 msgstr ""
 
 #: package/datasets/Raincloud.description
@@ -356,6 +354,10 @@ msgstr "Ajouter un cadre au graphique"
 #: R/likertplot.b.R
 msgid "Adj. p"
 msgstr "p corr."
+
+#: principal/ui[6].label
+msgid "Advanced Options"
+msgstr "Options avancées"
 
 #: corresp/options/titleAlign.title
 #: corresp/options/subtitleAlign.title
@@ -723,14 +725,6 @@ msgstr "Composante "
 msgid "Component Plot"
 msgstr "Graphique des composantes"
 
-#: principal/options/rotation/tandemI.title
-msgid "Comrey's Tandem 1"
-msgstr ""
-
-#: principal/options/rotation/tandemII.title
-msgid "Comrey's Tandem 2"
-msgstr ""
-
 #: qqplot/options/band.title
 msgid "Confidence Band"
 msgstr "Bande de confiance (IC)"
@@ -898,6 +892,12 @@ msgstr "Intervalle"
 msgid "Decreasing"
 msgstr "Décroissant"
 
+#: corresp/options/columnTitle.default
+#: corresp/options/rowTitle.default
+#: corresp/options/biplotTitle.default
+#: corresp/options/columnSubtitle.default
+#: corresp/options/rowSubtitle.default
+#: corresp/options/biplotSubtitle.default
 #: principal/options/screeTitle.default
 #: principal/options/varTitle.default
 #: principal/options/obsTitle.default
@@ -1368,6 +1368,10 @@ msgstr "Valeurs propres initiales"
 msgid "Input Format"
 msgstr "Entrée"
 
+#: package/datasets/Iris.name
+msgid "Iris"
+msgstr ""
+
 #: areachart/options/dateFormat/iso.title
 #: linechart/options/dateFormat/iso.title
 msgid "ISO (Y-M-D)"
@@ -1643,7 +1647,7 @@ msgid "Lollipop Size"
 msgstr "Taille des lollipop"
 
 #: package.description
-msgid "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert, multiple response barplots, Principal Component and Correspondence plot. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
+msgid "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
 msgstr ""
 
 #: likertplot/options/showMannU.title
@@ -1796,6 +1800,7 @@ msgstr "Normale"
 
 #: corresp/options/normalization.title
 #: corresp/ui[4][0].label
+#: principal/ui[6][0][0][0].label
 msgid "Normalization"
 msgstr "Normalisation"
 
@@ -2216,8 +2221,8 @@ msgstr "principale"
 msgid "Principal Component Analysis"
 msgstr "Analyse en composantes principales"
 
-#: principal/results/loadingTable.notes.p
-#: principal/results/obsTable.notes.p
+#: principal/results/loadingTable.notes.norm
+#: principal/results/obsTable.notes.norm
 msgid "Principal coordinates"
 msgstr "Coordonnées principales"
 
@@ -2225,10 +2230,6 @@ msgstr "Coordonnées principales"
 #: corresp/ui[4][0][0]/normalization_principal.label
 msgid "Principal_"
 msgstr "Principale"
-
-#: principal/options/usePsych.title
-msgid "psych"
-msgstr ""
 
 #: likertplot/ui[4][3][2]/textSize.suffix
 #: principal/ui[4][0][0][0][0]/varLabelSize.suffix
@@ -2524,6 +2525,10 @@ msgstr "Inverser les modalités"
 msgid "Right"
 msgstr "Droite"
 
+#: principal/options/stataRotation.title
+msgid "Rotate eigenvectors"
+msgstr ""
+
 #: areachart/options/rotateLabels.title
 #: linechart/options/rotateLabels.title
 msgid "Rotate X-Axis Labels"
@@ -2531,6 +2536,7 @@ msgstr "Pivoter les étiquettes"
 
 #: principal/options/rotation.title
 #: principal/ui[2][1][0].label
+#: principal/ui[6][0][1][0].label
 msgid "Rotation"
 msgstr ""
 
@@ -2819,10 +2825,22 @@ msgstr "Empilé à 100 %"
 msgid "Standard"
 msgstr "standard"
 
+#: R/principal.b.R
+msgid "Standard coordinates"
+msgstr "Coordonnées standardisées"
+
 #: corresp/options/normalization/standard.title
 #: corresp/ui[4][0][0]/normalization_standard.label
 msgid "Standard_"
 msgstr "Standard"
+
+#: principal/options/stdLoadings.title
+msgid "Standardize loadings (eigenvectors)"
+msgstr ""
+
+#: principal/options/stdScores.title
+msgid "Standardize scores"
+msgstr ""
 
 #: qqplot/options/standardize.title
 msgid "Standardize Values"
@@ -3066,10 +3084,6 @@ msgstr "Variables"
 
 #: principal/options/rotation/Varimax.title
 msgid "Varimax"
-msgstr ""
-
-#: principal/options/rotation/varimin.title
-msgid "Varimin"
 msgstr ""
 
 #: likertplot/options/vLabelWrap.title

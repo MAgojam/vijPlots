@@ -50,7 +50,10 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             subtitleFontSize = 12,
             subtitleFontFace = "plain",
             kaiser = FALSE,
-            descAsVarName = FALSE, ...) {
+            descAsVarName = FALSE,
+            stdScores = FALSE,
+            stdLoadings = FALSE,
+            stataRotation = FALSE, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -388,6 +391,18 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "descAsVarName",
                 descAsVarName,
                 default=FALSE)
+            private$..stdScores <- jmvcore::OptionBool$new(
+                "stdScores",
+                stdScores,
+                default=FALSE)
+            private$..stdLoadings <- jmvcore::OptionBool$new(
+                "stdLoadings",
+                stdLoadings,
+                default=FALSE)
+            private$..stataRotation <- jmvcore::OptionBool$new(
+                "stataRotation",
+                stataRotation,
+                default=FALSE)
 
             self$.addOption(private$..vars)
             self$.addOption(private$..labelVar)
@@ -434,6 +449,9 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..subtitleFontFace)
             self$.addOption(private$..kaiser)
             self$.addOption(private$..descAsVarName)
+            self$.addOption(private$..stdScores)
+            self$.addOption(private$..stdLoadings)
+            self$.addOption(private$..stataRotation)
         }),
     active = list(
         vars = function() private$..vars$value,
@@ -480,7 +498,10 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         subtitleFontSize = function() private$..subtitleFontSize$value,
         subtitleFontFace = function() private$..subtitleFontFace$value,
         kaiser = function() private$..kaiser$value,
-        descAsVarName = function() private$..descAsVarName$value),
+        descAsVarName = function() private$..descAsVarName$value,
+        stdScores = function() private$..stdScores$value,
+        stdLoadings = function() private$..stdLoadings$value,
+        stataRotation = function() private$..stataRotation$value),
     private = list(
         ..vars = NA,
         ..labelVar = NA,
@@ -526,7 +547,10 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..subtitleFontSize = NA,
         ..subtitleFontFace = NA,
         ..kaiser = NA,
-        ..descAsVarName = NA)
+        ..descAsVarName = NA,
+        ..stdScores = NA,
+        ..stdLoadings = NA,
+        ..stataRotation = NA)
 )
 
 principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -557,7 +581,7 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="helpMessage",
                 title="",
                 visible=TRUE,
-                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Plot Help</strong></p>\n<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by eigenvalues).\n<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n</div>"))
+                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Analysis Help</strong></p>\n<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).\n<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n<p><strong>Advanced options</strong>: <ul> <li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li> <li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li> <li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (Stata way).</li> </ul> </p>\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n</div>"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="summaryTable",
@@ -569,7 +593,7 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "rotation",
                     "stdVariables",
                     "kaiser",
-                    "usePsych"),
+                    "stataRotation"),
                 columns=list(
                     list(
                         `name`="comp", 
@@ -652,7 +676,8 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yaxis",
                     "stdVariables",
                     "kaiser",
-                    "usePsych"),
+                    "stdLoadings",
+                    "stataRotation"),
                 columns=list(
                     list(
                         `name`="var", 
@@ -660,7 +685,7 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="text", 
                         `content`="($key)")),
                 notes=list(
-                    `p`="Principal coordinates")))
+                    `norm`="Principal coordinates")))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="obsTable",
@@ -676,10 +701,11 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yaxis",
                     "stdVariables",
                     "kaiser",
-                    "usePsych"),
+                    "stdScores",
+                    "stataRotation"),
                 columns=list(),
                 notes=list(
-                    `p`="Principal coordinates")))
+                    `norm`="Principal coordinates")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="screePlot",
@@ -698,8 +724,7 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "screeSubtitle",
                     "subtitleFontFace",
                     "subtitleFontSize",
-                    "subtitleAlign",
-                    "usePsych")))
+                    "subtitleAlign")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="varPlot",
@@ -734,7 +759,8 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "subtitleFontFace",
                     "subtitleFontSize",
                     "subtitleAlign",
-                    "usePsych")))
+                    "stdLoadings",
+                    "stataRotation")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="obsPlot",
@@ -771,7 +797,8 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "subtitleFontFace",
                     "subtitleFontSize",
                     "subtitleAlign",
-                    "usePsych")))
+                    "stdScores",
+                    "stataRotation")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="biPlot",
@@ -811,7 +838,7 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "subtitleFontFace",
                     "subtitleFontSize",
                     "subtitleAlign",
-                    "usePsych")))}))
+                    "stataRotation")))}))
 
 principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "principalBase",
@@ -883,6 +910,9 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param subtitleFontFace .
 #' @param kaiser .
 #' @param descAsVarName .
+#' @param stdScores .
+#' @param stdLoadings .
+#' @param stataRotation .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
@@ -949,7 +979,10 @@ principal <- function(
     subtitleFontSize = 12,
     subtitleFontFace = "plain",
     kaiser = FALSE,
-    descAsVarName = FALSE) {
+    descAsVarName = FALSE,
+    stdScores = FALSE,
+    stdLoadings = FALSE,
+    stataRotation = FALSE) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("principal requires jmvcore to be installed (restart may be required)")
@@ -1011,7 +1044,10 @@ principal <- function(
         subtitleFontSize = subtitleFontSize,
         subtitleFontFace = subtitleFontFace,
         kaiser = kaiser,
-        descAsVarName = descAsVarName)
+        descAsVarName = descAsVarName,
+        stdScores = stdScores,
+        stdLoadings = stdLoadings,
+        stataRotation = stataRotation)
 
     analysis <- principalClass$new(
         options = options,

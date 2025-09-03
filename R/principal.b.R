@@ -101,13 +101,8 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # PCA computation
-            # if (self$options$usePsych) {
-            #     res <- private$.pca_psych(data[,self$options$vars], scale = self$options$stdVariables,
-            #                          nfact = nDim, rotation = self$options$rotation)
-            # } else {
             res <- private$.pca(data[,self$options$vars], scale = self$options$stdVariables,
                                nfact = nDim, rotation = self$options$rotation)
-            # }
 
             if (!is.null(self$options$labelVar))
                 rownames(res$scores) <- data[[self$options$labelVar]]
@@ -195,18 +190,22 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$loadingTable$addColumn(name = "QLT",
                                                     title = "Extraction", #ifelse(self$options$stdVariables, "Communalities", "Explained"),
                                                     type = "number")
-                #loadings <- as.data.frame.array(res$loadings)
                 for(aVar in rownames(res$loadings)) {
                     values = list()
                     values[["var"]] <- private$.varName[[aVar]]
                     for(i in 1:nDim) {
-                        values[[paste0("loading:",i)]] <- res$loadings[aVar, i]
+                        if (self$options$stdLoadings)
+                            values[[paste0("loading:",i)]] <- res$stdLoadings[aVar, i]
+                        else
+                            values[[paste0("loading:",i)]] <- res$loadings[aVar, i]
                     }
                     values[["QLT"]] <- res$communalities[aVar]
                     self$results$loadingTable$setRow(rowKey = aVar, values = values)
                 }
                 if (!is.null(rotationNote))
                     self$results$loadingTable$setNote('rot', rotationNote)
+                if (self$options$stdLoadings)
+                    self$results$loadingTable$setNote('norm', .("Standard coordinates"))
             }
 
             # Observation Table
@@ -227,12 +226,18 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     if (!is.null(self$options$groupVar))
                         values["group"] <- as.character(res$group[i])
                     values["qlt"] <- res$qlt[i]
-                    for(j in 1:nDim)
-                        values[as.character(j)] <- res$scores[i,j]
+                    for(j in 1:nDim) {
+                        if (self$options$stdScores)
+                            values[as.character(j)] <- res$stdScores[i,j]
+                        else
+                            values[as.character(j)] <- res$scores[i,j]
+                    }
                     self$results$obsTable$addRow(rowKey = i, values = values)
                 }
                 if (!is.null(rotationNote))
                     self$results$obsTable$setNote('rot', rotationNote)
+                if (self$options$stdScores)
+                    self$results$obsTable$setNote('norm', .("Standard coordinates"))
             }
 
             # Plots
@@ -313,11 +318,15 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             type <- self$options$biplotType
             if (plotType == "biplot" && type == "formPlot") {
-                res$loadings <- t(t(res$loadings) / sqrt(res$SSL))
-                #res$loadings <- res$loadings %*% diag(1/sqrt(res$SSL))
+                #res$loadings <- t(t(res$loadings) / sqrt(res$SSL))
+                res$loadings <- res$stdLoadings
             } else if (plotType == "biplot" && type == "covPlot") {
-                res$scores <- t(t(res$scores) / sqrt(res$SSL))
-                #res$scores <- res$scores %*% diag(1/sqrt(res$SSL))
+                #res$scores <- t(t(res$scores) / sqrt(res$SSL))
+                res$scores <- res$stdScores
+            } else if (plotType == "var" && self$options$stdLoadings) {
+                res$loadings <- res$stdLoadings
+            } else if (plotType == "obs" && self$options$stdScores) {
+                res$scores <- res$stdScores
             }
 
             plot <- ggplot()
@@ -325,7 +334,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Reference lines
             plot <- plot + geom_hline(yintercept = 0, linetype = 2) + geom_vline(xintercept = 0, linetype = 2)
             # Unit circle
-            if (self$options$stdVariables && plotType == "var")
+            if (self$options$stdVariables && plotType == "var" && !self$options$stdLoadings)
                 plot <- plot + ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), linewidth = 0.2, n = 720)
 
             # Obs Plot
@@ -386,7 +395,8 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + geom_segment(data = varData, aes(x = 0, y = 0, xend = !!c1, yend = !!c2),
                                             arrow = arrow(length = unit(0.05, "inches"), type = "closed"),
                                             color = self$options$varColor, size = 0.8)
-                plot <- plot + ggrepel::geom_text_repel(data = varData, aes(x = !!c1, y = !!c2, label = rownames(varData)), check_overlap = TRUE,
+                plot <- plot + ggrepel::geom_text_repel(data = varData, aes(x = !!c1, y = !!c2, label = rownames(varData)),
+                                                        check_overlap = TRUE, min.segment.length = 2,
                                                         position = ggpp::position_nudge_center(x = 0.2, y = 0.01, center_x = 0, center_y = 0),
                                                         size = self$options$varLabelSize/.pt, color = labelColor, fontface="bold")
              }
@@ -471,99 +481,127 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     margin = margin(-5, 0, 15, 0)))
             }
 
+            # Plot Caption
+            if ((plotType == "var" && self$options$stdLoadings) || (plotType == "obs" && self$options$stdScores))
+                plot <- plot + labs(caption = .("Standard coordinates"))
+
             return(plot)
         },
-        .pca_psych = function(data, scale = TRUE, nfact = 2, rotation = "none") {
-            if (self$options$rotation == "varimax")
-                res <- psych::principal(data, nfactors = nfact, cor = ifelse(scale,"cor","cov"),
-                                        rotate = rotation, use = "complete.obs", eps = 1e-14)
-            else
-                res <- psych::principal(data, nfactors = nfact, cor = ifelse(scale,"cor","cov"),
-                                        rotate = rotation, use = "complete.obs")
-            eigenvalues <- res$values
-            rotatedSSL <- res$Vaccounted["SS loadings",]
-            loadings <- as.data.frame.array(res$loadings)
-
-            # res$scores with principal coordinates
-            scores <- res$scores %*% diag(sqrt(rotatedSSL))
-            scores <- as.data.frame(scores)
-            communalities <- res$communality
-
-            # Score QLT
-            zscores <- scale(data, scale = scale)
-            norm2 <- rowSums(zscores**2)
-            # pca without rotation
-            res1 <- psych::principal(data, nfactors = nfact, rotate = "none", use = "complete.obs", cor = ifelse(scale,"cor","cov"))
-            eigen1 <- res1$Vaccounted["SS loadings",]
-            # Compute norm^2 of projections
-            norm2pca <- res1$scores**2 %*% eigen1
-            # then QLT
-            qlt <- norm2pca / norm2
-            return(list(
-                eigenvalues = eigenvalues,
-                SSL = rotatedSSL,
-                loadings = loadings[,],
-                scores = scores,
-                communalities = communalities,
-                qlt = qlt,
-                rotation = rotation
-            ))
-        },
+        # .pca_psych = function(data, scale = TRUE, nfact = 2, rotation = "none") {
+        #     if (self$options$rotation == "varimax")
+        #         res <- psych::principal(data, nfactors = nfact, cor = ifelse(scale,"cor","cov"),
+        #                                 rotate = rotation, use = "complete.obs", eps = 1e-14)
+        #     else
+        #         res <- psych::principal(data, nfactors = nfact, cor = ifelse(scale,"cor","cov"),
+        #                                 rotate = rotation, use = "complete.obs")
+        #     eigenvalues <- res$values
+        #     rotatedSSL <- res$Vaccounted["SS loadings",]
+        #     loadings <- as.data.frame.array(res$loadings)
+        #
+        #     # res$scores with principal coordinates
+        #     scores <- res$scores %*% diag(sqrt(rotatedSSL))
+        #     scores <- as.data.frame(scores)
+        #     communalities <- res$communality
+        #
+        #     # Score QLT
+        #     zscores <- scale(data, scale = scale)
+        #     norm2 <- rowSums(zscores**2)
+        #     # pca without rotation
+        #     res1 <- psych::principal(data, nfactors = nfact, rotate = "none", use = "complete.obs", cor = ifelse(scale,"cor","cov"))
+        #     eigen1 <- res1$Vaccounted["SS loadings",]
+        #     # Compute norm^2 of projections
+        #     norm2pca <- res1$scores**2 %*% eigen1
+        #     # then QLT
+        #     qlt <- norm2pca / norm2
+        #     return(list(
+        #         eigenvalues = eigenvalues,
+        #         SSL = rotatedSSL,
+        #         loadings = loadings[,],
+        #         scores = scores,
+        #         communalities = communalities,
+        #         qlt = qlt,
+        #         rotation = rotation
+        #     ))
+        # },
         .pca = function(data, scale = TRUE, nfact = 2, rotation = "none") {
             data <- jmvcore::naOmit(data)
             res <- prcomp(data, scale. = scale)
             # Full solution
             eigenvalues <- res$sdev**2
             # Loadings (principal)
-            loadings <- res$rotation[,1:nfact] %*% diag(res$sdev[1:nfact])
+            stdLoadings <- res$rotation[,1:nfact]
+            loadings <- stdLoadings %*% diag(res$sdev[1:nfact])
             # Loading QLT (Communalities)
             if (scale)
                 communalities <- rowSums(loadings**2)
             else
                 communalities <- rowSums(loadings**2) / rapply(data, var)
+            # Principal Scores
+            scores <- res$x[,1:nfact]
             # Score QLT
-            zscores <- scale(data, scale = scale)
-            norm2 <- rowSums(zscores**2)
-            norm2pca <- rowSums(res$x[,1:nfact]**2)
+            zdata <- scale(data, scale = scale)
+            norm2 <- rowSums(zdata**2)
+            norm2pca <- rowSums(scores**2)
             qlt <- norm2pca / norm2
             # Rotation
-            if (rotation %in% c("quartimax", "equamax", "parsimax", "varimin",
-                                    "entropy", "tandemI", "tandemII", "bentlerT", "Varimax")) {
-                rotatedRes <-  try(do.call(getFromNamespace(rotation,'GPArotation'),list(loadings, normalize = self$options$kaiser)))
+            if (rotation %in% c("Varimax", "quartimax", "equamax", "parsimax", "entropy", "bentlerT")) {
+                if (self$options$stataRotation)
+                    rotatedRes <-  try(do.call(getFromNamespace(rotation,'GPArotation'),list(stdLoadings, normalize = self$options$kaiser)))
+                else
+                    rotatedRes <-  try(do.call(getFromNamespace(rotation,'GPArotation'),list(loadings, normalize = self$options$kaiser)))
                 if (inherits(rotatedRes, as.character("try-error"))) {
-                    rotatedLoadings <- loadings
-                    rotatedSSL <- eigenvalues[1:nfact]
-                    rotatedScores <- res$x[,1:nfact]
                     rotation <- "none"
                 } else {
-                    rotatedLoadings <- rotatedRes$loadings
-                    rotatedRes$rotmat <- t(solve(rotatedRes$Th))
-                    rotatedSSL <- colSums(rotatedLoadings**2)
-                    rotatedStdScores <- scale(res$x[,1:nfact]) %*% rotatedRes$rotmat
-                    rotatedScores <- rotatedStdScores %*% diag(sqrt(rotatedSSL))
+                    if (self$options$stataRotation) {
+                        rotatedStdLoadings <- rotatedRes$loadings
+                        rotatedRes$rotmat <- rotatedRes$Th
+                        rotatedSSL <- colSums((loadings %*% rotatedRes$rotmat)**2)
+                        rotatedLoadings <- rotatedStdLoadings %*% diag(sqrt(rotatedSSL))
+                        rotatedScores <- scores %*% rotatedRes$rotmat
+                        rotatedStdScores <- rotatedScores %*% diag(1/sqrt(rotatedSSL))
+                    } else {
+                        rotatedLoadings <- rotatedRes$loadings
+                        rotatedRes$rotmat <- rotatedRes$Th # t(solve(rotatedRes$Th))
+                        rotatedSSL <- colSums(rotatedLoadings**2)
+                        rotatedStdScores <- scale(scores) %*% rotatedRes$rotmat
+                        rotatedScores <- rotatedStdScores %*% diag(sqrt(rotatedSSL))
+                        #
+                        rotatedStdLoadings <- rotatedLoadings %*% diag(1/sqrt(rotatedSSL))
+                    }
                 }
-            } else { # rotation == "none"
-                rotatedLoadings <- loadings
+            }
+            if (rotation == "none") { # no rotation or rotation failed
                 rotatedSSL <- eigenvalues[1:nfact]
-                rotatedScores <- res$x[,1:nfact]
-                rotation <- "none"
+                rotatedLoadings <- loadings
+                rotatedScores <- scores
+                #
+                rotatedStdScores <- rotatedScores %*% diag(1/sqrt(rotatedSSL))
+                rotatedStdLoadings <- stdLoadings
             }
             # Reoder the dims
             dimOrder <- order(rotatedSSL,decreasing=TRUE)
             rotatedSSL <- rotatedSSL[dimOrder]
             rotatedLoadings <- rotatedLoadings[,dimOrder]
             rotatedScores <- rotatedScores[,dimOrder]
+            #
+            rotatedStdScores <- rotatedStdScores[,dimOrder]
+            rotatedStdLoadings <- rotatedStdLoadings[,dimOrder]
             # Fix axis orientations (from psych::principal)
             sign.tot <- sign(colSums(rotatedLoadings[,]))
             sign.tot[sign.tot==0] <- 1
             rotatedLoadings <- rotatedLoadings %*% diag(sign.tot)
             rotatedScores <- rotatedScores %*% diag(sign.tot)
             #
+            rotatedStdScores <- rotatedStdScores %*% diag(sign.tot)
+            rotatedStdLoadings <- rotatedStdLoadings %*% diag(sign.tot)
+            #
             return(list(
                 eigenvalues = eigenvalues,
                 SSL = rotatedSSL,
                 loadings = rotatedLoadings,
                 scores = rotatedScores,
+                stdLoadings = rotatedStdLoadings,
+                stdScores = rotatedStdScores,
                 communalities = communalities,
                 qlt = qlt,
                 rotation = rotation

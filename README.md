@@ -63,7 +63,7 @@
 
 ## Version history
 
-### 2025-08-15 / 0.9.6 (beta)
+### 2025-09-03 / 0.10.0 (beta)
 
 -   Principal Component Analysis
 -   Plot Titles & Subtitle in Correspondence Analysis
