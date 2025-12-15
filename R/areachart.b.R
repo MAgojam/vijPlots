@@ -9,14 +9,22 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
+
             width <- 600
             height <- 400
             # Compute the size according to options
             if (userWidth * userHeight == 0) {
-                if (!is.null(self$options$group) || length(self$options$vars) > 1)
-                    width <- 650
+                if (!is.null(self$options$group) || length(self$options$vars) > 1) {
+                    if (self$options$legendPosition %in% c('top','bottom'))
+                        height <- height + 50
+                    else
+                        width <- width + 50
+                }
                 if (self$options$rotateLabels)
-                    height <- 450
+                    height <- height + 50
             }
             if (userWidth >0)
                 width = userWidth
@@ -125,7 +133,8 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                       color='black', size = lineWidth,
                                       alpha = alpha)
 
-            plot <- plot + ggtheme + scale_fill_brewer(palette = self$options$colorPalette)
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
 
             if (timeVarIsDate) {
                 Sys.setlocale("LC_TIME", .("en_US.utf-8"))
@@ -138,11 +147,27 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (self$options$position == "fill")
                 plot <- plot + scale_y_continuous(labels=percent_format())
 
-            if (!oneVariable)
-                plot <- plot + labs(fill='')
+            if (!oneVariable) {
+                if(length(self$options$vars) > 1) {
+                    showLegend = TRUE
+                    yLab <- .("Values")
+                } else {
+                    showLegend = FALSE
+                    yLab <- self$options$vars
+                }
+            } else {
+                showLegend = TRUE
+                yLab <- depVar
+            }
 
-            if (!is.null(self$options$ylabel) && self$options$ylabel != "")
-                plot <- plot + labs(y = self$options$ylabel)
+
+            # Titles & Labels
+            defaults <- list(y = yLab, x = timeVar, legend = groupVar)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options, showLegend = showLegend)
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
+
+            # Suppress black border
+            plot <- plot + guides(fill = guide_legend(override.aes = list(color = NULL)))
 
             return(plot)
         },

@@ -15,14 +15,34 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             notches = FALSE,
             ignoreNA = TRUE,
             horizontal = FALSE,
-            legendAtBottom = FALSE,
             colorPalette = "jmv",
             singleColor = FALSE,
             order = "none",
             plotWidth = 0,
             plotHeight = 0,
             stapleWidth = 0.25,
-            notchWidth = 0.5, ...) {
+            notchWidth = 0.5,
+            titleText = NULL,
+            titleFontFace = "bold",
+            titleFontSize = "14",
+            titleAlign = "0.5",
+            subtitleText = NULL,
+            subtitleFontFace = "plain",
+            subtitleFontSize = "12",
+            subtitleAlign = "0.5",
+            captionText = NULL,
+            captionFontFace = "italic",
+            captionFontSize = "10",
+            captionAlign = "1",
+            legendText = NULL,
+            legendFontSize = "14",
+            legendPosition = "right",
+            xAxisText = NULL,
+            xAxisFontSize = "16",
+            xAxisPosition = "0.5",
+            yAxisText = NULL,
+            yAxisFontSize = "16",
+            yAxisPosition = "0.5", ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -78,10 +98,6 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "horizontal",
                 horizontal,
                 default=FALSE)
-            private$..legendAtBottom <- jmvcore::OptionBool$new(
-                "legendAtBottom",
-                legendAtBottom,
-                default=FALSE)
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -121,7 +137,13 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "YlGn",
                     "YlGnBu",
                     "YlOrBr",
-                    "YlOrRd"),
+                    "YlOrRd",
+                    "viridis::viridis",
+                    "viridis::magma",
+                    "viridis::inferno",
+                    "viridis::plasma",
+                    "viridis::turbo",
+                    "dichromat::Categorical.12"),
                 default="jmv")
             private$..singleColor <- jmvcore::OptionBool$new(
                 "singleColor",
@@ -159,6 +181,169 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 min=0,
                 max=1,
                 default=0.5)
+            private$..titleText <- jmvcore::OptionString$new(
+                "titleText",
+                titleText)
+            private$..titleFontFace <- jmvcore::OptionList$new(
+                "titleFontFace",
+                titleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="bold")
+            private$..titleFontSize <- jmvcore::OptionList$new(
+                "titleFontSize",
+                titleFontSize,
+                options=list(
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22",
+                    "24"),
+                default="14")
+            private$..titleAlign <- jmvcore::OptionList$new(
+                "titleAlign",
+                titleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..subtitleText <- jmvcore::OptionString$new(
+                "subtitleText",
+                subtitleText)
+            private$..subtitleFontFace <- jmvcore::OptionList$new(
+                "subtitleFontFace",
+                subtitleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..subtitleFontSize <- jmvcore::OptionList$new(
+                "subtitleFontSize",
+                subtitleFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22"),
+                default="12")
+            private$..subtitleAlign <- jmvcore::OptionList$new(
+                "subtitleAlign",
+                subtitleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..captionText <- jmvcore::OptionString$new(
+                "captionText",
+                captionText)
+            private$..captionFontFace <- jmvcore::OptionList$new(
+                "captionFontFace",
+                captionFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="italic")
+            private$..captionFontSize <- jmvcore::OptionList$new(
+                "captionFontSize",
+                captionFontSize,
+                options=list(
+                    "8",
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="10")
+            private$..captionAlign <- jmvcore::OptionList$new(
+                "captionAlign",
+                captionAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="1")
+            private$..legendText <- jmvcore::OptionString$new(
+                "legendText",
+                legendText)
+            private$..legendFontSize <- jmvcore::OptionList$new(
+                "legendFontSize",
+                legendFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="14")
+            private$..legendPosition <- jmvcore::OptionList$new(
+                "legendPosition",
+                legendPosition,
+                options=list(
+                    "right",
+                    "bottom",
+                    "left",
+                    "top"),
+                default="right")
+            private$..xAxisText <- jmvcore::OptionString$new(
+                "xAxisText",
+                xAxisText)
+            private$..xAxisFontSize <- jmvcore::OptionList$new(
+                "xAxisFontSize",
+                xAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..xAxisPosition <- jmvcore::OptionList$new(
+                "xAxisPosition",
+                xAxisPosition,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..yAxisText <- jmvcore::OptionString$new(
+                "yAxisText",
+                yAxisText)
+            private$..yAxisFontSize <- jmvcore::OptionList$new(
+                "yAxisFontSize",
+                yAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..yAxisPosition <- jmvcore::OptionList$new(
+                "yAxisPosition",
+                yAxisPosition,
+                options=list(
+                    "1",
+                    "0.5",
+                    "0"),
+                default="0.5")
 
             self$.addOption(private$..vars)
             self$.addOption(private$..group)
@@ -169,7 +354,6 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..notches)
             self$.addOption(private$..ignoreNA)
             self$.addOption(private$..horizontal)
-            self$.addOption(private$..legendAtBottom)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..singleColor)
             self$.addOption(private$..order)
@@ -177,6 +361,27 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..plotHeight)
             self$.addOption(private$..stapleWidth)
             self$.addOption(private$..notchWidth)
+            self$.addOption(private$..titleText)
+            self$.addOption(private$..titleFontFace)
+            self$.addOption(private$..titleFontSize)
+            self$.addOption(private$..titleAlign)
+            self$.addOption(private$..subtitleText)
+            self$.addOption(private$..subtitleFontFace)
+            self$.addOption(private$..subtitleFontSize)
+            self$.addOption(private$..subtitleAlign)
+            self$.addOption(private$..captionText)
+            self$.addOption(private$..captionFontFace)
+            self$.addOption(private$..captionFontSize)
+            self$.addOption(private$..captionAlign)
+            self$.addOption(private$..legendText)
+            self$.addOption(private$..legendFontSize)
+            self$.addOption(private$..legendPosition)
+            self$.addOption(private$..xAxisText)
+            self$.addOption(private$..xAxisFontSize)
+            self$.addOption(private$..xAxisPosition)
+            self$.addOption(private$..yAxisText)
+            self$.addOption(private$..yAxisFontSize)
+            self$.addOption(private$..yAxisPosition)
         }),
     active = list(
         vars = function() private$..vars$value,
@@ -188,14 +393,34 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         notches = function() private$..notches$value,
         ignoreNA = function() private$..ignoreNA$value,
         horizontal = function() private$..horizontal$value,
-        legendAtBottom = function() private$..legendAtBottom$value,
         colorPalette = function() private$..colorPalette$value,
         singleColor = function() private$..singleColor$value,
         order = function() private$..order$value,
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
         stapleWidth = function() private$..stapleWidth$value,
-        notchWidth = function() private$..notchWidth$value),
+        notchWidth = function() private$..notchWidth$value,
+        titleText = function() private$..titleText$value,
+        titleFontFace = function() private$..titleFontFace$value,
+        titleFontSize = function() private$..titleFontSize$value,
+        titleAlign = function() private$..titleAlign$value,
+        subtitleText = function() private$..subtitleText$value,
+        subtitleFontFace = function() private$..subtitleFontFace$value,
+        subtitleFontSize = function() private$..subtitleFontSize$value,
+        subtitleAlign = function() private$..subtitleAlign$value,
+        captionText = function() private$..captionText$value,
+        captionFontFace = function() private$..captionFontFace$value,
+        captionFontSize = function() private$..captionFontSize$value,
+        captionAlign = function() private$..captionAlign$value,
+        legendText = function() private$..legendText$value,
+        legendFontSize = function() private$..legendFontSize$value,
+        legendPosition = function() private$..legendPosition$value,
+        xAxisText = function() private$..xAxisText$value,
+        xAxisFontSize = function() private$..xAxisFontSize$value,
+        xAxisPosition = function() private$..xAxisPosition$value,
+        yAxisText = function() private$..yAxisText$value,
+        yAxisFontSize = function() private$..yAxisFontSize$value,
+        yAxisPosition = function() private$..yAxisPosition$value),
     private = list(
         ..vars = NA,
         ..group = NA,
@@ -206,14 +431,34 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..notches = NA,
         ..ignoreNA = NA,
         ..horizontal = NA,
-        ..legendAtBottom = NA,
         ..colorPalette = NA,
         ..singleColor = NA,
         ..order = NA,
         ..plotWidth = NA,
         ..plotHeight = NA,
         ..stapleWidth = NA,
-        ..notchWidth = NA)
+        ..notchWidth = NA,
+        ..titleText = NA,
+        ..titleFontFace = NA,
+        ..titleFontSize = NA,
+        ..titleAlign = NA,
+        ..subtitleText = NA,
+        ..subtitleFontFace = NA,
+        ..subtitleFontSize = NA,
+        ..subtitleAlign = NA,
+        ..captionText = NA,
+        ..captionFontFace = NA,
+        ..captionFontSize = NA,
+        ..captionAlign = NA,
+        ..legendText = NA,
+        ..legendFontSize = NA,
+        ..legendPosition = NA,
+        ..xAxisText = NA,
+        ..xAxisFontSize = NA,
+        ..xAxisPosition = NA,
+        ..yAxisText = NA,
+        ..yAxisFontSize = NA,
+        ..yAxisPosition = NA)
 )
 
 boxplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -234,25 +479,7 @@ boxplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="",
                 width=600,
                 height=400,
-                renderFun=".plot",
-                clearWith=list(
-                    "vars",
-                    "group",
-                    "label",
-                    "showOutliers",
-                    "showMean",
-                    "staple",
-                    "notches",
-                    "horizontal",
-                    "legendAtBottom",
-                    "ignoreNA",
-                    "stapleWidth",
-                    "notchWidth",
-                    "colorPalette",
-                    "singleColor",
-                    "order",
-                    "plotHeight",
-                    "plotWidth")))}))
+                renderFun=".plot"))}))
 
 boxplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "boxplotBase",
@@ -288,7 +515,6 @@ boxplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param notches .
 #' @param ignoreNA .
 #' @param horizontal .
-#' @param legendAtBottom .
 #' @param colorPalette .
 #' @param singleColor .
 #' @param order .
@@ -296,6 +522,27 @@ boxplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param plotHeight .
 #' @param stapleWidth .
 #' @param notchWidth .
+#' @param titleText .
+#' @param titleFontFace .
+#' @param titleFontSize .
+#' @param titleAlign .
+#' @param subtitleText .
+#' @param subtitleFontFace .
+#' @param subtitleFontSize .
+#' @param subtitleAlign .
+#' @param captionText .
+#' @param captionFontFace .
+#' @param captionFontSize .
+#' @param captionAlign .
+#' @param legendText .
+#' @param legendFontSize .
+#' @param legendPosition .
+#' @param xAxisText .
+#' @param xAxisFontSize .
+#' @param xAxisPosition .
+#' @param yAxisText .
+#' @param yAxisFontSize .
+#' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -313,14 +560,34 @@ boxplot <- function(
     notches = FALSE,
     ignoreNA = TRUE,
     horizontal = FALSE,
-    legendAtBottom = FALSE,
     colorPalette = "jmv",
     singleColor = FALSE,
     order = "none",
     plotWidth = 0,
     plotHeight = 0,
     stapleWidth = 0.25,
-    notchWidth = 0.5) {
+    notchWidth = 0.5,
+    titleText,
+    titleFontFace = "bold",
+    titleFontSize = "14",
+    titleAlign = "0.5",
+    subtitleText,
+    subtitleFontFace = "plain",
+    subtitleFontSize = "12",
+    subtitleAlign = "0.5",
+    captionText,
+    captionFontFace = "italic",
+    captionFontSize = "10",
+    captionAlign = "1",
+    legendText,
+    legendFontSize = "14",
+    legendPosition = "right",
+    xAxisText,
+    xAxisFontSize = "16",
+    xAxisPosition = "0.5",
+    yAxisText,
+    yAxisFontSize = "16",
+    yAxisPosition = "0.5") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("boxplot requires jmvcore to be installed (restart may be required)")
@@ -347,14 +614,34 @@ boxplot <- function(
         notches = notches,
         ignoreNA = ignoreNA,
         horizontal = horizontal,
-        legendAtBottom = legendAtBottom,
         colorPalette = colorPalette,
         singleColor = singleColor,
         order = order,
         plotWidth = plotWidth,
         plotHeight = plotHeight,
         stapleWidth = stapleWidth,
-        notchWidth = notchWidth)
+        notchWidth = notchWidth,
+        titleText = titleText,
+        titleFontFace = titleFontFace,
+        titleFontSize = titleFontSize,
+        titleAlign = titleAlign,
+        subtitleText = subtitleText,
+        subtitleFontFace = subtitleFontFace,
+        subtitleFontSize = subtitleFontSize,
+        subtitleAlign = subtitleAlign,
+        captionText = captionText,
+        captionFontFace = captionFontFace,
+        captionFontSize = captionFontSize,
+        captionAlign = captionAlign,
+        legendText = legendText,
+        legendFontSize = legendFontSize,
+        legendPosition = legendPosition,
+        xAxisText = xAxisText,
+        xAxisFontSize = xAxisFontSize,
+        xAxisPosition = xAxisPosition,
+        yAxisText = yAxisText,
+        yAxisFontSize = yAxisFontSize,
+        yAxisPosition = yAxisPosition)
 
     analysis <- boxplotClass$new(
         options = options,

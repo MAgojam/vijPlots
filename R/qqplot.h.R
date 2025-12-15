@@ -24,7 +24,28 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             paramMethod = "paraEstimate",
             paramEstMethod = "mle",
             param1 = 0,
-            param2 = 1, ...) {
+            param2 = 1,
+            titleText = "default",
+            titleFontFace = "bold",
+            titleFontSize = "14",
+            titleAlign = "0.5",
+            subtitleText = NULL,
+            subtitleFontFace = "plain",
+            subtitleFontSize = "12",
+            subtitleAlign = "0.5",
+            captionText = NULL,
+            captionFontFace = "italic",
+            captionFontSize = "10",
+            captionAlign = "1",
+            legendText = NULL,
+            legendFontSize = "14",
+            legendPosition = "right",
+            xAxisText = NULL,
+            xAxisFontSize = "16",
+            xAxisPosition = "0.5",
+            yAxisText = NULL,
+            yAxisFontSize = "16",
+            yAxisPosition = "0.5", ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -155,6 +176,170 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "param2",
                 param2,
                 default=1)
+            private$..titleText <- jmvcore::OptionString$new(
+                "titleText",
+                titleText,
+                default="default")
+            private$..titleFontFace <- jmvcore::OptionList$new(
+                "titleFontFace",
+                titleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="bold")
+            private$..titleFontSize <- jmvcore::OptionList$new(
+                "titleFontSize",
+                titleFontSize,
+                options=list(
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22",
+                    "24"),
+                default="14")
+            private$..titleAlign <- jmvcore::OptionList$new(
+                "titleAlign",
+                titleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..subtitleText <- jmvcore::OptionString$new(
+                "subtitleText",
+                subtitleText)
+            private$..subtitleFontFace <- jmvcore::OptionList$new(
+                "subtitleFontFace",
+                subtitleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..subtitleFontSize <- jmvcore::OptionList$new(
+                "subtitleFontSize",
+                subtitleFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22"),
+                default="12")
+            private$..subtitleAlign <- jmvcore::OptionList$new(
+                "subtitleAlign",
+                subtitleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..captionText <- jmvcore::OptionString$new(
+                "captionText",
+                captionText)
+            private$..captionFontFace <- jmvcore::OptionList$new(
+                "captionFontFace",
+                captionFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="italic")
+            private$..captionFontSize <- jmvcore::OptionList$new(
+                "captionFontSize",
+                captionFontSize,
+                options=list(
+                    "8",
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="10")
+            private$..captionAlign <- jmvcore::OptionList$new(
+                "captionAlign",
+                captionAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="1")
+            private$..legendText <- jmvcore::OptionString$new(
+                "legendText",
+                legendText)
+            private$..legendFontSize <- jmvcore::OptionList$new(
+                "legendFontSize",
+                legendFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="14")
+            private$..legendPosition <- jmvcore::OptionList$new(
+                "legendPosition",
+                legendPosition,
+                options=list(
+                    "right",
+                    "bottom",
+                    "left",
+                    "top"),
+                default="right")
+            private$..xAxisText <- jmvcore::OptionString$new(
+                "xAxisText",
+                xAxisText)
+            private$..xAxisFontSize <- jmvcore::OptionList$new(
+                "xAxisFontSize",
+                xAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..xAxisPosition <- jmvcore::OptionList$new(
+                "xAxisPosition",
+                xAxisPosition,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..yAxisText <- jmvcore::OptionString$new(
+                "yAxisText",
+                yAxisText)
+            private$..yAxisFontSize <- jmvcore::OptionList$new(
+                "yAxisFontSize",
+                yAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..yAxisPosition <- jmvcore::OptionList$new(
+                "yAxisPosition",
+                yAxisPosition,
+                options=list(
+                    "1",
+                    "0.5",
+                    "0"),
+                default="0.5")
 
             self$.addOption(private$..dep)
             self$.addOption(private$..group)
@@ -175,6 +360,27 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..paramEstMethod)
             self$.addOption(private$..param1)
             self$.addOption(private$..param2)
+            self$.addOption(private$..titleText)
+            self$.addOption(private$..titleFontFace)
+            self$.addOption(private$..titleFontSize)
+            self$.addOption(private$..titleAlign)
+            self$.addOption(private$..subtitleText)
+            self$.addOption(private$..subtitleFontFace)
+            self$.addOption(private$..subtitleFontSize)
+            self$.addOption(private$..subtitleAlign)
+            self$.addOption(private$..captionText)
+            self$.addOption(private$..captionFontFace)
+            self$.addOption(private$..captionFontSize)
+            self$.addOption(private$..captionAlign)
+            self$.addOption(private$..legendText)
+            self$.addOption(private$..legendFontSize)
+            self$.addOption(private$..legendPosition)
+            self$.addOption(private$..xAxisText)
+            self$.addOption(private$..xAxisFontSize)
+            self$.addOption(private$..xAxisPosition)
+            self$.addOption(private$..yAxisText)
+            self$.addOption(private$..yAxisFontSize)
+            self$.addOption(private$..yAxisPosition)
         }),
     active = list(
         dep = function() private$..dep$value,
@@ -195,7 +401,28 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         paramMethod = function() private$..paramMethod$value,
         paramEstMethod = function() private$..paramEstMethod$value,
         param1 = function() private$..param1$value,
-        param2 = function() private$..param2$value),
+        param2 = function() private$..param2$value,
+        titleText = function() private$..titleText$value,
+        titleFontFace = function() private$..titleFontFace$value,
+        titleFontSize = function() private$..titleFontSize$value,
+        titleAlign = function() private$..titleAlign$value,
+        subtitleText = function() private$..subtitleText$value,
+        subtitleFontFace = function() private$..subtitleFontFace$value,
+        subtitleFontSize = function() private$..subtitleFontSize$value,
+        subtitleAlign = function() private$..subtitleAlign$value,
+        captionText = function() private$..captionText$value,
+        captionFontFace = function() private$..captionFontFace$value,
+        captionFontSize = function() private$..captionFontSize$value,
+        captionAlign = function() private$..captionAlign$value,
+        legendText = function() private$..legendText$value,
+        legendFontSize = function() private$..legendFontSize$value,
+        legendPosition = function() private$..legendPosition$value,
+        xAxisText = function() private$..xAxisText$value,
+        xAxisFontSize = function() private$..xAxisFontSize$value,
+        xAxisPosition = function() private$..xAxisPosition$value,
+        yAxisText = function() private$..yAxisText$value,
+        yAxisFontSize = function() private$..yAxisFontSize$value,
+        yAxisPosition = function() private$..yAxisPosition$value),
     private = list(
         ..dep = NA,
         ..group = NA,
@@ -215,7 +442,28 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..paramMethod = NA,
         ..paramEstMethod = NA,
         ..param1 = NA,
-        ..param2 = NA)
+        ..param2 = NA,
+        ..titleText = NA,
+        ..titleFontFace = NA,
+        ..titleFontSize = NA,
+        ..titleAlign = NA,
+        ..subtitleText = NA,
+        ..subtitleFontFace = NA,
+        ..subtitleFontSize = NA,
+        ..subtitleAlign = NA,
+        ..captionText = NA,
+        ..captionFontFace = NA,
+        ..captionFontSize = NA,
+        ..captionAlign = NA,
+        ..legendText = NA,
+        ..legendFontSize = NA,
+        ..legendPosition = NA,
+        ..xAxisText = NA,
+        ..xAxisFontSize = NA,
+        ..xAxisPosition = NA,
+        ..yAxisText = NA,
+        ..yAxisFontSize = NA,
+        ..yAxisPosition = NA)
 )
 
 qqplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -239,7 +487,8 @@ qqplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="helpMessage",
                 title="",
-                visible=TRUE))
+                visible=TRUE,
+                content="<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>QQ & PP Plots Help</strong></p>\n<p>This module uses <a href = \"https://CRAN.R-project.org/package=qqplotr\" target=\"_blank\">qqplotr R package<a/> by Alexandre Almeida, Adam Loy and Heike Hofmann. In-depth information can be found in the package documentation on CRAN site.</p>\n<p><strong>Reference line:</strong> Draws either the <em>identity line</em> (y = x) or the commonly-used <em>Q-Q line</em> that intercepts two data quantiles (Q<sub>0.25</sub> and Q<sub>0.75</sub>). P-P plot only supports identity line.</p>\n<p><strong>Confidence band:</strong> Draws a confidence band around the reference line. qqplotr package provides several methods to compute the confidence band : <ul> <li><strong><em>Pointwise</em></strong> constructs pointwise confidence bands based on Normal confidence intervals;</li> <li><strong><em>Bootstrap</em></strong> creates pointwise confidence bands based on a parametric bootstrap;</li> <li><strong><em>Kolmogorov-Smirnov</em></strong> band is based on the Kolmogorov-Smirnov test;</li> <li><strong><em>Tail-Sensitive</em></strong> constructs a tail-sensitive confidence bands but is only implemented for Normal Q-Q plots;</li> <li><strong><em>Equal Local Levels (ELL)</em></strong> constructs simultaneous bands using the equal local levels.</li> </ul> P-P plots only support \"ELL\" and \"Bootstrap\" methods. </p>\n<p><strong>Detrended plot:</strong> The objects are <em>detrended</em> according to the reference line. This procedure may help reducing visual bias caused by the orthogonal distances from the points to the reference line. </p>\n<p><strong>Parameter values:</strong> The distribution parameters can be estimated from data using <ul> <li><strong>Maximum Likelihood Method</strong> (using MASS package) : it should work with all distributions but \"t\" and \"uniform\";</li> <li><strong>Method of Moments</strong> for moment based parameters : it should work with \"normal\", \"log-normal\", \"Beta\", \"Exponential\", \"Gamma\", \"Logistic\", \"Uniform\";</li> </ul> or entered by user: <ul> <li><strong>Parameter 1:</strong> : mean (Normal), meanlog (Log-normal), shape1 (Beta), location (Cauchy, Logistic), df (Chi-squared, Student), df1 (F), rate (Exponential), shape (Gamma, Weibull) and min (Uniform);</li> <li><strong>Parameter 2:</strong> : sd (normal), sdlog (Log-normal), shape2 (Beta), scale (Cauchy, Logistic), df2 (F), rate (Gamma, Weibull) and max (Uniform).</li> </ul> </p>\n</div>"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="ErrorMessage",
@@ -251,27 +500,7 @@ qqplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="",
                 width=400,
                 height=400,
-                renderFun=".plot",
-                clearWith=list(
-                    "dep",
-                    "group",
-                    "distrib",
-                    "transLog",
-                    "standardize",
-                    "refLine",
-                    "band",
-                    "methodQQ",
-                    "methodPP",
-                    "detrend",
-                    "type",
-                    "refType",
-                    "plotWidth",
-                    "plotHeight",
-                    "textSize",
-                    "paramMethod",
-                    "paramEstMethod",
-                    "param1",
-                    "param2")))
+                renderFun=".plot"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="paramTable",
@@ -327,6 +556,27 @@ qqplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param paramEstMethod .
 #' @param param1 .
 #' @param param2 .
+#' @param titleText .
+#' @param titleFontFace .
+#' @param titleFontSize .
+#' @param titleAlign .
+#' @param subtitleText .
+#' @param subtitleFontFace .
+#' @param subtitleFontSize .
+#' @param subtitleAlign .
+#' @param captionText .
+#' @param captionFontFace .
+#' @param captionFontSize .
+#' @param captionAlign .
+#' @param legendText .
+#' @param legendFontSize .
+#' @param legendPosition .
+#' @param xAxisText .
+#' @param xAxisFontSize .
+#' @param xAxisPosition .
+#' @param yAxisText .
+#' @param yAxisFontSize .
+#' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
@@ -362,7 +612,28 @@ qqplot <- function(
     paramMethod = "paraEstimate",
     paramEstMethod = "mle",
     param1 = 0,
-    param2 = 1) {
+    param2 = 1,
+    titleText = "default",
+    titleFontFace = "bold",
+    titleFontSize = "14",
+    titleAlign = "0.5",
+    subtitleText,
+    subtitleFontFace = "plain",
+    subtitleFontSize = "12",
+    subtitleAlign = "0.5",
+    captionText,
+    captionFontFace = "italic",
+    captionFontSize = "10",
+    captionAlign = "1",
+    legendText,
+    legendFontSize = "14",
+    legendPosition = "right",
+    xAxisText,
+    xAxisFontSize = "16",
+    xAxisPosition = "0.5",
+    yAxisText,
+    yAxisFontSize = "16",
+    yAxisPosition = "0.5") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("qqplot requires jmvcore to be installed (restart may be required)")
@@ -396,7 +667,28 @@ qqplot <- function(
         paramMethod = paramMethod,
         paramEstMethod = paramEstMethod,
         param1 = param1,
-        param2 = param2)
+        param2 = param2,
+        titleText = titleText,
+        titleFontFace = titleFontFace,
+        titleFontSize = titleFontSize,
+        titleAlign = titleAlign,
+        subtitleText = subtitleText,
+        subtitleFontFace = subtitleFontFace,
+        subtitleFontSize = subtitleFontSize,
+        subtitleAlign = subtitleAlign,
+        captionText = captionText,
+        captionFontFace = captionFontFace,
+        captionFontSize = captionFontSize,
+        captionAlign = captionAlign,
+        legendText = legendText,
+        legendFontSize = legendFontSize,
+        legendPosition = legendPosition,
+        xAxisText = xAxisText,
+        xAxisFontSize = xAxisFontSize,
+        xAxisPosition = xAxisPosition,
+        yAxisText = yAxisText,
+        yAxisFontSize = yAxisFontSize,
+        yAxisPosition = yAxisPosition)
 
     analysis <- qqplotClass$new(
         options = options,

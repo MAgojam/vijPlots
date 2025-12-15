@@ -147,7 +147,8 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if (ng == 0) { # Freq table without grouping variable
                     self$results$frequencies$addColumn("Sum", type="integer", title = "N")
                     for (col in levels(ggLikertData[['.answer']])) {
-                        self$results$frequencies$addColumn(col, type = fType, format = fmt, title = paste0(strwrap(col, 15), collapse="<br />"))
+                        #self$results$frequencies$addColumn(col, type = fType, format = fmt, title = paste0(strwrap(col, 15), collapse="<br />"))
+                        self$results$frequencies$addColumn(col, type = fType, format = fmt, title = col)
                     }
                     if (self$options$showMedian)
                         self$results$frequencies$addColumn("Median", type = "number", title = .("Median"))
@@ -189,7 +190,8 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$frequencies$addColumn(self$options$group, type = "text")
                     self$results$frequencies$addColumn("Sum", type="integer", title = "N")
                     for (col in levels(ggLikertData[['.answer']])) {
-                        self$results$frequencies$addColumn(col, type = fType, format = fmt, title = paste0(strwrap(col, 15), collapse="<br />"))
+                        #self$results$frequencies$addColumn(col, type = fType, format = fmt, title = paste0(strwrap(col, 15), collapse="<br />"))
+                        self$results$frequencies$addColumn(col, type = fType, format = fmt, title = col)
                     }
                     if (self$options$showMedian)
                         self$results$frequencies$addColumn("Median", type = "number", title = .("Median"))
@@ -339,7 +341,8 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
                 # Add table's columns
                 for (ques in questions) {
-                    superTitle <- paste0(strwrap(private$.varName[[ques]], ifelse(self$options$pValue == "overall",28,15)), collapse="<br />")
+                    #superTitle <- paste0(strwrap(private$.varName[[ques]], ifelse(self$options$pValue == "overall",28,15)), collapse="<br />")
+                    superTitle <- private$.varName[[ques]]
                     self$results$comp$pwTable$addColumn(name = paste(ques, "stat"), title = statString, superTitle = superTitle, type = 'number')
                     self$results$comp$pwTable$addColumn(name = paste(ques, "p"), title = "p",
                                                         superTitle = superTitle, type = 'number', format = 'zto,pvalue')
@@ -407,15 +410,6 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 groupingVar <- NULL
             }
 
-            # Handle NA
-            # if (!is.null(groupingVar)) {
-            #     # Remove cases with missing group or change NA to "NA"
-            #     if (self$options$ignoreNA)
-            #         mainData <- subset(mainData, !is.na(mainData[groupingVar]))
-            #     else
-            #         if ( sum(is.na(mainData[[self$options$group]])) > 0)
-            #             mainData[[groupingVar]] <- forcats::fct_na_value_to_level(mainData[[groupingVar]], level="NA") # <NA> is not placed as last level !
-            # }
             if (!is.null(groupingVar)) {
                 # Remove cases with missing group or change NA to "NA"
                 if (self$options$ignoreNA)
@@ -492,6 +486,10 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + scale_fill_brewer(palette = self$options$plotColor, direction = -1)
             else
                 plot <- plot + scale_fill_brewer(palette = self$options$plotColor)
+
+            # Title & subtitle
+            plot <- plot + vijTitlesAndLabels(self$options) + vijTitleAndLabelFormat(self$options, showLegend = TRUE)
+
             return(plot)
         },
         # Modified from https://github.com/cran/PMCMRplus/blob/master/R/dscfAllPairsTest.R

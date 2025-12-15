@@ -16,8 +16,26 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             showCases = TRUE,
             yaxis = "cases",
             size = "medium",
-            colorPalette = NULL,
-            singleColor = TRUE, ...) {
+            colorPalette = "jmv",
+            singleColor = TRUE,
+            titleText = NULL,
+            titleFontFace = "bold",
+            titleFontSize = "14",
+            titleAlign = "0.5",
+            subtitleText = NULL,
+            subtitleFontFace = "plain",
+            subtitleFontSize = "12",
+            subtitleAlign = "0.5",
+            captionText = NULL,
+            captionFontFace = "italic",
+            captionFontSize = "10",
+            captionAlign = "1",
+            xAxisText = NULL,
+            xAxisFontSize = "16",
+            xAxisPosition = "0.5",
+            yAxisText = NULL,
+            yAxisFontSize = "16",
+            yAxisPosition = "0.5", ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -121,11 +139,158 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "YlGn",
                     "YlGnBu",
                     "YlOrBr",
-                    "YlOrRd"))
+                    "YlOrRd",
+                    "viridis::viridis",
+                    "viridis::magma",
+                    "viridis::inferno",
+                    "viridis::plasma",
+                    "viridis::turbo",
+                    "dichromat::Categorical.12"),
+                default="jmv")
             private$..singleColor <- jmvcore::OptionBool$new(
                 "singleColor",
                 singleColor,
                 default=TRUE)
+            private$..titleText <- jmvcore::OptionString$new(
+                "titleText",
+                titleText)
+            private$..titleFontFace <- jmvcore::OptionList$new(
+                "titleFontFace",
+                titleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="bold")
+            private$..titleFontSize <- jmvcore::OptionList$new(
+                "titleFontSize",
+                titleFontSize,
+                options=list(
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22",
+                    "24"),
+                default="14")
+            private$..titleAlign <- jmvcore::OptionList$new(
+                "titleAlign",
+                titleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..subtitleText <- jmvcore::OptionString$new(
+                "subtitleText",
+                subtitleText)
+            private$..subtitleFontFace <- jmvcore::OptionList$new(
+                "subtitleFontFace",
+                subtitleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..subtitleFontSize <- jmvcore::OptionList$new(
+                "subtitleFontSize",
+                subtitleFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22"),
+                default="12")
+            private$..subtitleAlign <- jmvcore::OptionList$new(
+                "subtitleAlign",
+                subtitleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..captionText <- jmvcore::OptionString$new(
+                "captionText",
+                captionText)
+            private$..captionFontFace <- jmvcore::OptionList$new(
+                "captionFontFace",
+                captionFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="italic")
+            private$..captionFontSize <- jmvcore::OptionList$new(
+                "captionFontSize",
+                captionFontSize,
+                options=list(
+                    "8",
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="10")
+            private$..captionAlign <- jmvcore::OptionList$new(
+                "captionAlign",
+                captionAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="1")
+            private$..xAxisText <- jmvcore::OptionString$new(
+                "xAxisText",
+                xAxisText)
+            private$..xAxisFontSize <- jmvcore::OptionList$new(
+                "xAxisFontSize",
+                xAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..xAxisPosition <- jmvcore::OptionList$new(
+                "xAxisPosition",
+                xAxisPosition,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..yAxisText <- jmvcore::OptionString$new(
+                "yAxisText",
+                yAxisText)
+            private$..yAxisFontSize <- jmvcore::OptionList$new(
+                "yAxisFontSize",
+                yAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..yAxisPosition <- jmvcore::OptionList$new(
+                "yAxisPosition",
+                yAxisPosition,
+                options=list(
+                    "1",
+                    "0.5",
+                    "0"),
+                default="0.5")
 
             self$.addOption(private$..resps)
             self$.addOption(private$..endorsed)
@@ -139,6 +304,24 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..size)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..singleColor)
+            self$.addOption(private$..titleText)
+            self$.addOption(private$..titleFontFace)
+            self$.addOption(private$..titleFontSize)
+            self$.addOption(private$..titleAlign)
+            self$.addOption(private$..subtitleText)
+            self$.addOption(private$..subtitleFontFace)
+            self$.addOption(private$..subtitleFontSize)
+            self$.addOption(private$..subtitleAlign)
+            self$.addOption(private$..captionText)
+            self$.addOption(private$..captionFontFace)
+            self$.addOption(private$..captionFontSize)
+            self$.addOption(private$..captionAlign)
+            self$.addOption(private$..xAxisText)
+            self$.addOption(private$..xAxisFontSize)
+            self$.addOption(private$..xAxisPosition)
+            self$.addOption(private$..yAxisText)
+            self$.addOption(private$..yAxisFontSize)
+            self$.addOption(private$..yAxisPosition)
         }),
     active = list(
         resps = function() private$..resps$value,
@@ -152,7 +335,25 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         yaxis = function() private$..yaxis$value,
         size = function() private$..size$value,
         colorPalette = function() private$..colorPalette$value,
-        singleColor = function() private$..singleColor$value),
+        singleColor = function() private$..singleColor$value,
+        titleText = function() private$..titleText$value,
+        titleFontFace = function() private$..titleFontFace$value,
+        titleFontSize = function() private$..titleFontSize$value,
+        titleAlign = function() private$..titleAlign$value,
+        subtitleText = function() private$..subtitleText$value,
+        subtitleFontFace = function() private$..subtitleFontFace$value,
+        subtitleFontSize = function() private$..subtitleFontSize$value,
+        subtitleAlign = function() private$..subtitleAlign$value,
+        captionText = function() private$..captionText$value,
+        captionFontFace = function() private$..captionFontFace$value,
+        captionFontSize = function() private$..captionFontSize$value,
+        captionAlign = function() private$..captionAlign$value,
+        xAxisText = function() private$..xAxisText$value,
+        xAxisFontSize = function() private$..xAxisFontSize$value,
+        xAxisPosition = function() private$..xAxisPosition$value,
+        yAxisText = function() private$..yAxisText$value,
+        yAxisFontSize = function() private$..yAxisFontSize$value,
+        yAxisPosition = function() private$..yAxisPosition$value),
     private = list(
         ..resps = NA,
         ..endorsed = NA,
@@ -165,7 +366,25 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         ..yaxis = NA,
         ..size = NA,
         ..colorPalette = NA,
-        ..singleColor = NA)
+        ..singleColor = NA,
+        ..titleText = NA,
+        ..titleFontFace = NA,
+        ..titleFontSize = NA,
+        ..titleAlign = NA,
+        ..subtitleText = NA,
+        ..subtitleFontFace = NA,
+        ..subtitleFontSize = NA,
+        ..subtitleAlign = NA,
+        ..captionText = NA,
+        ..captionFontFace = NA,
+        ..captionFontSize = NA,
+        ..captionAlign = NA,
+        ..xAxisText = NA,
+        ..xAxisFontSize = NA,
+        ..xAxisPosition = NA,
+        ..yAxisText = NA,
+        ..yAxisFontSize = NA,
+        ..yAxisPosition = NA)
 )
 
 mrfrequenciesResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -220,15 +439,7 @@ mrfrequenciesResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 title="Frequency Plot",
                 width=400,
                 height=300,
-                renderFun=".plot",
-                clearWith=list(
-                    "resps",
-                    "endorsed",
-                    "order",
-                    "yaxis",
-                    "size",
-                    "singleColor",
-                    "colorPalette")))}))
+                renderFun=".plot"))}))
 
 mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "mrfrequenciesBase",
@@ -267,6 +478,24 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param size .
 #' @param colorPalette .
 #' @param singleColor .
+#' @param titleText .
+#' @param titleFontFace .
+#' @param titleFontSize .
+#' @param titleAlign .
+#' @param subtitleText .
+#' @param subtitleFontFace .
+#' @param subtitleFontSize .
+#' @param subtitleAlign .
+#' @param captionText .
+#' @param captionFontFace .
+#' @param captionFontSize .
+#' @param captionAlign .
+#' @param xAxisText .
+#' @param xAxisFontSize .
+#' @param xAxisPosition .
+#' @param yAxisText .
+#' @param yAxisFontSize .
+#' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$responses} \tab \tab \tab \tab \tab a table \cr
@@ -292,8 +521,26 @@ mrfrequencies <- function(
     showCases = TRUE,
     yaxis = "cases",
     size = "medium",
-    colorPalette,
-    singleColor = TRUE) {
+    colorPalette = "jmv",
+    singleColor = TRUE,
+    titleText,
+    titleFontFace = "bold",
+    titleFontSize = "14",
+    titleAlign = "0.5",
+    subtitleText,
+    subtitleFontFace = "plain",
+    subtitleFontSize = "12",
+    subtitleAlign = "0.5",
+    captionText,
+    captionFontFace = "italic",
+    captionFontSize = "10",
+    captionAlign = "1",
+    xAxisText,
+    xAxisFontSize = "16",
+    xAxisPosition = "0.5",
+    yAxisText,
+    yAxisFontSize = "16",
+    yAxisPosition = "0.5") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("mrfrequencies requires jmvcore to be installed (restart may be required)")
@@ -318,7 +565,25 @@ mrfrequencies <- function(
         yaxis = yaxis,
         size = size,
         colorPalette = colorPalette,
-        singleColor = singleColor)
+        singleColor = singleColor,
+        titleText = titleText,
+        titleFontFace = titleFontFace,
+        titleFontSize = titleFontSize,
+        titleAlign = titleAlign,
+        subtitleText = subtitleText,
+        subtitleFontFace = subtitleFontFace,
+        subtitleFontSize = subtitleFontSize,
+        subtitleAlign = subtitleAlign,
+        captionText = captionText,
+        captionFontFace = captionFontFace,
+        captionFontSize = captionFontSize,
+        captionAlign = captionAlign,
+        xAxisText = xAxisText,
+        xAxisFontSize = xAxisFontSize,
+        xAxisPosition = xAxisPosition,
+        yAxisText = yAxisText,
+        yAxisFontSize = yAxisFontSize,
+        yAxisPosition = yAxisPosition)
 
     analysis <- mrfrequenciesClass$new(
         options = options,

@@ -9,6 +9,10 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
+
             # Compute the size according to facet
             if (userWidth * userHeight == 0) {
                 width <- 400
@@ -27,7 +31,6 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$paramTable$setVisible(FALSE)
                 self$results$plot$setVisible(FALSE)
                 self$results$helpMessage$setVisible(TRUE)
-                private$.showHelp()
             } else {
                 self$results$helpMessage$setVisible(FALSE)
             }
@@ -177,10 +180,10 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + qqplotr::stat_qq_point(distribution = distrib, identity = identity, dparams = params,
                                                       detrend = detrend, key_glyph = draw_key_rect)
                 if (detrend)
-                    ylabStr <- jmvcore::format(.("{stdStr}Sample Quantiles Deviation"), stdStr = ifelse(self$options$standardize, .("Standardized "),""))
+                    yLab <- jmvcore::format(.("{stdStr}Sample Quantiles Deviation"), stdStr = ifelse(self$options$standardize, .("Standardized "),""))
                 else
-                    ylabStr <- jmvcore::format(.("{stdStr}Sample Quantiles"), stdStr = ifelse(self$options$standardize, .("Standardized "),""))
-                plot <- plot + labs(x = .("Theoretical Quantiles") , y = ylabStr)
+                    yLab <- jmvcore::format(.("{stdStr}Sample Quantiles"), stdStr = ifelse(self$options$standardize, .("Standardized "),""))
+                xLab <- .("Theoretical Quantiles")
             } else { # PP
                 if (self$options$band)
                     plot <- plot + qqplotr::stat_pp_band(distribution = distrib, dparams = params, bandType = self$options$methodPP,
@@ -193,12 +196,20 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
                 plot <- plot + qqplotr::stat_pp_point(distribution = distrib, dparams = params,  detrend = detrend,
                                                       key_glyph = draw_key_rect)
-                plot <- plot + labs(x = .("Theoretical Probabilities"), y = ifelse(detrend, .("Sample Probability Deviation"), .("Sample Probabilities")))
+                xLab <- .("Theoretical Probabilities")
+                yLab <-  ifelse(detrend, .("Sample Probability Deviation"), .("Sample Probabilities"))
             }
 
-            plot <- plot + ggtheme + guides(fill = guide_legend(override.aes = list(alpha = 1))) + labs(title = plotTitle)
+            plot <- plot + ggtheme + guides(fill = guide_legend(override.aes = list(alpha = 1))) #+ labs(title = plotTitle)
 
             plot <- plot + theme(text=element_text(size=as.numeric(self$options$textSize)))
+
+            # Titles & Labels
+            defaults <- list(title = plotTitle, x = xLab , y = yLab, legend = groupVar)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
+
+            # Legend spacing
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
             return (plot)
         },
@@ -309,68 +320,6 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 params <- NULL
             }
             return(params)
-        },
-
-
-        .showHelp = function(){
-            self$results$helpMessage$setContent('
-            	<style>
-					.block {
-  						border: 2px solid gray;
-  						border-radius: 15px;
-  						background-color: WhiteSmoke;
-  						padding: 0px 20px;
-  						text-align: justify;
-					}
-				</style>
-            <div class="block">
-            <p><strong>QQ & PP Plots Help</strong></p>
-
-            <p>This module uses <a href = "https://CRAN.R-project.org/package=qqplotr" target="_blank">qqplotr R package<a/>
-            by Alexandre Almeida, Adam Loy and Heike Hofmann. In-depth information can be found
-            in the package documentation on CRAN site.</p>
-
-            <p><strong>Reference line:</strong> Draws either the <em>identity line</em>
-            	(y = x) or the commonly-used <em>Q-Q line</em> that intercepts two data quantiles
-            	(Q<sub>0.25</sub> and Q<sub>0.75</sub>). P-P plot only supports identity line.</p>
-
-            <p><strong>Confidence band:</strong> Draws a confidence band around the reference line.
-			qqplotr package provides several methods to compute the confidence band :
-			<ul>
-            	<li><strong><em>Pointwise</em></strong> constructs pointwise confidence bands based on Normal confidence intervals;</li>
-				<li><strong><em>Bootstrap</em></strong> creates pointwise confidence bands based on a parametric bootstrap;</li>
-				<li><strong><em>Kolmogorov-Smirnov</em></strong> band is based on the Kolmogorov-Smirnov test;</li>
-				<li><strong><em>Tail-Sensitive</em></strong> constructs a tail-sensitive confidence bands but is only implemented
-				for Normal Q-Q plots;</li>
-				<li><strong><em>Equal Local Levels (ELL)</em></strong> constructs simultaneous bands using the equal local levels.</li>
-			</ul>
-			P-P plots only support "ELL" and "Bootstrap" methods.
-            </p>
-
-            <p><strong>Detrended plot:</strong> The objects are <em>detrended</em>
-            according to the reference line. This procedure may help reducing visual bias
-            caused by the orthogonal distances from the points to the reference line.
-            </p>
-
-            <p><strong>Parameter values:</strong> The distribution parameters can be estimated from data
-            using
-            <ul>
-            <li><strong>Maximum Likelihood Method</strong> (using MASS package) : it should work with all distributions but "t" and "uniform";</li>
-            <li><strong>Method of Moments</strong> for moment based parameters : it should work with "normal", "log-normal", "Beta", "Exponential",
-            "Gamma", "Logistic", "Uniform";</li>
-            </ul>
-            or entered by user:
-            <ul>
-            <li><strong>Parameter 1:</strong> : mean (Normal), meanlog (Log-normal), shape1 (Beta), location (Cauchy, Logistic),
-            df (Chi-squared, Student), df1 (F), rate (Exponential), shape (Gamma, Weibull) and min (Uniform);</li>
-            <li><strong>Parameter 2:</strong> : sd (normal), sdlog (Log-normal), shape2 (Beta), scale (Cauchy, Logistic),
-            df2 (F), rate (Gamma, Weibull) and max (Uniform).</li>
-            </ul>
-            </p>
-
-            </div>')
-            }
-
-
-        )
+        }
+    )
 )

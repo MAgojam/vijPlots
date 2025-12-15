@@ -81,49 +81,50 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (is.null(image$state))
                 return(FALSE)
 
+            # Data
+            plotData <- cbind("Options" = factor(rownames(image$state), levels=rownames(image$state)),image$state)
+            plotData <- pivot_longer(plotData, cols=colnames(image$state), names_to = self$options$group, values_to = "Count")
+            plotData[[self$options$group]] <- factor(plotData[[self$options$group]], levels = names(image$state) )
+            # Plot
             optionsVar <- "Options"
             groupVar <- self$options$group
-
             if (self$options$xaxis == "xcols") {
                 xVarName <- ensym(groupVar)
                 zVarName <- ensym(optionsVar)
+                plot <- ggplot(plotData, aes(x=!!xVarName, y=Count)) +
+                            geom_col( aes(fill=!!zVarName), position = self$options$bartype)
+                xLab <- groupVar
+                gLab <- self$options$optionname
             } else {
                 xVarName <- ensym(optionsVar)
                 zVarName <- ensym(groupVar)
-            }
-
-
-            #plotData <- image$state
-            plotData <- cbind("Options" = factor(rownames(image$state), levels=rownames(image$state)),image$state)
-            #plotData[,groupVar] <- factor(plotData[,groupVar], levels=levels(plotData[,groupVar]))
-            plotData <- pivot_longer(plotData, cols=colnames(image$state), names_to = self$options$group, values_to = "Count")
-            #
-            plotData[[self$options$group]] <- factor(plotData[[self$options$group]], levels = names(image$state) )
-            if (self$options$xaxis == "xcols") {
                 plot <- ggplot(plotData, aes(x=!!xVarName, y=Count)) +
-                    geom_col( aes(fill=!!zVarName), position = self$options$bartype) +
-                    labs(fill = self$options$optionname) + ggtheme
-                #scale_x_discrete(limits=names(image$state)) + ggtheme
-            } else {
-                plot <- ggplot(plotData, aes(x=!!xVarName, y=Count)) +
-                    geom_col( aes(fill=!!zVarName), position = self$options$bartype) +
-                    labs(x = self$options$optionname) + ggtheme
+                            geom_col( aes(fill=!!zVarName), position = self$options$bartype)
+                xLab <- self$options$optionname
+                gLab <- groupVar
             }
 
-            # Color palette
-            if (self$options$colorPalette != 'jmv') {
-                plot <- plot + scale_fill_brewer(palette = self$options$colorPalette, na.value="grey")
-            }
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
 
+            # Y scale and lab
             if (self$options$computedValues == "responses") {
-                plot <- plot + labs(y=.("% of Responses")) + scale_y_continuous(labels=percent_format())
+                plot <- plot + scale_y_continuous(labels=percent_format())
+                yLab <- .("% of Responses")
             } else if (self$options$computedValues == "cases") {
-                plot <- plot + labs(y=.("% of Cases")) + scale_y_continuous(labels=percent_format())
+                plot <- plot + scale_y_continuous(labels=percent_format())
+                yLab <- .("% of Cases")
             } else if (self$options$computedValues == "options") {
-                plot <- plot + labs(y=paste(.("% within"), self$options$optionname)) + scale_y_continuous(labels=percent_format())
+                plot <- plot + scale_y_continuous(labels=percent_format())
+                yLab <- paste(.("% within"), self$options$optionname)
             } else {
-                plot <- plot + labs(y=.("Count"))
+                yLab <- .("Count")
             }
+
+            # Titles & Labels
+            defaults <- list(y = yLab, x = xLab, legend = gLab)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
             return(plot)
 

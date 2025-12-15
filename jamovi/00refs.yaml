@@ -14,6 +14,13 @@ refs:
         title: "qqplotr: Quantile-Quantile Plot Extensions for 'ggplot2'"
         publisher: '[R package]. Retrieved from https://CRAN.R-project.org/package=qqplotr'
         url: https://CRAN.R-project.org/package=qqplotr
+    factominer:
+        type: 'software'
+        author: Husson, F., Josse, J., Le, S., Mazet, J.
+        year: 2025
+        title: "FactoMineR: Multivariate Exploratory Data Analysis and Data Mining"
+        publisher: '[R package]. Retrieved from https://cran.r-project.org/package=FactoMineR'
+        url: https://cran.r-project.org/package=FactoMineR
     ca:
         type: 'software'
         author: Greenacre, M., Nenadic, O., Friendly, M.

@@ -129,8 +129,6 @@ items:
         - descAsVarName
         - rotation
         - dimNum
-        - xaxis
-        - yaxis
         - stdVariables
         - kaiser
         - stdLoadings
@@ -153,8 +151,6 @@ items:
         - descAsVarName
         - rotation
         - dimNum
-        - xaxis
-        - yaxis
         - stdVariables
         - kaiser
         - stdScores
@@ -173,14 +169,24 @@ items:
       clearWith:
         - vars
         - stdVariables
-        - screeTitle
+        - screeTitleText
         - titleFontFace
         - titleFontSize
         - titleAlign
-        - screeSubtitle
+        - screeSubtitleText
         - subtitleFontFace
         - subtitleFontSize
         - subtitleAlign
+        - screeCaptionText
+        - captionFontFace
+        - captionFontSize
+        - captionAlign
+        - xAxisText
+        - xAxisFontSize
+        - xAxisPosition
+        - yAxisText
+        - yAxisFontSize
+        - yAxisPosition
 
     - name: varPlot
       title: "Variable Plot"
@@ -207,16 +213,26 @@ items:
         - obsLabelSize
         - varLabelSize
         - pointSize
-        - varTitle
+        - varTitleText
         - titleFontFace
         - titleFontSize
         - titleAlign
-        - varSubtitle
+        - varCaptionText
+        - captionFontFace
+        - captionFontSize
+        - captionAlign
+        - varSubtitleText
         - subtitleFontFace
         - subtitleFontSize
         - subtitleAlign
         - stdLoadings
         - stataRotation
+        - xAxisText
+        - xAxisFontSize
+        - xAxisPosition
+        - yAxisText
+        - yAxisFontSize
+        - yAxisPosition
 
     - name: obsPlot
       title: "Observation Plot"
@@ -245,16 +261,29 @@ items:
         - obsLabelSize
         - varLabelSize
         - pointSize
-        - obsTitle
+        - obsTitleText
         - titleFontFace
         - titleFontSize
         - titleAlign
-        - obsSubtitle
+        - obsSubtitleText
         - subtitleFontFace
         - subtitleFontSize
         - subtitleAlign
+        - obsCaptionText
+        - captionFontFace
+        - captionFontSize
+        - captionAlign
         - stdScores
         - stataRotation
+        - xAxisText
+        - xAxisFontSize
+        - xAxisPosition
+        - yAxisText
+        - yAxisFontSize
+        - yAxisPosition
+        - legendText
+        - legendFontSize
+        - legendPosition
 
     - name: biPlot
       title: "Biplot"
@@ -286,13 +315,39 @@ items:
         - obsLabelSize
         - varLabelSize
         - pointSize
-        - biplotTitle
+        - biplotTitleText
         - titleFontFace
         - titleFontSize
         - titleAlign
-        - biplotSubtitle
+        - biplotSubtitleText
         - subtitleFontFace
         - subtitleFontSize
         - subtitleAlign
+        - biplotCaptionText
+        - captionFontFace
+        - captionFontSize
+        - captionAlign
+        - stataRotation
+        - xAxisText
+        - xAxisFontSize
+        - xAxisPosition
+        - yAxisText
+        - yAxisFontSize
+        - yAxisPosition
+        - legendText
+        - legendFontSize
+        - legendPosition
+
+    - name: obsCoordOV
+      title: Observation Coordinates
+      type: Output
+      initInRun: true
+      clearWith:
+        - vars
+        - rotation
+        - dimNum
+        - stdVariables
+        - kaiser
+        - stdScores
         - stataRotation
 ...

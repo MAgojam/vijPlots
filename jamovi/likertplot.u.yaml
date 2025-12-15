@@ -370,3 +370,122 @@ children:
                 name: textSize
                 format: number
                 suffix: pt
+  - type: CollapseBox
+    label: Legend
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: Label
+        label: Legend
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: legendText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: legendFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: legendPosition
+  - type: CollapseBox
+    label: Plot Titles
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: Label
+        label: Title
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: titleText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: titleFontFace
+                  - type: ComboBox
+                    name: titleFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: titleAlign
+      - type: Label
+        label: Subtitle
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: subtitleText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: subtitleFontFace
+                  - type: ComboBox
+                    name: subtitleFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: subtitleAlign
+      - type: Label
+        label: Caption
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: captionText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: captionFontFace
+                  - type: ComboBox
+                    name: captionFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: captionAlign

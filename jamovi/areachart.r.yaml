@@ -10,25 +10,5 @@ items:
       width:  600
       height: 400
       renderFun: .plot
-      clearWith:
-        - mode
-        - var
-        - vars
-        - timeVar
-        - timeVar1
-        - group
-        - colorPalette
-        - showLine
-        - isDate
-        - dateFormat
-        - dateBreak
-        - displayFormat
-        - rotateLabels
-        - plotWidth
-        - plotHeight
-        - dotSize
-        - lineWidth
-        - position
-        - ylabel
 
 ...

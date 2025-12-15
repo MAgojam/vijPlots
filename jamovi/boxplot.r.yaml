@@ -10,22 +10,5 @@ items:
       width:  600
       height: 400
       renderFun: .plot
-      clearWith:
-        - vars
-        - group
-        - label
-        - showOutliers
-        - showMean
-        - staple
-        - notches
-        - horizontal
-        - legendAtBottom
-        - ignoreNA
-        - stapleWidth
-        - notchWidth
-        - colorPalette
-        - singleColor
-        - order
-        - plotHeight
-        - plotWidth
+
 ...

@@ -112,7 +112,7 @@ options:
       default: false
 
     - name: showScreePlot
-      title: Show Scree Plot
+      title: Scree Plot
       type: Bool
       default: true
 
@@ -399,25 +399,37 @@ options:
           name:  YlOrBr
         - title: Yellow to Red
           name:  YlOrRd
+        - title: Viridis:Viridis
+          name:  viridis::viridis
+        - title: Viridis:Magma
+          name:  viridis::magma
+        - title: Viridis:Inferno
+          name:  viridis::inferno
+        - title: Viridis:Plasma
+          name:  viridis::plasma
+        - title: Viridis:Turbo
+          name:  viridis::turbo
+        - title: Dichromat:Categorical
+          name:  dichromat::Categorical.12
       default: jmv
 
-    - name: screeTitle
-      title: Scree_plot_Title
+    - name: screeTitleText
+      title: Scree plot
       type: String
       default: 'default'
 
-    - name: varTitle
-      title: Variable_plot_Title
+    - name: varTitleText
+      title: Variable plot
       type: String
       default: 'default'
 
-    - name: obsTitle
-      title: Observation_plot_Title
+    - name: obsTitleText
+      title: Observation plot
       type: String
       default: 'default'
 
-    - name: biplotTitle
-      title: Biplot_Title
+    - name: biplotTitleText
+      title: Biplot
       type: String
       default: 'default'
 
@@ -452,23 +464,22 @@ options:
           title: Bold Italic
       default: plain
 
-    - name: screeSubtitle
-      title: Scree_plot_Title
+    - name: screeSubtitleText
+      title: Scree plot
       type: String
-      default: ' '
 
-    - name: varSubtitle
-      title: Variable_plot_Title
-      type: String
-      default: 'default'
-
-    - name: obsSubtitle
-      title: Observation_plot_Title
+    - name: varSubtitleText
+      title: Variable plot
       type: String
       default: 'default'
 
-    - name: biplotSubtitle
-      title: Biplot_Title
+    - name: obsSubtitleText
+      title: Observation plot
+      type: String
+      default: 'default'
+
+    - name: biplotSubtitleText
+      title: Biplot
       type: String
       default: 'default'
 
@@ -503,10 +514,56 @@ options:
           title: Bold Italic
       default: plain
 
-    # - name: usePsych
-    #   title: psych #Use 'psych::principal' function instead of 'prcomp'
-    #   type: Bool
-    #   default: false
+    - name: screeCaptionText
+      title: Scree plot
+      type: String
+
+    - name: varCaptionText
+      title: Variable plot
+      type: String
+      default: 'default'
+
+    - name: obsCaptionText
+      title: Observation plot
+      type: String
+      default: 'default'
+
+    - name: biplotCaptionText
+      title: Biplot
+      type: String
+
+    - name: captionAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "1"
+
+    - name: captionFontSize
+      title: Font size
+      type: Number
+      default: 12
+      min: 8
+      max: 24
+
+    - name: captionFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
 
     - name: kaiser
       title: Kaiser normalization
@@ -532,3 +589,111 @@ options:
       title: Rotate eigenvectors
       type: Bool
       default: false
+
+    - name: obsCoordOV
+      title: Save observation coordinates
+      type: Output
+
+    - name: legendText
+      title: ""
+      type: String
+
+    - name: legendFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "14"
+
+    - name: legendPosition
+      title: Position
+      type: List
+      options:
+        - name: right
+          title: Right
+        - name: bottom
+          title: Bottom
+        - name: left
+          title: Left
+        - name: top
+          title: Top
+      default: right
+
+    - name: xAxisText
+      title: ""
+      type: String
+
+    - name: xAxisFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "16"
+
+    - name: xAxisPosition
+      title: Position
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: yAxisText
+      title: ""
+      type: String
+
+    - name: yAxisFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "16"
+
+    - name: yAxisPosition
+      title: Position
+      type: List
+      options:
+        - name: "1"
+          title: Top
+        - name: "0.5"
+          title: Center
+        - name: "0"
+          title: Bottom
+      default: "0.5"

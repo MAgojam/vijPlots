@@ -41,6 +41,10 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be between 200 and 1000 (or 0 = default)")
+
             image <- self$results$varPlot
             width <- image$width
             height <- image$height
@@ -49,7 +53,6 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 width <- userWidth
             if (userHeight > 0)
                 height <- userHeight
-            #image <- self$results$varPlot
             image$setSize(width, height)
             image <- self$results$obsPlot
             image$setSize(width + extraWidth, height)
@@ -85,7 +88,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else
                 warningMsg <- ""
 
-            # KMO & Bartlett's test
+            #### KMO & Bartlett's test ####
             if (self$options$showKMO) {
                 kmo <- psych::KMO(corrMat)
                 bartlett <- psych::cortest.bartlett(corrMat, n = nrow(data))
@@ -100,14 +103,17 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                             df = NULL, p = NULL))
             }
 
-            # PCA computation
+            #### PCA computation ####
             res <- private$.pca(data[,self$options$vars], scale = self$options$stdVariables,
                                nfact = nDim, rotation = self$options$rotation)
 
-            if (!is.null(self$options$labelVar))
+            if (!is.null(self$options$labelVar)) {
                 rownames(res$scores) <- data[[self$options$labelVar]]
-            else
+                rownames(res$stdScores) <- data[[self$options$labelVar]]
+            } else {
                 rownames(res$scores) <- rownames(data)
+                rownames(res$stdScores) <- rownames(data)
+            }
             if (!is.null(self$options$groupVar))
                 res$group <- data[[self$options$groupVar]]
 
@@ -147,7 +153,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$insert(1, weightsNotice)
             }
 
-            # Summary Table
+            #### Summary Table ####
             if (self$options$showSummary) {
                 eigen <- res$eigenvalues
                 eigenSum <- sum(eigen)
@@ -182,7 +188,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$summaryTable$setNote('rot', rotationNote)
             }
 
-            # Loading Table
+            #### Loading Table ####
             if (self$options$showLoadings) {
                 for(i in 1:nDim) {
                     self$results$loadingTable$addColumn(name = paste0("loading:",i), title = as.character(i), superTitle = "Component", type = "number", format = "zto")
@@ -208,7 +214,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$loadingTable$setNote('norm', .("Standard coordinates"))
             }
 
-            # Observation Table
+            #### Observation Table ####
             if (self$options$showObservations) {
                 if (is.null(self$options$labelVar))
                     self$results$obsTable$addColumn("obs", title = "Observation", type = "integer")
@@ -220,7 +226,13 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$obsTable$addColumn(as.character(i), title = as.character(i), , superTitle = "Component", type = "number", format = "zto")
                 }
                 self$results$obsTable$addColumn("qlt", title = "Extraction", type = "number", format = "zto")
-                for (i in 1:nrow(res$scores)) {
+
+                nrows <- nrow(res$scores)
+                if (nrows > 100) {
+                    self$results$obsTable$setNote("100", .("Limited to the first 100 observations"))
+                    nrows <- 100
+                }
+                for (i in 1:nrows) {
                     values = list()
                     values["obs"] <- rownames(res$scores)[i]
                     if (!is.null(self$options$groupVar))
@@ -240,7 +252,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$obsTable$setNote('norm', .("Standard coordinates"))
             }
 
-            # Plots
+            #### Plots ####
             if (self$options$showScreePlot) {
                 screeplot <- self$results$screePlot
                 screeplot$setState(res$eigenvalues)
@@ -257,6 +269,13 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 biplot <- self$results$biPlot
                 biplot$setState(res)
             }
+
+            #### Saving coordinates  ####
+            if (self$options$stdScores)
+                private$.saveCoordinates(res$stdScores, norm = "Standard")
+            else
+                private$.saveCoordinates(res$scores, norm = "Principal")
+
         },
         .screeplot = function(image, ggtheme, theme, ...) {
             res <- image$state
@@ -267,30 +286,14 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             plot <- ggplot(NULL,aes(x=1:nd, y=res))
             plot <- plot + geom_line(size=0.8) + geom_point(size=3, color="darkgrey")
 
-            plot <- plot + labs(x = .("Component"), y = .("Eigenvalues"))
             plot <- plot + scale_x_continuous(breaks = 1:nd)
-            #plot <- plot + theme(legend.position = c(1, 1), legend.justification = c(1, 1))
             plot <- plot + ggtheme
 
-            title <- self$options$screeTitle
-            if (!(title %in% c("", " "))) {
-                if (title == "default")
-                    title <- .("Scree Plot")
-                plot <- plot + labs(title = title)
-                plot <- plot + theme(plot.title = element_text(
-                                            size = self$options$titleFontSize,
-                                            face = self$options$titleFontFace,
-                                            hjust = as.numeric(self$options$titleAlign)))
-            }
-            subtitle <- self$options$screeSubtitle
-            if (!(subtitle %in% c("", " ", "default"))) {
-                plot <- plot + labs(subtitle = subtitle)
-                plot <- plot + theme(plot.subtitle = element_text(
-                    size = self$options$subtitleFontSize,
-                    face = self$options$subtitleFontFace,
-                    hjust = as.numeric(self$options$subtitleAlign),
-                    margin = margin(-5, 0, 15, 0)))
-            }
+            # Titles & Labels
+            defaults <- list(title = .("Scree Plot"), y = .("Eigenvalues"), x = .("Component"))
+            plot <- plot + vijTitlesAndLabels(self$options, defaults, plotType = "scree") + vijTitleAndLabelFormat(self$options)
+            # Reset x and y labs (which cannot be common with other plots)
+            plot <- plot + labs(x = .("Component"), y = .("Eigenvalues"))
 
             return(plot)
         },
@@ -313,15 +316,13 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             propIn <- round(100*res$SSL/eigenSum,1)
             dim1 <- self$options$xaxis
             dim2 <- self$options$yaxis
-            c1string <- paste0(.("Component "), dim1, " (", propIn[dim1],"%)")
-            c2string <- paste0(.("Component "), dim2, " (", propIn[dim2],"%)")
+            dim1name <- paste0(.("Component "), dim1, " (", propIn[dim1],"%)")
+            dim2name <- paste0(.("Component "), dim2, " (", propIn[dim2],"%)")
 
             type <- self$options$biplotType
             if (plotType == "biplot" && type == "formPlot") {
-                #res$loadings <- t(t(res$loadings) / sqrt(res$SSL))
                 res$loadings <- res$stdLoadings
             } else if (plotType == "biplot" && type == "covPlot") {
-                #res$scores <- t(t(res$scores) / sqrt(res$SSL))
                 res$scores <- res$stdScores
             } else if (plotType == "var" && self$options$stdLoadings) {
                 res$loadings <- res$stdLoadings
@@ -337,7 +338,8 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (self$options$stdVariables && plotType == "var" && !self$options$stdLoadings)
                 plot <- plot + ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), linewidth = 0.2, n = 720)
 
-            # Obs Plot
+            #### Obs Plot ####
+
             if (plotType != "var") {
 
                 if (!is.null(self$options$groupVar))
@@ -373,7 +375,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
 
-            # Var Plot
+            #### Var Plot ####
             if (plotType !="obs") {
                 if (self$options$biplotStretch && plotType == "biplot")
                     res$loadings <- res$loadings * self$options$biplotStretchFactor
@@ -401,8 +403,8 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                         size = self$options$varLabelSize/.pt, color = labelColor, fontface="bold")
              }
 
-            # Finishing Plot
-            plot <- plot + ggtheme
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color")
 
             # Axe limits
             if (plotType == "var") {
@@ -423,12 +425,6 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
             plot <- plot + coord_fixed(xlim = c(xmin,xmax), ylim = c(ymin,ymax))
 
-            # Axe & legend titles
-            if (!is.null(self$options$groupVar) && plotType != "var")
-                plot <- plot + labs(x = c1string, y = c2string, color = private$.varName[[self$options$groupVar]])
-            else
-                plot <- plot + labs(x = c1string, y = c2string)
-
             # Axis ticks (be sure there's a tick at each integer)
             if (plotType != "var" && self$options$stdVariables) {
                 if( xmin < -2 && xmax > 2)
@@ -437,92 +433,40 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     plot <- plot + scale_y_continuous(breaks = c(-5:5))
             }
 
-            # Group Color Palette (obs and biplot)
-            if (!is.null(self$options$groupVar) && plotType != "var") {
-                if( self$options$colorPalette == 'jmv' ) {
-                    n <- nlevels(obsData[["group"]])
-                    plot <- plot + scale_color_manual(values = jmvcore::colorPalette(n=n, theme$palette, type="color"), na.value="grey55")
-                } else {
-                    plot <- plot + scale_color_brewer(palette = self$options$colorPalette, na.value="grey")
-                }
-            }
-
             # Plot frame
             plot <- plot + theme(axis.line = element_line(linewidth = 0), panel.border = element_rect(color = "black", fill = NA, size = 1))
 
             # Plot title
-            title <- self$options$get( paste0(plotType,"Title") )
-            defaultTitle <- switch(plotType,
+            title <- switch(plotType,
                                 var = .("Component Plot"),
                                 obs = .("Observation Plot"),
                                 biplot = ifelse(type == "covPlot", .("Covariance Biplot"), .("Form Biplot"))
                             )
-            if (!(title %in% c("", " "))) {
-                if (title == "default")
-                    title <- defaultTitle
-                plot <- plot + labs(title = title)
-                plot <- plot + theme(plot.title = element_text(
-                    size = self$options$titleFontSize,
-                    face = self$options$titleFontFace,
-                    hjust = as.numeric(self$options$titleAlign)))
-            }
-
             # Plot subtitle
-            subtitle <- self$options$get( paste0(plotType,"Subtitle") )
-            if (!(subtitle %in% c("", " ")) || (subtitle == "default" && res$rotation != "none")) {
-                if (subtitle == "default") {
-                    subtitle <- res$rotationStr
-                }
-                plot <- plot + labs(subtitle = subtitle)
-                plot <- plot + theme(plot.subtitle = element_text(
-                    size = self$options$subtitleFontSize,
-                    face = self$options$subtitleFontFace,
-                    hjust = as.numeric(self$options$subtitleAlign),
-                    margin = margin(-5, 0, 15, 0)))
-            }
+            if (res$rotation != "none")
+                subtitle <- res$rotationStr
+            else
+                subtitle <- NULL
 
             # Plot Caption
             if ((plotType == "var" && self$options$stdLoadings) || (plotType == "obs" && self$options$stdScores))
-                plot <- plot + labs(caption = .("Standard coordinates"))
+                caption <- .("Standard coordinates")
+            else
+                caption <- NULL
+
+            # Plot legend
+            if (!is.null(self$options$groupVar) && plotType != "var")
+                legend <- private$.varName[[self$options$groupVar]]
+            else
+                legend <- NULL
+
+
+            # Titles & Labels
+            defaults <- list(title = title, subtitle = subtitle, caption = caption, legend = legend, y = dim2name, x = dim1name)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults, plotType = plotType) + vijTitleAndLabelFormat(self$options)
 
             return(plot)
         },
-        # .pca_psych = function(data, scale = TRUE, nfact = 2, rotation = "none") {
-        #     if (self$options$rotation == "varimax")
-        #         res <- psych::principal(data, nfactors = nfact, cor = ifelse(scale,"cor","cov"),
-        #                                 rotate = rotation, use = "complete.obs", eps = 1e-14)
-        #     else
-        #         res <- psych::principal(data, nfactors = nfact, cor = ifelse(scale,"cor","cov"),
-        #                                 rotate = rotation, use = "complete.obs")
-        #     eigenvalues <- res$values
-        #     rotatedSSL <- res$Vaccounted["SS loadings",]
-        #     loadings <- as.data.frame.array(res$loadings)
-        #
-        #     # res$scores with principal coordinates
-        #     scores <- res$scores %*% diag(sqrt(rotatedSSL))
-        #     scores <- as.data.frame(scores)
-        #     communalities <- res$communality
-        #
-        #     # Score QLT
-        #     zscores <- scale(data, scale = scale)
-        #     norm2 <- rowSums(zscores**2)
-        #     # pca without rotation
-        #     res1 <- psych::principal(data, nfactors = nfact, rotate = "none", use = "complete.obs", cor = ifelse(scale,"cor","cov"))
-        #     eigen1 <- res1$Vaccounted["SS loadings",]
-        #     # Compute norm^2 of projections
-        #     norm2pca <- res1$scores**2 %*% eigen1
-        #     # then QLT
-        #     qlt <- norm2pca / norm2
-        #     return(list(
-        #         eigenvalues = eigenvalues,
-        #         SSL = rotatedSSL,
-        #         loadings = loadings[,],
-        #         scores = scores,
-        #         communalities = communalities,
-        #         qlt = qlt,
-        #         rotation = rotation
-        #     ))
-        # },
         .pca = function(data, scale = TRUE, nfact = 2, rotation = "none") {
             data <- jmvcore::naOmit(data)
             res <- prcomp(data, scale. = scale)
@@ -606,6 +550,42 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 qlt = qlt,
                 rotation = rotation
             ))
+        },
+        .saveCoordinates = function(coord, norm) {
+            if (self$options$obsCoordOV && self$results$obsCoordOV$isNotFilled()) {
+                nDim <- self$options$dimNum
+                keys <- 1:nDim
+                measureTypes <- rep("continuous", nDim)
+
+                titles <- paste(.("Dim"), keys)
+                descriptions <- character(length(keys))
+
+                if (self$options$rotation == "none")
+                    rotationStr <- ""
+                else
+                    rotationStr <- paste0(" (", self$options$rotation, ")")
+
+                for (i in keys) {
+                    descriptions[i] = jmvcore::format(
+                        .("PCA {norm} Coordinate{rotation}"),
+                        norm = norm,
+                        rotation = rotationStr
+                    )
+                }
+
+                self$results$obsCoordOV$set(
+                    keys=keys,
+                    titles=titles,
+                    descriptions=descriptions,
+                    measureTypes=measureTypes
+                )
+
+                self$results$obsCoordOV$setRowNums(rownames(coord))
+
+                for (i in 1:nDim)
+                    self$results$obsCoordOV$setValues(index=i, coord[, i])
+            }
+
         }
 
     )

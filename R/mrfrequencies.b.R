@@ -36,7 +36,6 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
             if ( self$options$showTotal ) {
                 i <- nrow(myresult$df)
-                #                table$addRow("total",
                 table$setRow(rowKey=".total",
                              values=list(var="Total",
                                          freq=myresult$df[i,2],
@@ -51,7 +50,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             image$setState(myresult$df[1:(nrow(myresult$df)-1),])
 
         },
-        .plot = function(image, ggtheme, theme, ...) {  # <-- the plot function
+        .plot = function(image, ggtheme, theme, ...) {
             if (is.null(image$state))
                 return(FALSE)
 
@@ -61,29 +60,29 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             plotData$Option <- factor(plotData$Option, levels=plotData$Option)
 
             if (self$options$yaxis == "responses") {
-                plot <- ggplot(plotData, aes(Option, Responses )) +
-                    labs(y=.("% of Responses")) + scale_y_continuous(labels=percent_format())
+                plot <- ggplot(plotData, aes(Option, Responses )) + scale_y_continuous(labels=percent_format())
+                yLab <- .("% of Responses")
             } else if (self$options$yaxis == "cases") {
-                plot <- ggplot(plotData, aes(Option, Cases )) +
-                    labs(y=.("% of Cases")) + scale_y_continuous(labels=percent_format())
+                plot <- ggplot(plotData, aes(Option, Cases )) + scale_y_continuous(labels=percent_format())
+                yLab <- .("% of Cases")
             } else {
-                plot <- ggplot(plotData, aes(Option, Frequency )) + labs(y=.("Counts"))
+                plot <- ggplot(plotData, aes(Option, Frequency ))
+                yLab <- .("Counts")
             }
 
-            #plot <- plot + geom_col(fill=theme$color[2]) + labs(x="")  + ggtheme
             if (self$options$singleColor) {
-                firstColorOfPalette <- jmvcore::colorPalette(n = 5, pal = self$options$colorPalette, type = "color")[1]
+                firstColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(5)[1]
                 plot <- plot + geom_col(fill = firstColorOfPalette)
             } else {
                 plot <- plot + geom_col(aes(fill = Option)) + guides(fill = FALSE)
             }
 
-            # Theme and labs
-            plot <- plot + labs(x="")  + ggtheme
-            # Color palette
-            if (!self$options$singleColor && self$options$colorPalette != 'jmv') {
-                plot <- plot + scale_fill_brewer(palette = self$options$colorPalette, na.value="grey")
-            }
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+
+            # Titles & Labels
+            defaults <- list(y = yLab, x = "")
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options, showLegend = FALSE)
 
             return(plot)
 

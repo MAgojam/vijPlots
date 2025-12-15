@@ -9,14 +9,22 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
+
             width <- 600
             height <- 400
             # Compute the size according to options
             if (userWidth * userHeight == 0) {
-                if (!is.null(self$options$group) || length(self$options$vars) > 1)
-                        width <- 650
+                if (!is.null(self$options$group) || length(self$options$vars) > 1) {
+                    if (self$options$legendPosition %in% c('top','bottom'))
+                        height <- height + 50
+                    else
+                        width <- width + 50
+                }
                 if (self$options$rotateLabels)
-                        height <- 450
+                    height <- height + 50
             }
             if (userWidth >0)
                 width = userWidth
@@ -101,7 +109,8 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     plot <- plot + geom_point(aes(y = !!aVar), size = dotSize)
             }
 
-            plot <- plot + ggtheme + scale_color_brewer(palette = self$options$colorPalette)
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color")
 
             if (timeVarIsDate) {
                 Sys.setlocale("LC_TIME", .("en_US.utf-8"))
@@ -111,13 +120,26 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (self$options$rotateLabels)
                 plot <- plot + theme(axis.text.x=element_text(angle=60, hjust=0.5))
 
-            if (length(depVars) > 1 )
-                plot <- plot + ylab("Values") + labs(color = "Variables") + guides(color = guide_legend(order = 1), linetype = guide_legend(order = 2))
+            if (length(depVars) > 1 ){
+                plot <- plot + guides(color = guide_legend(order = 1), linetype = guide_legend(order = 2))
+                yLab <- .("Values")
+                gLab <- .("Variables")
+            } else {
+                yLab <- depVars
+                gLab <- groupVar
+            }
             if (length(depVars) > 1 && is.null(groupVar))
                 plot <- plot + labs(color = '')
 
             if (length(depVars) == 1 && is.null(groupVar))
-                plot <- plot + theme(legend.position='none')
+                showLegend <- FALSE
+            else
+                showLegend <- TRUE
+
+            # Titles & Labels
+            defaults <- list(y = yLab, x = timeVar, legend = gLab)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options, showLegend = showLegend)
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
             return(plot)
         },

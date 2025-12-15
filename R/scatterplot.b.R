@@ -34,14 +34,14 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setState(data)
         },
         .plot = function(image, ggtheme, theme, ...) {
+            if (is.null(image$state)) {
+                return(FALSE)
+            }
             xaxis <- self$options$xaxis
             yaxis <- self$options$yaxis
             groupVar <- self$options$group
             labelVar <- self$options$labelVar
             sizeVar <- self$options$ptSize
-
-            if ( is.null(xaxis) || is.null(yaxis))
-                return(FALSE)
 
             xaxis <- ensym(xaxis)
             yaxis <- ensym(yaxis)
@@ -89,15 +89,16 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if( self$options$vline )
             plot <- plot + geom_vline(xintercept= self$options$xinter,  color="black")
 
-            plot <- plot + ggtheme
-
-            if( self$options$colorPalette != 'jmv' ) {
-                plot <- plot + scale_color_brewer(palette = self$options$colorPalette, na.value="grey")
-            }
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color")
 
             if( self$options$plotBorder ) {
                 plot <- plot + theme(axis.line = element_line(linewidth = 0), panel.border = element_rect(color = "black", fill = NA, size = 1))
             }
+
+            # Titles & Labels
+            defaults <- list(y = yaxis, x = xaxis, legend = groupVar)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
 
             return(plot)
         }

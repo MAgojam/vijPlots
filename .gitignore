@@ -7,8 +7,11 @@
 .RData
 .Ruserdata
 .Rdata
+.Rprofile
 .httr-oauth
 .DS_Store
 .quarto
 workfile*
 build/
+released/
+computations/

@@ -9,6 +9,9 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
 
             if (userWidth * userHeight == 0) {
                 if( !is.null(self$options$columns)) {
@@ -31,7 +34,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 } else {
                     height <- 400
                 }
-                if (self$options$legendAtBottom) {
+                if (self$options$legendPosition %in% c('top','bottom')) {
                     width <- width - 50
                     height <- height + 50
                 }
@@ -75,18 +78,16 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # ggplot with base AES and sorting
             if (self$options$order == "decreasing")
-#                plot <- ggplot(plotData, aes(x = reorder(!!rows, !!rows, length, decreasing = TRUE)))
                 plot <- ggplot(plotData, aes(x = forcats::fct_infreq(!!rows)))
             else if (self$options$order == "increasing")
-#                plot <- ggplot(plotData, aes(x = reorder(!!rows, !!rows, length, decreasing = FALSE)))
                 plot <- ggplot(plotData, aes(x = forcats::fct_rev(forcats::fct_infreq(!!rows))))
             else
                 plot <- ggplot(plotData, aes(x = !!rows))
-            # Geom bar + labels
-            plot <- plot + labs(x = rows)
+            ## Geom bar + labels
+            #plot <- plot + labs(x = rows)
             ## One variable
             if (is.null(columns)) {
-                firstColorOfPalette <- jmvcore::colorPalette(n = 5, pal = self$options$colorPalette, type = "color")[1]
+                firstColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(5)[1]
                 # One variable with Percentage
                 if (self$options$yaxis1var == "percent") {
                     if (self$options$singleColor) {
@@ -97,7 +98,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         plot <- plot + guides(fill = FALSE)
                     }
                     plot <- plot + scale_y_continuous(labels=percent_format())
-                    plot <- plot + labs(y = .("Percent"))
+                    yLab <- .("Percent")
                     if( self$options$showLabels ) {
                         if (self$options$textColor == "auto") { # using hex_bw
                             if (self$options$singleColor) {
@@ -140,7 +141,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                              color = self$options$textColor, fontface = "bold")
                         }
                     }
-                    plot <- plot + labs(y = .("Count"))
+                    yLab <- .("Count")
                 }
             ## Two variables
             } else {
@@ -158,7 +159,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                      color = self$options$textColor, fontface = "bold")
                         }
                     }
-                    plot <- plot + labs(y = .("Percent"))
+                    yLab <- .("Percent")
                 # Two variables with count (dodge)
                 } else if (self$options$position == "dodge" || self$options$position == "dodge2") {
                     if (self$options$showLabels) {
@@ -174,7 +175,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                      color = self$options$textColor, fontface = "bold")
                         }
                     }
-                    plot <- plot + labs(y = .("Count"))
+                    yLab <- .("Count")
                 # Two variables with count (staked)
                 } else { # Stacked
                     if (self$options$showLabels) {
@@ -190,7 +191,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                      color = self$options$textColor, fontface = "bold")
                         }
                     }
-                    plot <- plot + labs(y = .("Count"))
+                    yLab <- .("Count")
                 }
             }
 
@@ -209,13 +210,17 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Theme and colors
-            plot <- plot + ggtheme
-            if (self$options$colorPalette != 'jmv') {
-                plot <- plot + scale_fill_brewer(palette = self$options$colorPalette, na.value="grey")
-            }
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+
+            # Titles & Labels
+            defaults <- list(y = yLab, x = rows, legend = columns)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
+
+            # RotateLabels
+            if (self$options$rotateLabels)
+                plot <- plot + theme(axis.text.x=element_text(angle=60, hjust=0.5))
             # Legend position
-            if (self$options$legendAtBottom)
-                plot <- plot + theme(legend.position="bottom")
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
             return(plot)
         })

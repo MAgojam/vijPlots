@@ -9,6 +9,9 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
 
             if (userWidth * userHeight == 0) {
                 if (!is.null(self$options$group))
@@ -72,8 +75,6 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 facetVar <- NULL
             }
 
-
-
             orderFun <- self$options$yaxis
             if (orderFun == "minmax" || orderFun == "identity")
                 orderFun <- max
@@ -114,8 +115,6 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else
                 ylabel = aVar
 
-            plot <- plot + labs(x = groupVar, y = ylabel)
-
             # Horizontal Plot
             if (self$options$horizontal)
                 plot <- plot + coord_flip()
@@ -132,6 +131,10 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Theme and colors
             plot <- plot + ggtheme
+
+            # Titles & Labels
+            defaults <- list(y = ylabel, x = groupVar)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options, showLegend = FALSE)
 
             return(plot)
         })

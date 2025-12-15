@@ -10,19 +10,5 @@ items:
       width:  600
       height: 600
       renderFun: .plot
-      clearWith:
-        - xaxis
-        - yaxis
-        - group
-        - labelVar
-        - ptSize
-        - keepNA
-        - overlap
-        - plotBorder
-        - hline
-        - yinter
-        - vline
-        - xinter
-        - colorPalette
 
 ...

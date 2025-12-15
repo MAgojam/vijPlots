@@ -10,21 +10,5 @@ items:
       width:  600
       height: 400
       renderFun: .plot
-      clearWith:
-        - aVar
-        - group
-        - facet
-        - histtype
-        - binWidth
-        - binBoundary
-        - normalCurve
-        - borderColor
-        - fillColor
-        - grouping
-        - colorPalette
-        - usePalette
-        - plotWidth
-        - plotHeight
-        - facetBy
-        - facetNumber
+
 ...

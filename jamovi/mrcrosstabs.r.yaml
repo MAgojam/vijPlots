@@ -27,16 +27,5 @@ items:
       width:  400
       height: 300
       renderFun: .plot
-      clearWith:
-        - resps
-        - endorsed
-        - order
-        - group
-        - computedValues
-        - bartype
-        - xaxis
-        - size
-        - optionname
-        - colorPalette
 
 ...

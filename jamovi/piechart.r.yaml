@@ -10,18 +10,5 @@ items:
       width:  600
       height: 400
       renderFun: .plot
-      clearWith:
-        - aVar
-        - facet
-        - donut
-        - legendBottom
-        - labels
-        - colorPalette
-        - borderColor
-        - textColor
-        - accuracy
-        - plotWidth
-        - plotHeight
-        - facetBy
-        - facetNumber
+
 ...

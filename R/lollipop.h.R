@@ -19,7 +19,25 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             plotWidth = 0,
             plotHeight = 0,
             facetBy = "column",
-            facetNumber = 1, ...) {
+            facetNumber = 1,
+            titleText = NULL,
+            titleFontFace = "bold",
+            titleFontSize = "14",
+            titleAlign = "0.5",
+            subtitleText = NULL,
+            subtitleFontFace = "plain",
+            subtitleFontSize = "12",
+            subtitleAlign = "0.5",
+            captionText = NULL,
+            captionFontFace = "italic",
+            captionFontSize = "10",
+            captionAlign = "1",
+            xAxisText = NULL,
+            xAxisFontSize = "16",
+            xAxisPosition = "0.5",
+            yAxisText = NULL,
+            yAxisFontSize = "16",
+            yAxisPosition = "0.5", ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -170,6 +188,146 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 min=1,
                 max=10,
                 default=1)
+            private$..titleText <- jmvcore::OptionString$new(
+                "titleText",
+                titleText)
+            private$..titleFontFace <- jmvcore::OptionList$new(
+                "titleFontFace",
+                titleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="bold")
+            private$..titleFontSize <- jmvcore::OptionList$new(
+                "titleFontSize",
+                titleFontSize,
+                options=list(
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22",
+                    "24"),
+                default="14")
+            private$..titleAlign <- jmvcore::OptionList$new(
+                "titleAlign",
+                titleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..subtitleText <- jmvcore::OptionString$new(
+                "subtitleText",
+                subtitleText)
+            private$..subtitleFontFace <- jmvcore::OptionList$new(
+                "subtitleFontFace",
+                subtitleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..subtitleFontSize <- jmvcore::OptionList$new(
+                "subtitleFontSize",
+                subtitleFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22"),
+                default="12")
+            private$..subtitleAlign <- jmvcore::OptionList$new(
+                "subtitleAlign",
+                subtitleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..captionText <- jmvcore::OptionString$new(
+                "captionText",
+                captionText)
+            private$..captionFontFace <- jmvcore::OptionList$new(
+                "captionFontFace",
+                captionFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="italic")
+            private$..captionFontSize <- jmvcore::OptionList$new(
+                "captionFontSize",
+                captionFontSize,
+                options=list(
+                    "8",
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="10")
+            private$..captionAlign <- jmvcore::OptionList$new(
+                "captionAlign",
+                captionAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="1")
+            private$..xAxisText <- jmvcore::OptionString$new(
+                "xAxisText",
+                xAxisText)
+            private$..xAxisFontSize <- jmvcore::OptionList$new(
+                "xAxisFontSize",
+                xAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..xAxisPosition <- jmvcore::OptionList$new(
+                "xAxisPosition",
+                xAxisPosition,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..yAxisText <- jmvcore::OptionString$new(
+                "yAxisText",
+                yAxisText)
+            private$..yAxisFontSize <- jmvcore::OptionList$new(
+                "yAxisFontSize",
+                yAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..yAxisPosition <- jmvcore::OptionList$new(
+                "yAxisPosition",
+                yAxisPosition,
+                options=list(
+                    "1",
+                    "0.5",
+                    "0"),
+                default="0.5")
 
             self$.addOption(private$..aVar)
             self$.addOption(private$..group)
@@ -185,6 +343,24 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..plotHeight)
             self$.addOption(private$..facetBy)
             self$.addOption(private$..facetNumber)
+            self$.addOption(private$..titleText)
+            self$.addOption(private$..titleFontFace)
+            self$.addOption(private$..titleFontSize)
+            self$.addOption(private$..titleAlign)
+            self$.addOption(private$..subtitleText)
+            self$.addOption(private$..subtitleFontFace)
+            self$.addOption(private$..subtitleFontSize)
+            self$.addOption(private$..subtitleAlign)
+            self$.addOption(private$..captionText)
+            self$.addOption(private$..captionFontFace)
+            self$.addOption(private$..captionFontSize)
+            self$.addOption(private$..captionAlign)
+            self$.addOption(private$..xAxisText)
+            self$.addOption(private$..xAxisFontSize)
+            self$.addOption(private$..xAxisPosition)
+            self$.addOption(private$..yAxisText)
+            self$.addOption(private$..yAxisFontSize)
+            self$.addOption(private$..yAxisPosition)
         }),
     active = list(
         aVar = function() private$..aVar$value,
@@ -200,7 +376,25 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
         facetBy = function() private$..facetBy$value,
-        facetNumber = function() private$..facetNumber$value),
+        facetNumber = function() private$..facetNumber$value,
+        titleText = function() private$..titleText$value,
+        titleFontFace = function() private$..titleFontFace$value,
+        titleFontSize = function() private$..titleFontSize$value,
+        titleAlign = function() private$..titleAlign$value,
+        subtitleText = function() private$..subtitleText$value,
+        subtitleFontFace = function() private$..subtitleFontFace$value,
+        subtitleFontSize = function() private$..subtitleFontSize$value,
+        subtitleAlign = function() private$..subtitleAlign$value,
+        captionText = function() private$..captionText$value,
+        captionFontFace = function() private$..captionFontFace$value,
+        captionFontSize = function() private$..captionFontSize$value,
+        captionAlign = function() private$..captionAlign$value,
+        xAxisText = function() private$..xAxisText$value,
+        xAxisFontSize = function() private$..xAxisFontSize$value,
+        xAxisPosition = function() private$..xAxisPosition$value,
+        yAxisText = function() private$..yAxisText$value,
+        yAxisFontSize = function() private$..yAxisFontSize$value,
+        yAxisPosition = function() private$..yAxisPosition$value),
     private = list(
         ..aVar = NA,
         ..group = NA,
@@ -215,7 +409,25 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..plotWidth = NA,
         ..plotHeight = NA,
         ..facetBy = NA,
-        ..facetNumber = NA)
+        ..facetNumber = NA,
+        ..titleText = NA,
+        ..titleFontFace = NA,
+        ..titleFontSize = NA,
+        ..titleAlign = NA,
+        ..subtitleText = NA,
+        ..subtitleFontFace = NA,
+        ..subtitleFontSize = NA,
+        ..subtitleAlign = NA,
+        ..captionText = NA,
+        ..captionFontFace = NA,
+        ..captionFontSize = NA,
+        ..captionAlign = NA,
+        ..xAxisText = NA,
+        ..xAxisFontSize = NA,
+        ..xAxisPosition = NA,
+        ..yAxisText = NA,
+        ..yAxisFontSize = NA,
+        ..yAxisPosition = NA)
 )
 
 lollipopResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -236,22 +448,7 @@ lollipopResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="",
                 width=600,
                 height=400,
-                renderFun=".plot",
-                clearWith=list(
-                    "aVar",
-                    "group",
-                    "facet",
-                    "yaxis",
-                    "order",
-                    "horizontal",
-                    "dotColor",
-                    "lineColor",
-                    "dotSize",
-                    "lineWidth",
-                    "facetBy",
-                    "facetNumber",
-                    "plotWidth",
-                    "plotHeight")))}))
+                renderFun=".plot"))}))
 
 lollipopBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "lollipopBase",
@@ -292,6 +489,24 @@ lollipopBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param plotHeight .
 #' @param facetBy .
 #' @param facetNumber .
+#' @param titleText .
+#' @param titleFontFace .
+#' @param titleFontSize .
+#' @param titleAlign .
+#' @param subtitleText .
+#' @param subtitleFontFace .
+#' @param subtitleFontSize .
+#' @param subtitleAlign .
+#' @param captionText .
+#' @param captionFontFace .
+#' @param captionFontSize .
+#' @param captionAlign .
+#' @param xAxisText .
+#' @param xAxisFontSize .
+#' @param xAxisPosition .
+#' @param yAxisText .
+#' @param yAxisFontSize .
+#' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -313,7 +528,25 @@ lollipop <- function(
     plotWidth = 0,
     plotHeight = 0,
     facetBy = "column",
-    facetNumber = 1) {
+    facetNumber = 1,
+    titleText,
+    titleFontFace = "bold",
+    titleFontSize = "14",
+    titleAlign = "0.5",
+    subtitleText,
+    subtitleFontFace = "plain",
+    subtitleFontSize = "12",
+    subtitleAlign = "0.5",
+    captionText,
+    captionFontFace = "italic",
+    captionFontSize = "10",
+    captionAlign = "1",
+    xAxisText,
+    xAxisFontSize = "16",
+    xAxisPosition = "0.5",
+    yAxisText,
+    yAxisFontSize = "16",
+    yAxisPosition = "0.5") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("lollipop requires jmvcore to be installed (restart may be required)")
@@ -345,7 +578,25 @@ lollipop <- function(
         plotWidth = plotWidth,
         plotHeight = plotHeight,
         facetBy = facetBy,
-        facetNumber = facetNumber)
+        facetNumber = facetNumber,
+        titleText = titleText,
+        titleFontFace = titleFontFace,
+        titleFontSize = titleFontSize,
+        titleAlign = titleAlign,
+        subtitleText = subtitleText,
+        subtitleFontFace = subtitleFontFace,
+        subtitleFontSize = subtitleFontSize,
+        subtitleAlign = subtitleAlign,
+        captionText = captionText,
+        captionFontFace = captionFontFace,
+        captionFontSize = captionFontSize,
+        captionAlign = captionAlign,
+        xAxisText = xAxisText,
+        xAxisFontSize = xAxisFontSize,
+        xAxisPosition = xAxisPosition,
+        yAxisText = yAxisText,
+        yAxisFontSize = yAxisFontSize,
+        yAxisPosition = yAxisPosition)
 
     analysis <- lollipopClass$new(
         options = options,

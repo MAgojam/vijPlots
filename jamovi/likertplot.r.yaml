@@ -172,5 +172,20 @@ items:
         - vLabelWrap
         - hLabelWrap
         - descAsVarName
+        - titleText
+        - subtitleText
+        - captionText
+        - titleFontFace
+        - subtitleFontFace
+        - captionFontFace
+        - titleFontSize
+        - subtitleFontSize
+        - captionFontSize
+        - titleAlign
+        - subtitleAlign
+        - captionAlign
+        - legendText
+        - legendFontSize
+        - legendPosition
 
 ...

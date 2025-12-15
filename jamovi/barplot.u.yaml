@@ -50,10 +50,9 @@ children:
                   - type: CheckBox
                     name: showLabels
                   - type: CheckBox
-                    name: horizontal
+                    name: rotateLabels
                   - type: CheckBox
-                    name: legendAtBottom
-                    enable: (!(!columns))
+                    name: horizontal
       - type: LayoutBox
         cell:
           column: 1
@@ -200,8 +199,8 @@ children:
         children:
           - type: LayoutBox
             cell:
-                column: 0
-                row: 0
+              column: 0
+              row: 0
             stretchFactor: 6
             children:
               - type: Label
@@ -219,8 +218,8 @@ children:
                         suffix: px
           - type: LayoutBox
             cell:
-                column: 1
-                row: 0
+              column: 1
+              row: 0
             stretchFactor: 8
             children:
               - type: Label
@@ -250,8 +249,8 @@ children:
                         enable: (!(!facet))
           - type: LayoutBox
             cell:
-                column: 2
-                row: 0
+              column: 2
+              row: 0
             stretchFactor: 6
             children:
               - type: Label
@@ -263,3 +262,172 @@ children:
                         name: borderColor
                       - type: ComboBox
                         name: textColor
+  - type: CollapseBox
+    label: Legend & Axis Labels
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: Label
+        label: Legend
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: legendText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: legendFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: legendPosition
+      - type: Label
+        label: X-Axis
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: xAxisText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: xAxisFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: xAxisPosition
+      - type: Label
+        label: Y-Axis
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: yAxisText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: yAxisFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: yAxisPosition
+  - type: CollapseBox
+    label: Plot Titles
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: Label
+        label: Title
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: titleText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: titleFontFace
+                  - type: ComboBox
+                    name: titleFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: titleAlign
+      - type: Label
+        label: Subtitle
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: subtitleText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: subtitleFontFace
+                  - type: ComboBox
+                    name: subtitleFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: subtitleAlign
+      - type: Label
+        label: Caption
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: captionText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: captionFontFace
+                  - type: ComboBox
+                    name: captionFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: captionAlign

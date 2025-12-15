@@ -35,25 +35,41 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             labelColor = "none",
             obsColor = "#E41A1C",
             colorPalette = "jmv",
-            screeTitle = "default",
-            varTitle = "default",
-            obsTitle = "default",
-            biplotTitle = "default",
+            screeTitleText = "default",
+            varTitleText = "default",
+            obsTitleText = "default",
+            biplotTitleText = "default",
             titleAlign = "0.5",
             titleFontSize = 16,
             titleFontFace = "plain",
-            screeSubtitle = " ",
-            varSubtitle = "default",
-            obsSubtitle = "default",
-            biplotSubtitle = "default",
+            screeSubtitleText = NULL,
+            varSubtitleText = "default",
+            obsSubtitleText = "default",
+            biplotSubtitleText = "default",
             subtitleAlign = "0.5",
             subtitleFontSize = 12,
             subtitleFontFace = "plain",
+            screeCaptionText = NULL,
+            varCaptionText = "default",
+            obsCaptionText = "default",
+            biplotCaptionText = NULL,
+            captionAlign = "1",
+            captionFontSize = 12,
+            captionFontFace = "plain",
             kaiser = FALSE,
             descAsVarName = FALSE,
             stdScores = FALSE,
             stdLoadings = FALSE,
-            stataRotation = FALSE, ...) {
+            stataRotation = FALSE,
+            legendText = NULL,
+            legendFontSize = "14",
+            legendPosition = "right",
+            xAxisText = NULL,
+            xAxisFontSize = "16",
+            xAxisPosition = "0.5",
+            yAxisText = NULL,
+            yAxisFontSize = "16",
+            yAxisPosition = "0.5", ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -307,23 +323,29 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "YlGn",
                     "YlGnBu",
                     "YlOrBr",
-                    "YlOrRd"),
+                    "YlOrRd",
+                    "viridis::viridis",
+                    "viridis::magma",
+                    "viridis::inferno",
+                    "viridis::plasma",
+                    "viridis::turbo",
+                    "dichromat::Categorical.12"),
                 default="jmv")
-            private$..screeTitle <- jmvcore::OptionString$new(
-                "screeTitle",
-                screeTitle,
+            private$..screeTitleText <- jmvcore::OptionString$new(
+                "screeTitleText",
+                screeTitleText,
                 default="default")
-            private$..varTitle <- jmvcore::OptionString$new(
-                "varTitle",
-                varTitle,
+            private$..varTitleText <- jmvcore::OptionString$new(
+                "varTitleText",
+                varTitleText,
                 default="default")
-            private$..obsTitle <- jmvcore::OptionString$new(
-                "obsTitle",
-                obsTitle,
+            private$..obsTitleText <- jmvcore::OptionString$new(
+                "obsTitleText",
+                obsTitleText,
                 default="default")
-            private$..biplotTitle <- jmvcore::OptionString$new(
-                "biplotTitle",
-                biplotTitle,
+            private$..biplotTitleText <- jmvcore::OptionString$new(
+                "biplotTitleText",
+                biplotTitleText,
                 default="default")
             private$..titleAlign <- jmvcore::OptionList$new(
                 "titleAlign",
@@ -346,21 +368,20 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "italic",
                     "bold.italic"),
                 default="plain")
-            private$..screeSubtitle <- jmvcore::OptionString$new(
-                "screeSubtitle",
-                screeSubtitle,
-                default=" ")
-            private$..varSubtitle <- jmvcore::OptionString$new(
-                "varSubtitle",
-                varSubtitle,
+            private$..screeSubtitleText <- jmvcore::OptionString$new(
+                "screeSubtitleText",
+                screeSubtitleText)
+            private$..varSubtitleText <- jmvcore::OptionString$new(
+                "varSubtitleText",
+                varSubtitleText,
                 default="default")
-            private$..obsSubtitle <- jmvcore::OptionString$new(
-                "obsSubtitle",
-                obsSubtitle,
+            private$..obsSubtitleText <- jmvcore::OptionString$new(
+                "obsSubtitleText",
+                obsSubtitleText,
                 default="default")
-            private$..biplotSubtitle <- jmvcore::OptionString$new(
-                "biplotSubtitle",
-                biplotSubtitle,
+            private$..biplotSubtitleText <- jmvcore::OptionString$new(
+                "biplotSubtitleText",
+                biplotSubtitleText,
                 default="default")
             private$..subtitleAlign <- jmvcore::OptionList$new(
                 "subtitleAlign",
@@ -377,6 +398,43 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..subtitleFontFace <- jmvcore::OptionList$new(
                 "subtitleFontFace",
                 subtitleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..screeCaptionText <- jmvcore::OptionString$new(
+                "screeCaptionText",
+                screeCaptionText)
+            private$..varCaptionText <- jmvcore::OptionString$new(
+                "varCaptionText",
+                varCaptionText,
+                default="default")
+            private$..obsCaptionText <- jmvcore::OptionString$new(
+                "obsCaptionText",
+                obsCaptionText,
+                default="default")
+            private$..biplotCaptionText <- jmvcore::OptionString$new(
+                "biplotCaptionText",
+                biplotCaptionText)
+            private$..captionAlign <- jmvcore::OptionList$new(
+                "captionAlign",
+                captionAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="1")
+            private$..captionFontSize <- jmvcore::OptionNumber$new(
+                "captionFontSize",
+                captionFontSize,
+                default=12,
+                min=8,
+                max=24)
+            private$..captionFontFace <- jmvcore::OptionList$new(
+                "captionFontFace",
+                captionFontFace,
                 options=list(
                     "plain",
                     "bold",
@@ -403,6 +461,75 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "stataRotation",
                 stataRotation,
                 default=FALSE)
+            private$..obsCoordOV <- jmvcore::OptionOutput$new(
+                "obsCoordOV")
+            private$..legendText <- jmvcore::OptionString$new(
+                "legendText",
+                legendText)
+            private$..legendFontSize <- jmvcore::OptionList$new(
+                "legendFontSize",
+                legendFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="14")
+            private$..legendPosition <- jmvcore::OptionList$new(
+                "legendPosition",
+                legendPosition,
+                options=list(
+                    "right",
+                    "bottom",
+                    "left",
+                    "top"),
+                default="right")
+            private$..xAxisText <- jmvcore::OptionString$new(
+                "xAxisText",
+                xAxisText)
+            private$..xAxisFontSize <- jmvcore::OptionList$new(
+                "xAxisFontSize",
+                xAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..xAxisPosition <- jmvcore::OptionList$new(
+                "xAxisPosition",
+                xAxisPosition,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..yAxisText <- jmvcore::OptionString$new(
+                "yAxisText",
+                yAxisText)
+            private$..yAxisFontSize <- jmvcore::OptionList$new(
+                "yAxisFontSize",
+                yAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..yAxisPosition <- jmvcore::OptionList$new(
+                "yAxisPosition",
+                yAxisPosition,
+                options=list(
+                    "1",
+                    "0.5",
+                    "0"),
+                default="0.5")
 
             self$.addOption(private$..vars)
             self$.addOption(private$..labelVar)
@@ -433,25 +560,42 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..labelColor)
             self$.addOption(private$..obsColor)
             self$.addOption(private$..colorPalette)
-            self$.addOption(private$..screeTitle)
-            self$.addOption(private$..varTitle)
-            self$.addOption(private$..obsTitle)
-            self$.addOption(private$..biplotTitle)
+            self$.addOption(private$..screeTitleText)
+            self$.addOption(private$..varTitleText)
+            self$.addOption(private$..obsTitleText)
+            self$.addOption(private$..biplotTitleText)
             self$.addOption(private$..titleAlign)
             self$.addOption(private$..titleFontSize)
             self$.addOption(private$..titleFontFace)
-            self$.addOption(private$..screeSubtitle)
-            self$.addOption(private$..varSubtitle)
-            self$.addOption(private$..obsSubtitle)
-            self$.addOption(private$..biplotSubtitle)
+            self$.addOption(private$..screeSubtitleText)
+            self$.addOption(private$..varSubtitleText)
+            self$.addOption(private$..obsSubtitleText)
+            self$.addOption(private$..biplotSubtitleText)
             self$.addOption(private$..subtitleAlign)
             self$.addOption(private$..subtitleFontSize)
             self$.addOption(private$..subtitleFontFace)
+            self$.addOption(private$..screeCaptionText)
+            self$.addOption(private$..varCaptionText)
+            self$.addOption(private$..obsCaptionText)
+            self$.addOption(private$..biplotCaptionText)
+            self$.addOption(private$..captionAlign)
+            self$.addOption(private$..captionFontSize)
+            self$.addOption(private$..captionFontFace)
             self$.addOption(private$..kaiser)
             self$.addOption(private$..descAsVarName)
             self$.addOption(private$..stdScores)
             self$.addOption(private$..stdLoadings)
             self$.addOption(private$..stataRotation)
+            self$.addOption(private$..obsCoordOV)
+            self$.addOption(private$..legendText)
+            self$.addOption(private$..legendFontSize)
+            self$.addOption(private$..legendPosition)
+            self$.addOption(private$..xAxisText)
+            self$.addOption(private$..xAxisFontSize)
+            self$.addOption(private$..xAxisPosition)
+            self$.addOption(private$..yAxisText)
+            self$.addOption(private$..yAxisFontSize)
+            self$.addOption(private$..yAxisPosition)
         }),
     active = list(
         vars = function() private$..vars$value,
@@ -483,25 +627,42 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         labelColor = function() private$..labelColor$value,
         obsColor = function() private$..obsColor$value,
         colorPalette = function() private$..colorPalette$value,
-        screeTitle = function() private$..screeTitle$value,
-        varTitle = function() private$..varTitle$value,
-        obsTitle = function() private$..obsTitle$value,
-        biplotTitle = function() private$..biplotTitle$value,
+        screeTitleText = function() private$..screeTitleText$value,
+        varTitleText = function() private$..varTitleText$value,
+        obsTitleText = function() private$..obsTitleText$value,
+        biplotTitleText = function() private$..biplotTitleText$value,
         titleAlign = function() private$..titleAlign$value,
         titleFontSize = function() private$..titleFontSize$value,
         titleFontFace = function() private$..titleFontFace$value,
-        screeSubtitle = function() private$..screeSubtitle$value,
-        varSubtitle = function() private$..varSubtitle$value,
-        obsSubtitle = function() private$..obsSubtitle$value,
-        biplotSubtitle = function() private$..biplotSubtitle$value,
+        screeSubtitleText = function() private$..screeSubtitleText$value,
+        varSubtitleText = function() private$..varSubtitleText$value,
+        obsSubtitleText = function() private$..obsSubtitleText$value,
+        biplotSubtitleText = function() private$..biplotSubtitleText$value,
         subtitleAlign = function() private$..subtitleAlign$value,
         subtitleFontSize = function() private$..subtitleFontSize$value,
         subtitleFontFace = function() private$..subtitleFontFace$value,
+        screeCaptionText = function() private$..screeCaptionText$value,
+        varCaptionText = function() private$..varCaptionText$value,
+        obsCaptionText = function() private$..obsCaptionText$value,
+        biplotCaptionText = function() private$..biplotCaptionText$value,
+        captionAlign = function() private$..captionAlign$value,
+        captionFontSize = function() private$..captionFontSize$value,
+        captionFontFace = function() private$..captionFontFace$value,
         kaiser = function() private$..kaiser$value,
         descAsVarName = function() private$..descAsVarName$value,
         stdScores = function() private$..stdScores$value,
         stdLoadings = function() private$..stdLoadings$value,
-        stataRotation = function() private$..stataRotation$value),
+        stataRotation = function() private$..stataRotation$value,
+        obsCoordOV = function() private$..obsCoordOV$value,
+        legendText = function() private$..legendText$value,
+        legendFontSize = function() private$..legendFontSize$value,
+        legendPosition = function() private$..legendPosition$value,
+        xAxisText = function() private$..xAxisText$value,
+        xAxisFontSize = function() private$..xAxisFontSize$value,
+        xAxisPosition = function() private$..xAxisPosition$value,
+        yAxisText = function() private$..yAxisText$value,
+        yAxisFontSize = function() private$..yAxisFontSize$value,
+        yAxisPosition = function() private$..yAxisPosition$value),
     private = list(
         ..vars = NA,
         ..labelVar = NA,
@@ -532,25 +693,42 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..labelColor = NA,
         ..obsColor = NA,
         ..colorPalette = NA,
-        ..screeTitle = NA,
-        ..varTitle = NA,
-        ..obsTitle = NA,
-        ..biplotTitle = NA,
+        ..screeTitleText = NA,
+        ..varTitleText = NA,
+        ..obsTitleText = NA,
+        ..biplotTitleText = NA,
         ..titleAlign = NA,
         ..titleFontSize = NA,
         ..titleFontFace = NA,
-        ..screeSubtitle = NA,
-        ..varSubtitle = NA,
-        ..obsSubtitle = NA,
-        ..biplotSubtitle = NA,
+        ..screeSubtitleText = NA,
+        ..varSubtitleText = NA,
+        ..obsSubtitleText = NA,
+        ..biplotSubtitleText = NA,
         ..subtitleAlign = NA,
         ..subtitleFontSize = NA,
         ..subtitleFontFace = NA,
+        ..screeCaptionText = NA,
+        ..varCaptionText = NA,
+        ..obsCaptionText = NA,
+        ..biplotCaptionText = NA,
+        ..captionAlign = NA,
+        ..captionFontSize = NA,
+        ..captionFontFace = NA,
         ..kaiser = NA,
         ..descAsVarName = NA,
         ..stdScores = NA,
         ..stdLoadings = NA,
-        ..stataRotation = NA)
+        ..stataRotation = NA,
+        ..obsCoordOV = NA,
+        ..legendText = NA,
+        ..legendFontSize = NA,
+        ..legendPosition = NA,
+        ..xAxisText = NA,
+        ..xAxisFontSize = NA,
+        ..xAxisPosition = NA,
+        ..yAxisText = NA,
+        ..yAxisFontSize = NA,
+        ..yAxisPosition = NA)
 )
 
 principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -565,7 +743,8 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         screePlot = function() private$.items[["screePlot"]],
         varPlot = function() private$.items[["varPlot"]],
         obsPlot = function() private$.items[["obsPlot"]],
-        biPlot = function() private$.items[["biPlot"]]),
+        biPlot = function() private$.items[["biPlot"]],
+        obsCoordOV = function() private$.items[["obsCoordOV"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -672,8 +851,6 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "descAsVarName",
                     "rotation",
                     "dimNum",
-                    "xaxis",
-                    "yaxis",
                     "stdVariables",
                     "kaiser",
                     "stdLoadings",
@@ -697,8 +874,6 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "descAsVarName",
                     "rotation",
                     "dimNum",
-                    "xaxis",
-                    "yaxis",
                     "stdVariables",
                     "kaiser",
                     "stdScores",
@@ -717,14 +892,24 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 clearWith=list(
                     "vars",
                     "stdVariables",
-                    "screeTitle",
+                    "screeTitleText",
                     "titleFontFace",
                     "titleFontSize",
                     "titleAlign",
-                    "screeSubtitle",
+                    "screeSubtitleText",
                     "subtitleFontFace",
                     "subtitleFontSize",
-                    "subtitleAlign")))
+                    "subtitleAlign",
+                    "screeCaptionText",
+                    "captionFontFace",
+                    "captionFontSize",
+                    "captionAlign",
+                    "xAxisText",
+                    "xAxisFontSize",
+                    "xAxisPosition",
+                    "yAxisText",
+                    "yAxisFontSize",
+                    "yAxisPosition")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="varPlot",
@@ -751,16 +936,26 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "obsLabelSize",
                     "varLabelSize",
                     "pointSize",
-                    "varTitle",
+                    "varTitleText",
                     "titleFontFace",
                     "titleFontSize",
                     "titleAlign",
-                    "varSubtitle",
+                    "varCaptionText",
+                    "captionFontFace",
+                    "captionFontSize",
+                    "captionAlign",
+                    "varSubtitleText",
                     "subtitleFontFace",
                     "subtitleFontSize",
                     "subtitleAlign",
                     "stdLoadings",
-                    "stataRotation")))
+                    "stataRotation",
+                    "xAxisText",
+                    "xAxisFontSize",
+                    "xAxisPosition",
+                    "yAxisText",
+                    "yAxisFontSize",
+                    "yAxisPosition")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="obsPlot",
@@ -789,16 +984,29 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "obsLabelSize",
                     "varLabelSize",
                     "pointSize",
-                    "obsTitle",
+                    "obsTitleText",
                     "titleFontFace",
                     "titleFontSize",
                     "titleAlign",
-                    "obsSubtitle",
+                    "obsSubtitleText",
                     "subtitleFontFace",
                     "subtitleFontSize",
                     "subtitleAlign",
+                    "obsCaptionText",
+                    "captionFontFace",
+                    "captionFontSize",
+                    "captionAlign",
                     "stdScores",
-                    "stataRotation")))
+                    "stataRotation",
+                    "xAxisText",
+                    "xAxisFontSize",
+                    "xAxisPosition",
+                    "yAxisText",
+                    "yAxisFontSize",
+                    "yAxisPosition",
+                    "legendText",
+                    "legendFontSize",
+                    "legendPosition")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="biPlot",
@@ -830,14 +1038,40 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "obsLabelSize",
                     "varLabelSize",
                     "pointSize",
-                    "biplotTitle",
+                    "biplotTitleText",
                     "titleFontFace",
                     "titleFontSize",
                     "titleAlign",
-                    "biplotSubtitle",
+                    "biplotSubtitleText",
                     "subtitleFontFace",
                     "subtitleFontSize",
                     "subtitleAlign",
+                    "biplotCaptionText",
+                    "captionFontFace",
+                    "captionFontSize",
+                    "captionAlign",
+                    "stataRotation",
+                    "xAxisText",
+                    "xAxisFontSize",
+                    "xAxisPosition",
+                    "yAxisText",
+                    "yAxisFontSize",
+                    "yAxisPosition",
+                    "legendText",
+                    "legendFontSize",
+                    "legendPosition")))
+            self$add(jmvcore::Output$new(
+                options=options,
+                name="obsCoordOV",
+                title="Observation Coordinates",
+                initInRun=TRUE,
+                clearWith=list(
+                    "vars",
+                    "rotation",
+                    "dimNum",
+                    "stdVariables",
+                    "kaiser",
+                    "stdScores",
                     "stataRotation")))}))
 
 principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -858,7 +1092,7 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 pause = NULL,
                 completeWhenFilled = FALSE,
                 requiresMissings = FALSE,
-                weightsSupport = 'auto')
+                weightsSupport = 'none')
         }))
 
 #' Principal Component Analysis
@@ -894,25 +1128,41 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param labelColor .
 #' @param obsColor .
 #' @param colorPalette .
-#' @param screeTitle .
-#' @param varTitle .
-#' @param obsTitle .
-#' @param biplotTitle .
+#' @param screeTitleText .
+#' @param varTitleText .
+#' @param obsTitleText .
+#' @param biplotTitleText .
 #' @param titleAlign .
 #' @param titleFontSize .
 #' @param titleFontFace .
-#' @param screeSubtitle .
-#' @param varSubtitle .
-#' @param obsSubtitle .
-#' @param biplotSubtitle .
+#' @param screeSubtitleText .
+#' @param varSubtitleText .
+#' @param obsSubtitleText .
+#' @param biplotSubtitleText .
 #' @param subtitleAlign .
 #' @param subtitleFontSize .
 #' @param subtitleFontFace .
+#' @param screeCaptionText .
+#' @param varCaptionText .
+#' @param obsCaptionText .
+#' @param biplotCaptionText .
+#' @param captionAlign .
+#' @param captionFontSize .
+#' @param captionFontFace .
 #' @param kaiser .
 #' @param descAsVarName .
 #' @param stdScores .
 #' @param stdLoadings .
 #' @param stataRotation .
+#' @param legendText .
+#' @param legendFontSize .
+#' @param legendPosition .
+#' @param xAxisText .
+#' @param xAxisFontSize .
+#' @param xAxisPosition .
+#' @param yAxisText .
+#' @param yAxisFontSize .
+#' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
@@ -924,6 +1174,7 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$varPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$obsPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$biPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$obsCoordOV} \tab \tab \tab \tab \tab an output \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
@@ -964,25 +1215,41 @@ principal <- function(
     labelColor = "none",
     obsColor = "#E41A1C",
     colorPalette = "jmv",
-    screeTitle = "default",
-    varTitle = "default",
-    obsTitle = "default",
-    biplotTitle = "default",
+    screeTitleText = "default",
+    varTitleText = "default",
+    obsTitleText = "default",
+    biplotTitleText = "default",
     titleAlign = "0.5",
     titleFontSize = 16,
     titleFontFace = "plain",
-    screeSubtitle = " ",
-    varSubtitle = "default",
-    obsSubtitle = "default",
-    biplotSubtitle = "default",
+    screeSubtitleText,
+    varSubtitleText = "default",
+    obsSubtitleText = "default",
+    biplotSubtitleText = "default",
     subtitleAlign = "0.5",
     subtitleFontSize = 12,
     subtitleFontFace = "plain",
+    screeCaptionText,
+    varCaptionText = "default",
+    obsCaptionText = "default",
+    biplotCaptionText,
+    captionAlign = "1",
+    captionFontSize = 12,
+    captionFontFace = "plain",
     kaiser = FALSE,
     descAsVarName = FALSE,
     stdScores = FALSE,
     stdLoadings = FALSE,
-    stataRotation = FALSE) {
+    stataRotation = FALSE,
+    legendText,
+    legendFontSize = "14",
+    legendPosition = "right",
+    xAxisText,
+    xAxisFontSize = "16",
+    xAxisPosition = "0.5",
+    yAxisText,
+    yAxisFontSize = "16",
+    yAxisPosition = "0.5") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("principal requires jmvcore to be installed (restart may be required)")
@@ -1029,25 +1296,41 @@ principal <- function(
         labelColor = labelColor,
         obsColor = obsColor,
         colorPalette = colorPalette,
-        screeTitle = screeTitle,
-        varTitle = varTitle,
-        obsTitle = obsTitle,
-        biplotTitle = biplotTitle,
+        screeTitleText = screeTitleText,
+        varTitleText = varTitleText,
+        obsTitleText = obsTitleText,
+        biplotTitleText = biplotTitleText,
         titleAlign = titleAlign,
         titleFontSize = titleFontSize,
         titleFontFace = titleFontFace,
-        screeSubtitle = screeSubtitle,
-        varSubtitle = varSubtitle,
-        obsSubtitle = obsSubtitle,
-        biplotSubtitle = biplotSubtitle,
+        screeSubtitleText = screeSubtitleText,
+        varSubtitleText = varSubtitleText,
+        obsSubtitleText = obsSubtitleText,
+        biplotSubtitleText = biplotSubtitleText,
         subtitleAlign = subtitleAlign,
         subtitleFontSize = subtitleFontSize,
         subtitleFontFace = subtitleFontFace,
+        screeCaptionText = screeCaptionText,
+        varCaptionText = varCaptionText,
+        obsCaptionText = obsCaptionText,
+        biplotCaptionText = biplotCaptionText,
+        captionAlign = captionAlign,
+        captionFontSize = captionFontSize,
+        captionFontFace = captionFontFace,
         kaiser = kaiser,
         descAsVarName = descAsVarName,
         stdScores = stdScores,
         stdLoadings = stdLoadings,
-        stataRotation = stataRotation)
+        stataRotation = stataRotation,
+        legendText = legendText,
+        legendFontSize = legendFontSize,
+        legendPosition = legendPosition,
+        xAxisText = xAxisText,
+        xAxisFontSize = xAxisFontSize,
+        xAxisPosition = xAxisPosition,
+        yAxisText = yAxisText,
+        yAxisFontSize = yAxisFontSize,
+        yAxisPosition = yAxisPosition)
 
     analysis <- principalClass$new(
         options = options,

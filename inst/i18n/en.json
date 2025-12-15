@@ -5,13 +5,34 @@
             "1": [
                 ""
             ],
+            "8": [
+                ""
+            ],
             "10": [
+                ""
+            ],
+            "12": [
+                ""
+            ],
+            "14": [
                 ""
             ],
             "15": [
                 ""
             ],
+            "16": [
+                ""
+            ],
+            "18": [
+                ""
+            ],
             "20": [
+                ""
+            ],
+            "22": [
+                ""
+            ],
+            "24": [
                 ""
             ],
             "25": [
@@ -40,9 +61,6 @@
                 "plural_forms": "nplurals=2; plural=(n != 1)",
                 "lang": "en"
             },
-            " ": [
-                ""
-            ],
             " doesn't have a valid date format.": [
                 ""
             ],
@@ -73,6 +91,9 @@
             "{stdStr}Sample Quantiles Deviation": [
                 ""
             ],
+            "* : Suppl. variable(s)": [
+                ""
+            ],
             "* : Supplementary columns": [
                 ""
             ],
@@ -80,6 +101,9 @@
                 ""
             ],
             "* : Supplementary rows/columns": [
+                ""
+            ],
+            "* : Supplementary variable(s)": [
                 ""
             ],
             "# of rows/columns": [
@@ -98,6 +122,9 @@
                 ""
             ],
             "% by row": [
+                ""
+            ],
+            "% Inertia": [
                 ""
             ],
             "% Label Color": [
@@ -124,7 +151,16 @@
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <h2>Likert Plot Help</h2> <h3>Data & Sorting</h3>\n<ul> <li>Likert variables must be of ordinal measure-type. (Continuous measure-type works as well.)</li> <li>If you plan to compute mean/median/sd or to use comparison tests, they must be of integer data-type.</li> <li><strong>Tidy up levels:</strong> when checked, try to fix the labels order in table and graph (when some variables miss some levels).</li> <li><strong>Convert variables to integer:</strong> when checked, the level labels are ignored and only integer values are used.</li> <li><strong>Sort Variables by Median:</strong> orders the list of Likert variables by median.</li> </ul>\n<h3>Comparison Tests</h3> When using a group variable, several tests are available: <ul> <li><strong>Mann-Whitney U:</strong> Two group comparison</li> <li><strong>Kruskal-Wallis:</strong> n group comparison</li> <li><strong>Post Hoc Tests:</strong> Dunn, Conover and Dwass-Steel-Critchlow-Fligner (DSCF) paiwise comparisons tests.</li> </ul>\n<p>p-Values can be adjusted <strong>groupwise</strong> (for each question) for post hoc tests or <strong>overall</strong> (groupwise and questionwise) for MannWithney U, Kruskal-Wallis and post hoc tests. DSCF p-values are already adjusted (groupwise); no other adjustment is possible.</p> </div>": [
                 ""
             ],
+            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Correspondence Plot Help</strong></p>\n<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the \"Counts\" variable.</p>\n<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>\n<p>Four normalizations (scaling of row and column scores before plotting) are avalaible : <ul> <li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li> <li><strong>Symetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li> <li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li> <li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li> <li><strong>Standard:</strong> The raw coordinates without normalization.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>\n</div>": [
+                ""
+            ],
+            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Correspondence Analysis Help</strong></p>\n<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</strong> for several categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>Both classics methods are available: <ul> <li><strong>Indicator matrix:</strong> CA of the indicator matrix</li> <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator method. </li> </ul> </p>\n<p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>\n<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of catories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n<p>The <strong>Normalization</strong> options specify how the coordinates are scaled: <ul> <li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li> <li><strong>Category principal:</strong> Only category coordinates are scaled.</li> <li><strong>Observation principal:</strong> Only observation coordinates are scaled.</li> <li><strong>Standard:</strong> Both category and observation coordinates are standard.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Cars</p>\n</div>": [
+                ""
+            ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Analysis Help</strong></p>\n<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).\n<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n<p><strong>Advanced options</strong>: <ul> <li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li> <li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li> <li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (Stata way).</li> </ul> </p>\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n</div>": [
+                ""
+            ],
+            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>QQ & PP Plots Help</strong></p>\n<p>This module uses <a href = \"https://CRAN.R-project.org/package=qqplotr\" target=\"_blank\">qqplotr R package<a/> by Alexandre Almeida, Adam Loy and Heike Hofmann. In-depth information can be found in the package documentation on CRAN site.</p>\n<p><strong>Reference line:</strong> Draws either the <em>identity line</em> (y = x) or the commonly-used <em>Q-Q line</em> that intercepts two data quantiles (Q<sub>0.25</sub> and Q<sub>0.75</sub>). P-P plot only supports identity line.</p>\n<p><strong>Confidence band:</strong> Draws a confidence band around the reference line. qqplotr package provides several methods to compute the confidence band : <ul> <li><strong><em>Pointwise</em></strong> constructs pointwise confidence bands based on Normal confidence intervals;</li> <li><strong><em>Bootstrap</em></strong> creates pointwise confidence bands based on a parametric bootstrap;</li> <li><strong><em>Kolmogorov-Smirnov</em></strong> band is based on the Kolmogorov-Smirnov test;</li> <li><strong><em>Tail-Sensitive</em></strong> constructs a tail-sensitive confidence bands but is only implemented for Normal Q-Q plots;</li> <li><strong><em>Equal Local Levels (ELL)</em></strong> constructs simultaneous bands using the equal local levels.</li> </ul> P-P plots only support \"ELL\" and \"Bootstrap\" methods. </p>\n<p><strong>Detrended plot:</strong> The objects are <em>detrended</em> according to the reference line. This procedure may help reducing visual bias caused by the orthogonal distances from the points to the reference line. </p>\n<p><strong>Parameter values:</strong> The distribution parameters can be estimated from data using <ul> <li><strong>Maximum Likelihood Method</strong> (using MASS package) : it should work with all distributions but \"t\" and \"uniform\";</li> <li><strong>Method of Moments</strong> for moment based parameters : it should work with \"normal\", \"log-normal\", \"Beta\", \"Exponential\", \"Gamma\", \"Logistic\", \"Uniform\";</li> </ul> or entered by user: <ul> <li><strong>Parameter 1:</strong> : mean (Normal), meanlog (Log-normal), shape1 (Beta), location (Cauchy, Logistic), df (Chi-squared, Student), df1 (F), rate (Exponential), shape (Gamma, Weibull) and min (Uniform);</li> <li><strong>Parameter 2:</strong> : sd (normal), sdlog (Log-normal), shape2 (Beta), scale (Cauchy, Logistic), df2 (F), rate (Gamma, Weibull) and max (Uniform).</li> </ul> </p>\n</div>": [
                 ""
             ],
             "0.01": [
@@ -182,6 +218,9 @@
                 ""
             ],
             "A demonstration dataset for vijPlots/Correspondence Analysis.": [
+                ""
+            ],
+            "A demonstration dataset for vijPlots/Multiple Component Analysis.": [
                 ""
             ],
             "A demonstration dataset for vijPlots/Principal Component Analysis.": [
@@ -244,6 +283,12 @@
             "Bentler T": [
                 ""
             ],
+            "Benzécri Correction": [
+                ""
+            ],
+            "Benzécri correction": [
+                ""
+            ],
             "Beta": [
                 ""
             ],
@@ -259,11 +304,11 @@
             "Biplot": [
                 ""
             ],
-            "Biplot Type": [
+            "Biplot Size": [
                 ""
             ],
-            "Biplot_Title": [
-                "Biplot"
+            "Biplot Type": [
+                ""
             ],
             "Black": [
                 ""
@@ -307,6 +352,9 @@
             "Brown and Green": [
                 ""
             ],
+            "Burt matrix": [
+                ""
+            ],
             "BY": [
                 ""
             ],
@@ -316,10 +364,40 @@
             "By Variable": [
                 ""
             ],
+            "Caption": [
+                ""
+            ],
+            "Cars": [
+                ""
+            ],
             "Categorical": [
                 ""
             ],
+            "Categories": [
+                ""
+            ],
             "Category Axis": [
+                ""
+            ],
+            "Category Plot": [
+                ""
+            ],
+            "Category plot": [
+                ""
+            ],
+            "Category Plot Options": [
+                ""
+            ],
+            "Category Plot Size": [
+                ""
+            ],
+            "Category Principal": [
+                ""
+            ],
+            "Category principal coordinates": [
+                ""
+            ],
+            "Category Summary": [
                 ""
             ],
             "Cauchy": [
@@ -361,9 +439,6 @@
             "Column Principal": [
                 ""
             ],
-            "Column Principal_": [
-                "Column Principal"
-            ],
             "Column Profiles": [
                 ""
             ],
@@ -394,6 +469,9 @@
             "Confidence Band Methods": [
                 ""
             ],
+            "Connect ordinal categories": [
+                ""
+            ],
             "Conover": [
                 ""
             ],
@@ -406,13 +484,22 @@
             "Continuous": [
                 ""
             ],
+            "Contributions": [
+                ""
+            ],
             "Convert variables to integer": [
+                ""
+            ],
+            "Coordinates †": [
                 ""
             ],
             "Coordinates†": [
                 ""
             ],
             "Correspondence Analysis": [
+                ""
+            ],
+            "COS2": [
                 ""
             ],
             "Count": [
@@ -457,6 +544,9 @@
             "Dark 2": [
                 ""
             ],
+            "Dark gray": [
+                ""
+            ],
             "Data": [
                 ""
             ],
@@ -487,7 +577,28 @@
             "df": [
                 ""
             ],
+            "Dichromat:Categorical": [
+                ""
+            ],
+            "Dim": [
+                ""
+            ],
             "Dimension": [
+                ""
+            ],
+            "Dimension ": [
+                ""
+            ],
+            "Discrimination": [
+                ""
+            ],
+            "Discrimination Plot": [
+                ""
+            ],
+            "Discrimination plot": [
+                ""
+            ],
+            "Discrimination Plot Size": [
                 ""
             ],
             "Display Format": [
@@ -562,10 +673,13 @@
             "Facets": [
                 ""
             ],
+            "Factor": [
+                ""
+            ],
             "Fill": [
                 ""
             ],
-            "Fixed X/Y Ratio": [
+            "Font": [
                 ""
             ],
             "Font face": [
@@ -608,6 +722,15 @@
                 ""
             ],
             "Green to Blue": [
+                ""
+            ],
+            "Greenacre Correction": [
+                ""
+            ],
+            "Greenacre correction": [
+                ""
+            ],
+            "Greenacre's corrected inertia =": [
                 ""
             ],
             "Greens": [
@@ -688,7 +811,13 @@
             "Ignore NA groups": [
                 ""
             ],
+            "Improve label display": [
+                ""
+            ],
             "Increasing": [
+                ""
+            ],
+            "Indicator matrix": [
                 ""
             ],
             "Inertia": [
@@ -772,10 +901,16 @@
             "Left": [
                 ""
             ],
+            "Legend": [
+                ""
+            ],
             "Legend at bottom": [
                 ""
             ],
             "Legend at Bottom": [
+                ""
+            ],
+            "Level": [
                 ""
             ],
             "Light Blue": [
@@ -785,6 +920,9 @@
                 ""
             ],
             "Light Gray": [
+                ""
+            ],
+            "Light gray": [
                 ""
             ],
             "Light Green": [
@@ -814,6 +952,9 @@
             "Likert Variables": [
                 ""
             ],
+            "Limited to the first 100 observations": [
+                ""
+            ],
             "Line": [
                 ""
             ],
@@ -835,7 +976,7 @@
             "Lollipop Size": [
                 ""
             ],
-            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
+            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
             ],
             "Mann-Whitney U": [
@@ -854,6 +995,9 @@
                 ""
             ],
             "Maximum-likelihood (MLE)": [
+                ""
+            ],
+            "MCA {type} Coordinate ({method} method)": [
                 ""
             ],
             "Mean": [
@@ -880,6 +1024,9 @@
             "Method of moments (MME)": [
                 ""
             ],
+            "Method:": [
+                ""
+            ],
             "Min": [
                 ""
             ],
@@ -892,6 +1039,9 @@
             "Minimum of": [
                 ""
             ],
+            "Multiple Correspondence Analysis": [
+                ""
+            ],
             "Multiple Response": [
                 ""
             ],
@@ -902,6 +1052,9 @@
                 ""
             ],
             "Multivariate": [
+                ""
+            ],
+            "Name": [
                 ""
             ],
             "Natural Log Tranform": [
@@ -937,11 +1090,32 @@
             "Number of dimensions": [
                 ""
             ],
+            "Obs color": [
+                ""
+            ],
+            "Observation Coordinates": [
+                ""
+            ],
             "Observation Plot": [
                 ""
             ],
-            "Observation_plot_Title": [
-                "Observation plot"
+            "Observation plot": [
+                ""
+            ],
+            "Observation Plot Options": [
+                ""
+            ],
+            "Observation Plot Size": [
+                ""
+            ],
+            "Observation Principal": [
+                ""
+            ],
+            "Observation principal coordinates": [
+                ""
+            ],
+            "Observation Summary": [
+                ""
             ],
             "Observations": [
                 ""
@@ -968,6 +1142,9 @@
                 ""
             ],
             "Oranges": [
+                ""
+            ],
+            "Original Eigenvalues": [
                 ""
             ],
             "Other Options": [
@@ -1033,6 +1210,9 @@
             "Pastel 2": [
                 ""
             ],
+            "PCA {norm} Coordinate{rotation}": [
+                ""
+            ],
             "Percent": [
                 ""
             ],
@@ -1063,6 +1243,9 @@
             "Plot Size": [
                 ""
             ],
+            "Plot Titles": [
+                ""
+            ],
             "Plot Titles & Subtitles": [
                 ""
             ],
@@ -1075,10 +1258,10 @@
             "Point & Line Size": [
                 ""
             ],
-            "Point Size": [
+            "Point size": [
                 ""
             ],
-            "Point size": [
+            "Point Size": [
                 ""
             ],
             "Points": [
@@ -1108,8 +1291,8 @@
             "Principal coordinates": [
                 ""
             ],
-            "Principal_": [
-                "Principal"
+            "Proportional point size": [
+                ""
             ],
             "pt": [
                 ""
@@ -1145,6 +1328,9 @@
                 ""
             ],
             "Q-Q Plot": [
+                ""
+            ],
+            "QLT": [
                 ""
             ],
             "Quartimax": [
@@ -1234,9 +1420,6 @@
             "Row Principal": [
                 ""
             ],
-            "Row Principal_": [
-                "Row Principal"
-            ],
             "Row Profiles": [
                 ""
             ],
@@ -1261,14 +1444,20 @@
             "Sample Probability Deviation": [
                 ""
             ],
+            "Save": [
+                ""
+            ],
+            "Save observation coordinates": [
+                ""
+            ],
             "Scatter Plot": [
                 ""
             ],
             "Scree Plot": [
                 ""
             ],
-            "Scree_plot_Title": [
-                "Scree plot"
+            "Scree plot": [
+                ""
             ],
             "SD": [
                 ""
@@ -1310,7 +1499,7 @@
                 ""
             ],
             "Show Scree Plot": [
-                "Scree plot"
+                ""
             ],
             "Show Totals (Centered Only)": [
                 ""
@@ -1363,9 +1552,6 @@
             "Standard coordinates": [
                 ""
             ],
-            "Standard_": [
-                "Standard"
-            ],
             "Standardize loadings (eigenvectors)": [
                 ""
             ],
@@ -1402,6 +1588,9 @@
             "Student": [
                 ""
             ],
+            "Subtitle": [
+                ""
+            ],
             "Subtitle Style": [
                 ""
             ],
@@ -1429,11 +1618,11 @@
             "Supplementary Rows": [
                 ""
             ],
-            "Symetric": [
-                "Symetrical"
+            "Supplementary Variables": [
+                ""
             ],
-            "Symetric_": [
-                "Symetrical"
+            "Symetric": [
+                ""
             ],
             "Table": [
                 ""
@@ -1450,7 +1639,13 @@
             "Text": [
                 ""
             ],
+            "Text Size": [
+                ""
+            ],
             "The correlation matrix is not positive definite. Computations may not be accurate.\r\n": [
+                ""
+            ],
+            "The number of dimensions cannot be greater than {max}.": [
                 ""
             ],
             "Theoretical Probabilities": [
@@ -1463,6 +1658,9 @@
                 ""
             ],
             "Time Series": [
+                ""
+            ],
+            "Title": [
                 ""
             ],
             "Title Style": [
@@ -1492,6 +1690,9 @@
             "US (M-D-Y)": [
                 ""
             ],
+            "Use boldface": [
+                ""
+            ],
             "Use Palette": [
                 ""
             ],
@@ -1507,11 +1708,17 @@
             "Variable": [
                 ""
             ],
+            "Variable dicriminations": [
+                ""
+            ],
+            "Variable Discriminations": [
+                ""
+            ],
             "Variable Plot": [
                 ""
             ],
-            "Variable_plot_Title": [
-                "Variable plot"
+            "Variable plot": [
+                ""
             ],
             "Variables": [
                 ""
@@ -1529,6 +1736,21 @@
                 ""
             ],
             "vijPlots: Yet Another jamovi Plotting Module": [
+                ""
+            ],
+            "Viridis:Inferno": [
+                ""
+            ],
+            "Viridis:Magma": [
+                ""
+            ],
+            "Viridis:Plasma": [
+                ""
+            ],
+            "Viridis:Turbo": [
+                ""
+            ],
+            "Viridis:Viridis": [
                 ""
             ],
             "Weibull": [
@@ -1574,6 +1796,27 @@
                 ""
             ],
             "χ²": [
+                ""
+            ],
+            "option\u0004test": [
+                ""
+            ],
+            "string\u0004Column Principal": [
+                ""
+            ],
+            "string\u0004Principal": [
+                ""
+            ],
+            "string\u0004Row Principal": [
+                ""
+            ],
+            "string\u0004Standard": [
+                ""
+            ],
+            "string\u0004Symetric": [
+                ""
+            ],
+            "title\u0004test": [
                 ""
             ]
         }

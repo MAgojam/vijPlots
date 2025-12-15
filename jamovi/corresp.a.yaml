@@ -107,36 +107,43 @@ options:
       title: Normalization
       type: List
       options:
-        - title: Principal_
+        - title: Principal
           name:  principal
-        - title: Symetric_
-          name:  symbiplot
-        - title: Row Principal_
+        - title: Symetric
+          name:  symetric
+        - title: Row Principal
           name:  rowprincipal
-        - title: Column Principal_
+        - title: Column Principal
           name:  colprincipal
-        - title: Standard_
+        - title: Standard
           name:  standard
       default: principal
 
     - name: plotWidth
       type: Integer
       title: Width
-      min: 0
+      min: 200
       max: 1000
       default: 600
 
     - name: plotHeight
       type: Integer
       title: Height
-      min: 0
+      min: 200
       max: 1000
       default: 450
 
-    - name: fixedRatio
-      type: Bool
-      title: Fixed X/Y Ratio
-      default: true
+    - name: labelSize
+      type: Integer
+      title: Label
+      default: 12
+      min: 8
+      max: 24
+
+    # - name: fixedRatio
+    #   type: Bool
+    #   title: Fixed X/Y Ratio
+    #   default: true
 
     - name: rowColor
       title: Row
@@ -188,17 +195,17 @@ options:
           name:  white
       default: darkgray
 
-    - name: columnTitle
+    - name: columnTitleText
       title: Column plot
       type: String
       default: 'default'
 
-    - name: rowTitle
+    - name: rowTitleText
       title: Row plot
       type: String
       default: 'default'
 
-    - name: biplotTitle
+    - name: biplotTitleText
       title: Biplot
       type: String
       default: 'default'
@@ -219,6 +226,8 @@ options:
       title: Font size
       type: Number
       default: 16
+      min: 8
+      max: 24
 
     - name: titleFontFace
       title: Font face
@@ -234,17 +243,17 @@ options:
           title: Bold Italic
       default: plain
 
-    - name: columnSubtitle
+    - name: columnSubtitleText
       title: Column plot
       type: String
       default: 'default'
 
-    - name: rowSubtitle
+    - name: rowSubtitleText
       title: Row plot
       type: String
       default: 'default'
 
-    - name: biplotSubtitle
+    - name: biplotSubtitleText
       title: Biplot
       type: String
       default: 'default'
@@ -265,6 +274,8 @@ options:
       title: Font size
       type: Number
       default: 12
+      min: 8
+      max: 24
 
     - name: subtitleFontFace
       title: Font face
@@ -279,6 +290,119 @@ options:
         - name: bold.italic
           title: Bold Italic
       default: italic
+
+    - name: rowCaptionText
+      title: Row plot
+      type: String
+
+    - name: columnCaptionText
+      title: Column plot
+      type: String
+
+    - name: biplotCaptionText
+      title: Biplot
+      type: String
+
+    - name: captionAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "1"
+
+    - name: captionFontSize
+      title: Font size
+      type: Number
+      default: 12
+      min: 8
+      max: 24
+
+    - name: captionFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
+
+    - name: xAxisText
+      title: ""
+      type: String
+
+    - name: xAxisFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "16"
+
+    - name: xAxisPosition
+      title: Position
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: yAxisText
+      title: ""
+      type: String
+
+    - name: yAxisFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "16"
+
+    - name: yAxisPosition
+      title: Position
+      type: List
+      options:
+        - name: "1"
+          title: Top
+        - name: "0.5"
+          title: Center
+        - name: "0"
+          title: Bottom
+      default: "0.5"
 
     - name: descAsVarName
       title: Use variable's description as name

@@ -1,0 +1,593 @@
+---
+name:  multcorresp
+title: Multiple Correspondence Analysis
+category: plots
+menuGroup: vijPlots
+menuSubgroup: Multivariate
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: vars
+      title: Variables
+      type: Variables
+      suggested:
+        - nominal
+        - ordinal
+      permitted:
+        - factor
+
+    - name: supplVars
+      title: Supplementary Variables
+      type: Variables
+      suggested:
+        - nominal
+        - ordinal
+      permitted:
+        - factor
+
+    - name: labelVar
+      title: Label
+      type: Variable
+      suggested:
+        - nominal
+        - id
+      permitted:
+        - id
+        - factor
+
+    - name: method
+      title: Method
+      type: List
+      options:
+        - title: Indicator matrix
+          name:  Indicator
+        - title: Burt matrix
+          name:  Burt
+      default: Indicator
+
+    - name: BenzecriAdj
+      title: Benzécri correction
+      type: Bool
+      default: false
+
+    - name: GreenacreAdj
+      title: Greenacre correction
+      type: Bool
+      default: false
+
+    - name: dimNum
+      type: Number
+      title: "Number of dimensions"
+      min: 2
+      default: 2
+
+    - name: xaxis
+      type: Number
+      title: "X-Axis"
+      min: 1
+      default: 1
+
+    - name: yaxis
+      type: Number
+      title: "Y-Axis"
+      min: 1
+      default: 2
+
+    - name: normalization
+      title: Normalization
+      type: List
+      options:
+        - title: Principal
+          name:  principal
+        - title: Category Principal
+          name:  catprincipal
+        - title: Observation Principal
+          name:  obsprincipal
+        - title: Standard
+          name:  standard
+      default: principal
+
+
+    - name: showSummary
+      title: Summary
+      type: Bool
+      default: true
+
+    - name: showDiscriminations
+      title: Variable dicriminations
+      type: Bool
+      default: false
+
+    - name: showCategories
+      title: Categories
+      type: Bool
+      default: true
+
+    - name: showObservations
+      title: Observations
+      type: Bool
+      default: false
+
+    - name: showDiscriminationPlot
+      title: Variable dicriminations
+      type: Bool
+      default: false
+
+    - name: showCategoryPlot
+      title: Categories
+      type: Bool
+      default: true
+
+    - name: showObservationPlot
+      title: Observations
+      type: Bool
+      default: false
+
+    - name: showBiPlot
+      title: Biplot
+      type: Bool
+      default: false
+
+    - name: discrimTitleText
+      title: Discrimination plot
+      type: String
+      default: 'default'
+
+    - name: catTitleText
+      title: Category plot
+      type: String
+      default: 'default'
+
+    - name: obsTitleText
+      title: Observation plot
+      type: String
+      default: 'default'
+
+    - name: biplotTitleText
+      title: Biplot
+      type: String
+      default: 'default'
+
+    - name: titleAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: titleFontSize
+      title: Font size
+      type: Number
+      default: 16
+      min: 8
+      max: 24
+
+    - name: titleFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
+
+    - name: discrimSubtitleText
+      title: Discrimination plot
+      type: String
+
+    - name: catSubtitleText
+      title: Category plot
+      type: String
+      default: 'default'
+
+    - name: obsSubtitleText
+      title: Observation plot
+      type: String
+      default: 'default'
+
+    - name: biplotSubtitleText
+      title: Biplot
+      type: String
+      default: 'default'
+
+    - name: subtitleAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: subtitleFontSize
+      title: Font size
+      type: Number
+      default: 12
+      min: 8
+      max: 24
+
+    - name: subtitleFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
+
+    - name: discrimCaptionText
+      title: Discrimination plot
+      type: String
+
+    - name: catCaptionText
+      title: Category plot
+      type: String
+
+    - name: obsCaptionText
+      title: Observation plot
+      type: String
+
+    - name: biplotCaptionText
+      title: Biplot
+      type: String
+
+    - name: captionAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "1"
+
+    - name: captionFontSize
+      title: Font size
+      type: Number
+      default: 12
+      min: 8
+      max: 24
+
+    - name: captionFontFace
+      title: Font face
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
+
+    - name: discrimWidth
+      title: Width
+      type: Number
+      default: 600
+      min: 200
+      max: 1000
+
+    - name: discrimHeight
+      title: Height
+      type: Number
+      default: 600
+      min: 200
+      max: 1000
+
+    - name: catWidth
+      title: Width
+      type: Number
+      default: 650
+      min: 200
+      max: 1000
+
+    - name: catHeight
+      title: Height
+      type: Number
+      default: 600
+      min: 200
+      max: 1000
+
+    - name: obsWidth
+      title: Width
+      type: Number
+      default: 600
+      min: 200
+      max: 1000
+
+    - name: obsHeight
+      title: Height
+      type: Number
+      default: 600
+      min: 200
+      max: 1000
+
+    - name: biplotWidth
+      title: Width
+      type: Number
+      default: 650
+      min: 200
+      max: 1000
+
+    - name: biplotHeight
+      title: Height
+      type: Number
+      default: 600
+      min: 200
+      max: 1000
+
+    - name: obsColor
+      title: Obs color
+      type: List
+      options:
+        - title: Black
+          name:  black
+        - title: Gray
+          name:  gray
+        - title: Dark gray
+          name:  darkgray
+        - title: Light gray
+          name:  lightgray
+        - title: Blue
+          name:  blue
+        - title: Red
+          name:  red
+      default: black
+
+    - name: colorPalette
+      title: Palette
+      type: List
+      options:
+        - title: jmv Default
+          name:  jmv
+        - title: Set 1
+          name:  Set1
+        - title: Set 2
+          name:  Set2
+        - title: Set 3
+          name:  Set3
+        - title: Pastel 1
+          name:  Pastel1
+        - title: Pastel 2
+          name:  Pastel2
+        - title: Accent
+          name:  Accent
+        - title: Paired
+          name:  Paired
+        - title: Dark 2
+          name:  Dark2
+        - title: Spectral
+          name:  Spectral
+        - title: Red, Yellow, Green
+          name:  RdYlGn
+        - title: Red, Yellow, Blue
+          name:  RdYlBu
+        - title: Red and Gray
+          name:  RdGy
+        - title: Red and Blue
+          name:  RdBu
+        - title: Orange and Purple
+          name:  PuOr
+        - title: Purple and Green
+          name:  PRGn
+        - title: Pink and Green
+          name:  PiYG
+        - title: Brown and Green
+          name:  BrBG
+        - title: Blues
+          name:  Blues
+        - title: Greens
+          name:  Greens
+        - title: Greys
+          name:  Greys
+        - title: Oranges
+          name:  Oranges
+        - title: Purples
+          name:  Purples
+        - title: Reds
+          name:  Reds
+        - title: Blue to Green
+          name:  BuGn
+        - title: Blue to Purple
+          name:  BuPu
+        - title: Green to Blue
+          name:  GnBu
+        - title: Orange to Red
+          name:  OrRd
+        - title: Purple to Blue
+          name:  PuBu
+        - title: Purple to Green
+          name:  PuBuGn
+        - title: Purple to Red
+          name:  PuRd
+        - title: Red to Purple
+          name:  RdPu
+        - title: Yellow to Green
+          name:  YlGn
+        - title: Yellow to Blue
+          name:  YlGnBu
+        - title: Yellow to Brown
+          name:  YlOrBr
+        - title: Yellow to Red
+          name:  YlOrRd
+        - title: Viridis:Viridis
+          name:  viridis::viridis
+        - title: Viridis:Magma
+          name:  viridis::magma
+        - title: Viridis:Inferno
+          name:  viridis::inferno
+        - title: Viridis:Plasma
+          name:  viridis::plasma
+        - title: Viridis:Turbo
+          name:  viridis::turbo
+        - title: Dichromat:Categorical
+          name:  dichromat::Categorical.12
+      default: jmv
+
+    - name: labelSize
+      title: Labels
+      type: Number
+      default: 12
+      min: 8
+      max: 24
+
+    - name: connectOrdinalCat
+      title: Connect ordinal categories
+      type: Bool
+      default: false
+
+    - name: propPoint
+      title: Proportional point size
+      type: Bool
+      default: false
+
+    - name: ggrepel
+      title: Improve label display
+      type: Bool
+      default: false
+
+    - name: boldCat
+      title: Use boldface
+      type: Bool
+      default: false
+
+    - name: obsCoordOV
+      title: Save observation coordinates
+      type: Output
+
+    - name: descAsVarName
+      title: Use variable's description as name
+      type: Bool
+      default: false
+
+    - name: legendText
+      title: ""
+      type: String
+
+    - name: legendFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "14"
+
+    - name: legendPosition
+      title: Position
+      type: List
+      options:
+        - name: right
+          title: Right
+        - name: bottom
+          title: Bottom
+        - name: left
+          title: Left
+        - name: top
+          title: Top
+      default: right
+
+    - name: xAxisText
+      title: ""
+      type: String
+
+    - name: xAxisFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "16"
+
+    - name: xAxisPosition
+      title: Position
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: yAxisText
+      title: ""
+      type: String
+
+    - name: yAxisFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "16"
+
+    - name: yAxisPosition
+      title: Position
+      type: List
+      options:
+        - name: "1"
+          title: Top
+        - name: "0.5"
+          title: Center
+        - name: "0"
+          title: Bottom
+      default: "0.5"
+
+...

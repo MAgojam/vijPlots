@@ -87,46 +87,6 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             contingencyTable[nrow(contingencyTable), supplementaryCols] <- NA
             return(contingencyTable)
         },
-        # Modified from summary.ca(): Summarizing ca objects (ca package 0.70)
-        .caExtra = function(object, nd = 2){
-            obj <- object
-            # principal coordinates:
-            K   <- nd
-            I   <- dim(obj$rowcoord)[1] ; J <- dim(obj$colcoord)[1]
-            svF <- matrix(rep(obj$sv[1:K], I), I, K, byrow = TRUE)
-            svG <- matrix(rep(obj$sv[1:K], J), J, K, byrow = TRUE)
-            rpc <- obj$rowcoord[,1:K] * svF
-            cpc <- obj$colcoord[,1:K] * svG
-            # rows:
-            r.names <- obj$rownames
-            rpc0 <- ca::cacoord(obj, type = "principal", rows = TRUE)
-            r.ctr <- matrix(NA, nrow = length(r.names), ncol = nd, dimnames=list(r.names,1:nd))
-            for (i in 1:nd){
-                r.ctr[,i] <- obj$rowmass * rpc[,i]^2 /obj$sv[i]^2
-            }
-            r.co2 <- matrix(NA, nrow = length(r.names), ncol = nd, dimnames=list(r.names,1:nd))
-            for (i in 1:nd){
-                r.co2[,i] <- rpc0[,i]^2 / apply(rpc0^2, 1, sum)
-            }
-            r.qlt <- data.frame(qlt = rowSums(r.co2))
-            r.out <- list(qlt = r.qlt, ctr = r.ctr, co2 = r.co2)
-            # columns:
-            c.names <- obj$colnames
-            cpc0 <- ca::cacoord(obj, type = "principal", cols = TRUE)
-            c.ctr <- matrix(NA, nrow = length(c.names), ncol = nd, dimnames=list(c.names,1:nd))
-            for (i in 1:nd){
-                c.ctr[,i] <- obj$colmass * cpc[,i]^2 /  obj$sv[i]^2
-            }
-            c.co2 <- matrix(NA, nrow = length(c.names), ncol = nd, dimnames=list(c.names,1:nd))
-            for (i in 1:nd){
-                c.co2[,i] <- cpc0[,i]^2 / apply(cpc0^2, 1, sum)
-            }
-            c.qlt <- data.frame(qlt = rowSums(c.co2))
-            c.out <- list(qlt = c.qlt, ctr = c.ctr, co2 = c.co2)
-            #	output:
-            out <- list(rows  = r.out, cols = c.out)
-            return(out)
-        },
         .init = function() {
             # Weight message
             countsName <- self$countsName
@@ -152,7 +112,6 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$colplot$setVisible(FALSE)
                 self$results$biplot$setVisible(FALSE)
                 self$results$helpMessage$setVisible(TRUE)
-                private$.showHelp()
             } else {
                 self$results$helpMessage$setVisible(FALSE)
             }
@@ -323,40 +282,32 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             #### Compute CA ####
             if (is.null(supplementaryRows))
-                suprow <- NA
+                suprow <- NULL
             else
                 suprow <- supplementaryRows
             if (is.null(supplementaryCols))
-                supcol <- NA
+                supcol <- NULL
             else
                 supcol <- supplementaryCols
-            results <- ca::ca(contingencyTable, suprow = suprow, supcol = supcol)
-            results_dim <- private$.caExtra(results, nd = nDim)
-            results_coord <- ca::cacoord(results, type = self$options$normalization)
+
+            res <- private$.ca(contingencyTable, row.sup = suprow, col.sup = supcol, ncp = nDim, norm = self$options$normalization)
 
             #### Inertia Table ####
-
-            singular <- results$sv
-            inertia <- results$sv**2
-            totalInertia <- sum(results$sv**2)
-            percentInertia <- inertia / totalInertia
-            cumulativeInertia <- 0
             # Populate the inertia table
-            for (i in seq_along(singular)) {
-                cumulativeInertia <- cumulativeInertia + percentInertia[i]
+            for (i in seq_along(res$sv)) {
                 self$results$eigenvalues$addRow(i, values = list(
                     dim = i,
-                    singular = singular[i],
-                    inertia = inertia [i],
-                    proportion = percentInertia[i],
-                    cumulative = cumulativeInertia
+                    singular = res$sv[i],
+                    inertia = res$eig[i,1],
+                    proportion = res$eig [i,2],
+                    cumulative = res$eig [i,3]
                 ))
             }
             # Add total row
             self$results$eigenvalues$addRow(rowKey="Total", values = list(
                 dim = "Total",
                 singular = "",
-                inertia = totalInertia,
+                inertia = sum(res$eig[,1]),
                 proportion = 1,
                 cumulative = 1
             ))
@@ -366,7 +317,6 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                              paste0("X-squared = ", round(chisqres$statistic,2), ", df = ", chisqres$parameter, ",
                                p-value = ",format.pval(chisqres$p.value, eps = 0.001)),
                                              init = FALSE)
-
             #### Summary Tables ####
 
             if(self$options$showSummaries) {
@@ -376,24 +326,43 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$rowSummary$addColumn(name = "margin", title = "Mass", type = "number", format = "zto")
                 for (i in seq(nDim))
                     self$results$rowSummary$addColumn(name = paste0("score",i), title = paste("Dim",i), superTitle = .("Coordinates†"), type = "number", format = "zto")
-                self$results$rowSummary$addColumn(name = "inertia", title = "Inertia", type = "number", format = "zto")
+                self$results$rowSummary$addColumn(name = "inertia", title = "% Inertia", type = "number", format = "zto")
                 for (i in seq(nDim))
                     self$results$rowSummary$addColumn(name = paste0("contrib",i), title = paste("Dim",i), superTitle = "Contributions", type = "number", format = "zto")
                 self$results$rowSummary$addColumn(name = "qlt", title = "QLT", type = "number", format = "zto")
                 for (i in seq(nDim))
                     self$results$rowSummary$addColumn(name = paste0("cos",i), title = paste("Dim",i), superTitle = "CO2", type = "number", format = "zto")
                 # Populate Row Summary
-                for (i in seq(nrow(contingencyTable))) {
-                    theValues = list(
-                        id = i,
-                        row = results$rownames[i],
-                        margin = if(is.na(results$rowmass[i])) NULL else results$rowmass[i],
-                        inertia = if(is.na(results$rowinertia[i])) NULL else results$rowinertia[i],
-                        qlt = results_dim$rows$qlt[i,])
-                    for (j in seq(nDim)) {
-                        theValues[[paste0("score",j)]] <- results_coord$rows[i,j]
-                        theValues[[paste0("contrib",j)]] <- if(is.na(results_dim$rows$ctr[i,j])) NULL else results_dim$rows$ctr[i,j]
-                        theValues[[paste0("cos",j)]] <- results_dim$rows$co2[i,j]
+                for (i in seq_len(nrow(contingencyTable))) {
+                    aRow <- rownames(contingencyTable)[i]
+                    if (aRow %in% rownames(res$row$coord)) {
+                        theValues = list(
+                            id = i,
+                            row = aRow,
+                            margin = res$call$marge.row[aRow],
+                            inertia = res$row$inertia[aRow],
+                            qlt = sum(res$row$cos2[aRow,1:nDim])
+                        )
+                        for (j in seq(nDim)) {
+                            theValues[[paste0("score",j)]] <- res$row$coord[aRow,j]
+                            theValues[[paste0("contrib",j)]] <- res$row$contrib[aRow,j]
+                            theValues[[paste0("cos",j)]] <- res$row$cos2[aRow,j]
+                        }
+                    } else {
+                        # Supplementary row
+                        theValues = list(
+                            id = i,
+                            row = aRow,
+                            margin = "",
+                            inertia = "",
+                            qlt = sum(res$row.sup$cos2[aRow,1:nDim])
+                        )
+                        for (j in seq(nDim)) {
+                            theValues[[paste0("score",j)]] <- res$row.sup$coord[aRow,j]
+                            theValues[[paste0("contrib",j)]] <- ""
+                            theValues[[paste0("cos",j)]] <- res$row.sup$cos2[aRow,j]
+                        }
+
                     }
                     self$results$rowSummary$addRow(i, values = theValues)
                 }
@@ -407,24 +376,42 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$colSummary$addColumn(name = "margin", title = "Mass", type = "number", format = "zto")
                 for (i in seq_len(nDim))
                     self$results$colSummary$addColumn(name = paste0("score",i), title = paste("Dim",i), superTitle = .("Coordinates†"), type = "number", format = "zto")
-                self$results$colSummary$addColumn(name = "inertia", title = "Inertia", type = "number", format = "zto")
+                self$results$colSummary$addColumn(name = "inertia", title = "% Inertia", type = "number", format = "zto")
                 for (i in seq_len(nDim))
                     self$results$colSummary$addColumn(name = paste0("contrib",i), title = paste("Dim",i), superTitle = "Contributions", type = "number", format = "zto")
                 self$results$colSummary$addColumn(name = "qlt", title = "QLT", type = "number", format = "zto")
                 for (i in seq_len(nDim))
                     self$results$colSummary$addColumn(name = paste0("cos",i), title = paste("Dim",i), superTitle = "CO2", type = "number", format = "zto")
                 # Populate Col Summary
-                for (i in seq(ncol(contingencyTable))) {
-                    theValues = list(
-                        id = i,
-                        col = results$colnames[i],
-                        margin = if(is.na(results$colmass[i])) NULL else results$colmass[i],
-                        inertia = if(is.na(results$colinertia[i])) NULL else results$colinertia[i],
-                        qlt = results_dim$cols$qlt[i,])
-                    for (j in seq(nDim)) {
-                        theValues[[paste0("score",j)]] <- results_coord$columns[i,j]
-                        theValues[[paste0("contrib",j)]] <- if(is.na(results_dim$cols$ctr[i,j])) NULL else results_dim$cols$ctr[i,j]
-                        theValues[[paste0("cos",j)]] <- results_dim$cols$co2[i,j]
+                for (i in seq_len(ncol(contingencyTable))) {
+                    aCol <- colnames(contingencyTable)[i]
+                    if (aCol %in% rownames(res$col$coord)) {
+                        theValues = list(
+                            id = i,
+                            col = aCol,
+                            margin = res$call$marge.col[aCol],
+                            inertia = res$col$inertia[aCol],
+                            qlt = sum(res$col$cos2[aCol,1:nDim])
+                        )
+                        for (j in seq(nDim)) {
+                            theValues[[paste0("score",j)]] <- res$col$coord[aCol,j]
+                            theValues[[paste0("contrib",j)]] <- res$col$contrib[aCol,j]
+                            theValues[[paste0("cos",j)]] <- res$col$cos2[aCol,j]
+                        }
+                    } else {
+                        # Supplementary col
+                        theValues = list(
+                            id = i,
+                            col = aCol,
+                            margin = "",
+                            inertia = "",
+                            qlt = sum(res$col.sup$cos2[aCol,1:nDim])
+                        )
+                        for (j in seq(nDim)) {
+                            theValues[[paste0("score",j)]] <- res$col.sup$coord[aCol,j]
+                            theValues[[paste0("contrib",j)]] <- ""
+                            theValues[[paste0("cos",j)]] <- res$col.sup$cos2[aCol,j]
+                        }
                     }
                     self$results$colSummary$addRow(i, values = theValues)
                 }
@@ -432,70 +419,116 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$colSummary$setNote("supp",.("* : Supplementary columns"))
                 self$results$colSummary$setNote("norm", paste("† :", normalizationString))
             }
-            if (length(singular) < 2)
+            if (length(res$sv) < 2)
                 return()
-            if (singular[2] < .Machine$double.eps)
+            if (res$sv[2] < .Machine$double.eps)
                 return()
 
             # Plots
             rowplot <- self$results$rowplot
-            rowplot$setState(results)
+            rowplot$setState(res)
             colplot <- self$results$colplot
-            colplot$setState(results)
+            colplot$setState(res)
             biplot <- self$results$biplot
-            biplot$setState(results)
+            biplot$setState(res)
+        },
+        .ca = function(contingencyTable, ncp = 2, row.sup = NULL, col.sup = NULL, norm = "principal") {
+            res <- FactoMineR::CA(contingencyTable, ncp = ncp, row.sup = row.sup, col.sup = col.sup, graph = FALSE)
+            res$sv <- sqrt(res$eig[,1]) # singular values
+            res$eig[,2:3] <- res$eig[,2:3] / 100
+            res$col$contrib <- res$col$contrib / 100
+            res$row$contrib <- res$row$contrib / 100
+            res$row$inertia <- res$row$inertia / sum(res$eig[,1])
+            res$col$inertia <- res$col$inertia / sum(res$eig[,1])
+            names(res$row$inertia) <- rownames(res$row$coord)
+            names(res$col$inertia) <- rownames(res$col$coord)
+            if (norm == "symetric") {
+                res$col$coord <- sweep(res$col$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
+                res$row$coord <- sweep(res$row$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
+                if (!is.null(col.sup))
+                    res$col.sup$coord <- sweep(res$col.sup$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
+                if (!is.null(row.sup))
+                res$row.sup$coord <- sweep(res$row.sup$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
+            } else if (norm == "rowprincipal") {
+                res$col$coord <- sweep(res$col$coord, 2, res$sv[1:ncp], FUN = "/")
+                if (!is.null(col.sup))
+                    res$col.sup$coord <- sweep(res$col.sup$coord, 2, res$sv[1:ncp], FUN = "/")
+            } else if (norm == "colprincipal") {
+                res$row$coord <- sweep(res$row$coord, 2, res$sv[1:ncp], FUN = "/")
+                if (!is.null(row.sup))
+                    res$row.sup$coord <- sweep(res$row.sup$coord, 2, res$sv[1:ncp], FUN = "/")
+            } else if (norm == "standard") {
+                res$col$coord <- sweep(res$col$coord, 2, res$sv[1:ncp], FUN = "/")
+                if (!is.null(col.sup))
+                    res$col.sup$coord <- sweep(res$col.sup$coord, 2, res$sv[1:ncp], FUN = "/")
+                res$row$coord <- sweep(res$row$coord, 2, res$sv[1:ncp], FUN = "/")
+                if (!is.null(row.sup))
+                    res$row.sup$coord <- sweep(res$row.sup$coord, 2, res$sv[1:ncp], FUN = "/")
+            }
+            return(res)
         },
         .caplot = function(plotType, image, ggtheme, theme) {
             if (is.null(image$state))
                 return(FALSE)
 
             # Plot data
-            results <- image$state
-            coord <- ca::cacoord(results, type = self$options$normalization)
+            res <- image$state
             # Supplementary Row & Column Colors
             # 1 = row, 2 = rowsup, 3 = column, 4 = colsup
             if (plotType != 'column') { # rowplat and biplot
-                coord$rows <- cbind(coord$rows, "sup"=1)
-                coord$rows[results$rowsup,"sup"] <- 2
-                ptcoord <- as.data.frame(coord$rows)
+                if (!is.null(res$row.sup$coord)) {
+                    ptcoord <- as.data.frame(rbind(
+                        cbind(res$row$coord, "sup" = 1),
+                        cbind(res$row.sup$coord, "sup" = 2)
+                    ))
+                } else {
+                    ptcoord <- as.data.frame(
+                        cbind(res$row$coord, "sup" = 1)
+                    )
+                }
             } else {
                 ptcoord <- NA
             }
             if (plotType != 'row') { # colplot and biplot
-                coord$columns <- cbind(coord$columns, "sup"=3)
-                coord$columns[results$colsup,"sup"] <- 4
-                ptcoord <- as.data.frame(rbind(ptcoord,coord$columns))
+                if (!is.null(res$col.sup$coord)) {
+                    ptcoord <- as.data.frame(rbind(
+                        ptcoord,
+                        cbind(res$col$coord, "sup" = 3),
+                        cbind(res$col.sup$coord, "sup" = 4)
+                    ))
+                } else {
+                    ptcoord <- as.data.frame(rbind(
+                        ptcoord,
+                        cbind(res$col$coord, "sup" = 3)
+                    ))
+                }
             }
             ptcoord$sup <- factor(ptcoord$sup, levels = c(1,2,3,4))
             # ptcoord dataframe containt the row and column coordinates
             # ptcoord$sup is the type of point (1 = row, 2 = rowsup, 3 = column, 4 = colsup)
 
             # Plot inertia
-            singular <- results$sv
-            inertia <- results$sv**2
-            totalInertia <- sum(results$sv**2)
-            percentInertia <- round(100*inertia / totalInertia, 1)
+            percentInertia <- round(100*res$eig[,2], 1)
             # Plot axis
             xaxis <- self$options$xaxis
-            xaxisdim <- paste0("Dim", xaxis)
-            xaxisstr <- paste0("Dimension ",xaxis, " (", percentInertia[xaxis], "%)")
+            xaxisdim <- paste("Dim", xaxis)
+            dim1name <- paste0("Dimension ",xaxis, " (", percentInertia[xaxis], "%)")
             yaxis <- self$options$yaxis
-            yaxisdim <- paste0("Dim", yaxis)
-            yaxisstr <- paste0("Dimension ",yaxis, " (", percentInertia[yaxis], "%)")
+            yaxisdim <- paste("Dim", yaxis)
+            dim2name <- paste0("Dimension ",yaxis, " (", percentInertia[yaxis], "%)")
 
             # Building the plot
             plot <-  ggplot(ptcoord, aes(x = ptcoord[,xaxisdim], y = ptcoord[,yaxisdim], color = ptcoord$sup, shape = ptcoord$sup))
             plot <- plot + geom_point()
-            plot <- plot + ggrepel::geom_text_repel(aes(label = rownames(ptcoord)), show.legend = FALSE)
+            plot <- plot + ggrepel::geom_text_repel(aes(label = rownames(ptcoord)), show.legend = FALSE, size = self$options$labelSize/.pt)
             plot <- plot + geom_hline(yintercept = 0, linetype = 2) + geom_vline(xintercept = 0, linetype = 2)
 
             # Apply jmv theme
             plot <- plot + ggtheme
 
             # Axes
-            plot <- plot + labs(x = xaxisstr, y = yaxisstr)
-            if (self$options$fixedRatio)
-                plot <- plot + coord_fixed()
+            # if (self$options$fixedRatio)
+            #     plot <- plot + coord_fixed()
 
             # Set point colors
             plot <- plot +
@@ -511,37 +544,22 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             plot <- plot + theme(axis.line = element_line(linewidth = 0), panel.border = element_rect(color = "black", fill = NA, size = 1))
 
             # Plot title
-            title <- self$options$get( paste0(plotType,"Title") )
-            defaultTitle <- switch(plotType,
+            title <- switch(plotType,
                                    row = paste(.("Row Points for"), private$.varName[[self$options$rows]]),
                                    column = paste(.("Column Points for"), private$.varName[[self$options$cols]]),
                                    biplot = jmvcore::format(.("Row and Column Points for {rows} and {cols}"),
                                                             rows = private$.varName[[self$options$rows]],
                                                             cols = private$.varName[[self$options$cols]])
             )
-            if (!(title %in% c("", " "))) {
-                if (title == "default")
-                    title <- defaultTitle
-                plot <- plot + labs(title = title)
-                plot <- plot + theme(plot.title = element_text(
-                    size = self$options$titleFontSize,
-                    face = self$options$titleFontFace,
-                    hjust = as.numeric(self$options$titleAlign)))
-            }
             # Plot subtitle
-            subtitle <- self$options$get( paste0(plotType,"Subtitle") )
-            defaultSubtitle <- private$.normalizationTitle(self$options$normalization)
-            if (!(subtitle %in% c("", " "))) {
-                if (subtitle == "default")
-                    subtitle <- defaultSubtitle
-                plot <- plot + labs(subtitle = subtitle)
-                plot <- plot + theme(plot.subtitle = element_text(
-                    size = self$options$subtitleFontSize,
-                    face = self$options$subtitleFontFace,
-                    hjust = as.numeric(self$options$subtitleAlign),
-                    margin = margin(-5, 0, 15, 0)))
-            }
+            subtitle <- private$.normalizationTitle(self$options$normalization)
 
+            # Titles & Labels
+            defaults <- list(title = title, subtitle = subtitle, y = dim2name, x = dim1name)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults, plotType = plotType) + vijTitleAndLabelFormat(self$options, showLegend = FALSE)
+
+
+            #self$results$text$setContent(plot) # show debug message
             return(plot)
         },
         .rowplot = function(image, ggtheme, theme, ...) {
@@ -590,53 +608,14 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
         .normalizationTitle = function(type){
             normalizationString <- switch(type,
-                                      principal = .("Principal"),
-                                      symbiplot = .("Symetric"),
-                                      rowprincipal = .("Row Principal"),
-                                      colprincipal = .("Column Principal"),
-                                      standard = .("Standard")
+                                      principal = .("Principal [string]"),
+                                      symetric = .("Symetric [string]"),
+                                      rowprincipal = .("Row Principal [string]"),
+                                      colprincipal = .("Column Principal [string]"),
+                                      standard = .("Standard [string]")
                                 )
             normalizationTitle <- jmvcore::format(.("{normalization} normalization"), normalization = normalizationString)
             return(normalizationTitle)
-        },
-        .showHelp = function(){
-            self$results$helpMessage$setContent('
-            	<style>
-					.block {
-  						border: 2px solid gray;
-  						border-radius: 15px;
-  						background-color: WhiteSmoke;
-  						padding: 0px 20px;
-  						text-align: justify;
-					}
-				</style>
-            <div class="block">
-            <p><strong>Correspondence Plot Help</strong></p>
-
-            <p>This module uses <a href = "https://CRAN.R-project.org/package=ca" target="_blank">ca R package<a/>
-            by Michael Greenacre, Oleg Nenadic and Michael Friendly. In-depth information can be found
-            in the package documentation on CRAN site.</p>
-
-            <p>It computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables (the SPSS way).
-            The data may be weighted using <em>jamovi</em> built-in weight system or using the "Counts" variable.</p>
-
-            <p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>
-
-            <p>Four normalizations (scaling of row and column scores before plotting) are avalaible :
-            <ul>
-                <li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li>
-                <li><strong>Symetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li>
-                <li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li>
-                <li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li>
-                <li><strong>Standard:</strong> The raw coordinates without normalization.</li>
-            </ul></p>
-
-            <p>Each plot (Rows, Columns, Biplot) will fit the plot dimensions set in <strong>Plot Options</strong>
-            while maintaining a <strong>Fixed X/Y Ratio</strong> to 1 unless the corresponding option is uncheked.</p>
-
-            <p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>
-
-            </div>')
         }
     )
 )

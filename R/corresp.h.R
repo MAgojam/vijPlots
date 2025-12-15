@@ -24,22 +24,34 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             normalization = "principal",
             plotWidth = 600,
             plotHeight = 450,
-            fixedRatio = TRUE,
+            labelSize = 12,
             rowColor = "blue",
             colColor = "red",
             supColor = "darkgray",
-            columnTitle = "default",
-            rowTitle = "default",
-            biplotTitle = "default",
+            columnTitleText = "default",
+            rowTitleText = "default",
+            biplotTitleText = "default",
             titleAlign = "0.5",
             titleFontSize = 16,
             titleFontFace = "plain",
-            columnSubtitle = "default",
-            rowSubtitle = "default",
-            biplotSubtitle = "default",
+            columnSubtitleText = "default",
+            rowSubtitleText = "default",
+            biplotSubtitleText = "default",
             subtitleAlign = "0.5",
             subtitleFontSize = 12,
             subtitleFontFace = "italic",
+            rowCaptionText = NULL,
+            columnCaptionText = NULL,
+            biplotCaptionText = NULL,
+            captionAlign = "1",
+            captionFontSize = 12,
+            captionFontFace = "plain",
+            xAxisText = NULL,
+            xAxisFontSize = "16",
+            xAxisPosition = "0.5",
+            yAxisText = NULL,
+            yAxisFontSize = "16",
+            yAxisPosition = "0.5",
             descAsVarName = FALSE, ...) {
 
             super$initialize(
@@ -128,7 +140,7 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 normalization,
                 options=list(
                     "principal",
-                    "symbiplot",
+                    "symetric",
                     "rowprincipal",
                     "colprincipal",
                     "standard"),
@@ -136,19 +148,21 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..plotWidth <- jmvcore::OptionInteger$new(
                 "plotWidth",
                 plotWidth,
-                min=0,
+                min=200,
                 max=1000,
                 default=600)
             private$..plotHeight <- jmvcore::OptionInteger$new(
                 "plotHeight",
                 plotHeight,
-                min=0,
+                min=200,
                 max=1000,
                 default=450)
-            private$..fixedRatio <- jmvcore::OptionBool$new(
-                "fixedRatio",
-                fixedRatio,
-                default=TRUE)
+            private$..labelSize <- jmvcore::OptionInteger$new(
+                "labelSize",
+                labelSize,
+                default=12,
+                min=8,
+                max=24)
             private$..rowColor <- jmvcore::OptionList$new(
                 "rowColor",
                 rowColor,
@@ -180,17 +194,17 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yellow2",
                     "white"),
                 default="darkgray")
-            private$..columnTitle <- jmvcore::OptionString$new(
-                "columnTitle",
-                columnTitle,
+            private$..columnTitleText <- jmvcore::OptionString$new(
+                "columnTitleText",
+                columnTitleText,
                 default="default")
-            private$..rowTitle <- jmvcore::OptionString$new(
-                "rowTitle",
-                rowTitle,
+            private$..rowTitleText <- jmvcore::OptionString$new(
+                "rowTitleText",
+                rowTitleText,
                 default="default")
-            private$..biplotTitle <- jmvcore::OptionString$new(
-                "biplotTitle",
-                biplotTitle,
+            private$..biplotTitleText <- jmvcore::OptionString$new(
+                "biplotTitleText",
+                biplotTitleText,
                 default="default")
             private$..titleAlign <- jmvcore::OptionList$new(
                 "titleAlign",
@@ -203,7 +217,9 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..titleFontSize <- jmvcore::OptionNumber$new(
                 "titleFontSize",
                 titleFontSize,
-                default=16)
+                default=16,
+                min=8,
+                max=24)
             private$..titleFontFace <- jmvcore::OptionList$new(
                 "titleFontFace",
                 titleFontFace,
@@ -213,17 +229,17 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "italic",
                     "bold.italic"),
                 default="plain")
-            private$..columnSubtitle <- jmvcore::OptionString$new(
-                "columnSubtitle",
-                columnSubtitle,
+            private$..columnSubtitleText <- jmvcore::OptionString$new(
+                "columnSubtitleText",
+                columnSubtitleText,
                 default="default")
-            private$..rowSubtitle <- jmvcore::OptionString$new(
-                "rowSubtitle",
-                rowSubtitle,
+            private$..rowSubtitleText <- jmvcore::OptionString$new(
+                "rowSubtitleText",
+                rowSubtitleText,
                 default="default")
-            private$..biplotSubtitle <- jmvcore::OptionString$new(
-                "biplotSubtitle",
-                biplotSubtitle,
+            private$..biplotSubtitleText <- jmvcore::OptionString$new(
+                "biplotSubtitleText",
+                biplotSubtitleText,
                 default="default")
             private$..subtitleAlign <- jmvcore::OptionList$new(
                 "subtitleAlign",
@@ -236,7 +252,9 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..subtitleFontSize <- jmvcore::OptionNumber$new(
                 "subtitleFontSize",
                 subtitleFontSize,
-                default=12)
+                default=12,
+                min=8,
+                max=24)
             private$..subtitleFontFace <- jmvcore::OptionList$new(
                 "subtitleFontFace",
                 subtitleFontFace,
@@ -246,6 +264,82 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "italic",
                     "bold.italic"),
                 default="italic")
+            private$..rowCaptionText <- jmvcore::OptionString$new(
+                "rowCaptionText",
+                rowCaptionText)
+            private$..columnCaptionText <- jmvcore::OptionString$new(
+                "columnCaptionText",
+                columnCaptionText)
+            private$..biplotCaptionText <- jmvcore::OptionString$new(
+                "biplotCaptionText",
+                biplotCaptionText)
+            private$..captionAlign <- jmvcore::OptionList$new(
+                "captionAlign",
+                captionAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="1")
+            private$..captionFontSize <- jmvcore::OptionNumber$new(
+                "captionFontSize",
+                captionFontSize,
+                default=12,
+                min=8,
+                max=24)
+            private$..captionFontFace <- jmvcore::OptionList$new(
+                "captionFontFace",
+                captionFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..xAxisText <- jmvcore::OptionString$new(
+                "xAxisText",
+                xAxisText)
+            private$..xAxisFontSize <- jmvcore::OptionList$new(
+                "xAxisFontSize",
+                xAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..xAxisPosition <- jmvcore::OptionList$new(
+                "xAxisPosition",
+                xAxisPosition,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..yAxisText <- jmvcore::OptionString$new(
+                "yAxisText",
+                yAxisText)
+            private$..yAxisFontSize <- jmvcore::OptionList$new(
+                "yAxisFontSize",
+                yAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..yAxisPosition <- jmvcore::OptionList$new(
+                "yAxisPosition",
+                yAxisPosition,
+                options=list(
+                    "1",
+                    "0.5",
+                    "0"),
+                default="0.5")
             private$..descAsVarName <- jmvcore::OptionBool$new(
                 "descAsVarName",
                 descAsVarName,
@@ -269,22 +363,34 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..normalization)
             self$.addOption(private$..plotWidth)
             self$.addOption(private$..plotHeight)
-            self$.addOption(private$..fixedRatio)
+            self$.addOption(private$..labelSize)
             self$.addOption(private$..rowColor)
             self$.addOption(private$..colColor)
             self$.addOption(private$..supColor)
-            self$.addOption(private$..columnTitle)
-            self$.addOption(private$..rowTitle)
-            self$.addOption(private$..biplotTitle)
+            self$.addOption(private$..columnTitleText)
+            self$.addOption(private$..rowTitleText)
+            self$.addOption(private$..biplotTitleText)
             self$.addOption(private$..titleAlign)
             self$.addOption(private$..titleFontSize)
             self$.addOption(private$..titleFontFace)
-            self$.addOption(private$..columnSubtitle)
-            self$.addOption(private$..rowSubtitle)
-            self$.addOption(private$..biplotSubtitle)
+            self$.addOption(private$..columnSubtitleText)
+            self$.addOption(private$..rowSubtitleText)
+            self$.addOption(private$..biplotSubtitleText)
             self$.addOption(private$..subtitleAlign)
             self$.addOption(private$..subtitleFontSize)
             self$.addOption(private$..subtitleFontFace)
+            self$.addOption(private$..rowCaptionText)
+            self$.addOption(private$..columnCaptionText)
+            self$.addOption(private$..biplotCaptionText)
+            self$.addOption(private$..captionAlign)
+            self$.addOption(private$..captionFontSize)
+            self$.addOption(private$..captionFontFace)
+            self$.addOption(private$..xAxisText)
+            self$.addOption(private$..xAxisFontSize)
+            self$.addOption(private$..xAxisPosition)
+            self$.addOption(private$..yAxisText)
+            self$.addOption(private$..yAxisFontSize)
+            self$.addOption(private$..yAxisPosition)
             self$.addOption(private$..descAsVarName)
         }),
     active = list(
@@ -306,22 +412,34 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         normalization = function() private$..normalization$value,
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
-        fixedRatio = function() private$..fixedRatio$value,
+        labelSize = function() private$..labelSize$value,
         rowColor = function() private$..rowColor$value,
         colColor = function() private$..colColor$value,
         supColor = function() private$..supColor$value,
-        columnTitle = function() private$..columnTitle$value,
-        rowTitle = function() private$..rowTitle$value,
-        biplotTitle = function() private$..biplotTitle$value,
+        columnTitleText = function() private$..columnTitleText$value,
+        rowTitleText = function() private$..rowTitleText$value,
+        biplotTitleText = function() private$..biplotTitleText$value,
         titleAlign = function() private$..titleAlign$value,
         titleFontSize = function() private$..titleFontSize$value,
         titleFontFace = function() private$..titleFontFace$value,
-        columnSubtitle = function() private$..columnSubtitle$value,
-        rowSubtitle = function() private$..rowSubtitle$value,
-        biplotSubtitle = function() private$..biplotSubtitle$value,
+        columnSubtitleText = function() private$..columnSubtitleText$value,
+        rowSubtitleText = function() private$..rowSubtitleText$value,
+        biplotSubtitleText = function() private$..biplotSubtitleText$value,
         subtitleAlign = function() private$..subtitleAlign$value,
         subtitleFontSize = function() private$..subtitleFontSize$value,
         subtitleFontFace = function() private$..subtitleFontFace$value,
+        rowCaptionText = function() private$..rowCaptionText$value,
+        columnCaptionText = function() private$..columnCaptionText$value,
+        biplotCaptionText = function() private$..biplotCaptionText$value,
+        captionAlign = function() private$..captionAlign$value,
+        captionFontSize = function() private$..captionFontSize$value,
+        captionFontFace = function() private$..captionFontFace$value,
+        xAxisText = function() private$..xAxisText$value,
+        xAxisFontSize = function() private$..xAxisFontSize$value,
+        xAxisPosition = function() private$..xAxisPosition$value,
+        yAxisText = function() private$..yAxisText$value,
+        yAxisFontSize = function() private$..yAxisFontSize$value,
+        yAxisPosition = function() private$..yAxisPosition$value,
         descAsVarName = function() private$..descAsVarName$value),
     private = list(
         ..rows = NA,
@@ -342,22 +460,34 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..normalization = NA,
         ..plotWidth = NA,
         ..plotHeight = NA,
-        ..fixedRatio = NA,
+        ..labelSize = NA,
         ..rowColor = NA,
         ..colColor = NA,
         ..supColor = NA,
-        ..columnTitle = NA,
-        ..rowTitle = NA,
-        ..biplotTitle = NA,
+        ..columnTitleText = NA,
+        ..rowTitleText = NA,
+        ..biplotTitleText = NA,
         ..titleAlign = NA,
         ..titleFontSize = NA,
         ..titleFontFace = NA,
-        ..columnSubtitle = NA,
-        ..rowSubtitle = NA,
-        ..biplotSubtitle = NA,
+        ..columnSubtitleText = NA,
+        ..rowSubtitleText = NA,
+        ..biplotSubtitleText = NA,
         ..subtitleAlign = NA,
         ..subtitleFontSize = NA,
         ..subtitleFontFace = NA,
+        ..rowCaptionText = NA,
+        ..columnCaptionText = NA,
+        ..biplotCaptionText = NA,
+        ..captionAlign = NA,
+        ..captionFontSize = NA,
+        ..captionFontFace = NA,
+        ..xAxisText = NA,
+        ..xAxisFontSize = NA,
+        ..xAxisPosition = NA,
+        ..yAxisText = NA,
+        ..yAxisFontSize = NA,
+        ..yAxisPosition = NA,
         ..descAsVarName = NA)
 )
 
@@ -383,12 +513,13 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="",
                 title="Correspondence Analysis",
                 refs=list(
-                    "ca"))
+                    "factominer"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="helpMessage",
                 title="",
-                visible=TRUE))
+                visible=TRUE,
+                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Correspondence Plot Help</strong></p>\n<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the \"Counts\" variable.</p>\n<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>\n<p>Four normalizations (scaling of row and column scores before plotting) are avalaible : <ul> <li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li> <li><strong>Symetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li> <li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li> <li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li> <li><strong>Standard:</strong> The raw coordinates without normalization.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>\n</div>"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="contingency",
@@ -503,19 +634,29 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "supColor",
                     "plotWidth",
                     "plotHeight",
-                    "fixedRatio",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
                     "descAsVarName",
-                    "rowTitle",
+                    "rowTitleText",
                     "titleFontFace",
                     "titleFontSize",
                     "titleAlign",
-                    "rowSubtitle",
+                    "rowSubtitleText",
                     "subtitleFontFace",
                     "subtitleFontSize",
-                    "subtitleAlign")))
+                    "subtitleAlign",
+                    "rowCaptionText",
+                    "captionFontFace",
+                    "captionFontSize",
+                    "captionAlign",
+                    "xAxisText",
+                    "xAxisFontSize",
+                    "xAxisPosition",
+                    "yAxisText",
+                    "yAxisFontSize",
+                    "yAxisPosition",
+                    "labelSize")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="colplot",
@@ -534,19 +675,29 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "supColor",
                     "plotWidth",
                     "plotHeight",
-                    "fixedRatio",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
                     "descAsVarName",
-                    "columnTitle",
+                    "columnTitleText",
                     "titleFontFace",
                     "titleFontSize",
                     "titleAlign",
-                    "columnSubtitle",
+                    "columnSubtitleText",
                     "subtitleFontFace",
                     "subtitleFontSize",
-                    "subtitleAlign")))
+                    "subtitleAlign",
+                    "columnCaptionText",
+                    "captionFontFace",
+                    "captionFontSize",
+                    "captionAlign",
+                    "xAxisText",
+                    "xAxisFontSize",
+                    "xAxisPosition",
+                    "yAxisText",
+                    "yAxisFontSize",
+                    "yAxisPosition",
+                    "labelSize")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="biplot",
@@ -566,19 +717,29 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "supColor",
                     "plotWidth",
                     "plotHeight",
-                    "fixedRatio",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
                     "descAsVarName",
-                    "biplotTitle",
+                    "biplotTitleText",
                     "titleFontFace",
                     "titleFontSize",
                     "titleAlign",
-                    "biplotSubtitle",
+                    "biplotSubtitleText",
                     "subtitleFontFace",
                     "subtitleFontSize",
-                    "subtitleAlign")))}))
+                    "subtitleAlign",
+                    "biplotCaptionText",
+                    "captionFontFace",
+                    "captionFontSize",
+                    "captionAlign",
+                    "xAxisText",
+                    "xAxisFontSize",
+                    "xAxisPosition",
+                    "yAxisText",
+                    "yAxisFontSize",
+                    "yAxisPosition",
+                    "labelSize")))}))
 
 correspBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "correspBase",
@@ -623,22 +784,34 @@ correspBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param normalization .
 #' @param plotWidth .
 #' @param plotHeight .
-#' @param fixedRatio .
+#' @param labelSize .
 #' @param rowColor .
 #' @param colColor .
 #' @param supColor .
-#' @param columnTitle .
-#' @param rowTitle .
-#' @param biplotTitle .
+#' @param columnTitleText .
+#' @param rowTitleText .
+#' @param biplotTitleText .
 #' @param titleAlign .
 #' @param titleFontSize .
 #' @param titleFontFace .
-#' @param columnSubtitle .
-#' @param rowSubtitle .
-#' @param biplotSubtitle .
+#' @param columnSubtitleText .
+#' @param rowSubtitleText .
+#' @param biplotSubtitleText .
 #' @param subtitleAlign .
 #' @param subtitleFontSize .
 #' @param subtitleFontFace .
+#' @param rowCaptionText .
+#' @param columnCaptionText .
+#' @param biplotCaptionText .
+#' @param captionAlign .
+#' @param captionFontSize .
+#' @param captionFontFace .
+#' @param xAxisText .
+#' @param xAxisFontSize .
+#' @param xAxisPosition .
+#' @param yAxisText .
+#' @param yAxisFontSize .
+#' @param yAxisPosition .
 #' @param descAsVarName .
 #' @return A results object containing:
 #' \tabular{llllll}{
@@ -681,22 +854,34 @@ corresp <- function(
     normalization = "principal",
     plotWidth = 600,
     plotHeight = 450,
-    fixedRatio = TRUE,
+    labelSize = 12,
     rowColor = "blue",
     colColor = "red",
     supColor = "darkgray",
-    columnTitle = "default",
-    rowTitle = "default",
-    biplotTitle = "default",
+    columnTitleText = "default",
+    rowTitleText = "default",
+    biplotTitleText = "default",
     titleAlign = "0.5",
     titleFontSize = 16,
     titleFontFace = "plain",
-    columnSubtitle = "default",
-    rowSubtitle = "default",
-    biplotSubtitle = "default",
+    columnSubtitleText = "default",
+    rowSubtitleText = "default",
+    biplotSubtitleText = "default",
     subtitleAlign = "0.5",
     subtitleFontSize = 12,
     subtitleFontFace = "italic",
+    rowCaptionText,
+    columnCaptionText,
+    biplotCaptionText,
+    captionAlign = "1",
+    captionFontSize = 12,
+    captionFontFace = "plain",
+    xAxisText,
+    xAxisFontSize = "16",
+    xAxisPosition = "0.5",
+    yAxisText,
+    yAxisFontSize = "16",
+    yAxisPosition = "0.5",
     descAsVarName = FALSE) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
@@ -734,22 +919,34 @@ corresp <- function(
         normalization = normalization,
         plotWidth = plotWidth,
         plotHeight = plotHeight,
-        fixedRatio = fixedRatio,
+        labelSize = labelSize,
         rowColor = rowColor,
         colColor = colColor,
         supColor = supColor,
-        columnTitle = columnTitle,
-        rowTitle = rowTitle,
-        biplotTitle = biplotTitle,
+        columnTitleText = columnTitleText,
+        rowTitleText = rowTitleText,
+        biplotTitleText = biplotTitleText,
         titleAlign = titleAlign,
         titleFontSize = titleFontSize,
         titleFontFace = titleFontFace,
-        columnSubtitle = columnSubtitle,
-        rowSubtitle = rowSubtitle,
-        biplotSubtitle = biplotSubtitle,
+        columnSubtitleText = columnSubtitleText,
+        rowSubtitleText = rowSubtitleText,
+        biplotSubtitleText = biplotSubtitleText,
         subtitleAlign = subtitleAlign,
         subtitleFontSize = subtitleFontSize,
         subtitleFontFace = subtitleFontFace,
+        rowCaptionText = rowCaptionText,
+        columnCaptionText = columnCaptionText,
+        biplotCaptionText = biplotCaptionText,
+        captionAlign = captionAlign,
+        captionFontSize = captionFontSize,
+        captionFontFace = captionFontFace,
+        xAxisText = xAxisText,
+        xAxisFontSize = xAxisFontSize,
+        xAxisPosition = xAxisPosition,
+        yAxisText = yAxisText,
+        yAxisFontSize = yAxisFontSize,
+        yAxisPosition = yAxisPosition,
         descAsVarName = descAsVarName)
 
     analysis <- correspClass$new(

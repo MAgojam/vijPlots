@@ -16,8 +16,29 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             fillColor = "#A6C4F1",
             borderColor = "black",
             grouping = "none",
-            colorPalette = NULL,
+            colorPalette = "jmv",
             usePalette = "forFilling",
+            titleText = NULL,
+            titleFontFace = "bold",
+            titleFontSize = "14",
+            titleAlign = "0.5",
+            subtitleText = NULL,
+            subtitleFontFace = "plain",
+            subtitleFontSize = "12",
+            subtitleAlign = "0.5",
+            captionText = NULL,
+            captionFontFace = "italic",
+            captionFontSize = "10",
+            captionAlign = "1",
+            legendText = NULL,
+            legendFontSize = "14",
+            legendPosition = "right",
+            xAxisText = NULL,
+            xAxisFontSize = "16",
+            xAxisPosition = "0.5",
+            yAxisText = NULL,
+            yAxisFontSize = "16",
+            yAxisPosition = "0.5",
             plotWidth = 0,
             plotHeight = 0,
             facetBy = "column",
@@ -35,7 +56,8 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 suggested=list(
                     "continuous"),
                 permitted=list(
-                    "numeric"))
+                    "numeric"),
+                default=NULL)
             private$..group <- jmvcore::OptionVariable$new(
                 "group",
                 group,
@@ -161,7 +183,14 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "YlGn",
                     "YlGnBu",
                     "YlOrBr",
-                    "YlOrRd"))
+                    "YlOrRd",
+                    "viridis::viridis",
+                    "viridis::magma",
+                    "viridis::inferno",
+                    "viridis::plasma",
+                    "viridis::turbo",
+                    "dichromat::Categorical.12"),
+                default="jmv")
             private$..usePalette <- jmvcore::OptionList$new(
                 "usePalette",
                 usePalette,
@@ -169,6 +198,169 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "forFilling",
                     "forBorder"),
                 default="forFilling")
+            private$..titleText <- jmvcore::OptionString$new(
+                "titleText",
+                titleText)
+            private$..titleFontFace <- jmvcore::OptionList$new(
+                "titleFontFace",
+                titleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="bold")
+            private$..titleFontSize <- jmvcore::OptionList$new(
+                "titleFontSize",
+                titleFontSize,
+                options=list(
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22",
+                    "24"),
+                default="14")
+            private$..titleAlign <- jmvcore::OptionList$new(
+                "titleAlign",
+                titleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..subtitleText <- jmvcore::OptionString$new(
+                "subtitleText",
+                subtitleText)
+            private$..subtitleFontFace <- jmvcore::OptionList$new(
+                "subtitleFontFace",
+                subtitleFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="plain")
+            private$..subtitleFontSize <- jmvcore::OptionList$new(
+                "subtitleFontSize",
+                subtitleFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22"),
+                default="12")
+            private$..subtitleAlign <- jmvcore::OptionList$new(
+                "subtitleAlign",
+                subtitleAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..captionText <- jmvcore::OptionString$new(
+                "captionText",
+                captionText)
+            private$..captionFontFace <- jmvcore::OptionList$new(
+                "captionFontFace",
+                captionFontFace,
+                options=list(
+                    "plain",
+                    "bold",
+                    "italic",
+                    "bold.italic"),
+                default="italic")
+            private$..captionFontSize <- jmvcore::OptionList$new(
+                "captionFontSize",
+                captionFontSize,
+                options=list(
+                    "8",
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="10")
+            private$..captionAlign <- jmvcore::OptionList$new(
+                "captionAlign",
+                captionAlign,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="1")
+            private$..legendText <- jmvcore::OptionString$new(
+                "legendText",
+                legendText)
+            private$..legendFontSize <- jmvcore::OptionList$new(
+                "legendFontSize",
+                legendFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="14")
+            private$..legendPosition <- jmvcore::OptionList$new(
+                "legendPosition",
+                legendPosition,
+                options=list(
+                    "right",
+                    "bottom",
+                    "left",
+                    "top"),
+                default="right")
+            private$..xAxisText <- jmvcore::OptionString$new(
+                "xAxisText",
+                xAxisText)
+            private$..xAxisFontSize <- jmvcore::OptionList$new(
+                "xAxisFontSize",
+                xAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..xAxisPosition <- jmvcore::OptionList$new(
+                "xAxisPosition",
+                xAxisPosition,
+                options=list(
+                    "0",
+                    "0.5",
+                    "1"),
+                default="0.5")
+            private$..yAxisText <- jmvcore::OptionString$new(
+                "yAxisText",
+                yAxisText)
+            private$..yAxisFontSize <- jmvcore::OptionList$new(
+                "yAxisFontSize",
+                yAxisFontSize,
+                options=list(
+                    "10",
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20"),
+                default="16")
+            private$..yAxisPosition <- jmvcore::OptionList$new(
+                "yAxisPosition",
+                yAxisPosition,
+                options=list(
+                    "1",
+                    "0.5",
+                    "0"),
+                default="0.5")
             private$..plotWidth <- jmvcore::OptionNumber$new(
                 "plotWidth",
                 plotWidth,
@@ -207,6 +399,27 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..grouping)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..usePalette)
+            self$.addOption(private$..titleText)
+            self$.addOption(private$..titleFontFace)
+            self$.addOption(private$..titleFontSize)
+            self$.addOption(private$..titleAlign)
+            self$.addOption(private$..subtitleText)
+            self$.addOption(private$..subtitleFontFace)
+            self$.addOption(private$..subtitleFontSize)
+            self$.addOption(private$..subtitleAlign)
+            self$.addOption(private$..captionText)
+            self$.addOption(private$..captionFontFace)
+            self$.addOption(private$..captionFontSize)
+            self$.addOption(private$..captionAlign)
+            self$.addOption(private$..legendText)
+            self$.addOption(private$..legendFontSize)
+            self$.addOption(private$..legendPosition)
+            self$.addOption(private$..xAxisText)
+            self$.addOption(private$..xAxisFontSize)
+            self$.addOption(private$..xAxisPosition)
+            self$.addOption(private$..yAxisText)
+            self$.addOption(private$..yAxisFontSize)
+            self$.addOption(private$..yAxisPosition)
             self$.addOption(private$..plotWidth)
             self$.addOption(private$..plotHeight)
             self$.addOption(private$..facetBy)
@@ -225,6 +438,27 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         grouping = function() private$..grouping$value,
         colorPalette = function() private$..colorPalette$value,
         usePalette = function() private$..usePalette$value,
+        titleText = function() private$..titleText$value,
+        titleFontFace = function() private$..titleFontFace$value,
+        titleFontSize = function() private$..titleFontSize$value,
+        titleAlign = function() private$..titleAlign$value,
+        subtitleText = function() private$..subtitleText$value,
+        subtitleFontFace = function() private$..subtitleFontFace$value,
+        subtitleFontSize = function() private$..subtitleFontSize$value,
+        subtitleAlign = function() private$..subtitleAlign$value,
+        captionText = function() private$..captionText$value,
+        captionFontFace = function() private$..captionFontFace$value,
+        captionFontSize = function() private$..captionFontSize$value,
+        captionAlign = function() private$..captionAlign$value,
+        legendText = function() private$..legendText$value,
+        legendFontSize = function() private$..legendFontSize$value,
+        legendPosition = function() private$..legendPosition$value,
+        xAxisText = function() private$..xAxisText$value,
+        xAxisFontSize = function() private$..xAxisFontSize$value,
+        xAxisPosition = function() private$..xAxisPosition$value,
+        yAxisText = function() private$..yAxisText$value,
+        yAxisFontSize = function() private$..yAxisFontSize$value,
+        yAxisPosition = function() private$..yAxisPosition$value,
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
         facetBy = function() private$..facetBy$value,
@@ -242,6 +476,27 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..grouping = NA,
         ..colorPalette = NA,
         ..usePalette = NA,
+        ..titleText = NA,
+        ..titleFontFace = NA,
+        ..titleFontSize = NA,
+        ..titleAlign = NA,
+        ..subtitleText = NA,
+        ..subtitleFontFace = NA,
+        ..subtitleFontSize = NA,
+        ..subtitleAlign = NA,
+        ..captionText = NA,
+        ..captionFontFace = NA,
+        ..captionFontSize = NA,
+        ..captionAlign = NA,
+        ..legendText = NA,
+        ..legendFontSize = NA,
+        ..legendPosition = NA,
+        ..xAxisText = NA,
+        ..xAxisFontSize = NA,
+        ..xAxisPosition = NA,
+        ..yAxisText = NA,
+        ..yAxisFontSize = NA,
+        ..yAxisPosition = NA,
         ..plotWidth = NA,
         ..plotHeight = NA,
         ..facetBy = NA,
@@ -266,24 +521,7 @@ histogramResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="",
                 width=600,
                 height=400,
-                renderFun=".plot",
-                clearWith=list(
-                    "aVar",
-                    "group",
-                    "facet",
-                    "histtype",
-                    "binWidth",
-                    "binBoundary",
-                    "normalCurve",
-                    "borderColor",
-                    "fillColor",
-                    "grouping",
-                    "colorPalette",
-                    "usePalette",
-                    "plotWidth",
-                    "plotHeight",
-                    "facetBy",
-                    "facetNumber")))}))
+                renderFun=".plot"))}))
 
 histogramBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "histogramBase",
@@ -322,6 +560,27 @@ histogramBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param grouping .
 #' @param colorPalette .
 #' @param usePalette .
+#' @param titleText .
+#' @param titleFontFace .
+#' @param titleFontSize .
+#' @param titleAlign .
+#' @param subtitleText .
+#' @param subtitleFontFace .
+#' @param subtitleFontSize .
+#' @param subtitleAlign .
+#' @param captionText .
+#' @param captionFontFace .
+#' @param captionFontSize .
+#' @param captionAlign .
+#' @param legendText .
+#' @param legendFontSize .
+#' @param legendPosition .
+#' @param xAxisText .
+#' @param xAxisFontSize .
+#' @param xAxisPosition .
+#' @param yAxisText .
+#' @param yAxisFontSize .
+#' @param yAxisPosition .
 #' @param plotWidth .
 #' @param plotHeight .
 #' @param facetBy .
@@ -334,7 +593,7 @@ histogramBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 histogram <- function(
     data,
-    aVar,
+    aVar = NULL,
     group,
     facet,
     histtype = "count",
@@ -344,8 +603,29 @@ histogram <- function(
     fillColor = "#A6C4F1",
     borderColor = "black",
     grouping = "none",
-    colorPalette,
+    colorPalette = "jmv",
     usePalette = "forFilling",
+    titleText,
+    titleFontFace = "bold",
+    titleFontSize = "14",
+    titleAlign = "0.5",
+    subtitleText,
+    subtitleFontFace = "plain",
+    subtitleFontSize = "12",
+    subtitleAlign = "0.5",
+    captionText,
+    captionFontFace = "italic",
+    captionFontSize = "10",
+    captionAlign = "1",
+    legendText,
+    legendFontSize = "14",
+    legendPosition = "right",
+    xAxisText,
+    xAxisFontSize = "16",
+    xAxisPosition = "0.5",
+    yAxisText,
+    yAxisFontSize = "16",
+    yAxisPosition = "0.5",
     plotWidth = 0,
     plotHeight = 0,
     facetBy = "column",
@@ -380,6 +660,27 @@ histogram <- function(
         grouping = grouping,
         colorPalette = colorPalette,
         usePalette = usePalette,
+        titleText = titleText,
+        titleFontFace = titleFontFace,
+        titleFontSize = titleFontSize,
+        titleAlign = titleAlign,
+        subtitleText = subtitleText,
+        subtitleFontFace = subtitleFontFace,
+        subtitleFontSize = subtitleFontSize,
+        subtitleAlign = subtitleAlign,
+        captionText = captionText,
+        captionFontFace = captionFontFace,
+        captionFontSize = captionFontSize,
+        captionAlign = captionAlign,
+        legendText = legendText,
+        legendFontSize = legendFontSize,
+        legendPosition = legendPosition,
+        xAxisText = xAxisText,
+        xAxisFontSize = xAxisFontSize,
+        xAxisPosition = xAxisPosition,
+        yAxisText = yAxisText,
+        yAxisFontSize = yAxisFontSize,
+        yAxisPosition = yAxisPosition,
         plotWidth = plotWidth,
         plotHeight = plotHeight,
         facetBy = facetBy,

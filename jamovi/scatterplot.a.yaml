@@ -165,5 +165,272 @@ options:
           name:  YlOrBr
         - title: Yellow to Red
           name:  YlOrRd
+        - title: Viridis:Viridis
+          name:  viridis::viridis
+        - title: Viridis:Magma
+          name:  viridis::magma
+        - title: Viridis:Inferno
+          name:  viridis::inferno
+        - title: Viridis:Plasma
+          name:  viridis::plasma
+        - title: Viridis:Turbo
+          name:  viridis::turbo
+        - title: Dichromat:Categorical
+          name:  dichromat::Categorical.12
+      default: jmv
+
+    - name: titleText
+      title: ""
+      type: String
+
+    - name: titleFontFace
+      title: Font
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: bold
+
+    - name: titleFontSize
+      title: ""
+      type: List
+      options:
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+        - name: "22"
+          title: "22"
+        - name: "24"
+          title: "24"
+      default: "14"
+
+    - name: titleAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: subtitleText
+      title: ""
+      type: String
+
+    - name: subtitleFontFace
+      title: Font
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: plain
+
+    - name: subtitleFontSize
+      title: ""
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+        - name: "22"
+          title: "22"
+      default: "12"
+
+    - name: subtitleAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: captionText
+      title: ""
+      type: String
+
+    - name: captionFontFace
+      title: Font
+      type: List
+      options:
+        - name: plain
+          title: Normal
+        - name: bold
+          title: Bold
+        - name: italic
+          title: Italic
+        - name: bold.italic
+          title: Bold Italic
+      default: italic
+
+    - name: captionFontSize
+      title: ""
+      type: List
+      options:
+        - name: "8"
+          title: "8"
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "10"
+
+    - name: captionAlign
+      title: Align
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "1"
+
+    - name: legendText
+      title: ""
+      type: String
+
+    - name: legendFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "14"
+
+    - name: legendPosition
+      title: Position
+      type: List
+      options:
+        - name: right
+          title: Right
+        - name: bottom
+          title: Bottom
+        - name: left
+          title: Left
+        - name: top
+          title: Top
+      default: right
+
+    - name: xAxisText
+      title: ""
+      type: String
+
+    - name: xAxisFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "16"
+
+    - name: xAxisPosition
+      title: Position
+      type: List
+      options:
+        - name: "0"
+          title: Left
+        - name: "0.5"
+          title: Center
+        - name: "1"
+          title: Right
+      default: "0.5"
+
+    - name: yAxisText
+      title: ""
+      type: String
+
+    - name: yAxisFontSize
+      title: Size
+      type: List
+      options:
+        - name: "10"
+          title: "10"
+        - name: "12"
+          title: "12"
+        - name: "14"
+          title: "14"
+        - name: "16"
+          title: "16"
+        - name: "18"
+          title: "18"
+        - name: "20"
+          title: "20"
+      default: "16"
+
+    - name: yAxisPosition
+      title: Position
+      type: List
+      options:
+        - name: "1"
+          title: Top
+        - name: "0.5"
+          title: Center
+        - name: "0"
+          title: Bottom
+      default: "0.5"
 
 ...

@@ -9,6 +9,9 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
             # Compute the size according to facet
             if (userWidth * userHeight == 0) {
                 if (!is.null(self$options$facet)) {
@@ -40,6 +43,8 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plotData[[self$options$aVar]] <- jmvcore::toNumeric(plotData[[self$options$aVar]])
                 image <- self$results$plot
                 image$setState(plotData)
+            } else {
+                return(FALSE)
             }
         },
         .plot = function(image, ggtheme, theme, ...) {  # <-- the plot function
@@ -129,10 +134,12 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Y-Axix label
-            if (self$options$histtype == "density")
-                plot <- plot + labs(y=.("Density")) + scale_y_continuous(labels = scales::comma)
-            else
-                plot <- plot + labs(y=.("Count"))
+            if (self$options$histtype == "density") {
+                yLab <- .("Density")
+                plot <- plot  + scale_y_continuous(labels = scales::comma)
+            } else {
+                yLab <- .("Count")
+            }
 
             # Facet
             if (!is.null(facetVar)) {
@@ -143,10 +150,16 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Theme and colors
-            plot <- plot + ggtheme
-            if (self$options$colorPalette != 'jmv') {
-                plot <- plot + scale_fill_brewer(palette = self$options$colorPalette) + scale_colour_brewer(palette = self$options$colorPalette)
-            }
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill") + vijScale(self$options$colorPalette, "color")
+
+            # Legend spacing
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
+
+            # Titles & Labels
+            defaults <- list(legend = groupVar, x = xVar, y = yLab)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
+
             return(plot)
-        })
+        }
+    )
 )

@@ -9,6 +9,9 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
             # Compute the size according to facet
             if (userWidth * userHeight == 0) {
                 if (self$options$horizontal)
@@ -28,7 +31,7 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     height <- 400
                 }
                 if (!is.null(self$options$group) & length(self$options$vars)>1 ) {
-                    if (self$options$legendAtBottom)
+                    if (self$options$legendPosition %in% c('top','bottom'))
                         height <- height + 50
                     else
                         width <- width + 50
@@ -197,22 +200,40 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
 
-            plot <- plot + ggtheme
-            if (self$options$colorPalette != 'jmv') {
-                plot <- plot + scale_fill_brewer(palette = self$options$colorPalette, na.value="grey")
-            }
-            if (!is.null(groupVar) && length(depVarNames) == 1)
-                plot <- plot + theme(legend.position='none') + labs(x = groupVarName)
-            else
-                plot <- plot + labs(x = "")
-            if (length(depVarNames) > 1)
-              plot <- plot + labs(x = "", y = "")
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+
+            # # Legend
+            # if (!is.null(groupVar) && length(depVarNames) == 1)
+            #     plot <- plot + theme(legend.position='none') + labs(x = groupVarName)
+            # else
+            #     plot <- plot + labs(x = "")
+            # if (length(depVarNames) > 1)
+            #   plot <- plot + labs(x = "", y = "")
 
             if (self$options$horizontal)
                 plot <- plot + coord_flip()
 
-            if (self$options$legendAtBottom & !is.null(groupVar) && length(depVarNames) > 1)
-                plot <- plot + theme(legend.position="bottom")
+            # if (self$options$legendAtBottom & !is.null(groupVar) && length(depVarNames) > 1)
+            #     plot <- plot + theme(legend.position="bottom")
+            # else
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
+
+            # Titles & Labels
+            defaults <- list(legend = groupVar)
+            if (!is.null(groupVar) && length(depVarNames) == 1) {
+                defaults$x <- groupVarName
+                defaults$y <- depVarNames
+                showLegend <- FALSE
+            } else {
+                defaults$x = NULL
+                showLegend <- TRUE
+            }
+            if (length(depVarNames) > 1) {
+                defaults$x <- NULL
+                defaults$y <- NULL
+            }
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options, showLegend = showLegend)
 
             return(plot)
         },

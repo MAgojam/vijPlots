@@ -9,6 +9,10 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
+
             # Compute the size according to facet
             if( userWidth * userHeight == 0 ) {
                 if( !is.null(self$options$facet)) {
@@ -27,7 +31,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     width <- 600
                     height <- 400
                 }
-                if(self$options$legendBottom) {
+                if (self$options$legendPosition %in% c('top','bottom')) {
                     height <- height + 50
                     width <- width - 50
                 }
@@ -110,20 +114,21 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     plot <- plot + facet_wrap(vars(!!facetVar), nrow = as.numeric(self$options$facetNumber), scales = "free")
             }
 
-
             # Theme and colors
-            plot <- plot + ggtheme + labs(x = "", y = "")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+
+            # Titles & Labels
+            defaults <- list(y = "", x = "", legend = aVar)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
+
+            plot
+
+            # Labs
             plot <- plot + theme(axis.ticks = element_blank(),
                                  axis.line.x = element_blank(), axis.line.y = element_blank(),
                                  axis.text.x = element_blank(),axis.text.y = element_blank(),
                                  panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-            if( self$options$colorPalette != 'jmv' ) {
-                plot <- plot + scale_fill_brewer(palette = self$options$colorPalette)
-            }
-
-            if(self$options$legendBottom) {
-                plot <- plot + theme(legend.position = "bottom")
-            }
 
             return(plot)
         }

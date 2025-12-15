@@ -10,20 +10,5 @@ items:
       width:  600
       height: 400
       renderFun: .plot
-      clearWith:
-        - aVar
-        - group
-        - facet
-        - yaxis
-        - order
-        - horizontal
-        - dotColor
-        - lineColor
-        - dotSize
-        - lineWidth
-        - facetBy
-        - facetNumber
-        - plotWidth
-        - plotHeight
 
 ...

@@ -9,6 +9,9 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject("Plot size must be at least 200px (or 0 = default)")
             if (self$options$horizontal) {
                 height <- 300
                 width <- 400
@@ -149,14 +152,16 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (self$options$horizontal)
                 plot <- plot + coord_flip()
 
-            plot <- plot + ggtheme
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color") + vijScale(self$options$colorPalette, "fill") + vijScale(self$options$colorPalette, "slab_color")
 
-            if (self$options$colorPalette != 'jmv') {
-                plot <- plot + scale_fill_brewer(palette = self$options$colorPalette) + scale_color_brewer(palette = self$options$colorPalette) +
-                    scale_color_brewer(palette = self$options$colorPalette, aesthetic = "slab_color")
-            } else {
-                plot <- plot + scale_color_manual(values = colorPalette(pal = theme$palette, type="color"), aesthetics = "slab_color")
-            }
+            # Legend spacing
+            plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
+
+            # Titles & Labels
+            defaults <- list(y = aVar, x = groupOne, legend = groupTwo)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
+
 
             return(plot)
 

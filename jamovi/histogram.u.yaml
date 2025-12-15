@@ -54,12 +54,12 @@ children:
                 name: histtype_count
                 optionName: histtype
                 optionPart: count
-                label: "Count"
+                label: Count
               - type: RadioButton
                 name: histtype_density
                 optionName: histtype
                 optionPart: density
-                label: "Density"
+                label: Density
       - type: LayoutBox
         cell:
           column: 1
@@ -96,7 +96,7 @@ children:
                     name: fillColor
   - type: CollapseBox
     label: Grouping Plot
-    collapsed: false
+    collapsed: true
     stretchFactor: 1
     children:
       - type: LayoutBox
@@ -110,30 +110,30 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: "Grouping"
+                label: Grouping
                 children:
                   - type: RadioButton
                     name: grouping_none
                     optionName: grouping
                     optionPart: none
-                    label: "None"
+                    label: None
                   - type: RadioButton
                     name: grouping_stack
                     optionName: grouping
                     optionPart: stack
-                    label: "Stacked"
+                    label: Stacked
                     enable: (!(!group))
                   - type: RadioButton
                     name: grouping_identity
                     optionName: grouping
                     optionPart: identity
-                    label: "Overlapping"
+                    label: Overlapping
                     enable: (!(!group))
                   - type: RadioButton
                     name: grouping_dodge
                     optionName: grouping
                     optionPart: dodge
-                    label: "Grouped"
+                    label: Grouped
                     enable: (!(!group))
           - type: LayoutBox
             cell:
@@ -142,19 +142,19 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: "Use Palette"
+                label: Use Palette
                 children:
                   - type: RadioButton
                     name: usePalette_forFilling
                     optionName: usePalette
                     optionPart: forFilling
-                    label: "For Filling"
+                    label: For Filling
                     enable: (!(!group))
                   - type: RadioButton
                     name: usePalette_forBoder
                     optionName: usePalette
                     optionPart: forBorder
-                    label: "For Border"
+                    label: For Border
                     enable: (!(!group))
           - type: LayoutBox
             cell:
@@ -163,11 +163,11 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: "Color Palette"
+                label: Color Palette
                 children:
                   - type: ComboBox
                     name: colorPalette
-                    label: ""
+                    label: ''
   - type: CollapseBox
     label: Extra Options
     collapsed: true
@@ -228,3 +228,172 @@ children:
                         name: facetNumber
                         format: number
                         enable: (!(!facet))
+  - type: CollapseBox
+    label: Legend & Axis Labels
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: Label
+        label: Legend
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: legendText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: legendFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: legendPosition
+      - type: Label
+        label: X-Axis
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: xAxisText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: xAxisFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: xAxisPosition
+      - type: Label
+        label: Y-Axis
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: yAxisText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: yAxisFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: yAxisPosition
+  - type: CollapseBox
+    label: Plot Titles
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: Label
+        label: Title
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: titleText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: titleFontFace
+                  - type: ComboBox
+                    name: titleFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: titleAlign
+      - type: Label
+        label: Subtitle
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: subtitleText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: subtitleFontFace
+                  - type: ComboBox
+                    name: subtitleFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: subtitleAlign
+      - type: Label
+        label: Caption
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            style: inline
+            children:
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: TextBox
+                    name: captionText
+                    format: string
+                    width: largest
+              - type: LayoutBox
+                margin: large
+                style: inline
+                children:
+                  - type: ComboBox
+                    name: captionFontFace
+                  - type: ComboBox
+                    name: captionFontSize
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: ComboBox
+                    name: captionAlign

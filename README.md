@@ -52,22 +52,35 @@
 
 ![](img/qqplot.jpg)
 
-## Correspondence Analysis
-
-![](img/correspondence.jpg)
-
 ## Principal Component Analysis
 
 ![](img/principal.jpg)
 
+## Correspondence Analysis
+
+![](img/correspondence.jpg)
+
+## Multiple Correspondence Analysis
+
+![](img/mca.jpg)
 
 ## Version history
+
+### 2025-12-16 / 0.11.0 (beta)
+
+-   Multiple Correspondence Analysis (using FactoMineR)
+-   Update Correspondence Analysis (using FactoMineR)
+-   Option to save PCA scores in Principal Component Analysis
+-   Viridis and Dichromat palettes added
+-   Title/Subtitle/Caption options for all plots
+-   Legend and axis label options for all plots
+-   Small fixes and improvements
 
 ### 2025-09-03 / 0.10.0 (beta)
 
 -   Principal Component Analysis
 -   Plot Titles & Subtitle in Correspondence Analysis
--   "Use variable's description as name" for Liket, CA, PCA
+-   "Use variable's description as name" for Likert, CA, PCA
 -   Moved vijPlots menu to Jamovi 2.7 "Plots" ribbon
 
 ### 2025-07-20 / 0.9.5 (beta)
@@ -128,3 +141,4 @@
 -   Almeida, A., Loy, A., Hofmann, H. (2023). qqplotr: Quantile-Quantile Plot Extensions for 'ggplot2'. R package version 0.0.6, <https://github.com/aloy/qqplotr>.
 -   Bernaards, C., Gilbert, P., Jennrich, R. (2025), GPArotation: Gradient Projection Factor Rotation. R package version 2025.3.1, <https://cran.r-project.org/package=GPArotation>.
 -   Greenacre, M. (2010), Biplots in Practice, Fundación BBVA. <https://www.fbbva.es/en/publicaciones/biplots-in-practice-7/>.
+-   Husson, F., Josse, J., Le, S., Mazet, J. (2025). FactoMineR: Multivariate Exploratory Data Analysis and Data Mining. R package version 2.12, <https://cran.r-project.org/package=FactoMineR>
