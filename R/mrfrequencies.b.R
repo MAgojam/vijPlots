@@ -6,8 +6,8 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             # Set custom name for options column
             self$results$responses$getColumn('var')$setTitle(self$options$optionname)
             # Add the "total" row here (to prevent flickering)
-            if (self$options$showTotal)
-                self$results$responses$addRow(rowKey='.total', values=list(var="Total"))
+#            if (self$options$showTotal)
+#                self$results$responses$addRow(rowKey='.total', values=list(var="Total"))
             # Set the size of the plot
             image <- self$results$plot
             size <- self$options$size
@@ -28,7 +28,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
             table <- self$results$responses
             for(i in 1:(nrow(myresult$df)-1))
-                table$setRow(rowNo=i,
+                table$addRow(rowKey=i,
                              values=list(var=myresult$df[i,1],
                                          freq=myresult$df[i,2],
                                          responsepercent=myresult$df[i,3],
@@ -36,7 +36,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
             if ( self$options$showTotal ) {
                 i <- nrow(myresult$df)
-                table$setRow(rowKey=".total",
+                table$addRow(rowKey=".total",
                              values=list(var="Total",
                                          freq=myresult$df[i,2],
                                          responsepercent=myresult$df[i,3],

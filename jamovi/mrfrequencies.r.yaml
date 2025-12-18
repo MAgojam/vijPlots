@@ -7,7 +7,7 @@ items:
     - name:  responses
       title: Frequencies
       type: Table
-      rows:  (resps)
+#      rows:  (resps)
       notes:
         'noc': ''
       columns:

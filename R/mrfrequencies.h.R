@@ -404,7 +404,6 @@ mrfrequenciesResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 options=options,
                 name="responses",
                 title="Frequencies",
-                rows="(resps)",
                 notes=list(
                     `noc`=""),
                 columns=list(
