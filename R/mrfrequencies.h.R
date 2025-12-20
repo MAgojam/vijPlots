@@ -6,6 +6,10 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
+            mode = NULL,
+            repVar = NULL,
+            separator = ";",
+            emptyAsNA = TRUE,
             resps = NULL,
             endorsed = 1,
             optionname = "Options",
@@ -43,10 +47,30 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 requiresData=TRUE,
                 ...)
 
+            private$..mode <- jmvcore::OptionList$new(
+                "mode",
+                mode,
+                options=list(
+                    "morevar",
+                    "onevar"))
+            private$..repVar <- jmvcore::OptionVariable$new(
+                "repVar",
+                repVar,
+                suggested=list(
+                    "nominal"),
+                permitted=list(
+                    "factor"))
+            private$..separator <- jmvcore::OptionString$new(
+                "separator",
+                separator,
+                default=";")
+            private$..emptyAsNA <- jmvcore::OptionBool$new(
+                "emptyAsNA",
+                emptyAsNA,
+                default=TRUE)
             private$..resps <- jmvcore::OptionVariables$new(
                 "resps",
                 resps,
-                required=TRUE,
                 suggested=list(
                     "nominal"),
                 permitted=list(
@@ -292,6 +316,10 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "0"),
                 default="0.5")
 
+            self$.addOption(private$..mode)
+            self$.addOption(private$..repVar)
+            self$.addOption(private$..separator)
+            self$.addOption(private$..emptyAsNA)
             self$.addOption(private$..resps)
             self$.addOption(private$..endorsed)
             self$.addOption(private$..optionname)
@@ -324,6 +352,10 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..yAxisPosition)
         }),
     active = list(
+        mode = function() private$..mode$value,
+        repVar = function() private$..repVar$value,
+        separator = function() private$..separator$value,
+        emptyAsNA = function() private$..emptyAsNA$value,
         resps = function() private$..resps$value,
         endorsed = function() private$..endorsed$value,
         optionname = function() private$..optionname$value,
@@ -355,6 +387,10 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         yAxisFontSize = function() private$..yAxisFontSize$value,
         yAxisPosition = function() private$..yAxisPosition$value),
     private = list(
+        ..mode = NA,
+        ..repVar = NA,
+        ..separator = NA,
+        ..emptyAsNA = NA,
         ..resps = NA,
         ..endorsed = NA,
         ..optionname = NA,
@@ -391,6 +427,7 @@ mrfrequenciesResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
     "mrfrequenciesResults",
     inherit = jmvcore::Group,
     active = list(
+        helpMessage = function() private$.items[["helpMessage"]],
         responses = function() private$.items[["responses"]],
         plot = function() private$.items[["plot"]]),
     private = list(),
@@ -400,6 +437,12 @@ mrfrequenciesResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 options=options,
                 name="",
                 title="Multiple Response Frequencies")
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="helpMessage",
+                title="",
+                visible=TRUE,
+                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Response Frequencies Help</strong></p>\n<p>This module computes frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 1/0 or Y/N for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the different checked answers, separated by a symbol (, or ; usually).</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>\n</div>"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="responses",
@@ -429,7 +472,11 @@ mrfrequenciesResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                         `format`="pc", 
                         `visible`="(showCases)")),
                 clearWith=list(
+                    "mode",
                     "resps",
+                    "repVar",
+                    "separator",
+                    "emptyAsNA",
                     "endorsed",
                     "order")))
             self$add(jmvcore::Image$new(
@@ -465,6 +512,10 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param data .
+#' @param mode .
+#' @param repVar .
+#' @param separator .
+#' @param emptyAsNA .
 #' @param resps .
 #' @param endorsed .
 #' @param optionname .
@@ -497,6 +548,7 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
+#'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$responses} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #' }
@@ -510,6 +562,10 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 mrfrequencies <- function(
     data,
+    mode,
+    repVar,
+    separator = ";",
+    emptyAsNA = TRUE,
     resps,
     endorsed = 1,
     optionname = "Options",
@@ -544,15 +600,22 @@ mrfrequencies <- function(
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("mrfrequencies requires jmvcore to be installed (restart may be required)")
 
+    if ( ! missing(repVar)) repVar <- jmvcore::resolveQuo(jmvcore::enquo(repVar))
     if ( ! missing(resps)) resps <- jmvcore::resolveQuo(jmvcore::enquo(resps))
     if (missing(data))
         data <- jmvcore::marshalData(
             parent.frame(),
+            `if`( ! missing(repVar), repVar, NULL),
             `if`( ! missing(resps), resps, NULL))
 
+    for (v in repVar) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
     for (v in resps) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
 
     options <- mrfrequenciesOptions$new(
+        mode = mode,
+        repVar = repVar,
+        separator = separator,
+        emptyAsNA = emptyAsNA,
         resps = resps,
         endorsed = endorsed,
         optionname = optionname,

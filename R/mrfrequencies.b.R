@@ -3,8 +3,17 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
     inherit = mrfrequenciesBase,
     private = list(
         .init = function() {
+            if (is.null(self$options$repVar) && length(self$options$resps) < 1) {
+                self$results$responses$setVisible(FALSE)
+                self$results$plot$setVisible(FALSE)
+            } else {
+                self$results$helpMessage$setVisible(FALSE)
+            }
             # Set custom name for options column
-            self$results$responses$getColumn('var')$setTitle(self$options$optionname)
+            if (self$options$mode == "morevar")
+                self$results$responses$getColumn('var')$setTitle(self$options$optionname)
+            else
+                self$results$responses$getColumn('var')$setTitle(self$options$repVar)
             # Add the "total" row here (to prevent flickering)
 #            if (self$options$showTotal)
 #                self$results$responses$addRow(rowKey='.total', values=list(var="Total"))
@@ -21,10 +30,23 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 image$setSize(800,500)
         },
         .run = function() {
-            if ( length(self$options$resps) < 1 )
-                return()
-
-            myresult <- private$.multipleResponse(self$data, self$options$resps, self$options$endorsed, self$options$order)
+            morevar <- (self$options$mode == "morevar")
+            if (morevar) { # Several dychotomous variables
+                if (length(self$options$resps) < 1) {
+                    return()
+                } else {
+                    myresult <- private$.multipleResponse(self$data, self$options$resps, self$options$endorsed, self$options$order)
+                }
+            } else { # One Multiple Value Variables
+                if (is.null(self$options$repVar) || self$options$separator == '') {
+                    return()
+                } else {
+                    rawData <- as.character(self$data[[self$options$repVar]])
+                    oneHotData <- private$.oneHotEncoding(rawData, self$options$separator, self$options$emptyAsNA)
+                    #self$results$text$setContent(oneHotData)
+                    myresult <- private$.multipleResponse(oneHotData, names(oneHotData), self$options$endorsed, self$options$order)
+                }
+            }
 
             table <- self$results$responses
             for(i in 1:(nrow(myresult$df)-1))
@@ -114,6 +136,18 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
             return( list('nrOfCases'=nrOfCases, 'df'=res) )
 
+        },
+        .oneHotEncoding = function (aCol, separator, na = TRUE) {
+            uniqueValues <- unique(unlist(strsplit(unique(na.omit(aCol)), split = separator)))
+            onehotDF <- data.frame("X__priVate__X" = 1:length(aCol))
+            for(j in uniqueValues) {
+                if (j != '')
+                    onehotDF[, j] <- ifelse(grepl(j, aCol, fixed = TRUE),1,0)
+            }
+            if (na)
+                onehotDF[is.na(aCol),] <- NA
+            onehotDF[,"X__priVate__X"] <- NULL
+            return(onehotDF)
         }
     )
 )
