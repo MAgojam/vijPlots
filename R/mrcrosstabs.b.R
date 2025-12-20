@@ -3,17 +3,45 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = mrcrosstabsBase,
     private = list(
         .init = function() {
+            table <- self$results$crosstab
+            # Table title
+            if ( self$options$computedValues == "options" ) {
+                table$setTitle(.("Crosstab (% by row)"))
+            } else if ( self$options$computedValues == "cases" ) {
+                table$setTitle(.("Crosstab (% of Cases)"))
+            } else if ( self$options$computedValues == "responses" ) {
+                table$setTitle(.("Crosstab (% of Responses)"))
+            }
+            # Table rows
+            for (i in seq_along(self$options$resps))
+                table$addRow(rowKey = i)
             # Add the "total" row here (to prevent flickering)
             if ( self$options$totalRow ) {
-                self$results$crosstab$addRow(rowKey='.total', values=list(var="Total"))
-                self$results$crosstab$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
+                table$addRow(rowKey='.total', values=list(var="Total"))
+                table$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
             }
             if ( self$options$showNbOfCases && ( self$options$computedValues == "count" || self$options$computedValues == "options") ) {
-                self$results$crosstab$addRow(rowKey='.nbofcases', values=list(var=.("Number of cases")))
-                self$results$crosstab$addFormat(rowKey=".nbofcases", col=1, Cell.BEGIN_GROUP)
+                table$addRow(rowKey='.nbofcases', values=list(var=.("Number of cases")))
+                table$addFormat(rowKey=".nbofcases", col=1, Cell.BEGIN_GROUP)
             }
             # Set custom name for options column
-            self$results$crosstab$getColumn('var')$setTitle(self$options$optionname)
+            table$getColumn('var')$setTitle(self$options$optionname)
+            # Cell Type
+            if ( self$options$computedValues == "count" ) {
+                cellType = "integer"
+                cellFormat = ""
+            } else {
+                cellType = "number"
+                cellFormat = "pc"
+            }
+            # Columns
+            if ( ! is.null(self$options$group) ) {
+                groups <- self$data[,self$options$group]
+                for(i in 1:nlevels(groups))
+                    table$addColumn(name = levels(groups)[i], type=cellType, format=cellFormat, superTitle=self$options$group)
+            }
+            table$addColumn(name = "Total", title=.("Overall"), type=cellType, format=cellFormat, visible=self$options$overall)
+
             # Set the size of the plot
             image <- self$results$plot
             size <- self$options$size
@@ -28,53 +56,33 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
 
         .run = function() {
-            # Table setup
-            if ( self$options$computedValues == "count" ) {
-                cellType = "integer"
-                cellFormat = ""
-            } else {
-                cellType = "number"
-                cellFormat = "pc"
-            }
             table <- self$results$crosstab
-            if ( self$options$computedValues == "options" ) {
-                table$setTitle(.("Crosstab (% by row)"))
-            } else if ( self$options$computedValues == "cases" ) {
-                table$setTitle(.("Crosstab (% of Cases)"))
-            } else if ( self$options$computedValues == "responses" ) {
-                table$setTitle(.("Crosstab (% of Responses)"))
-            }
-            # Columns
-            if ( ! is.null(self$options$group) ) {
-                groups <- self$data[,self$options$group]
-                for(i in 1:nlevels(groups))
-                    table$addColumn(name = levels(groups)[i], type=cellType, format=cellFormat, superTitle=self$options$group)
-                table$addColumn(name = "Total", title=.("Overall"), type=cellType, format=cellFormat, visible=self$options$overall)
-            }
             # Exceptions
             if ( length(self$options$resps) < 1 )
                 return()
             if ( length(self$options$resps) == 1 || is.null(self$options$group)) {
                 for(i in 1:length(self$options$resps)) {
-                    table$setCell(rowKey = self$options$resps[i] ,1,self$options$resps[i])
+                    #table$setCell(rowKey = self$options$resps[i] ,1,self$options$resps[i])
+                    table$setCell(rowNo = i, 1, self$options$resps[i])
                 }
                 return()
             }
             # Computation
+            groups <- self$data[,self$options$group]
             crosstab <- private$.crossTab(self$data, self$options$resps, self$options$group,
                                           self$options$endorsed, self$options$order, self$options$computedValues)
             # Filling the table
             for(i in 1:(nrow(crosstab)-2))
-                table$setRow(rowNo=i,
+                table$setRow(rowKey=i,
                              values = c(var=rownames(crosstab)[i], crosstab[i,]))
-            if ( self$options$totalRow )
-                table$setRow(rowKey='.total', values = crosstab[i+1,])
+            if ( self$options$totalRow ) {
+                table$setRow(rowKey='.total', values = c(var="Total", crosstab[i+1,]))
+            }
             if ( self$options$showNbOfCases && (self$options$computedValues == "count" || self$options$computedValues == "options") ) {
-                table$setRow(rowKey='.nbofcases', values = crosstab[i+2,])
+                table$setRow(rowKey='.nbofcases', values = append(list(var=.("Number of cases")), crosstab[i+2,]))
             }
             image <- self$results$plot
             image$setState(crosstab[1:length(self$options$resps),1:nlevels(groups)])
-
         },
 
         .plot = function(image, ggtheme, theme, ...) {  # <-- the plot function

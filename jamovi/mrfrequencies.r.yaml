@@ -7,7 +7,7 @@ items:
     # - name:  text
     #   title: Debug
     #   type:  Preformatted
-    #
+
     - name:  helpMessage
       title: ""
       type:  Html
@@ -30,7 +30,7 @@ items:
             <p>Questions may be coded as :
             <ul>
                 <li>several <strong>dummy (or indicator) variables</strong> using 1/0 or Y/N for each possible answer</li>
-                <li>a single <strong>multi-valued variable</strong> containing the different checked answers, separated by a symbol (, or ; usually).</li>
+                <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually "," or ";").</li>
             </ul></p>
 
             <p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>

@@ -7,7 +7,7 @@ items:
     - name:  crosstab
       title: Crosstab
       type: Table
-      rows:  (resps)
+#      rows:  (resps)
       columns:
         - name: var
           title: 'Options'

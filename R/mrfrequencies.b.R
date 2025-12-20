@@ -3,9 +3,12 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
     inherit = mrfrequenciesBase,
     private = list(
         .init = function() {
-            if (is.null(self$options$repVar) && length(self$options$resps) < 1) {
+            morevar <- (self$options$mode == "morevar")
+            # Show help message (and hide results)
+            if ((!morevar && is.null(self$options$repVar)) || (morevar && length(self$options$resps) < 1)) {
                 self$results$responses$setVisible(FALSE)
                 self$results$plot$setVisible(FALSE)
+                return()
             } else {
                 self$results$helpMessage$setVisible(FALSE)
             }
@@ -14,9 +17,22 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 self$results$responses$getColumn('var')$setTitle(self$options$optionname)
             else
                 self$results$responses$getColumn('var')$setTitle(self$options$repVar)
-            # Add the "total" row here (to prevent flickering)
-#            if (self$options$showTotal)
-#                self$results$responses$addRow(rowKey='.total', values=list(var="Total"))
+            # Set the rows
+            if (self$options$mode == "morevar") {
+                for (i in seq_along(self$options$resps))
+                    self$results$responses$addRow(rowKey = i)
+            } else {
+                aCol <- self$data[[self$options$repVar]]
+                uniqueValues <- unique(unlist(strsplit(levels(aCol), split = self$options$separator)))
+                uniqueValues <- uniqueValues[uniqueValues != ""]
+                for (i in seq_along(uniqueValues))
+                    self$results$responses$addRow(rowKey = i)
+            }
+            # Add the "total" row
+            if (self$options$showTotal) {
+                self$results$responses$addRow(rowKey='.total', values=list(var="Total"))
+                self$results$responses$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
+            }
             # Set the size of the plot
             image <- self$results$plot
             size <- self$options$size
@@ -41,16 +57,15 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 if (is.null(self$options$repVar) || self$options$separator == '') {
                     return()
                 } else {
-                    rawData <- as.character(self$data[[self$options$repVar]])
+                    rawData <- self$data[[self$options$repVar]]
                     oneHotData <- private$.oneHotEncoding(rawData, self$options$separator, self$options$emptyAsNA)
-                    #self$results$text$setContent(oneHotData)
                     myresult <- private$.multipleResponse(oneHotData, names(oneHotData), self$options$endorsed, self$options$order)
                 }
             }
 
             table <- self$results$responses
             for(i in 1:(nrow(myresult$df)-1))
-                table$addRow(rowKey=i,
+                table$setRow(rowNo=i,
                              values=list(var=myresult$df[i,1],
                                          freq=myresult$df[i,2],
                                          responsepercent=myresult$df[i,3],
@@ -58,12 +73,11 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
             if ( self$options$showTotal ) {
                 i <- nrow(myresult$df)
-                table$addRow(rowKey=".total",
+                table$setRow(rowKey=".total",
                              values=list(var="Total",
                                          freq=myresult$df[i,2],
                                          responsepercent=myresult$df[i,3],
                                          casepercent=myresult$df[i,4]))
-                table$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
             }
 
             table$setNote('noc', paste(.("Number of cases:"), myresult$nrOfCases) , init=FALSE)
@@ -138,11 +152,12 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
         },
         .oneHotEncoding = function (aCol, separator, na = TRUE) {
-            uniqueValues <- unique(unlist(strsplit(unique(na.omit(aCol)), split = separator)))
+            #uniqueValues <- unique(unlist(strsplit(unique(na.omit(aCol)), split = separator)))
+            uniqueValues <- unique(unlist(strsplit(levels(aCol), split = separator)))
+            uniqueValues <- uniqueValues[uniqueValues != ""]
             onehotDF <- data.frame("X__priVate__X" = 1:length(aCol))
             for(j in uniqueValues) {
-                if (j != '')
-                    onehotDF[, j] <- ifelse(grepl(j, aCol, fixed = TRUE),1,0)
+                onehotDF[, j] <- ifelse(grepl(j, aCol, fixed = TRUE),1,0)
             }
             if (na)
                 onehotDF[is.na(aCol),] <- NA
