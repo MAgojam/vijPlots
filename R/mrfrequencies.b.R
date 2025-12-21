@@ -12,26 +12,27 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             } else {
                 self$results$helpMessage$setVisible(FALSE)
             }
+            table <- self$results$responses
             # Set custom name for options column
             if (self$options$mode == "morevar")
-                self$results$responses$getColumn('var')$setTitle(self$options$optionname)
+                table$getColumn('var')$setTitle(self$options$optionname)
             else
-                self$results$responses$getColumn('var')$setTitle(self$options$repVar)
+                table$getColumn('var')$setTitle(self$options$repVar)
             # Set the rows
             if (self$options$mode == "morevar") {
                 for (i in seq_along(self$options$resps))
-                    self$results$responses$addRow(rowKey = i)
+                    table$addRow(rowKey = i)
             } else {
                 aCol <- self$data[[self$options$repVar]]
                 uniqueValues <- unique(unlist(strsplit(levels(aCol), split = self$options$separator)))
                 uniqueValues <- uniqueValues[uniqueValues != ""]
                 for (i in seq_along(uniqueValues))
-                    self$results$responses$addRow(rowKey = i)
+                    table$addRow(rowKey = i)
             }
             # Add the "total" row
             if (self$options$showTotal) {
-                self$results$responses$addRow(rowKey='.total', values=list(var="Total"))
-                self$results$responses$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
+                table$addRow(rowKey='.total', values=list(var="Total"))
+                table$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
             }
             # Set the size of the plot
             image <- self$results$plot
@@ -42,12 +43,13 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 image$setSize(400,300)
             else if ( size == "large" )
                 image$setSize(600,400)
+            else if ( size == "wide" )
+                image$setSize(700,400)
             else if ( size == "huge" )
                 image$setSize(800,500)
         },
         .run = function() {
-            morevar <- (self$options$mode == "morevar")
-            if (morevar) { # Several dychotomous variables
+            if (self$options$mode == "morevar") { # Several dychotomous variables
                 if (length(self$options$resps) < 1) {
                     return()
                 } else {
@@ -59,7 +61,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 } else {
                     rawData <- self$data[[self$options$repVar]]
                     oneHotData <- private$.oneHotEncoding(rawData, self$options$separator, self$options$emptyAsNA)
-                    myresult <- private$.multipleResponse(oneHotData, names(oneHotData), self$options$endorsed, self$options$order)
+                    myresult <- private$.multipleResponse(oneHotData, names(oneHotData), 1, self$options$order)
                 }
             }
 

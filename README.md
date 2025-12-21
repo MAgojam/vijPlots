@@ -69,9 +69,9 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
-### 2025-12-16 / 0.11.1 (dev)
+### 2025-12-21 / 0.11.1 (beta)
 
--   Multiple Response Frequencies 
+-   Multiple Response Frequencies/crosstab can handle multi-valued variable
 
 ### 2025-12-16 / 0.11.0 (beta)
 

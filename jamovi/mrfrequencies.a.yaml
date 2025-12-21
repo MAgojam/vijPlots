@@ -110,6 +110,8 @@ options:
           name:  medium
         - title: Large (600x400)
           name:  large
+        - title: Wide (700x400)
+          name:  wide
         - title: Huge (800x500)
           name:  huge
       default: medium

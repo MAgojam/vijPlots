@@ -6,8 +6,13 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
+            mode = NULL,
+            repVar = NULL,
+            separator = ";",
+            emptyAsNA = TRUE,
             resps = NULL,
             group = NULL,
+            group2 = NULL,
             endorsed = 1,
             optionname = "Options",
             order = "decreasing",
@@ -47,10 +52,30 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 requiresData=TRUE,
                 ...)
 
+            private$..mode <- jmvcore::OptionList$new(
+                "mode",
+                mode,
+                options=list(
+                    "morevar",
+                    "onevar"))
+            private$..repVar <- jmvcore::OptionVariable$new(
+                "repVar",
+                repVar,
+                suggested=list(
+                    "nominal"),
+                permitted=list(
+                    "factor"))
+            private$..separator <- jmvcore::OptionString$new(
+                "separator",
+                separator,
+                default=";")
+            private$..emptyAsNA <- jmvcore::OptionBool$new(
+                "emptyAsNA",
+                emptyAsNA,
+                default=TRUE)
             private$..resps <- jmvcore::OptionVariables$new(
                 "resps",
                 resps,
-                required=TRUE,
                 suggested=list(
                     "nominal"),
                 permitted=list(
@@ -58,6 +83,14 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             private$..group <- jmvcore::OptionVariable$new(
                 "group",
                 group,
+                suggested=list(
+                    "nominal",
+                    "ordinal"),
+                permitted=list(
+                    "factor"))
+            private$..group2 <- jmvcore::OptionVariable$new(
+                "group2",
+                group2,
                 suggested=list(
                     "nominal",
                     "ordinal"),
@@ -121,6 +154,7 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "small",
                     "medium",
                     "large",
+                    "wide",
                     "huge"),
                 default="medium")
             private$..colorPalette <- jmvcore::OptionList$new(
@@ -334,8 +368,13 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "0"),
                 default="0.5")
 
+            self$.addOption(private$..mode)
+            self$.addOption(private$..repVar)
+            self$.addOption(private$..separator)
+            self$.addOption(private$..emptyAsNA)
             self$.addOption(private$..resps)
             self$.addOption(private$..group)
+            self$.addOption(private$..group2)
             self$.addOption(private$..endorsed)
             self$.addOption(private$..optionname)
             self$.addOption(private$..order)
@@ -370,8 +409,13 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..yAxisPosition)
         }),
     active = list(
+        mode = function() private$..mode$value,
+        repVar = function() private$..repVar$value,
+        separator = function() private$..separator$value,
+        emptyAsNA = function() private$..emptyAsNA$value,
         resps = function() private$..resps$value,
         group = function() private$..group$value,
+        group2 = function() private$..group2$value,
         endorsed = function() private$..endorsed$value,
         optionname = function() private$..optionname$value,
         order = function() private$..order$value,
@@ -405,8 +449,13 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         yAxisFontSize = function() private$..yAxisFontSize$value,
         yAxisPosition = function() private$..yAxisPosition$value),
     private = list(
+        ..mode = NA,
+        ..repVar = NA,
+        ..separator = NA,
+        ..emptyAsNA = NA,
         ..resps = NA,
         ..group = NA,
+        ..group2 = NA,
         ..endorsed = NA,
         ..optionname = NA,
         ..order = NA,
@@ -445,6 +494,8 @@ mrcrosstabsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
     "mrcrosstabsResults",
     inherit = jmvcore::Group,
     active = list(
+        text = function() private$.items[["text"]],
+        helpMessage = function() private$.items[["helpMessage"]],
         crosstab = function() private$.items[["crosstab"]],
         plot = function() private$.items[["plot"]]),
     private = list(),
@@ -454,6 +505,16 @@ mrcrosstabsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 options=options,
                 name="",
                 title="Multiple Response Crosstab")
+            self$add(jmvcore::Preformatted$new(
+                options=options,
+                name="text",
+                title="Debug"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="helpMessage",
+                title="",
+                visible=TRUE,
+                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Response Crosstab Help</strong></p>\n<p>This module computes crosstab frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 0/1 or 1/2 for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>\n</div>"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="crosstab",
@@ -464,13 +525,20 @@ mrcrosstabsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                         `title`="Options", 
                         `type`="text")),
                 clearWith=list(
+                    "mode",
+                    "repVar",
+                    "group2",
+                    "separator",
+                    "emptyAsNA",
                     "resps",
-                    "endorsed",
-                    "order",
                     "group",
-                    "computedValues",
+                    "endorsed",
                     "optionname",
-                    "showNbOfCases")))
+                    "order",
+                    "computedValues",
+                    "showNbOfCases",
+                    "totalRow",
+                    "overall")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
@@ -504,8 +572,13 @@ mrcrosstabsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param data .
+#' @param mode .
+#' @param repVar .
+#' @param separator .
+#' @param emptyAsNA .
 #' @param resps .
 #' @param group .
+#' @param group2 .
 #' @param endorsed .
 #' @param optionname .
 #' @param order .
@@ -540,6 +613,8 @@ mrcrosstabsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
+#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$crosstab} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #' }
@@ -553,8 +628,13 @@ mrcrosstabsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 mrcrosstabs <- function(
     data,
+    mode,
+    repVar,
+    separator = ";",
+    emptyAsNA = TRUE,
     resps,
     group,
+    group2,
     endorsed = 1,
     optionname = "Options",
     order = "decreasing",
@@ -591,20 +671,31 @@ mrcrosstabs <- function(
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("mrcrosstabs requires jmvcore to be installed (restart may be required)")
 
+    if ( ! missing(repVar)) repVar <- jmvcore::resolveQuo(jmvcore::enquo(repVar))
     if ( ! missing(resps)) resps <- jmvcore::resolveQuo(jmvcore::enquo(resps))
     if ( ! missing(group)) group <- jmvcore::resolveQuo(jmvcore::enquo(group))
+    if ( ! missing(group2)) group2 <- jmvcore::resolveQuo(jmvcore::enquo(group2))
     if (missing(data))
         data <- jmvcore::marshalData(
             parent.frame(),
+            `if`( ! missing(repVar), repVar, NULL),
             `if`( ! missing(resps), resps, NULL),
-            `if`( ! missing(group), group, NULL))
+            `if`( ! missing(group), group, NULL),
+            `if`( ! missing(group2), group2, NULL))
 
+    for (v in repVar) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
     for (v in resps) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
     for (v in group) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
+    for (v in group2) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
 
     options <- mrcrosstabsOptions$new(
+        mode = mode,
+        repVar = repVar,
+        separator = separator,
+        emptyAsNA = emptyAsNA,
         resps = resps,
         group = group,
+        group2 = group2,
         endorsed = endorsed,
         optionname = optionname,
         order = order,

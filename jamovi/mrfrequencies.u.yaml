@@ -59,7 +59,7 @@ children:
                         isTarget: true
                         maxItemCount: 1
               - type: Label
-                label: Multiple Value Variable
+                label: Multi-valued Variable
                 children:
                   - type: LayoutBox
                     margin: large
