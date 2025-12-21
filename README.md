@@ -1,6 +1,9 @@
 # vijPlots
 
-[jamovi](https://www.jamovi.org) module as ggplot2 wrapper to generate basic stats plots (histogram, boxplot, barplot, piechart,...) with many options along with Multiple Response, Likert Barplots and Raincloud plots.
+[jamovi](https://www.jamovi.org) module as ggplot2 wrapper to generate 
+basic stats plots (histogram, boxplot, barplot, piechart,...) 
+with many options along with Likert and multiple response barplots, 
+Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Histogram
 
@@ -65,6 +68,10 @@
 ![](img/mca.jpg)
 
 ## Version history
+
+### 2025-12-21 / 0.11.1 (beta)
+
+-   Multiple Response Frequencies/crosstab can handle multi-valued variable
 
 ### 2025-12-16 / 0.11.0 (beta)
 

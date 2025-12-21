@@ -8,10 +8,19 @@
             "8": [
                 ""
             ],
+            "9": [
+                ""
+            ],
             "10": [
                 ""
             ],
+            "11": [
+                ""
+            ],
             "12": [
+                ""
+            ],
+            "13": [
                 ""
             ],
             "14": [
@@ -63,6 +72,9 @@
             },
             " doesn't have a valid date format.": [
                 " n'a pas un format de date valide."
+            ],
+            ";": [
+                ""
             ],
             ".": [
                 ","
@@ -155,6 +167,9 @@
                 ""
             ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Correspondence Analysis Help</strong></p>\n<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</strong> for several categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>Both classics methods are available: <ul> <li><strong>Indicator matrix:</strong> CA of the indicator matrix</li> <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator method. </li> </ul> </p>\n<p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>\n<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of catories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n<p>The <strong>Normalization</strong> options specify how the coordinates are scaled: <ul> <li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li> <li><strong>Category principal:</strong> Only category coordinates are scaled.</li> <li><strong>Observation principal:</strong> Only observation coordinates are scaled.</li> <li><strong>Standard:</strong> Both category and observation coordinates are standard.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Cars</p>\n</div>": [
+                ""
+            ],
+            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Response Frequencies Help</strong></p>\n<p>This module computes frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 1/0 or Y/N for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>\n</div>": [
                 ""
             ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Analysis Help</strong></p>\n<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).\n<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n<p><strong>Advanced options</strong>: <ul> <li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li> <li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li> <li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (Stata way).</li> </ul> </p>\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n</div>": [
@@ -372,6 +387,12 @@
             ],
             "Caption": [
                 "Légende"
+            ],
+            "Caption Style": [
+                ""
+            ],
+            "Caption Text": [
+                ""
             ],
             "Cars": [
                 ""
@@ -631,6 +652,9 @@
             "DSCF p-values are adjusted groupwise.": [
                 "Les probabilités critiques DSCF sont corrigées par groupe"
             ],
+            "Dummy Variables": [
+                "Variables dichotomiques"
+            ],
             "Dunn": [
                 ""
             ],
@@ -645,6 +669,9 @@
             ],
             "Eigenvalues": [
                 "Valeurs propres"
+            ],
+            "Empty value as NA": [
+                "Considérer les valeurs vides comme manquantes"
             ],
             "en_US.utf-8": [
                 "fr_FR.utf-8"
@@ -1042,6 +1069,9 @@
             "Minimum of": [
                 "Minimum de"
             ],
+            "Multi-valued Variable": [
+                "Variable à valeurs multiples"
+            ],
             "Multiple Correspondence Analysis": [
                 "Analyse des correspondances multiples"
             ],
@@ -1053,6 +1083,9 @@
             ],
             "Multiple Response Frequencies": [
                 "Réponses multiples - Fréquences"
+            ],
+            "Multiple Value Variable": [
+                ""
             ],
             "Multivariate": [
                 "Multivarié"
@@ -1465,6 +1498,9 @@
             "SD": [
                 "Ecart-type"
             ],
+            "Separator": [
+                "Séparateur"
+            ],
             "Set 1": [
                 ""
             ],
@@ -1500,9 +1536,6 @@
             ],
             "Show points with missing group/label": [
                 "Afficher les points avec groupe manquant"
-            ],
-            "Show Scree Plot": [
-                "Valeurs propres"
             ],
             "Show Totals (Centered Only)": [
                 "Afficher les totaux (centrées)"
@@ -1785,9 +1818,6 @@
             ],
             "Y-axis (without group)": [
                 "Axe Y (sans groupe)"
-            ],
-            "Y-Label": [
-                "Axe Y"
             ],
             "Yellow": [
                 "Jaune"

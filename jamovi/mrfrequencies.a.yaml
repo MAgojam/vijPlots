@@ -11,10 +11,36 @@ options:
     - name: data
       type: Data
 
+    - name: mode
+      title: ""
+      type: List
+      options:
+            - name: morevar
+              title: "Dummy Variables"
+            - name: onevar
+              title: "Multi-valued Variable"
+
+    - name: repVar
+      title: Multiple Value Variable
+      type: Variable
+      suggested:
+        - nominal
+      permitted:
+        - factor
+
+    - name: separator
+      title: Separator
+      type: String
+      default: ';'
+
+    - name: emptyAsNA
+      title: Empty value as NA
+      type: Bool
+      default: true
+
     - name: resps
       title: Option Variables
       type: Variables
-      required: true
       suggested:
         - nominal
       permitted:
@@ -84,6 +110,8 @@ options:
           name:  medium
         - title: Large (600x400)
           name:  large
+        - title: Wide (700x400)
+          name:  wide
         - title: Huge (800x500)
           name:  huge
       default: medium

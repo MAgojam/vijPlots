@@ -4,31 +4,79 @@ jus: '3.0'
 stage: 0
 compilerMode: tame
 children:
-  - type: VariableSupplier
-    persistentItems: false
+  - type: ModeSelector
+    name: mode
     stretchFactor: 1
     children:
-      - type: TargetLayoutBox
-        label: Option Variables
+      - type: Content
+        name: morevar
         children:
-          - type: VariablesListBox
-            name: resps
-            isTarget: true
-  - type: Label
-    label: Option Variables
-    children:
-      - type: LayoutBox
-        stretchFactor: 1
-        style: inline
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            children:
+              - type: VariableSupplier
+                persistentItems: false
+                stretchFactor: 1
+                children:
+                  - type: TargetLayoutBox
+                    label: Option Variables
+                    children:
+                      - type: VariablesListBox
+                        name: resps
+                        isTarget: true
+          - type: Label
+            label: Option Variables
+            children:
+              - type: LayoutBox
+                stretchFactor: 1
+                style: inline
+                children:
+                  - type: TextBox
+                    name: endorsed
+                    format: number
+                    stretchFactor: 1
+                  - type: TextBox
+                    name: optionname
+                    format: string
+                    stretchFactor: 1
+      - type: Content
+        name: onevar
         children:
-          - type: TextBox
-            name: endorsed
-            format: number
+          - type: LayoutBox
+            margin: large
             stretchFactor: 1
-          - type: TextBox
-            name: optionname
-            format: string
-            stretchFactor: 1
+            children:
+              - type: VariableSupplier
+                persistentItems: false
+                stretchFactor: 1
+                children:
+                  - type: TargetLayoutBox
+                    label: Multi-valued Variable
+                    children:
+                      - type: VariablesListBox
+                        name: repVar
+                        isTarget: true
+                        maxItemCount: 1
+              - type: Label
+                label: Multi-valued Variable
+                children:
+                  - type: LayoutBox
+                    margin: large
+                    stretchFactor: 1
+                    style: inline
+                    children:
+                      - type: LayoutBox
+                        margin: large
+                        children:
+                          - type: TextBox
+                            name: separator
+                            format: string
+                      - type: LayoutBox
+                        margin: large
+                        children:
+                          - type: CheckBox
+                            name: emptyAsNA
   - type: LayoutBox
     margin: large
     stretchFactor: 1
