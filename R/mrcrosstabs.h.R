@@ -494,7 +494,6 @@ mrcrosstabsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
     "mrcrosstabsResults",
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$.items[["text"]],
         helpMessage = function() private$.items[["helpMessage"]],
         crosstab = function() private$.items[["crosstab"]],
         plot = function() private$.items[["plot"]]),
@@ -505,10 +504,6 @@ mrcrosstabsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 options=options,
                 name="",
                 title="Multiple Response Crosstab")
-            self$add(jmvcore::Preformatted$new(
-                options=options,
-                name="text",
-                title="Debug"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="helpMessage",
@@ -613,7 +608,6 @@ mrcrosstabsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$crosstab} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
