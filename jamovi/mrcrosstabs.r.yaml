@@ -4,9 +4,9 @@ title: Multiple Response Crosstab
 jrs:   '1.1'
 
 items:
-    - name:  text
-      title: Debug
-      type:  Preformatted
+    # - name:  text
+    #   title: Debug
+    #   type:  Preformatted
 
     - name:  helpMessage
       title: ""
