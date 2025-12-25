@@ -14,12 +14,12 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             }
             table <- self$results$responses
             # Set custom name for options column
-            if (self$options$mode == "morevar")
+            if (morevar)
                 table$getColumn('var')$setTitle(self$options$optionname)
             else
                 table$getColumn('var')$setTitle(self$options$repVar)
             # Set the rows
-            if (self$options$mode == "morevar") {
+            if (morevar) {
                 for (i in seq_along(self$options$resps))
                     table$addRow(rowKey = i)
             } else {
@@ -154,7 +154,6 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
         },
         .oneHotEncoding = function (aCol, separator, na = TRUE) {
-            #uniqueValues <- unique(unlist(strsplit(unique(na.omit(aCol)), split = separator)))
             uniqueValues <- unique(unlist(strsplit(levels(aCol), split = separator)))
             uniqueValues <- uniqueValues[uniqueValues != ""]
             onehotDF <- data.frame("X__priVate__X" = 1:length(aCol))

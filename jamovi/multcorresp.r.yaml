@@ -40,7 +40,7 @@ items:
             <p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>
 
             <p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table).
-            Coordinates (and inertia) of catories and observations are computed from the original eigenvalues of the Burt matrix.</p>
+            Coordinates (and inertia) of categories and observations are computed from the original eigenvalues of the Burt matrix.</p>
 
             <p>The <strong>Normalization</strong> options specify how the coordinates are scaled:
             <ul>

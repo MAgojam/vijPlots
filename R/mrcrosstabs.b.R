@@ -230,7 +230,6 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             return(crossTab)
         },
         .oneHotEncoding = function (aCol, separator, na = TRUE) {
-            #uniqueValues <- unique(unlist(strsplit(unique(na.omit(aCol)), split = separator)))
             uniqueValues <- unique(unlist(strsplit(levels(aCol), split = separator)))
             uniqueValues <- uniqueValues[uniqueValues != ""]
             onehotDF <- data.frame("X__priVate__X" = 1:length(aCol))
