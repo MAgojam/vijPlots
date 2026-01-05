@@ -92,6 +92,17 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Theme and colors
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color")
 
+            # Axis Limits
+            if (self$options$yAxisRangeType == "manual")
+                yLim <- c(self$options$yAxisRangeMin, self$options$yAxisRangeMax)
+            else
+                yLim <- NULL
+            if (self$options$xAxisRangeType == "manual")
+                xLim <- c(self$options$xAxisRangeMin, self$options$xAxisRangeMax)
+            else
+                xLim <- NULL
+            plot <- plot + coord_cartesian(ylim = yLim, xlim = xLim)
+
             if( self$options$plotBorder ) {
                 plot <- plot + theme(axis.line = element_line(linewidth = 0), panel.border = element_rect(color = "black", fill = NA, size = 1))
             }

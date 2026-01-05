@@ -25,26 +25,7 @@ vijPalette = function(pal, type = "fill", themePal = NULL) {
     }
 }
 
-# Convert NULL string to '' (workaround String Option default:'' bug)
-#vijString = function(x) ifelse(is.null(x),'',x)
-#
-# vijTitle = function(options, defaults = list()) {
-#     # Title
-#     title <- vijString(options$titleText)
-#     if (title == "")
-#         title <- NULL
-#     else if (title == "default")
-#         title <- defaults$title
-#     # Subtitle
-#     subtitle <- vijString(options$subtitleText)
-#     if (subtitle == "")
-#         subtitle <- NULL
-#     # Caption
-#     caption <- vijString(options$captionText)
-#     if (caption == "")
-#         caption <- NULL
-#     return(ggplot2::labs(title = title, subtitle = subtitle, caption = caption))
-# }
+
 
 vijTitlesAndLabels = function(options, defaults = list(), plotType = '') {
     horizontal <- options[["horizontal"]]  %||% FALSE
@@ -96,7 +77,29 @@ vijTitlesAndLabels = function(options, defaults = list(), plotType = '') {
     return(ggplot2::labs(title = title, subtitle = subtitle, caption = caption, fill = legend, color = legend, shape = legend, size = legend, x = x, y = y))
 }
 
+# vijAxes = function(options) {
+#     #xLabelFontSize <- options$xLabelFontSize
+#     #xLabelAlign <- options$xLabelAlign
+#     #yLabelFontSize <- options$yLabelFontSize
+#     #yLabelAlign <- options$yLabelAlign
+#     xAxisLabelFontSize <- options$xAxisLabelFontSize
+#     xAxisLabelRotation <- options$xAxisLabelRotation
+#     yAxisLabelFontSize <- options$yAxisLabelFontSize
+#     yAxisLabelRotation <- options$yAxisLabelRotation
+#     return(ggplot2::theme(
+#         axis.text.x = ggplot2::element_text(
+#                 size = xAxisLabelFontSize,
+#                 angle = xAxisLabelRotation
+#             ),
+#             axis.text.y = ggplot2::element_text(
+#                 size = yAxisLabelFontSize,
+#                 angle = yAxisLabelRotation)
+#         )
+#     )
+# }
+
 vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
+    horizontal <- options[["horizontal"]]  %||% FALSE
     if (showLegend) {
         legendPosition  <- options$legendPosition
         legendFontSize <- as.integer(options$legendFontSize)
@@ -104,7 +107,12 @@ vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
         legendPosition <- "none"
         legendFontSize <- 14
     }
+    xAxisLabelFontSize <- options[["xAxisLabelFontSize"]] %||% 12
+    xAxisLabelRotation <- options[["xAxisLabelRotation"]] %||% 0
+    yAxisLabelFontSize <- options[["yAxisLabelFontSize"]] %||% 12
+    yAxisLabelRotation <- options[["yAxisLabelRotation"]] %||% 0
     return(ggplot2::theme(
+        # Title, subtitle and caption
         plot.title = element_text(
             size = options$titleFontSize,
             face = options$titleFontFace,
@@ -118,11 +126,13 @@ vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
             size = options$captionFontSize,
             face = options$captionFontFace,
             hjust = as.numeric(options$captionAlign)),
+        # Legend
         legend.title=element_text(
             size = (legendFontSize + 1)),
         legend.text=element_text(
             size = legendFontSize),
         legend.position = legendPosition,
+        # Axis Titles
         axis.title.x = element_text(
             size = options[["xAxisFontSize"]] %||% 14,
             hjust = as.numeric(options[["xAxisPosition"]] %||% 0)
@@ -130,25 +140,14 @@ vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
         axis.title.y = element_text(
             size = options[["yAxisFontSize"]] %||% 14,
             hjust = as.numeric(options[["yAxisPosition"]] %||% 0)
-        )
+        ),
+        # Axis Labels
+        axis.text.x = ggplot2::element_text(
+            size = xAxisLabelFontSize,
+            angle = xAxisLabelRotation
+        ),
+        axis.text.y = ggplot2::element_text(
+            size = yAxisLabelFontSize,
+            angle = yAxisLabelRotation)
     ))
 }
-
-# vijTitleFormat = function(options) {
-#     return(ggplot2::theme(
-#         plot.title = element_text(
-#             size = options$titleFontSize,
-#             face = options$titleFontFace,
-#             hjust = as.numeric(options$titleAlign)),
-#         plot.subtitle = element_text(
-#             size = options$subtitleFontSize,
-#             face = options$subtitleFontFace,
-#             hjust = as.numeric(options$subtitleAlign),
-#             margin = margin(-5, 0, 15, 0)),
-#         plot.caption = element_text(
-#             size = options$captionFontSize,
-#             face = options$captionFontFace,
-#             hjust = as.numeric(options$captionAlign))
-#     ))
-# }
-

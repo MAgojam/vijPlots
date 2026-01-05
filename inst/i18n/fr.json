@@ -286,8 +286,8 @@
             "Auto": [
                 ""
             ],
-            "Axis Labels": [
-                ""
+            "Axis Titles": [
+                "Titre des axes"
             ],
             "Bar Plot": [
                 "Diagramme en barres"

@@ -149,11 +149,22 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
 
-            if (self$options$horizontal)
-                plot <- plot + coord_flip()
+#            if (self$options$horizontal)
+#                plot <- plot + coord_flip()
 
             # Theme and colors
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color") + vijScale(self$options$colorPalette, "fill") + vijScale(self$options$colorPalette, "slab_color")
+
+            # Axis Limits & flip
+            if (self$options$horizontal) {
+                if (self$options$xAxisRangeType == "manual") {
+                    plot <- plot + coord_flip(ylim = c(self$options$xAxisRangeMin, self$options$xAxisRangeMax))
+                } else {
+                    plot <- plot + coord_flip()
+                }
+            } else if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
+            }
 
             # Legend spacing
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)

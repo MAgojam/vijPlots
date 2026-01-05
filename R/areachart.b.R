@@ -23,8 +23,6 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     else
                         width <- width + 50
                 }
-                if (self$options$rotateLabels)
-                    height <- height + 50
             }
             if (userWidth >0)
                 width = userWidth
@@ -141,9 +139,6 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + scale_x_date(date_labels = self$options$displayFormat, date_breaks = self$options$dateBreak)
             }
 
-            if (self$options$rotateLabels)
-                plot <- plot + theme(axis.text.x=element_text(angle=60, hjust=0.5))
-
             if (self$options$position == "fill")
                 plot <- plot + scale_y_continuous(labels=percent_format())
 
@@ -160,6 +155,10 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 yLab <- depVar
             }
 
+            # Axis range
+            if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
+            }
 
             # Titles & Labels
             defaults <- list(y = yLab, x = timeVar, legend = groupVar)

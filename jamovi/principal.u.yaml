@@ -243,7 +243,7 @@ children:
                   - type: ComboBox
                     name: labelColor
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

@@ -204,6 +204,17 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             plot <- plot + theme(text=element_text(size=as.numeric(self$options$textSize)))
 
+            # Axis Limits
+            if (self$options$yAxisRangeType == "manual")
+                yLim <- c(self$options$yAxisRangeMin, self$options$yAxisRangeMax)
+            else
+                yLim <- NULL
+            if (self$options$xAxisRangeType == "manual")
+                xLim <- c(self$options$xAxisRangeMin, self$options$xAxisRangeMax)
+            else
+                xLim <- NULL
+            plot <- plot + coord_cartesian(ylim = yLim, xlim = xLim)
+
             # Titles & Labels
             defaults <- list(title = plotTitle, x = xLab , y = yLab, legend = groupVar)
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)

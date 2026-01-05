@@ -42,7 +42,17 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             plotWidth = 0,
             plotHeight = 0,
             facetBy = "column",
-            facetNumber = 1, ...) {
+            facetNumber = 1,
+            yAxisLabelFontSize = 12,
+            yAxisLabelRotation = 0,
+            yAxisRangeType = "auto",
+            yAxisRangeMin = 0,
+            yAxisRangeMax = 10,
+            xAxisLabelFontSize = 12,
+            xAxisLabelRotation = 0,
+            xAxisRangeType = "auto",
+            xAxisRangeMin = 0,
+            xAxisRangeMax = 10, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -386,6 +396,56 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 min=1,
                 max=10,
                 default=1)
+            private$..yAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "yAxisLabelFontSize",
+                yAxisLabelFontSize,
+                default=12)
+            private$..yAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "yAxisLabelRotation",
+                yAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..yAxisRangeType <- jmvcore::OptionList$new(
+                "yAxisRangeType",
+                yAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..yAxisRangeMin <- jmvcore::OptionNumber$new(
+                "yAxisRangeMin",
+                yAxisRangeMin,
+                default=0)
+            private$..yAxisRangeMax <- jmvcore::OptionNumber$new(
+                "yAxisRangeMax",
+                yAxisRangeMax,
+                default=10)
+            private$..xAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "xAxisLabelFontSize",
+                xAxisLabelFontSize,
+                default=12)
+            private$..xAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "xAxisLabelRotation",
+                xAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..xAxisRangeType <- jmvcore::OptionList$new(
+                "xAxisRangeType",
+                xAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..xAxisRangeMin <- jmvcore::OptionNumber$new(
+                "xAxisRangeMin",
+                xAxisRangeMin,
+                default=0)
+            private$..xAxisRangeMax <- jmvcore::OptionNumber$new(
+                "xAxisRangeMax",
+                xAxisRangeMax,
+                default=10)
 
             self$.addOption(private$..aVar)
             self$.addOption(private$..group)
@@ -424,6 +484,16 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..plotHeight)
             self$.addOption(private$..facetBy)
             self$.addOption(private$..facetNumber)
+            self$.addOption(private$..yAxisLabelFontSize)
+            self$.addOption(private$..yAxisLabelRotation)
+            self$.addOption(private$..yAxisRangeType)
+            self$.addOption(private$..yAxisRangeMin)
+            self$.addOption(private$..yAxisRangeMax)
+            self$.addOption(private$..xAxisLabelFontSize)
+            self$.addOption(private$..xAxisLabelRotation)
+            self$.addOption(private$..xAxisRangeType)
+            self$.addOption(private$..xAxisRangeMin)
+            self$.addOption(private$..xAxisRangeMax)
         }),
     active = list(
         aVar = function() private$..aVar$value,
@@ -462,7 +532,17 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
         facetBy = function() private$..facetBy$value,
-        facetNumber = function() private$..facetNumber$value),
+        facetNumber = function() private$..facetNumber$value,
+        yAxisLabelFontSize = function() private$..yAxisLabelFontSize$value,
+        yAxisLabelRotation = function() private$..yAxisLabelRotation$value,
+        yAxisRangeType = function() private$..yAxisRangeType$value,
+        yAxisRangeMin = function() private$..yAxisRangeMin$value,
+        yAxisRangeMax = function() private$..yAxisRangeMax$value,
+        xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value,
+        xAxisRangeType = function() private$..xAxisRangeType$value,
+        xAxisRangeMin = function() private$..xAxisRangeMin$value,
+        xAxisRangeMax = function() private$..xAxisRangeMax$value),
     private = list(
         ..aVar = NA,
         ..group = NA,
@@ -500,7 +580,17 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..plotWidth = NA,
         ..plotHeight = NA,
         ..facetBy = NA,
-        ..facetNumber = NA)
+        ..facetNumber = NA,
+        ..yAxisLabelFontSize = NA,
+        ..yAxisLabelRotation = NA,
+        ..yAxisRangeType = NA,
+        ..yAxisRangeMin = NA,
+        ..yAxisRangeMax = NA,
+        ..xAxisLabelFontSize = NA,
+        ..xAxisLabelRotation = NA,
+        ..xAxisRangeType = NA,
+        ..xAxisRangeMin = NA,
+        ..xAxisRangeMax = NA)
 )
 
 histogramResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -585,6 +675,16 @@ histogramBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param plotHeight .
 #' @param facetBy .
 #' @param facetNumber .
+#' @param yAxisLabelFontSize .
+#' @param yAxisLabelRotation .
+#' @param yAxisRangeType .
+#' @param yAxisRangeMin .
+#' @param yAxisRangeMax .
+#' @param xAxisLabelFontSize .
+#' @param xAxisLabelRotation .
+#' @param xAxisRangeType .
+#' @param xAxisRangeMin .
+#' @param xAxisRangeMax .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -629,7 +729,17 @@ histogram <- function(
     plotWidth = 0,
     plotHeight = 0,
     facetBy = "column",
-    facetNumber = 1) {
+    facetNumber = 1,
+    yAxisLabelFontSize = 12,
+    yAxisLabelRotation = 0,
+    yAxisRangeType = "auto",
+    yAxisRangeMin = 0,
+    yAxisRangeMax = 10,
+    xAxisLabelFontSize = 12,
+    xAxisLabelRotation = 0,
+    xAxisRangeType = "auto",
+    xAxisRangeMin = 0,
+    xAxisRangeMax = 10) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("histogram requires jmvcore to be installed (restart may be required)")
@@ -684,7 +794,17 @@ histogram <- function(
         plotWidth = plotWidth,
         plotHeight = plotHeight,
         facetBy = facetBy,
-        facetNumber = facetNumber)
+        facetNumber = facetNumber,
+        yAxisLabelFontSize = yAxisLabelFontSize,
+        yAxisLabelRotation = yAxisLabelRotation,
+        yAxisRangeType = yAxisRangeType,
+        yAxisRangeMin = yAxisRangeMin,
+        yAxisRangeMax = yAxisRangeMax,
+        xAxisLabelFontSize = xAxisLabelFontSize,
+        xAxisLabelRotation = xAxisLabelRotation,
+        xAxisRangeType = xAxisRangeType,
+        xAxisRangeMin = xAxisRangeMin,
+        xAxisRangeMax = xAxisRangeMax)
 
     analysis <- histogramClass$new(
         options = options,

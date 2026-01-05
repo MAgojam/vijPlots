@@ -158,7 +158,92 @@ children:
                         name: notchWidth
                         format: number
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Axes
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: X-Axis
+                children:
+                  - type: TextBox
+                    name: xAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: xAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: xAxisRangeType_auto
+                    optionName: xAxisRangeType
+                    optionPart: auto
+                    enable: (horizontal)
+                  - type: RadioButton
+                    name: xAxisRangeType_manual
+                    optionName: xAxisRangeType
+                    optionPart: manual
+                    enable: (horizontal)
+                    children:
+                      - type: TextBox
+                        name: xAxisRangeMin
+                        format: number
+                        enable: (xAxisRangeType:manual && horizontal)
+                      - type: TextBox
+                        name: xAxisRangeMax
+                        format: number
+                        enable: (xAxisRangeType:manual && horizontal)
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Y-Axis
+                children:
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: yAxisRangeType_auto
+                    optionName: yAxisRangeType
+                    optionPart: auto
+                    enable: (!horizontal)
+                  - type: RadioButton
+                    name: yAxisRangeType_manual
+                    optionName: yAxisRangeType
+                    optionPart: manual
+                    enable: (!horizontal)
+                    children:
+                      - type: TextBox
+                        name: yAxisRangeMin
+                        format: number
+                        enable: (yAxisRangeType:manual && !horizontal)
+                      - type: TextBox
+                        name: yAxisRangeMax
+                        format: number
+                        enable: (yAxisRangeType:manual && !horizontal)
+  - type: CollapseBox
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

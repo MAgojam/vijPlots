@@ -161,14 +161,11 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         }
                     } else {
                         if (self$options$order == "increasing")
-                            #plot <- plot + geom_boxplot(aes(y = !!aVar, x = reorder(!!groupVar, !!aVar, na.rm=TRUE, FUN = median), fill = !!groupVar),
                             plot <- plot + geom_boxplot(aes(y = !!aVar, x = forcats::fct_reorder(!!groupVar, !!aVar), fill = !!groupVar),
                             				outliers = self$options$showOutliers, staplewidth = stapleWidth,
                             				notch = notches, notchwidth = notchWidth)
                         else if (self$options$order == "decreasing")
-                            #plot <- plot + geom_boxplot(aes(y = !!aVar, x = reorder(!!groupVar, -!!aVar, na.rm=TRUE, FUN = median), fill = !!groupVar),
                             plot <- plot + geom_boxplot(aes(y = !!aVar, x = forcats::fct_reorder(!!groupVar, !!aVar, .desc=TRUE), fill = !!groupVar),
-
                             				outliers = self$options$showOutliers, staplewidth = stapleWidth,
                             				notch = notches, notchwidth = notchWidth)
                         else
@@ -203,20 +200,17 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Theme and colors
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
 
-            # # Legend
-            # if (!is.null(groupVar) && length(depVarNames) == 1)
-            #     plot <- plot + theme(legend.position='none') + labs(x = groupVarName)
-            # else
-            #     plot <- plot + labs(x = "")
-            # if (length(depVarNames) > 1)
-            #   plot <- plot + labs(x = "", y = "")
+            # Axis Limits & flip
+            if (self$options$horizontal) {
+                if (self$options$xAxisRangeType == "manual") {
+                    plot <- plot + coord_flip(ylim = c(self$options$xAxisRangeMin, self$options$xAxisRangeMax))
+                } else {
+                    plot <- plot + coord_flip()
+                }
+            } else if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
+            }
 
-            if (self$options$horizontal)
-                plot <- plot + coord_flip()
-
-            # if (self$options$legendAtBottom & !is.null(groupVar) && length(depVarNames) > 1)
-            #     plot <- plot + theme(legend.position="bottom")
-            # else
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
             # Titles & Labels

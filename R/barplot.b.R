@@ -75,7 +75,8 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Percent format (scales)
             doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = .("."))
-
+            # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
+            yScaleFactor <- 1 # default to count
             # ggplot with base AES and sorting
             if (self$options$order == "decreasing")
                 plot <- ggplot(plotData, aes(x = forcats::fct_infreq(!!rows)))
@@ -83,8 +84,6 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- ggplot(plotData, aes(x = forcats::fct_rev(forcats::fct_infreq(!!rows))))
             else
                 plot <- ggplot(plotData, aes(x = !!rows))
-            ## Geom bar + labels
-            #plot <- plot + labs(x = rows)
             ## One variable
             if (is.null(columns)) {
                 firstColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(5)[1]
@@ -99,6 +98,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     }
                     plot <- plot + scale_y_continuous(labels=percent_format())
                     yLab <- .("Percent")
+                    yScaleFactor <- 100 # for manual range
                     if( self$options$showLabels ) {
                         if (self$options$textColor == "auto") { # using hex_bw
                             if (self$options$singleColor) {
@@ -160,6 +160,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         }
                     }
                     yLab <- .("Percent")
+                    yScaleFactor <- 100 # for manual range
                 # Two variables with count (dodge)
                 } else if (self$options$position == "dodge" || self$options$position == "dodge2") {
                     if (self$options$showLabels) {
@@ -195,9 +196,16 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
 
-            # Horizontal Plot
-            if (self$options$horizontal)
-                plot <- plot + coord_flip()
+            # Axis Limits & flip
+            if (self$options$horizontal) {
+                if (self$options$xAxisRangeType == "manual") {
+                    plot <- plot + coord_flip(ylim = c(self$options$xAxisRangeMin/yScaleFactor, self$options$xAxisRangeMax/yScaleFactor))
+                } else {
+                    plot <- plot + coord_flip()
+                }
+            } else if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
+            }
 
             # facet
             if (!is.null(self$options$facet)) {

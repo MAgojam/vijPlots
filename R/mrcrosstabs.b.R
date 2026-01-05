@@ -166,14 +166,23 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (self$options$computedValues == "responses") {
                 plot <- plot + scale_y_continuous(labels=percent_format())
                 yLab <- .("% of Responses")
+                yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$computedValues == "cases") {
                 plot <- plot + scale_y_continuous(labels=percent_format())
                 yLab <- .("% of Cases")
+                yScaleFactor <- 100
             } else if (self$options$computedValues == "options") {
                 plot <- plot + scale_y_continuous(labels=percent_format())
                 yLab <- paste(.("% within"), optionName)
+                yScaleFactor <- 100
             } else {
                 yLab <- .("Count")
+                yScaleFactor <- 1
+            }
+
+            # Axis range
+            if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
             }
 
             # Titles & Labels

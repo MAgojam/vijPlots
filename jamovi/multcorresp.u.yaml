@@ -295,7 +295,7 @@ children:
                         name: discrimHeight
                         format: number
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

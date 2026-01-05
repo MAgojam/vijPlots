@@ -141,6 +141,17 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 yLab <- .("Count")
             }
 
+            # Axis Limits
+            if (self$options$yAxisRangeType == "manual")
+                yLim <- c(self$options$yAxisRangeMin, self$options$yAxisRangeMax)
+            else
+                yLim <- NULL
+            if (self$options$xAxisRangeType == "manual")
+                xLim <- c(self$options$xAxisRangeMin, self$options$xAxisRangeMax)
+            else
+                xLim <- NULL
+            plot <- plot + coord_cartesian(ylim = yLim, xlim = xLim)
+
             # Facet
             if (!is.null(facetVar)) {
                 if (self$options$facetBy == "column")
@@ -150,14 +161,16 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill") + vijScale(self$options$colorPalette, "color")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill") +
+                                    vijScale(self$options$colorPalette, "color")
 
             # Legend spacing
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
             # Titles & Labels
             defaults <- list(legend = groupVar, x = xVar, y = yLab)
-            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) +
+                            vijTitleAndLabelFormat(self$options)
 
             return(plot)
         }

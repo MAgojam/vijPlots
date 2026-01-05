@@ -23,8 +23,6 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     else
                         width <- width + 50
                 }
-                if (self$options$rotateLabels)
-                    height <- height + 50
             }
             if (userWidth >0)
                 width = userWidth
@@ -117,9 +115,6 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + scale_x_date(date_labels = self$options$displayFormat, date_breaks = self$options$dateBreak)
             }
 
-            if (self$options$rotateLabels)
-                plot <- plot + theme(axis.text.x=element_text(angle=60, hjust=0.5))
-
             if (length(depVars) > 1 ){
                 plot <- plot + guides(color = guide_legend(order = 1), linetype = guide_legend(order = 2))
                 yLab <- .("Values")
@@ -135,6 +130,11 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 showLegend <- FALSE
             else
                 showLegend <- TRUE
+
+            # Axis range
+            if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
+            }
 
             # Titles & Labels
             defaults <- list(y = yLab, x = timeVar, legend = gLab)

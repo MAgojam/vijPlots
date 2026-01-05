@@ -36,7 +36,17 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             xAxisPosition = "0.5",
             yAxisText = NULL,
             yAxisFontSize = "16",
-            yAxisPosition = "0.5", ...) {
+            yAxisPosition = "0.5",
+            yAxisLabelFontSize = 12,
+            yAxisLabelRotation = 0,
+            yAxisRangeType = "auto",
+            yAxisRangeMin = 0,
+            yAxisRangeMax = 10,
+            xAxisLabelFontSize = 12,
+            xAxisLabelRotation = 0,
+            xAxisRangeType = "auto",
+            xAxisRangeMin = 0,
+            xAxisRangeMax = 10, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -307,6 +317,56 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "0.5",
                     "0"),
                 default="0.5")
+            private$..yAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "yAxisLabelFontSize",
+                yAxisLabelFontSize,
+                default=12)
+            private$..yAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "yAxisLabelRotation",
+                yAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..yAxisRangeType <- jmvcore::OptionList$new(
+                "yAxisRangeType",
+                yAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..yAxisRangeMin <- jmvcore::OptionNumber$new(
+                "yAxisRangeMin",
+                yAxisRangeMin,
+                default=0)
+            private$..yAxisRangeMax <- jmvcore::OptionNumber$new(
+                "yAxisRangeMax",
+                yAxisRangeMax,
+                default=10)
+            private$..xAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "xAxisLabelFontSize",
+                xAxisLabelFontSize,
+                default=12)
+            private$..xAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "xAxisLabelRotation",
+                xAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..xAxisRangeType <- jmvcore::OptionList$new(
+                "xAxisRangeType",
+                xAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..xAxisRangeMin <- jmvcore::OptionNumber$new(
+                "xAxisRangeMin",
+                xAxisRangeMin,
+                default=0)
+            private$..xAxisRangeMax <- jmvcore::OptionNumber$new(
+                "xAxisRangeMax",
+                xAxisRangeMax,
+                default=10)
 
             self$.addOption(private$..aVar)
             self$.addOption(private$..groupOne)
@@ -339,6 +399,16 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..yAxisText)
             self$.addOption(private$..yAxisFontSize)
             self$.addOption(private$..yAxisPosition)
+            self$.addOption(private$..yAxisLabelFontSize)
+            self$.addOption(private$..yAxisLabelRotation)
+            self$.addOption(private$..yAxisRangeType)
+            self$.addOption(private$..yAxisRangeMin)
+            self$.addOption(private$..yAxisRangeMax)
+            self$.addOption(private$..xAxisLabelFontSize)
+            self$.addOption(private$..xAxisLabelRotation)
+            self$.addOption(private$..xAxisRangeType)
+            self$.addOption(private$..xAxisRangeMin)
+            self$.addOption(private$..xAxisRangeMax)
         }),
     active = list(
         aVar = function() private$..aVar$value,
@@ -371,7 +441,17 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         xAxisPosition = function() private$..xAxisPosition$value,
         yAxisText = function() private$..yAxisText$value,
         yAxisFontSize = function() private$..yAxisFontSize$value,
-        yAxisPosition = function() private$..yAxisPosition$value),
+        yAxisPosition = function() private$..yAxisPosition$value,
+        yAxisLabelFontSize = function() private$..yAxisLabelFontSize$value,
+        yAxisLabelRotation = function() private$..yAxisLabelRotation$value,
+        yAxisRangeType = function() private$..yAxisRangeType$value,
+        yAxisRangeMin = function() private$..yAxisRangeMin$value,
+        yAxisRangeMax = function() private$..yAxisRangeMax$value,
+        xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value,
+        xAxisRangeType = function() private$..xAxisRangeType$value,
+        xAxisRangeMin = function() private$..xAxisRangeMin$value,
+        xAxisRangeMax = function() private$..xAxisRangeMax$value),
     private = list(
         ..aVar = NA,
         ..groupOne = NA,
@@ -403,7 +483,17 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..xAxisPosition = NA,
         ..yAxisText = NA,
         ..yAxisFontSize = NA,
-        ..yAxisPosition = NA)
+        ..yAxisPosition = NA,
+        ..yAxisLabelFontSize = NA,
+        ..yAxisLabelRotation = NA,
+        ..yAxisRangeType = NA,
+        ..yAxisRangeMin = NA,
+        ..yAxisRangeMax = NA,
+        ..xAxisLabelFontSize = NA,
+        ..xAxisLabelRotation = NA,
+        ..xAxisRangeType = NA,
+        ..xAxisRangeMin = NA,
+        ..xAxisRangeMax = NA)
 )
 
 raincloudResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -482,6 +572,16 @@ raincloudBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisText .
 #' @param yAxisFontSize .
 #' @param yAxisPosition .
+#' @param yAxisLabelFontSize .
+#' @param yAxisLabelRotation .
+#' @param yAxisRangeType .
+#' @param yAxisRangeMin .
+#' @param yAxisRangeMax .
+#' @param xAxisLabelFontSize .
+#' @param xAxisLabelRotation .
+#' @param xAxisRangeType .
+#' @param xAxisRangeMin .
+#' @param xAxisRangeMax .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -520,7 +620,17 @@ raincloud <- function(
     xAxisPosition = "0.5",
     yAxisText,
     yAxisFontSize = "16",
-    yAxisPosition = "0.5") {
+    yAxisPosition = "0.5",
+    yAxisLabelFontSize = 12,
+    yAxisLabelRotation = 0,
+    yAxisRangeType = "auto",
+    yAxisRangeMin = 0,
+    yAxisRangeMax = 10,
+    xAxisLabelFontSize = 12,
+    xAxisLabelRotation = 0,
+    xAxisRangeType = "auto",
+    xAxisRangeMin = 0,
+    xAxisRangeMax = 10) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("raincloud requires jmvcore to be installed (restart may be required)")
@@ -569,7 +679,17 @@ raincloud <- function(
         xAxisPosition = xAxisPosition,
         yAxisText = yAxisText,
         yAxisFontSize = yAxisFontSize,
-        yAxisPosition = yAxisPosition)
+        yAxisPosition = yAxisPosition,
+        yAxisLabelFontSize = yAxisLabelFontSize,
+        yAxisLabelRotation = yAxisLabelRotation,
+        yAxisRangeType = yAxisRangeType,
+        yAxisRangeMin = yAxisRangeMin,
+        yAxisRangeMax = yAxisRangeMax,
+        xAxisLabelFontSize = xAxisLabelFontSize,
+        xAxisLabelRotation = xAxisLabelRotation,
+        xAxisRangeType = xAxisRangeType,
+        xAxisRangeMin = xAxisRangeMin,
+        xAxisRangeMax = xAxisRangeMax)
 
     analysis <- raincloudClass$new(
         options = options,

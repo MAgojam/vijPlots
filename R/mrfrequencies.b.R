@@ -100,12 +100,15 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             if (self$options$yaxis == "responses") {
                 plot <- ggplot(plotData, aes(Option, Responses )) + scale_y_continuous(labels=percent_format())
                 yLab <- .("% of Responses")
+                yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$yaxis == "cases") {
                 plot <- ggplot(plotData, aes(Option, Cases )) + scale_y_continuous(labels=percent_format())
                 yLab <- .("% of Cases")
+                yScaleFactor <- 100
             } else {
                 plot <- ggplot(plotData, aes(Option, Frequency ))
                 yLab <- .("Counts")
+                yScaleFactor <- 1
             }
 
             if (self$options$singleColor) {
@@ -117,6 +120,11 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
             # Theme and colors
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+
+            # Axis range
+            if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
+            }
 
             # Titles & Labels
             defaults <- list(y = yLab, x = "")

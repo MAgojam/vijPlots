@@ -1050,8 +1050,8 @@ msgstr ""
 
 #: corresp/ui[7].label
 #: mrfrequencies/ui[3].label
-msgid "Axis Labels"
-msgstr ""
+msgid "Axis Titles"
+msgstr "Titre des axes"
 
 #: package/analyses/barplot.title
 #: package/analyses/barplot.menuTitle
