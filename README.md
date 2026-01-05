@@ -69,6 +69,10 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
+### 2025-12-21 / 0.11.2 (dev)
+
+-   Axis options to set axis label sizes, rotation, range
+
 ### 2025-12-21 / 0.11.1 (beta)
 
 -   Multiple Response Frequencies/crosstab can handle multi-valued variable
