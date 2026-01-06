@@ -483,4 +483,27 @@ options:
           title: Top
       default: bottom
 
+    - name: yAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 11
+
+    - name: yAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
+
+    - name: xAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 11
+
+    - name: xAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
 ...

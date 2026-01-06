@@ -153,7 +153,9 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "viridis::inferno",
                     "viridis::plasma",
                     "viridis::turbo",
-                    "dichromat::Categorical.12"),
+                    "dichromat::Categorical.12",
+                    "custom::tidyplots",
+                    "custom::cdes"),
                 default="jmv")
             private$..singleColor <- jmvcore::OptionBool$new(
                 "singleColor",

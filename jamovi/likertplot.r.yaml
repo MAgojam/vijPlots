@@ -187,5 +187,9 @@ items:
         - legendText
         - legendFontSize
         - legendPosition
+        - yAxisLabelFontSize
+        - yAxisLabelRotation
+        - xAxisLabelFontSize
+        - xAxisLabelRotation
 
 ...

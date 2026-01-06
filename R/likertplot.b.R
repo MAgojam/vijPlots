@@ -487,6 +487,8 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else
                 plot <- plot + scale_fill_brewer(palette = self$options$plotColor)
 
+            #plot <- plot + theme(strip.text = element_text(size = 18, colour = "red", angle = 0), strip.position = "top")
+
             # Title & subtitle
             plot <- plot + vijTitlesAndLabels(self$options) + vijTitleAndLabelFormat(self$options, showLegend = TRUE)
 

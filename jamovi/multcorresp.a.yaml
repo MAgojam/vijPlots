@@ -448,6 +448,10 @@ options:
           name:  viridis::turbo
         - title: Dichromat:Categorical
           name:  dichromat::Categorical.12
+        - title: Tidyplot
+          name: custom::tidyplots
+        - title: CDES
+          name: custom::cdes
       default: jmv
 
     - name: labelSize

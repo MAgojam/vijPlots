@@ -22,10 +22,16 @@ vijPalette = function(pal, type = "fill", themePal = NULL) {
         return(scales::pal_viridis(option = palName))
     } else if (palType == "dichromat") {
         return(scales::pal_dichromat(palName))
+    } else if (palType == "custom") {
+        if (palName == "cdes")
+            customColors <- c("#16144e", "#00dc8c", "#5fcdcd", "#007387", "#efbe7c", "#8c87a4", "#ff6e5a", "#bc6479", "#8faadc", "#006d4d")
+        else if (palName == "tidyplots")
+            customColors <- c("#0072B2","#56B4E9","#009E73","#F5C710","#E69F00","#D55E00")
+        return(pal_manual(values = customColors, type = "colour"))
+    } else {
+        return(NULL)
     }
 }
-
-
 
 vijTitlesAndLabels = function(options, defaults = list(), plotType = '') {
     horizontal <- options[["horizontal"]]  %||% FALSE
@@ -77,27 +83,6 @@ vijTitlesAndLabels = function(options, defaults = list(), plotType = '') {
     return(ggplot2::labs(title = title, subtitle = subtitle, caption = caption, fill = legend, color = legend, shape = legend, size = legend, x = x, y = y))
 }
 
-# vijAxes = function(options) {
-#     #xLabelFontSize <- options$xLabelFontSize
-#     #xLabelAlign <- options$xLabelAlign
-#     #yLabelFontSize <- options$yLabelFontSize
-#     #yLabelAlign <- options$yLabelAlign
-#     xAxisLabelFontSize <- options$xAxisLabelFontSize
-#     xAxisLabelRotation <- options$xAxisLabelRotation
-#     yAxisLabelFontSize <- options$yAxisLabelFontSize
-#     yAxisLabelRotation <- options$yAxisLabelRotation
-#     return(ggplot2::theme(
-#         axis.text.x = ggplot2::element_text(
-#                 size = xAxisLabelFontSize,
-#                 angle = xAxisLabelRotation
-#             ),
-#             axis.text.y = ggplot2::element_text(
-#                 size = yAxisLabelFontSize,
-#                 angle = yAxisLabelRotation)
-#         )
-#     )
-# }
-
 vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
     horizontal <- options[["horizontal"]]  %||% FALSE
     if (showLegend) {
@@ -132,6 +117,11 @@ vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
         legend.text=element_text(
             size = legendFontSize),
         legend.position = legendPosition,
+        # Facet Label ~ subtitle
+        strip.text = element_text(
+            size = options$subtitleFontSize,
+            face = options$subtitleFontFace,
+            hjust = as.numeric(options$subtitleAlign)),
         # Axis Titles
         axis.title.x = element_text(
             size = options[["xAxisFontSize"]] %||% 14,

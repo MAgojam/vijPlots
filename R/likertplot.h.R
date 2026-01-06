@@ -52,7 +52,11 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             captionAlign = "1",
             legendText = NULL,
             legendFontSize = "11",
-            legendPosition = "bottom", ...) {
+            legendPosition = "bottom",
+            yAxisLabelFontSize = 11,
+            yAxisLabelRotation = 0,
+            xAxisLabelFontSize = 11,
+            xAxisLabelRotation = 0, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -382,6 +386,26 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "left",
                     "top"),
                 default="bottom")
+            private$..yAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "yAxisLabelFontSize",
+                yAxisLabelFontSize,
+                default=11)
+            private$..yAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "yAxisLabelRotation",
+                yAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..xAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "xAxisLabelFontSize",
+                xAxisLabelFontSize,
+                default=11)
+            private$..xAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "xAxisLabelRotation",
+                xAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
 
             self$.addOption(private$..liks)
             self$.addOption(private$..group)
@@ -430,6 +454,10 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..legendText)
             self$.addOption(private$..legendFontSize)
             self$.addOption(private$..legendPosition)
+            self$.addOption(private$..yAxisLabelFontSize)
+            self$.addOption(private$..yAxisLabelRotation)
+            self$.addOption(private$..xAxisLabelFontSize)
+            self$.addOption(private$..xAxisLabelRotation)
         }),
     active = list(
         liks = function() private$..liks$value,
@@ -478,7 +506,11 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         captionAlign = function() private$..captionAlign$value,
         legendText = function() private$..legendText$value,
         legendFontSize = function() private$..legendFontSize$value,
-        legendPosition = function() private$..legendPosition$value),
+        legendPosition = function() private$..legendPosition$value,
+        yAxisLabelFontSize = function() private$..yAxisLabelFontSize$value,
+        yAxisLabelRotation = function() private$..yAxisLabelRotation$value,
+        xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value),
     private = list(
         ..liks = NA,
         ..group = NA,
@@ -526,7 +558,11 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..captionAlign = NA,
         ..legendText = NA,
         ..legendFontSize = NA,
-        ..legendPosition = NA)
+        ..legendPosition = NA,
+        ..yAxisLabelFontSize = NA,
+        ..yAxisLabelRotation = NA,
+        ..xAxisLabelFontSize = NA,
+        ..xAxisLabelRotation = NA)
 )
 
 likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -710,7 +746,11 @@ likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "captionAlign",
                     "legendText",
                     "legendFontSize",
-                    "legendPosition")))}))
+                    "legendPosition",
+                    "yAxisLabelFontSize",
+                    "yAxisLabelRotation",
+                    "xAxisLabelFontSize",
+                    "xAxisLabelRotation")))}))
 
 likertplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "likertplotBase",
@@ -784,6 +824,10 @@ likertplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param legendText .
 #' @param legendFontSize .
 #' @param legendPosition .
+#' @param yAxisLabelFontSize .
+#' @param yAxisLabelRotation .
+#' @param xAxisLabelFontSize .
+#' @param xAxisLabelRotation .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
@@ -849,7 +893,11 @@ likertplot <- function(
     captionAlign = "1",
     legendText,
     legendFontSize = "11",
-    legendPosition = "bottom") {
+    legendPosition = "bottom",
+    yAxisLabelFontSize = 11,
+    yAxisLabelRotation = 0,
+    xAxisLabelFontSize = 11,
+    xAxisLabelRotation = 0) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("likertplot requires jmvcore to be installed (restart may be required)")
@@ -911,7 +959,11 @@ likertplot <- function(
         captionAlign = captionAlign,
         legendText = legendText,
         legendFontSize = legendFontSize,
-        legendPosition = legendPosition)
+        legendPosition = legendPosition,
+        yAxisLabelFontSize = yAxisLabelFontSize,
+        yAxisLabelRotation = yAxisLabelRotation,
+        xAxisLabelFontSize = xAxisLabelFontSize,
+        xAxisLabelRotation = xAxisLabelRotation)
 
     analysis <- likertplotClass$new(
         options = options,

@@ -371,7 +371,48 @@ children:
                 format: number
                 suffix: pt
   - type: CollapseBox
-    label: Legend
+    label: Axes
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: X-Axis
+                children:
+                  - type: TextBox
+                    name: xAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: xAxisLabelRotation
+                    suffix: "°"
+                    format: number
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Y-Axis
+                children:
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: "°"
+                    format: number
+  - type: CollapseBox
+    label: Legend Title
     collapsed: true
     stretchFactor: 1
     children:

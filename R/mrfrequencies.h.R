@@ -177,7 +177,9 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "viridis::inferno",
                     "viridis::plasma",
                     "viridis::turbo",
-                    "dichromat::Categorical.12"),
+                    "dichromat::Categorical.12",
+                    "custom::tidyplots",
+                    "custom::cdes"),
                 default="jmv")
             private$..singleColor <- jmvcore::OptionBool$new(
                 "singleColor",
