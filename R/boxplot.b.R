@@ -118,12 +118,19 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 			else
 			    nudgeX <- (400/image$width)*0.04
 
+			# One color only
+			if (self$options$singleColor) {
+			    nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
+			    colorNo <- self$options$colorNo
+			    oneColorIdx <- min(colorNo,nbColors)
+			}
+
 			# Building the plot
             i <- 0
             plot <- ggplot(plotData)
             for (varName in depVarNames) {
                 if (self$options$singleColor) {
-                    i <- 1
+                    i <- oneColorIdx
                 } else {
                     i <- i+1
                 }

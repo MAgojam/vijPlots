@@ -174,6 +174,16 @@ children:
                 name: colorPalette
               - type: CheckBox
                 name: singleColor
+                label: Use color No.
+                style: inline
+                verticalAlignment: center
+                children:
+                  - type: TextBox
+                    name: colorNo
+                    label: ''
+                    suffix: for all bars
+                    format: number
+                    enable: (singleColor)
   - type: CollapseBox
     label: Axes
     collapsed: true

@@ -215,6 +215,13 @@ options:
       type: Bool
       default: true
 
+    - name: colorNo
+      type: Number
+      title: Color Number
+      min: 1
+      max: 99
+      default: 1
+
     - name: titleText
       title: ""
       type: String

@@ -22,6 +22,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             size = "medium",
             colorPalette = "jmv",
             singleColor = TRUE,
+            colorNo = 1,
             titleText = NULL,
             titleFontFace = "bold",
             titleFontSize = "14",
@@ -185,6 +186,12 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 "singleColor",
                 singleColor,
                 default=TRUE)
+            private$..colorNo <- jmvcore::OptionNumber$new(
+                "colorNo",
+                colorNo,
+                min=1,
+                max=99,
+                default=1)
             private$..titleText <- jmvcore::OptionString$new(
                 "titleText",
                 titleText)
@@ -377,6 +384,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..size)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..singleColor)
+            self$.addOption(private$..colorNo)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
             self$.addOption(private$..titleFontSize)
@@ -420,6 +428,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         size = function() private$..size$value,
         colorPalette = function() private$..colorPalette$value,
         singleColor = function() private$..singleColor$value,
+        colorNo = function() private$..colorNo$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
         titleFontSize = function() private$..titleFontSize$value,
@@ -462,6 +471,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         ..size = NA,
         ..colorPalette = NA,
         ..singleColor = NA,
+        ..colorNo = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
         ..titleFontSize = NA,
@@ -594,6 +604,7 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param size .
 #' @param colorPalette .
 #' @param singleColor .
+#' @param colorNo .
 #' @param titleText .
 #' @param titleFontFace .
 #' @param titleFontSize .
@@ -651,6 +662,7 @@ mrfrequencies <- function(
     size = "medium",
     colorPalette = "jmv",
     singleColor = TRUE,
+    colorNo = 1,
     titleText,
     titleFontFace = "bold",
     titleFontSize = "14",
@@ -708,6 +720,7 @@ mrfrequencies <- function(
         size = size,
         colorPalette = colorPalette,
         singleColor = singleColor,
+        colorNo = colorNo,
         titleText = titleText,
         titleFontFace = titleFontFace,
         titleFontSize = titleFontSize,

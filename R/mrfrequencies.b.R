@@ -112,8 +112,10 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             }
 
             if (self$options$singleColor) {
-                firstColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(5)[1]
-                plot <- plot + geom_col(fill = firstColorOfPalette)
+                nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
+                colorNo <- self$options$colorNo
+                oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[min(colorNo,nbColors)]
+                plot <- plot + geom_col(fill = oneColorOfPalette)
             } else {
                 plot <- plot + geom_col(aes(fill = Option)) + guides(fill = FALSE)
             }

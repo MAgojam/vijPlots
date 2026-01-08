@@ -94,7 +94,17 @@ children:
                     name: colorPalette
                   - type: CheckBox
                     name: singleColor
+                    label: Use color No.
                     enable: (!columns)
+                    style: inline
+                    verticalAlignment: center
+                    children:
+                      - type: TextBox
+                        name: colorNo
+                        label: ''
+                        suffix: for all bars
+                        format: number
+                        enable: (singleColor && !columns)
   - type: LayoutBox
     margin: large
     stretchFactor: 1
@@ -285,7 +295,7 @@ children:
                     format: number
                   - type: TextBox
                     name: xAxisLabelRotation
-                    suffix: "°"
+                    suffix: °
                     format: number
               - type: Label
                 label: Range
@@ -323,7 +333,7 @@ children:
                     format: number
                   - type: TextBox
                     name: yAxisLabelRotation
-                    suffix: "°"
+                    suffix: °
                     format: number
               - type: Label
                 label: Range

@@ -16,6 +16,7 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             order = "none",
             yaxis1var = "count",
             singleColor = TRUE,
+            colorNo = 1,
             position = "dodge",
             colorPalette = "jmv",
             borderColor = "none",
@@ -122,6 +123,12 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "singleColor",
                 singleColor,
                 default=TRUE)
+            private$..colorNo <- jmvcore::OptionNumber$new(
+                "colorNo",
+                colorNo,
+                min=1,
+                max=99,
+                default=1)
             private$..position <- jmvcore::OptionList$new(
                 "position",
                 position,
@@ -454,6 +461,7 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..order)
             self$.addOption(private$..yaxis1var)
             self$.addOption(private$..singleColor)
+            self$.addOption(private$..colorNo)
             self$.addOption(private$..position)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..borderColor)
@@ -506,6 +514,7 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         order = function() private$..order$value,
         yaxis1var = function() private$..yaxis1var$value,
         singleColor = function() private$..singleColor$value,
+        colorNo = function() private$..colorNo$value,
         position = function() private$..position$value,
         colorPalette = function() private$..colorPalette$value,
         borderColor = function() private$..borderColor$value,
@@ -557,6 +566,7 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..order = NA,
         ..yaxis1var = NA,
         ..singleColor = NA,
+        ..colorNo = NA,
         ..position = NA,
         ..colorPalette = NA,
         ..borderColor = NA,
@@ -654,6 +664,7 @@ barplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param order .
 #' @param yaxis1var .
 #' @param singleColor .
+#' @param colorNo .
 #' @param position .
 #' @param colorPalette .
 #' @param borderColor .
@@ -712,6 +723,7 @@ barplot <- function(
     order = "none",
     yaxis1var = "count",
     singleColor = TRUE,
+    colorNo = 1,
     position = "dodge",
     colorPalette = "jmv",
     borderColor = "none",
@@ -781,6 +793,7 @@ barplot <- function(
         order = order,
         yaxis1var = yaxis1var,
         singleColor = singleColor,
+        colorNo = colorNo,
         position = position,
         colorPalette = colorPalette,
         borderColor = borderColor,

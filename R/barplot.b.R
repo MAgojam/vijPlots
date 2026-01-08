@@ -86,12 +86,16 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- ggplot(plotData, aes(x = !!rows))
             ## One variable
             if (is.null(columns)) {
-                firstColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(5)[1]
+                if (self$options$singleColor) {
+                    nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
+                    colorNo <- self$options$colorNo
+                    oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[min(colorNo,nbColors)]
+                }
                 # One variable with Percentage
                 if (self$options$yaxis1var == "percent") {
                     if (self$options$singleColor) {
                         plot <- plot + geom_bar(aes(y = after_stat(prop), group=1),
-                                                fill = firstColorOfPalette, color = borderColor)
+                                                fill = oneColorOfPalette, color = borderColor)
                     } else {
                         plot <- plot + geom_bar(aes(y = after_stat(prop), by = 1, fill = !!rows), stat = StatProp, color = borderColor)
                         plot <- plot + guides(fill = FALSE)
@@ -103,7 +107,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         if (self$options$textColor == "auto") { # using hex_bw
                             if (self$options$singleColor) {
                                 plot <- plot + geom_text(aes(y = after_stat(prop), group=1, label = doPercent(after_stat(prop)),
-                                                                color = after_scale(ggstats::hex_bw(firstColorOfPalette))),
+                                                                color = after_scale(ggstats::hex_bw(oneColorOfPalette))),
                                                      stat = StatProp, position = position_stack(vjust = 0.5), fontface = "bold")
                             } else {
                                 plot <- plot + geom_text(aes(y = after_stat(prop), group=1, label = doPercent(after_stat(prop)),
@@ -119,7 +123,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 # One variable with Count
                 } else {
                     if (self$options$singleColor) {
-                        plot <- plot + geom_bar(fill = firstColorOfPalette, color = borderColor)
+                        plot <- plot + geom_bar(fill = oneColorOfPalette, color = borderColor)
                     } else {
                         plot <- plot + geom_bar(aes(fill = !!rows), color = borderColor)
                         plot <- plot + guides(fill = FALSE)
@@ -128,7 +132,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         if (self$options$textColor == "auto") { # using hex_bw
                             if (self$options$singleColor) {
                                 plot <- plot + geom_text(aes(label = after_stat(count), y = after_stat(count),
-                                                             color = after_scale(ggstats::hex_bw(firstColorOfPalette))),
+                                                             color = after_scale(ggstats::hex_bw(oneColorOfPalette))),
                                                          stat = "count", position = position_stack(vjust = 0.5),fontface = "bold")
                             } else {
                                 plot <- plot + geom_text(aes(label = after_stat(count), y = after_stat(count),

@@ -85,6 +85,13 @@ options:
       type: Bool
       default: true
 
+    - name: colorNo
+      type: Number
+      title: Color Number
+      min: 1
+      max: 99
+      default: 1
+
     - name: position
       title: Bar Type
       type: List

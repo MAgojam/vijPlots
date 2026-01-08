@@ -17,6 +17,7 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             horizontal = FALSE,
             colorPalette = "jmv",
             singleColor = FALSE,
+            colorNo = 1,
             order = "none",
             plotWidth = 0,
             plotHeight = 0,
@@ -161,6 +162,12 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "singleColor",
                 singleColor,
                 default=FALSE)
+            private$..colorNo <- jmvcore::OptionNumber$new(
+                "colorNo",
+                colorNo,
+                min=1,
+                max=99,
+                default=1)
             private$..order <- jmvcore::OptionList$new(
                 "order",
                 order,
@@ -418,6 +425,7 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..horizontal)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..singleColor)
+            self$.addOption(private$..colorNo)
             self$.addOption(private$..order)
             self$.addOption(private$..plotWidth)
             self$.addOption(private$..plotHeight)
@@ -467,6 +475,7 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         horizontal = function() private$..horizontal$value,
         colorPalette = function() private$..colorPalette$value,
         singleColor = function() private$..singleColor$value,
+        colorNo = function() private$..colorNo$value,
         order = function() private$..order$value,
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
@@ -515,6 +524,7 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..horizontal = NA,
         ..colorPalette = NA,
         ..singleColor = NA,
+        ..colorNo = NA,
         ..order = NA,
         ..plotWidth = NA,
         ..plotHeight = NA,
@@ -609,6 +619,7 @@ boxplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param horizontal .
 #' @param colorPalette .
 #' @param singleColor .
+#' @param colorNo .
 #' @param order .
 #' @param plotWidth .
 #' @param plotHeight .
@@ -664,6 +675,7 @@ boxplot <- function(
     horizontal = FALSE,
     colorPalette = "jmv",
     singleColor = FALSE,
+    colorNo = 1,
     order = "none",
     plotWidth = 0,
     plotHeight = 0,
@@ -728,6 +740,7 @@ boxplot <- function(
         horizontal = horizontal,
         colorPalette = colorPalette,
         singleColor = singleColor,
+        colorNo = colorNo,
         order = order,
         plotWidth = plotWidth,
         plotHeight = plotHeight,

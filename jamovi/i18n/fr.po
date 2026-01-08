@@ -13,6 +13,7 @@ msgstr ""
 msgid " doesn't have a valid date format."
 msgstr " n'a pas un format de date valide."
 
+#: mrcrosstabs/options/separator.default
 #: mrfrequencies/options/separator.default
 msgid ";"
 msgstr ""
@@ -102,7 +103,7 @@ msgstr "Précision des %"
 msgid "% by Row"
 msgstr "% par ligne"
 
-#: mrcrosstabs/ui[2][1][0]/computedValues_options.label
+#: mrcrosstabs/ui[1][1][0]/computedValues_options.label
 msgid "% by row"
 msgstr "% par ligne"
 
@@ -122,7 +123,7 @@ msgstr "Etiquettes des %"
 #: R/mrcrosstabs.b.R
 #: R/mrfrequencies.b.R
 #: mrcrosstabs/options/computedValues/cases.title
-#: mrcrosstabs/ui[2][1][0]/computedValues_cases.label
+#: mrcrosstabs/ui[1][1][0]/computedValues_cases.label
 #: mrfrequencies/options/showCases.title
 #: mrfrequencies/options/yaxis/cases.title
 #: mrfrequencies/ui[1][2][0]/yaxis_cases.label
@@ -139,7 +140,7 @@ msgstr "% d'inertie"
 #: R/mrcrosstabs.b.R
 #: R/mrfrequencies.b.R
 #: mrcrosstabs/options/computedValues/responses.title
-#: mrcrosstabs/ui[2][1][0]/computedValues_responses.label
+#: mrcrosstabs/ui[1][1][0]/computedValues_responses.label
 #: mrfrequencies/options/showResponses.title
 #: mrfrequencies/options/yaxis/responses.title
 #: mrfrequencies/ui[1][2][0]/yaxis_responses.label
@@ -154,6 +155,33 @@ msgstr "% de variance"
 #: R/mrcrosstabs.b.R
 msgid "% within"
 msgstr "% dans"
+
+#: areachart/ui[3][0][0][0]/xAxisLabelRotation.suffix
+#: areachart/ui[3][0][1][0]/yAxisLabelRotation.suffix
+#: barplot/ui[4][0][0][0]/xAxisLabelRotation.suffix
+#: barplot/ui[4][0][1][0]/yAxisLabelRotation.suffix
+#: boxplot/ui[3][0][0][0]/xAxisLabelRotation.suffix
+#: boxplot/ui[3][0][1][0]/yAxisLabelRotation.suffix
+#: histogram/ui[5][0][0][0]/xAxisLabelRotation.suffix
+#: histogram/ui[5][0][1][0]/yAxisLabelRotation.suffix
+#: likertplot/ui[5][0][0][0]/xAxisLabelRotation.suffix
+#: likertplot/ui[5][0][1][0]/yAxisLabelRotation.suffix
+#: linechart/ui[3][0][0][0]/xAxisLabelRotation.suffix
+#: linechart/ui[3][0][1][0]/yAxisLabelRotation.suffix
+#: lollipop/ui[4][0][0][0]/xAxisLabelRotation.suffix
+#: lollipop/ui[4][0][1][0]/yAxisLabelRotation.suffix
+#: mrcrosstabs/ui[3][0][0][0]/xAxisLabelRotation.suffix
+#: mrcrosstabs/ui[3][0][1][0]/yAxisLabelRotation.suffix
+#: mrfrequencies/ui[3][0][0][0]/xAxisLabelRotation.suffix
+#: mrfrequencies/ui[3][0][1][0]/yAxisLabelRotation.suffix
+#: qqplot/ui[5][0][0][0]/xAxisLabelRotation.suffix
+#: qqplot/ui[5][0][1][0]/yAxisLabelRotation.suffix
+#: raincloud/ui[3][0][0][0]/xAxisLabelRotation.suffix
+#: raincloud/ui[3][0][1][0]/yAxisLabelRotation.suffix
+#: scatterplot/ui[3][0][0][0]/xAxisLabelRotation.suffix
+#: scatterplot/ui[3][0][1][0]/yAxisLabelRotation.suffix
+msgid "°"
+msgstr ""
 
 #: likertplot/results/helpMessage.content
 msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <h2>Likert Plot Help</h2> <h3>Data & Sorting</h3>\n"
@@ -177,16 +205,24 @@ msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-
 "<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</strong> for several categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n"
 "<p>Both classics methods are available: <ul> <li><strong>Indicator matrix:</strong> CA of the indicator matrix</li> <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator method. </li> </ul> </p>\n"
 "<p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>\n"
-"<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of catories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n"
+"<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of categories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n"
 "<p>The <strong>Normalization</strong> options specify how the coordinates are scaled: <ul> <li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li> <li><strong>Category principal:</strong> Only category coordinates are scaled.</li> <li><strong>Observation principal:</strong> Only observation coordinates are scaled.</li> <li><strong>Standard:</strong> Both category and observation coordinates are standard.</li> </ul></p>\n"
 "<p>A sample file is included at Open > Data Library > vijPlots > Cars</p>\n"
+"</div>"
+msgstr ""
+
+#: mrcrosstabs/results/helpMessage.content
+msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Response Crosstab Help</strong></p>\n"
+"<p>This module computes crosstab frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n"
+"<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 0/1 or 1/2 for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li> </ul></p>\n"
+"<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>\n"
 "</div>"
 msgstr ""
 
 #: mrfrequencies/results/helpMessage.content
 msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Response Frequencies Help</strong></p>\n"
 "<p>This module computes frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n"
-"<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 1/0 or Y/N for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li> </ul></p>\n"
+"<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 0/1 or 1/2 for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li> </ul></p>\n"
 "<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>\n"
 "</div>"
 msgstr ""
@@ -1041,15 +1077,51 @@ msgid "Ascending"
 msgstr "Croissant"
 
 #: areachart/options/dateFormat/auto.title
+#: areachart/options/yAxisRangeType/auto.title
 #: barplot/options/textColor/auto.title
+#: barplot/options/yAxisRangeType/auto.title
+#: barplot/options/xAxisRangeType/auto.title
+#: boxplot/options/yAxisRangeType/auto.title
+#: boxplot/options/xAxisRangeType/auto.title
+#: histogram/options/yAxisRangeType/auto.title
+#: histogram/options/xAxisRangeType/auto.title
 #: likertplot/options/labelColor/auto.title
 #: linechart/options/dateFormat/auto.title
+#: linechart/options/yAxisRangeType/auto.title
+#: lollipop/options/yAxisRangeType/auto.title
+#: lollipop/options/xAxisRangeType/auto.title
+#: mrcrosstabs/options/yAxisRangeType/auto.title
+#: mrfrequencies/options/yAxisRangeType/auto.title
 #: piechart/options/textColor/auto.title
+#: qqplot/options/yAxisRangeType/auto.title
+#: qqplot/options/xAxisRangeType/auto.title
+#: raincloud/options/yAxisRangeType/auto.title
+#: raincloud/options/xAxisRangeType/auto.title
+#: scatterplot/options/yAxisRangeType/auto.title
+#: scatterplot/options/xAxisRangeType/auto.title
 msgid "Auto"
 msgstr ""
 
-#: corresp/ui[7].label
+#: areachart/ui[3].label
+#: barplot/ui[4].label
+#: boxplot/ui[3].label
+#: histogram/ui[5].label
+#: likertplot/ui[5].label
+#: linechart/ui[3].label
+#: lollipop/ui[4].label
+#: mrcrosstabs/ui[3].label
 #: mrfrequencies/ui[3].label
+#: qqplot/ui[5].label
+#: raincloud/ui[3].label
+#: scatterplot/ui[3].label
+msgid "Axes"
+msgstr ""
+
+#: corresp/ui[7].label
+msgid "Axis Labels"
+msgstr ""
+
+#: mrfrequencies/ui[4].label
 msgid "Axis Titles"
 msgstr "Titre des axes"
 
@@ -1063,7 +1135,7 @@ msgstr "Diagramme en barres"
 
 #: barplot/options/position.title
 #: mrcrosstabs/options/bartype.title
-#: mrcrosstabs/ui[3][0][0][0].label
+#: mrcrosstabs/ui[2][0][0][0].label
 msgid "Bar Type"
 msgstr "Type de barres"
 
@@ -1406,19 +1478,19 @@ msgstr "Par groupe"
 msgid "By Variable"
 msgstr "Par variable"
 
-#: areachart/ui[4][2].label
-#: barplot/ui[5][2].label
-#: boxplot/ui[4][2].label
-#: histogram/ui[6][2].label
-#: likertplot/ui[6][2].label
-#: linechart/ui[4][2].label
-#: lollipop/ui[5][2].label
+#: areachart/ui[5][2].label
+#: barplot/ui[6][2].label
+#: boxplot/ui[5][2].label
+#: histogram/ui[7][2].label
+#: likertplot/ui[7][2].label
+#: linechart/ui[5][2].label
+#: lollipop/ui[6][2].label
 #: mrcrosstabs/ui[5][2].label
-#: mrfrequencies/ui[4][2].label
+#: mrfrequencies/ui[5][2].label
 #: piechart/ui[4][2].label
-#: qqplot/ui[6][2].label
-#: raincloud/ui[4][2].label
-#: scatterplot/ui[4][2].label
+#: qqplot/ui[7][2].label
+#: raincloud/ui[5][2].label
+#: scatterplot/ui[5][2].label
 msgid "Caption"
 msgstr "Légende"
 
@@ -1490,6 +1562,21 @@ msgstr "Résumés des catégories"
 
 #: qqplot/options/distrib/cauchy.title
 msgid "Cauchy"
+msgstr ""
+
+#: areachart/options/colorPalette/custom::cdes.title
+#: barplot/options/colorPalette/custom::cdes.title
+#: boxplot/options/colorPalette/custom::cdes.title
+#: histogram/options/colorPalette/custom::cdes.title
+#: linechart/options/colorPalette/custom::cdes.title
+#: mrcrosstabs/options/colorPalette/custom::cdes.title
+#: mrfrequencies/options/colorPalette/custom::cdes.title
+#: multcorresp/options/colorPalette/custom::cdes.title
+#: piechart/options/colorPalette/custom::cdes.title
+#: principal/options/colorPalette/custom::cdes.title
+#: raincloud/options/colorPalette/custom::cdes.title
+#: scatterplot/options/colorPalette/custom::cdes.title
+msgid "CDES"
 msgstr ""
 
 #: areachart/options/titleAlign/0.5.title
@@ -1580,10 +1667,14 @@ msgstr "Centrées"
 msgid "Chi-squared"
 msgstr "Khi-deux"
 
+#: barplot/options/colorNo.title
+msgid "Color Number"
+msgstr ""
+
 #: barplot/ui[1][2][0].label
 #: barplot/ui[3][0][2][0].label
 #: boxplot/ui[1][2][0].label
-#: mrcrosstabs/ui[3][0][2][1].label
+#: mrcrosstabs/ui[2][0][2][1].label
 #: mrfrequencies/ui[2][1][0].label
 #: piechart/ui[1][2][0].label
 #: raincloud/ui[1][1][0].label
@@ -1649,7 +1740,7 @@ msgid "Columns"
 msgstr "Colonnes"
 
 #: mrcrosstabs/options/xaxis/xcols.title
-#: mrcrosstabs/ui[3][0][1][0]/xaxis_xcols.label
+#: mrcrosstabs/ui[2][0][1][0]/xaxis_xcols.label
 msgid "Columns (Groups)"
 msgstr "Colonnes (groupes)"
 
@@ -1748,7 +1839,7 @@ msgstr ""
 #: histogram/options/histtype/count.title
 #: histogram/ui[2][0][0]/histtype_count.label
 #: mrcrosstabs/options/computedValues/count.title
-#: mrcrosstabs/ui[2][1][0]/computedValues_count.label
+#: mrcrosstabs/ui[1][1][0]/computedValues_count.label
 #: piechart/options/labels/count.title
 #: piechart/ui[1][1][0][0]/labels_count.label
 msgid "Count"
@@ -1855,7 +1946,7 @@ msgstr "Intervalle"
 #: lollipop/options/order/decreasing.title
 #: lollipop/ui[2][1][0][0]/order_decreasing.label
 #: mrcrosstabs/options/order/decreasing.title
-#: mrcrosstabs/ui[2][2][0]/order_decreasing.label
+#: mrcrosstabs/ui[1][2][0]/order_decreasing.label
 #: mrfrequencies/options/order/decreasing.title
 #: mrfrequencies/ui[1][1][0]/order_decreasing.label
 msgid "Decreasing"
@@ -1994,6 +2085,7 @@ msgstr ""
 msgid "DSCF p-values are adjusted groupwise."
 msgstr "Les probabilités critiques DSCF sont corrigées par groupe"
 
+#: mrcrosstabs/options/mode/morevar.title
 #: mrfrequencies/options/mode/morevar.title
 msgid "Dummy Variables"
 msgstr "Variables dichotomiques"
@@ -2019,6 +2111,7 @@ msgstr "Valeur propre"
 msgid "Eigenvalues"
 msgstr "Valeurs propres"
 
+#: mrcrosstabs/options/emptyAsNA.title
 #: mrfrequencies/options/emptyAsNA.title
 msgid "Empty value as NA"
 msgstr "Considérer les valeurs vides comme manquantes"
@@ -2166,6 +2259,10 @@ msgstr "Style de police"
 #: principal/options/captionFontSize.title
 msgid "Font size"
 msgstr "Taille de police"
+
+#: barplot/ui[1][2][0][0]/singleColor/colorNo.suffix
+msgid "for all bars"
+msgstr "uniquement"
 
 #: histogram/options/usePalette/forBorder.title
 #: histogram/ui[3][0][1][0]/usePalette_forBoder.label
@@ -2347,7 +2444,9 @@ msgstr "Graphe"
 #: likertplot/options/group.title
 #: likertplot/ui[0][1].label
 #: mrcrosstabs/options/group.title
-#: mrcrosstabs/ui[0][1].label
+#: mrcrosstabs/options/group2.title
+#: mrcrosstabs/ui/mode/morevar[0][0][1].label
+#: mrcrosstabs/ui/mode/onevar[0][0][1].label
 #: qqplot/options/group.title
 #: qqplot/ui[0][1].label
 msgid "Grouping Variable"
@@ -2452,7 +2551,7 @@ msgstr "Améliorer l'affichage des étiquettes"
 #: lollipop/options/order/increasing.title
 #: lollipop/ui[2][1][0][0]/order_increasing.label
 #: mrcrosstabs/options/order/increasing.title
-#: mrcrosstabs/ui[2][2][0]/order_increasing.label
+#: mrcrosstabs/ui[1][2][0]/order_increasing.label
 #: mrfrequencies/options/order/increasing.title
 #: mrfrequencies/ui[1][1][0]/order_increasing.label
 msgid "Increasing"
@@ -2651,6 +2750,60 @@ msgstr "Tests de Kruskal-Wallis"
 msgid "Label"
 msgstr "Étiquettes"
 
+#: areachart/options/yAxisLabelFontSize.title
+#: areachart/options/xAxisLabelFontSize.title
+#: barplot/options/yAxisLabelFontSize.title
+#: barplot/options/xAxisLabelFontSize.title
+#: boxplot/options/yAxisLabelFontSize.title
+#: boxplot/options/xAxisLabelFontSize.title
+#: histogram/options/yAxisLabelFontSize.title
+#: histogram/options/xAxisLabelFontSize.title
+#: likertplot/options/yAxisLabelFontSize.title
+#: likertplot/options/xAxisLabelFontSize.title
+#: linechart/options/yAxisLabelFontSize.title
+#: linechart/options/xAxisLabelFontSize.title
+#: lollipop/options/yAxisLabelFontSize.title
+#: lollipop/options/xAxisLabelFontSize.title
+#: mrcrosstabs/options/yAxisLabelFontSize.title
+#: mrcrosstabs/options/xAxisLabelFontSize.title
+#: mrfrequencies/options/yAxisLabelFontSize.title
+#: mrfrequencies/options/xAxisLabelFontSize.title
+#: qqplot/options/yAxisLabelFontSize.title
+#: qqplot/options/xAxisLabelFontSize.title
+#: raincloud/options/yAxisLabelFontSize.title
+#: raincloud/options/xAxisLabelFontSize.title
+#: scatterplot/options/yAxisLabelFontSize.title
+#: scatterplot/options/xAxisLabelFontSize.title
+msgid "Label font size"
+msgstr ""
+
+#: areachart/options/yAxisLabelRotation.title
+#: areachart/options/xAxisLabelRotation.title
+#: barplot/options/yAxisLabelRotation.title
+#: barplot/options/xAxisLabelRotation.title
+#: boxplot/options/yAxisLabelRotation.title
+#: boxplot/options/xAxisLabelRotation.title
+#: histogram/options/yAxisLabelRotation.title
+#: histogram/options/xAxisLabelRotation.title
+#: likertplot/options/yAxisLabelRotation.title
+#: likertplot/options/xAxisLabelRotation.title
+#: linechart/options/yAxisLabelRotation.title
+#: linechart/options/xAxisLabelRotation.title
+#: lollipop/options/yAxisLabelRotation.title
+#: lollipop/options/xAxisLabelRotation.title
+#: mrcrosstabs/options/yAxisLabelRotation.title
+#: mrcrosstabs/options/xAxisLabelRotation.title
+#: mrfrequencies/options/yAxisLabelRotation.title
+#: mrfrequencies/options/xAxisLabelRotation.title
+#: qqplot/options/yAxisLabelRotation.title
+#: qqplot/options/xAxisLabelRotation.title
+#: raincloud/options/yAxisLabelRotation.title
+#: raincloud/options/xAxisLabelRotation.title
+#: scatterplot/options/yAxisLabelRotation.title
+#: scatterplot/options/xAxisLabelRotation.title
+msgid "Label rotation"
+msgstr ""
+
 #: likertplot/ui[4][2][0][0].label
 msgid "Label Size"
 msgstr "Taille des étiquettes"
@@ -2745,38 +2898,41 @@ msgstr "Grand (600x400)"
 msgid "Left"
 msgstr "Gauche"
 
-#: areachart/ui[3][0].label
-#: barplot/ui[4][0].label
-#: boxplot/ui[3][0].label
-#: histogram/ui[5][0].label
-#: likertplot/ui[5].label
-#: likertplot/ui[5][0].label
-#: linechart/ui[3][0].label
+#: areachart/ui[4][0].label
+#: barplot/ui[5][0].label
+#: boxplot/ui[4][0].label
+#: histogram/ui[6][0].label
+#: likertplot/ui[6][0].label
+#: linechart/ui[4][0].label
 #: mrcrosstabs/ui[4][0].label
 #: multcorresp/ui[8][0].label
 #: piechart/ui[3].label
 #: piechart/ui[3][0].label
 #: principal/ui[5][0].label
-#: qqplot/ui[5][0].label
-#: raincloud/ui[3][0].label
-#: scatterplot/ui[3][0].label
+#: qqplot/ui[6][0].label
+#: raincloud/ui[4][0].label
+#: scatterplot/ui[4][0].label
 msgid "Legend"
 msgstr "Légende"
 
-#: areachart/ui[3].label
-#: barplot/ui[4].label
-#: boxplot/ui[3].label
-#: histogram/ui[5].label
-#: linechart/ui[3].label
-#: lollipop/ui[4].label
+#: areachart/ui[4].label
+#: barplot/ui[5].label
+#: boxplot/ui[4].label
+#: histogram/ui[6].label
+#: linechart/ui[4].label
+#: lollipop/ui[5].label
 #: mrcrosstabs/ui[4].label
 #: multcorresp/ui[8].label
 #: principal/ui[5].label
-#: qqplot/ui[5].label
-#: raincloud/ui[3].label
-#: scatterplot/ui[3].label
-msgid "Legend & Axis Labels"
-msgstr "Titres des légendes et axes"
+#: qqplot/ui[6].label
+#: raincloud/ui[4].label
+#: scatterplot/ui[4].label
+msgid "Legend & Axis Titles"
+msgstr ""
+
+#: likertplot/ui[6].label
+msgid "Legend Title"
+msgstr ""
 
 #: multcorresp/results/categories.columns.title
 msgid "Level"
@@ -2930,14 +3086,53 @@ msgstr ""
 msgid "Mann-Whitney U Tests"
 msgstr "Tests U de Mann-Whitney"
 
+#: areachart/options/yAxisRangeType/manual.title
+#: barplot/options/yAxisRangeType/manual.title
+#: barplot/options/xAxisRangeType/manual.title
+#: boxplot/options/yAxisRangeType/manual.title
+#: boxplot/options/xAxisRangeType/manual.title
+#: histogram/options/yAxisRangeType/manual.title
+#: histogram/options/xAxisRangeType/manual.title
+#: linechart/options/yAxisRangeType/manual.title
+#: lollipop/options/yAxisRangeType/manual.title
+#: lollipop/options/xAxisRangeType/manual.title
+#: mrcrosstabs/options/yAxisRangeType/manual.title
+#: mrfrequencies/options/yAxisRangeType/manual.title
+#: qqplot/options/yAxisRangeType/manual.title
+#: qqplot/options/xAxisRangeType/manual.title
+#: raincloud/options/yAxisRangeType/manual.title
+#: raincloud/options/xAxisRangeType/manual.title
+#: scatterplot/options/yAxisRangeType/manual.title
+#: scatterplot/options/xAxisRangeType/manual.title
+msgid "Manual"
+msgstr ""
+
 #: R/corresp.b.R
 #: multcorresp/results/categories.columns.title
 #: multcorresp/results/observations.columns.title
 msgid "Mass"
 msgstr "Masse"
 
+#: areachart/options/yAxisRangeMax.title
+#: barplot/options/yAxisRangeMax.title
+#: barplot/options/xAxisRangeMax.title
+#: boxplot/options/yAxisRangeMax.title
+#: boxplot/options/xAxisRangeMax.title
+#: histogram/options/yAxisRangeMax.title
+#: histogram/options/xAxisRangeMax.title
+#: linechart/options/yAxisRangeMax.title
 #: lollipop/options/yaxis/max.title
+#: lollipop/options/yAxisRangeMax.title
+#: lollipop/options/xAxisRangeMax.title
 #: lollipop/ui[2][0][0][1]/yaxis_max.label
+#: mrcrosstabs/options/yAxisRangeMax.title
+#: mrfrequencies/options/yAxisRangeMax.title
+#: qqplot/options/yAxisRangeMax.title
+#: qqplot/options/xAxisRangeMax.title
+#: raincloud/options/yAxisRangeMax.title
+#: raincloud/options/xAxisRangeMax.title
+#: scatterplot/options/yAxisRangeMax.title
+#: scatterplot/options/xAxisRangeMax.title
 msgid "Max"
 msgstr ""
 
@@ -2998,8 +3193,26 @@ msgstr "Méthode des moments (MME)"
 msgid "Method:"
 msgstr "Méthode :"
 
+#: areachart/options/yAxisRangeMin.title
+#: barplot/options/yAxisRangeMin.title
+#: barplot/options/xAxisRangeMin.title
+#: boxplot/options/yAxisRangeMin.title
+#: boxplot/options/xAxisRangeMin.title
+#: histogram/options/yAxisRangeMin.title
+#: histogram/options/xAxisRangeMin.title
+#: linechart/options/yAxisRangeMin.title
 #: lollipop/options/yaxis/min.title
+#: lollipop/options/yAxisRangeMin.title
+#: lollipop/options/xAxisRangeMin.title
 #: lollipop/ui[2][0][0][1]/yaxis_min.label
+#: mrcrosstabs/options/yAxisRangeMin.title
+#: mrfrequencies/options/yAxisRangeMin.title
+#: qqplot/options/yAxisRangeMin.title
+#: qqplot/options/xAxisRangeMin.title
+#: raincloud/options/yAxisRangeMin.title
+#: raincloud/options/xAxisRangeMin.title
+#: scatterplot/options/yAxisRangeMin.title
+#: scatterplot/options/xAxisRangeMin.title
 msgid "Min"
 msgstr ""
 
@@ -3016,6 +3229,9 @@ msgstr "Entropie minimale"
 msgid "Minimum of"
 msgstr "Minimum de"
 
+#: mrcrosstabs/options/mode/onevar.title
+#: mrcrosstabs/ui/mode/onevar[0][0][0].label
+#: mrcrosstabs/ui/mode/onevar[0][1].label
 #: mrfrequencies/options/mode/onevar.title
 #: mrfrequencies/ui/mode/onevar[0][0][0].label
 #: mrfrequencies/ui/mode/onevar[0][1].label
@@ -3047,6 +3263,7 @@ msgstr "Réponses multiples - Tableau croisé"
 msgid "Multiple Response Frequencies"
 msgstr "Réponses multiples - Fréquences"
 
+#: mrcrosstabs/options/repVar.title
 #: mrfrequencies/options/repVar.title
 msgid "Multiple Value Variable"
 msgstr ""
@@ -3088,7 +3305,7 @@ msgstr "Aucune rotation appliquée."
 #: lollipop/options/order/none.title
 #: lollipop/ui[2][1][0][0]/order_none.label
 #: mrcrosstabs/options/order/none.title
-#: mrcrosstabs/ui[2][2][0]/order_none.label
+#: mrcrosstabs/ui[1][2][0]/order_none.label
 #: mrfrequencies/options/order/none.title
 #: mrfrequencies/ui[1][1][0]/order_none.label
 #: piechart/options/labels/none.title
@@ -3249,8 +3466,8 @@ msgid "Option name"
 msgstr "Nom des options"
 
 #: mrcrosstabs/options/resps.title
-#: mrcrosstabs/ui[0][0].label
-#: mrcrosstabs/ui[1].label
+#: mrcrosstabs/ui/mode/morevar[0][0][0].label
+#: mrcrosstabs/ui/mode/morevar[1].label
 #: mrfrequencies/options/resps.title
 #: mrfrequencies/ui/mode/morevar[0][0][0].label
 #: mrfrequencies/ui/mode/morevar[1].label
@@ -3553,7 +3770,7 @@ msgstr "Options du graphique"
 #: likertplot/ui[4][3].label
 #: linechart/ui[2][0][0][0].label
 #: lollipop/ui[3][0][0][0].label
-#: mrcrosstabs/ui[3][0][2][0].label
+#: mrcrosstabs/ui[2][0][2][0].label
 #: mrfrequencies/ui[2][0][0].label
 #: multcorresp/ui[7].label
 #: piechart/ui[2][0][0][0].label
@@ -3563,19 +3780,19 @@ msgstr "Options du graphique"
 msgid "Plot Size"
 msgstr "Taille du graphique"
 
-#: areachart/ui[4].label
-#: barplot/ui[5].label
-#: boxplot/ui[4].label
-#: histogram/ui[6].label
-#: likertplot/ui[6].label
-#: linechart/ui[4].label
-#: lollipop/ui[5].label
+#: areachart/ui[5].label
+#: barplot/ui[6].label
+#: boxplot/ui[5].label
+#: histogram/ui[7].label
+#: likertplot/ui[7].label
+#: linechart/ui[5].label
+#: lollipop/ui[6].label
 #: mrcrosstabs/ui[5].label
-#: mrfrequencies/ui[4].label
+#: mrfrequencies/ui[5].label
 #: piechart/ui[4].label
-#: qqplot/ui[6].label
-#: raincloud/ui[4].label
-#: scatterplot/ui[4].label
+#: qqplot/ui[7].label
+#: raincloud/ui[5].label
+#: scatterplot/ui[5].label
 msgid "Plot Titles"
 msgstr "Titres du graphique"
 
@@ -3592,7 +3809,7 @@ msgid "Plot Type"
 msgstr "Type de graphique"
 
 #: corresp/ui[5][1][0].label
-#: mrcrosstabs/ui[3].label
+#: mrcrosstabs/ui[2].label
 #: mrcrosstabs/results/plot.title
 #: multcorresp/ui[5][1][0].label
 #: principal/ui[3][1][0].label
@@ -3878,6 +4095,27 @@ msgstr ""
 msgid "Raincloud Plot"
 msgstr "Diagramme Raincloud"
 
+#: areachart/ui[3][0][1][1].label
+#: barplot/ui[4][0][0][1].label
+#: barplot/ui[4][0][1][1].label
+#: boxplot/ui[3][0][0][1].label
+#: boxplot/ui[3][0][1][1].label
+#: histogram/ui[5][0][0][1].label
+#: histogram/ui[5][0][1][1].label
+#: linechart/ui[3][0][1][1].label
+#: lollipop/ui[4][0][0][1].label
+#: lollipop/ui[4][0][1][1].label
+#: mrcrosstabs/ui[3][0][1][1].label
+#: mrfrequencies/ui[3][0][1][1].label
+#: qqplot/ui[5][0][0][1].label
+#: qqplot/ui[5][0][1][1].label
+#: raincloud/ui[3][0][0][1].label
+#: raincloud/ui[3][0][1][1].label
+#: scatterplot/ui[3][0][0][1].label
+#: scatterplot/ui[3][0][1][1].label
+msgid "Range"
+msgstr ""
+
 #: corresp/options/rowColor/red.title
 #: corresp/options/colColor/red.title
 #: histogram/options/fillColor/#E41A1C.title
@@ -4088,9 +4326,7 @@ msgstr "Droite"
 msgid "Rotate eigenvectors"
 msgstr "Rotation des vecteurs propres"
 
-#: areachart/options/rotateLabels.title
 #: barplot/options/rotateLabels.title
-#: linechart/options/rotateLabels.title
 msgid "Rotate X-Axis Labels"
 msgstr "Pivoter les étiquettes"
 
@@ -4157,7 +4393,7 @@ msgid "Rows"
 msgstr "Lignes"
 
 #: mrcrosstabs/options/xaxis/xrows.title
-#: mrcrosstabs/ui[3][0][1][0]/xaxis_xrows.label
+#: mrcrosstabs/ui[2][0][1][0]/xaxis_xrows.label
 msgid "Rows (Options)"
 msgstr "Lignes (Options)"
 
@@ -4212,6 +4448,7 @@ msgstr "Valeurs propres"
 msgid "SD"
 msgstr "Ecart-type"
 
+#: mrcrosstabs/options/separator.title
 #: mrfrequencies/options/separator.title
 msgid "Separator"
 msgstr "Séparateur"
@@ -4302,7 +4539,7 @@ msgid "Show Totals (Centered Only)"
 msgstr "Afficher les totaux (centrées)"
 
 #: mrcrosstabs/options/bartype/dodge.title
-#: mrcrosstabs/ui[3][0][0][0]/bartype_dodge.label
+#: mrcrosstabs/ui[2][0][0][0]/bartype_dodge.label
 msgid "Side by side"
 msgstr "Juxtaposé"
 
@@ -4389,7 +4626,7 @@ msgstr "Trier les variable selon la médiane"
 #: lollipop/options/order.title
 #: lollipop/ui[2][1][0].label
 #: mrcrosstabs/options/order.title
-#: mrcrosstabs/ui[2][2][0].label
+#: mrcrosstabs/ui[1][2][0].label
 #: mrfrequencies/options/order.title
 #: mrfrequencies/ui[1][1][0].label
 msgid "Sorting"
@@ -4428,7 +4665,7 @@ msgstr "Total"
 #: likertplot/options/type/stacked.title
 #: likertplot/ui[4][0][0][0]/type_stacked.label
 #: mrcrosstabs/options/bartype/stack.title
-#: mrcrosstabs/ui[3][0][0][0]/bartype_stack.label
+#: mrcrosstabs/ui[2][0][0][0]/bartype_stack.label
 msgid "Stacked"
 msgstr "Empilé"
 
@@ -4523,19 +4760,19 @@ msgstr "symétrique"
 msgid "Student"
 msgstr ""
 
-#: areachart/ui[4][1].label
-#: barplot/ui[5][1].label
-#: boxplot/ui[4][1].label
-#: histogram/ui[6][1].label
-#: likertplot/ui[6][1].label
-#: linechart/ui[4][1].label
-#: lollipop/ui[5][1].label
+#: areachart/ui[5][1].label
+#: barplot/ui[6][1].label
+#: boxplot/ui[5][1].label
+#: histogram/ui[7][1].label
+#: likertplot/ui[7][1].label
+#: linechart/ui[5][1].label
+#: lollipop/ui[6][1].label
 #: mrcrosstabs/ui[5][1].label
-#: mrfrequencies/ui[4][1].label
+#: mrfrequencies/ui[5][1].label
 #: piechart/ui[4][1].label
-#: qqplot/ui[6][1].label
-#: raincloud/ui[4][1].label
-#: scatterplot/ui[4][1].label
+#: qqplot/ui[7][1].label
+#: raincloud/ui[5][1].label
+#: scatterplot/ui[5][1].label
 msgid "Subtitle"
 msgstr "Sous-titre"
 
@@ -4594,7 +4831,7 @@ msgstr "Symétrique"
 
 #: likertplot/ui[2].label
 #: likertplot/ui[2][0][0][0].label
-#: mrcrosstabs/ui[2][0][0].label
+#: mrcrosstabs/ui[1][0][0].label
 #: mrfrequencies/ui[1][0][0].label
 msgid "Table"
 msgstr "Table"
@@ -4643,6 +4880,21 @@ msgstr "Quantiles théoriques"
 msgid "Tidy up levels"
 msgstr "Corriger les niveaux"
 
+#: areachart/options/colorPalette/custom::tidyplots.title
+#: barplot/options/colorPalette/custom::tidyplots.title
+#: boxplot/options/colorPalette/custom::tidyplots.title
+#: histogram/options/colorPalette/custom::tidyplots.title
+#: linechart/options/colorPalette/custom::tidyplots.title
+#: mrcrosstabs/options/colorPalette/custom::tidyplots.title
+#: mrfrequencies/options/colorPalette/custom::tidyplots.title
+#: multcorresp/options/colorPalette/custom::tidyplots.title
+#: piechart/options/colorPalette/custom::tidyplots.title
+#: principal/options/colorPalette/custom::tidyplots.title
+#: raincloud/options/colorPalette/custom::tidyplots.title
+#: scatterplot/options/colorPalette/custom::tidyplots.title
+msgid "Tidyplot"
+msgstr ""
+
 #: package/analyses/linechart.menuSubgroup
 #: package/analyses/areachart.menuSubgroup
 #: package/datasets/Time Series.name
@@ -4651,19 +4903,19 @@ msgstr "Corriger les niveaux"
 msgid "Time Series"
 msgstr "Séries temporelles"
 
-#: areachart/ui[4][0].label
-#: barplot/ui[5][0].label
-#: boxplot/ui[4][0].label
-#: histogram/ui[6][0].label
-#: likertplot/ui[6][0].label
-#: linechart/ui[4][0].label
-#: lollipop/ui[5][0].label
+#: areachart/ui[5][0].label
+#: barplot/ui[6][0].label
+#: boxplot/ui[5][0].label
+#: histogram/ui[7][0].label
+#: likertplot/ui[7][0].label
+#: linechart/ui[5][0].label
+#: lollipop/ui[6][0].label
 #: mrcrosstabs/ui[5][0].label
-#: mrfrequencies/ui[4][0].label
+#: mrfrequencies/ui[5][0].label
 #: piechart/ui[4][0].label
-#: qqplot/ui[6][0].label
-#: raincloud/ui[4][0].label
-#: scatterplot/ui[4][0].label
+#: qqplot/ui[7][0].label
+#: raincloud/ui[5][0].label
+#: scatterplot/ui[5][0].label
 msgid "Title"
 msgstr "Titre"
 
@@ -4743,6 +4995,10 @@ msgstr "US (M-J-A)"
 msgid "Use boldface"
 msgstr "Catégories en gras"
 
+#: barplot/ui[1][2][0][0]/singleColor.label
+msgid "Use color No."
+msgstr "Couleur nº"
+
 #: histogram/options/usePalette.title
 #: histogram/ui[3][0][1][0].label
 msgid "Use Palette"
@@ -4764,7 +5020,7 @@ msgstr "Description des variables comme nom"
 #: lollipop/options/yaxis/identity.title
 #: lollipop/ui[2][0][0][0]/yaxis_identity.label
 #: mrcrosstabs/options/computedValues.title
-#: mrcrosstabs/ui[2][1][0].label
+#: mrcrosstabs/ui[1][1][0].label
 msgid "Values"
 msgstr "Valeurs"
 
@@ -4967,6 +5223,11 @@ msgstr ""
 msgid "White"
 msgstr "Blanc"
 
+#: mrcrosstabs/options/size/wide.title
+#: mrfrequencies/options/size/wide.title
+msgid "Wide (700x400)"
+msgstr ""
+
 #: areachart/options/plotWidth.title
 #: barplot/options/plotWidth.title
 #: boxplot/options/plotWidth.title
@@ -4992,30 +5253,42 @@ msgstr "Largeur"
 #: areachart/ui/mode/oneVariable[0][0][0].label
 #: areachart/ui/mode/severalVariables[0][0][0].label
 #: areachart/ui[1][1][0].label
-#: areachart/ui[3][1].label
-#: barplot/ui[4][1].label
-#: boxplot/ui[3][1].label
+#: areachart/ui[3][0][0][0].label
+#: areachart/ui[4][1].label
+#: barplot/ui[4][0][0][0].label
+#: barplot/ui[5][1].label
+#: boxplot/ui[3][0][0][0].label
+#: boxplot/ui[4][1].label
 #: corresp/options/xaxis.title
 #: corresp/ui[7][0].label
-#: histogram/ui[5][1].label
+#: histogram/ui[5][0][0][0].label
+#: histogram/ui[6][1].label
+#: likertplot/ui[5][0][0][0].label
 #: linechart/options/timeVar.title
 #: linechart/ui[0][0].label
 #: linechart/ui[1][1][0].label
-#: linechart/ui[3][1].label
-#: lollipop/ui[4][0].label
+#: linechart/ui[3][0][0][0].label
+#: linechart/ui[4][1].label
+#: lollipop/ui[4][0][0][0].label
+#: lollipop/ui[5][0].label
 #: mrcrosstabs/options/xaxis.title
-#: mrcrosstabs/ui[3][0][1][0].label
+#: mrcrosstabs/ui[2][0][1][0].label
+#: mrcrosstabs/ui[3][0][0][0].label
 #: mrcrosstabs/ui[4][1].label
-#: mrfrequencies/ui[3][0].label
+#: mrfrequencies/ui[3][0][0][0].label
+#: mrfrequencies/ui[4][0].label
 #: multcorresp/options/xaxis.title
 #: multcorresp/ui[8][1].label
 #: principal/options/xaxis.title
 #: principal/ui[5][1].label
-#: qqplot/ui[5][1].label
-#: raincloud/ui[3][1].label
+#: qqplot/ui[5][0][0][0].label
+#: qqplot/ui[6][1].label
+#: raincloud/ui[3][0][0][0].label
+#: raincloud/ui[4][1].label
 #: scatterplot/options/xaxis.title
 #: scatterplot/ui[0][0].label
-#: scatterplot/ui[3][1].label
+#: scatterplot/ui[3][0][0][0].label
+#: scatterplot/ui[4][1].label
 msgid "X-Axis"
 msgstr "Axe X"
 
@@ -5024,28 +5297,50 @@ msgstr "Axe X"
 msgid "X-Axis is a date"
 msgstr "L'axe X est une date"
 
-#: areachart/ui[3][2].label
-#: barplot/ui[4][2].label
-#: boxplot/ui[3][2].label
+#: barplot/options/xAxisRangeType.title
+#: boxplot/options/xAxisRangeType.title
+#: histogram/options/xAxisRangeType.title
+#: lollipop/options/xAxisRangeType.title
+#: qqplot/options/xAxisRangeType.title
+#: raincloud/options/xAxisRangeType.title
+#: scatterplot/options/xAxisRangeType.title
+msgid "X-Axis Range"
+msgstr ""
+
+#: areachart/ui[3][0][1][0].label
+#: areachart/ui[4][2].label
+#: barplot/ui[4][0][1][0].label
+#: barplot/ui[5][2].label
+#: boxplot/ui[3][0][1][0].label
+#: boxplot/ui[4][2].label
 #: corresp/options/yaxis.title
 #: corresp/ui[7][1].label
-#: histogram/ui[5][2].label
-#: linechart/ui[3][2].label
+#: histogram/ui[5][0][1][0].label
+#: histogram/ui[6][2].label
+#: likertplot/ui[5][0][1][0].label
+#: linechart/ui[3][0][1][0].label
+#: linechart/ui[4][2].label
 #: lollipop/options/yaxis.title
 #: lollipop/ui[2][0][0].label
-#: lollipop/ui[4][1].label
+#: lollipop/ui[4][0][1][0].label
+#: lollipop/ui[5][1].label
+#: mrcrosstabs/ui[3][0][1][0].label
 #: mrcrosstabs/ui[4][2].label
 #: mrfrequencies/options/yaxis.title
-#: mrfrequencies/ui[3][1].label
+#: mrfrequencies/ui[3][0][1][0].label
+#: mrfrequencies/ui[4][1].label
 #: multcorresp/options/yaxis.title
 #: multcorresp/ui[8][2].label
 #: principal/options/yaxis.title
 #: principal/ui[5][2].label
-#: qqplot/ui[5][2].label
-#: raincloud/ui[3][2].label
+#: qqplot/ui[5][0][1][0].label
+#: qqplot/ui[6][2].label
+#: raincloud/ui[3][0][1][0].label
+#: raincloud/ui[4][2].label
 #: scatterplot/options/yaxis.title
 #: scatterplot/ui[0][1].label
-#: scatterplot/ui[3][2].label
+#: scatterplot/ui[3][0][1][0].label
+#: scatterplot/ui[4][2].label
 msgid "Y-Axis"
 msgstr "Axe Y"
 
@@ -5057,6 +5352,20 @@ msgstr "Axe Y (avec groupes)"
 #: barplot/ui[2][0][0].label
 msgid "Y-axis (without group)"
 msgstr "Axe Y (sans groupe)"
+
+#: areachart/options/yAxisRangeType.title
+#: barplot/options/yAxisRangeType.title
+#: boxplot/options/yAxisRangeType.title
+#: histogram/options/yAxisRangeType.title
+#: linechart/options/yAxisRangeType.title
+#: lollipop/options/yAxisRangeType.title
+#: mrcrosstabs/options/yAxisRangeType.title
+#: mrfrequencies/options/yAxisRangeType.title
+#: qqplot/options/yAxisRangeType.title
+#: raincloud/options/yAxisRangeType.title
+#: scatterplot/options/yAxisRangeType.title
+msgid "Y-Axis Range"
+msgstr ""
 
 #: corresp/options/supColor/yellow2.title
 #: histogram/options/fillColor/#FFFF33.title
