@@ -146,44 +146,49 @@ children:
                 optionName: yaxis
                 optionPart: cases
                 label: '% of Cases'
-  - type: LayoutBox
-    margin: large
+  - type: CollapseBox
+    label: Plot Options
+    collapsed: true
     stretchFactor: 1
     children:
       - type: LayoutBox
-        cell:
-          column: 0
-          row: 0
+        margin: large
         stretchFactor: 1
         children:
-          - type: Label
-            label: Plot Size
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
             children:
-              - type: ComboBox
-                name: size
-      - type: LayoutBox
-        cell:
-          column: 1
-          row: 0
-        stretchFactor: 1
-        children:
-          - type: Label
-            label: Color Options
-            children:
-              - type: ComboBox
-                name: colorPalette
-              - type: CheckBox
-                name: singleColor
-                label: Use color No.
-                style: inline
-                verticalAlignment: center
+              - type: Label
+                label: Plot Size
                 children:
-                  - type: TextBox
-                    name: colorNo
-                    label: ''
-                    suffix: for all bars
-                    format: number
-                    enable: (singleColor)
+                  - type: ComboBox
+                    name: size
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Color Options
+                children:
+                  - type: ComboBox
+                    name: colorPalette
+                  - type: CheckBox
+                    name: singleColor
+                    label: Use color No.
+                    style: inline
+                    verticalAlignment: center
+                    children:
+                      - type: TextBox
+                        name: colorNo
+                        label: ''
+                        suffix: only
+                        format: number
+                        enable: (singleColor)
   - type: CollapseBox
     label: Axes
     collapsed: true

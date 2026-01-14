@@ -48,11 +48,6 @@ options:
       type: Bool
       default: false
 
-    - name: rotateLabels
-      title: Rotate X-Axis Labels
-      type: Bool
-      default: false
-
     - name: showLabels
       title: Show count labels
       type: Bool

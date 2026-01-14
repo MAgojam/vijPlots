@@ -45,13 +45,14 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setSize(width, height)
         },
         .run = function() {
+            if( length(self$options$vars) == 0 || nrow(self$data) == 0)
+                return()
             labelVarName <- self$options$label
             groupVarName <- self$options$group
             depVarNames <- self$options$vars
             varNames <- c(labelVarName,groupVarName, depVarNames)
-            if( length(depVarNames) == 0 )
-              return()
-            data <- jmvcore::select(self$data, varNames)
+            #data <- jmvcore::select(self$data, varNames)
+            data <- self$data[varNames]
             # Remove case with missing group
             if (!is.null(groupVarName) & self$options$ignoreNA) {
               data <- subset(data, !is.na(data[groupVarName]))
@@ -63,9 +64,8 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setState(data)
         },
         .plot = function(image, ggtheme, theme, ...) {
-            if( length(self$options$vars) == 0 )
+            if (is.null(image$state))
                 return(FALSE)
-
             plotData <- image$state
             labelVarName <- self$options$label
             groupVarName <- self$options$group
@@ -122,23 +122,23 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 			if (self$options$singleColor) {
 			    nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
 			    colorNo <- self$options$colorNo
-			    oneColorIdx <- min(colorNo,nbColors)
+			    oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[min(colorNo,nbColors)]
 			}
 
 			# Building the plot
-            i <- 0
             plot <- ggplot(plotData)
             for (varName in depVarNames) {
-                if (self$options$singleColor) {
-                    i <- oneColorIdx
-                } else {
-                    i <- i+1
-                }
                 aVar <- ensym(varName)
                 if (is.null(groupVar)) {
-                    plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!varName, fill = as.character(!!i)),
-                    					outliers = self$options$showOutliers, staplewidth = stapleWidth,
-                    					notch = notches, notchwidth = notchWidth)
+                    if (self$options$singleColor) {
+                        plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!varName), fill = oneColorOfPalette,
+                        					outliers = self$options$showOutliers, staplewidth = stapleWidth,
+                        					notch = notches, notchwidth = notchWidth)
+                    } else {
+                        plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!varName, fill = !!varName),
+                                                    outliers = self$options$showOutliers, staplewidth = stapleWidth,
+                                                    notch = notches, notchwidth = notchWidth)
+                    }
                     if (!is.null(labelVar) & self$options$showOutliers) {
                         outlierVar <- paste0(".outliers_",varName)
                         outlierVar <- ensym(outlierVar)

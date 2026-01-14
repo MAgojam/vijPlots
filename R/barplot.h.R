@@ -11,7 +11,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             facet = NULL,
             ignoreNA = TRUE,
             horizontal = FALSE,
-            rotateLabels = FALSE,
             showLabels = TRUE,
             order = "none",
             yaxis1var = "count",
@@ -95,10 +94,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..horizontal <- jmvcore::OptionBool$new(
                 "horizontal",
                 horizontal,
-                default=FALSE)
-            private$..rotateLabels <- jmvcore::OptionBool$new(
-                "rotateLabels",
-                rotateLabels,
                 default=FALSE)
             private$..showLabels <- jmvcore::OptionBool$new(
                 "showLabels",
@@ -456,7 +451,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..facet)
             self$.addOption(private$..ignoreNA)
             self$.addOption(private$..horizontal)
-            self$.addOption(private$..rotateLabels)
             self$.addOption(private$..showLabels)
             self$.addOption(private$..order)
             self$.addOption(private$..yaxis1var)
@@ -509,7 +503,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         facet = function() private$..facet$value,
         ignoreNA = function() private$..ignoreNA$value,
         horizontal = function() private$..horizontal$value,
-        rotateLabels = function() private$..rotateLabels$value,
         showLabels = function() private$..showLabels$value,
         order = function() private$..order$value,
         yaxis1var = function() private$..yaxis1var$value,
@@ -561,7 +554,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..facet = NA,
         ..ignoreNA = NA,
         ..horizontal = NA,
-        ..rotateLabels = NA,
         ..showLabels = NA,
         ..order = NA,
         ..yaxis1var = NA,
@@ -659,7 +651,6 @@ barplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param facet .
 #' @param ignoreNA .
 #' @param horizontal .
-#' @param rotateLabels .
 #' @param showLabels .
 #' @param order .
 #' @param yaxis1var .
@@ -718,7 +709,6 @@ barplot <- function(
     facet,
     ignoreNA = TRUE,
     horizontal = FALSE,
-    rotateLabels = FALSE,
     showLabels = TRUE,
     order = "none",
     yaxis1var = "count",
@@ -788,7 +778,6 @@ barplot <- function(
         facet = facet,
         ignoreNA = ignoreNA,
         horizontal = horizontal,
-        rotateLabels = rotateLabels,
         showLabels = showLabels,
         order = order,
         yaxis1var = yaxis1var,

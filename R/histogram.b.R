@@ -100,9 +100,9 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 hist_arg = list()
             }
-            if (self$options$grouping != "none" && !is.null(groupVar)) {
-                hist_arg[["position"]] <- self$options$grouping
-                if (self$options$grouping == "identity" && (fillColor != "white" || self$options$usePalette == "forFilling")) {
+            if (!is.null(groupVar)) {
+                hist_arg[["position"]] <- self$options$groupingN
+                if (self$options$groupingN == "identity" && (fillColor != "white" || self$options$usePalette == "forFilling")) {
                     hist_arg[["alpha"]] <- 0.5
                 }
                 if (self$options$usePalette == "forFilling") {

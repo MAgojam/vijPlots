@@ -60,14 +60,14 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if( !is.null(sizeVar) ) {
                 plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis, size = !!sizeVar))
                 if( is.null(groupVar)) {
-                    plot <- plot + geom_point(color = "dimgrey")
+                    plot <- plot + geom_point(color = self$options$singleColor)
                 } else {
                     plot <- plot + geom_point(aes(color = !!groupVar))
                 }
             } else {
                 plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis))
                 if( is.null(groupVar)) {
-                    plot <- plot + geom_point(color = "dimgrey", size = 3)
+                    plot <- plot + geom_point(color = self$options$singleColor, size = 3)
                 } else {
                     plot <- plot + geom_point(aes(color = !!groupVar), size = 3)
                 }

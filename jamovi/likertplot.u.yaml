@@ -147,12 +147,6 @@ children:
               - type: Label
                 label: Post Hoc Tests
                 children:
-#                  - type: RadioButton
-#                    name: postHoc_mannwhitney
-#                    optionName: postHoc
-#                    optionPart: mannwhitney
-#                    label: "Mann-Whitney U"
-#                    enable: (showPostHoc)
                   - type: RadioButton
                     name: postHoc_dunn
                     optionName: postHoc

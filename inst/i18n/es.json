@@ -68,97 +68,97 @@
             "": {
                 "domain": "messages",
                 "plural_forms": "nplurals=2; plural=(n != 1)",
-                "lang": "fr"
+                "lang": "es"
             },
             " doesn't have a valid date format.": [
-                " n'a pas un format de date valide."
+                ""
             ],
             ";": [
                 ""
             ],
             ".": [
-                ","
+                ""
             ],
             "{detrendStr}{distribStr} {typeStr} Plot of {varStr}": [
-                "Diagramme {typeStr} {distribStr} {detrendStr}de {varStr}"
+                ""
             ],
             "{normalization} normalization": [
-                "Normalisation {normalization}"
+                ""
             ],
             "{rotation} rotation": [
-                "Rotation {rotation}"
+                ""
             ],
             "{rotation} rotation was used.": [
-                "La rotation {rotation} a été utilisée."
+                ""
             ],
             "{rotation} rotation with Kaiser normalization": [
-                "Rotation {rotation} avec normalisation de Kaiser"
+                ""
             ],
             "{rotation} rotation with Kaiser normalization was used.": [
-                "La rotation {rotation} avec normalisation de Kaiser a été utilisée."
+                ""
             ],
             "{stdStr}Sample Quantiles": [
-                "Quantiles observés{stdStr}"
+                ""
             ],
             "{stdStr}Sample Quantiles Deviation": [
-                "Écarts des quantiles observés{stdStr}"
+                ""
             ],
             "* : Suppl. variable(s)": [
-                "* : Variable(s) sup."
+                ""
             ],
             "* : Supplementary columns": [
-                "* : Colonnes supplémentaires"
+                ""
             ],
             "* : Supplementary rows": [
-                "* : Lignes supplémentaires"
+                ""
             ],
             "* : Supplementary rows/columns": [
-                "* : Lignes et colonnes supplémentaires"
+                ""
             ],
             "* : Supplementary variable(s)": [
-                "* : Variable(s) supplémentaire(s)"
+                ""
             ],
             "# of rows/columns": [
-                "Nbre de lignes/colonnes"
+                ""
             ],
             "%": [
-                " %"
+                ""
             ],
             "% accuracy": [
-                "Précision des %"
+                ""
             ],
             "% Accuracy": [
-                "Précision des %"
+                ""
             ],
             "% by Row": [
-                "% par ligne"
+                ""
             ],
             "% by row": [
-                "% par ligne"
+                ""
             ],
             "% Inertia": [
-                "% d'inertie"
+                ""
             ],
             "% Label Color": [
-                "Couleur des %"
+                ""
             ],
             "% Labels": [
-                "Etiquettes des %"
+                ""
             ],
             "% of Cases": [
-                "% d'observations"
+                ""
             ],
             "% of Inertia": [
-                "% d'inertie"
+                ""
             ],
             "% of Responses": [
-                "% de réponses"
+                ""
             ],
             "% of Variance": [
-                "% de variance"
+                ""
             ],
             "% within": [
-                "% dans"
+                ""
             ],
             "°": [
                 ""
@@ -194,49 +194,49 @@
                 ""
             ],
             "1 day": [
-                "1 jour"
+                ""
             ],
             "1 month": [
-                "1 mois"
+                ""
             ],
             "1 week": [
-                "1 semaine"
+                ""
             ],
             "1 year": [
-                "1 an"
+                ""
             ],
             "10 years": [
-                "10 ans"
+                ""
             ],
             "2 weeks": [
-                "2 semaines"
+                ""
             ],
             "20 June 2035": [
-                "20 juin 2035"
+                ""
             ],
             "20/06/35": [
                 ""
             ],
             "2035 June": [
-                "2035 juin"
+                ""
             ],
             "2035 June 20": [
-                "2035 juin 20"
+                ""
             ],
             "2035-06-20": [
                 ""
             ],
             "3 months": [
-                "3 mois"
+                ""
             ],
             "6 months": [
-                "6 mois"
+                ""
             ],
             "A demonstration dataset for Likert scale bar plots.": [
-                "Fichier de démonstration d'un diagramme en barres pour variables de Likert."
+                ""
             ],
             "A demonstration dataset for vijPlots module.": [
-                "Fichier de démonstration du module vijPlots."
+                ""
             ],
             "A demonstration dataset for vijPlots/Correspondence Analysis.": [
                 ""
@@ -254,40 +254,40 @@
                 ""
             ],
             "A demonstration dataset with four dichotomous variables describing  the credit cards owned by customers.": [
-                "Un fichier de démonstration avec quatres variables dichotomiques décrivant les cartes de crédit détenues par des consommateurs."
+                ""
             ],
             "Accent": [
                 ""
             ],
             "Active Margin": [
-                "Marge active"
+                ""
             ],
             "Add Median Line (Stacked Only)": [
-                "Ajouter la ligne médiane"
+                ""
             ],
             "Add plot frame": [
-                "Ajouter un cadre au graphique"
+                ""
             ],
             "Adj. p": [
-                "p corr."
+                ""
             ],
             "Advanced Options": [
-                "Options avancées"
+                ""
             ],
             "Align": [
-                "Align."
+                ""
             ],
             "Alpha": [
                 ""
             ],
             "Area Chart": [
-                "Diagramme en aires"
+                ""
             ],
             "Arrows": [
-                "Vecteurs"
+                ""
             ],
             "Ascending": [
-                "Croissant"
+                ""
             ],
             "Auto": [
                 ""
@@ -299,25 +299,25 @@
                 ""
             ],
             "Axis Titles": [
-                "Titre des axes"
+                ""
             ],
             "Bar Plot": [
-                "Diagramme en barres"
+                ""
             ],
             "Bar Type": [
-                "Type de barres"
+                ""
             ],
             "Bartlett's Test of Sphericity": [
-                "Test de sphéricité de Bartlett"
+                ""
             ],
             "Bentler T": [
                 ""
             ],
             "Benzécri Correction": [
-                "Correction de Benzécri"
+                ""
             ],
             "Benzécri correction": [
-                "Correction de Benzécri"
+                ""
             ],
             "Beta": [
                 ""
@@ -326,40 +326,40 @@
                 ""
             ],
             "Bin Color": [
-                "Couleur des bâtons"
+                ""
             ],
             "Bin Size": [
-                "Taille des bâtons"
+                ""
             ],
             "Biplot": [
-                "Graphique double"
+                ""
             ],
             "Biplot Size": [
-                "Graphique double"
+                ""
             ],
             "Biplot Type": [
-                "Type de graphique double"
+                ""
             ],
             "Black": [
-                "Noir"
+                ""
             ],
             "Blue": [
-                "Bleu"
+                ""
             ],
             "Blue to Green": [
-                "Bleu à vert"
+                ""
             ],
             "Blue to Purple": [
-                "Bleu à violet"
+                ""
             ],
             "Blues": [
-                "Bleus"
+                ""
             ],
             "Bold": [
-                "Gras"
+                ""
             ],
             "Bold Italic": [
-                "Gras Ital."
+                ""
             ],
             "Bonferroni": [
                 ""
@@ -368,37 +368,37 @@
                 ""
             ],
             "Border": [
-                "Bord"
+                ""
             ],
             "Bottom": [
-                "Bas"
+                ""
             ],
             "Box Plot": [
-                "Boite à moustaches"
+                ""
             ],
             "Boxplot Elements": [
-                "Éléments de la boite"
+                ""
             ],
             "Brown": [
-                "Marron"
+                ""
             ],
             "Brown and Green": [
-                "Marron à vert"
+                ""
             ],
             "Burt matrix": [
-                "Tableau de Burt"
+                ""
             ],
             "BY": [
                 ""
             ],
             "By Group": [
-                "Par groupe"
+                ""
             ],
             "By Variable": [
-                "Par variable"
+                ""
             ],
             "Caption": [
-                "Légende"
+                ""
             ],
             "Caption Style": [
                 ""
@@ -410,34 +410,34 @@
                 ""
             ],
             "Categorical": [
-                "Variables qualitatives"
+                ""
             ],
             "Categories": [
                 ""
             ],
             "Category Axis": [
-                "Axe des catégories"
+                ""
             ],
             "Category Plot": [
-                "Graphique des catégories"
+                ""
             ],
             "Category plot": [
-                "Catégories"
+                ""
             ],
             "Category Plot Options": [
-                "Graphique de catégories"
+                ""
             ],
             "Category Plot Size": [
-                "Graphique des catégories"
+                ""
             ],
             "Category Principal": [
-                "Catégories principales"
+                ""
             ],
             "Category principal coordinates": [
-                "Coordonnées principales des catégories"
+                ""
             ],
             "Category Summary": [
-                "Résumés des catégories"
+                ""
             ],
             "Cauchy": [
                 ""
@@ -446,145 +446,145 @@
                 ""
             ],
             "Center": [
-                "Centrer"
+                ""
             ],
             "Centered": [
-                "Centrées"
+                ""
             ],
             "Chi-squared": [
-                "Khi-deux"
+                ""
             ],
             "Color Number": [
                 ""
             ],
             "Color Options": [
-                "Options de couleurs"
+                ""
             ],
             "Color Palette": [
-                "Palette de couleurs"
+                ""
             ],
             "Color palette": [
-                "Palette de couleurs"
+                ""
             ],
             "Colors": [
-                "Couleurs"
+                ""
             ],
             "Column": [
-                "Colonne"
+                ""
             ],
             "Column Plot": [
-                "Graphique des colonnes"
+                ""
             ],
             "Column plot": [
-                "Graphique des colonnes"
+                ""
             ],
             "Column Points for": [
-                "Graphique des colonnes pour"
+                ""
             ],
             "Column Principal": [
-                "Col. principales"
+                ""
             ],
             "Column Profiles": [
-                "Profils colonnes"
+                ""
             ],
             "Column Summary": [
-                "Résumé des colonnes"
+                ""
             ],
             "Columns": [
-                "Colonnes"
+                ""
             ],
             "Columns (Groups)": [
-                "Colonnes (groupes)"
+                ""
             ],
             "Comparison Tests": [
-                "Tests de comparaison"
+                ""
             ],
             "Component": [
-                "Composante"
+                ""
             ],
             "Component ": [
-                "Composante "
+                ""
             ],
             "Component Plot": [
-                "Graphique des composantes"
+                ""
             ],
             "Confidence Band": [
-                "Bande de confiance (IC)"
+                ""
             ],
             "Confidence Band Methods": [
-                "Méthodes de calcul de l'IC"
+                ""
             ],
             "Connect ordinal categories": [
-                "Joindre les catégories ordinales"
+                ""
             ],
             "Conover": [
                 ""
             ],
             "Conover's Pairwise Comparisons": [
-                "Comparaisons par paires de Conover"
+                ""
             ],
             "Contingency Table": [
-                "Tableau de contingence"
+                ""
             ],
             "Continuous": [
-                "Variables quantitatives"
+                ""
             ],
             "Contributions": [
                 ""
             ],
             "Convert variables to integer": [
-                "Convertir les variables en entiers"
+                ""
             ],
             "Coordinates †": [
                 ""
             ],
             "Coordinates†": [
-                "Coordonnées†"
+                ""
             ],
             "Correspondence Analysis": [
-                "Analyse des correspondances"
+                ""
             ],
             "COS2": [
                 ""
             ],
             "Count": [
-                "Effectif"
+                ""
             ],
             "Counted Value": [
-                "Valeur comptée"
+                ""
             ],
             "Counts": [
-                "Effectifs"
+                ""
             ],
             "Counts (optional)": [
-                "Effectifs (optionnel)"
+                ""
             ],
             "Cov (Loading principal)": [
-                "Cov (Var. principales)"
+                ""
             ],
             "Covariance (Loading principal)": [
-                "Covariance (Variables principales)"
+                ""
             ],
             "Covariance Biplot": [
-                "Graphique double (Covariance)"
+                ""
             ],
             "Credit Cards": [
                 ""
             ],
             "Crosstab": [
-                "Tableau croisé"
+                ""
             ],
             "Crosstab (% by row)": [
-                "Tableau croisé (% en ligne)"
+                ""
             ],
             "Crosstab (% of Cases)": [
-                "Tableau croisé (% des observations)"
+                ""
             ],
             "Crosstab (% of Responses)": [
-                "Tableau croisé (% des réponses)"
+                ""
             ],
             "Cumulative %": [
-                "% cumulés"
+                ""
             ],
             "Dark 2": [
                 ""
@@ -593,34 +593,34 @@
                 ""
             ],
             "Data": [
-                "Données"
+                ""
             ],
             "Data Transform": [
-                "Tranformation des données"
+                ""
             ],
             "Date Breaks": [
-                "Intervalle"
+                ""
             ],
             "Decreasing": [
-                "Décroissant"
+                ""
             ],
             "default": [
                 ""
             ],
             "Density": [
-                "Densité"
+                ""
             ],
             "Descending": [
-                "Décroissant"
+                ""
             ],
             "Detrended ": [
-                "redressé "
+                ""
             ],
             "Detrended Plot": [
-                "Diagramme redressé"
+                ""
             ],
             "df": [
-                "ddl"
+                ""
             ],
             "Dichromat:Categorical": [
                 ""
@@ -638,61 +638,61 @@
                 ""
             ],
             "Discrimination Plot": [
-                "Graphique des discriminations"
+                ""
             ],
             "Discrimination plot": [
-                "Discriminations"
+                ""
             ],
             "Discrimination Plot Size": [
-                "Graphique des discriminations"
+                ""
             ],
             "Display Format": [
-                "Affichage"
+                ""
             ],
             "Distribution": [
                 ""
             ],
             "Dot": [
-                "Point"
+                ""
             ],
             "Dot Size": [
-                "Point"
+                ""
             ],
             "Draw arrow lines": [
-                "Droites des vecteurs"
+                ""
             ],
             "Draw staples": [
-                "Tracer les agrafes"
+                ""
             ],
             "DSCF": [
                 ""
             ],
             "DSCF p-values are adjusted groupwise.": [
-                "Les probabilités critiques DSCF sont corrigées par groupe"
+                ""
             ],
             "Dummy Variables": [
-                "Variables dichotomiques"
+                ""
             ],
             "Dunn": [
                 ""
             ],
             "Dunn's Pairwise Comparisons": [
-                "Comparaisons par paires de Dunn"
+                ""
             ],
             "Dwass-Steel-Critchlow-Fligner Pairwise Comparisons": [
-                "Comparaisons par paires de Dwass-Steel-Critchlow-Fligner"
+                ""
             ],
             "Eigenvalue": [
-                "Valeur propre"
+                ""
             ],
             "Eigenvalues": [
-                "Valeurs propres"
+                ""
             ],
             "Empty value as NA": [
-                "Considérer les valeurs vides comme manquantes"
+                ""
             ],
             "en_US.utf-8": [
-                "fr_FR.utf-8"
+                ""
             ],
             "Equal Local Levels": [
                 ""
@@ -701,133 +701,133 @@
                 ""
             ],
             "Estimate Parameters from Data": [
-                "Estimer les paramètres à partir des données"
+                ""
             ],
             "EU (D-M-Y)": [
-                "EU (J-M-A)"
+                ""
             ],
             "Exponential": [
-                "Exponentielle"
+                ""
             ],
             "Extra Options": [
-                "Autres options"
+                ""
             ],
             "Extraction Sums of Squared Loadings": [
-                "Sommes des carrés des composantes extraites"
+                ""
             ],
             "F": [
                 ""
             ],
             "Facet": [
-                "Facette"
+                ""
             ],
             "Facets": [
-                "Facettes"
+                ""
             ],
             "Factor": [
-                "Facteur"
+                ""
             ],
             "Fill": [
-                "Remplissage"
+                ""
             ],
             "Font": [
-                "Style"
+                ""
             ],
             "Font face": [
-                "Style de police"
+                ""
             ],
             "Font size": [
-                "Taille de police"
+                ""
             ],
             "For Border": [
-                "Pour les bordures"
+                ""
             ],
             "For Filling": [
-                "Pour le remplissage"
+                ""
             ],
             "Form (Score principal)": [
-                "Form (Obs. principales)"
+                ""
             ],
             "Form Biplot": [
-                "Graphique double (Form)"
+                ""
             ],
             "Frequencies": [
-                "Fréquences"
+                ""
             ],
             "Frequency Plot": [
-                "Graphique"
+                ""
             ],
             "Frequency Table": [
-                "Table des fréquences"
+                ""
             ],
             "Frequency Type": [
-                "Type de fréquences"
+                ""
             ],
             "Gamma": [
                 ""
             ],
             "Gray": [
-                "Gris"
+                ""
             ],
             "Green": [
-                "Vert"
+                ""
             ],
             "Green to Blue": [
-                "Vert à bleu"
+                ""
             ],
             "Greenacre Correction": [
-                "Correction de Greenacre"
+                ""
             ],
             "Greenacre correction": [
-                "Correction de Greenacre"
+                ""
             ],
             "Greenacre's corrected inertia =": [
-                "Inertie corrigée (Greenacre) ="
+                ""
             ],
             "Greens": [
-                "Verts"
+                ""
             ],
             "Grey": [
                 ""
             ],
             "Greys": [
-                "Gris"
+                ""
             ],
             "Group": [
-                "Groupe"
+                ""
             ],
             "Group (Overlapped)": [
-                "Groupe (Superposé)"
+                ""
             ],
             "Group (Side by side)": [
-                "Groupe (Juxtaposé)"
+                ""
             ],
             "Group By": [
-                "Grouper par"
+                ""
             ],
             "Grouped": [
-                "Groupé"
+                ""
             ],
             "Grouping": [
-                "Groupes"
+                ""
             ],
             "Grouping Plot": [
-                "Graphe"
+                ""
             ],
             "Grouping Variable": [
-                "Grouper par"
+                ""
             ],
             "Groupwise": [
-                "Par groupe"
+                ""
             ],
             "Height": [
-                "Hauteur"
+                ""
             ],
             "Hide % Labels Below 5%": [
-                "Masquer les % inférieurs à 5 %"
+                ""
             ],
             "Histogram": [
-                "Histogramme"
+                ""
             ],
             "Hochberg": [
                 ""
@@ -839,94 +839,94 @@
                 ""
             ],
             "Horizontal Label Wrap": [
-                "Largeur des étiquettes horizontales"
+                ""
             ],
             "Horizontal line at": [
-                "Ligne horizontale à "
+                ""
             ],
             "Horizontal plot": [
-                "Graphe horizontal"
+                ""
             ],
             "Huge (800x500)": [
-                "Énorme (800x500)"
+                ""
             ],
             "I prefer Donuts!": [
-                "Graphique en anneau"
+                ""
             ],
             "Identity Line": [
-                "Droite identitée"
+                ""
             ],
             "Ignore NA": [
-                "Ignorer les NA"
+                ""
             ],
             "Ignore NA groups": [
-                "Ignorer les groupes manquants"
+                ""
             ],
             "Improve label display": [
-                "Améliorer l'affichage des étiquettes"
+                ""
             ],
             "Increasing": [
-                "Croissant"
+                ""
             ],
             "Indicator matrix": [
-                "Tableau disjonctif"
+                ""
             ],
             "Inertia": [
-                "Inertie"
+                ""
             ],
             "Inertia Summary": [
-                "Récapitulatif de l'inertie"
+                ""
             ],
             "Initial Eigenvalues": [
-                "Valeurs propres initiales"
+                ""
             ],
             "Input Format": [
-                "Entrée"
+                ""
             ],
             "Iris": [
                 ""
             ],
             "ISO (Y-M-D)": [
-                "ISO (A-M-J)"
+                ""
             ],
             "Italic": [
-                "Italique"
+                ""
             ],
             "jmv Blue": [
-                "Bleu jmv"
+                ""
             ],
             "jmv Default": [
-                "Couleurs jmv"
+                ""
             ],
             "jmv Gray": [
-                "Gris jmv"
+                ""
             ],
             "jmv Green": [
-                "Vert jmv"
+                ""
             ],
             "jmv Red": [
-                "Rouge jmv"
+                ""
             ],
             "jmv Yellow": [
-                "Jaune jmv"
+                ""
             ],
             "Jun": [
-                "jui"
+                ""
             ],
             "June": [
-                "juin"
+                ""
             ],
             "June 2035": [
-                "juin 2035"
+                ""
             ],
             "Kaiser normalization": [
-                "Normalisation de Kaiser"
+                ""
             ],
             "Kaiser-Meyer-Olkin Measure of Sampling Adequacy (MSA)": [
-                "Mesure de Kaiser-Meyer-Olkin d'adéquation de l'échantillonnage"
+                ""
             ],
             "KMO & Bartlett's Test": [
-                "KMO & test de Bartlett"
+                ""
             ],
             "Kolmogorov-Smirnov": [
                 ""
@@ -935,10 +935,10 @@
                 ""
             ],
             "Kruskal-Wallis Tests": [
-                "Tests de Kruskal-Wallis"
+                ""
             ],
             "Label": [
-                "Étiquettes"
+                ""
             ],
             "Label font size": [
                 ""
@@ -947,19 +947,19 @@
                 ""
             ],
             "Label Size": [
-                "Taille des étiquettes"
+                ""
             ],
             "Labels": [
-                "Étiquettes"
+                ""
             ],
             "Large (600x400)": [
-                "Grand (600x400)"
+                ""
             ],
             "Left": [
-                "Gauche"
+                ""
             ],
             "Legend": [
-                "Légende"
+                ""
             ],
             "Legend & Axis Titles": [
                 ""
@@ -968,70 +968,70 @@
                 ""
             ],
             "Level": [
-                "Niveau"
+                ""
             ],
             "Light Blue": [
-                "Bleu clair"
+                ""
             ],
             "Light Brown": [
-                "Marron clair"
+                ""
             ],
             "Light Gray": [
-                "Gris clair"
+                ""
             ],
             "Light gray": [
                 ""
             ],
             "Light Green": [
-                "Vert clair"
+                ""
             ],
             "Light Orange": [
-                "Orange clair"
+                ""
             ],
             "Light Pink": [
-                "Rose clair"
+                ""
             ],
             "Light Purple": [
-                "Violet clair"
+                ""
             ],
             "Light Red": [
-                "Rouge clair"
+                ""
             ],
             "Light Yellow": [
-                "Jaune clair"
+                ""
             ],
             "Likert": [
                 ""
             ],
             "Likert Plot": [
-                "Diagramme Likert"
+                ""
             ],
             "Likert Variables": [
-                "Variables de Likert"
+                ""
             ],
             "Limited to the first 100 observations": [
-                "Limité aux 100 premières observations"
+                ""
             ],
             "Line": [
-                "Ligne"
+                ""
             ],
             "Line Chart": [
-                "Graphique en courbes"
+                ""
             ],
             "Line Width": [
-                "Ligne"
+                ""
             ],
             "Log-normal": [
-                "Log-normale"
+                ""
             ],
             "Logistic": [
-                "Logistique"
+                ""
             ],
             "Lollipop Plot": [
-                "Lollipop (Sucettes)"
+                ""
             ],
             "Lollipop Size": [
-                "Taille des lollipop"
+                ""
             ],
             "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
@@ -1040,52 +1040,52 @@
                 ""
             ],
             "Mann-Whitney U Tests": [
-                "Tests U de Mann-Whitney"
+                ""
             ],
             "Manual": [
                 ""
             ],
             "Mass": [
-                "Masse"
+                ""
             ],
             "Max": [
                 ""
             ],
             "Maximum of": [
-                "Maximum de"
+                ""
             ],
             "Maximum-likelihood (MLE)": [
-                "Maximum de vraisemblance (MLE)"
+                ""
             ],
             "MCA {type} Coordinate ({method} method)": [
-                "Coordonnées {type} ACM  (méthode {method})"
+                ""
             ],
             "Mean": [
-                "Moyenne"
+                ""
             ],
             "Mean & SD": [
-                "Moyenne et écart-type"
+                ""
             ],
             "Mean of": [
-                "Moyenne de"
+                ""
             ],
             "Median": [
-                "Médiane"
+                ""
             ],
             "Median of": [
-                "Médiane de"
+                ""
             ],
             "Medium (400x300)": [
-                "Moyen (400x300)"
+                ""
             ],
             "Method": [
-                "Méthode"
+                ""
             ],
             "Method of moments (MME)": [
-                "Méthode des moments (MME)"
+                ""
             ],
             "Method:": [
-                "Méthode :"
+                ""
             ],
             "Min": [
                 ""
@@ -1094,139 +1094,139 @@
                 ""
             ],
             "Minimum entropy": [
-                "Entropie minimale"
+                ""
             ],
             "Minimum of": [
-                "Minimum de"
+                ""
             ],
             "Multi-valued Variable": [
-                "Variable à valeurs multiples"
+                ""
             ],
             "Multiple Correspondence Analysis": [
-                "Analyse des correspondances multiples"
+                ""
             ],
             "Multiple Response": [
-                "Réponses multiples"
+                ""
             ],
             "Multiple Response Crosstab": [
-                "Réponses multiples - Tableau croisé"
+                ""
             ],
             "Multiple Response Frequencies": [
-                "Réponses multiples - Fréquences"
+                ""
             ],
             "Multiple Value Variable": [
                 ""
             ],
             "Multivariate": [
-                "Multivarié"
+                ""
             ],
             "Name": [
-                "Nom"
+                ""
             ],
             "Natural Log Tranform": [
-                "Transformation logarithme népérien"
+                ""
             ],
             "No rotation used.": [
-                "Aucune rotation appliquée."
+                ""
             ],
             "None": [
-                "Aucun"
+                ""
             ],
             "Normal": [
-                "Normal"
+                ""
             ],
             "Normalization": [
-                "Normalisation"
+                ""
             ],
             "Notch Width": [
-                "Largeur de l'encoche"
+                ""
             ],
             "Notched box": [
-                "Boite avec encoche"
+                ""
             ],
             "Nudged boxplots": [
-                "Boites à moustaches séparées"
+                ""
             ],
             "Number of cases": [
-                "Nombre d'observations"
+                ""
             ],
             "Number of cases:": [
-                "Nombre d'observations :"
+                ""
             ],
             "Number of dimensions": [
-                "Nombre de dimensions"
+                ""
             ],
             "Obs color": [
-                "Couleur obs."
+                ""
             ],
             "Observation Coordinates": [
-                "Coordonnées des observations"
+                ""
             ],
             "Observation Plot": [
-                "Graphique des observations"
+                ""
             ],
             "Observation plot": [
-                "Observations"
+                ""
             ],
             "Observation Plot Options": [
-                "Graphique des observations"
+                ""
             ],
             "Observation Plot Size": [
-                "Graphique des observations"
+                ""
             ],
             "Observation Principal": [
-                "Observations principales"
+                ""
             ],
             "Observation principal coordinates": [
-                "Coordonnées principales des observations"
+                ""
             ],
             "Observation Summary": [
-                "Résumé des observations"
+                ""
             ],
             "Observations": [
                 ""
             ],
             "One variable": [
-                "Une variable"
+                ""
             ],
             "only": [
                 ""
             ],
             "Option name": [
-                "Nom des options"
+                ""
             ],
             "Option Variables": [
-                "Variables d'options"
+                ""
             ],
             "Options": [
-                "Options"
+                ""
             ],
             "Orange": [
-                "Orange"
+                ""
             ],
             "Orange and Purple": [
-                "Orange à violet"
+                ""
             ],
             "Orange to Red": [
-                "Orange à rouge"
+                ""
             ],
             "Oranges": [
                 ""
             ],
             "Original Eigenvalues": [
-                "Valeurs propres originales"
+                ""
             ],
             "Other Options": [
-                "Autres options"
+                ""
             ],
             "Overall": [
-                "Globalement"
+                ""
             ],
             "Overall (all groups)": [
-                "Ensemble des groupes"
+                ""
             ],
             "Overlapping": [
-                "Superposé"
+                ""
             ],
             "p": [
                 ""
@@ -1235,40 +1235,40 @@
                 ""
             ],
             "P-P Plot": [
-                "Graphique P-P"
+                ""
             ],
             "p-Value Adjustment": [
-                "Correction des p-valeurs"
+                ""
             ],
             "p-values are adjusted groupwise using {method} method.": [
-                "Les probabilités critiques sont corrigées par groupe selon la méthode {method}."
+                ""
             ],
             "p-values are adjusted overall using {method} method.": [
-                "Les probabilités critiques sont corrigées globalement selon la méthode {method}."
+                ""
             ],
             "p-values are adjusted using {method} method.": [
-                "Les probabilités critiques sont corrigées selon la méthode {method}."
+                ""
             ],
             "Paired": [
                 ""
             ],
             "Pairwise Comparisons": [
-                "Comparaisons par paires"
+                ""
             ],
             "Palette": [
-                "Palette"
+                ""
             ],
             "Parameter 1": [
-                "Paramètre 1"
+                ""
             ],
             "Parameter 2": [
-                "Paramètre 2"
+                ""
             ],
             "Parameter Estimates": [
-                "Estimation des paramètres"
+                ""
             ],
             "Parameter Values": [
-                "Valeurs des paramètres"
+                ""
             ],
             "Parsimax": [
                 ""
@@ -1283,121 +1283,121 @@
                 ""
             ],
             "Percent": [
-                "Pourcent"
+                ""
             ],
             "Percentages": [
-                "Pourcentages"
+                ""
             ],
             "Pie Chart": [
-                "Diagramme en secteurs"
+                ""
             ],
             "Pink": [
-                "Rose"
+                ""
             ],
             "Pink and Green": [
-                "Rose et vert"
+                ""
             ],
             "Plot": [
-                "Graphique"
+                ""
             ],
             "Plot Color": [
-                "Couleurs du graphique"
+                ""
             ],
             "Plot Colors": [
-                "Couleurs du graphique"
+                ""
             ],
             "Plot Options": [
-                "Options du graphique"
+                ""
             ],
             "Plot Size": [
-                "Taille du graphique"
+                ""
             ],
             "Plot Titles": [
-                "Titres du graphique"
+                ""
             ],
             "Plot Titles & Subtitles": [
-                "Titres et sous-titres des graphiques"
+                ""
             ],
             "Plot Type": [
-                "Type de graphique"
+                ""
             ],
             "Plots": [
-                "Graphiques"
+                ""
             ],
             "Point & Line Size": [
-                "Taile des points et lignes"
-            ],
-            "Point Size": [
-                "Taille des points"
+                ""
             ],
             "Point size": [
-                "Taille des points"
+                ""
+            ],
+            "Point Size": [
+                ""
             ],
             "Points": [
-                "Points"
+                ""
             ],
             "Pointwise": [
                 ""
             ],
             "Position": [
-                "Position"
+                ""
             ],
             "Post Hoc": [
-                "Post-hoc"
+                ""
             ],
             "Post Hoc Tests": [
-                "Tests Post-hoc"
+                ""
             ],
             "Prevent overlap": [
-                "Empêcher la superposition"
+                ""
             ],
             "Principal": [
-                "Principale"
+                ""
             ],
             "Principal Component Analysis": [
-                "Analyse en composantes principales"
+                ""
             ],
             "Principal coordinates": [
-                "Coordonnées principales"
+                ""
             ],
             "Proportional point size": [
-                "Points proportionnels"
+                ""
             ],
             "pt": [
-                "pt"
+                ""
             ],
             "Purple": [
-                "Violet"
+                ""
             ],
             "Purple and Green": [
-                "Violet et vert"
+                ""
             ],
             "Purple to Blue": [
-                "Violet à bleu"
+                ""
             ],
             "Purple to Green": [
-                "Violet à vert"
+                ""
             ],
             "Purple to Red": [
-                "Violet à rouge"
+                ""
             ],
             "Purples": [
-                "Violets"
+                ""
             ],
             "px": [
-                "px"
+                ""
             ],
             "Q-Q": [
                 ""
             ],
             "Q-Q & P-P Plots": [
-                "Diagrammes Q-Q & P-P"
+                ""
             ],
             "Q-Q Line": [
-                "Droite Q-Q"
+                ""
             ],
             "Q-Q Plot": [
-                "Diagramme Q-Q"
+                ""
             ],
             "QLT": [
                 ""
@@ -1412,130 +1412,130 @@
                 ""
             ],
             "Raincloud Plot": [
-                "Diagramme Raincloud"
+                ""
             ],
             "Range": [
                 ""
             ],
             "Red": [
-                "Rouge"
+                ""
             ],
             "Red and Blue": [
-                "Rouge et bleu"
+                ""
             ],
             "Red and Gray": [
-                "Rouge et gris"
+                ""
             ],
             "Red to Purple": [
-                "Rouge et violet"
+                ""
             ],
             "Red, Yellow and Blue": [
-                "Rouge, jaune et bleu"
+                ""
             ],
             "Red, Yellow and Green": [
-                "Rouge, jaune et vert"
+                ""
             ],
             "Red, Yellow, Blue": [
-                "Rouge, jaune et bleu"
+                ""
             ],
             "Red, Yellow, Green": [
-                "Rouge, jaune et vert"
+                ""
             ],
             "Reds": [
-                "Rouges"
+                ""
             ],
             "Reference Line": [
-                "Droite de référence"
+                ""
             ],
             "Reference Lines": [
-                "Lignes de référence"
+                ""
             ],
             "Reverse disposition": [
-                "Renverser la disposition"
+                ""
             ],
             "Reverse the staking order": [
-                "Inverser les modalités"
+                ""
             ],
             "Right": [
-                "Droite"
+                ""
             ],
             "Rotate eigenvectors": [
-                "Rotation des vecteurs propres"
+                ""
             ],
             "Rotate X-Axis Labels": [
-                "Pivoter les étiquettes"
+                ""
             ],
             "Rotation": [
                 ""
             ],
             "Row": [
-                "Ligne"
+                ""
             ],
             "Row and Column Points for {rows} and {cols}": [
-                "Graphique des lignes et colonnes pour {rows} et {cols}"
+                ""
             ],
             "Row and Column Profiles": [
-                "Profils lignes et colonnes"
+                ""
             ],
             "Row and Column Summaries": [
-                "Résumés des lignes et colonnes"
+                ""
             ],
             "Row Plot": [
-                "Graphique des lignes"
+                ""
             ],
             "Row plot": [
-                "Graphique des lignes"
+                ""
             ],
             "Row Points for": [
-                "Graphique des lignes pour"
+                ""
             ],
             "Row Principal": [
-                "Lignes principales"
+                ""
             ],
             "Row Profiles": [
-                "Profils lignes"
+                ""
             ],
             "Row Summary": [
-                "Résumé des lignes"
+                ""
             ],
             "Rows": [
-                "Lignes"
+                ""
             ],
             "Rows (Options)": [
-                "Lignes (Options)"
+                ""
             ],
             "Same as point/arrow": [
-                "Comme les vecteurs/points"
+                ""
             ],
             "Same color for all bars": [
-                "Utiliser une couleur unique"
+                ""
             ],
             "Sample Probabilities": [
-                "Probabilités observées"
+                ""
             ],
             "Sample Probability Deviation": [
-                "Écarts des probabilités observées"
+                ""
             ],
             "Save": [
-                "Enregistrer"
+                ""
             ],
             "Save observation coordinates": [
-                "Enregistrer les coordonnées des observations"
+                ""
             ],
             "Scatter Plot": [
-                "Nuage de points"
+                ""
             ],
             "Scree Plot": [
-                "Éboulis des valeurs propres"
+                ""
             ],
             "Scree plot": [
-                "Valeurs propres"
+                ""
             ],
             "SD": [
-                "Ecart-type"
+                ""
             ],
             "Separator": [
-                "Séparateur"
+                ""
             ],
             "Set 1": [
                 ""
@@ -1547,55 +1547,55 @@
                 ""
             ],
             "Several variables": [
-                "Plusieurs variables"
+                ""
             ],
             "Show % Labels": [
-                "Afficher les %"
+                ""
             ],
             "Show count labels": [
-                "Afficher les effectifs"
+                ""
             ],
             "Show Lines": [
-                "Afficher les lignes"
+                ""
             ],
             "Show Mean": [
-                "Afficher la moyenne"
+                ""
             ],
             "Show Normal Curve": [
-                "Afficher la courbe normale"
+                ""
             ],
             "Show outliers": [
-                "Afficher les extrêmes"
+                ""
             ],
             "Show Points": [
-                "Afficher les points"
+                ""
             ],
             "Show points with missing group/label": [
-                "Afficher les points avec groupe manquant"
+                ""
             ],
             "Show Totals (Centered Only)": [
-                "Afficher les totaux (centrées)"
+                ""
             ],
             "Side by side": [
-                "Juxtaposé"
+                ""
             ],
             "Side-by-side": [
-                "Juxtaposé"
+                ""
             ],
             "Side-by-side 2": [
-                "Juxtaposé 2"
+                ""
             ],
             "Single color": [
                 ""
             ],
             "Singular Value": [
-                "Valeur singulière"
+                ""
             ],
             "Size": [
-                "Taille"
+                ""
             ],
             "Small (300x200)": [
-                "Petit (300x200)"
+                ""
             ],
             "Smoking": [
                 ""
@@ -1604,106 +1604,106 @@
                 ""
             ],
             "Sort Variables by Median": [
-                "Trier les variable selon la médiane"
+                ""
             ],
             "Sorting": [
-                "Tri"
+                ""
             ],
             "Sorting (Median)": [
-                "Tri (Médiane)"
+                ""
             ],
             "Spectral": [
                 ""
             ],
             "SS Loadings": [
-                "Total"
+                ""
             ],
             "Stacked": [
-                "Empilé"
+                ""
             ],
             "Stacked 100%": [
-                "Empilé à 100 %"
+                ""
             ],
             "Standard": [
-                "Standard"
+                ""
             ],
             "Standard coordinates": [
-                "Coordonnées standardisées"
+                ""
             ],
             "Standardize loadings (eigenvectors)": [
-                "Coord. des variables standardisées"
+                ""
             ],
             "Standardize scores": [
-                "Coord. des observations standardisées"
+                ""
             ],
             "Standardize Values": [
-                "Valeurs standadisées"
+                ""
             ],
             "Standardize variables": [
-                "Standardiser les variables"
+                ""
             ],
             "Standardized ": [
-                " standardisés"
+                ""
             ],
             "Standardized values": [
-                "Valeurs standardisées"
+                ""
             ],
             "Staple Width": [
-                "Largeur de l'agrafe"
+                ""
             ],
             "Statistic": [
-                "Statistique"
+                ""
             ],
             "Stretch Arrows": [
-                "Étirer les flèches"
+                ""
             ],
             "Stretch arrows by": [
-                "Taille vecteurs :"
+                ""
             ],
             "Stretch Arrows Factor": [
-                "Facteur d'étirement des flèches"
+                ""
             ],
             "Student": [
                 ""
             ],
             "Subtitle": [
-                "Sous-titre"
+                ""
             ],
             "Subtitle Style": [
-                "Style des sous-titres"
+                ""
             ],
             "Subtitle Text": [
-                "Texte des sous-titres"
+                ""
             ],
             "Summary": [
-                "Résumé"
+                ""
             ],
             "Suppl. Column": [
-                "Colonne sup."
+                ""
             ],
             "Suppl. Row": [
-                "Ligne sup."
+                ""
             ],
             "Supplement": [
-                "Supplémentaire"
+                ""
             ],
             "Supplementary Columns": [
-                "Colonnes supplémentaires"
+                ""
             ],
             "Supplementary Points": [
-                "Points supplémentaires"
+                ""
             ],
             "Supplementary Rows": [
-                "Lignes supplémentaires"
+                ""
             ],
             "Supplementary Variables": [
-                "Variables supplémentaires"
+                ""
             ],
             "Symetric": [
-                "Symétrique"
+                ""
             ],
             "Table": [
-                "Table"
+                ""
             ],
             "Tables": [
                 ""
@@ -1715,49 +1715,49 @@
                 ""
             ],
             "Text": [
-                "Texte"
+                ""
             ],
             "Text Size": [
-                "Texte"
+                ""
             ],
             "The correlation matrix is not positive definite. Computations may not be accurate.\r\n": [
                 ""
             ],
             "The number of dimensions cannot be greater than {max}.": [
-                "Le nombre de dimensions ne peut pas être supérieur à {max}."
+                ""
             ],
             "Theoretical Probabilities": [
-                "Probabilités théoriques"
+                ""
             ],
             "Theoretical Quantiles": [
-                "Quantiles théoriques"
+                ""
             ],
             "Tidy up levels": [
-                "Corriger les niveaux"
+                ""
             ],
             "Tidyplot": [
                 ""
             ],
             "Time Series": [
-                "Séries temporelles"
+                ""
             ],
             "Title": [
-                "Titre"
+                ""
             ],
             "Title Style": [
-                "Style du titre"
+                ""
             ],
             "Title Text": [
-                "Texte du titre"
+                ""
             ],
             "Top": [
-                "Haut"
+                ""
             ],
             "Total": [
-                "Total"
+                ""
             ],
             "Total Row": [
-                "Ligne Total"
+                ""
             ],
             "Type": [
                 ""
@@ -1766,58 +1766,58 @@
                 ""
             ],
             "Unable to use {rotation} rotation.": [
-                "Impossible d'utiliser la rotation {rotation}."
+                ""
             ],
             "Uniform": [
-                "Uniforme"
+                ""
             ],
             "US (M-D-Y)": [
-                "US (M-J-A)"
+                ""
             ],
             "Use boldface": [
-                "Catégories en gras"
+                ""
             ],
             "Use color No.": [
-                "Couleur nº"
+                ""
             ],
             "Use Palette": [
-                "Utiliser la palette"
+                ""
             ],
             "Use the same color for variables": [
-                "Utiliser une couleur unique"
+                ""
             ],
             "Use variable's description as name": [
-                "Description des variables comme nom"
+                ""
             ],
             "Values": [
-                "Valeurs"
+                ""
             ],
             "Variable": [
                 ""
             ],
             "Variable dicriminations": [
-                "Discrimination des variables"
+                ""
             ],
             "Variable Discriminations": [
-                "Discrimination des variables"
-            ],
-            "Variable Plot": [
-                "Graphique des variables"
+                ""
             ],
             "Variable plot": [
-                "Variables"
+                ""
+            ],
+            "Variable Plot": [
+                ""
             ],
             "Variables": [
-                "Variables"
+                ""
             ],
             "Varimax": [
                 ""
             ],
             "Vertical Label Wrap": [
-                "Hauteur des étiquettes verticales"
+                ""
             ],
             "Vertical line at": [
-                "Ligne verticale à"
+                ""
             ],
             "vijPlots": [
                 ""
@@ -1844,72 +1844,72 @@
                 ""
             ],
             "White": [
-                "Blanc"
+                ""
             ],
             "Wide (700x400)": [
                 ""
             ],
             "Width": [
-                "Largeur"
+                ""
             ],
             "X-Axis": [
-                "Axe X"
+                ""
             ],
             "X-Axis is a date": [
-                "L'axe X est une date"
+                ""
             ],
             "X-Axis Range": [
                 ""
             ],
             "Y-Axis": [
-                "Axe Y"
+                ""
             ],
             "Y-axis (with groups)": [
-                "Axe Y (avec groupes)"
+                ""
             ],
             "Y-axis (without group)": [
-                "Axe Y (sans groupe)"
+                ""
             ],
             "Y-Axis Range": [
                 ""
             ],
             "Yellow": [
-                "Jaune"
+                ""
             ],
             "Yellow to Blue": [
-                "Jaune à bleu"
+                ""
             ],
             "Yellow to Brown": [
-                "Jaune à marron"
+                ""
             ],
             "Yellow to Green": [
-                "Jaune à vert"
+                ""
             ],
             "Yellow to Red": [
-                "Jaune à rouge"
+                ""
             ],
             "χ²": [
                 ""
             ],
             "boundary\u0004Position": [
-                "Origine"
+                ""
             ],
             "string\u0004Column Principal": [
-                "principale en colonnes"
+                ""
             ],
             "string\u0004Principal": [
-                "principale"
+                ""
             ],
             "string\u0004Row Principal": [
-                "principale en lignes"
+                ""
             ],
             "string\u0004Standard": [
-                "standard"
+                ""
             ],
             "string\u0004Symetric": [
-                "symétrique"
+                ""
             ]
         }
     },
-    "code": "fr"
+    "code": "es"
 }

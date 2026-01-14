@@ -89,6 +89,46 @@ options:
       type: Number
       default: 0
 
+    - name: singleColor
+      title: Single color
+      type: List
+      options:
+        - title: None
+          name:  none
+        - title: White
+          name:  white
+        - title: Black
+          name:  black
+        - title: Gray
+          name:  "#999999"
+        - title: jmv Blue
+          name:  "#A6C4F1"
+        - title: jmv Gray
+          name:  "#C5C5C5"
+        - title: jmv Yellow
+          name:  "#F0CD8C"
+        - title: jmv Green
+          name:  "#88C38B"
+        - title: jmv Red
+          name:  "#E18A8A"
+        - title: Red
+          name: "#E41A1C"
+        - title: Blue
+          name: "#377EB8"
+        - title: Green
+          name: "#4DAF4A"
+        - title: Purple
+          name:  "#984EA3"
+        - title: Orange
+          name:  "#FF7F00"
+        - title: Yellow
+          name:  "#FFFF33"
+        - title: Brown
+          name:  "#A65628"
+        - title: Pink
+          name:  "#F781BF"
+      default: "#999999"
+
     - name: colorPalette
       title: Color palette
       type: List

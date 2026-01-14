@@ -40,7 +40,7 @@ children:
         cell:
           column: 0
           row: 0
-        stretchFactor: 6
+        stretchFactor: 5
         children:
           - type: Label
             label: Plot Options
@@ -88,7 +88,7 @@ children:
         cell:
           column: 2
           row: 0
-        stretchFactor: 9
+        stretchFactor: 7
         children:
           - type: Label
             label: Color Options
@@ -107,7 +107,7 @@ children:
                       - type: TextBox
                         name: colorNo
                         label: ''
-                        suffix: for all bars
+                        suffix: only
                         format: number
                         enable: (singleColor && !group)
   - type: CollapseBox
@@ -164,9 +164,11 @@ children:
                       - type: TextBox
                         name: stapleWidth
                         format: number
+                        enable: (staple)
                       - type: TextBox
                         name: notchWidth
                         format: number
+                        enable: (notches)
   - type: CollapseBox
     label: Axes
     collapsed: true

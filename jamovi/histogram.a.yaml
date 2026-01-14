@@ -140,6 +140,7 @@ options:
     - name: grouping
       title: Grouping
       type: List
+      hidden: true
       options:
         - title: None
           name:  none
@@ -150,6 +151,18 @@ options:
         - title: Grouped
           name:  dodge
       default: none
+
+    - name: groupingN
+      title: Grouping
+      type: List
+      options:
+        - title: Overlapping
+          name:  identity
+        - title: Stacked
+          name:  stack
+        - title: Grouped
+          name:  dodge
+      default: stack
 
     - name: colorPalette
       title: Color Palette

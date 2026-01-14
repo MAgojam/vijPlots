@@ -47,7 +47,6 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setSize(width, height)
         },
         .run = function() {
-
             if( ! is.null(self$options$rows) ) {
                 plotData <- self$data[c(self$options$rows, self$options$columns, self$options$facet)]
                 if( self$options$ignoreNA )
@@ -228,9 +227,6 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             defaults <- list(y = yLab, x = rows, legend = columns)
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
 
-            # RotateLabels
-            if (self$options$rotateLabels)
-                plot <- plot + theme(axis.text.x=element_text(angle=60, hjust=0.5))
             # Legend position
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 

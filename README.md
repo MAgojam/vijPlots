@@ -69,9 +69,14 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
-### 2025-12-21 / 0.11.2 (dev)
+### 2026-01-14 / 0.11.4 (dev)
 
 -   Axis options to set axis label sizes, rotation, range
+-   More color palettes
+-   Single color option for scatter plot without group
+-   Option to choose 1 color from palette for bar plot, box plot, MR plot without group
+-   Cleaning UI (in progress)
+-   Spanish translation (in progress)
 
 ### 2025-12-21 / 0.11.1 (beta)
 

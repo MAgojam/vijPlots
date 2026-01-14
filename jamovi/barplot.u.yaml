@@ -38,73 +38,41 @@ children:
         cell:
           column: 0
           row: 0
-        stretchFactor: 6
+        stretchFactor: 1
         children:
           - type: Label
             label: Plot Options
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: ignoreNA
-                  - type: CheckBox
-                    name: showLabels
-                  - type: CheckBox
-                    name: rotateLabels
-                  - type: CheckBox
-                    name: horizontal
+              - type: CheckBox
+                name: ignoreNA
+              - type: CheckBox
+                name: showLabels
+              - type: CheckBox
+                name: horizontal
       - type: LayoutBox
         cell:
           column: 1
           row: 0
-        stretchFactor: 5
+        stretchFactor: 1
         children:
           - type: Label
             label: Sorting
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: order_none
-                    optionName: order
-                    optionPart: none
-                    label: None
-                  - type: RadioButton
-                    name: order_increasing
-                    optionName: order
-                    optionPart: increasing
-                    label: Increasing
-                  - type: RadioButton
-                    name: order_decreasing
-                    optionName: order
-                    optionPart: decreasing
-                    label: Decreasing
-      - type: LayoutBox
-        cell:
-          column: 2
-          row: 0
-        stretchFactor: 9
-        children:
-          - type: Label
-            label: Color Options
-            children:
-              - type: LayoutBox
-                children:
-                  - type: ComboBox
-                    name: colorPalette
-                  - type: CheckBox
-                    name: singleColor
-                    label: Use color No.
-                    enable: (!columns)
-                    style: inline
-                    verticalAlignment: center
-                    children:
-                      - type: TextBox
-                        name: colorNo
-                        label: ''
-                        suffix: for all bars
-                        format: number
-                        enable: (singleColor && !columns)
+              - type: RadioButton
+                name: order_none
+                optionName: order
+                optionPart: none
+                label: None
+              - type: RadioButton
+                name: order_increasing
+                optionName: order
+                optionPart: increasing
+                label: Increasing
+              - type: RadioButton
+                name: order_decreasing
+                optionName: order
+                optionPart: decreasing
+                label: Decreasing
   - type: LayoutBox
     margin: large
     stretchFactor: 1
@@ -184,21 +152,75 @@ children:
                     optionName: accuracy
                     optionPart: '1'
                     label: '1'
-                    enable: (showLabels)
+                    enable: >-
+                      (showLabels && ((!(!columns) && (position:fill)) ||
+                      (!columns && yaxis1var:percent)))
                   - type: RadioButton
                     name: accuracy_01
                     optionName: accuracy
                     optionPart: '0.1'
                     label: '0.1'
-                    enable: (showLabels)
+                    enable: >-
+                      (showLabels && ((!(!columns) && position:fill) ||
+                      (!columns && yaxis1var:percent)))
                   - type: RadioButton
                     name: accuracy_001
                     optionName: accuracy
                     optionPart: '0.01'
                     label: '0.01'
+                    enable: >-
+                      (showLabels && ((!(!columns) && position:fill) ||
+                      (!columns && yaxis1var:percent)))
+  - type: CollapseBox
+    label: Colors
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Color Palette
+                children:
+                  - type: ComboBox
+                    name: colorPalette
+                    label: ''
+                  - type: CheckBox
+                    name: singleColor
+                    label: Use color No.
+                    enable: (!columns)
+                    style: inline
+                    verticalAlignment: center
+                    children:
+                      - type: TextBox
+                        name: colorNo
+                        label: ''
+                        suffix: only
+                        format: number
+                        enable: (singleColor && !columns)
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Color Options
+                children:
+                  - type: ComboBox
+                    name: borderColor
+                  - type: ComboBox
+                    name: textColor
                     enable: (showLabels)
   - type: CollapseBox
-    label: Extra Options
+    label: Plot Size & Facets
     collapsed: true
     stretchFactor: 1
     children:
@@ -211,7 +233,7 @@ children:
             cell:
               column: 0
               row: 0
-            stretchFactor: 6
+            stretchFactor: 1
             children:
               - type: Label
                 label: Plot Size
@@ -230,7 +252,7 @@ children:
             cell:
               column: 1
               row: 0
-            stretchFactor: 8
+            stretchFactor: 1
             children:
               - type: Label
                 label: Facets
@@ -257,21 +279,6 @@ children:
                         name: facetNumber
                         format: number
                         enable: (!(!facet))
-          - type: LayoutBox
-            cell:
-              column: 2
-              row: 0
-            stretchFactor: 6
-            children:
-              - type: Label
-                label: Color Options
-                children:
-                  - type: LayoutBox
-                    children:
-                      - type: ComboBox
-                        name: borderColor
-                      - type: ComboBox
-                        name: textColor
   - type: CollapseBox
     label: Axes
     collapsed: true

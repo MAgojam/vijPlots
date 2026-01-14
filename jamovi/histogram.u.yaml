@@ -45,7 +45,7 @@ children:
         cell:
           column: 0
           row: 0
-        stretchFactor: 2
+        stretchFactor: 1
         children:
           - type: Label
             label: Histogram
@@ -64,25 +64,54 @@ children:
         cell:
           column: 1
           row: 0
-        stretchFactor: 2
+        stretchFactor: 1
         children:
           - type: Label
             label: Bin Size
             children:
-              - type: LayoutBox
-                stretchFactor: 1
-                children:
-                  - type: TextBox
-                    name: binWidth
-                    format: number
-                  - type: TextBox
-                    name: binBoundary
-                    format: number
+              - type: TextBox
+                name: binWidth
+                format: number
+              - type: TextBox
+                name: binBoundary
+                format: number
       - type: LayoutBox
         cell:
           column: 2
           row: 0
-        stretchFactor: 3
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Grouping
+            children:
+              - type: RadioButton
+                name: groupingN_stack
+                optionName: groupingN
+                optionPart: stack
+                label: Stacked
+                enable: (!(!group))
+              - type: RadioButton
+                name: groupingN_identity
+                optionName: groupingN
+                optionPart: identity
+                label: Overlapping
+                enable: (!(!group))
+              - type: RadioButton
+                name: groupingN_dodge
+                optionName: groupingN
+                optionPart: dodge
+                label: Grouped
+                enable: (!(!group))
+  - type: CollapseBox
+    label: Colors
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        cell:
+          column: 0
+          row: 0
+        stretchFactor: 1
         children:
           - type: Label
             label: Bin Color
@@ -92,57 +121,25 @@ children:
                 children:
                   - type: ComboBox
                     name: borderColor
+                    enable: (!group || usePalette:forFilling)
                   - type: ComboBox
                     name: fillColor
-  - type: CollapseBox
-    label: Grouping Plot
-    collapsed: true
-    stretchFactor: 1
-    children:
+                    enable: (!group || usePalette:forBorder)
       - type: LayoutBox
-        margin: large
+        cell:
+          column: 1
+          row: 0
         stretchFactor: 1
         children:
-          - type: LayoutBox
-            cell:
-              column: 0
-              row: 0
-            stretchFactor: 1
+          - type: Label
+            label: Color Palette
             children:
-              - type: Label
-                label: Grouping
-                children:
-                  - type: RadioButton
-                    name: grouping_none
-                    optionName: grouping
-                    optionPart: none
-                    label: None
-                  - type: RadioButton
-                    name: grouping_stack
-                    optionName: grouping
-                    optionPart: stack
-                    label: Stacked
-                    enable: (!(!group))
-                  - type: RadioButton
-                    name: grouping_identity
-                    optionName: grouping
-                    optionPart: identity
-                    label: Overlapping
-                    enable: (!(!group))
-                  - type: RadioButton
-                    name: grouping_dodge
-                    optionName: grouping
-                    optionPart: dodge
-                    label: Grouped
-                    enable: (!(!group))
-          - type: LayoutBox
-            cell:
-              column: 1
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
-                label: Use Palette
+              - type: ComboBox
+                name: colorPalette
+                label: ''
+                enable: (!(!group))
+              - type: LayoutBox
+                style: inline
                 children:
                   - type: RadioButton
                     name: usePalette_forFilling
@@ -156,20 +153,8 @@ children:
                     optionPart: forBorder
                     label: For Border
                     enable: (!(!group))
-          - type: LayoutBox
-            cell:
-              column: 2
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
-                label: Color Palette
-                children:
-                  - type: ComboBox
-                    name: colorPalette
-                    label: ''
   - type: CollapseBox
-    label: Extra Options
+    label: Plot Size & Facets
     collapsed: true
     stretchFactor: 1
     children:
@@ -251,7 +236,7 @@ children:
                     format: number
                   - type: TextBox
                     name: xAxisLabelRotation
-                    suffix: "°"
+                    suffix: °
                     format: number
               - type: Label
                 label: Range
@@ -287,7 +272,7 @@ children:
                     format: number
                   - type: TextBox
                     name: yAxisLabelRotation
-                    suffix: "°"
+                    suffix: °
                     format: number
               - type: Label
                 label: Range

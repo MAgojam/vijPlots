@@ -16,6 +16,7 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             fillColor = "#A6C4F1",
             borderColor = "black",
             grouping = "none",
+            groupingN = "stack",
             colorPalette = "jmv",
             usePalette = "forFilling",
             titleText = NULL,
@@ -148,12 +149,21 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..grouping <- jmvcore::OptionList$new(
                 "grouping",
                 grouping,
+                hidden=TRUE,
                 options=list(
                     "none",
                     "identity",
                     "stack",
                     "dodge"),
                 default="none")
+            private$..groupingN <- jmvcore::OptionList$new(
+                "groupingN",
+                groupingN,
+                options=list(
+                    "identity",
+                    "stack",
+                    "dodge"),
+                default="stack")
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -459,6 +469,7 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..fillColor)
             self$.addOption(private$..borderColor)
             self$.addOption(private$..grouping)
+            self$.addOption(private$..groupingN)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..usePalette)
             self$.addOption(private$..titleText)
@@ -508,6 +519,7 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         fillColor = function() private$..fillColor$value,
         borderColor = function() private$..borderColor$value,
         grouping = function() private$..grouping$value,
+        groupingN = function() private$..groupingN$value,
         colorPalette = function() private$..colorPalette$value,
         usePalette = function() private$..usePalette$value,
         titleText = function() private$..titleText$value,
@@ -556,6 +568,7 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..fillColor = NA,
         ..borderColor = NA,
         ..grouping = NA,
+        ..groupingN = NA,
         ..colorPalette = NA,
         ..usePalette = NA,
         ..titleText = NA,
@@ -650,6 +663,7 @@ histogramBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param fillColor .
 #' @param borderColor .
 #' @param grouping .
+#' @param groupingN .
 #' @param colorPalette .
 #' @param usePalette .
 #' @param titleText .
@@ -705,6 +719,7 @@ histogram <- function(
     fillColor = "#A6C4F1",
     borderColor = "black",
     grouping = "none",
+    groupingN = "stack",
     colorPalette = "jmv",
     usePalette = "forFilling",
     titleText,
@@ -770,6 +785,7 @@ histogram <- function(
         fillColor = fillColor,
         borderColor = borderColor,
         grouping = grouping,
+        groupingN = groupingN,
         colorPalette = colorPalette,
         usePalette = usePalette,
         titleText = titleText,

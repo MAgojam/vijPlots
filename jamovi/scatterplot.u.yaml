@@ -64,8 +64,10 @@ children:
                 name: plotBorder
               - type: CheckBox
                 name: keepNA
+                enable: (!(!labelVar) || !(!group))
               - type: CheckBox
                 name: overlap
+                enable: (!(!labelVar))
       - type: LayoutBox
         cell:
           column: 1
@@ -97,9 +99,26 @@ children:
                     enable: (vline)
   - type: LayoutBox
     margin: large
+    stretchFactor: 1
     children:
-      - type: ComboBox
-        name: colorPalette
+      - type: LayoutBox
+        cell:
+          column: 0
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: ComboBox
+            name: singleColor
+            enable: (!group)
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: ComboBox
+            name: colorPalette
+            enable: (!(!group))
   - type: CollapseBox
     label: Axes
     collapsed: true

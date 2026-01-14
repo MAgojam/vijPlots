@@ -44,7 +44,7 @@ children:
           column: 0
           row: 0
         fitToGrid: true
-        stretchFactor: 3
+        stretchFactor: 1
         children:
           - type: Label
             label: Y-Axis
@@ -90,7 +90,7 @@ children:
         cell:
           column: 1
           row: 0
-        stretchFactor: 2
+        stretchFactor: 1
         children:
           - type: Label
             label: Sorting
@@ -112,23 +112,8 @@ children:
                     optionName: order
                     optionPart: decreasing
                     label: Decreasing
-      - type: LayoutBox
-        cell:
-          column: 2
-          row: 0
-        stretchFactor: 3
-        children:
-          - type: Label
-            label: Colors
-            children:
-              - type: LayoutBox
-                children:
-                  - type: ComboBox
-                    name: dotColor
-                  - type: ComboBox
-                    name: lineColor
   - type: CollapseBox
-    label: Extra Options
+    label: Lollipop Color & Size
     collapsed: true
     stretchFactor: 1
     children:
@@ -141,26 +126,64 @@ children:
             cell:
               column: 0
               row: 0
-            stretchFactor: 6
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Colors
+                children:
+                  - type: ComboBox
+                    name: dotColor
+                  - type: ComboBox
+                    name: lineColor
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Lollipop Size
+            children:
+              - type: TextBox
+                name: dotSize
+                format: number
+                suffix: px
+              - type: TextBox
+                name: lineWidth
+                format: number
+                suffix: px
+  - type: CollapseBox
+    label: Plot Size & Facets
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        style: inline
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
             children:
               - type: Label
                 label: Plot Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                  - type: TextBox
+                    name: plotWidth
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: plotHeight
+                    format: number
+                    suffix: px
           - type: LayoutBox
             cell:
               column: 1
               row: 0
-            stretchFactor: 8
+            stretchFactor: 1
             children:
               - type: Label
                 label: Facets
@@ -187,23 +210,6 @@ children:
                         name: facetNumber
                         format: number
                         enable: (!(!facet))
-          - type: LayoutBox
-            cell:
-              column: 2
-              row: 0
-            stretchFactor: 6
-            children:
-              - type: Label
-                label: Lollipop Size
-                children:
-                  - type: TextBox
-                    name: dotSize
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: lineWidth
-                    format: number
-                    suffix: px
   - type: CollapseBox
     label: Axes
     collapsed: true

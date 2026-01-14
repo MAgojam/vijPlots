@@ -47,6 +47,7 @@ children:
                 children:
                   - type: CheckBox
                     name: nudgeBoxplot
+                    enable: (!(!groupTwo))
                   - type: CheckBox
                     name: horizontal
                   - type: CheckBox
@@ -68,7 +69,7 @@ children:
                     name: alphaC
                     format: number
   - type: CollapseBox
-    label: Extra Options
+    label: Plot Size
     collapsed: true
     stretchFactor: 1
     children:
@@ -86,16 +87,14 @@ children:
               - type: Label
                 label: Plot Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                  - type: TextBox
+                    name: plotWidth
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: plotHeight
+                    format: number
+                    suffix: px
   - type: CollapseBox
     label: Axes
     collapsed: true

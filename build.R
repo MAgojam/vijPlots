@@ -40,6 +40,7 @@ jmvtools::install()
  ## i18n (update)
 jmvtools::i18nUpdate("en")
 jmvtools::i18nUpdate("fr")
+jmvtools::i18nUpdate("es")
 
 
 
@@ -48,6 +49,7 @@ jmvtools::i18nUpdate("fr")
 ## i18n (creation)
 jmvtools::i18nCreate("en")
 jmvtools::i18nCreate("fr")
+jmvtools::i18nCreate("es")
 
 
 
