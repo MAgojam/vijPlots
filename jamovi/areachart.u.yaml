@@ -109,7 +109,7 @@ children:
                     name: dateBreak
                     enable: (isDate)
   - type: CollapseBox
-    label: Extra Options
+    label: Plot Size & Options
     collapsed: true
     stretchFactor: 1
     children:

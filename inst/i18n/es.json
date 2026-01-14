@@ -295,9 +295,6 @@
             "Axes": [
                 ""
             ],
-            "Axis Labels": [
-                ""
-            ],
             "Axis Titles": [
                 ""
             ],
@@ -536,9 +533,6 @@
                 ""
             ],
             "Coordinates †": [
-                ""
-            ],
-            "Coordinates†": [
                 ""
             ],
             "Correspondence Analysis": [
@@ -811,9 +805,6 @@
             "Grouping": [
                 ""
             ],
-            "Grouping Plot": [
-                ""
-            ],
             "Grouping Variable": [
                 ""
             ],
@@ -1025,6 +1016,9 @@
                 ""
             ],
             "Logistic": [
+                ""
+            ],
+            "Lollipop Color & Size": [
                 ""
             ],
             "Lollipop Plot": [
@@ -1312,6 +1306,12 @@
             "Plot Size": [
                 ""
             ],
+            "Plot Size & Colors": [
+                ""
+            ],
+            "Plot Size & Facets": [
+                ""
+            ],
             "Plot Titles": [
                 ""
             ],
@@ -1460,9 +1460,6 @@
                 ""
             ],
             "Rotate eigenvectors": [
-                ""
-            ],
-            "Rotate X-Axis Labels": [
                 ""
             ],
             "Rotation": [

@@ -23,6 +23,8 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             xaxis = "xcols",
             bartype = "dodge",
             size = "medium",
+            plotWidth = 0,
+            plotHeight = 0,
             colorPalette = "jmv",
             titleText = NULL,
             titleFontFace = "bold",
@@ -157,6 +159,7 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             private$..size <- jmvcore::OptionList$new(
                 "size",
                 size,
+                hidden=TRUE,
                 options=list(
                     "small",
                     "medium",
@@ -164,6 +167,18 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "wide",
                     "huge"),
                 default="medium")
+            private$..plotWidth <- jmvcore::OptionNumber$new(
+                "plotWidth",
+                plotWidth,
+                min=0,
+                max=1000,
+                default=0)
+            private$..plotHeight <- jmvcore::OptionNumber$new(
+                "plotHeight",
+                plotHeight,
+                min=0,
+                max=1600,
+                default=0)
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -429,6 +444,8 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..xaxis)
             self$.addOption(private$..bartype)
             self$.addOption(private$..size)
+            self$.addOption(private$..plotWidth)
+            self$.addOption(private$..plotHeight)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
@@ -477,6 +494,8 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         xaxis = function() private$..xaxis$value,
         bartype = function() private$..bartype$value,
         size = function() private$..size$value,
+        plotWidth = function() private$..plotWidth$value,
+        plotHeight = function() private$..plotHeight$value,
         colorPalette = function() private$..colorPalette$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
@@ -524,6 +543,8 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..xaxis = NA,
         ..bartype = NA,
         ..size = NA,
+        ..plotWidth = NA,
+        ..plotHeight = NA,
         ..colorPalette = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
@@ -649,6 +670,8 @@ mrcrosstabsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param xaxis .
 #' @param bartype .
 #' @param size .
+#' @param plotWidth .
+#' @param plotHeight .
 #' @param colorPalette .
 #' @param titleText .
 #' @param titleFontFace .
@@ -711,6 +734,8 @@ mrcrosstabs <- function(
     xaxis = "xcols",
     bartype = "dodge",
     size = "medium",
+    plotWidth = 0,
+    plotHeight = 0,
     colorPalette = "jmv",
     titleText,
     titleFontFace = "bold",
@@ -779,6 +804,8 @@ mrcrosstabs <- function(
         xaxis = xaxis,
         bartype = bartype,
         size = size,
+        plotWidth = plotWidth,
+        plotHeight = plotHeight,
         colorPalette = colorPalette,
         titleText = titleText,
         titleFontFace = titleFontFace,

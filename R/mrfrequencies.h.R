@@ -20,6 +20,8 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             showCases = TRUE,
             yaxis = "cases",
             size = "medium",
+            plotWidth = 0,
+            plotHeight = 0,
             colorPalette = "jmv",
             singleColor = TRUE,
             colorNo = 1,
@@ -126,6 +128,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             private$..size <- jmvcore::OptionList$new(
                 "size",
                 size,
+                hidden=TRUE,
                 options=list(
                     "small",
                     "medium",
@@ -133,6 +136,18 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "wide",
                     "huge"),
                 default="medium")
+            private$..plotWidth <- jmvcore::OptionNumber$new(
+                "plotWidth",
+                plotWidth,
+                min=0,
+                max=1000,
+                default=0)
+            private$..plotHeight <- jmvcore::OptionNumber$new(
+                "plotHeight",
+                plotHeight,
+                min=0,
+                max=1600,
+                default=0)
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -382,6 +397,8 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..showCases)
             self$.addOption(private$..yaxis)
             self$.addOption(private$..size)
+            self$.addOption(private$..plotWidth)
+            self$.addOption(private$..plotHeight)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..singleColor)
             self$.addOption(private$..colorNo)
@@ -426,6 +443,8 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         showCases = function() private$..showCases$value,
         yaxis = function() private$..yaxis$value,
         size = function() private$..size$value,
+        plotWidth = function() private$..plotWidth$value,
+        plotHeight = function() private$..plotHeight$value,
         colorPalette = function() private$..colorPalette$value,
         singleColor = function() private$..singleColor$value,
         colorNo = function() private$..colorNo$value,
@@ -469,6 +488,8 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         ..showCases = NA,
         ..yaxis = NA,
         ..size = NA,
+        ..plotWidth = NA,
+        ..plotHeight = NA,
         ..colorPalette = NA,
         ..singleColor = NA,
         ..colorNo = NA,
@@ -602,6 +623,8 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showCases .
 #' @param yaxis .
 #' @param size .
+#' @param plotWidth .
+#' @param plotHeight .
 #' @param colorPalette .
 #' @param singleColor .
 #' @param colorNo .
@@ -660,6 +683,8 @@ mrfrequencies <- function(
     showCases = TRUE,
     yaxis = "cases",
     size = "medium",
+    plotWidth = 0,
+    plotHeight = 0,
     colorPalette = "jmv",
     singleColor = TRUE,
     colorNo = 1,
@@ -718,6 +743,8 @@ mrfrequencies <- function(
         showCases = showCases,
         yaxis = yaxis,
         size = size,
+        plotWidth = plotWidth,
+        plotHeight = plotHeight,
         colorPalette = colorPalette,
         singleColor = singleColor,
         colorNo = colorNo,

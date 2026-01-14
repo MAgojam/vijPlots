@@ -238,16 +238,14 @@ children:
               - type: Label
                 label: Plot Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                  - type: TextBox
+                    name: plotWidth
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: plotHeight
+                    format: number
+                    suffix: px
           - type: LayoutBox
             cell:
               column: 1

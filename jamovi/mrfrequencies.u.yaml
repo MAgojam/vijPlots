@@ -147,7 +147,7 @@ children:
                 optionPart: cases
                 label: '% of Cases'
   - type: CollapseBox
-    label: Plot Options
+    label: Plot Size & Color
     collapsed: true
     stretchFactor: 1
     children:
@@ -164,8 +164,14 @@ children:
               - type: Label
                 label: Plot Size
                 children:
-                  - type: ComboBox
-                    name: size
+                  - type: TextBox
+                    name: plotWidth
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: plotHeight
+                    format: number
+                    suffix: px
           - type: LayoutBox
             cell:
               column: 1

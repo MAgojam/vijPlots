@@ -35,83 +35,52 @@ children:
   - type: LayoutBox
     margin: large
     style: inline
+    stretchFactor: 1
     children:
       - type: LayoutBox
         cell:
           column: 0
           row: 0
-        stretchFactor: 5
+        stretchFactor: 1
         children:
           - type: Label
             label: Plot Options
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: ignoreNA
-                    enable: (!(!group))
-                  - type: CheckBox
-                    name: showOutliers
-                  - type: CheckBox
-                    name: showMean
-                  - type: CheckBox
-                    name: staple
-                  - type: CheckBox
-                    name: notches
+              - type: CheckBox
+                name: ignoreNA
+                enable: (!(!group))
+              - type: CheckBox
+                name: showOutliers
+              - type: CheckBox
+                name: showMean
+              - type: CheckBox
+                name: horizontal
       - type: LayoutBox
         cell:
           column: 1
           row: 0
-        stretchFactor: 5
+        stretchFactor: 1
         children:
           - type: Label
             label: Sorting (Median)
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: order_none
-                    optionName: order
-                    optionPart: none
-                    label: None
-                  - type: RadioButton
-                    name: order_increasing
-                    optionName: order
-                    optionPart: increasing
-                    label: Increasing
-                  - type: RadioButton
-                    name: order_decreasing
-                    optionName: order
-                    optionPart: decreasing
-                    label: Decreasing
-      - type: LayoutBox
-        cell:
-          column: 2
-          row: 0
-        stretchFactor: 7
-        children:
-          - type: Label
-            label: Color Options
-            children:
-              - type: LayoutBox
-                children:
-                  - type: ComboBox
-                    name: colorPalette
-                  - type: CheckBox
-                    name: singleColor
-                    label: Use color No.
-                    enable: (!group)
-                    style: inline
-                    verticalAlignment: center
-                    children:
-                      - type: TextBox
-                        name: colorNo
-                        label: ''
-                        suffix: only
-                        format: number
-                        enable: (singleColor && !group)
+              - type: RadioButton
+                name: order_none
+                optionName: order
+                optionPart: none
+                label: None
+              - type: RadioButton
+                name: order_increasing
+                optionName: order
+                optionPart: increasing
+                label: Increasing
+              - type: RadioButton
+                name: order_decreasing
+                optionName: order
+                optionPart: decreasing
+                label: Decreasing
   - type: CollapseBox
-    label: Extra Options
+    label: Colors & Options
     collapsed: true
     stretchFactor: 1
     children:
@@ -127,18 +96,26 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Color Palette
                 children:
                   - type: LayoutBox
                     children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                      - type: ComboBox
+                        name: colorPalette
+                        label: ''
+                      - type: CheckBox
+                        name: singleColor
+                        label: Use color No.
+                        enable: (!group)
+                        style: inline
+                        verticalAlignment: center
+                        children:
+                          - type: TextBox
+                            name: colorNo
+                            label: ''
+                            suffix: only
+                            format: number
+                            enable: (singleColor && !group)
           - type: LayoutBox
             cell:
               column: 1
@@ -146,29 +123,43 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Options
-                children:
-                  - type: CheckBox
-                    name: horizontal
-          - type: LayoutBox
-            cell:
-              column: 2
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
                 label: Boxplot Elements
                 children:
-                  - type: LayoutBox
+                  - type: CheckBox
+                    name: staple
                     children:
                       - type: TextBox
                         name: stapleWidth
                         format: number
                         enable: (staple)
+                  - type: CheckBox
+                    name: notches
+                    children:
                       - type: TextBox
                         name: notchWidth
                         format: number
                         enable: (notches)
+  - type: CollapseBox
+    label: Plot Size
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Label
+            label: Plot Size
+            children:
+              - type: LayoutBox
+                children:
+                  - type: TextBox
+                    name: plotWidth
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: plotHeight
+                    format: number
+                    suffix: px
   - type: CollapseBox
     label: Axes
     collapsed: true

@@ -218,7 +218,7 @@ children:
                       - type: ComboBox
                         name: supColor
   - type: CollapseBox
-    label: Axis Labels
+    label: Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

@@ -20,6 +20,8 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             xinter = 0,
             singleColor = "#999999",
             colorPalette = "jmv",
+            plotWidth = 0,
+            plotHeight = 0,
             titleText = NULL,
             titleFontFace = "bold",
             titleFontSize = "14",
@@ -195,6 +197,18 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "custom::tidyplots",
                     "custom::cdes"),
                 default="jmv")
+            private$..plotWidth <- jmvcore::OptionNumber$new(
+                "plotWidth",
+                plotWidth,
+                min=0,
+                max=1000,
+                default=0)
+            private$..plotHeight <- jmvcore::OptionNumber$new(
+                "plotHeight",
+                plotHeight,
+                min=0,
+                max=1600,
+                default=0)
             private$..titleText <- jmvcore::OptionString$new(
                 "titleText",
                 titleText)
@@ -423,6 +437,8 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..xinter)
             self$.addOption(private$..singleColor)
             self$.addOption(private$..colorPalette)
+            self$.addOption(private$..plotWidth)
+            self$.addOption(private$..plotHeight)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
             self$.addOption(private$..titleFontSize)
@@ -470,6 +486,8 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         xinter = function() private$..xinter$value,
         singleColor = function() private$..singleColor$value,
         colorPalette = function() private$..colorPalette$value,
+        plotWidth = function() private$..plotWidth$value,
+        plotHeight = function() private$..plotHeight$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
         titleFontSize = function() private$..titleFontSize$value,
@@ -516,6 +534,8 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..xinter = NA,
         ..singleColor = NA,
         ..colorPalette = NA,
+        ..plotWidth = NA,
+        ..plotHeight = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
         ..titleFontSize = NA,
@@ -608,6 +628,8 @@ scatterplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param xinter .
 #' @param singleColor .
 #' @param colorPalette .
+#' @param plotWidth .
+#' @param plotHeight .
 #' @param titleText .
 #' @param titleFontFace .
 #' @param titleFontSize .
@@ -661,6 +683,8 @@ scatterplot <- function(
     xinter = 0,
     singleColor = "#999999",
     colorPalette = "jmv",
+    plotWidth = 0,
+    plotHeight = 0,
     titleText,
     titleFontFace = "bold",
     titleFontSize = "14",
@@ -727,6 +751,8 @@ scatterplot <- function(
         xinter = xinter,
         singleColor = singleColor,
         colorPalette = colorPalette,
+        plotWidth = plotWidth,
+        plotHeight = plotHeight,
         titleText = titleText,
         titleFontFace = titleFontFace,
         titleFontSize = titleFontSize,

@@ -103,6 +103,7 @@ options:
     - name: size
       title: ""
       type: List
+      hidden: true
       options:
         - title: Small (300x200)
           name:  small
@@ -115,6 +116,22 @@ options:
         - title: Huge (800x500)
           name:  huge
       default: medium
+
+# Size is obsolete and replace with plotWidth & plotHeight
+
+    - name: plotWidth
+      type: Number
+      title: Width
+      min: 0
+      max: 1000
+      default: 0
+
+    - name: plotHeight
+      type: Number
+      title: Height
+      min: 0
+      max: 1600
+      default: 0
 
     - name: colorPalette
       title: Palette

@@ -6,10 +6,29 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = scatterplotBase,
     private = list(
         .init = function() {
-            image <- self$results$plot
-            if( !is.null(self$options$group) || !is.null(self$options$ptSize) ) {
-                image$setSize(700, 600)
+            # Set the size of the plot
+            userWidth <- as.numeric(self$options$plotWidth)
+            userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject(.("Plot size must be at least 200px (or 0 = default)"))
+            # Compute the size according to legend position
+            if (userWidth * userHeight == 0) {
+                width <- 600
+                height <- 600
+                if( !is.null(self$options$group) || !is.null(self$options$ptSize) ) {
+                    if (self$options$legendPosition %in% c('top','bottom'))
+                        height <- 650
+                    else
+                        width <- 700
+                }
             }
+            if (userWidth > 0)
+                width <- userWidth
+            if (userHeight > 0)
+                height <- userHeight
+            image <- self$results$plot
+            image$setSize(width, height)
         },
         .run = function() {
             xaxis <- self$options$xaxis

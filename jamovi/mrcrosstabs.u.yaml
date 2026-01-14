@@ -164,7 +164,7 @@ children:
                 optionPart: none
                 label: None
   - type: CollapseBox
-    label: Plots
+    label: Plot Options
     collapsed: false
     stretchFactor: 1
     children:
@@ -217,16 +217,27 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: "Plot Size"
-                children:
-                  - type: ComboBox
-                    name: size
-              - type: Label
-                label: Color Options
+                label: Color Palette
                 children:
                   - type: ComboBox
                     label: ""
                     name: colorPalette
+  - type: CollapseBox
+    label: Plot Size
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: Label
+        label: Plot Size
+        children:
+          - type: TextBox
+            name: plotWidth
+            format: number
+            suffix: px
+          - type: TextBox
+            name: plotHeight
+            format: number
+            suffix: px
   - type: CollapseBox
     label: Axes
     collapsed: true

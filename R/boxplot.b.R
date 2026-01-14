@@ -11,7 +11,7 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             userHeight <- as.numeric(self$options$plotHeight)
             # Check min size
             if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject("Plot size must be at least 200px (or 0 = default)")
+                reject(.("Plot size must be at least 200px (or 0 = default)"))
             # Compute the size according to facet
             if (userWidth * userHeight == 0) {
                 if (self$options$horizontal)

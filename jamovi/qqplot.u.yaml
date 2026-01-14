@@ -152,7 +152,7 @@ children:
                         format: number
                         enable: (paramMethod_paraValue && norm)
   - type: CollapseBox
-    label: Extra Options
+    label: Plot Size & Other Options
     collapsed: true
     stretchFactor: 1
     children:
@@ -197,8 +197,10 @@ children:
                     children:
                       - type: ComboBox
                         name: methodQQ
+                        enable: (type:QQ && band)
                       - type: ComboBox
                         name: methodPP
+                        enable: (type:PP&& band)
   - type: CollapseBox
     label: Axes
     collapsed: true

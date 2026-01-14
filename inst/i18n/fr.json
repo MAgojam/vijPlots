@@ -295,9 +295,6 @@
             "Axes": [
                 ""
             ],
-            "Axis Labels": [
-                ""
-            ],
             "Axis Titles": [
                 "Titre des axes"
             ],
@@ -368,7 +365,7 @@
                 ""
             ],
             "Border": [
-                "Bord"
+                "Bordures"
             ],
             "Bottom": [
                 "Bas"
@@ -413,7 +410,7 @@
                 "Variables qualitatives"
             ],
             "Categories": [
-                ""
+                "Catégories"
             ],
             "Category Axis": [
                 "Axe des catégories"
@@ -455,7 +452,7 @@
                 "Khi-deux"
             ],
             "Color Number": [
-                ""
+                "Numéro de la couleur"
             ],
             "Color Options": [
                 "Options de couleurs"
@@ -468,6 +465,9 @@
             ],
             "Colors": [
                 "Couleurs"
+            ],
+            "Colors & Options": [
+                ""
             ],
             "Column": [
                 "Colonne"
@@ -536,10 +536,7 @@
                 "Convertir les variables en entiers"
             ],
             "Coordinates †": [
-                ""
-            ],
-            "Coordinates†": [
-                "Coordonnées†"
+                "Coordonnées †"
             ],
             "Correspondence Analysis": [
                 "Analyse des correspondances"
@@ -740,10 +737,10 @@
                 "Taille de police"
             ],
             "For Border": [
-                "Pour les bordures"
+                "Pour bordures"
             ],
             "For Filling": [
-                "Pour le remplissage"
+                "Pour remplissage"
             ],
             "Form (Score principal)": [
                 "Form (Obs. principales)"
@@ -810,9 +807,6 @@
             ],
             "Grouping": [
                 "Groupes"
-            ],
-            "Grouping Plot": [
-                "Graphe"
             ],
             "Grouping Variable": [
                 "Grouper par"
@@ -941,10 +935,10 @@
                 "Étiquettes"
             ],
             "Label font size": [
-                ""
+                "Taille des étiquettes"
             ],
             "Label rotation": [
-                ""
+                "Rotation des étiquettes"
             ],
             "Label Size": [
                 "Taille des étiquettes"
@@ -962,10 +956,10 @@
                 "Légende"
             ],
             "Legend & Axis Titles": [
-                ""
+                "Titres de la légende et des axes"
             ],
             "Legend Title": [
-                ""
+                "Titre de la légende"
             ],
             "Level": [
                 "Niveau"
@@ -1027,6 +1021,9 @@
             "Logistic": [
                 "Logistique"
             ],
+            "Lollipop Color & Size": [
+                "Couleur et taille des sucettes"
+            ],
             "Lollipop Plot": [
                 "Lollipop (Sucettes)"
             ],
@@ -1043,7 +1040,7 @@
                 "Tests U de Mann-Whitney"
             ],
             "Manual": [
-                ""
+                "Manuel"
             ],
             "Mass": [
                 "Masse"
@@ -1115,7 +1112,7 @@
                 "Réponses multiples - Fréquences"
             ],
             "Multiple Value Variable": [
-                ""
+                "Variable à valeurs multiples"
             ],
             "Multivariate": [
                 "Multivarié"
@@ -1190,7 +1187,7 @@
                 "Une variable"
             ],
             "only": [
-                ""
+                "seulement"
             ],
             "Option name": [
                 "Nom des options"
@@ -1312,6 +1309,15 @@
             "Plot Size": [
                 "Taille du graphique"
             ],
+            "Plot Size & Colors": [
+                "Taille et couleurs du graphique"
+            ],
+            "Plot Size & Facets": [
+                "Taille du graphique & facettes"
+            ],
+            "Plot size must be at least 200px (or 0 = default)": [
+                "La taille du graphique doit être au moins 200 px ou 0 (= default)"
+            ],
             "Plot Titles": [
                 "Titres du graphique"
             ],
@@ -1415,7 +1421,7 @@
                 "Diagramme Raincloud"
             ],
             "Range": [
-                ""
+                "Étendue"
             ],
             "Red": [
                 "Rouge"
@@ -1461,9 +1467,6 @@
             ],
             "Rotate eigenvectors": [
                 "Rotation des vecteurs propres"
-            ],
-            "Rotate X-Axis Labels": [
-                "Pivoter les étiquettes"
             ],
             "Rotation": [
                 ""
@@ -1526,7 +1529,7 @@
                 "Nuage de points"
             ],
             "Scree Plot": [
-                "Éboulis des valeurs propres"
+                "Valeurs propres"
             ],
             "Scree plot": [
                 "Valeurs propres"
@@ -1586,7 +1589,7 @@
                 "Juxtaposé 2"
             ],
             "Single color": [
-                ""
+                "Couleur unique"
             ],
             "Singular Value": [
                 "Valeur singulière"
@@ -1847,7 +1850,7 @@
                 "Blanc"
             ],
             "Wide (700x400)": [
-                ""
+                "Large (700x400)"
             ],
             "Width": [
                 "Largeur"

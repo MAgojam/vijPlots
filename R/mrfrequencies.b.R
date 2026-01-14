@@ -35,18 +35,34 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 table$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
             }
             # Set the size of the plot
+            userWidth <- as.numeric(self$options$plotWidth)
+            userHeight <- as.numeric(self$options$plotHeight)
+            # Check min size
+            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
+                reject(.("Plot size must be at least 200px (or 0 = default)"))
+            if (userWidth * userHeight == 0) {
+                # use as default the obsolete (and hidden) size menu preset
+                width <- switch (self$options$size,
+                                 "small" = 300,
+                                 "medium" = 400,
+                                 "large" = 600,
+                                 "wide" = 700,
+                                 "huge" = 800,
+                                 400)
+                height <- switch (self$options$size,
+                                 "small" = 200,
+                                 "medium" = 300,
+                                 "large" = 400,
+                                 "wide" = 400,
+                                 "huge" = 500,
+                                 300)
+            }
+            if (userWidth >0)
+                width = userWidth
+            if (userHeight >0)
+                height = userHeight
             image <- self$results$plot
-            size <- self$options$size
-            if ( size == "small" )
-                image$setSize(300, 200)
-            else if ( size == "medium" )
-                image$setSize(400,300)
-            else if ( size == "large" )
-                image$setSize(600,400)
-            else if ( size == "wide" )
-                image$setSize(700,400)
-            else if ( size == "huge" )
-                image$setSize(800,500)
+            image$setSize(width, height)
         },
         .run = function() {
             if (self$options$mode == "morevar") { # Several dychotomous variables
