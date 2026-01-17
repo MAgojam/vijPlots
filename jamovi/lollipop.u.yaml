@@ -95,25 +95,23 @@ children:
           - type: Label
             label: Sorting
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: order_none
-                    optionName: order
-                    optionPart: none
-                    label: None
-                  - type: RadioButton
-                    name: order_increasing
-                    optionName: order
-                    optionPart: increasing
-                    label: Increasing
-                  - type: RadioButton
-                    name: order_decreasing
-                    optionName: order
-                    optionPart: decreasing
-                    label: Decreasing
+              - type: RadioButton
+                name: order_none
+                optionName: order
+                optionPart: none
+                label: None
+              - type: RadioButton
+                name: order_increasing
+                optionName: order
+                optionPart: increasing
+                label: Increasing
+              - type: RadioButton
+                name: order_decreasing
+                optionName: order
+                optionPart: decreasing
+                label: Decreasing
   - type: CollapseBox
-    label: Lollipop Color & Size
+    label: Lollipop Size & Colors
     collapsed: true
     stretchFactor: 1
     children:
@@ -189,27 +187,24 @@ children:
                 label: Facets
                 children:
                   - type: LayoutBox
+                    style: inline
                     children:
-                      - type: LayoutBox
-                        margin: large
-                        style: inline
-                        children:
-                          - type: RadioButton
-                            name: facetBy_row
-                            optionName: facetBy
-                            optionPart: row
-                            label: Row
-                            enable: (!(!facet))
-                          - type: RadioButton
-                            name: facetBy_column
-                            optionName: facetBy
-                            optionPart: column
-                            label: Column
-                            enable: (!(!facet))
-                      - type: TextBox
-                        name: facetNumber
-                        format: number
+                      - type: RadioButton
+                        name: facetBy_row
+                        optionName: facetBy
+                        optionPart: row
+                        label: Row
                         enable: (!(!facet))
+                      - type: RadioButton
+                        name: facetBy_column
+                        optionName: facetBy
+                        optionPart: column
+                        label: Column
+                        enable: (!(!facet))
+                  - type: TextBox
+                    name: facetNumber
+                    format: number
+                    enable: (!(!facet))
   - type: CollapseBox
     label: Axes
     collapsed: true

@@ -102,25 +102,34 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 boxplotAlpha <- alphaC
             }
 
+            # One color only
+            nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
+            colorNo <- self$options$colorNo
+            if (self$options$singleColor) {
+                oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[min(colorNo,nbColors)]
+            } else {
+                oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[1]
+            }
+
             if (is.null(groupOne)) {
                 if (is.null(groupTwo)) {
                     jitter_nudge <- ggpp::position_jitternudge(width = 0.03, height = 0,
                                                          seed = 42, x = ifrev(0.08,-0.08),
                                                          nudge.from = "jittered")
-                    plot <- ggplot(plotData, aes(x = 1, y = !!aVar, fill = "1")) +
-                                geom_boxplot(width = 0.05, outlier.shape = NA) +
-                                geom_point(position = jitter_nudge, size=1.2) +
-                                ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.25,-0.25), width = 0.2, .width = 0, point_color = NA,
-                                                        slab_color = "black", slab_linewidth = 0.5) +
-                                guides(fill = FALSE)
+                    plot <- ggplot(plotData, aes(x = 1, y = !!aVar))
+                    plot <- plot + geom_boxplot(width = 0.05, outlier.shape = NA, fill = oneColorOfPalette)
+                    plot <- plot + geom_point(position = jitter_nudge, size=1.2)
+                    plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.25,-0.25), width = 0.2, .width = 0,
+                                                        point_color = NA, slab_color = "black", slab_linewidth = 0.5, fill = oneColorOfPalette)
+                    plot <- plot + guides(fill = FALSE)
                 } else {
                     jitter_nudge <- ggpp::position_jitternudge(width = 0.02, height = 0,
                                                          seed = 42, x = ifrev(+0.05,-0.05),
                                                          nudge.from = "jittered")
-                    plot <- ggplot(plotData, aes(x = 1, y = !!aVar, fill = !!groupTwo, color = !!groupTwo, slab_color = !!groupTwo)) +
-                                geom_boxplot(position = boxplotPosition, width = boxplotWidth, outlier.shape = NA, color="black", alpha = boxplotAlpha, key_glyph = draw_key_rect) +
-                                geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2, show.legend = FALSE) +
-                                ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.1,-0.1), width = 0.3, .width = 0, point_color=NA,
+                    plot <- ggplot(plotData, aes(x = 1, y = !!aVar, fill = !!groupTwo, color = !!groupTwo, slab_color = !!groupTwo))
+                    plot <- plot + geom_boxplot(position = boxplotPosition, width = boxplotWidth, outlier.shape = NA, color="black", alpha = boxplotAlpha, key_glyph = draw_key_rect)
+                    plot <- plot + geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2, show.legend = FALSE)
+                    plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.1,-0.1), width = 0.3, .width = 0, point_color=NA,
                                                      alpha = alphaC, slab_linewidth = 0.8, show.legend = FALSE)
                     plot <- plot + guides(fill = guide_legend(override.aes = list(alpha = 1)))
                 }
@@ -130,27 +139,32 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     jitter_nudge <- ggpp::position_jitternudge(width = 0.02, height = 0,
                                                          seed = 42, x = ifrev(+0.12,-0.12),
                                                          nudge.from = "jittered")
-                    plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar, fill = !!groupOne)) +
-                                geom_boxplot(position = position_nudge(), width = 0.09, outlier.shape = NA) +
-                                geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2) +
-                                ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0, point_color = NA,
-                                                     slab_color = "black", slab_linewidth = 0.5) + guides(fill = FALSE)
+                    if (self$options$singleColor) {
+                        plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar))
+                        plot <- plot + geom_boxplot(position = position_nudge(), width = 0.09, outlier.shape = NA, fill = oneColorOfPalette)
+                        plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0,
+                                                            point_color = NA, slab_color = "black", fill = oneColorOfPalette, slab_linewidth = 0.5)
+                    } else {
+                        plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar, fill = !!groupOne))
+                        plot <- plot + geom_boxplot(position = position_nudge(), width = 0.09, outlier.shape = NA)
+                        plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0,
+                                                            point_color = NA, slab_color = "black", slab_linewidth = 0.5)
+                    }
+                    plot <- plot + geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2) + guides(fill = FALSE)
+
 
                 } else {
                     jitter_nudge <- ggpp::position_jitternudge(width = 0.05, height = 0,
                                                          seed = 42, x = ifrev(+0.15,-0.15),
                                                          nudge.from = "jittered")
-                    plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar, fill =  !!groupTwo, color = !!groupTwo, slab_color = !!groupTwo)) +
-                                geom_boxplot(position = boxplotPosition, width = boxplotWidth2, outlier.shape = NA, color = "black", alpha = boxplotAlpha, key_glyph = draw_key_rect) +
-                                geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2, show.legend = FALSE) +
-                                ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0, point_color = NA,
+                    plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar, fill =  !!groupTwo, color = !!groupTwo, slab_color = !!groupTwo))
+                    plot <- plot + geom_boxplot(position = boxplotPosition, width = boxplotWidth2, outlier.shape = NA, color = "black", alpha = boxplotAlpha, key_glyph = draw_key_rect)
+                    plot <- plot + geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2, show.legend = FALSE)
+                    plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0, point_color = NA,
                                                      slab_alpha = alphaC, slab_linewidth = 0.8, show.legend = FALSE)
                     plot <- plot + guides(fill = guide_legend(override.aes = list(alpha = 1)))
                 }
             }
-
-#            if (self$options$horizontal)
-#                plot <- plot + coord_flip()
 
             # Theme and colors
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color") + vijScale(self$options$colorPalette, "fill") + vijScale(self$options$colorPalette, "slab_color")

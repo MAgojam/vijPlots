@@ -42,12 +42,10 @@ children:
           - type: Label
             label: Plot Options
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: showPoint
-                  - type: ComboBox
-                    name: colorPalette
+              - type: CheckBox
+                name: showPoint
+              - type: ComboBox
+                name: colorPalette
       - type: LayoutBox
         cell:
           column: 1
@@ -57,19 +55,17 @@ children:
           - type: Label
             label: X-Axis
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: isDate
-                  - type: ComboBox
-                    name: dateFormat
-                    enable: (isDate)
-                  - type: ComboBox
-                    name: displayFormat
-                    enable: (isDate)
-                  - type: ComboBox
-                    name: dateBreak
-                    enable: (isDate)
+              - type: CheckBox
+                name: isDate
+              - type: ComboBox
+                name: dateFormat
+                enable: (isDate)
+              - type: ComboBox
+                name: displayFormat
+                enable: (isDate)
+              - type: ComboBox
+                name: dateBreak
+                enable: (isDate)
   - type: CollapseBox
     label: Plot Size & Options
     collapsed: true
@@ -89,16 +85,14 @@ children:
               - type: Label
                 label: Plot Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                  - type: TextBox
+                    name: plotWidth
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: plotHeight
+                    format: number
+                    suffix: px
           - type: LayoutBox
             cell:
               column: 1
@@ -108,16 +102,14 @@ children:
               - type: Label
                 label: Point & Line Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: dotSize
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: lineWidth
-                        format: number
-                        suffix: px
+                  - type: TextBox
+                    name: dotSize
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: lineWidth
+                    format: number
+                    suffix: px
   - type: CollapseBox
     label: Axes
     collapsed: true

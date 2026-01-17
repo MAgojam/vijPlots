@@ -140,7 +140,7 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             if (self$options$position == "fill")
-                plot <- plot + scale_y_continuous(labels=percent_format())
+                plot <- plot + scale_y_continuous(labels=label_percent())
 
             if (!oneVariable) {
                 if(length(self$options$vars) > 1) {

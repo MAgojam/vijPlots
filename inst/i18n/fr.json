@@ -422,7 +422,7 @@
                 "Catégories"
             ],
             "Category Plot Options": [
-                "Graphique de catégories"
+                "Graphique des catégories"
             ],
             "Category Plot Size": [
                 "Graphique des catégories"
@@ -461,13 +461,13 @@
                 "Palette de couleurs"
             ],
             "Color palette": [
-                "Palette de couleurs"
+                "Palette"
             ],
             "Colors": [
                 "Couleurs"
             ],
             "Colors & Options": [
-                ""
+                "Couleurs & Options"
             ],
             "Column": [
                 "Colonne"
@@ -705,9 +705,6 @@
             ],
             "Exponential": [
                 "Exponentielle"
-            ],
-            "Extra Options": [
-                "Autres options"
             ],
             "Extraction Sums of Squared Loadings": [
                 "Sommes des carrés des composantes extraites"
@@ -1021,14 +1018,14 @@
             "Logistic": [
                 "Logistique"
             ],
-            "Lollipop Color & Size": [
-                "Couleur et taille des sucettes"
-            ],
             "Lollipop Plot": [
                 "Lollipop (Sucettes)"
             ],
             "Lollipop Size": [
-                "Taille des lollipop"
+                "Taille des sucettes"
+            ],
+            "Lollipop Size & Colors": [
+                "Taille et couleurs des sucettes"
             ],
             "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
@@ -1314,6 +1311,9 @@
             ],
             "Plot Size & Facets": [
                 "Taille du graphique & facettes"
+            ],
+            "Plot Size & Options": [
+                "Taille du graphique & options"
             ],
             "Plot size must be at least 200px (or 0 = default)": [
                 "La taille du graphique doit être au moins 200 px ou 0 (= default)"

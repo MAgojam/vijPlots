@@ -100,6 +100,28 @@ options:
           name:  cases
       default: cases
 
+    - name: horizontal
+      title: Horizontal plot
+      type: Bool
+      default: false
+
+    - name: showLabels
+      title: Show count labels
+      type: Bool
+      default: false
+
+    - name: accuracy
+      title: "% accuracy"
+      type: List
+      options:
+        - title: "1"
+          name:  "1"
+        - title: "0.1"
+          name:  "0.1"
+        - title: "0.01"
+          name: "0.01"
+      default: "0.1"
+
     - name: size
       title: ""
       type: List
@@ -238,6 +260,32 @@ options:
       min: 1
       max: 99
       default: 1
+
+    - name: borderColor
+      title: Border
+      type: List
+      options:
+        - title: None
+          name:  none
+        - title: Black
+          name:  black
+        - title: White
+          name:  white
+        - title: Gray
+          name:  gray
+      default: none
+
+    - name: textColor
+      title: Text
+      type: List
+      options:
+        - title: Black
+          name:  black
+        - title: White
+          name:  white
+        - title: Auto
+          name:  auto
+      default: auto
 
     - name: titleText
       title: ""
@@ -500,5 +548,25 @@ options:
       default: 0
       min: 0
       max: 360
+
+    - name: xAxisRangeType
+      title: X-Axis Range
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: xAxisRangeMin
+      title: Min
+      type: Number
+      default: 0
+
+    - name: xAxisRangeMax
+      title: Max
+      type: Number
+      default: 10
 
 ...

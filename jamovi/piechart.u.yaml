@@ -49,23 +49,21 @@ children:
           - type: Label
             label: Labels
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: labels_none
-                    optionName: labels
-                    optionPart: none
-                    label: None
-                  - type: RadioButton
-                    name: labels_count
-                    optionName: labels
-                    optionPart: count
-                    label: Count
-                  - type: RadioButton
-                    name: labels_percent
-                    optionName: labels
-                    optionPart: percent
-                    label: Percent
+              - type: RadioButton
+                name: labels_none
+                optionName: labels
+                optionPart: none
+                label: None
+              - type: RadioButton
+                name: labels_count
+                optionName: labels
+                optionPart: count
+                label: Count
+              - type: RadioButton
+                name: labels_percent
+                optionName: labels
+                optionPart: percent
+                label: Percent
       - type: LayoutBox
         cell:
           column: 2
@@ -75,26 +73,24 @@ children:
           - type: Label
             label: '% Accuracy'
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: accuracy_1
-                    optionName: accuracy
-                    optionPart: '1'
-                    label: '1'
-                    enable: (labels_percent)
-                  - type: RadioButton
-                    name: accuracy_01
-                    optionName: accuracy
-                    optionPart: '0.1'
-                    label: '0.1'
-                    enable: (labels_percent)
-                  - type: RadioButton
-                    name: accuracy_001
-                    optionName: accuracy
-                    optionPart: '0.01'
-                    label: '0.01'
-                    enable: (labels_percent)
+              - type: RadioButton
+                name: accuracy_1
+                optionName: accuracy
+                optionPart: '1'
+                label: '1'
+                enable: (labels_percent)
+              - type: RadioButton
+                name: accuracy_01
+                optionName: accuracy
+                optionPart: '0.1'
+                label: '0.1'
+                enable: (labels_percent)
+              - type: RadioButton
+                name: accuracy_001
+                optionName: accuracy
+                optionPart: '0.01'
+                label: '0.01'
+                enable: (labels_percent)
   - type: CollapseBox
     label: Colors
     collapsed: true
@@ -168,27 +164,24 @@ children:
                 label: Facets
                 children:
                   - type: LayoutBox
+                    style: inline
                     children:
-                      - type: LayoutBox
-                        margin: large
-                        style: inline
-                        children:
-                          - type: RadioButton
-                            name: facetBy_row
-                            optionName: facetBy
-                            optionPart: row
-                            label: Row
-                            enable: (!(!facet))
-                          - type: RadioButton
-                            name: facetBy_column
-                            optionName: facetBy
-                            optionPart: column
-                            label: Column
-                            enable: (!(!facet))
-                      - type: TextBox
-                        name: facetNumber
-                        format: number
+                      - type: RadioButton
+                        name: facetBy_row
+                        optionName: facetBy
+                        optionPart: row
+                        label: Row
                         enable: (!(!facet))
+                      - type: RadioButton
+                        name: facetBy_column
+                        optionName: facetBy
+                        optionPart: column
+                        label: Column
+                        enable: (!(!facet))
+                  - type: TextBox
+                    name: facetNumber
+                    format: number
+                    enable: (!(!facet))
   - type: CollapseBox
     label: Legend
     collapsed: true

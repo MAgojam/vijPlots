@@ -98,24 +98,22 @@ children:
               - type: Label
                 label: Color Palette
                 children:
-                  - type: LayoutBox
+                  - type: ComboBox
+                    name: colorPalette
+                    label: ''
+                  - type: CheckBox
+                    name: singleColor
+                    label: Use color No.
+                    enable: (!group)
+                    style: inline
+                    verticalAlignment: center
                     children:
-                      - type: ComboBox
-                        name: colorPalette
+                      - type: TextBox
+                        name: colorNo
                         label: ''
-                      - type: CheckBox
-                        name: singleColor
-                        label: Use color No.
-                        enable: (!group)
-                        style: inline
-                        verticalAlignment: center
-                        children:
-                          - type: TextBox
-                            name: colorNo
-                            label: ''
-                            suffix: only
-                            format: number
-                            enable: (singleColor && !group)
+                        suffix: only
+                        format: number
+                        enable: (singleColor && !group)
           - type: LayoutBox
             cell:
               column: 1
@@ -150,16 +148,14 @@ children:
           - type: Label
             label: Plot Size
             children:
-              - type: LayoutBox
-                children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
+              - type: TextBox
+                name: plotWidth
+                format: number
+                suffix: px
+              - type: TextBox
+                name: plotHeight
+                format: number
+                suffix: px
   - type: CollapseBox
     label: Axes
     collapsed: true

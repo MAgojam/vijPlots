@@ -45,7 +45,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
 
         .run = function() {
-            if( ! is.null(self$options$aVar) ) {
+            if (!is.null(self$options$aVar) && nrow(self$data) != 0) {
                 plotData <- self$data[c(self$options$aVar, self$options$facet)]
                 plotData <- jmvcore::naOmit(plotData)
                 image <- self$results$plot
@@ -53,7 +53,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
         },
         .plot = function(image, ggtheme, theme, ...) {
-            if( is.null(self$options$aVar) )
+            if (is.null(image$state))
                 return(FALSE)
             plotData <- image$state
             aVar <- self$options$aVar

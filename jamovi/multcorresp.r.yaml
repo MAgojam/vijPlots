@@ -30,10 +30,10 @@ items:
             Computations are based on <a href = "https://CRAN.R-project.org/package=FactoMineR" target="_blank">FactoMineR<a/> package
             by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>
 
-            <p>Both classics methods are available:
+            <p>Both classic methods are available:
             <ul>
                 <li><strong>Indicator matrix:</strong> CA of the indicator matrix</li>
-                <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator method. </li>
+                <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator matrix method. </li>
             </ul>
             </p>
 
@@ -42,7 +42,7 @@ items:
             <p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table).
             Coordinates (and inertia) of categories and observations are computed from the original eigenvalues of the Burt matrix.</p>
 
-            <p>The <strong>Normalization</strong> options specify how the coordinates are scaled:
+            <p>The <strong>Normalization</strong> options specify how the coordinates are scaled (by eigenvalues):
             <ul>
                 <li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li>
                 <li><strong>Category principal:</strong> Only category coordinates are scaled.</li>

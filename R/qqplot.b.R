@@ -39,7 +39,7 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             depVar <- self$options$dep
             groupVar <- self$options$group
 
-            if (is.null(depVar))
+            if (is.null(depVar) || nrow(self$data) == 0)
                 return(FALSE)
 
             data <- jmvcore::select(self$data, c(depVar,groupVar))
@@ -57,14 +57,11 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setState(data)
         },
         .plot = function(image, ggtheme, theme, ...) {
-            depVar <- self$options$dep
-            groupVar <- self$options$group
-
-            if (is.null(depVar))
+            if (is.null(image$state))
                 return(FALSE)
-            else
-                depVar <- ensym(depVar)
-
+            depVar <- self$options$dep
+            depVar <- ensym(depVar)
+            groupVar <- self$options$group
             if( !is.null(groupVar) )
                 groupVar <- ensym(groupVar)
 

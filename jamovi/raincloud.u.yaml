@@ -43,15 +43,13 @@ children:
           - type: Label
             label: Plot Options
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: nudgeBoxplot
-                    enable: (!(!groupTwo))
-                  - type: CheckBox
-                    name: horizontal
-                  - type: CheckBox
-                    name: reverse
+              - type: CheckBox
+                name: nudgeBoxplot
+                enable: (!(!groupTwo))
+              - type: CheckBox
+                name: horizontal
+              - type: CheckBox
+                name: reverse
       - type: LayoutBox
         cell:
           column: 1
@@ -61,13 +59,25 @@ children:
           - type: Label
             label: Color Options
             children:
-              - type: LayoutBox
+              - type: ComboBox
+                name: colorPalette
+              - type: CheckBox
+                name: singleColor
+                label: Use color No.
+                enable: (!groupTwo)
+                style: inline
+                verticalAlignment: center
                 children:
-                  - type: ComboBox
-                    name: colorPalette
                   - type: TextBox
-                    name: alphaC
+                    name: colorNo
+                    label: ''
+                    suffix: only
                     format: number
+                    enable: (singleColor && !groupTwo)
+              - type: TextBox
+                name: alphaC
+                format: number
+                enable: (!(!groupTwo))
   - type: CollapseBox
     label: Plot Size
     collapsed: true

@@ -35,7 +35,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setSize(self$options$plotWidth, self$options$plotHeight)
         },
         .run = function() {
-            if( length( self$options$liks) == 0  ) {
+            if (length(self$options$liks) == 0 || nrow(self$data) == 0) {
                 return()
             } else {
                 self$results$helpMessage$setVisible(FALSE)

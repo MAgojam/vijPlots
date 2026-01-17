@@ -97,40 +97,23 @@ children:
                     label: ''
                     format: number
                     enable: (vline)
-  - type: LayoutBox
-    margin: large
-    stretchFactor: 1
-    children:
-      - type: LayoutBox
-        cell:
-          column: 0
-          row: 0
-        stretchFactor: 1
-        children:
-          - type: ComboBox
-            name: singleColor
-            enable: (!group)
-      - type: LayoutBox
-        cell:
-          column: 1
-          row: 0
-        stretchFactor: 1
-        children:
-          - type: ComboBox
-            name: colorPalette
-            enable: (!(!group))
   - type: CollapseBox
-    label: Plot Size
+    label: Plot Size & Colors
     collapsed: true
     stretchFactor: 1
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
-          - type: Label
-            label: Plot Size
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
             children:
-              - type: LayoutBox
+              - type: Label
+                label: Plot Size
                 children:
                   - type: TextBox
                     name: plotWidth
@@ -140,6 +123,21 @@ children:
                     name: plotHeight
                     format: number
                     suffix: px
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Color Options
+                children:
+                  - type: ComboBox
+                    name: singleColor
+                    enable: (!group)
+                  - type: ComboBox
+                    name: colorPalette
+                    enable: (!(!group))
   - type: CollapseBox
     label: Axes
     collapsed: true

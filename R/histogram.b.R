@@ -38,7 +38,7 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setSize(width, height)
         },
         .run = function() {
-            if (! is.null(self$options$aVar)) {
+            if (! is.null(self$options$aVar) && nrow(self$data) != 0) {
                 plotData <- self$data[c(self$options$aVar, self$options$group, self$options$facet)]
                 plotData[[self$options$aVar]] <- jmvcore::toNumeric(plotData[[self$options$aVar]])
                 image <- self$results$plot
@@ -48,7 +48,7 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
         },
         .plot = function(image, ggtheme, theme, ...) {  # <-- the plot function
-            if (is.null(self$options$aVar))
+            if (is.null(image$state))
                 return(FALSE)
             plotData <- image$state
 

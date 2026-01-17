@@ -131,7 +131,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
         .run = function() {
             data <- private$.getData()
-            if (is.null(data)) {
+            if (is.null(data) || nrow(data) == 0) {
                 self$results$contingency$addColumn(".", type="text")
                 self$results$rowProfiles$addColumn(".", type="text")
                 self$results$colProfiles$addColumn(".", type="text")

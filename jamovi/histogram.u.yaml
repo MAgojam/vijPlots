@@ -116,15 +116,12 @@ children:
           - type: Label
             label: Bin Color
             children:
-              - type: LayoutBox
-                stretchFactor: 1
-                children:
-                  - type: ComboBox
-                    name: borderColor
-                    enable: (!group || usePalette:forFilling)
-                  - type: ComboBox
-                    name: fillColor
-                    enable: (!group || usePalette:forBorder)
+              - type: ComboBox
+                name: borderColor
+                enable: (!group || usePalette:forFilling)
+              - type: ComboBox
+                name: fillColor
+                enable: (!group || usePalette:forBorder)
       - type: LayoutBox
         cell:
           column: 1
@@ -172,16 +169,14 @@ children:
               - type: Label
                 label: Plot Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                  - type: TextBox
+                    name: plotWidth
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: plotHeight
+                    format: number
+                    suffix: px
           - type: LayoutBox
             cell:
               column: 1
@@ -192,27 +187,24 @@ children:
                 label: Facets
                 children:
                   - type: LayoutBox
+                    style: inline
                     children:
-                      - type: LayoutBox
-                        margin: large
-                        style: inline
-                        children:
-                          - type: RadioButton
-                            name: facetBy_row
-                            optionName: facetBy
-                            optionPart: row
-                            label: Row
-                            enable: (!(!facet))
-                          - type: RadioButton
-                            name: facetBy_column
-                            optionName: facetBy
-                            optionPart: column
-                            label: Column
-                            enable: (!(!facet))
-                      - type: TextBox
-                        name: facetNumber
-                        format: number
+                      - type: RadioButton
+                        name: facetBy_row
+                        optionName: facetBy
+                        optionPart: row
+                        label: Row
                         enable: (!(!facet))
+                      - type: RadioButton
+                        name: facetBy_column
+                        optionName: facetBy
+                        optionPart: column
+                        label: Column
+                        enable: (!(!facet))
+                  - type: TextBox
+                    name: facetNumber
+                    format: number
+                    enable: (!(!facet))
   - type: CollapseBox
     label: Axes
     collapsed: true

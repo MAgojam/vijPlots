@@ -39,7 +39,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             self$results$biplot$setSize(as.numeric(self$options$biplotWidth), as.numeric(self$options$biplotHeight))
         },
         .run = function() {
-            if (is.null(self$options$vars) || length(self$options$vars) < 3)
+            if (is.null(self$options$vars) || length(self$options$vars) < 3  || nrow(self$data) == 0)
                 return()
 
             # check dim values

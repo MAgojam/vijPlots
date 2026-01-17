@@ -11,8 +11,9 @@ vijPalette = function(pal, type = "fill", themePal = NULL) {
         palName <- palType
         palType <- "brewer"
     }
-    if (is.null(themePal))
-        themePal <- get('theme', envir = parent.frame())$palette
+    if (is.null(themePal)) {
+         themePal <- get('theme', envir = parent.frame())$palette
+    }
     if (palName == "jmv") {
         jmvPalette <- function(n) jmvcore::colorPalette(n, pal = themePal, type = type)
         attr(jmvPalette,"nlevels") <- 5

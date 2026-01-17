@@ -66,13 +66,13 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
         },
         .run = function() {
             if (self$options$mode == "morevar") { # Several dychotomous variables
-                if (length(self$options$resps) < 1) {
+                if (length(self$options$resps) < 1 || nrow(self$data) == 0) {
                     return()
                 } else {
                     myresult <- private$.multipleResponse(self$data, self$options$resps, self$options$endorsed, self$options$order)
                 }
             } else { # One Multiple Value Variables
-                if (is.null(self$options$repVar) || self$options$separator == '') {
+                if (is.null(self$options$repVar) || self$options$separator == '' || nrow(self$data) == 0) {
                     return()
                 } else {
                     rawData <- self$data[[self$options$repVar]]
@@ -113,16 +113,25 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             # to be sure the factor ordering is kept
             plotData$Option <- factor(plotData$Option, levels=plotData$Option)
 
+            # Percent format (scales)
+            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options$decSymbol)
+
+            # Border color
+            if (self$options$borderColor == "none")
+                borderColor = NA
+            else
+                borderColor = self$options$borderColor
+
             if (self$options$yaxis == "responses") {
-                plot <- ggplot(plotData, aes(Option, Responses )) + scale_y_continuous(labels=percent_format())
+                plot <- ggplot(plotData, aes(Option, Responses, label = doPercent(Responses))) + scale_y_continuous(labels=label_percent())
                 yLab <- .("% of Responses")
                 yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$yaxis == "cases") {
-                plot <- ggplot(plotData, aes(Option, Cases )) + scale_y_continuous(labels=percent_format())
+                plot <- ggplot(plotData, aes(Option, Cases, label = doPercent(Cases))) + scale_y_continuous(labels=label_percent())
                 yLab <- .("% of Cases")
                 yScaleFactor <- 100
             } else {
-                plot <- ggplot(plotData, aes(Option, Frequency ))
+                plot <- ggplot(plotData, aes(Option, Frequency, label = Frequency))
                 yLab <- .("Counts")
                 yScaleFactor <- 1
             }
@@ -131,22 +140,46 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
                 colorNo <- self$options$colorNo
                 oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[min(colorNo,nbColors)]
-                plot <- plot + geom_col(fill = oneColorOfPalette)
+                plot <- plot + geom_col(fill = oneColorOfPalette, color = borderColor)
             } else {
-                plot <- plot + geom_col(aes(fill = Option)) + guides(fill = FALSE)
+                plot <- plot + geom_col(aes(fill = Option), color = borderColor) + guides(fill = FALSE)
+            }
+
+            # Labels
+            if( self$options$showLabels ) {
+                if (self$options$textColor == "auto") { # using hex_bw
+                    if (self$options$singleColor) {
+                        plot <- plot + geom_text(color = ggstats::hex_bw(oneColorOfPalette),
+                                                    position = position_stack(vjust = 0.5), fontface = "bold")
+                    } else {
+                        plot <- plot + geom_text(aes(fill = Option, color = after_scale(hex_bw(.data$fill))),
+                                                 position = position_stack(vjust = 0.5), fontface = "bold")
+                    }
+                } else {
+                    plot <- plot + geom_text(color = self$options$textColor,
+                                             position = position_stack(vjust = 0.5), fontface = "bold")
+                }
             }
 
             # Theme and colors
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
 
-            # Axis range
-            if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+            # Axis Limits & flip
+            if (self$options$horizontal) {
+                if (self$options$xAxisRangeType == "manual") {
+                    plot <- plot + coord_flip(ylim = c(self$options$xAxisRangeMin/yScaleFactor, self$options$xAxisRangeMax/yScaleFactor))
+                } else {
+                    plot <- plot + coord_flip()
+                }
+            } else if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
                 plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
             }
 
             # Titles & Labels
             defaults <- list(y = yLab, x = "")
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options, showLegend = FALSE)
+
+            #self$results$text$setContent(plot) # Show debug messages !
 
             return(plot)
 

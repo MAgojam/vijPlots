@@ -143,16 +143,14 @@ children:
           - type: Label
             label: Tables
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: showSummary
-                  - type: CheckBox
-                    name: showDiscriminations
-                  - type: CheckBox
-                    name: showCategories
-                  - type: CheckBox
-                    name: showObservations
+              - type: CheckBox
+                name: showSummary
+              - type: CheckBox
+                name: showDiscriminations
+              - type: CheckBox
+                name: showCategories
+              - type: CheckBox
+                name: showObservations
       - type: LayoutBox
         cell:
           column: 1
@@ -162,16 +160,14 @@ children:
           - type: Label
             label: Plots
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: showDiscriminationPlot
-                  - type: CheckBox
-                    name: showCategoryPlot
-                  - type: CheckBox
-                    name: showObservationPlot
-                  - type: CheckBox
-                    name: showBiPlot
+              - type: CheckBox
+                name: showDiscriminationPlot
+              - type: CheckBox
+                name: showCategoryPlot
+              - type: CheckBox
+                name: showObservationPlot
+              - type: CheckBox
+                name: showBiPlot
   - type: CollapseBox
     label: Plot Options
     collapsed: true

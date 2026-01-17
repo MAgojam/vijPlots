@@ -22,10 +22,15 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             overall = TRUE,
             xaxis = "xcols",
             bartype = "dodge",
+            horizontal = FALSE,
+            showLabels = FALSE,
+            accuracy = "0.1",
             size = "medium",
             plotWidth = 0,
             plotHeight = 0,
             colorPalette = "jmv",
+            borderColor = "none",
+            textColor = "auto",
             titleText = NULL,
             titleFontFace = "bold",
             titleFontSize = "14",
@@ -53,7 +58,10 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             yAxisRangeMin = 0,
             yAxisRangeMax = 10,
             xAxisLabelFontSize = 12,
-            xAxisLabelRotation = 0, ...) {
+            xAxisLabelRotation = 0,
+            xAxisRangeType = "auto",
+            xAxisRangeMin = 0,
+            xAxisRangeMax = 10, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -156,6 +164,22 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "dodge",
                     "stack"),
                 default="dodge")
+            private$..horizontal <- jmvcore::OptionBool$new(
+                "horizontal",
+                horizontal,
+                default=FALSE)
+            private$..showLabels <- jmvcore::OptionBool$new(
+                "showLabels",
+                showLabels,
+                default=FALSE)
+            private$..accuracy <- jmvcore::OptionList$new(
+                "accuracy",
+                accuracy,
+                options=list(
+                    "1",
+                    "0.1",
+                    "0.01"),
+                default="0.1")
             private$..size <- jmvcore::OptionList$new(
                 "size",
                 size,
@@ -228,6 +252,23 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "custom::tidyplots",
                     "custom::cdes"),
                 default="jmv")
+            private$..borderColor <- jmvcore::OptionList$new(
+                "borderColor",
+                borderColor,
+                options=list(
+                    "none",
+                    "black",
+                    "white",
+                    "gray"),
+                default="none")
+            private$..textColor <- jmvcore::OptionList$new(
+                "textColor",
+                textColor,
+                options=list(
+                    "black",
+                    "white",
+                    "auto"),
+                default="auto")
             private$..titleText <- jmvcore::OptionString$new(
                 "titleText",
                 titleText)
@@ -426,6 +467,21 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 default=0,
                 min=0,
                 max=360)
+            private$..xAxisRangeType <- jmvcore::OptionList$new(
+                "xAxisRangeType",
+                xAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..xAxisRangeMin <- jmvcore::OptionNumber$new(
+                "xAxisRangeMin",
+                xAxisRangeMin,
+                default=0)
+            private$..xAxisRangeMax <- jmvcore::OptionNumber$new(
+                "xAxisRangeMax",
+                xAxisRangeMax,
+                default=10)
 
             self$.addOption(private$..mode)
             self$.addOption(private$..repVar)
@@ -443,10 +499,15 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..overall)
             self$.addOption(private$..xaxis)
             self$.addOption(private$..bartype)
+            self$.addOption(private$..horizontal)
+            self$.addOption(private$..showLabels)
+            self$.addOption(private$..accuracy)
             self$.addOption(private$..size)
             self$.addOption(private$..plotWidth)
             self$.addOption(private$..plotHeight)
             self$.addOption(private$..colorPalette)
+            self$.addOption(private$..borderColor)
+            self$.addOption(private$..textColor)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
             self$.addOption(private$..titleFontSize)
@@ -475,6 +536,9 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..yAxisRangeMax)
             self$.addOption(private$..xAxisLabelFontSize)
             self$.addOption(private$..xAxisLabelRotation)
+            self$.addOption(private$..xAxisRangeType)
+            self$.addOption(private$..xAxisRangeMin)
+            self$.addOption(private$..xAxisRangeMax)
         }),
     active = list(
         mode = function() private$..mode$value,
@@ -493,10 +557,15 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         overall = function() private$..overall$value,
         xaxis = function() private$..xaxis$value,
         bartype = function() private$..bartype$value,
+        horizontal = function() private$..horizontal$value,
+        showLabels = function() private$..showLabels$value,
+        accuracy = function() private$..accuracy$value,
         size = function() private$..size$value,
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
         colorPalette = function() private$..colorPalette$value,
+        borderColor = function() private$..borderColor$value,
+        textColor = function() private$..textColor$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
         titleFontSize = function() private$..titleFontSize$value,
@@ -524,7 +593,10 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         yAxisRangeMin = function() private$..yAxisRangeMin$value,
         yAxisRangeMax = function() private$..yAxisRangeMax$value,
         xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
-        xAxisLabelRotation = function() private$..xAxisLabelRotation$value),
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value,
+        xAxisRangeType = function() private$..xAxisRangeType$value,
+        xAxisRangeMin = function() private$..xAxisRangeMin$value,
+        xAxisRangeMax = function() private$..xAxisRangeMax$value),
     private = list(
         ..mode = NA,
         ..repVar = NA,
@@ -542,10 +614,15 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..overall = NA,
         ..xaxis = NA,
         ..bartype = NA,
+        ..horizontal = NA,
+        ..showLabels = NA,
+        ..accuracy = NA,
         ..size = NA,
         ..plotWidth = NA,
         ..plotHeight = NA,
         ..colorPalette = NA,
+        ..borderColor = NA,
+        ..textColor = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
         ..titleFontSize = NA,
@@ -573,7 +650,10 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..yAxisRangeMin = NA,
         ..yAxisRangeMax = NA,
         ..xAxisLabelFontSize = NA,
-        ..xAxisLabelRotation = NA)
+        ..xAxisLabelRotation = NA,
+        ..xAxisRangeType = NA,
+        ..xAxisRangeMin = NA,
+        ..xAxisRangeMax = NA)
 )
 
 mrcrosstabsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -669,10 +749,15 @@ mrcrosstabsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param overall .
 #' @param xaxis .
 #' @param bartype .
+#' @param horizontal .
+#' @param showLabels .
+#' @param accuracy .
 #' @param size .
 #' @param plotWidth .
 #' @param plotHeight .
 #' @param colorPalette .
+#' @param borderColor .
+#' @param textColor .
 #' @param titleText .
 #' @param titleFontFace .
 #' @param titleFontSize .
@@ -701,6 +786,9 @@ mrcrosstabsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisRangeMax .
 #' @param xAxisLabelFontSize .
 #' @param xAxisLabelRotation .
+#' @param xAxisRangeType .
+#' @param xAxisRangeMin .
+#' @param xAxisRangeMax .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
@@ -733,10 +821,15 @@ mrcrosstabs <- function(
     overall = TRUE,
     xaxis = "xcols",
     bartype = "dodge",
+    horizontal = FALSE,
+    showLabels = FALSE,
+    accuracy = "0.1",
     size = "medium",
     plotWidth = 0,
     plotHeight = 0,
     colorPalette = "jmv",
+    borderColor = "none",
+    textColor = "auto",
     titleText,
     titleFontFace = "bold",
     titleFontSize = "14",
@@ -764,7 +857,10 @@ mrcrosstabs <- function(
     yAxisRangeMin = 0,
     yAxisRangeMax = 10,
     xAxisLabelFontSize = 12,
-    xAxisLabelRotation = 0) {
+    xAxisLabelRotation = 0,
+    xAxisRangeType = "auto",
+    xAxisRangeMin = 0,
+    xAxisRangeMax = 10) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("mrcrosstabs requires jmvcore to be installed (restart may be required)")
@@ -803,10 +899,15 @@ mrcrosstabs <- function(
         overall = overall,
         xaxis = xaxis,
         bartype = bartype,
+        horizontal = horizontal,
+        showLabels = showLabels,
+        accuracy = accuracy,
         size = size,
         plotWidth = plotWidth,
         plotHeight = plotHeight,
         colorPalette = colorPalette,
+        borderColor = borderColor,
+        textColor = textColor,
         titleText = titleText,
         titleFontFace = titleFontFace,
         titleFontSize = titleFontSize,
@@ -834,7 +935,10 @@ mrcrosstabs <- function(
         yAxisRangeMin = yAxisRangeMin,
         yAxisRangeMax = yAxisRangeMax,
         xAxisLabelFontSize = xAxisLabelFontSize,
-        xAxisLabelRotation = xAxisLabelRotation)
+        xAxisLabelRotation = xAxisLabelRotation,
+        xAxisRangeType = xAxisRangeType,
+        xAxisRangeMin = xAxisRangeMin,
+        xAxisRangeMax = xAxisRangeMax)
 
     analysis <- mrcrosstabsClass$new(
         options = options,

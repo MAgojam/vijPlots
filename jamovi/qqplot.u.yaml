@@ -56,12 +56,10 @@ children:
           - type: Label
             label: Data Transform
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: transLog
-                  - type: CheckBox
-                    name: standardize
+              - type: CheckBox
+                name: transLog
+              - type: CheckBox
+                name: standardize
       - type: LayoutBox
         cell:
           column: 1
@@ -115,20 +113,18 @@ children:
                 optionPart: paraEstimate
                 label: Estimate Parameters from Data
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: RadioButton
-                        name: paramEstMethod_mle
-                        optionName: paramEstMethod
-                        optionPart: mle
-                        label: Maximum-likelihood (MLE)
-                        enable: (paramMethod_paraEstimat)
-                      - type: RadioButton
-                        name: paramEstMethod_mme
-                        optionName: paramEstMethod
-                        optionPart: mme
-                        label: Method of moments (MME)
-                        enable: (paramMethod_paraEstimat)
+                  - type: RadioButton
+                    name: paramEstMethod_mle
+                    optionName: paramEstMethod
+                    optionPart: mle
+                    label: Maximum-likelihood (MLE)
+                    enable: (paramMethod_paraEstimat)
+                  - type: RadioButton
+                    name: paramEstMethod_mme
+                    optionName: paramEstMethod
+                    optionPart: mme
+                    label: Method of moments (MME)
+                    enable: (paramMethod_paraEstimat)
           - type: LayoutBox
             cell:
               column: 1
@@ -141,18 +137,16 @@ children:
                 optionPart: paraValue
                 label: Parameter Values
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: param1
-                        format: number
-                        enable: (paramMethod_paraValue)
-                      - type: TextBox
-                        name: param2
-                        format: number
-                        enable: (paramMethod_paraValue && norm)
+                  - type: TextBox
+                    name: param1
+                    format: number
+                    enable: (paramMethod_paraValue)
+                  - type: TextBox
+                    name: param2
+                    format: number
+                    enable: (paramMethod_paraValue && norm)
   - type: CollapseBox
-    label: Plot Size & Other Options
+    label: Plot Size & Options
     collapsed: true
     stretchFactor: 1
     children:
@@ -170,20 +164,18 @@ children:
               - type: Label
                 label: Plot Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: textSize
-                        format: number
-                        suffix: pt
+                  - type: TextBox
+                    name: plotWidth
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: plotHeight
+                    format: number
+                    suffix: px
+                  - type: TextBox
+                    name: textSize
+                    format: number
+                    suffix: pt
           - type: LayoutBox
             cell:
               column: 1
@@ -193,14 +185,12 @@ children:
               - type: Label
                 label: Confidence Band Methods
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: ComboBox
-                        name: methodQQ
-                        enable: (type:QQ && band)
-                      - type: ComboBox
-                        name: methodPP
-                        enable: (type:PP&& band)
+                  - type: ComboBox
+                    name: methodQQ
+                    enable: (type:QQ && band)
+                  - type: ComboBox
+                    name: methodPP
+                    enable: (type:PP&& band)
   - type: CollapseBox
     label: Axes
     collapsed: true

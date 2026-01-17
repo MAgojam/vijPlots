@@ -87,20 +87,18 @@ children:
           - type: Label
             label: Y-axis (without group)
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: yaxis1var_count
-                    optionName: yaxis1var
-                    optionPart: count
-                    label: Count
-                    enable: (!columns)
-                  - type: RadioButton
-                    name: yaxis1var_percent
-                    optionName: yaxis1var
-                    optionPart: percent
-                    label: Percent
-                    enable: (!columns)
+              - type: RadioButton
+                name: yaxis1var_count
+                optionName: yaxis1var
+                optionPart: count
+                label: Count
+                enable: (!columns)
+              - type: RadioButton
+                name: yaxis1var_percent
+                optionName: yaxis1var
+                optionPart: percent
+                label: Percent
+                enable: (!columns)
       - type: LayoutBox
         cell:
           column: 1
@@ -110,32 +108,30 @@ children:
           - type: Label
             label: Y-axis (with groups)
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: position_dodge
-                    optionName: position
-                    optionPart: dodge
-                    label: Side-by-side
-                    enable: (!(!columns))
-                  - type: RadioButton
-                    name: position_dodge2
-                    optionName: position
-                    optionPart: dodge2
-                    label: Side-by-side 2
-                    enable: (!(!columns))
-                  - type: RadioButton
-                    name: position_stack
-                    optionName: position
-                    optionPart: stack
-                    label: Stacked
-                    enable: (!(!columns)))
-                  - type: RadioButton
-                    name: position_fill
-                    optionName: position
-                    optionPart: fill
-                    label: Stacked 100%
-                    enable: (!(!columns))
+              - type: RadioButton
+                name: position_dodge
+                optionName: position
+                optionPart: dodge
+                label: Side-by-side
+                enable: (!(!columns))
+              - type: RadioButton
+                name: position_dodge2
+                optionName: position
+                optionPart: dodge2
+                label: Side-by-side 2
+                enable: (!(!columns))
+              - type: RadioButton
+                name: position_stack
+                optionName: position
+                optionPart: stack
+                label: Stacked
+                enable: (!(!columns)))
+              - type: RadioButton
+                name: position_fill
+                optionName: position
+                optionPart: fill
+                label: Stacked 100%
+                enable: (!(!columns))
       - type: LayoutBox
         cell:
           column: 2
@@ -145,32 +141,30 @@ children:
           - type: Label
             label: '% Accuracy'
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: accuracy_1
-                    optionName: accuracy
-                    optionPart: '1'
-                    label: '1'
-                    enable: >-
-                      (showLabels && ((!(!columns) && (position:fill)) ||
-                      (!columns && yaxis1var:percent)))
-                  - type: RadioButton
-                    name: accuracy_01
-                    optionName: accuracy
-                    optionPart: '0.1'
-                    label: '0.1'
-                    enable: >-
-                      (showLabels && ((!(!columns) && position:fill) ||
-                      (!columns && yaxis1var:percent)))
-                  - type: RadioButton
-                    name: accuracy_001
-                    optionName: accuracy
-                    optionPart: '0.01'
-                    label: '0.01'
-                    enable: >-
-                      (showLabels && ((!(!columns) && position:fill) ||
-                      (!columns && yaxis1var:percent)))
+              - type: RadioButton
+                name: accuracy_1
+                optionName: accuracy
+                optionPart: '1'
+                label: '1'
+                enable: >-
+                  (showLabels && ((!(!columns) && (position:fill)) ||
+                  (!columns && yaxis1var:percent)))
+              - type: RadioButton
+                name: accuracy_01
+                optionName: accuracy
+                optionPart: '0.1'
+                label: '0.1'
+                enable: >-
+                  (showLabels && ((!(!columns) && position:fill) ||
+                  (!columns && yaxis1var:percent)))
+              - type: RadioButton
+                name: accuracy_001
+                optionName: accuracy
+                optionPart: '0.01'
+                label: '0.01'
+                enable: >-
+                  (showLabels && ((!(!columns) && position:fill) ||
+                  (!columns && yaxis1var:percent)))
   - type: CollapseBox
     label: Colors
     collapsed: true
@@ -256,27 +250,24 @@ children:
                 label: Facets
                 children:
                   - type: LayoutBox
+                    style: inline
                     children:
-                      - type: LayoutBox
-                        margin: large
-                        style: inline
-                        children:
-                          - type: RadioButton
-                            name: facetBy_row
-                            optionName: facetBy
-                            optionPart: row
-                            label: Row
-                            enable: (!(!facet))
-                          - type: RadioButton
-                            name: facetBy_column
-                            optionName: facetBy
-                            optionPart: column
-                            label: Column
-                            enable: (!(!facet))
-                      - type: TextBox
-                        name: facetNumber
-                        format: number
+                      - type: RadioButton
+                        name: facetBy_row
+                        optionName: facetBy
+                        optionPart: row
+                        label: Row
                         enable: (!(!facet))
+                      - type: RadioButton
+                        name: facetBy_column
+                        optionName: facetBy
+                        optionPart: column
+                        label: Column
+                        enable: (!(!facet))
+                  - type: TextBox
+                    name: facetNumber
+                    format: number
+                    enable: (!(!facet))
   - type: CollapseBox
     label: Axes
     collapsed: true

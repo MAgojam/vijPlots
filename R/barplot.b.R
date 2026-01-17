@@ -47,7 +47,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setSize(width, height)
         },
         .run = function() {
-            if( ! is.null(self$options$rows) ) {
+            if (!is.null(self$options$rows) && nrow(self$data) != 0) {
                 plotData <- self$data[c(self$options$rows, self$options$columns, self$options$facet)]
                 if( self$options$ignoreNA )
                     plotData <- jmvcore::naOmit(plotData)
@@ -57,7 +57,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
 
         .plot = function(image, ggtheme, theme, ...) {
-            if (is.null(self$options$rows))
+            if (is.null(image$state))
                 return(FALSE)
             plotData <- image$state
             rows <- self$options$rows
@@ -73,7 +73,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 borderColor = self$options$borderColor
 
             # Percent format (scales)
-            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = .("."))
+            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options$decSymbol)
             # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             yScaleFactor <- 1 # default to count
             # ggplot with base AES and sorting
@@ -99,7 +99,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         plot <- plot + geom_bar(aes(y = after_stat(prop), by = 1, fill = !!rows), stat = StatProp, color = borderColor)
                         plot <- plot + guides(fill = FALSE)
                     }
-                    plot <- plot + scale_y_continuous(labels=percent_format())
+                    plot <- plot + scale_y_continuous(labels=label_percent())
                     yLab <- .("Percent")
                     yScaleFactor <- 100 # for manual range
                     if( self$options$showLabels ) {
@@ -151,7 +151,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + geom_bar(aes(fill = !!columns, by = !!rows), position = self$options$position, color = borderColor)
                 # Two variables with Percentage (position = fill)
                 if (self$options$position == "fill") {
-                    plot <- plot + scale_y_continuous(labels=percent_format())
+                    plot <- plot + scale_y_continuous(labels=label_percent())
                     if (self$options$showLabels) {
                         if (self$options$textColor == "auto") { # using hex_bw
                             plot <- plot + geom_text(aes(fill = !!columns, by = !!rows, label=doPercent(after_stat(prop)),

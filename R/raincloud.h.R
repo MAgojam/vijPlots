@@ -13,9 +13,11 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             horizontal = FALSE,
             reverse = FALSE,
             colorPalette = "jmv",
+            alphaC = 0.5,
+            singleColor = FALSE,
+            colorNo = 1,
             plotWidth = 0,
             plotHeight = 0,
-            alphaC = 0.5,
             titleText = NULL,
             titleFontFace = "bold",
             titleFontSize = "14",
@@ -138,6 +140,22 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "custom::tidyplots",
                     "custom::cdes"),
                 default="jmv")
+            private$..alphaC <- jmvcore::OptionNumber$new(
+                "alphaC",
+                alphaC,
+                min=0,
+                max=1,
+                default=0.5)
+            private$..singleColor <- jmvcore::OptionBool$new(
+                "singleColor",
+                singleColor,
+                default=FALSE)
+            private$..colorNo <- jmvcore::OptionNumber$new(
+                "colorNo",
+                colorNo,
+                min=1,
+                max=99,
+                default=1)
             private$..plotWidth <- jmvcore::OptionNumber$new(
                 "plotWidth",
                 plotWidth,
@@ -150,12 +168,6 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 min=0,
                 max=1600,
                 default=0)
-            private$..alphaC <- jmvcore::OptionNumber$new(
-                "alphaC",
-                alphaC,
-                min=0,
-                max=1,
-                default=0.5)
             private$..titleText <- jmvcore::OptionString$new(
                 "titleText",
                 titleText)
@@ -377,9 +389,11 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..horizontal)
             self$.addOption(private$..reverse)
             self$.addOption(private$..colorPalette)
+            self$.addOption(private$..alphaC)
+            self$.addOption(private$..singleColor)
+            self$.addOption(private$..colorNo)
             self$.addOption(private$..plotWidth)
             self$.addOption(private$..plotHeight)
-            self$.addOption(private$..alphaC)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
             self$.addOption(private$..titleFontSize)
@@ -420,9 +434,11 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         horizontal = function() private$..horizontal$value,
         reverse = function() private$..reverse$value,
         colorPalette = function() private$..colorPalette$value,
+        alphaC = function() private$..alphaC$value,
+        singleColor = function() private$..singleColor$value,
+        colorNo = function() private$..colorNo$value,
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
-        alphaC = function() private$..alphaC$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
         titleFontSize = function() private$..titleFontSize$value,
@@ -462,9 +478,11 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..horizontal = NA,
         ..reverse = NA,
         ..colorPalette = NA,
+        ..alphaC = NA,
+        ..singleColor = NA,
+        ..colorNo = NA,
         ..plotWidth = NA,
         ..plotHeight = NA,
-        ..alphaC = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
         ..titleFontSize = NA,
@@ -550,9 +568,11 @@ raincloudBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param horizontal .
 #' @param reverse .
 #' @param colorPalette .
+#' @param alphaC .
+#' @param singleColor .
+#' @param colorNo .
 #' @param plotWidth .
 #' @param plotHeight .
-#' @param alphaC .
 #' @param titleText .
 #' @param titleFontFace .
 #' @param titleFontSize .
@@ -599,9 +619,11 @@ raincloud <- function(
     horizontal = FALSE,
     reverse = FALSE,
     colorPalette = "jmv",
+    alphaC = 0.5,
+    singleColor = FALSE,
+    colorNo = 1,
     plotWidth = 0,
     plotHeight = 0,
-    alphaC = 0.5,
     titleText,
     titleFontFace = "bold",
     titleFontSize = "14",
@@ -658,9 +680,11 @@ raincloud <- function(
         horizontal = horizontal,
         reverse = reverse,
         colorPalette = colorPalette,
+        alphaC = alphaC,
+        singleColor = singleColor,
+        colorNo = colorNo,
         plotWidth = plotWidth,
         plotHeight = plotHeight,
-        alphaC = alphaC,
         titleText = titleText,
         titleFontFace = titleFontFace,
         titleFontSize = titleFontSize,

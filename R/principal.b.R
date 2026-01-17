@@ -60,7 +60,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             image$setSize(width + extraWidth, height)
         },
         .run = function() {
-            if (is.null(self$options$vars) || length(self$options$vars) < 2)
+            if (is.null(self$options$vars) || length(self$options$vars) < 2 || nrow(self$data) == 0)
                 return()
             # check dim values
             nDim <- self$options$dimNum
