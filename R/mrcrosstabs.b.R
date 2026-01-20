@@ -136,9 +136,6 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
             image <- self$results$plot
             image$setState(crosstab[1:nAnswers,1:nGroups])
-
-            #self$results$text$setContent(self$options$decSymbol)
-            #self$results$text$setContent(self$options$palette)
         },
 
         .plot = function(image, ggtheme, theme, ...) {
@@ -157,7 +154,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (self$options$computedValues == "count")
                 doNumber <- function (x){x}
             else
-                doNumber <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options$decSymbol)
+                doNumber <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
 
             # Border color
             if (self$options$borderColor == "none")

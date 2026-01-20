@@ -77,19 +77,24 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             plotData <- image$state
 
             if( !is.null(sizeVar) ) {
-                plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis, size = !!sizeVar))
+                plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis, size = !!sizeVar, color = !!groupVar, fill = !!groupVar))
                 if( is.null(groupVar)) {
                     plot <- plot + geom_point(color = self$options$singleColor)
                 } else {
                     plot <- plot + geom_point(aes(color = !!groupVar))
                 }
             } else {
-                plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis))
+                plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis, color = !!groupVar, fill = !!groupVar))
                 if( is.null(groupVar)) {
-                    plot <- plot + geom_point(color = self$options$singleColor, size = 3)
+                    plot <- plot + geom_point(color = self$options$singleColor, size = self$options$pointSize)
                 } else {
-                    plot <- plot + geom_point(aes(color = !!groupVar), size = 3)
+                    plot <- plot + geom_point(aes(color = !!groupVar), size = self$options$pointSize)
                 }
+            }
+
+            if (self$options$regLine) {
+                plot <- plot + ggplot2::geom_smooth(method = self$options$lineMethod, se = self$options$lineSE, formula = y ~ x,
+                                                    size = self$options$lineSize, show.legend = FALSE)
             }
 
             plot <- plot + guides(color = guide_legend(override.aes = list(size=4)))
@@ -103,13 +108,13 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 maxx <- max(plotData[[xaxis]], na.rm=T) + 0.1*(max(plotData[[xaxis]], na.rm=T) - min(plotData[[xaxis]], na.rm=T))
                 plot <- plot + expand_limits(x = maxx)
             }
-            if( self$options$hline )
-                plot <- plot + geom_hline(yintercept= self$options$yinter,  color="black")
-            if( self$options$vline )
-            plot <- plot + geom_vline(xintercept= self$options$xinter,  color="black")
+            if (self$options$hline)
+                plot <- plot + geom_hline(yintercept= self$options$yinter,  color="black", size = self$options$lineSize/2)
+            if (self$options$vline)
+                plot <- plot + geom_vline(xintercept= self$options$xinter,  color="black", size = self$options$lineSize/2)
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color") + vijScale(self$options$colorPalette, "fill")
 
             # Axis Limits
             if (self$options$yAxisRangeType == "manual")

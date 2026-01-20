@@ -76,9 +76,6 @@
             ";": [
                 ""
             ],
-            ".": [
-                ""
-            ],
             "{detrendStr}{distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
@@ -169,7 +166,7 @@
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Correspondence Plot Help</strong></p>\n<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the \"Counts\" variable.</p>\n<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>\n<p>Four normalizations (scaling of row and column scores before plotting) are avalaible : <ul> <li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li> <li><strong>Symetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li> <li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li> <li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li> <li><strong>Standard:</strong> The raw coordinates without normalization.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>\n</div>": [
                 ""
             ],
-            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Correspondence Analysis Help</strong></p>\n<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</strong> for several categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>Both classics methods are available: <ul> <li><strong>Indicator matrix:</strong> CA of the indicator matrix</li> <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator method. </li> </ul> </p>\n<p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>\n<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of categories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n<p>The <strong>Normalization</strong> options specify how the coordinates are scaled: <ul> <li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li> <li><strong>Category principal:</strong> Only category coordinates are scaled.</li> <li><strong>Observation principal:</strong> Only observation coordinates are scaled.</li> <li><strong>Standard:</strong> Both category and observation coordinates are standard.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Cars</p>\n</div>": [
+            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Correspondence Analysis Help</strong></p>\n<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</strong> for several categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>Both classic methods are available: <ul> <li><strong>Indicator matrix:</strong> CA of the indicator matrix</li> <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator matrix method. </li> </ul> </p>\n<p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>\n<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of categories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n<p>The <strong>Normalization</strong> options specify how the coordinates are scaled (by eigenvalues): <ul> <li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li> <li><strong>Category principal:</strong> Only category coordinates are scaled.</li> <li><strong>Observation principal:</strong> Only observation coordinates are scaled.</li> <li><strong>Standard:</strong> Both category and observation coordinates are standard.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Cars</p>\n</div>": [
                 ""
             ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Response Crosstab Help</strong></p>\n<p>This module computes crosstab frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 0/1 or 1/2 for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>\n</div>": [
@@ -293,9 +290,6 @@
                 ""
             ],
             "Axes": [
-                ""
-            ],
-            "Axis Labels": [
                 ""
             ],
             "Axis Titles": [
@@ -469,6 +463,9 @@
             "Colors": [
                 ""
             ],
+            "Colors & Options": [
+                ""
+            ],
             "Column": [
                 ""
             ],
@@ -536,9 +533,6 @@
                 ""
             ],
             "Coordinates †": [
-                ""
-            ],
-            "Coordinates†": [
                 ""
             ],
             "Correspondence Analysis": [
@@ -709,9 +703,6 @@
             "Exponential": [
                 ""
             ],
-            "Extra Options": [
-                ""
-            ],
             "Extraction Sums of Squared Loadings": [
                 ""
             ],
@@ -737,9 +728,6 @@
                 ""
             ],
             "Font size": [
-                ""
-            ],
-            "for all bars": [
                 ""
             ],
             "For Border": [
@@ -812,9 +800,6 @@
                 ""
             ],
             "Grouping": [
-                ""
-            ],
-            "Grouping Plot": [
                 ""
             ],
             "Grouping Variable": [
@@ -1036,6 +1021,9 @@
             "Lollipop Size": [
                 ""
             ],
+            "Lollipop Size & Colors": [
+                ""
+            ],
             "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
             ],
@@ -1192,6 +1180,9 @@
             "One variable": [
                 ""
             ],
+            "only": [
+                ""
+            ],
             "Option name": [
                 ""
             ],
@@ -1310,6 +1301,18 @@
                 ""
             ],
             "Plot Size": [
+                ""
+            ],
+            "Plot Size & Colors": [
+                ""
+            ],
+            "Plot Size & Facets": [
+                ""
+            ],
+            "Plot Size & Options": [
+                ""
+            ],
+            "Plot size must be at least 200px (or 0 = default)": [
                 ""
             ],
             "Plot Titles": [
@@ -1462,9 +1465,6 @@
             "Rotate eigenvectors": [
                 ""
             ],
-            "Rotate X-Axis Labels": [
-                ""
-            ],
             "Rotation": [
                 ""
             ],
@@ -1583,6 +1583,9 @@
                 ""
             ],
             "Side-by-side 2": [
+                ""
+            ],
+            "Single color": [
                 ""
             ],
             "Singular Value": [

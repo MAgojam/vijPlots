@@ -70,6 +70,21 @@ children:
                 enable: (!(!labelVar))
       - type: LayoutBox
         cell:
+          column: 0
+          row: 1
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Color Options
+            children:
+              - type: ComboBox
+                name: singleColor
+                enable: (!group)
+              - type: ComboBox
+                name: colorPalette
+                enable: (!(!group))
+      - type: LayoutBox
+        cell:
           column: 1
           row: 0
         stretchFactor: 1
@@ -97,8 +112,26 @@ children:
                     label: ''
                     format: number
                     enable: (vline)
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 1
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Regression Line
+            children:
+              - type: CheckBox
+                name: regLine
+                children:
+                  - type: ComboBox
+                    name: lineMethod
+                    enable: (regLine)
+                  - type: CheckBox
+                    name: lineSE
+                    enable: (regLine)
   - type: CollapseBox
-    label: Plot Size & Colors
+    label: Plot Size
     collapsed: true
     stretchFactor: 1
     children:
@@ -130,14 +163,16 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Color Options
+                label: Element Size
                 children:
-                  - type: ComboBox
-                    name: singleColor
-                    enable: (!group)
-                  - type: ComboBox
-                    name: colorPalette
-                    enable: (!(!group))
+                  - type: TextBox
+                    name: pointSize
+                    format: number
+                    enable: (!ptSize)
+                  - type: TextBox
+                    name: lineSize
+                    format: number
+                    enable: (hline || vline || regLine)
   - type: CollapseBox
     label: Axes
     collapsed: true

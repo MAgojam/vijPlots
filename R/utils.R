@@ -11,7 +11,7 @@ vijPalette = function(pal, type = "fill", themePal = NULL) {
         palName <- palType
         palType <- "brewer"
     }
-    if (is.null(themePal)) {
+    if (is.null(themePal)) { # Function is called directly (from plot).
          themePal <- get('theme', envir = parent.frame())$palette
     }
     if (palName == "jmv") {

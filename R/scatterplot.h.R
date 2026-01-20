@@ -18,6 +18,11 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             yinter = 0,
             vline = FALSE,
             xinter = 0,
+            pointSize = 3,
+            lineSize = 1,
+            regLine = FALSE,
+            lineMethod = "lm",
+            lineSE = TRUE,
             singleColor = "#999999",
             colorPalette = "jmv",
             plotWidth = 0,
@@ -126,6 +131,33 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 "xinter",
                 xinter,
                 default=0)
+            private$..pointSize <- jmvcore::OptionNumber$new(
+                "pointSize",
+                pointSize,
+                default=3,
+                min=0.1,
+                max=10)
+            private$..lineSize <- jmvcore::OptionNumber$new(
+                "lineSize",
+                lineSize,
+                default=1,
+                min=0.1,
+                max=5)
+            private$..regLine <- jmvcore::OptionBool$new(
+                "regLine",
+                regLine,
+                default=FALSE)
+            private$..lineMethod <- jmvcore::OptionList$new(
+                "lineMethod",
+                lineMethod,
+                options=list(
+                    "lm",
+                    "loess"),
+                default="lm")
+            private$..lineSE <- jmvcore::OptionBool$new(
+                "lineSE",
+                lineSE,
+                default=TRUE)
             private$..singleColor <- jmvcore::OptionList$new(
                 "singleColor",
                 singleColor,
@@ -435,6 +467,11 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..yinter)
             self$.addOption(private$..vline)
             self$.addOption(private$..xinter)
+            self$.addOption(private$..pointSize)
+            self$.addOption(private$..lineSize)
+            self$.addOption(private$..regLine)
+            self$.addOption(private$..lineMethod)
+            self$.addOption(private$..lineSE)
             self$.addOption(private$..singleColor)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..plotWidth)
@@ -484,6 +521,11 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         yinter = function() private$..yinter$value,
         vline = function() private$..vline$value,
         xinter = function() private$..xinter$value,
+        pointSize = function() private$..pointSize$value,
+        lineSize = function() private$..lineSize$value,
+        regLine = function() private$..regLine$value,
+        lineMethod = function() private$..lineMethod$value,
+        lineSE = function() private$..lineSE$value,
         singleColor = function() private$..singleColor$value,
         colorPalette = function() private$..colorPalette$value,
         plotWidth = function() private$..plotWidth$value,
@@ -532,6 +574,11 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..yinter = NA,
         ..vline = NA,
         ..xinter = NA,
+        ..pointSize = NA,
+        ..lineSize = NA,
+        ..regLine = NA,
+        ..lineMethod = NA,
+        ..lineSE = NA,
         ..singleColor = NA,
         ..colorPalette = NA,
         ..plotWidth = NA,
@@ -626,6 +673,11 @@ scatterplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yinter .
 #' @param vline .
 #' @param xinter .
+#' @param pointSize .
+#' @param lineSize .
+#' @param regLine .
+#' @param lineMethod .
+#' @param lineSE .
 #' @param singleColor .
 #' @param colorPalette .
 #' @param plotWidth .
@@ -681,6 +733,11 @@ scatterplot <- function(
     yinter = 0,
     vline = FALSE,
     xinter = 0,
+    pointSize = 3,
+    lineSize = 1,
+    regLine = FALSE,
+    lineMethod = "lm",
+    lineSE = TRUE,
     singleColor = "#999999",
     colorPalette = "jmv",
     plotWidth = 0,
@@ -749,6 +806,11 @@ scatterplot <- function(
         yinter = yinter,
         vline = vline,
         xinter = xinter,
+        pointSize = pointSize,
+        lineSize = lineSize,
+        regLine = regLine,
+        lineMethod = lineMethod,
+        lineSE = lineSE,
         singleColor = singleColor,
         colorPalette = colorPalette,
         plotWidth = plotWidth,

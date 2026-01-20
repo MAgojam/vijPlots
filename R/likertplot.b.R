@@ -106,12 +106,12 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (!is.null(self$options$group)) {
                 if (!self$options$ignoreNA) {
                     # change NA to "NA"
-                    if ( sum(is.na(mainData[[self$options$group]])) > 0)
+                    if (anyNA(mainData[[self$options$group]]))
                         mainData[[self$options$group]] <- forcats::fct_na_value_to_level(mainData[[self$options$group]], level="NA")
                 }
             }
             # Cleaning the group variable name (it would crash gglikert)
-            if( ! is.null(self$options$group) ) {
+            if (!is.null(self$options$group)) {
                 groupingVar <- jmvcore::toB64(self$options$group)
                 names(mainData)[length(names(mainData))] <- groupingVar
             } else {

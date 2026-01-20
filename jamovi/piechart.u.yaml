@@ -48,49 +48,118 @@ children:
         children:
           - type: Label
             label: Labels
+            style: list-inline
             children:
-              - type: RadioButton
-                name: labels_none
-                optionName: labels
-                optionPart: none
-                label: None
-              - type: RadioButton
-                name: labels_count
-                optionName: labels
-                optionPart: count
-                label: Count
-              - type: RadioButton
-                name: labels_percent
-                optionName: labels
-                optionPart: percent
-                label: Percent
+              - type: LayoutBox
+                margin: normal
+                children:
+                  - type: RadioButton
+                    name: labels_none
+                    optionName: labels
+                    optionPart: none
+                  - type: RadioButton
+                    name: labels_count
+                    optionName: labels
+                    optionPart: count
+                  - type: RadioButton
+                    name: labels_percent
+                    optionName: labels
+                    optionPart: percent
+              - type: LayoutBox
+                margin: normal
+                children:
+                  - type: RadioButton
+                    name: labels_group
+                    optionName: labels
+                    optionPart: group
+                  - name: labels_group+count
+                    type: RadioButton
+                    optionName: labels
+                    optionPart: group+count
+                  - name: labels_group+percent
+                    type: RadioButton
+                    optionName: labels
+                    optionPart: group+percent
+  - type: CollapseBox
+    label: Labels
+    collapsed: true
+    stretchFactor: 1
+    children:
       - type: LayoutBox
-        cell:
-          column: 2
-          row: 0
+        margin: large
         stretchFactor: 1
+        style: inline
         children:
-          - type: Label
-            label: '% Accuracy'
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 2
             children:
-              - type: RadioButton
-                name: accuracy_1
-                optionName: accuracy
-                optionPart: '1'
-                label: '1'
-                enable: (labels_percent)
-              - type: RadioButton
-                name: accuracy_01
-                optionName: accuracy
-                optionPart: '0.1'
-                label: '0.1'
-                enable: (labels_percent)
-              - type: RadioButton
-                name: accuracy_001
-                optionName: accuracy
-                optionPart: '0.01'
-                label: '0.01'
-                enable: (labels_percent)
+              - type: Label
+                label: Type
+                children:
+                  - type: RadioButton
+                    name: labType_text
+                    optionName: labType
+                    optionPart: text
+                    label: Text
+                    enable: (!labels_none)
+                  - type: RadioButton
+                    name: labType_label
+                    optionName: labType
+                    optionPart: label
+                    label: Label
+                    enable: (!labels_none)
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 3
+            children:
+              - type: Label
+                label: Label Options
+                children:
+                  - type: CheckBox
+                    name: overlap
+                    enable: (!labels_none)
+                  - type: TextBox
+                    name: labOffset
+                    format: number
+                    suffix: '[0-9]'
+                    enable: (!labels_none)
+                  - type: TextBox
+                    name: labSize
+                    format: number
+                    suffix: 'pt'
+                    enable: (!labels_none)
+          - type: LayoutBox
+            cell:
+              column: 2
+              row: 0
+            stretchFactor: 2
+            children:
+              - type: Label
+                label: '% Accuracy'
+                children:
+                  - type: RadioButton
+                    name: accuracy_1
+                    optionName: accuracy
+                    optionPart: '1'
+                    label: '1'
+                    enable: (labels_percent || labels_group+percent)
+                  - type: RadioButton
+                    name: accuracy_01
+                    optionName: accuracy
+                    optionPart: '0.1'
+                    label: '0.1'
+                    enable: (labels_percent || labels_group+percent)
+                  - type: RadioButton
+                    name: accuracy_001
+                    optionName: accuracy
+                    optionPart: '0.01'
+                    label: '0.01'
+                    enable: (labels_percent || labels_group+percent)
   - type: CollapseBox
     label: Colors
     collapsed: true

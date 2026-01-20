@@ -69,13 +69,15 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
-### 2026-01-17 / 0.11.5 (dev)
+### 2026-01-20 / 0.11.6 (dev)
 
 -   Axis options to set axis label sizes, rotation, range
 -   More color palettes
 -   Single color option for scatter plot without group
 -   Option to choose 1 color from palette for bar plot, box plot, MR plot without group
--   Option to show % labels in MR Frequencies & Crosstabs 
+-   Pie chart label options
+-   Option to show % labels in MR Frequencies & Crosstabs plots
+-   Regression line in scatter plot
 -   Cleaning UI (in progress)
 -   Spanish translation (in progress)
 

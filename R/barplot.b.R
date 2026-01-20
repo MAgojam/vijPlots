@@ -73,7 +73,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 borderColor = self$options$borderColor
 
             # Percent format (scales)
-            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options$decSymbol)
+            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
             # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             yScaleFactor <- 1 # default to count
             # ggplot with base AES and sorting

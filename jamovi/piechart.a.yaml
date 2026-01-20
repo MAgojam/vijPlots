@@ -43,7 +43,41 @@ options:
           name:  count
         - title: Percent
           name:  percent
+        - title: Group
+          name:  group
+        - title: Group + Count
+          name:  group+count
+        - title: Group + Percent
+          name:  group+percent
       default: none
+
+    - name: labType
+      title: Type
+      type: List
+      options:
+        - title: Text
+          name: text
+        - title: Label
+          name:  label
+
+    - name: overlap
+      title: Prevent overlap
+      type: Bool
+      default: false
+
+    - name: labOffset
+      type: Number
+      title: Offset
+      min: 0
+      max: 9
+      default: 0
+
+    - name: labSize
+      type: Number
+      title: Text Size
+      min: 8
+      max: 24
+      default: 12
 
     - name: colorPalette
       title: Palette

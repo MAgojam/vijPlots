@@ -62,7 +62,7 @@ children:
         stretchFactor: 1
         children:
           - type: Label
-            label: Sorting (Median)
+            label: Sorting (by median)
             children:
               - type: RadioButton
                 name: order_none
@@ -104,7 +104,6 @@ children:
                   - type: CheckBox
                     name: singleColor
                     label: Use color No.
-                    enable: (!group)
                     style: inline
                     verticalAlignment: center
                     children:
@@ -113,7 +112,7 @@ children:
                         label: ''
                         suffix: only
                         format: number
-                        enable: (singleColor && !group)
+                        enable: (singleColor)
           - type: LayoutBox
             cell:
               column: 1

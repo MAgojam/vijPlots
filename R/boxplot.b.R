@@ -55,11 +55,11 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             data <- self$data[varNames]
             # Remove case with missing group
             if (!is.null(groupVarName) & self$options$ignoreNA) {
-              data <- subset(data, !is.na(data[groupVarName]))
+                data <- subset(data, !is.na(data[groupVarName]))
             }
             # Be sure dep var are numeric
             for (varName in depVarNames)
-              data[[varName]] <- jmvcore::toNumeric(data[[varName]])
+                data[[varName]] <- jmvcore::toNumeric(data[[varName]])
             image <- self$results$plot
             image$setState(data)
         },
@@ -72,12 +72,12 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             depVarNames <- self$options$vars
 
             if (self$options$staple)
-            	stapleWidth <- as.numeric(self$options$stapleWidth)
+                stapleWidth <- as.numeric(self$options$stapleWidth)
             else
-            	stapleWidth <- 0
+                stapleWidth <- 0
 
-			notches <- self$options$notches
-			notchWidth <- as.numeric(self$options$notchWidth)
+            notches <- self$options$notches
+            notchWidth <- as.numeric(self$options$notchWidth)
 
             if( is.null(labelVarName) ) {
                 labelVar = NULL
@@ -91,49 +91,49 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 groupVar <- ensym(groupVarName)
             }
 
-			# Compute the outliers
-			if (!is.null(labelVar)) {
-			    for (varName in depVarNames) {
-			        outlierVar <- paste0(".outliers_",varName)
-			        outlierVar <- ensym(outlierVar)
-			        varName <- ensym(varName)
-			        if (is.null(groupVar)) {
-			            plotData <- plotData %>%
-			                dplyr::mutate(!!outlierVar := ifelse(private$.isOutlier(!!varName), as.character(!!labelVar), NA))
-			        } else {
-			            plotData <- plotData %>%
-			                dplyr::group_by(!!groupVar) %>%
-			                dplyr::mutate(!!outlierVar := ifelse(private$.isOutlier(!!varName), as.character(!!labelVar), NA))
-			        }
-			    }
-			}
+            # Compute the outliers
+            if (!is.null(labelVar)) {
+                for (varName in depVarNames) {
+                    outlierVar <- paste0(".outliers_",varName)
+                    outlierVar <- ensym(outlierVar)
+                    varName <- ensym(varName)
+                    if (is.null(groupVar)) {
+                        plotData <- plotData %>%
+                            dplyr::mutate(!!outlierVar := ifelse(private$.isOutlier(!!varName), as.character(!!labelVar), NA))
+                    } else {
+                        plotData <- plotData %>%
+                            dplyr::group_by(!!groupVar) %>%
+                            dplyr::mutate(!!outlierVar := ifelse(private$.isOutlier(!!varName), as.character(!!labelVar), NA))
+                    }
+                }
+            }
 
-			if (self$options$horizontal)
-			    labAngle = 60
-			else
-			    labAngle = 0
+            if (self$options$horizontal)
+                labAngle = 60
+            else
+                labAngle = 0
 
-			if (self$options$horizontal)
-			    nudgeX <- (400/image$height)*0.06
-			else
-			    nudgeX <- (400/image$width)*0.04
+            if (self$options$horizontal)
+                nudgeX <- (400/image$height)*0.06
+            else
+                nudgeX <- (400/image$width)*0.04
 
-			# One color only
-			if (self$options$singleColor) {
-			    nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
-			    colorNo <- self$options$colorNo
-			    oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[min(colorNo,nbColors)]
-			}
+            # One color only
+            if (self$options$singleColor) {
+                nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
+                colorNo <- self$options$colorNo
+                oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[min(colorNo,nbColors)]
+            }
 
-			# Building the plot
+            # Building the plot
             plot <- ggplot(plotData)
             for (varName in depVarNames) {
                 aVar <- ensym(varName)
                 if (is.null(groupVar)) {
                     if (self$options$singleColor) {
                         plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!varName), fill = oneColorOfPalette,
-                        					outliers = self$options$showOutliers, staplewidth = stapleWidth,
-                        					notch = notches, notchwidth = notchWidth)
+                                                    outliers = self$options$showOutliers, staplewidth = stapleWidth,
+                                                    notch = notches, notchwidth = notchWidth)
                     } else {
                         plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!varName, fill = !!varName),
                                                     outliers = self$options$showOutliers, staplewidth = stapleWidth,
@@ -151,14 +151,14 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         plot <- plot + stat_summary(aes(y = !!aVar, x = !!varName), fun = mean, geom = "point",
                                                     shape = 15, size = 3)
                     }
-                } else {
+                } else { # Several groups
                     if (length(depVarNames) > 1) {
                         plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!varName, fill = !!groupVar),
-                        			outliers = self$options$showOutliers, staplewidth = stapleWidth,
-                        			notch = notches, notchwidth = notchWidth, key_glyph = draw_key_rect)
+                                                    outliers = self$options$showOutliers, staplewidth = stapleWidth,
+                                                    notch = notches, notchwidth = notchWidth, key_glyph = draw_key_rect)
                         if (self$options$showMean) {
-                          plot <- plot + stat_summary(aes(y = !!aVar, x = !!varName, group = !!groupVar), fun = mean, geom = "point",
-                                                      position = position_dodge(.75), shape = 15, size = 3, show.legend = FALSE)
+                            plot <- plot + stat_summary(aes(y = !!aVar, x = !!varName, group = !!groupVar), fun = mean, geom = "point",
+                                                        position = position_dodge(.75), shape = 15, size = 3, show.legend = FALSE)
                         }
                         if (!is.null(labelVar) & self$options$showOutliers) {
                             outlierVar <- paste0(".outliers_",varName)
@@ -166,22 +166,20 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             plot <- plot + geom_text(aes(x = !!varName,y = !!aVar, label = !!outlierVar, group = !!groupVar), na.rm = TRUE,
                                                      hjust = 0, position = ggpp::position_dodgenudge(x = nudgeX, width = .75), angle = labAngle)
                         }
-                    } else {
-                        if (self$options$order == "increasing")
-                            plot <- plot + geom_boxplot(aes(y = !!aVar, x = forcats::fct_reorder(!!groupVar, !!aVar), fill = !!groupVar),
-                            				outliers = self$options$showOutliers, staplewidth = stapleWidth,
-                            				notch = notches, notchwidth = notchWidth)
-                        else if (self$options$order == "decreasing")
-                            plot <- plot + geom_boxplot(aes(y = !!aVar, x = forcats::fct_reorder(!!groupVar, !!aVar, .desc=TRUE), fill = !!groupVar),
-                            				outliers = self$options$showOutliers, staplewidth = stapleWidth,
-                            				notch = notches, notchwidth = notchWidth)
-                        else
+                    } else { # single var & several groups
+                        if (self$options$singleColor) {
+                            plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!groupVar), fill = oneColorOfPalette,
+                                                        outliers = self$options$showOutliers, staplewidth = stapleWidth,
+                                                        notch = notches, notchwidth = notchWidth)
+                        } else {
                             plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!groupVar, fill = !!groupVar),
-                            				outliers = self$options$showOutliers, staplewidth = stapleWidth,
-                            				notch = notches, notchwidth = notchWidth)
+                                                        outliers = self$options$showOutliers, staplewidth = stapleWidth,
+                                                        notch = notches, notchwidth = notchWidth)
+                        }
+
                         if (self$options$showMean) {
-                          	plot <- plot + stat_summary(aes(y = !!aVar, x = !!groupVar), fun = mean, geom = "point",
-                          	                            shape = 15, size = 3)
+                            plot <- plot + stat_summary(aes(y = !!aVar, x = !!groupVar), fun = mean, geom = "point",
+                                                        shape = 15, size = 3)
                         }
                         if (!is.null(labelVar) & self$options$showOutliers) {
                             outlierVar <- paste0(".outliers_",varName)
@@ -192,16 +190,19 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     }
                 }
             }
+
+            # Sort variables / levels by median
             if (length(depVarNames) > 1) {
                 if (self$options$order == "none") {
-                    plot <- plot + scale_x_discrete(limits=depVarNames)
+                    plot <- plot + scale_x_discrete(limits = depVarNames)
                 } else {
-                    medians<-array()
-                    for (i in 1:length(depVarNames)){
-                        medians[i] <- median(plotData[[depVarNames[i]]], na.rm=TRUE)
-                    }
-                    plot <- plot + scale_x_discrete(limits=depVarNames[order(medians, decreasing = (self$options$order == "decreasing"))])
+                    orderedVars <- order(sapply(plotData[,depVarNames], median, na.rm = TRUE), decreasing = (self$options$order == "decreasing"))
+                    plot <- plot + scale_x_discrete(limits = depVarNames[orderedVars])
                 }
+            } else if (!is.null(groupVar) && self$options$order != "none") {
+                orderedLevelsData <- forcats::fct_reorder(plotData[[groupVar]], plotData[[aVar]], .desc = (self$options$order == "decreasing"))
+                orderedLevels <- levels(addNA(orderedLevelsData, ifany=TRUE))
+                plot <- plot + scale_x_discrete(limits = orderedLevels)
             }
 
             # Theme and colors
@@ -238,12 +239,12 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             return(plot)
         },
-		.isOutlier = function(x) {
-		    q1 <- quantile(x, .25, na.rm=T)
-		    q3 <- quantile(x, .75, na.rm=T)
-		    iqr <- IQR(x, na.rm=T)
-		    return(x < q1 - 1.5*iqr | x > q3 + 1.5*iqr)
-		}
+        .isOutlier = function(x) {
+            q1 <- quantile(x, .25, na.rm=T)
+            q3 <- quantile(x, .75, na.rm=T)
+            iqr <- IQR(x, na.rm=T)
+            return(x < q1 - 1.5*iqr | x > q3 + 1.5*iqr)
+        }
 
-        )
+    )
 )
