@@ -232,19 +232,33 @@ options:
         - title: Yellow to Red
           name:  YlOrRd
         - title: Viridis:Viridis
-          name:  viridis::viridis
+          name: viridis::viridis
         - title: Viridis:Magma
-          name:  viridis::magma
+          name: viridis::magma
         - title: Viridis:Inferno
-          name:  viridis::inferno
+          name: viridis::inferno
         - title: Viridis:Plasma
-          name:  viridis::plasma
+          name: viridis::plasma
         - title: Viridis:Turbo
-          name:  viridis::turbo
+          name: viridis::turbo
         - title: Dichromat:Categorical
-          name:  dichromat::Categorical.12
-        - title: Tidyplot
-          name: custom::tidyplots
+          name: dichromat::Categorical.12
+        - title: Tidy:Friendly
+          name: tidy::friendly
+        - title: Tidy:Seaside
+          name: tidy::seaside
+        - title: Tidy:Apple
+          name: tidy::apple
+        - title: Tidy:Ibm
+          name: tidy::ibm
+        - title: Tidy:Candy
+          name: tidy::candy
+        - title: Tidy:Alger
+          name: tidy::alger
+        - title: Tidy:Rainbow
+          name: tidy::rainbow
+        - title: Tidy:Metro
+          name: tidy::metro
         - title: CDES
           name: custom::cdes
       default: jmv
@@ -258,7 +272,7 @@ options:
       type: Number
       title: Color Number
       min: 1
-      max: 99
+      max: 255
       default: 1
 
     - name: borderColor

@@ -162,3 +162,4 @@ Principal component analysis and (Multiple) Correspondence analysis.
 -   Bernaards, C., Gilbert, P., Jennrich, R. (2025), GPArotation: Gradient Projection Factor Rotation. R package version 2025.3.1, <https://cran.r-project.org/package=GPArotation>.
 -   Greenacre, M. (2010), Biplots in Practice, Fundación BBVA. <https://www.fbbva.es/en/publicaciones/biplots-in-practice-7/>.
 -   Husson, F., Josse, J., Le, S., Mazet, J. (2025). FactoMineR: Multivariate Exploratory Data Analysis and Data Mining. R package version 2.12, <https://cran.r-project.org/package=FactoMineR>
+-   Engler, J.B. (2026). tidyplots: Tidy Plots for Scientific Papers, R package version 0.4.0, <https://CRAN.R-project.org/package=tidyplots>

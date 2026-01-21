@@ -164,8 +164,22 @@ options:
           name: viridis::turbo
         - title: Dichromat:Categorical
           name: dichromat::Categorical.12
-        - title: Tidyplot
-          name: custom::tidyplots
+        - title: Tidy:Friendly
+          name: tidy::friendly
+        - title: Tidy:Seaside
+          name: tidy::seaside
+        - title: Tidy:Apple
+          name: tidy::apple
+        - title: Tidy:Ibm
+          name: tidy::ibm
+        - title: Tidy:Candy
+          name: tidy::candy
+        - title: Tidy:Alger
+          name: tidy::alger
+        - title: Tidy:Rainbow
+          name: tidy::rainbow
+        - title: Tidy:Metro
+          name: tidy::metro
         - title: CDES
           name: custom::cdes
       default: jmv

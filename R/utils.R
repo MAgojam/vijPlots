@@ -24,16 +24,39 @@ vijPalette = function(pal, type = "fill", themePal = NULL) {
         return(scales::pal_viridis(option = palName))
     } else if (palType == "dichromat") {
         return(scales::pal_dichromat(palName))
+    } else if (palType == "tidy") {
+        if (palName == "friendly") {
+            tidyColors <- c("#0072B2","#56B4E9","#009E73","#F5C710","#E69F00","#D55E00")
+        } else if (palName == "seaside") {
+            tidyColors <- c("#8ecae6", "#219ebc", "#023047", "#ffb703", "#fb8500")
+        } else if (palName == "apple") {
+            tidyColors <- c("#ff3b30", "#ff9500", "#ffcc00", "#4cd964", "#5ac8fa", "#007aff", "#5856d6")
+        } else if (palName == "ibm") {
+            tidyColors <- c("#5B8DFE", "#725DEE", "#DD227D", "#FE5F00", "#FFB109")
+        } else if (palName == "candy") {
+            tidyColors <- c("#9b5de5", "#f15bb5", "#fee440", "#00bbf9", "#00f5d4")
+        } else if (palName == "alger") {
+            tidyColors <- c("#000000", "#1A5B5B", "#ACC8BE", "#F4AB5C", "#D1422F")
+        } else if (palName == "rainbow") {
+            tidyColors <- c("#FF7777", "#FFAB74", "#FFE577", "#DBF47B", "#91E480", "#7CC9E5", "#7DA8E6", "#887DE6", "#BC7BE4")
+        } else if (palName == "metro") {
+            tidyColors <- c("#4DACD6","#4FAE62","#F6C54D","#E37D46","#C02D45")
+        }
+        tidyPalette <- grDevices::colorRampPalette(tidyColors)
+        attr(tidyPalette,"nlevels") <- length(tidyColors)
+        return(tidyPalette)
     } else if (palType == "custom") {
         if (palName == "cdes")
             customColors <- c("#16144e", "#00dc8c", "#5fcdcd", "#007387", "#efbe7c", "#8c87a4", "#ff6e5a", "#bc6479", "#8faadc", "#006d4d")
         else if (palName == "tidyplots")
-            customColors <- c("#0072B2","#56B4E9","#009E73","#F5C710","#E69F00","#D55E00")
+            customColors <- c("#0072B2","#56B4E9","#009E73","#F5C710","#E69F00","#D55E00") # unused
         return(pal_manual(values = customColors, type = "colour"))
     } else {
         return(NULL)
     }
 }
+
+
 
 vijTitlesAndLabels = function(options, defaults = list(), plotType = '') {
     horizontal <- options[["horizontal"]]  %||% FALSE

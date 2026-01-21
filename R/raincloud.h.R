@@ -137,7 +137,14 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "viridis::plasma",
                     "viridis::turbo",
                     "dichromat::Categorical.12",
-                    "custom::tidyplots",
+                    "tidy::friendly",
+                    "tidy::seaside",
+                    "tidy::apple",
+                    "tidy::ibm",
+                    "tidy::candy",
+                    "tidy::alger",
+                    "tidy::rainbow",
+                    "tidy::metro",
                     "custom::cdes"),
                 default="jmv")
             private$..alphaC <- jmvcore::OptionNumber$new(
@@ -154,7 +161,7 @@ raincloudOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "colorNo",
                 colorNo,
                 min=1,
-                max=99,
+                max=255,
                 default=1)
             private$..plotWidth <- jmvcore::OptionNumber$new(
                 "plotWidth",

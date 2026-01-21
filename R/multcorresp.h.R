@@ -390,7 +390,14 @@ multcorrespOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "viridis::plasma",
                     "viridis::turbo",
                     "dichromat::Categorical.12",
-                    "custom::tidyplots",
+                    "tidy::friendly",
+                    "tidy::seaside",
+                    "tidy::apple",
+                    "tidy::ibm",
+                    "tidy::candy",
+                    "tidy::alger",
+                    "tidy::rainbow",
+                    "tidy::metro",
                     "custom::cdes"),
                 default="jmv")
             private$..labelSize <- jmvcore::OptionNumber$new(
