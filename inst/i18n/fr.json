@@ -76,6 +76,9 @@
             ";": [
                 ""
             ],
+            "[0-9]": [
+                ""
+            ],
             "{detrendStr}{distribStr} {typeStr} Plot of {varStr}": [
                 "Diagramme {typeStr} {distribStr} {detrendStr}de {varStr}"
             ],
@@ -457,9 +460,6 @@
             "Color Palette": [
                 "Palette de couleurs"
             ],
-            "Color palette": [
-                "Palette"
-            ],
             "Colors": [
                 "Couleurs"
             ],
@@ -510,6 +510,9 @@
             ],
             "Confidence Band Methods": [
                 "Méthodes de calcul de l'IC"
+            ],
+            "Confidence interval": [
+                "Intervalle de confiance"
             ],
             "Connect ordinal categories": [
                 "Joindre les catégories ordinales"
@@ -682,6 +685,9 @@
             "Eigenvalues": [
                 "Valeurs propres"
             ],
+            "Element Size": [
+                "Taille des éléments"
+            ],
             "Empty value as NA": [
                 "Considérer les valeurs vides comme manquantes"
             ],
@@ -792,6 +798,12 @@
             ],
             "Group (Side by side)": [
                 "Groupe (Juxtaposé)"
+            ],
+            "Group + Count": [
+                "Groupe + Effectif"
+            ],
+            "Group + Percent": [
+                "Groupe + Pourcent"
             ],
             "Group By": [
                 "Grouper par"
@@ -931,6 +943,9 @@
             "Label font size": [
                 "Taille des étiquettes"
             ],
+            "Label Options": [
+                "Options des étiquettes"
+            ],
             "Label rotation": [
                 "Rotation des étiquettes"
             ],
@@ -1008,6 +1023,9 @@
             ],
             "Line Width": [
                 "Ligne"
+            ],
+            "Linear": [
+                "Linéaire"
             ],
             "Log-normal": [
                 "Log-normale"
@@ -1177,6 +1195,9 @@
             "Observations": [
                 ""
             ],
+            "Offset": [
+                ""
+            ],
             "One variable": [
                 "Une variable"
             ],
@@ -1327,6 +1348,9 @@
             "Plots": [
                 "Graphiques"
             ],
+            "Point": [
+                ""
+            ],
             "Point & Line Size": [
                 "Taile des points et lignes"
             ],
@@ -1453,6 +1477,9 @@
             "Reference Lines": [
                 "Lignes de référence"
             ],
+            "Regression Line": [
+                "Courbe de régression"
+            ],
             "Reverse disposition": [
                 "Renverser la disposition"
             ],
@@ -1555,6 +1582,9 @@
             "Show count labels": [
                 "Afficher les effectifs"
             ],
+            "Show line": [
+                "Afficher la courbe"
+            ],
             "Show Lines": [
                 "Afficher les lignes"
             ],
@@ -1585,8 +1615,8 @@
             "Side-by-side 2": [
                 "Juxtaposé 2"
             ],
-            "Single color": [
-                "Couleur unique"
+            "Single": [
+                "Unique"
             ],
             "Singular Value": [
                 "Valeur singulière"
@@ -1600,6 +1630,9 @@
             "Smoking": [
                 ""
             ],
+            "Smooth": [
+                "Lisse"
+            ],
             "Solution": [
                 ""
             ],
@@ -1609,8 +1642,8 @@
             "Sorting": [
                 "Tri"
             ],
-            "Sorting (Median)": [
-                "Tri (Médiane)"
+            "Sorting (by median)": [
+                "Tri (selon médiane)"
             ],
             "Spectral": [
                 ""

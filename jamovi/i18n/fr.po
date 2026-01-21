@@ -18,6 +18,10 @@ msgstr " n'a pas un format de date valide."
 msgid ";"
 msgstr ""
 
+#: piechart/ui[2][0][1][0]/labOffset.suffix
+msgid "[0-9]"
+msgstr ""
+
 #: R/qqplot.b.R
 msgid "{detrendStr}{distribStr} {typeStr} Plot of {varStr}"
 msgstr "Diagramme {typeStr} {distribStr} {detrendStr}de {varStr}"
@@ -96,7 +100,7 @@ msgstr "Précision des %"
 #: likertplot/ui[4][0][2][0].label
 #: mrcrosstabs/ui[2][0][2][0].label
 #: mrfrequencies/ui[2][0][1][0].label
-#: piechart/ui[1][2][0].label
+#: piechart/ui[2][0][2][0].label
 msgid "% Accuracy"
 msgstr "Précision des %"
 
@@ -165,8 +169,8 @@ msgstr "% dans"
 #: boxplot/ui[4][0][1][0]/yAxisLabelRotation.suffix
 #: histogram/ui[5][0][0][0]/xAxisLabelRotation.suffix
 #: histogram/ui[5][0][1][0]/yAxisLabelRotation.suffix
-#: likertplot/ui[5][0][0][0]/xAxisLabelRotation.suffix
-#: likertplot/ui[5][0][1][0]/yAxisLabelRotation.suffix
+#: likertplot/ui[6][0][0][0]/xAxisLabelRotation.suffix
+#: likertplot/ui[6][0][1][0]/yAxisLabelRotation.suffix
 #: linechart/ui[3][0][0][0]/xAxisLabelRotation.suffix
 #: linechart/ui[3][0][1][0]/yAxisLabelRotation.suffix
 #: lollipop/ui[5][0][0][0]/xAxisLabelRotation.suffix
@@ -256,7 +260,7 @@ msgstr ""
 #: mrfrequencies/options/accuracy/0.01.title
 #: mrfrequencies/ui[2][0][1][0]/accuracy_001.label
 #: piechart/options/accuracy/0.01.title
-#: piechart/ui[1][2][0]/accuracy_001.label
+#: piechart/ui[2][0][2][0]/accuracy_001.label
 msgid "0.01"
 msgstr ""
 
@@ -269,7 +273,7 @@ msgstr ""
 #: mrfrequencies/options/accuracy/0.1.title
 #: mrfrequencies/ui[2][0][1][0]/accuracy_01.label
 #: piechart/options/accuracy/0.1.title
-#: piechart/ui[1][2][0]/accuracy_01.label
+#: piechart/ui[2][0][2][0]/accuracy_01.label
 msgid "0.1"
 msgstr ""
 
@@ -287,7 +291,7 @@ msgstr ""
 #: mrfrequencies/options/accuracy/1.title
 #: mrfrequencies/ui[2][0][1][0]/accuracy_1.label
 #: piechart/options/accuracy/1.title
-#: piechart/ui[1][2][0]/accuracy_1.label
+#: piechart/ui[2][0][2][0]/accuracy_1.label
 msgid "1"
 msgstr ""
 
@@ -1123,7 +1127,7 @@ msgstr ""
 #: barplot/ui[5].label
 #: boxplot/ui[4].label
 #: histogram/ui[5].label
-#: likertplot/ui[5].label
+#: likertplot/ui[6].label
 #: linechart/ui[3].label
 #: lollipop/ui[5].label
 #: mrcrosstabs/ui[5].label
@@ -1505,12 +1509,12 @@ msgstr "Par variable"
 #: barplot/ui[7][2].label
 #: boxplot/ui[6][2].label
 #: histogram/ui[7][2].label
-#: likertplot/ui[7][2].label
+#: likertplot/ui[8][2].label
 #: linechart/ui[5][2].label
 #: lollipop/ui[7][2].label
 #: mrcrosstabs/ui[7][2].label
 #: mrfrequencies/ui[7][2].label
-#: piechart/ui[5][2].label
+#: piechart/ui[6][2].label
 #: qqplot/ui[7][2].label
 #: raincloud/ui[5][2].label
 #: scatterplot/ui[5][2].label
@@ -1700,9 +1704,9 @@ msgstr "Numéro de la couleur"
 #: barplot/ui[3][0][1][0].label
 #: mrcrosstabs/ui[3][0][1][0].label
 #: mrfrequencies/ui[3][0][1][0].label
-#: piechart/ui[2][0][1][0].label
+#: piechart/ui[3][0][1][0].label
 #: raincloud/ui[1][1][0].label
-#: scatterplot/ui[2][0][1][0].label
+#: scatterplot/ui[1][1][0].label
 msgid "Color Options"
 msgstr "Options de couleurs"
 
@@ -1712,13 +1716,9 @@ msgstr "Options de couleurs"
 #: histogram/ui[3][1][0].label
 #: mrcrosstabs/ui[3][0][0][0].label
 #: mrfrequencies/ui[3][0][0][0].label
-#: piechart/ui[2][0][0][0].label
+#: piechart/ui[3][0][0][0].label
 msgid "Color Palette"
 msgstr "Palette de couleurs"
-
-#: scatterplot/options/colorPalette.title
-msgid "Color palette"
-msgstr "Palette"
 
 #: barplot/ui[3].label
 #: corresp/ui[6][0][1][0].label
@@ -1726,7 +1726,7 @@ msgstr "Palette"
 #: lollipop/ui[3][0][0][0].label
 #: mrcrosstabs/ui[3].label
 #: mrfrequencies/ui[3].label
-#: piechart/ui[2].label
+#: piechart/ui[3].label
 msgid "Colors"
 msgstr "Couleurs"
 
@@ -1742,7 +1742,7 @@ msgstr "Couleurs & Options"
 #: lollipop/options/facetBy/column.title
 #: lollipop/ui[4][0][1][0][0]/facetBy_column.label
 #: piechart/options/facetBy/column.title
-#: piechart/ui[3][0][1][0][0]/facetBy_column.label
+#: piechart/ui[4][0][1][0][0]/facetBy_column.label
 msgid "Column"
 msgstr "Colonne"
 
@@ -1808,6 +1808,10 @@ msgstr "Bande de confiance (IC)"
 #: qqplot/ui[4][0][1][0].label
 msgid "Confidence Band Methods"
 msgstr "Méthodes de calcul de l'IC"
+
+#: scatterplot/options/lineSE.title
+msgid "Confidence interval"
+msgstr "Intervalle de confiance"
 
 #: multcorresp/options/connectOrdinalCat.title
 msgid "Connect ordinal categories"
@@ -1877,7 +1881,6 @@ msgstr ""
 #: mrcrosstabs/options/computedValues/count.title
 #: mrcrosstabs/ui[1][1][0]/computedValues_count.label
 #: piechart/options/labels/count.title
-#: piechart/ui[1][1][0]/labels_count.label
 msgid "Count"
 msgstr "Effectif"
 
@@ -2147,6 +2150,10 @@ msgstr "Valeur propre"
 msgid "Eigenvalues"
 msgstr "Valeurs propres"
 
+#: scatterplot/ui[2][0][1][0].label
+msgid "Element Size"
+msgstr "Taille des éléments"
+
 #: mrcrosstabs/options/emptyAsNA.title
 #: mrfrequencies/options/emptyAsNA.title
 msgid "Empty value as NA"
@@ -2206,7 +2213,7 @@ msgstr "Facette"
 #: histogram/ui[4][0][1][0].label
 #: lollipop/ui[4][0][1][0].label
 #: piechart/options/facetBy.title
-#: piechart/ui[3][0][1][0].label
+#: piechart/ui[4][0][1][0].label
 msgid "Facets"
 msgstr "Facettes"
 
@@ -2425,11 +2432,13 @@ msgstr "Gris"
 #: histogram/options/group.title
 #: histogram/ui[0][1].label
 #: likertplot/options/groupBy/group.title
+#: likertplot/options/groupSize.title
 #: likertplot/ui[4][0][1][0].label
 #: linechart/options/group.title
 #: linechart/ui[0][2].label
 #: lollipop/options/group.title
 #: lollipop/ui[0][1].label
+#: piechart/options/labels/group.title
 #: principal/options/groupVar.title
 #: principal/ui[0][2].label
 #: scatterplot/options/group.title
@@ -2446,6 +2455,14 @@ msgstr "Groupe (Superposé)"
 #: raincloud/ui[0][1].label
 msgid "Group (Side by side)"
 msgstr "Groupe (Juxtaposé)"
+
+#: piechart/options/labels/group+count.title
+msgid "Group + Count"
+msgstr "Groupe + Effectif"
+
+#: piechart/options/labels/group+percent.title
+msgid "Group + Percent"
+msgstr "Groupe + Pourcent"
 
 #: likertplot/options/groupBy.title
 msgid "Group By"
@@ -2772,9 +2789,13 @@ msgstr "Tests de Kruskal-Wallis"
 #: boxplot/options/label.title
 #: boxplot/ui[0][2].label
 #: corresp/options/labelSize.title
+#: likertplot/options/textSize.title
+#: likertplot/options/labelSize.title
 #: multcorresp/options/labelVar.title
 #: multcorresp/ui[0][2].label
+#: piechart/options/labType/label.title
 #: piechart/options/textColor.title
+#: piechart/ui[2][0][0][0]/labType_label.label
 #: principal/options/labelVar.title
 #: principal/ui[0][1].label
 #: scatterplot/options/labelVar.title
@@ -2808,6 +2829,10 @@ msgstr "Étiquettes"
 #: scatterplot/options/xAxisLabelFontSize.title
 msgid "Label font size"
 msgstr "Taille des étiquettes"
+
+#: piechart/ui[2][0][1][0].label
+msgid "Label Options"
+msgstr "Options des étiquettes"
 
 #: areachart/options/yAxisLabelRotation.title
 #: areachart/options/xAxisLabelRotation.title
@@ -2843,6 +2868,7 @@ msgstr "Taille des étiquettes"
 #: multcorresp/options/labelSize.title
 #: piechart/options/labels.title
 #: piechart/ui[1][1][0].label
+#: piechart/ui[2].label
 #: principal/options/labelColor.title
 msgid "Labels"
 msgstr "Étiquettes"
@@ -2934,12 +2960,12 @@ msgstr "Gauche"
 #: barplot/ui[6][0].label
 #: boxplot/ui[5][0].label
 #: histogram/ui[6][0].label
-#: likertplot/ui[6][0].label
+#: likertplot/ui[7][0].label
 #: linechart/ui[4][0].label
 #: mrcrosstabs/ui[6][0].label
 #: multcorresp/ui[8][0].label
-#: piechart/ui[4].label
-#: piechart/ui[4][0].label
+#: piechart/ui[5].label
+#: piechart/ui[5][0].label
 #: principal/ui[5][0].label
 #: qqplot/ui[6][0].label
 #: raincloud/ui[4][0].label
@@ -2962,7 +2988,7 @@ msgstr "Légende"
 msgid "Legend & Axis Titles"
 msgstr "Titres de la légende et des axes"
 
-#: likertplot/ui[6].label
+#: likertplot/ui[7].label
 msgid "Legend Title"
 msgstr "Titre de la légende"
 
@@ -3069,6 +3095,7 @@ msgid "Limited to the first 100 observations"
 msgstr "Limité aux 100 premières observations"
 
 #: lollipop/options/lineColor.title
+#: scatterplot/options/lineSize.title
 msgid "Line"
 msgstr "Ligne"
 
@@ -3085,6 +3112,10 @@ msgstr "Graphique en courbes"
 #: lollipop/options/lineWidth.title
 msgid "Line Width"
 msgstr "Ligne"
+
+#: scatterplot/options/lineMethod/lm.title
+msgid "Linear"
+msgstr "Linéaire"
 
 #: qqplot/options/distrib/lnorm.title
 msgid "Log-normal"
@@ -3221,6 +3252,7 @@ msgstr "Moyen (400x300)"
 #: likertplot/options/adjustMethod.title
 #: multcorresp/options/method.title
 #: multcorresp/ui[3][0].label
+#: scatterplot/options/lineMethod.title
 msgid "Method"
 msgstr "Méthode"
 
@@ -3353,7 +3385,6 @@ msgstr "Aucune rotation appliquée."
 #: mrfrequencies/ui[1][1][0]/order_none.label
 #: piechart/options/labels/none.title
 #: piechart/options/borderColor/none.title
-#: piechart/ui[1][1][0]/labels_none.label
 #: principal/options/rotation/none.title
 #: scatterplot/options/singleColor/none.title
 msgid "None"
@@ -3498,6 +3529,10 @@ msgstr "Résumé des observations"
 #: principal/options/obsLabelSize.title
 #: principal/results/obsTable.title
 msgid "Observations"
+msgstr ""
+
+#: piechart/options/labOffset.title
+msgid "Offset"
 msgstr ""
 
 #: areachart/options/mode/oneVariable.title
@@ -3678,6 +3713,7 @@ msgstr "Comparaisons par paires"
 #: piechart/options/colorPalette.title
 #: principal/options/colorPalette.title
 #: raincloud/options/colorPalette.title
+#: scatterplot/options/colorPalette.title
 msgid "Palette"
 msgstr "Palette"
 
@@ -3742,7 +3778,6 @@ msgstr ""
 #: barplot/options/yaxis1var/percent.title
 #: barplot/ui[2][0][0]/yaxis1var_percent.label
 #: piechart/options/labels/percent.title
-#: piechart/ui[1][1][0]/labels_percent.label
 msgid "Percent"
 msgstr "Pourcent"
 
@@ -3823,7 +3858,7 @@ msgstr "Options du graphique"
 #: boxplot/ui[3][0][0].label
 #: corresp/ui[6][0][0][0].label
 #: histogram/ui[4][0][0][0].label
-#: likertplot/ui[4][3].label
+#: likertplot/ui[5][0][0][0].label
 #: linechart/ui[2][0][0][0].label
 #: lollipop/ui[4][0][0][0].label
 #: mrcrosstabs/ui[4].label
@@ -3831,29 +3866,30 @@ msgstr "Options du graphique"
 #: mrfrequencies/ui[4].label
 #: mrfrequencies/ui[4][0][0][0].label
 #: multcorresp/ui[7].label
-#: piechart/ui[3][0][0][0].label
+#: piechart/ui[4][0][0][0].label
 #: principal/ui[4][0][0][0].label
 #: qqplot/ui[4][0][0][0].label
 #: raincloud/ui[2].label
 #: raincloud/ui[2][0].label
+#: scatterplot/ui[2].label
 #: scatterplot/ui[2][0][0][0].label
 msgid "Plot Size"
 msgstr "Taille du graphique"
 
 #: corresp/ui[6].label
 #: principal/ui[4].label
-#: scatterplot/ui[2].label
 msgid "Plot Size & Colors"
 msgstr "Taille et couleurs du graphique"
 
 #: barplot/ui[4].label
 #: histogram/ui[4].label
 #: lollipop/ui[4].label
-#: piechart/ui[3].label
+#: piechart/ui[4].label
 msgid "Plot Size & Facets"
 msgstr "Taille du graphique & facettes"
 
 #: areachart/ui[2].label
+#: likertplot/ui[5].label
 #: linechart/ui[2].label
 #: qqplot/ui[4].label
 msgid "Plot Size & Options"
@@ -3878,12 +3914,12 @@ msgstr "La taille du graphique doit être au moins 200 px ou 0 (= default)"
 #: barplot/ui[7].label
 #: boxplot/ui[6].label
 #: histogram/ui[7].label
-#: likertplot/ui[7].label
+#: likertplot/ui[8].label
 #: linechart/ui[5].label
 #: lollipop/ui[7].label
 #: mrcrosstabs/ui[7].label
 #: mrfrequencies/ui[7].label
-#: piechart/ui[5].label
+#: piechart/ui[6].label
 #: qqplot/ui[7].label
 #: raincloud/ui[5].label
 #: scatterplot/ui[5].label
@@ -3908,6 +3944,10 @@ msgstr "Type de graphique"
 #: principal/ui[3][1][0].label
 msgid "Plots"
 msgstr "Graphiques"
+
+#: scatterplot/options/pointSize.title
+msgid "Point"
+msgstr ""
 
 #: linechart/ui[2][0][1][0].label
 msgid "Point & Line Size"
@@ -3984,6 +4024,7 @@ msgstr "Post-hoc"
 msgid "Post Hoc Tests"
 msgstr "Tests Post-hoc"
 
+#: piechart/options/overlap.title
 #: scatterplot/options/overlap.title
 msgid "Prevent overlap"
 msgstr "Empêcher la superposition"
@@ -4012,8 +4053,10 @@ msgid "Proportional point size"
 msgstr "Points proportionnels"
 
 #: corresp/ui[6][0][0][0]/labelSize.suffix
-#: likertplot/ui[4][3][2]/textSize.suffix
+#: likertplot/ui[5][0][1][0]/labelSize.suffix
+#: likertplot/ui[5][0][1][0]/groupSize.suffix
 #: multcorresp/ui[6][0][0][1]/labelSize.suffix
+#: piechart/ui[2][0][1][0]/labSize.suffix
 #: principal/ui[4][0][0][0]/varLabelSize.suffix
 #: principal/ui[4][0][0][0]/obsLabelSize.suffix
 #: principal/ui[4][0][0][0]/pointSize.suffix
@@ -4119,8 +4162,8 @@ msgstr "Violets"
 #: corresp/ui[6][0][0][0]/plotHeight.suffix
 #: histogram/ui[4][0][0][0]/plotWidth.suffix
 #: histogram/ui[4][0][0][0]/plotHeight.suffix
-#: likertplot/ui[4][3][0]/plotWidth.suffix
-#: likertplot/ui[4][3][1]/plotHeight.suffix
+#: likertplot/ui[5][0][0][0]/plotWidth.suffix
+#: likertplot/ui[5][0][0][0]/plotHeight.suffix
 #: linechart/ui[2][0][0][0]/plotWidth.suffix
 #: linechart/ui[2][0][0][0]/plotHeight.suffix
 #: linechart/ui[2][0][1][0]/dotSize.suffix
@@ -4133,8 +4176,8 @@ msgstr "Violets"
 #: mrcrosstabs/ui[4][0]/plotHeight.suffix
 #: mrfrequencies/ui[4][0][0][0]/plotWidth.suffix
 #: mrfrequencies/ui[4][0][0][0]/plotHeight.suffix
-#: piechart/ui[3][0][0][0]/plotWidth.suffix
-#: piechart/ui[3][0][0][0]/plotHeight.suffix
+#: piechart/ui[4][0][0][0]/plotWidth.suffix
+#: piechart/ui[4][0][0][0]/plotHeight.suffix
 #: principal/ui[4][0][0][0]/plotWidth.suffix
 #: principal/ui[4][0][0][0]/plotHeight.suffix
 #: qqplot/ui[4][0][0][0]/plotWidth.suffix
@@ -4335,9 +4378,13 @@ msgstr "Rouges"
 msgid "Reference Line"
 msgstr "Droite de référence"
 
-#: scatterplot/ui[1][1][0].label
+#: scatterplot/ui[1][2][0].label
 msgid "Reference Lines"
 msgstr "Lignes de référence"
+
+#: scatterplot/ui[1][3][0].label
+msgid "Regression Line"
+msgstr "Courbe de régression"
 
 #: raincloud/options/reverse.title
 msgid "Reverse disposition"
@@ -4443,7 +4490,7 @@ msgstr ""
 #: lollipop/options/facetBy/row.title
 #: lollipop/ui[4][0][1][0][0]/facetBy_row.label
 #: piechart/options/facetBy/row.title
-#: piechart/ui[3][0][1][0][0]/facetBy_row.label
+#: piechart/ui[4][0][1][0][0]/facetBy_row.label
 msgid "Row"
 msgstr "Ligne"
 
@@ -4611,6 +4658,10 @@ msgstr "Afficher les %"
 msgid "Show count labels"
 msgstr "Afficher les effectifs"
 
+#: scatterplot/options/regLine.title
+msgid "Show line"
+msgstr "Afficher la courbe"
+
 #: areachart/options/showLine.title
 msgid "Show Lines"
 msgstr "Afficher les lignes"
@@ -4655,8 +4706,8 @@ msgid "Side-by-side 2"
 msgstr "Juxtaposé 2"
 
 #: scatterplot/options/singleColor.title
-msgid "Single color"
-msgstr "Couleur unique"
+msgid "Single"
+msgstr "Unique"
 
 #: corresp/results/eigenvalues.columns.title
 msgid "Singular Value"
@@ -4715,6 +4766,10 @@ msgstr "Petit (300x200)"
 msgid "Smoking"
 msgstr ""
 
+#: scatterplot/options/lineMethod/loess.title
+msgid "Smooth"
+msgstr "Lisse"
+
 #: corresp/ui[2][0].label
 #: multcorresp/ui[2][0].label
 #: principal/ui[2][0][0].label
@@ -4739,8 +4794,8 @@ msgstr "Tri"
 
 #: boxplot/options/order.title
 #: boxplot/ui[1][1][0].label
-msgid "Sorting (Median)"
-msgstr "Tri (Médiane)"
+msgid "Sorting (by median)"
+msgstr "Tri (selon médiane)"
 
 #: areachart/options/colorPalette/Spectral.title
 #: barplot/options/colorPalette/Spectral.title
@@ -4870,12 +4925,12 @@ msgstr ""
 #: barplot/ui[7][1].label
 #: boxplot/ui[6][1].label
 #: histogram/ui[7][1].label
-#: likertplot/ui[7][1].label
+#: likertplot/ui[8][1].label
 #: linechart/ui[5][1].label
 #: lollipop/ui[7][1].label
 #: mrcrosstabs/ui[7][1].label
 #: mrfrequencies/ui[7][1].label
-#: piechart/ui[5][1].label
+#: piechart/ui[6][1].label
 #: qqplot/ui[7][1].label
 #: raincloud/ui[5][1].label
 #: scatterplot/ui[5][1].label
@@ -4957,14 +5012,17 @@ msgid "Tests"
 msgstr ""
 
 #: barplot/options/textColor.title
-#: likertplot/options/textSize.title
 #: mrcrosstabs/options/textColor.title
 #: mrfrequencies/options/textColor.title
+#: piechart/options/labType/text.title
+#: piechart/ui[2][0][0][0]/labType_text.label
 #: qqplot/options/textSize.title
 msgid "Text"
 msgstr "Texte"
 
+#: likertplot/ui[5][0][1][0].label
 #: multcorresp/ui[6][0][0][1].label
+#: piechart/options/labSize.title
 msgid "Text Size"
 msgstr "Texte"
 
@@ -5015,12 +5073,12 @@ msgstr "Séries temporelles"
 #: barplot/ui[7][0].label
 #: boxplot/ui[6][0].label
 #: histogram/ui[7][0].label
-#: likertplot/ui[7][0].label
+#: likertplot/ui[8][0].label
 #: linechart/ui[5][0].label
 #: lollipop/ui[7][0].label
 #: mrcrosstabs/ui[7][0].label
 #: mrfrequencies/ui[7][0].label
-#: piechart/ui[5][0].label
+#: piechart/ui[6][0].label
 #: qqplot/ui[7][0].label
 #: raincloud/ui[5][0].label
 #: scatterplot/ui[5][0].label
@@ -5079,6 +5137,8 @@ msgid "Total Row"
 msgstr "Ligne Total"
 
 #: likertplot/ui[4][0][0][0].label
+#: piechart/options/labType.title
+#: piechart/ui[2][0][0][0].label
 msgid "Type"
 msgstr ""
 
@@ -5382,7 +5442,7 @@ msgstr "Largeur"
 #: corresp/ui[7][0].label
 #: histogram/ui[5][0][0][0].label
 #: histogram/ui[6][1].label
-#: likertplot/ui[5][0][0][0].label
+#: likertplot/ui[6][0][0][0].label
 #: linechart/options/timeVar.title
 #: linechart/ui[0][0].label
 #: linechart/ui[1][1][0].label
@@ -5438,7 +5498,7 @@ msgstr ""
 #: corresp/ui[7][1].label
 #: histogram/ui[5][0][1][0].label
 #: histogram/ui[6][2].label
-#: likertplot/ui[5][0][1][0].label
+#: likertplot/ui[6][0][1][0].label
 #: linechart/ui[3][0][1][0].label
 #: linechart/ui[4][2].label
 #: lollipop/options/yaxis.title

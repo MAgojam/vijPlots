@@ -76,6 +76,9 @@
             ";": [
                 ""
             ],
+            "[0-9]": [
+                ""
+            ],
             "{detrendStr}{distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
@@ -457,9 +460,6 @@
             "Color Palette": [
                 ""
             ],
-            "Color palette": [
-                ""
-            ],
             "Colors": [
                 ""
             ],
@@ -509,6 +509,9 @@
                 ""
             ],
             "Confidence Band Methods": [
+                ""
+            ],
+            "Confidence interval": [
                 ""
             ],
             "Connect ordinal categories": [
@@ -682,6 +685,9 @@
             "Eigenvalues": [
                 ""
             ],
+            "Element Size": [
+                ""
+            ],
             "Empty value as NA": [
                 ""
             ],
@@ -791,6 +797,12 @@
                 ""
             ],
             "Group (Side by side)": [
+                ""
+            ],
+            "Group + Count": [
+                ""
+            ],
+            "Group + Percent": [
                 ""
             ],
             "Group By": [
@@ -931,6 +943,9 @@
             "Label font size": [
                 ""
             ],
+            "Label Options": [
+                ""
+            ],
             "Label rotation": [
                 ""
             ],
@@ -1007,6 +1022,9 @@
                 ""
             ],
             "Line Width": [
+                ""
+            ],
+            "Linear": [
                 ""
             ],
             "Log-normal": [
@@ -1177,6 +1195,9 @@
             "Observations": [
                 ""
             ],
+            "Offset": [
+                ""
+            ],
             "One variable": [
                 ""
             ],
@@ -1327,6 +1348,9 @@
             "Plots": [
                 ""
             ],
+            "Point": [
+                ""
+            ],
             "Point & Line Size": [
                 ""
             ],
@@ -1453,6 +1477,9 @@
             "Reference Lines": [
                 ""
             ],
+            "Regression Line": [
+                ""
+            ],
             "Reverse disposition": [
                 ""
             ],
@@ -1555,6 +1582,9 @@
             "Show count labels": [
                 ""
             ],
+            "Show line": [
+                ""
+            ],
             "Show Lines": [
                 ""
             ],
@@ -1585,7 +1615,7 @@
             "Side-by-side 2": [
                 ""
             ],
-            "Single color": [
+            "Single": [
                 ""
             ],
             "Singular Value": [
@@ -1600,6 +1630,9 @@
             "Smoking": [
                 ""
             ],
+            "Smooth": [
+                ""
+            ],
             "Solution": [
                 ""
             ],
@@ -1607,6 +1640,9 @@
                 ""
             ],
             "Sorting": [
+                ""
+            ],
+            "Sorting (by median)": [
                 ""
             ],
             "Sorting (Median)": [
