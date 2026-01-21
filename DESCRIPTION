@@ -6,7 +6,8 @@ Author: Vincent Jalby
 Maintainer: Vincent Jalby <vincent.jalby@unilim.fr>
 Description: Main statistical charts (histogram, boxplot, point, bar, line, 
     raincloud...) with many options along with Likert plot, multiple response barplot,
-    Principal Component and (Multiple) Correspondence Analyses. Project source is available at  
+    Principal Component and (Multiple) Correspondence Analyses. 
+    Project source (and changelog) is available at  
     <a href="https://github.com/vjalby/vijPlots" target="_blank">Github</a>.
 License: GPL (>=2)
 Encoding: UTF-8

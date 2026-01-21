@@ -78,8 +78,9 @@ Principal component analysis and (Multiple) Correspondence analysis.
 -   Pie chart label options
 -   Option to show % labels in MR Frequencies & Crosstabs plots
 -   Regression line in scatter plot
--   Cleaning UI (in progress)
--   Spanish translation (in progress)
+-   Option UI tidied up
+-   Spanish translation (coming soon)
+-   Module icon (coming soon)
 
 ### 2025-12-21 / 0.11.1 (beta)
 
