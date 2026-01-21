@@ -175,7 +175,7 @@ options:
       default: 1
 
     - name: order
-      title: "Sorting (Median)"
+      title: "Sorting (by median)"
       type: List
       options:
         - title: Decreasing

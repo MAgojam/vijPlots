@@ -115,9 +115,22 @@ options:
       max: 1600
       default: 400
 
+# textSize replaced with labelSize
     - name: textSize
       type: Number
-      title: Text
+      title: Label
+      hidden: true
+
+    - name: labelSize
+      type: Number
+      title: Label
+      min: 6
+      max: 24
+      default: 11
+
+    - name: groupSize
+      type: Number
+      title: Group
       min: 6
       max: 24
       default: 12

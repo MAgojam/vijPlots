@@ -417,7 +417,6 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # options
-            textSize = self$options$textSize
             accuracy <- as.numeric(self$options$accuracy)
             hLabelWrap <- as.numeric(self$options$hLabelWrap)
             vLabelWrap <- as.numeric(self$options$vLabelWrap)
@@ -444,7 +443,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- ggstats::gglikert(as_tibble(mainData), include = self$options$liks,
                                           sort = self$options$sorting,
                                           add_labels = self$options$addLabels,
-                                          labels_size = 0.8*textSize / .pt ,
+                                          labels_size = self$options$labelSize / .pt , #0.8*textSize / .pt ,
                                           labels_accuracy = accuracy,
                                           labels_hide_below = hideLabelsBelow,
                                           labels_color = self$options$labelColor,
@@ -471,7 +470,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- ggstats::gglikert_stacked(as_tibble(mainData), include = self$options$liks,
                                                   sort = self$options$sorting,
                                                   add_labels = self$options$addLabels,
-                                                  labels_size = 0.8*textSize / .pt ,
+                                                  labels_size = self$options$labelSize / .pt , #0.8*textSize / .pt ,
                                                   labels_accuracy = accuracy,
                                                   labels_hide_below = hideLabelsBelow,
                                                   labels_color = self$options$labelColor,
@@ -481,7 +480,10 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                   variable_labels = variable_labels)
                 plot <- plot + facet_grid(rows = facetRows, labeller = label_wrap_gen(vLabelWrap))
             }
-            plot <- plot + theme(text = element_text(size=textSize))
+
+            # removed in 1.0 (0.11.6)
+            #plot <- plot + theme(text = element_text(size=textSize))
+
             if (self$options$reverseLikert)
                 plot <- plot + scale_fill_brewer(palette = self$options$plotColor, direction = -1)
             else
@@ -491,6 +493,9 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Title & subtitle
             plot <- plot + vijTitlesAndLabels(self$options) + vijTitleAndLabelFormat(self$options, showLegend = TRUE)
+
+            # Adjust strip (= Facet = Group) text (vijTitleAndLabelFormat uses subtittle format)
+            plot <- plot + theme(strip.text = element_text(size = self$options$groupSize, face = "plain", hjust = 0.5))
 
             return(plot)
         },

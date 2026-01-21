@@ -165,7 +165,8 @@ items:
         - ignoreNA
         - plotWidth
         - plotHeight
-        - textSize
+        - labelSize
+        - groupSize
         - accuracy
         - plotColor
         - labelColor

@@ -21,7 +21,9 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             ignoreNA = TRUE,
             plotWidth = 600,
             plotHeight = 400,
-            textSize = 12,
+            textSize = NULL,
+            labelSize = 11,
+            groupSize = 12,
             accuracy = "1",
             vLabelWrap = "20",
             hLabelWrap = "30",
@@ -149,6 +151,16 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..textSize <- jmvcore::OptionNumber$new(
                 "textSize",
                 textSize,
+                hidden=TRUE)
+            private$..labelSize <- jmvcore::OptionNumber$new(
+                "labelSize",
+                labelSize,
+                min=6,
+                max=24,
+                default=11)
+            private$..groupSize <- jmvcore::OptionNumber$new(
+                "groupSize",
+                groupSize,
                 min=6,
                 max=24,
                 default=12)
@@ -423,6 +435,8 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..plotWidth)
             self$.addOption(private$..plotHeight)
             self$.addOption(private$..textSize)
+            self$.addOption(private$..labelSize)
+            self$.addOption(private$..groupSize)
             self$.addOption(private$..accuracy)
             self$.addOption(private$..vLabelWrap)
             self$.addOption(private$..hLabelWrap)
@@ -476,6 +490,8 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
         textSize = function() private$..textSize$value,
+        labelSize = function() private$..labelSize$value,
+        groupSize = function() private$..groupSize$value,
         accuracy = function() private$..accuracy$value,
         vLabelWrap = function() private$..vLabelWrap$value,
         hLabelWrap = function() private$..hLabelWrap$value,
@@ -528,6 +544,8 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..plotWidth = NA,
         ..plotHeight = NA,
         ..textSize = NA,
+        ..labelSize = NA,
+        ..groupSize = NA,
         ..accuracy = NA,
         ..vLabelWrap = NA,
         ..hLabelWrap = NA,
@@ -725,7 +743,8 @@ likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "ignoreNA",
                     "plotWidth",
                     "plotHeight",
-                    "textSize",
+                    "labelSize",
+                    "groupSize",
                     "accuracy",
                     "plotColor",
                     "labelColor",
@@ -793,6 +812,8 @@ likertplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param plotWidth .
 #' @param plotHeight .
 #' @param textSize .
+#' @param labelSize .
+#' @param groupSize .
 #' @param accuracy .
 #' @param vLabelWrap .
 #' @param hLabelWrap .
@@ -862,7 +883,9 @@ likertplot <- function(
     ignoreNA = TRUE,
     plotWidth = 600,
     plotHeight = 400,
-    textSize = 12,
+    textSize,
+    labelSize = 11,
+    groupSize = 12,
     accuracy = "1",
     vLabelWrap = "20",
     hLabelWrap = "30",
@@ -929,6 +952,8 @@ likertplot <- function(
         plotWidth = plotWidth,
         plotHeight = plotHeight,
         textSize = textSize,
+        labelSize = labelSize,
+        groupSize = groupSize,
         accuracy = accuracy,
         vLabelWrap = vLabelWrap,
         hLabelWrap = hLabelWrap,
