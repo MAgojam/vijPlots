@@ -32,13 +32,6 @@ children:
   - type: LayoutBox
     margin: large
     style: inline
-    children:
-      - type: CheckBox
-        name: normalCurve
-        enable: (!group)
-  - type: LayoutBox
-    margin: large
-    style: inline
     stretchFactor: 1
     children:
       - type: LayoutBox
@@ -48,7 +41,7 @@ children:
         stretchFactor: 1
         children:
           - type: Label
-            label: Histogram
+            label: Y-Axis
             children:
               - type: RadioButton
                 name: histtype_count
@@ -96,12 +89,57 @@ children:
                 optionPart: identity
                 label: Overlapping
                 enable: (!(!group))
-              - type: RadioButton
-                name: groupingN_dodge
-                optionName: groupingN
-                optionPart: dodge
-                label: Grouped
-                enable: (!(!group))
+              # - type: RadioButton
+              #   name: groupingN_dodge
+              #   optionName: groupingN
+              #   optionPart: dodge
+              #   label: Grouped
+              #   enable: (!(!group))
+  - type: CollapseBox
+    label: Options
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        cell:
+          column: 0
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Density
+            children:
+              - type: CheckBox
+                name: density
+                children:
+                  - type: TextBox
+                    name: densityOpacity
+                    format: number
+                    enable: (density)
+                  - type: TextBox
+                    name: densityLineSize
+                    format: number
+                    enable: (density)
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Normal Curve
+            children:
+              - type: CheckBox
+                name: normalCurve
+#                enable: (!group)
+                children:
+                  - type: TextBox
+                    name: normalCurveLineSize
+                    format: number
+                    enable: (normalCurve)
+                  - type: CheckBox
+                    name: dashedDensity
+                    enable: (normalCurve)
   - type: CollapseBox
     label: Colors
     collapsed: true

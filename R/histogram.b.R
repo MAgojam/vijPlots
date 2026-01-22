@@ -118,19 +118,44 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             hist_arg[["boundary"]] <- binBoundary
 
             plot <- ggplot(plotData, aes(x = !!xVar, fill = !!groupVar, color = !!groupVar))
+
             plot <- plot + do.call(geom_histogram, hist_arg)
 
-            plot <- plot + labs(x = self$options$aVar)
+            # get binwidth value from ggplot dat
+            ggData <- layer_data(plot)
+            bw <- unique(ggData$xmax - ggData$xmin)[1]
 
             # Normal Curve
-            if (self$options$normalCurve && is.null(groupVar)) {
-                # get binwidth value from ggplot dat
-                ggData <- layer_data(plot)
-                bw <- unique(ggData$xmax - ggData$xmin)[1]
-                if (self$options$histtype == "density")
-                    plot <- plot + ggh4x::stat_theodensity(na.rm=TRUE, color='red', linewidth = 1)
-                else
-                    plot <- plot + ggh4x::stat_theodensity(aes(y = after_stat(count)*bw), na.rm=TRUE, color='red', linewidth = 1)
+            if (self$options$normalCurve) {
+                linetype = ifelse(self$options$dashedDensity,2,1)
+                if (!is.null(groupVar)) {
+                    if (self$options$histtype == "density")
+                        plot <- plot + ggh4x::stat_theodensity(na.rm=TRUE, linewidth = self$options$normalCurveLineSize, linetype = linetype, show.legend = FALSE)
+                    else
+                        plot <- plot + ggh4x::stat_theodensity(aes(y = after_stat(count)*bw), na.rm=TRUE, linewidth = self$options$normalCurveLineSize, linetype = linetype, show.legend = FALSE)
+                } else {
+                    if (self$options$histtype == "density")
+                        plot <- plot + ggh4x::stat_theodensity(na.rm=TRUE, color='red', linewidth = self$options$normalCurveLineSize, linetype = linetype)
+                    else
+                        plot <- plot + ggh4x::stat_theodensity(aes(y = after_stat(count)*bw), na.rm=TRUE, color='red', linewidth = self$options$normalCurveLineSize, linetype = linetype)
+                }
+            }
+
+            # Density
+            if (self$options$density) {
+                if (!is.null(groupVar)) {
+                    if (self$options$histtype == "density") {
+                        plot <- plot + geom_density(aes(y = after_stat(density)), alpha = self$options$densityOpacity, linewidth = self$options$densityLineSize)
+                    } else {
+                        plot <- plot + geom_density(aes(y = after_stat(count) * bw), alpha = self$options$densityOpacity, linewidth = self$options$densityLineSize)
+                    }
+                } else {
+                    if (self$options$histtype == "density") {
+                        plot <- plot + geom_density(aes(y = after_stat(density)), fill = fillColor, alpha = self$options$densityOpacity, linewidth = self$options$densityLineSize)
+                    } else {
+                        plot <- plot + geom_density(aes(y = after_stat(count) * bw), fill = fillColor, alpha = self$options$densityOpacity, linewidth = self$options$densityLineSize)
+                    }
+                }
             }
 
             # Y-Axix label

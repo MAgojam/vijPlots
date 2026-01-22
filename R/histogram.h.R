@@ -11,8 +11,13 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             facet = NULL,
             histtype = "count",
             normalCurve = FALSE,
+            density = FALSE,
+            dashedDensity = FALSE,
             binWidth = 0,
             binBoundary = 0,
+            densityOpacity = 0.2,
+            densityLineSize = 0.5,
+            normalCurveLineSize = 1,
             fillColor = "#A6C4F1",
             borderColor = "black",
             grouping = "none",
@@ -96,6 +101,14 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "normalCurve",
                 normalCurve,
                 default=FALSE)
+            private$..density <- jmvcore::OptionBool$new(
+                "density",
+                density,
+                default=FALSE)
+            private$..dashedDensity <- jmvcore::OptionBool$new(
+                "dashedDensity",
+                dashedDensity,
+                default=FALSE)
             private$..binWidth <- jmvcore::OptionNumber$new(
                 "binWidth",
                 binWidth,
@@ -106,6 +119,24 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 binBoundary,
                 min=0,
                 default=0)
+            private$..densityOpacity <- jmvcore::OptionNumber$new(
+                "densityOpacity",
+                densityOpacity,
+                default=0.2,
+                min=0,
+                max=1)
+            private$..densityLineSize <- jmvcore::OptionNumber$new(
+                "densityLineSize",
+                densityLineSize,
+                default=0.5,
+                min=0.1,
+                max=5)
+            private$..normalCurveLineSize <- jmvcore::OptionNumber$new(
+                "normalCurveLineSize",
+                normalCurveLineSize,
+                default=1,
+                min=0.1,
+                max=5)
             private$..fillColor <- jmvcore::OptionList$new(
                 "fillColor",
                 fillColor,
@@ -161,8 +192,7 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 groupingN,
                 options=list(
                     "identity",
-                    "stack",
-                    "dodge"),
+                    "stack"),
                 default="stack")
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
@@ -471,8 +501,13 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..facet)
             self$.addOption(private$..histtype)
             self$.addOption(private$..normalCurve)
+            self$.addOption(private$..density)
+            self$.addOption(private$..dashedDensity)
             self$.addOption(private$..binWidth)
             self$.addOption(private$..binBoundary)
+            self$.addOption(private$..densityOpacity)
+            self$.addOption(private$..densityLineSize)
+            self$.addOption(private$..normalCurveLineSize)
             self$.addOption(private$..fillColor)
             self$.addOption(private$..borderColor)
             self$.addOption(private$..grouping)
@@ -521,8 +556,13 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         facet = function() private$..facet$value,
         histtype = function() private$..histtype$value,
         normalCurve = function() private$..normalCurve$value,
+        density = function() private$..density$value,
+        dashedDensity = function() private$..dashedDensity$value,
         binWidth = function() private$..binWidth$value,
         binBoundary = function() private$..binBoundary$value,
+        densityOpacity = function() private$..densityOpacity$value,
+        densityLineSize = function() private$..densityLineSize$value,
+        normalCurveLineSize = function() private$..normalCurveLineSize$value,
         fillColor = function() private$..fillColor$value,
         borderColor = function() private$..borderColor$value,
         grouping = function() private$..grouping$value,
@@ -570,8 +610,13 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..facet = NA,
         ..histtype = NA,
         ..normalCurve = NA,
+        ..density = NA,
+        ..dashedDensity = NA,
         ..binWidth = NA,
         ..binBoundary = NA,
+        ..densityOpacity = NA,
+        ..densityLineSize = NA,
+        ..normalCurveLineSize = NA,
         ..fillColor = NA,
         ..borderColor = NA,
         ..grouping = NA,
@@ -665,8 +710,13 @@ histogramBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param facet .
 #' @param histtype .
 #' @param normalCurve .
+#' @param density .
+#' @param dashedDensity .
 #' @param binWidth .
 #' @param binBoundary .
+#' @param densityOpacity .
+#' @param densityLineSize .
+#' @param normalCurveLineSize .
 #' @param fillColor .
 #' @param borderColor .
 #' @param grouping .
@@ -721,8 +771,13 @@ histogram <- function(
     facet,
     histtype = "count",
     normalCurve = FALSE,
+    density = FALSE,
+    dashedDensity = FALSE,
     binWidth = 0,
     binBoundary = 0,
+    densityOpacity = 0.2,
+    densityLineSize = 0.5,
+    normalCurveLineSize = 1,
     fillColor = "#A6C4F1",
     borderColor = "black",
     grouping = "none",
@@ -787,8 +842,13 @@ histogram <- function(
         facet = facet,
         histtype = histtype,
         normalCurve = normalCurve,
+        density = density,
+        dashedDensity = dashedDensity,
         binWidth = binWidth,
         binBoundary = binBoundary,
+        densityOpacity = densityOpacity,
+        densityLineSize = densityLineSize,
+        normalCurveLineSize = normalCurveLineSize,
         fillColor = fillColor,
         borderColor = borderColor,
         grouping = grouping,

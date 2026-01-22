@@ -49,7 +49,17 @@ options:
       default: count
 
     - name: normalCurve
-      title: Show Normal Curve
+      title: Show normal curve
+      type: Bool
+      default: false
+
+    - name: density
+      title: Show density
+      type: Bool
+      default: false
+
+    - name: dashedDensity
+      title: Dashed line
       type: Bool
       default: false
 
@@ -64,6 +74,27 @@ options:
       title: Position [boundary]
       min: 0
       default: 0
+
+    - name: densityOpacity
+      title: Density opacity
+      type: Number
+      default: 0.2
+      min: 0
+      max: 1
+
+    - name: densityLineSize
+      title: Line size
+      type: Number
+      default: 0.5
+      min: 0.1
+      max: 5
+
+    - name: normalCurveLineSize
+      title: Line size
+      type: Number
+      default: 1
+      min: 0.1
+      max: 5
 
     - name: fillColor
       title: Fill
@@ -160,8 +191,8 @@ options:
           name:  identity
         - title: Stacked
           name:  stack
-        - title: Grouped
-          name:  dodge
+        # - title: Grouped
+        #   name:  dodge
       default: stack
 
     - name: colorPalette
