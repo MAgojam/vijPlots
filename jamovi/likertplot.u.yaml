@@ -331,7 +331,7 @@ children:
                     name: labelColor
                     enable: (addLabels)
   - type: CollapseBox
-    label: Plot Size & Options
+    label: Plot & Text Sizes
     collapsed: true
     stretchFactor: 1
     children:

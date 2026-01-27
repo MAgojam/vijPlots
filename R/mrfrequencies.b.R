@@ -145,19 +145,38 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 plot <- plot + geom_col(aes(fill = Option), color = borderColor) + guides(fill = FALSE)
             }
 
+            if (self$options$labelPosition == "top")
+                textColor <- "black"
+            else if (self$options$textColor == "auto" && self$options$singleColor)
+                textColor <- ggstats::hex_bw(oneColorOfPalette)
+            else
+                textColor <- self$options$textColor
+
             # Labels
-            if( self$options$showLabels ) {
-                if (self$options$textColor == "auto") { # using hex_bw
-                    if (self$options$singleColor) {
-                        plot <- plot + geom_text(color = ggstats::hex_bw(oneColorOfPalette),
-                                                    position = position_stack(vjust = 0.5), fontface = "bold")
-                    } else {
-                        plot <- plot + geom_text(aes(fill = Option, color = after_scale(hex_bw(.data$fill))),
-                                                 position = position_stack(vjust = 0.5), fontface = "bold")
-                    }
+            if (self$options$labelPosition == "middle") {
+                vjust1 <- 0.5
+                hjust2 <- 0.5
+                vjust2 <- 0.5
+            } else {
+                vjust1 <- 1
+                if (self$options$horizontal) {
+                    hjust2 <- -0.2
+                    vjust2 <- 0.5
                 } else {
-                    plot <- plot + geom_text(color = self$options$textColor,
-                                             position = position_stack(vjust = 0.5), fontface = "bold")
+                    hjust2 <- 0.5
+                    vjust2 <- -0.6
+                }
+            }
+
+            if (self$options$showLabels) {
+                if (self$options$textColor == "auto" && self$options$labelPosition == "middle" && !self$options$singleColor) {
+                    plot <- plot + geom_text(aes(fill = Option, color = after_scale(hex_bw(.data$fill))),
+                             position = position_stack(vjust = vjust1), vjust = vjust2, hjust = hjust2,
+                             fontface = "bold", size = self$options$labelFontSize / .pt)
+                } else {
+                    plot <- plot + geom_text(color = textColor,
+                                             position = position_stack(vjust = vjust1), vjust = vjust2, hjust = hjust2,
+                                             fontface = "bold", size = self$options$labelFontSize / .pt)
                 }
             }
 
@@ -169,10 +188,17 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 if (self$options$xAxisRangeType == "manual") {
                     plot <- plot + coord_flip(ylim = c(self$options$xAxisRangeMin/yScaleFactor, self$options$xAxisRangeMax/yScaleFactor))
                 } else {
-                    plot <- plot + coord_flip()
+                    if (self$options$showLabels && self$options$labelPosition == "top")
+                        plot <- plot + coord_flip(clip = "off", ylim = layer_scales(plot)$y$get_limits()*1.1) # Gives more room for labels !
+                    else
+                        plot <- plot + coord_flip(clip = "off")
                 }
-            } else if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
-                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
+            } else {
+                if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                    plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
+                } else {
+                    plot <- plot + coord_cartesian(clip = "off")
+                }
             }
 
             # Titles & Labels

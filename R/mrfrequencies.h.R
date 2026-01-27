@@ -16,6 +16,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             order = "decreasing",
             showTotal = TRUE,
             showCounts = TRUE,
+            labelPosition = "middle",
             showResponses = TRUE,
             showCases = TRUE,
             yaxis = "cases",
@@ -25,6 +26,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             size = "medium",
             plotWidth = 0,
             plotHeight = 0,
+            labelFontSize = 12,
             colorPalette = "jmv",
             singleColor = TRUE,
             colorNo = 1,
@@ -117,6 +119,13 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 "showCounts",
                 showCounts,
                 default=TRUE)
+            private$..labelPosition <- jmvcore::OptionList$new(
+                "labelPosition",
+                labelPosition,
+                options=list(
+                    "middle",
+                    "top"),
+                default="middle")
             private$..showResponses <- jmvcore::OptionBool$new(
                 "showResponses",
                 showResponses,
@@ -172,6 +181,12 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 min=0,
                 max=1600,
                 default=0)
+            private$..labelFontSize <- jmvcore::OptionNumber$new(
+                "labelFontSize",
+                labelFontSize,
+                min=8,
+                max=24,
+                default=12)
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -226,7 +241,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "tidy::alger",
                     "tidy::rainbow",
                     "tidy::metro",
-                    "custom::cdes"),
+                    "custom::lemovice"),
                 default="jmv")
             private$..singleColor <- jmvcore::OptionBool$new(
                 "singleColor",
@@ -456,6 +471,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..order)
             self$.addOption(private$..showTotal)
             self$.addOption(private$..showCounts)
+            self$.addOption(private$..labelPosition)
             self$.addOption(private$..showResponses)
             self$.addOption(private$..showCases)
             self$.addOption(private$..yaxis)
@@ -465,6 +481,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..size)
             self$.addOption(private$..plotWidth)
             self$.addOption(private$..plotHeight)
+            self$.addOption(private$..labelFontSize)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..singleColor)
             self$.addOption(private$..colorNo)
@@ -510,6 +527,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         order = function() private$..order$value,
         showTotal = function() private$..showTotal$value,
         showCounts = function() private$..showCounts$value,
+        labelPosition = function() private$..labelPosition$value,
         showResponses = function() private$..showResponses$value,
         showCases = function() private$..showCases$value,
         yaxis = function() private$..yaxis$value,
@@ -519,6 +537,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         size = function() private$..size$value,
         plotWidth = function() private$..plotWidth$value,
         plotHeight = function() private$..plotHeight$value,
+        labelFontSize = function() private$..labelFontSize$value,
         colorPalette = function() private$..colorPalette$value,
         singleColor = function() private$..singleColor$value,
         colorNo = function() private$..colorNo$value,
@@ -563,6 +582,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         ..order = NA,
         ..showTotal = NA,
         ..showCounts = NA,
+        ..labelPosition = NA,
         ..showResponses = NA,
         ..showCases = NA,
         ..yaxis = NA,
@@ -572,6 +592,7 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         ..size = NA,
         ..plotWidth = NA,
         ..plotHeight = NA,
+        ..labelFontSize = NA,
         ..colorPalette = NA,
         ..singleColor = NA,
         ..colorNo = NA,
@@ -706,6 +727,7 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param order .
 #' @param showTotal .
 #' @param showCounts .
+#' @param labelPosition .
 #' @param showResponses .
 #' @param showCases .
 #' @param yaxis .
@@ -715,6 +737,7 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param size .
 #' @param plotWidth .
 #' @param plotHeight .
+#' @param labelFontSize .
 #' @param colorPalette .
 #' @param singleColor .
 #' @param colorNo .
@@ -774,6 +797,7 @@ mrfrequencies <- function(
     order = "decreasing",
     showTotal = TRUE,
     showCounts = TRUE,
+    labelPosition = "middle",
     showResponses = TRUE,
     showCases = TRUE,
     yaxis = "cases",
@@ -783,6 +807,7 @@ mrfrequencies <- function(
     size = "medium",
     plotWidth = 0,
     plotHeight = 0,
+    labelFontSize = 12,
     colorPalette = "jmv",
     singleColor = TRUE,
     colorNo = 1,
@@ -842,6 +867,7 @@ mrfrequencies <- function(
         order = order,
         showTotal = showTotal,
         showCounts = showCounts,
+        labelPosition = labelPosition,
         showResponses = showResponses,
         showCases = showCases,
         yaxis = yaxis,
@@ -851,6 +877,7 @@ mrfrequencies <- function(
         size = size,
         plotWidth = plotWidth,
         plotHeight = plotHeight,
+        labelFontSize = labelFontSize,
         colorPalette = colorPalette,
         singleColor = singleColor,
         colorNo = colorNo,

@@ -439,9 +439,6 @@
             "Cauchy": [
                 ""
             ],
-            "CDES": [
-                ""
-            ],
             "Center": [
                 "Centrer"
             ],
@@ -589,6 +586,9 @@
             "Dark gray": [
                 ""
             ],
+            "Dashed line": [
+                "Pointillée"
+            ],
             "Data": [
                 "Données"
             ],
@@ -606,6 +606,9 @@
             ],
             "Density": [
                 "Densité"
+            ],
+            "Density opacity": [
+                "Alpha"
             ],
             "Descending": [
                 "Décroissant"
@@ -946,6 +949,9 @@
             "Label Options": [
                 "Options des étiquettes"
             ],
+            "Label Position": [
+                "Position des étiquettes"
+            ],
             "Label rotation": [
                 "Rotation des étiquettes"
             ],
@@ -969,6 +975,9 @@
             ],
             "Legend Title": [
                 "Titre de la légende"
+            ],
+            "Lémovice": [
+                ""
             ],
             "Level": [
                 "Niveau"
@@ -1021,6 +1030,9 @@
             "Line Chart": [
                 "Graphique en courbes"
             ],
+            "Line size": [
+                "Épaisseur"
+            ],
             "Line Width": [
                 "Ligne"
             ],
@@ -1042,7 +1054,7 @@
             "Lollipop Size & Colors": [
                 "Taille et couleurs des sucettes"
             ],
-            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
+            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
             ],
             "Mann-Whitney U": [
@@ -1096,6 +1108,9 @@
             "Method:": [
                 "Méthode :"
             ],
+            "Middle": [
+                "Milieu"
+            ],
             "Min": [
                 ""
             ],
@@ -1143,6 +1158,9 @@
             ],
             "Normal": [
                 "Normal"
+            ],
+            "Normal Curve": [
+                "Courbe normale"
             ],
             "Normalization": [
                 "Normalisation"
@@ -1311,6 +1329,12 @@
             ],
             "Plot": [
                 "Graphique"
+            ],
+            "Plot & Element Sizes": [
+                "Tailles du graphique et des éléments"
+            ],
+            "Plot & Text Sizes": [
+                "Tailles du graphique et du texte"
             ],
             "Plot Color": [
                 "Couleurs du graphique"
@@ -1483,6 +1507,9 @@
             "Reverse disposition": [
                 "Renverser la disposition"
             ],
+            "Reverse stack order": [
+                "Inverser les piles"
+            ],
             "Reverse the staking order": [
                 "Inverser les modalités"
             ],
@@ -1582,6 +1609,9 @@
             "Show count labels": [
                 "Afficher les effectifs"
             ],
+            "Show density": [
+                ""
+            ],
             "Show line": [
                 "Afficher la courbe"
             ],
@@ -1591,7 +1621,7 @@
             "Show Mean": [
                 "Afficher la moyenne"
             ],
-            "Show Normal Curve": [
+            "Show normal curve": [
                 "Afficher la courbe normale"
             ],
             "Show outliers": [
@@ -1612,8 +1642,8 @@
             "Side-by-side": [
                 "Juxtaposé"
             ],
-            "Side-by-side 2": [
-                "Juxtaposé 2"
+            "Side-by-side (tight)": [
+                "Juxtaposé (étroit)"
             ],
             "Single": [
                 "Unique"
@@ -1768,7 +1798,28 @@
             "Tidy up levels": [
                 "Corriger les niveaux"
             ],
-            "Tidyplot": [
+            "Tidy:Alger": [
+                ""
+            ],
+            "Tidy:Apple": [
+                ""
+            ],
+            "Tidy:Candy": [
+                ""
+            ],
+            "Tidy:Friendly": [
+                ""
+            ],
+            "Tidy:Ibm": [
+                ""
+            ],
+            "Tidy:Metro": [
+                ""
+            ],
+            "Tidy:Rainbow": [
+                ""
+            ],
+            "Tidy:Seaside": [
                 ""
             ],
             "Time Series": [
@@ -1885,6 +1936,12 @@
             "Width": [
                 "Largeur"
             ],
+            "Within categories": [
+                "dans les catégories"
+            ],
+            "Within groups": [
+                "dans les groupes"
+            ],
             "X-Axis": [
                 "Axe X"
             ],
@@ -1897,11 +1954,8 @@
             "Y-Axis": [
                 "Axe Y"
             ],
-            "Y-axis (with groups)": [
-                "Axe Y (avec groupes)"
-            ],
-            "Y-axis (without group)": [
-                "Axe Y (sans groupe)"
+            "Y-axis": [
+                ""
             ],
             "Y-Axis Range": [
                 ""

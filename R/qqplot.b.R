@@ -199,7 +199,7 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             plot <- plot + ggtheme + guides(fill = guide_legend(override.aes = list(alpha = 1))) #+ labs(title = plotTitle)
 
-            plot <- plot + theme(text=element_text(size=as.numeric(self$options$textSize)))
+            #plot <- plot + theme(text=element_text(size=as.numeric(self$options$textSize)))
 
             # Axis Limits
             if (self$options$yAxisRangeType == "manual")

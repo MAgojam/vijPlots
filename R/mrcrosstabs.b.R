@@ -162,13 +162,11 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else
                 borderColor = self$options$borderColor
 
-            if (self$options$bartype == "stack") {
-                textPosition <- position_stack(vjust = 0.5)
-                yShiftRatio <- 1
-            } else {
-                textPosition <- position_dodge(width = 0.9)
-                yShiftRatio <- 2
-            }
+            # Reverse stack option
+            bartype <- self$options$bartype
+            reverseStack <- (self$options$reverseStack && bartype == "stack")
+            if (reverseStack)
+                bartype <- position_stack(reverse = TRUE)
 
             # Data
             plotData <- cbind("Options" = factor(rownames(image$state), levels=rownames(image$state)),image$state)
@@ -188,16 +186,47 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 gLab <- groupVar
             }
             plot <- ggplot(plotData, aes(x=!!xVarName, y = Count, label = doNumber(Count)))
-            plot <- plot + geom_col( aes(fill=!!zVarName), position = self$options$bartype, color = borderColor)
+            plot <- plot + geom_col( aes(fill=!!zVarName), position = bartype, color = borderColor)
 
-            # Labels
+            #### Labels ####
             if( self$options$showLabels ) {
-                if (self$options$textColor == "auto") { # using hex_bw
-                    plot <- plot + geom_text(aes(fill = !!zVarName, y = Count / yShiftRatio, color = after_scale(hex_bw(.data$fill))),
-                                             position = textPosition, fontface = "bold")
+                vjust2 <- 0.5
+                hjust2 <- 0.5
+                vfactor <- 1
+
+                if (self$options$bartype == "stack") {
+                    if(reverseStack)
+                        labelPosition <- position_stack(vjust = 0.5, reverse = TRUE)
+                    else
+                        labelPosition <- position_stack(vjust = 0.5)
                 } else {
-                    plot <- plot + geom_text(aes(fill = !!zVarName, y = Count / yShiftRatio), color = self$options$textColor,
-                                             position = textPosition, fontface = "bold")
+                    if (self$options$labelPosition == "middle") {
+                        labelPosition <- position_dodge(width = 0.9)
+                        vfactor <- 2
+                    } else {
+                        labelPosition <- position_dodge(width = 0.9)
+                        if (self$options$horizontal) {
+                            hjust2 <- -0.2
+                        } else {
+                            vjust2 <- -0.6
+                        }
+                    }
+                }
+
+                if (self$options$labelPosition == "top")
+                    textColor <- "black"
+                else
+                    textColor <- self$options$textColor
+
+
+                if (self$options$textColor == "auto" && self$options$labelPosition == "middle") { # using hex_bw
+                    plot <- plot + geom_text(aes(fill = !!zVarName, y = Count / vfactor, color = after_scale(hex_bw(.data$fill))),
+                                             position = labelPosition, vjust = vjust2, hjust = hjust2,
+                                             fontface = "bold", size = self$options$labelFontSize / .pt)
+                } else {
+                    plot <- plot + geom_text(aes(fill = !!zVarName, y = Count / vfactor), color = textColor,
+                                             position = labelPosition, vjust = vjust2, hjust = hjust2,
+                                             fontface = "bold", size = self$options$labelFontSize / .pt)
                 }
             }
 
@@ -227,10 +256,17 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if (self$options$xAxisRangeType == "manual") {
                     plot <- plot + coord_flip(ylim = c(self$options$xAxisRangeMin/yScaleFactor, self$options$xAxisRangeMax/yScaleFactor))
                 } else {
-                    plot <- plot + coord_flip()
+                    if (self$options$showLabels && self$options$labelPosition == "top")
+                        plot <- plot + coord_flip(clip = "off", ylim = layer_scales(plot)$y$get_limits()*1.1) # Gives more room for labels !
+                    else
+                        plot <- plot + coord_flip(clip = "off")
                 }
-            } else if (self$options$yAxisRangeType == "manual") {
-                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
+            } else {
+                if (self$options$yAxisRangeType == "manual") {
+                    plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
+                } else {
+                    plot <- plot + coord_cartesian(clip = "off")
+                }
             }
 
             # Titles & Labels

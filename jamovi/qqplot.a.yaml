@@ -143,13 +143,6 @@ options:
       max: 1600
       default: 0
 
-    - name: textSize
-      type: Number
-      title: Text
-      min: 6
-      max: 24
-      default: 16
-
     - name: paramMethod
       title: ""
       type: List

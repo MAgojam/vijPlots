@@ -131,7 +131,7 @@ children:
                     name: lineSE
                     enable: (regLine)
   - type: CollapseBox
-    label: Plot Size
+    label: Plot & Element Sizes
     collapsed: true
     stretchFactor: 1
     children:

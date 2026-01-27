@@ -439,9 +439,6 @@
             "Cauchy": [
                 ""
             ],
-            "CDES": [
-                ""
-            ],
             "Center": [
                 ""
             ],
@@ -589,6 +586,9 @@
             "Dark gray": [
                 ""
             ],
+            "Dashed line": [
+                ""
+            ],
             "Data": [
                 ""
             ],
@@ -605,6 +605,9 @@
                 ""
             ],
             "Density": [
+                ""
+            ],
+            "Density opacity": [
                 ""
             ],
             "Descending": [
@@ -946,6 +949,9 @@
             "Label Options": [
                 ""
             ],
+            "Label Position": [
+                ""
+            ],
             "Label rotation": [
                 ""
             ],
@@ -968,6 +974,9 @@
                 ""
             ],
             "Legend Title": [
+                ""
+            ],
+            "Lémovice": [
                 ""
             ],
             "Level": [
@@ -1021,6 +1030,9 @@
             "Line Chart": [
                 ""
             ],
+            "Line size": [
+                ""
+            ],
             "Line Width": [
                 ""
             ],
@@ -1042,7 +1054,7 @@
             "Lollipop Size & Colors": [
                 ""
             ],
-            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
+            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
             ],
             "Mann-Whitney U": [
@@ -1096,6 +1108,9 @@
             "Method:": [
                 ""
             ],
+            "Middle": [
+                ""
+            ],
             "Min": [
                 ""
             ],
@@ -1142,6 +1157,9 @@
                 ""
             ],
             "Normal": [
+                ""
+            ],
+            "Normal Curve": [
                 ""
             ],
             "Normalization": [
@@ -1310,6 +1328,12 @@
                 ""
             ],
             "Plot": [
+                ""
+            ],
+            "Plot & Element Sizes": [
+                ""
+            ],
+            "Plot & Text Sizes": [
                 ""
             ],
             "Plot Color": [
@@ -1582,6 +1606,9 @@
             "Show count labels": [
                 ""
             ],
+            "Show density": [
+                ""
+            ],
             "Show line": [
                 ""
             ],
@@ -1591,7 +1618,7 @@
             "Show Mean": [
                 ""
             ],
-            "Show Normal Curve": [
+            "Show normal curve": [
                 ""
             ],
             "Show outliers": [
@@ -1612,7 +1639,7 @@
             "Side-by-side": [
                 ""
             ],
-            "Side-by-side 2": [
+            "Side-by-side (tight)": [
                 ""
             ],
             "Single": [
@@ -1643,9 +1670,6 @@
                 ""
             ],
             "Sorting (by median)": [
-                ""
-            ],
-            "Sorting (Median)": [
                 ""
             ],
             "Spectral": [
@@ -1771,7 +1795,28 @@
             "Tidy up levels": [
                 ""
             ],
-            "Tidyplot": [
+            "Tidy:Alger": [
+                ""
+            ],
+            "Tidy:Apple": [
+                ""
+            ],
+            "Tidy:Candy": [
+                ""
+            ],
+            "Tidy:Friendly": [
+                ""
+            ],
+            "Tidy:Ibm": [
+                ""
+            ],
+            "Tidy:Metro": [
+                ""
+            ],
+            "Tidy:Rainbow": [
+                ""
+            ],
+            "Tidy:Seaside": [
                 ""
             ],
             "Time Series": [
@@ -1888,6 +1933,12 @@
             "Width": [
                 ""
             ],
+            "Within categories": [
+                ""
+            ],
+            "Within groups": [
+                ""
+            ],
             "X-Axis": [
                 ""
             ],
@@ -1900,10 +1951,7 @@
             "Y-Axis": [
                 ""
             ],
-            "Y-axis (with groups)": [
-                ""
-            ],
-            "Y-axis (without group)": [
+            "Y-axis": [
                 ""
             ],
             "Y-Axis Range": [

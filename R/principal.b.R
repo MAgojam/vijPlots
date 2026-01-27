@@ -74,12 +74,14 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Set variable names
             private$.setVarNames(c(self$options$vars, self$options$labelVar, self$options$groupVar))
 
-            # remove cases with with NA in vars
-            data <- self$data[complete.cases(self$data[,self$options$vars]),]
+            #### Prepare data ####
+            data <- self$data[,c(self$options$vars, self$options$labelVar, self$options$groupVar)]
             # Be sure data is numeric (for ordinal data)
             for (aVar in self$options$vars) {
-                data[[aVar]] <- as.numeric(data[[aVar]])
+                data[[aVar]] <- jmvcore::toNumeric(data[[aVar]])
             }
+            # remove cases with NA in vars
+            data <- data[complete.cases(data[,self$options$vars]),]
 
             # Verify that cor Matrice is positive definite
             corrMat <- cor(data[,self$options$vars])

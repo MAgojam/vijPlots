@@ -172,10 +172,6 @@ children:
                     name: plotHeight
                     format: number
                     suffix: px
-                  - type: TextBox
-                    name: textSize
-                    format: number
-                    suffix: pt
           - type: LayoutBox
             cell:
               column: 1

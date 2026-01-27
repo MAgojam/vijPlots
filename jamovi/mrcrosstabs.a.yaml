@@ -135,6 +135,11 @@ options:
           name:  stack
       default: dodge
 
+    - name: reverseStack
+      title: Reverse stack order
+      type: Bool
+      default: false
+
     - name: horizontal
       title: Horizontal plot
       type: Bool
@@ -144,6 +149,16 @@ options:
       title: Show count labels
       type: Bool
       default: false
+
+    - name: labelPosition
+      title: Label Position
+      type: List
+      options:
+        - title: Middle
+          name:  middle
+        - title: Top
+          name:  top
+      default: middle
 
     - name: accuracy
       title: "% accuracy"
@@ -189,6 +204,13 @@ options:
       min: 0
       max: 1600
       default: 0
+
+    - name: labelFontSize
+      type: Number
+      title: Label
+      min: 8
+      max: 24
+      default: 12
 
     - name: colorPalette
       title: Palette
@@ -294,8 +316,8 @@ options:
           name: tidy::rainbow
         - title: Tidy:Metro
           name: tidy::metro
-        - title: CDES
-          name: custom::cdes
+        - title: Lémovice
+          name: custom::lemovice
       default: jmv
 
     - name: borderColor

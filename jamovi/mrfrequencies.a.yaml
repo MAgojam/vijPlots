@@ -78,6 +78,16 @@ options:
       type: Bool
       default: true
 
+    - name: labelPosition
+      title: Label Position
+      type: List
+      options:
+        - title: Middle
+          name:  middle
+        - title: Top
+          name:  top
+      default: middle
+
     - name: showResponses
       title: "% of Responses"
       type: Bool
@@ -154,6 +164,13 @@ options:
       min: 0
       max: 1600
       default: 0
+
+    - name: labelFontSize
+      type: Number
+      title: Label
+      min: 8
+      max: 24
+      default: 12
 
     - name: colorPalette
       title: Palette
@@ -259,8 +276,8 @@ options:
           name: tidy::rainbow
         - title: Tidy:Metro
           name: tidy::metro
-        - title: CDES
-          name: custom::cdes
+        - title: Lémovice
+          name: custom::lemovice
       default: jmv
 
     - name: singleColor
@@ -290,7 +307,7 @@ options:
       default: none
 
     - name: textColor
-      title: Text
+      title: Label
       type: List
       options:
         - title: Black

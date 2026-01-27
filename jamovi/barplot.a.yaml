@@ -65,8 +65,13 @@ options:
           name:  none
       default: none
 
-    - name: yaxis1var
-      title: Y-axis (without group)
+    - name: reverseStack
+      title: Reverse stack order
+      type: Bool
+      default: false
+
+    - name: yaxis
+      title: Y-axis
       type: List
       options:
         - title: Count
@@ -74,6 +79,16 @@ options:
         - title: Percent
           name:  percent
       default: count
+
+    - name: percentWithin
+      title: ''
+      type: List
+      options:
+        - title: Within groups
+          name:  group
+        - title: Within categories
+          name:  category
+      default: group
 
     - name: singleColor
       title: Same color for all bars
@@ -87,19 +102,39 @@ options:
       max: 255
       default: 1
 
-    - name: position
+    - name: barType
       title: Bar Type
       type: List
       options:
         - title: Side-by-side
-          name:  dodge
-        - title: Side-by-side 2
           name:  dodge2
+        - title: Side-by-side (tight)
+          name:  dodge
         - title: Stacked
           name:  stack
-        - title: "Stacked 100%"
-          name:  fill
-      default: dodge
+      default: dodge2
+
+    - name: labelPosition
+      title: Label Position
+      type: List
+      options:
+        - title: Middle
+          name:  middle
+        - title: Top
+          name:  top
+      default: middle
+
+    - name: accuracy
+      title: "% accuracy"
+      type: List
+      options:
+        - title: "1"
+          name:  "1"
+        - title: "0.1"
+          name:  "0.1"
+        - title: "0.01"
+          name: "0.01"
+      default: "0.1"
 
     - name: colorPalette
       title: Palette
@@ -205,8 +240,8 @@ options:
           name: tidy::rainbow
         - title: Tidy:Metro
           name: tidy::metro
-        - title: CDES
-          name: custom::cdes
+        - title: Lémovice
+          name: custom::lemovice
       default: jmv
 
     - name: borderColor
@@ -224,7 +259,7 @@ options:
       default: none
 
     - name: textColor
-      title: Text
+      title: Label
       type: List
       options:
         - title: Black
@@ -234,18 +269,6 @@ options:
         - title: Auto
           name:  auto
       default: auto
-
-    - name: accuracy
-      title: "% accuracy"
-      type: List
-      options:
-        - title: "1"
-          name:  "1"
-        - title: "0.1"
-          name:  "0.1"
-        - title: "0.01"
-          name: "0.01"
-      default: "0.1"
 
     - name: plotWidth
       type: Number
@@ -260,6 +283,13 @@ options:
       min: 0
       max: 1600
       default: 0
+
+    - name: labelFontSize
+      type: Number
+      title: Label
+      min: 8
+      max: 24
+      default: 12
 
     - name: facetBy
       title: Facet

@@ -163,7 +163,7 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "tidy::alger",
                     "tidy::rainbow",
                     "tidy::metro",
-                    "custom::cdes"),
+                    "custom::lemovice"),
                 default="jmv")
             private$..singleColor <- jmvcore::OptionBool$new(
                 "singleColor",
