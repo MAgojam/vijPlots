@@ -199,13 +199,28 @@
             "10 years": [
                 ""
             ],
+            "10-20-2035": [
+                ""
+            ],
+            "10/20/35": [
+                ""
+            ],
             "2 weeks": [
                 ""
             ],
             "20 June 2035": [
                 ""
             ],
+            "20 October 2035": [
+                ""
+            ],
+            "20-10-2035": [
+                ""
+            ],
             "20/06/35": [
+                ""
+            ],
+            "20/10/35": [
                 ""
             ],
             "2035 June": [
@@ -214,7 +229,19 @@
             "2035 June 20": [
                 ""
             ],
+            "2035 Oct.": [
+                ""
+            ],
+            "2035 October": [
+                ""
+            ],
+            "2035 October 20": [
+                ""
+            ],
             "2035-06-20": [
+                ""
+            ],
+            "2035-10-20": [
                 ""
             ],
             "3 months": [
@@ -586,6 +613,9 @@
             "Date Breaks": [
                 ""
             ],
+            "Debug": [
+                ""
+            ],
             "Decreasing": [
                 ""
             ],
@@ -881,6 +911,12 @@
                 ""
             ],
             "Italic": [
+                ""
+            ],
+            "Jan.,Feb.,Mar.,Apr.,May,June,July,Aug.,Sept.,Oct.,Nov.,Dec.": [
+                ""
+            ],
+            "January,February,March,April,May,June,July,August,September,October,November,December": [
                 ""
             ],
             "jmv Blue": [
@@ -1199,6 +1235,24 @@
                 ""
             ],
             "Observations": [
+                ""
+            ],
+            "Oct.": [
+                ""
+            ],
+            "Oct. 2035": [
+                ""
+            ],
+            "Oct. 35": [
+                ""
+            ],
+            "October": [
+                ""
+            ],
+            "October 2035": [
+                ""
+            ],
+            "October 35": [
                 ""
             ],
             "Offset": [

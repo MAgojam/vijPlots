@@ -265,7 +265,6 @@ msgid "0.1"
 msgstr ""
 
 #: areachart/options/displayFormat/%m/%d/%y.title
-#: linechart/options/displayFormat/%m/%d/%y.title
 msgid "06/20/35"
 msgstr ""
 
@@ -378,6 +377,14 @@ msgstr ""
 #: linechart/options/dateBreak/10 year.title
 msgid "10 years"
 msgstr "10 ans"
+
+#: linechart/options/displayFormat/%m-%d-%Y.title
+msgid "10-20-2035"
+msgstr ""
+
+#: linechart/options/displayFormat/%m/%d/%y.title
+msgid "10/20/35"
+msgstr ""
 
 #: likertplot/options/legendFontSize/11.title
 msgid "11"
@@ -811,13 +818,23 @@ msgid "20"
 msgstr ""
 
 #: areachart/options/displayFormat/%e %B %Y.title
-#: linechart/options/displayFormat/%e %B %Y.title
 msgid "20 June 2035"
 msgstr "20 juin 2035"
 
+#: linechart/options/displayFormat/%e %B %Y.title
+msgid "20 October 2035"
+msgstr "20 octobre 2035"
+
+#: linechart/options/displayFormat/%d-%m-%Y.title
+msgid "20-10-2035"
+msgstr ""
+
 #: areachart/options/displayFormat/%d/%m/%y.title
-#: linechart/options/displayFormat/%d/%m/%y.title
 msgid "20/06/35"
+msgstr ""
+
+#: linechart/options/displayFormat/%d/%m/%y.title
+msgid "20/10/35"
 msgstr ""
 
 #: areachart/options/displayFormat/%Y.title
@@ -826,18 +843,31 @@ msgid "2035"
 msgstr ""
 
 #: areachart/options/displayFormat/%Y %B.title
-#: linechart/options/displayFormat/%Y %B.title
 msgid "2035 June"
 msgstr "2035 juin"
 
 #: areachart/options/displayFormat/%Y %B %e .title
-#: linechart/options/displayFormat/%Y %B %e .title
 msgid "2035 June 20"
 msgstr "2035 juin 20"
 
+#: linechart/options/displayFormat/%Y %b.title
+msgid "2035 Oct."
+msgstr "2035 oct."
+
+#: linechart/options/displayFormat/%Y %B.title
+msgid "2035 October"
+msgstr "2023 octobre"
+
+#: linechart/options/displayFormat/%Y %B %e.title
+msgid "2035 October 20"
+msgstr "2035 octobre 20"
+
 #: areachart/options/displayFormat/%Y-%m-%d.title
-#: linechart/options/displayFormat/%Y-%m-%d.title
 msgid "2035-06-20"
+msgstr ""
+
+#: linechart/options/displayFormat/%Y-%m-%d.title
+msgid "2035-10-20"
 msgstr ""
 
 #: areachart/options/titleFontSize/22.title
@@ -1951,6 +1981,10 @@ msgstr "Tranformation des données"
 msgid "Date Breaks"
 msgstr "Intervalle"
 
+#: linechart/results/text.title
+msgid "Debug"
+msgstr ""
+
 #: barplot/options/order/decreasing.title
 #: barplot/ui[1][2][0]/order_decreasing.label
 #: boxplot/options/order/decreasing.title
@@ -2039,6 +2073,7 @@ msgstr ""
 msgid "Dim"
 msgstr ""
 
+#: R/corresp.b.R
 #: R/multcorresp.b.R
 #: corresp/results/eigenvalues.columns.title
 #: multcorresp/results/eigenvalues.columns.title
@@ -2140,7 +2175,6 @@ msgid "Empty value as NA"
 msgstr "Considérer les valeurs vides comme manquantes"
 
 #: R/areachart.b.R
-#: R/linechart.b.R
 msgid "en_US.utf-8"
 msgstr "fr_FR.utf-8"
 
@@ -2663,6 +2697,14 @@ msgstr "ISO (A-M-J)"
 msgid "Italic"
 msgstr "Italique"
 
+#: R/linechart.b.R
+msgid "Jan.,Feb.,Mar.,Apr.,May,June,July,Aug.,Sept.,Oct.,Nov.,Dec."
+msgstr "janv.,févr.,mars,avril,mai,juin,juil.,août,sept.,oct.,nov.,déc."
+
+#: R/linechart.b.R
+msgid "January,February,March,April,May,June,July,August,September,October,November,December"
+msgstr "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre"
+
 #: histogram/options/fillColor/#A6C4F1.title
 #: lollipop/options/dotColor/#A6C4F1.title
 #: lollipop/options/lineColor/#A6C4F1.title
@@ -2724,17 +2766,14 @@ msgid "jmv Yellow"
 msgstr "Jaune jmv"
 
 #: areachart/options/displayFormat/%b.title
-#: linechart/options/displayFormat/%b.title
 msgid "Jun"
 msgstr "jui"
 
 #: areachart/options/displayFormat/%B.title
-#: linechart/options/displayFormat/%B.title
 msgid "June"
 msgstr "juin"
 
 #: areachart/options/displayFormat/%B %Y.title
-#: linechart/options/displayFormat/%B %Y.title
 msgid "June 2035"
 msgstr "juin 2035"
 
@@ -3554,6 +3593,30 @@ msgstr "Résumé des observations"
 #: principal/results/obsTable.title
 msgid "Observations"
 msgstr ""
+
+#: linechart/options/displayFormat/%b.title
+msgid "Oct."
+msgstr ""
+
+#: linechart/options/displayFormat/%b %Y.title
+msgid "Oct. 2035"
+msgstr ""
+
+#: linechart/options/displayFormat/%b %y.title
+msgid "Oct. 35"
+msgstr ""
+
+#: linechart/options/displayFormat/%B.title
+msgid "October"
+msgstr "Octobre"
+
+#: linechart/options/displayFormat/%B %Y.title
+msgid "October 2035"
+msgstr "Octobre 2035"
+
+#: linechart/options/displayFormat/%B %y.title
+msgid "October 35"
+msgstr "Octobre 35"
 
 #: piechart/options/labOffset.title
 msgid "Offset"

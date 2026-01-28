@@ -153,12 +153,18 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 displayFormat,
                 options=list(
                     "%Y-%m-%d",
+                    "%m-%d-%Y",
+                    "%d-%m-%Y",
                     "%m/%d/%y",
                     "%d/%m/%y",
-                    "%Y %B %e ",
+                    "%Y %B %e",
                     "%e %B %Y",
                     "%B %Y",
+                    "%B %y",
+                    "%b %Y",
+                    "%b %y",
                     "%Y %B",
+                    "%Y %b",
                     "%b",
                     "%B",
                     "%Y"),
@@ -531,6 +537,7 @@ linechartResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "linechartResults",
     inherit = jmvcore::Group,
     active = list(
+        text = function() private$.items[["text"]],
         plot = function() private$.items[["plot"]]),
     private = list(),
     public=list(
@@ -539,6 +546,10 @@ linechartResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="",
                 title="Line Chart")
+            self$add(jmvcore::Preformatted$new(
+                options=options,
+                name="text",
+                title="Debug"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
@@ -615,6 +626,7 @@ linechartBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param xAxisLabelRotation .
 #' @return A results object containing:
 #' \tabular{llllll}{
+#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'

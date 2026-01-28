@@ -77,7 +77,7 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if (!is.null(timeVarAsDate)) {
                     plotData[[timeVar]] <- timeVarAsDate
                 } else {
-                    jmvcore::reject(paste0(self$options$timeVar, .(" doesn't have a valid date format.")))
+                    jmvcore::reject(paste(self$options$timeVar, .("doesn't have a valid date format.")))
                     timeVarIsDate <- FALSE
                 }
             }
@@ -97,7 +97,6 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     plot <- plot + geom_line(aes(y = !!aVar, color = !!varName), size = lineWidth) #, linetype = as.numeric(self$options$lineType))
                 else
                     if (length(depVars) > 1) {
-#                        plot <- plot + geom_line(aes(y = !!aVar, color = interaction(!!varName, !!groupVar, sep=' : ') ), size = 1, linetype = as.numeric(self$options$lineType))
                         plot <- plot + geom_line(aes(y = !!aVar, color = !!varName, linetype = !!groupVar), size = lineWidth)
                     } else {
                         plot <- plot + geom_line(aes(y = !!aVar, color = !!groupVar ), size = lineWidth) #, linetype = as.numeric(self$options$lineType))
@@ -111,8 +110,7 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color")
 
             if (timeVarIsDate) {
-                #Sys.setlocale("LC_TIME", .("en_US.utf-8"))
-                plot <- plot + scale_x_date(date_labels = self$options$displayFormat, date_breaks = self$options$dateBreak)
+                plot <- plot + scale_x_date(labels = private$.myDateLabel, date_breaks = self$options$dateBreak)
             }
 
             if (length(depVars) > 1 ){
@@ -141,11 +139,46 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options, showLegend = showLegend)
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
+            #self$results$text$setContent(plot)
+
             return(plot)
+        },
+        .myDateLabel = function(dateVector) {
+            mapply(private$.formatDate, dateVector)
+        },
+        .formatDate = function(aDate) {
+            longMonths <- .("January,February,March,April,May,June,July,August,September,October,November,December")
+            longMonths <- strsplit(longMonths, ",")[[1]]
+            shortMonths <- .("Jan.,Feb.,Mar.,Apr.,May,June,July,Aug.,Sept.,Oct.,Nov.,Dec.")
+            shortMonths <- strsplit(shortMonths, ",")[[1]]
+            shortMonth <- shortMonths[as.integer(format.Date(aDate, "%m"))]
+            longMonth <- longMonths[as.integer(format.Date(aDate, "%m"))]
+            firstUp <- function(s){paste0(toupper(substring(s, 1, 1)), substring(s, 2))}
+            if (self$options$displayFormat == "%Y %B %e")
+                return(paste(format.Date(aDate, "%Y"), longMonth, trimws(format.Date(aDate, "%e"))))
+            else if (self$options$displayFormat == "%e %B %Y")
+                return(paste(format.Date(aDate, "%e"), longMonth, format.Date(aDate, "%Y")))
+            else if (self$options$displayFormat == "%B %Y")
+                return(paste(firstUp(longMonth), format.Date(aDate, "%Y")))
+            else if (self$options$displayFormat == "%B %y")
+                return(paste(firstUp(longMonth), format.Date(aDate, "%y")))
+            else if (self$options$displayFormat == "%b %Y")
+                return(paste(firstUp(shortMonth), format.Date(aDate, "%Y")))
+            else if (self$options$displayFormat == "%b %y")
+                return(paste(firstUp(shortMonth), format.Date(aDate, "%y")))
+            else if (self$options$displayFormat == "%Y %B")
+                return(paste(format.Date(aDate, "%Y"), longMonth))
+            else if (self$options$displayFormat == "%Y %b")
+                return(paste(format.Date(aDate, "%Y"), shortMonth))
+            else if (self$options$displayFormat == "%b")
+                return(firstUp(shortMonth))
+            else if (self$options$displayFormat == "%B")
+                return(firstUp(longMonth))
+            else
+                return(format.Date(aDate, self$options$displayFormat))
         },
         .convertToDate = function(dAsString, fmt) {
             n <- length(na.omit(dAsString))
-
             if (fmt == "iso")
                 dAsDate <- as.Date(dAsString, optional = TRUE, tryFormats = c("%Y-%m-%d", "%Y/%m/%d", "%Y.%m.%d", "%Y%m%d"))
             else if (fmt == "us")
@@ -154,10 +187,8 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 dAsDate <- as.Date(dAsString, optional = TRUE, tryFormats = c("%d-%m-%Y", "%d/%m/%Y", "%d.%m.%Y", "%d%m%Y"))
             else
                 dAsDate <- NULL
-
             if (length(na.omit(dAsDate)) != n || min(as.numeric(format(dAsDate, "%Y")), na.rm=T) < 100)
                 dAsDate <- NULL
-
             return(dAsDate)
         })
 )
