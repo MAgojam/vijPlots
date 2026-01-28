@@ -8,11 +8,6 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: R/areachart.b.R
-#: R/linechart.b.R
-msgid " doesn't have a valid date format."
-msgstr " n'a pas un format de date valide."
-
 #: mrcrosstabs/options/separator.default
 #: mrfrequencies/options/separator.default
 msgid ";"
@@ -23,8 +18,8 @@ msgid "[0-9]"
 msgstr ""
 
 #: R/qqplot.b.R
-msgid "{detrendStr}{distribStr} {typeStr} Plot of {varStr}"
-msgstr "Diagramme {typeStr} {distribStr} {detrendStr}de {varStr}"
+msgid "{distribStr} {typeStr} Plot of {varStr}"
+msgstr "Diagramme {typeStr} {distribStr} de {varStr}"
 
 #: R/corresp.b.R
 msgid "{normalization} normalization"
@@ -45,14 +40,6 @@ msgstr "Rotation {rotation} avec normalisation de Kaiser"
 #: R/principal.b.R
 msgid "{rotation} rotation with Kaiser normalization was used."
 msgstr "La rotation {rotation} avec normalisation de Kaiser a été utilisée."
-
-#: R/qqplot.b.R
-msgid "{stdStr}Sample Quantiles"
-msgstr "Quantiles observés{stdStr}"
-
-#: R/qqplot.b.R
-msgid "{stdStr}Sample Quantiles Deviation"
-msgstr "Écarts des quantiles observés{stdStr}"
 
 #: R/multcorresp.b.R
 msgid "* : Suppl. variable(s)"
@@ -1780,10 +1767,6 @@ msgid "Component"
 msgstr "Composante"
 
 #: R/principal.b.R
-msgid "Component "
-msgstr "Composante "
-
-#: R/principal.b.R
 msgid "Component Plot"
 msgstr "Graphique des composantes"
 
@@ -2024,8 +2007,8 @@ msgid "Descending"
 msgstr "Décroissant"
 
 #: R/qqplot.b.R
-msgid "Detrended "
-msgstr "redressé "
+msgid "Detrended {distribStr} {typeStr} Plot of {varStr}"
+msgstr "Diagramme {typeStr} {distribStr} redressé de {varStr}"
 
 #: qqplot/options/detrend.title
 msgid "Detrended Plot"
@@ -2056,13 +2039,10 @@ msgstr ""
 msgid "Dim"
 msgstr ""
 
+#: R/multcorresp.b.R
 #: corresp/results/eigenvalues.columns.title
 #: multcorresp/results/eigenvalues.columns.title
 msgid "Dimension"
-msgstr ""
-
-#: R/multcorresp.b.R
-msgid "Dimension "
 msgstr ""
 
 #: R/multcorresp.b.R
@@ -2092,6 +2072,11 @@ msgstr "Affichage"
 #: qqplot/options/distrib.title
 msgid "Distribution"
 msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "doesn't have a valid date format."
+msgstr "n'a pas un format de date valide."
 
 #: lollipop/options/dotColor.title
 msgid "Dot"
@@ -4614,6 +4599,14 @@ msgstr "Probabilités observées"
 msgid "Sample Probability Deviation"
 msgstr "Écarts des probabilités observées"
 
+#: R/qqplot.b.R
+msgid "Sample Quantiles"
+msgstr "Quantiles observés"
+
+#: R/qqplot.b.R
+msgid "Sample Quantiles Deviation"
+msgstr "Écarts des quantiles observés"
+
 #: multcorresp/ui[10].label
 #: principal/ui[8].label
 msgid "Save"
@@ -4919,8 +4912,12 @@ msgid "Standardize variables"
 msgstr "Standardiser les variables"
 
 #: R/qqplot.b.R
-msgid "Standardized "
-msgstr " standardisés"
+msgid "Standardized Sample Quantiles"
+msgstr "Quantiles observés standardisés"
+
+#: R/qqplot.b.R
+msgid "Standardized Sample Quantiles Deviation"
+msgstr "Écarts des quantiles observés standardisés"
 
 #: R/qqplot.b.R
 msgid "Standardized values"
@@ -5084,8 +5081,8 @@ msgid "Text Size"
 msgstr "Texte"
 
 #: R/principal.b.R
-msgid "The correlation matrix is not positive definite. Computations may not be accurate.\r\n"
-msgstr ""
+msgid "The correlation matrix is not positive definite. Computations may not be accurate."
+msgstr "La matrice des corrélations n'est pas définie-posivite. Les calculs peuvent être approximatifs."
 
 #: R/multcorresp.b.R
 msgid "The number of dimensions cannot be greater than {max}."

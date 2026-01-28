@@ -405,8 +405,8 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             dim1 <- self$options$xaxis
             dim2 <- self$options$yaxis
-            dim1name <- paste0(.("Dimension "), dim1, " (", round(res$eig[dim1,2]*100,1),"%)")
-            dim2name <- paste0(.("Dimension "), dim2, " (", round(res$eig[dim2,2]*100,1),"%)")
+            dim1name <- paste0(.("Dimension"), " ", dim1, " (", round(res$eig[dim1,2]*100,1),"%)")
+            dim2name <- paste0(.("Dimension"), " ", dim2, " (", round(res$eig[dim2,2]*100,1),"%)")
 
             data <- res$allvar$eta2[,c(dim1, dim2)]
             colnames(data) <- c("x","y")
@@ -436,8 +436,8 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             #### Define the dimensions ####
             dim1 <- self$options$xaxis
             dim2 <- self$options$yaxis
-            dim1name <- paste0(.("Dimension "), dim1, " (", round(res$eig[dim1,2]*100,1),"%)")
-            dim2name <- paste0(.("Dimension "), dim2, " (", round(res$eig[dim2,2]*100,1),"%)")
+            dim1name <- paste0(.("Dimension"), " ", dim1, " (", round(res$eig[dim1,2]*100,1),"%)")
+            dim2name <- paste0(.("Dimension"), " ", dim2, " (", round(res$eig[dim2,2]*100,1),"%)")
 
             #### Prepare data ####
             if (self$options$normalization == "principal") {

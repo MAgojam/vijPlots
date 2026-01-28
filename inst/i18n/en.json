@@ -70,16 +70,13 @@
                 "plural_forms": "nplurals=2; plural=(n != 1)",
                 "lang": "en"
             },
-            " doesn't have a valid date format.": [
-                ""
-            ],
             ";": [
                 ""
             ],
             "[0-9]": [
                 ""
             ],
-            "{detrendStr}{distribStr} {typeStr} Plot of {varStr}": [
+            "{distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
             "{normalization} normalization": [
@@ -95,12 +92,6 @@
                 ""
             ],
             "{rotation} rotation with Kaiser normalization was used.": [
-                ""
-            ],
-            "{stdStr}Sample Quantiles": [
-                ""
-            ],
-            "{stdStr}Sample Quantiles Deviation": [
                 ""
             ],
             "* : Suppl. variable(s)": [
@@ -496,9 +487,6 @@
             "Component": [
                 ""
             ],
-            "Component ": [
-                ""
-            ],
             "Component Plot": [
                 ""
             ],
@@ -613,7 +601,7 @@
             "Descending": [
                 ""
             ],
-            "Detrended ": [
+            "Detrended {distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
             "Detrended Plot": [
@@ -629,9 +617,6 @@
                 ""
             ],
             "Dimension": [
-                ""
-            ],
-            "Dimension ": [
                 ""
             ],
             "Discrimination": [
@@ -650,6 +635,9 @@
                 ""
             ],
             "Distribution": [
+                ""
+            ],
+            "doesn't have a valid date format.": [
                 ""
             ],
             "Dot": [
@@ -1507,6 +1495,9 @@
             "Reverse disposition": [
                 ""
             ],
+            "Reverse stack order": [
+                ""
+            ],
             "Reverse the staking order": [
                 ""
             ],
@@ -1565,6 +1556,12 @@
                 ""
             ],
             "Sample Probability Deviation": [
+                ""
+            ],
+            "Sample Quantiles": [
+                ""
+            ],
+            "Sample Quantiles Deviation": [
                 ""
             ],
             "Save": [
@@ -1702,7 +1699,10 @@
             "Standardize variables": [
                 ""
             ],
-            "Standardized ": [
+            "Standardized Sample Quantiles": [
+                ""
+            ],
+            "Standardized Sample Quantiles Deviation": [
                 ""
             ],
             "Standardized values": [
@@ -1780,7 +1780,7 @@
             "Text Size": [
                 ""
             ],
-            "The correlation matrix is not positive definite. Computations may not be accurate.\r\n": [
+            "The correlation matrix is not positive definite. Computations may not be accurate.": [
                 ""
             ],
             "The number of dimensions cannot be greater than {max}.": [

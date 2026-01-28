@@ -70,17 +70,14 @@
                 "plural_forms": "nplurals=2; plural=(n != 1)",
                 "lang": "fr"
             },
-            " doesn't have a valid date format.": [
-                " n'a pas un format de date valide."
-            ],
             ";": [
                 ""
             ],
             "[0-9]": [
                 ""
             ],
-            "{detrendStr}{distribStr} {typeStr} Plot of {varStr}": [
-                "Diagramme {typeStr} {distribStr} {detrendStr}de {varStr}"
+            "{distribStr} {typeStr} Plot of {varStr}": [
+                "Diagramme {typeStr} {distribStr} de {varStr}"
             ],
             "{normalization} normalization": [
                 "Normalisation {normalization}"
@@ -96,12 +93,6 @@
             ],
             "{rotation} rotation with Kaiser normalization was used.": [
                 "La rotation {rotation} avec normalisation de Kaiser a été utilisée."
-            ],
-            "{stdStr}Sample Quantiles": [
-                "Quantiles observés{stdStr}"
-            ],
-            "{stdStr}Sample Quantiles Deviation": [
-                "Écarts des quantiles observés{stdStr}"
             ],
             "* : Suppl. variable(s)": [
                 "* : Variable(s) sup."
@@ -496,9 +487,6 @@
             "Component": [
                 "Composante"
             ],
-            "Component ": [
-                "Composante "
-            ],
             "Component Plot": [
                 "Graphique des composantes"
             ],
@@ -613,8 +601,8 @@
             "Descending": [
                 "Décroissant"
             ],
-            "Detrended ": [
-                "redressé "
+            "Detrended {distribStr} {typeStr} Plot of {varStr}": [
+                "Diagramme {typeStr} {distribStr} redressé de {varStr}"
             ],
             "Detrended Plot": [
                 "Diagramme redressé"
@@ -629,9 +617,6 @@
                 ""
             ],
             "Dimension": [
-                ""
-            ],
-            "Dimension ": [
                 ""
             ],
             "Discrimination": [
@@ -651,6 +636,9 @@
             ],
             "Distribution": [
                 ""
+            ],
+            "doesn't have a valid date format.": [
+                "n'a pas un format de date valide."
             ],
             "Dot": [
                 "Point"
@@ -1570,6 +1558,12 @@
             "Sample Probability Deviation": [
                 "Écarts des probabilités observées"
             ],
+            "Sample Quantiles": [
+                "Quantiles observés"
+            ],
+            "Sample Quantiles Deviation": [
+                "Écarts des quantiles observés"
+            ],
             "Save": [
                 "Enregistrer"
             ],
@@ -1705,8 +1699,11 @@
             "Standardize variables": [
                 "Standardiser les variables"
             ],
-            "Standardized ": [
-                " standardisés"
+            "Standardized Sample Quantiles": [
+                "Quantiles observés standardisés"
+            ],
+            "Standardized Sample Quantiles Deviation": [
+                "Écarts des quantiles observés standardisés"
             ],
             "Standardized values": [
                 "Valeurs standardisées"
@@ -1783,8 +1780,8 @@
             "Text Size": [
                 "Texte"
             ],
-            "The correlation matrix is not positive definite. Computations may not be accurate.\r\n": [
-                ""
+            "The correlation matrix is not positive definite. Computations may not be accurate.": [
+                "La matrice des corrélations n'est pas définie-posivite. Les calculs peuvent être approximatifs."
             ],
             "The number of dimensions cannot be greater than {max}.": [
                 "Le nombre de dimensions ne peut pas être supérieur à {max}."

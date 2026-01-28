@@ -135,12 +135,19 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             self$results$plot$setVisible(TRUE)
 
             # Define the title of the plot (it will be set at the end)
-            plotTitle <- jmvcore::format(.("{detrendStr}{distribStr} {typeStr} Plot of {varStr}"),
-                                         detrendStr = ifelse(detrend, .("Detrended "), "") ,
-                                         distribStr = .(private$.distTitleName(distrib)),
-                                         typeStr = ifelse(self$options$type == "PP", .("P-P"), .("Q-Q")),
-                                         varStr = ifelse(self$options$transLog, paste0("LN(",self$options$dep,")"), self$options$dep)
-                                    )
+            if (detrend) {
+                plotTitle <- jmvcore::format(.("Detrended {distribStr} {typeStr} Plot of {varStr}"),
+                                             distribStr = .(private$.distTitleName(distrib)),
+                                             typeStr = ifelse(self$options$type == "PP", .("P-P"), .("Q-Q")),
+                                             varStr = ifelse(self$options$transLog, paste0("LN(",self$options$dep,")"), self$options$dep)
+                                        )
+            } else {
+                plotTitle <- jmvcore::format(.("{distribStr} {typeStr} Plot of {varStr}"),
+                                             distribStr = .(private$.distTitleName(distrib)),
+                                             typeStr = ifelse(self$options$type == "PP", .("P-P"), .("Q-Q")),
+                                             varStr = ifelse(self$options$transLog, paste0("LN(",self$options$dep,")"), self$options$dep)
+                )
+            }
 
             # Populate the Parameters table
             self$results$paramTable$getColumn('var')$setTitle(private$.distTitleName(distrib))
@@ -176,10 +183,17 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
                 plot <- plot + qqplotr::stat_qq_point(distribution = distrib, identity = identity, dparams = params,
                                                       detrend = detrend, key_glyph = draw_key_rect)
-                if (detrend)
-                    yLab <- jmvcore::format(.("{stdStr}Sample Quantiles Deviation"), stdStr = ifelse(self$options$standardize, .("Standardized "),""))
-                else
-                    yLab <- jmvcore::format(.("{stdStr}Sample Quantiles"), stdStr = ifelse(self$options$standardize, .("Standardized "),""))
+                if (detrend) {
+                    if (self$options$standardize)
+                        yLab <- .("Standardized Sample Quantiles Deviation")
+                    else
+                        yLab <- .("Sample Quantiles Deviation")
+                } else {
+                    if (self$options$standardize)
+                        yLab <- .("Standardized Sample Quantiles")
+                    else
+                        yLab <- .("Sample Quantiles")
+                }
                 xLab <- .("Theoretical Quantiles")
             } else { # PP
                 if (self$options$band)
@@ -197,9 +211,7 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 yLab <-  ifelse(detrend, .("Sample Probability Deviation"), .("Sample Probabilities"))
             }
 
-            plot <- plot + ggtheme + guides(fill = guide_legend(override.aes = list(alpha = 1))) #+ labs(title = plotTitle)
-
-            #plot <- plot + theme(text=element_text(size=as.numeric(self$options$textSize)))
+            plot <- plot + ggtheme + guides(fill = guide_legend(override.aes = list(alpha = 1)))
 
             # Axis Limits
             if (self$options$yAxisRangeType == "manual")

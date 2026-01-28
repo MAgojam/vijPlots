@@ -85,10 +85,13 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Verify that cor Matrice is positive definite
             corrMat <- cor(data[,self$options$vars])
-            if ( abs(det(corrMat)) < .Machine$double.eps)
-                warningMsg <- .("The correlation matrix is not positive definite. Computations may not be accurate.\r\n")
-            else
-                warningMsg <- ""
+            if (abs(det(corrMat)) < .Machine$double.eps) {
+                warningMsg <- .("The correlation matrix is not positive definite. Computations may not be accurate.")
+                warningNotice <- jmvcore::Notice$new(self$options, type = NoticeType$WARNING,
+                                                     name = '.warning',
+                                                     content = warningMsg)
+                self$results$insert(1, warningNotice)
+            }
 
             #### KMO & Bartlett's test ####
             if (self$options$showKMO) {
@@ -133,8 +136,12 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             )
 
             if (res$rotation != self$options$rotation) {
-                warningMsg <- paste0(warningMsg, jmvcore::format(.("Unable to use {rotation} rotation."), rotation = rotationName))
+                rotationMsg <- jmvcore::format(.("Unable to use {rotation} rotation."), rotation = rotationName)
                 rotationNote <- .("No rotation used.")
+                rotationNotice <- jmvcore::Notice$new(self$options, type = NoticeType$WARNING,
+                                                         name = '.rotationMsg',
+                                                         content = rotationMsg)
+                self$results$insert(1, rotationNotice)
             } else if (self$options$rotation != "none") {
                 if (self$options$kaiser) {
                     rotationNote <- jmvcore::format(.("{rotation} rotation with Kaiser normalization was used."), rotation = rotationName)
@@ -145,14 +152,6 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             } else {
                 rotationNote <- NULL
-            }
-
-            # Warning (rotation / positive definite)
-            if (warningMsg !=""){
-                weightsNotice <- jmvcore::Notice$new(self$options, type = NoticeType$WARNING,
-                                                     name = '.weights',
-                                                     content = warningMsg)
-                self$results$insert(1, weightsNotice)
             }
 
             #### Summary Table ####
@@ -318,8 +317,8 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             propIn <- round(100*res$SSL/eigenSum,1)
             dim1 <- self$options$xaxis
             dim2 <- self$options$yaxis
-            dim1name <- paste0(.("Component "), dim1, " (", propIn[dim1],"%)")
-            dim2name <- paste0(.("Component "), dim2, " (", propIn[dim2],"%)")
+            dim1name <- paste0(.("Component"), " ", dim1, " (", propIn[dim1],"%)")
+            dim2name <- paste0(.("Component"), " ", dim2, " (", propIn[dim2],"%)")
 
             type <- self$options$biplotType
             if (plotType == "biplot" && type == "formPlot") {

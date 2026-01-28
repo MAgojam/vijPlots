@@ -8,11 +8,6 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: R/areachart.b.R
-#: R/linechart.b.R
-msgid " doesn't have a valid date format."
-msgstr ""
-
 #: mrcrosstabs/options/separator.default
 #: mrfrequencies/options/separator.default
 msgid ";"
@@ -23,7 +18,7 @@ msgid "[0-9]"
 msgstr ""
 
 #: R/qqplot.b.R
-msgid "{detrendStr}{distribStr} {typeStr} Plot of {varStr}"
+msgid "{distribStr} {typeStr} Plot of {varStr}"
 msgstr ""
 
 #: R/corresp.b.R
@@ -44,14 +39,6 @@ msgstr ""
 
 #: R/principal.b.R
 msgid "{rotation} rotation with Kaiser normalization was used."
-msgstr ""
-
-#: R/qqplot.b.R
-msgid "{stdStr}Sample Quantiles"
-msgstr ""
-
-#: R/qqplot.b.R
-msgid "{stdStr}Sample Quantiles Deviation"
 msgstr ""
 
 #: R/multcorresp.b.R
@@ -1780,10 +1767,6 @@ msgid "Component"
 msgstr ""
 
 #: R/principal.b.R
-msgid "Component "
-msgstr ""
-
-#: R/principal.b.R
 msgid "Component Plot"
 msgstr ""
 
@@ -2024,7 +2007,7 @@ msgid "Descending"
 msgstr ""
 
 #: R/qqplot.b.R
-msgid "Detrended "
+msgid "Detrended {distribStr} {typeStr} Plot of {varStr}"
 msgstr ""
 
 #: qqplot/options/detrend.title
@@ -2056,13 +2039,10 @@ msgstr ""
 msgid "Dim"
 msgstr ""
 
+#: R/multcorresp.b.R
 #: corresp/results/eigenvalues.columns.title
 #: multcorresp/results/eigenvalues.columns.title
 msgid "Dimension"
-msgstr ""
-
-#: R/multcorresp.b.R
-msgid "Dimension "
 msgstr ""
 
 #: R/multcorresp.b.R
@@ -2091,6 +2071,11 @@ msgstr ""
 
 #: qqplot/options/distrib.title
 msgid "Distribution"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "doesn't have a valid date format."
 msgstr ""
 
 #: lollipop/options/dotColor.title
@@ -4439,6 +4424,11 @@ msgstr ""
 msgid "Reverse disposition"
 msgstr ""
 
+#: barplot/options/reverseStack.title
+#: mrcrosstabs/options/reverseStack.title
+msgid "Reverse stack order"
+msgstr ""
+
 #: likertplot/options/reverseLikert.title
 msgid "Reverse the staking order"
 msgstr ""
@@ -4607,6 +4597,14 @@ msgstr ""
 
 #: R/qqplot.b.R
 msgid "Sample Probability Deviation"
+msgstr ""
+
+#: R/qqplot.b.R
+msgid "Sample Quantiles"
+msgstr ""
+
+#: R/qqplot.b.R
+msgid "Sample Quantiles Deviation"
 msgstr ""
 
 #: multcorresp/ui[10].label
@@ -4914,7 +4912,11 @@ msgid "Standardize variables"
 msgstr ""
 
 #: R/qqplot.b.R
-msgid "Standardized "
+msgid "Standardized Sample Quantiles"
+msgstr ""
+
+#: R/qqplot.b.R
+msgid "Standardized Sample Quantiles Deviation"
 msgstr ""
 
 #: R/qqplot.b.R
@@ -5079,7 +5081,7 @@ msgid "Text Size"
 msgstr ""
 
 #: R/principal.b.R
-msgid "The correlation matrix is not positive definite. Computations may not be accurate.\r\n"
+msgid "The correlation matrix is not positive definite. Computations may not be accurate."
 msgstr ""
 
 #: R/multcorresp.b.R

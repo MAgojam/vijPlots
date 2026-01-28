@@ -512,10 +512,10 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Plot axis
             xaxis <- self$options$xaxis
             xaxisdim <- paste("Dim", xaxis)
-            dim1name <- paste0("Dimension ",xaxis, " (", percentInertia[xaxis], "%)")
+            dim1name <- paste0(.("Dimension"), " ", xaxis, " (", percentInertia[xaxis], "%)")
             yaxis <- self$options$yaxis
             yaxisdim <- paste("Dim", yaxis)
-            dim2name <- paste0("Dimension ",yaxis, " (", percentInertia[yaxis], "%)")
+            dim2name <- paste0(.("Dimension"), " ", yaxis, " (", percentInertia[yaxis], "%)")
 
             # Building the plot
             plot <-  ggplot(ptcoord, aes(x = ptcoord[,xaxisdim], y = ptcoord[,yaxisdim], color = ptcoord$sup, shape = ptcoord$sup))
