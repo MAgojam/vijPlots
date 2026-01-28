@@ -164,7 +164,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Reverse stack option
             bartype <- self$options$bartype
-            reverseStack <- (self$options$reverseStack && bartype == "stack")
+            reverseStack <- (!self$options$reverseStack && bartype == "stack")
             if (reverseStack)
                 bartype <- position_stack(reverse = TRUE)
 

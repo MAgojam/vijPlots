@@ -90,7 +90,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else if (self$options$order == "increasing")
                 plotData[[category]] <- forcats::fct_rev(forcats::fct_infreq(plotData[[category]]))
 
-            reverseStack <- (self$options$reverseStack && positionStack)
+            reverseStack <- (!self$options$reverseStack && positionStack)
 
             if (reverseStack)
                 position <- position_stack(reverse = TRUE)

@@ -111,7 +111,7 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color")
 
             if (timeVarIsDate) {
-                Sys.setlocale("LC_TIME", .("en_US.utf-8"))
+                #Sys.setlocale("LC_TIME", .("en_US.utf-8"))
                 plot <- plot + scale_x_date(date_labels = self$options$displayFormat, date_breaks = self$options$dateBreak)
             }
 
