@@ -50,7 +50,7 @@ vijPalette = function(pal, type = "fill", themePal = NULL) {
             customColors <- c("#16144e", "#00dc8c", "#5fcdcd", "#007387", "#efbe7c", "#8c87a4", "#ff6e5a", "#bc6479", "#8faadc", "#006d4d")
         else if (palName == "tidyplots")
             customColors <- c("#0072B2","#56B4E9","#009E73","#F5C710","#E69F00","#D55E00") # unused
-        return(pal_manual(values = customColors, type = "colour"))
+        return(scales::pal_manual(values = customColors, type = "colour"))
     } else {
         return(NULL)
     }

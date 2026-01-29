@@ -11,7 +11,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             userHeight <- as.numeric(self$options$plotHeight)
             # Check min size
             if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject(.("Plot size must be at least 200px (or 0 = default)"))
+                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
 
             if (userWidth * userHeight == 0) {
                 if( !is.null(self$options$columns)) {
@@ -96,7 +96,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 position <- position_stack(reverse = TRUE)
 
             # Percent format (scales)
-            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
+            doPercent <- scales::label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
             if (self$options$horizontal)
                 doNumber <- function(x){ifelse(x<10, paste0(" ",x), x)}
             else
@@ -160,10 +160,10 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                             color = borderColor)
             } else {
                 if (singleColor)
-                    plot <- plot + geom_bar(aes(y = after_stat(prop)), stat = StatProp, position = position,
+                    plot <- plot + geom_bar(aes(y = after_stat(prop)), stat = ggstats::StatProp, position = position,
                                             color = borderColor, fill = oneColorOfPalette)
                 else
-                    plot <- plot + geom_bar(aes(y = after_stat(prop)), stat = StatProp, position = position,
+                    plot <- plot + geom_bar(aes(y = after_stat(prop)), stat = ggstats::StatProp, position = position,
                                             color = borderColor)
             }
 
@@ -199,7 +199,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if (yaxis == "count") {
                     if (textColor == "auto") {
                         plot <- plot + geom_text(aes(y = after_stat(count)/vfactor, label = doNumber(after_stat(count)),
-                                                                                        color = after_scale(hex_bw(.data$fill))),
+                                                                                        color = after_scale(ggstats::hex_bw(.data$fill))),
                                                  stat = "count", position = labPosition, vjust = vjust2, hjust = hjust2,
                                                  fontface = "bold", size = self$options$labelFontSize / .pt)
                     } else {
@@ -210,12 +210,12 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 } else { # Percent
                     if (textColor == "auto") {
                         plot <- plot + geom_text(aes(y = after_stat(prop)/vfactor, label = doPercent(after_stat(prop)),
-                                                                                        color = after_scale(hex_bw(.data$fill))),
-                                                 stat = StatProp, position = labPosition, vjust = vjust2, hjust = hjust2,
+                                                                                        color = after_scale(ggstats::hex_bw(.data$fill))),
+                                                 stat = ggstats::StatProp, position = labPosition, vjust = vjust2, hjust = hjust2,
                                                  fontface = "bold", size = self$options$labelFontSize / .pt)
                     } else {
                         plot <- plot + geom_text(aes(y = after_stat(prop)/vfactor, label = doPercent(after_stat(prop))),
-                                                 stat = StatProp, position = labPosition, vjust = vjust2, hjust = hjust2,
+                                                 stat = ggstats::StatProp, position = labPosition, vjust = vjust2, hjust = hjust2,
                                                  color = textColor, fontface = "bold", size = self$options$labelFontSize / .pt)
                     }
                 }
@@ -234,7 +234,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 yLab <- .("Percent")
                 yScaleFactor <- 100
-                plot <- plot + scale_y_continuous(labels=label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent())
             }
             # Axis Limits & flip
             if (self$options$horizontal) {

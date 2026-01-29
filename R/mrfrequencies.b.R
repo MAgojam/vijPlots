@@ -32,14 +32,14 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             # Add the "total" row
             if (self$options$showTotal) {
                 table$addRow(rowKey='.total', values=list(var="Total"))
-                table$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
+                table$addFormat(rowKey=".total", col=1, jmvcore::Cell.BEGIN_GROUP)
             }
             # Set the size of the plot
             userWidth <- as.numeric(self$options$plotWidth)
             userHeight <- as.numeric(self$options$plotHeight)
             # Check min size
             if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject(.("Plot size must be at least 200px (or 0 = default)"))
+                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
             if (userWidth * userHeight == 0) {
                 # use as default the obsolete (and hidden) size menu preset
                 width <- switch (self$options$size,
@@ -114,7 +114,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             plotData$Option <- factor(plotData$Option, levels=plotData$Option)
 
             # Percent format (scales)
-            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
+            doPercent <- scales::label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
 
             # Border color
             if (self$options$borderColor == "none")
@@ -123,11 +123,11 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 borderColor = self$options$borderColor
 
             if (self$options$yaxis == "responses") {
-                plot <- ggplot(plotData, aes(Option, Responses, label = doPercent(Responses))) + scale_y_continuous(labels=label_percent())
+                plot <- ggplot(plotData, aes(Option, Responses, label = doPercent(Responses))) + scale_y_continuous(labels = scales::label_percent())
                 yLab <- .("% of Responses")
                 yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$yaxis == "cases") {
-                plot <- ggplot(plotData, aes(Option, Cases, label = doPercent(Cases))) + scale_y_continuous(labels=label_percent())
+                plot <- ggplot(plotData, aes(Option, Cases, label = doPercent(Cases))) + scale_y_continuous(labels = scales::label_percent())
                 yLab <- .("% of Cases")
                 yScaleFactor <- 100
             } else {
@@ -170,7 +170,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
 
             if (self$options$showLabels) {
                 if (self$options$textColor == "auto" && self$options$labelPosition == "middle" && !self$options$singleColor) {
-                    plot <- plot + geom_text(aes(fill = Option, color = after_scale(hex_bw(.data$fill))),
+                    plot <- plot + geom_text(aes(fill = Option, color = after_scale(ggstats::hex_bw(.data$fill))),
                              position = position_stack(vjust = vjust1), vjust = vjust2, hjust = hjust2,
                              fontface = "bold", size = self$options$labelFontSize / .pt)
                 } else {

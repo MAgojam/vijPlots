@@ -43,7 +43,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             userHeight <- as.numeric(self$options$plotHeight)
 
             if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject("Plot size must be between 200 and 1000 (or 0 = default)")
+                jmvcore::reject("Plot size must be between 200 and 1000 (or 0 = default)")
 
             image <- self$results$varPlot
             width <- image$width
@@ -65,11 +65,11 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # check dim values
             nDim <- self$options$dimNum
             if (nDim > length(self$options$vars))
-                reject("The number of dimensions cannot be greater than the number of variables")
+                jmvcore::reject("The number of dimensions cannot be greater than the number of variables")
             if (self$options$xaxis > nDim || self$options$yaxis > nDim)
-                reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
+                jmvcore::reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
             if (self$options$xaxis == self$options$yaxis)
-                reject("X-Axis and Y-Axis cannot be equal")
+                jmvcore::reject("X-Axis and Y-Axis cannot be equal")
 
             # Set variable names
             private$.setVarNames(c(self$options$vars, self$options$labelVar, self$options$groupVar))
@@ -87,7 +87,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             corrMat <- cor(data[,self$options$vars])
             if (abs(det(corrMat)) < .Machine$double.eps) {
                 warningMsg <- .("The correlation matrix is not positive definite. Computations may not be accurate.")
-                warningNotice <- jmvcore::Notice$new(self$options, type = NoticeType$WARNING,
+                warningNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING,
                                                      name = '.warning',
                                                      content = warningMsg)
                 self$results$insert(1, warningNotice)
@@ -138,7 +138,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (res$rotation != self$options$rotation) {
                 rotationMsg <- jmvcore::format(.("Unable to use {rotation} rotation."), rotation = rotationName)
                 rotationNote <- .("No rotation used.")
-                rotationNotice <- jmvcore::Notice$new(self$options, type = NoticeType$WARNING,
+                rotationNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING,
                                                          name = '.rotationMsg',
                                                          content = rotationMsg)
                 self$results$insert(1, rotationNotice)

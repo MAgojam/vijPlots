@@ -36,11 +36,11 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Add the "total" row here (to prevent flickering)
             if ( self$options$totalRow ) {
                 table$addRow(rowKey='.total', values=list(var="Total"))
-                table$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
+                table$addFormat(rowKey=".total", col=1, jmvcore::Cell.BEGIN_GROUP)
             }
             if ( self$options$showNbOfCases && ( self$options$computedValues == "count" || self$options$computedValues == "options") ) {
                 table$addRow(rowKey='.nbofcases', values=list(var=.("Number of cases")))
-                table$addFormat(rowKey=".nbofcases", col=1, Cell.BEGIN_GROUP)
+                table$addFormat(rowKey=".nbofcases", col=1, jmvcore::Cell.BEGIN_GROUP)
             }
             # Set custom name for options column
             if (morevar)
@@ -72,7 +72,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             userHeight <- as.numeric(self$options$plotHeight)
             # Check min size
             if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject(.("Plot size must be at least 200px (or 0 = default)"))
+                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
             if (userWidth * userHeight == 0) {
                 # use as default the obsolete (and hidden) size menu preset
                 width <- switch (self$options$size,
@@ -154,7 +154,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (self$options$computedValues == "count")
                 doNumber <- function (x){x}
             else
-                doNumber <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
+                doNumber <- scales::label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
 
             # Border color
             if (self$options$borderColor == "none")
@@ -170,7 +170,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Data
             plotData <- cbind("Options" = factor(rownames(image$state), levels=rownames(image$state)),image$state)
-            plotData <- pivot_longer(plotData, cols=colnames(image$state), names_to = groupVar, values_to = "Count")
+            plotData <- tidyr::pivot_longer(plotData, cols=colnames(image$state), names_to = groupVar, values_to = "Count")
             plotData[[groupVar]] <- factor(plotData[[groupVar]], levels = names(image$state) )
             # Plot
             optionsVar <- "Options"
@@ -220,7 +220,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
 
                 if (self$options$textColor == "auto" && self$options$labelPosition == "middle") { # using hex_bw
-                    plot <- plot + geom_text(aes(fill = !!zVarName, y = Count / vfactor, color = after_scale(hex_bw(.data$fill))),
+                    plot <- plot + geom_text(aes(fill = !!zVarName, y = Count / vfactor, color = after_scale(ggstats::hex_bw(.data$fill))),
                                              position = labelPosition, vjust = vjust2, hjust = hjust2,
                                              fontface = "bold", size = self$options$labelFontSize / .pt)
                 } else {
@@ -235,15 +235,15 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Y scale and lab
             if (self$options$computedValues == "responses") {
-                plot <- plot + scale_y_continuous(labels=label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent())
                 yLab <- .("% of Responses")
                 yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$computedValues == "cases") {
-                plot <- plot + scale_y_continuous(labels=label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent())
                 yLab <- .("% of Cases")
                 yScaleFactor <- 100
             } else if (self$options$computedValues == "options") {
-                plot <- plot + scale_y_continuous(labels=label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent())
                 yLab <- paste(.("% within"), optionName)
                 yScaleFactor <- 100
             } else {

@@ -92,7 +92,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             countsName <- self$countsName
             if ( ! is.null(countsName)) {
                 message <- ..('The data is weighted by the variable {}.', countsName)
-                type <- NoticeType$WARNING
+                type <- jmvcore::NoticeType$WARNING
                 weightsNotice <- jmvcore::Notice$new(
                     self$options,
                     name='.weights',
@@ -166,11 +166,11 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 supplementaryRows <- sort(unique(as.numeric(unlist(strsplit(self$options$supplementaryRows,",")))))
                 if (any(is.na(supplementaryRows))) {
-                    reject("Supplementary row numbers must be a list of numbers, e.g. 1,2,9")
+                    jmvcore::reject("Supplementary row numbers must be a list of numbers, e.g. 1,2,9")
                 } else {
                     nmax <- nlevels(self$data[[rowVarName]])
                     if (!all(supplementaryRows %in% 1:nmax))
-                        reject("Supplementary row numbers must be between 1 and {nmax}", code=NULL, nmax=nmax)
+                        jmvcore::reject("Supplementary row numbers must be between 1 and {nmax}", code=NULL, nmax=nmax)
                 }
             }
             # Columns
@@ -179,11 +179,11 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 supplementaryCols <- sort(unique(as.numeric(unlist(strsplit(self$options$supplementaryCols,",")))))
                 if (any(is.na(supplementaryCols))) {
-                    reject("Supplementary column numbers must be a list of numbers, e.g. 1,2,9")
+                    jmvcore::reject("Supplementary column numbers must be a list of numbers, e.g. 1,2,9")
                 } else {
                     nmax <- nlevels(self$data[[colVarName]])
                     if (!all(supplementaryCols %in% 1:nmax))
-                        reject("Supplementary column numbers must be between 1 and {nmax}", code=NULL, nmax=nmax)
+                        jmvcore::reject("Supplementary column numbers must be between 1 and {nmax}", code=NULL, nmax=nmax)
                 }
             }
             # Modify the supplementary row/col names
@@ -198,14 +198,14 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             maxDim = min(nrow(contingencyTable)-length(supplementaryRows), ncol(contingencyTable)-length(supplementaryCols)) - 1
             nDim <-self$options$dimNum
             if (nDim > maxDim)
-                reject("Number of dimensions must be less than or equal to {maxDim}", code=NULL, maxDim = maxDim)
+                jmvcore::reject("Number of dimensions must be less than or equal to {maxDim}", code=NULL, maxDim = maxDim)
             # Axis
             xaxis <- self$options$xaxis
             yaxis <- self$options$yaxis
             if (xaxis > nDim || yaxis > nDim)
-                reject("Axis numbers must be less than or equal to the number of dimensions ({nDim})", code=NULL, nDim=nDim)
+                jmvcore::reject("Axis numbers must be less than or equal to the number of dimensions ({nDim})", code=NULL, nDim=nDim)
             if (xaxis == yaxis)
-                reject("Axis numbers cannot be equal!")
+                jmvcore::reject("Axis numbers cannot be equal!")
 
             #### Normalisation ####
 
@@ -227,7 +227,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$contingency$addRow(i, values = fullTable[i,])
                 self$results$contingency$setCell(rowNo = i, rowVarName, rownames(fullTable)[i])
             }
-            self$results$contingency$addFormat(rowNo = nrow(fullTable), 1, Cell.BEGIN_END_GROUP)
+            self$results$contingency$addFormat(rowNo = nrow(fullTable), 1, jmvcore::Cell.BEGIN_END_GROUP)
             # Change NaN/NA to NULL. Is there another way to have empty cells ?
             for (i in seq(nrow(fullTable))) {
                 for (j in seq(ncol(fullTable))) {
@@ -251,7 +251,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$rowProfiles$addRow(i, values = rowProfiles[i,])
                     self$results$rowProfiles$setCell(rowNo = i, rowVarName, rownames(rowProfiles)[i])
                 }
-                self$results$rowProfiles$addFormat(rowNo = nrow(rowProfiles), 1, Cell.BEGIN_END_GROUP)
+                self$results$rowProfiles$addFormat(rowNo = nrow(rowProfiles), 1, jmvcore::Cell.BEGIN_END_GROUP)
                 if (!is.null(supplementaryRows) || !is.null(supplementaryCols))
                     self$results$rowProfiles$setNote("supp",.("* : Supplementary rows/columns"))
                 # Column Profiles
@@ -264,7 +264,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$colProfiles$addRow(i, values = colProfiles[i,])
                     self$results$colProfiles$setCell(rowNo = i, rowVarName, rownames(colProfiles)[i])
                 }
-                self$results$colProfiles$addFormat(rowNo = nrow(colProfiles), 1, Cell.BEGIN_END_GROUP)
+                self$results$colProfiles$addFormat(rowNo = nrow(colProfiles), 1, jmvcore::Cell.BEGIN_END_GROUP)
                 if (!is.null(supplementaryRows) || !is.null(supplementaryCols))
                     self$results$colProfiles$setNote("supp",.("* : Supplementary rows/columns"))
             }
@@ -311,7 +311,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 proportion = 1,
                 cumulative = 1
             ))
-            self$results$eigenvalues$addFormat(rowKey="Total", 1, Cell.BEGIN_END_GROUP)
+            self$results$eigenvalues$addFormat(rowKey="Total", 1, jmvcore::Cell.BEGIN_END_GROUP)
             # Chi-squared test
             self$results$eigenvalues$setNote("chisq",
                                              paste0("X-squared = ", round(chisqres$statistic,2), ", df = ", chisqres$parameter, ",

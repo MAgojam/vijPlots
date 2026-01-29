@@ -11,7 +11,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             userHeight <- as.numeric(self$options$plotHeight)
             # Check min size
             if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject(.("Plot size must be at least 200px (or 0 = default)"))
+                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
 
             # Compute the size according to facet
             if (userWidth * userHeight == 0 ) {
@@ -74,7 +74,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Percent format (scales)
-            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
+            doPercent <- scales::label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
 
             if(self$options$donut) {
                 plot <- ggplot(plotData, aes(x = 10, fill = !!aVar, by = 1)) + xlim(c(8.5,NA))
@@ -109,7 +109,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                               "group+percent" = paste0(fill, "\n", doPercent(after_stat(prop)))),
                                                 color = after_scale(ggstats::hex_bw(.data$fill))
                                                ),
-                                            stat = switch(self$options$labels, "percent" = StatProp, "group+percent" = StatProp, "count"),
+                                            stat = switch(self$options$labels, "percent" = ggstats::StatProp, "group+percent" = ggstats::StatProp, "count"),
                                             position = position_fill(vjust = 0.5), direction = "both",
                                             fontface = "bold", size = self$options$labSize / .pt,
                                             show.legend = FALSE, seed = 123, min.segment.length = 1)
@@ -122,7 +122,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                               "group+count" = paste0(fill, "\n", after_stat(count)),
                                                               "group+percent" = paste0(fill, "\n", doPercent(after_stat(prop)))),
                                                 ),
-                                           stat = switch(self$options$labels, "percent" = StatProp, "group+percent" = StatProp, "count"),
+                                           stat = switch(self$options$labels, "percent" = ggstats::StatProp, "group+percent" = ggstats::StatProp, "count"),
                                            position = position_fill(vjust = 0.5), direction = "both",
                                            color = self$options$textColor,
                                            fontface = "bold", size = self$options$labSize / .pt,

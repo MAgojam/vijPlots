@@ -11,7 +11,7 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             userHeight <- as.numeric(self$options$plotHeight)
             # Check min size
             if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject(.("Plot size must be at least 200px (or 0 = default)"))
+                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
 
             width <- 600
             height <- 400
@@ -65,7 +65,7 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 timeVar <- self$options$timeVar1
                 if (length(self$options$vars) > 0 && !is.null(timeVar)) {
                     plotData <- plotData %>%
-                                    gather(key = "Variables", value = "Values", -timeVar)
+                                    tidyr::gather(key = "Variables", value = "Values", -timeVar)
                     # Transform "Variables" as factor to keep the variable order.
                     plotData$Variables <- factor(plotData$Variables, levels = self$options$vars)
                     depVar <- "Values"
@@ -139,7 +139,7 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             if (self$options$position == "fill")
-                plot <- plot + scale_y_continuous(labels=label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent())
 
             if (!oneVariable) {
                 if(length(self$options$vars) > 1) {

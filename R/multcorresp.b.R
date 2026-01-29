@@ -45,9 +45,9 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # check dim values
             nDim <- self$options$dimNum
             if (self$options$xaxis > nDim || self$options$yaxis > nDim)
-                reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
+                jmvcore::reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
             if (self$options$xaxis == self$options$yaxis)
-                reject("X-Axis and Y-Axis cannot be equal")
+                jmvcore::reject("X-Axis and Y-Axis cannot be equal")
 
             activeVars <- self$options$vars
             supplVars <- self$options$supplVars
@@ -91,7 +91,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             res <- private$.mca(data[,allVars], method = method, nd = nDim, supcol = supplIdx, rowlabels = rowLabels, rownames = rownames(data))
 
             if (nDim > res$nd.max)
-                reject(jmvcore::format(.("The number of dimensions cannot be greater than {max}."), max = res$nd.max))
+                jmvcore::reject(jmvcore::format(.("The number of dimensions cannot be greater than {max}."), max = res$nd.max))
 
             #### Inertia Table ####
 
@@ -146,7 +146,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     values["C%G"] <- NULL
                 }
                 self$results$eigenvalues$addRow(rowKey="Total", values = values)
-                self$results$eigenvalues$addFormat(rowKey="Total", 1, Cell.BEGIN_END_GROUP)
+                self$results$eigenvalues$addFormat(rowKey="Total", 1, jmvcore::Cell.BEGIN_END_GROUP)
             }
             self$results$eigenvalues$setNote("method", paste(.("Method:"), methodStr))
             if (method == "Burt" && self$options$GreenacreAdj)
@@ -196,7 +196,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     }
                     self$results$categories$addRow(rowKey = i, values = values)
                     if( res$cat$factors[i] != previousfactor) {
-                        self$results$categories$addFormat(rowKey = i, 1, Cell.BEGIN_END_GROUP)
+                        self$results$categories$addFormat(rowKey = i, 1, jmvcore::Cell.BEGIN_END_GROUP)
                         previousfactor <- res$cat$factors[i]
                     }
                 }
