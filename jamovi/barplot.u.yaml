@@ -41,7 +41,7 @@ children:
         stretchFactor: 1
         children:
           - type: Label
-            label: Y-axis
+            label: Y-Axis
             children:
               - type: RadioButton
                 name: yaxis_count

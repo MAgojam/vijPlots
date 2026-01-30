@@ -129,7 +129,7 @@ options:
       title: "Bar Type"
       type: List
       options:
-        - title: "Side by side"
+        - title: "Side-by-side"
           name:  dodge
         - title: "Stacked"
           name:  stack
@@ -161,7 +161,7 @@ options:
       default: middle
 
     - name: accuracy
-      title: "% accuracy"
+      title: "% Accuracy"
       type: List
       options:
         - title: "1"

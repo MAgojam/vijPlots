@@ -115,9 +115,6 @@
             "%": [
                 ""
             ],
-            "% accuracy": [
-                ""
-            ],
             "% Accuracy": [
                 ""
             ],
@@ -181,9 +178,6 @@
             "0.1": [
                 ""
             ],
-            "06/20/35": [
-                ""
-            ],
             "1 day": [
                 ""
             ],
@@ -208,37 +202,22 @@
             "2 weeks": [
                 ""
             ],
-            "20 June 2035": [
-                ""
-            ],
             "20 October 2035": [
                 ""
             ],
             "20-10-2035": [
                 ""
             ],
-            "20/06/35": [
-                ""
-            ],
             "20/10/35": [
                 ""
             ],
-            "2035 June": [
-                ""
-            ],
-            "2035 June 20": [
-                ""
-            ],
-            "2035 Oct.": [
+            "2035 Oct": [
                 ""
             ],
             "2035 October": [
                 ""
             ],
             "2035 October 20": [
-                ""
-            ],
-            "2035-06-20": [
                 ""
             ],
             "2035-10-20": [
@@ -298,6 +277,12 @@
             "Alpha": [
                 ""
             ],
+            "Apr": [
+                ""
+            ],
+            "April": [
+                ""
+            ],
             "Area Chart": [
                 ""
             ],
@@ -305,6 +290,12 @@
                 ""
             ],
             "Ascending": [
+                ""
+            ],
+            "Aug": [
+                ""
+            ],
+            "August": [
                 ""
             ],
             "Auto": [
@@ -613,7 +604,10 @@
             "Date Breaks": [
                 ""
             ],
-            "Debug": [
+            "Dec": [
+                ""
+            ],
+            "December": [
                 ""
             ],
             "Decreasing": [
@@ -712,9 +706,6 @@
             "Empty value as NA": [
                 ""
             ],
-            "en_US.utf-8": [
-                ""
-            ],
             "Equal Local Levels": [
                 ""
             ],
@@ -743,6 +734,12 @@
                 ""
             ],
             "Factor": [
+                ""
+            ],
+            "Feb": [
+                ""
+            ],
+            "February": [
                 ""
             ],
             "Fill": [
@@ -913,10 +910,10 @@
             "Italic": [
                 ""
             ],
-            "Jan.,Feb.,Mar.,Apr.,May,June,July,Aug.,Sept.,Oct.,Nov.,Dec.": [
+            "Jan": [
                 ""
             ],
-            "January,February,March,April,May,June,July,August,September,October,November,December": [
+            "January": [
                 ""
             ],
             "jmv Blue": [
@@ -937,13 +934,16 @@
             "jmv Yellow": [
                 ""
             ],
+            "Jul": [
+                ""
+            ],
+            "July": [
+                ""
+            ],
             "Jun": [
                 ""
             ],
             "June": [
-                ""
-            ],
-            "June 2035": [
                 ""
             ],
             "Kaiser normalization": [
@@ -1090,6 +1090,12 @@
             "Manual": [
                 ""
             ],
+            "Mar": [
+                ""
+            ],
+            "March": [
+                ""
+            ],
             "Mass": [
                 ""
             ],
@@ -1100,6 +1106,9 @@
                 ""
             ],
             "Maximum-likelihood (MLE)": [
+                ""
+            ],
+            "May": [
                 ""
             ],
             "MCA {type} Coordinate ({method} method)": [
@@ -1195,6 +1204,12 @@
             "Notched box": [
                 ""
             ],
+            "Nov": [
+                ""
+            ],
+            "November": [
+                ""
+            ],
             "Nudged boxplots": [
                 ""
             ],
@@ -1237,13 +1252,13 @@
             "Observations": [
                 ""
             ],
-            "Oct.": [
+            "Oct": [
                 ""
             ],
-            "Oct. 2035": [
+            "Oct 2035": [
                 ""
             ],
-            "Oct. 35": [
+            "Oct 35": [
                 ""
             ],
             "October": [
@@ -1639,6 +1654,12 @@
             "Separator": [
                 ""
             ],
+            "Sept": [
+                ""
+            ],
+            "September": [
+                ""
+            ],
             "Set 1": [
                 ""
             ],
@@ -1682,9 +1703,6 @@
                 ""
             ],
             "Show Totals (Centered Only)": [
-                ""
-            ],
-            "Side by side": [
                 ""
             ],
             "Side-by-side": [
@@ -2005,9 +2023,6 @@
             "Y-Axis": [
                 ""
             ],
-            "Y-axis": [
-                ""
-            ],
             "Y-Axis Range": [
                 ""
             ],
@@ -2030,6 +2045,12 @@
                 ""
             ],
             "boundary\u0004Position": [
+                ""
+            ],
+            "menu\u0004Oct": [
+                ""
+            ],
+            "menu\u0004October": [
                 ""
             ],
             "string\u0004Column Principal": [

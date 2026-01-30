@@ -121,7 +121,7 @@ options:
       default: false
 
     - name: accuracy
-      title: "% accuracy"
+      title: "% Accuracy"
       type: List
       options:
         - title: "1"

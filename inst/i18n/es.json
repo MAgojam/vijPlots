@@ -70,16 +70,13 @@
                 "plural_forms": "nplurals=2; plural=(n != 1)",
                 "lang": "es"
             },
-            " doesn't have a valid date format.": [
-                ""
-            ],
             ";": [
                 ""
             ],
-            ".": [
+            "[0-9]": [
                 ""
             ],
-            "{detrendStr}{distribStr} {typeStr} Plot of {varStr}": [
+            "{distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
             "{normalization} normalization": [
@@ -95,12 +92,6 @@
                 ""
             ],
             "{rotation} rotation with Kaiser normalization was used.": [
-                ""
-            ],
-            "{stdStr}Sample Quantiles": [
-                ""
-            ],
-            "{stdStr}Sample Quantiles Deviation": [
                 ""
             ],
             "* : Suppl. variable(s)": [
@@ -122,9 +113,6 @@
                 ""
             ],
             "%": [
-                ""
-            ],
-            "% accuracy": [
                 ""
             ],
             "% Accuracy": [
@@ -169,7 +157,7 @@
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Correspondence Plot Help</strong></p>\n<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the \"Counts\" variable.</p>\n<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>\n<p>Four normalizations (scaling of row and column scores before plotting) are avalaible : <ul> <li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li> <li><strong>Symetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li> <li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li> <li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li> <li><strong>Standard:</strong> The raw coordinates without normalization.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>\n</div>": [
                 ""
             ],
-            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Correspondence Analysis Help</strong></p>\n<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</strong> for several categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>Both classics methods are available: <ul> <li><strong>Indicator matrix:</strong> CA of the indicator matrix</li> <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator method. </li> </ul> </p>\n<p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>\n<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of categories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n<p>The <strong>Normalization</strong> options specify how the coordinates are scaled: <ul> <li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li> <li><strong>Category principal:</strong> Only category coordinates are scaled.</li> <li><strong>Observation principal:</strong> Only observation coordinates are scaled.</li> <li><strong>Standard:</strong> Both category and observation coordinates are standard.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Cars</p>\n</div>": [
+            "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Correspondence Analysis Help</strong></p>\n<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</strong> for several categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>Both classic methods are available: <ul> <li><strong>Indicator matrix:</strong> CA of the indicator matrix</li> <li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator matrix method. </li> </ul> </p>\n<p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>\n<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of categories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n<p>The <strong>Normalization</strong> options specify how the coordinates are scaled (by eigenvalues): <ul> <li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li> <li><strong>Category principal:</strong> Only category coordinates are scaled.</li> <li><strong>Observation principal:</strong> Only observation coordinates are scaled.</li> <li><strong>Standard:</strong> Both category and observation coordinates are standard.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Cars</p>\n</div>": [
                 ""
             ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Response Crosstab Help</strong></p>\n<p>This module computes crosstab frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 0/1 or 1/2 for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>\n</div>": [
@@ -190,9 +178,6 @@
             "0.1": [
                 ""
             ],
-            "06/20/35": [
-                ""
-            ],
             "1 day": [
                 ""
             ],
@@ -208,22 +193,34 @@
             "10 years": [
                 ""
             ],
+            "10-20-2035": [
+                ""
+            ],
+            "10/20/35": [
+                ""
+            ],
             "2 weeks": [
                 ""
             ],
-            "20 June 2035": [
+            "20 October 2035": [
                 ""
             ],
-            "20/06/35": [
+            "20-10-2035": [
                 ""
             ],
-            "2035 June": [
+            "20/10/35": [
                 ""
             ],
-            "2035 June 20": [
+            "2035 Oct": [
                 ""
             ],
-            "2035-06-20": [
+            "2035 October": [
+                ""
+            ],
+            "2035 October 20": [
+                ""
+            ],
+            "2035-10-20": [
                 ""
             ],
             "3 months": [
@@ -280,6 +277,12 @@
             "Alpha": [
                 ""
             ],
+            "Apr": [
+                ""
+            ],
+            "April": [
+                ""
+            ],
             "Area Chart": [
                 ""
             ],
@@ -287,6 +290,12 @@
                 ""
             ],
             "Ascending": [
+                ""
+            ],
+            "Aug": [
+                ""
+            ],
+            "August": [
                 ""
             ],
             "Auto": [
@@ -439,9 +448,6 @@
             "Cauchy": [
                 ""
             ],
-            "CDES": [
-                ""
-            ],
             "Center": [
                 ""
             ],
@@ -460,10 +466,10 @@
             "Color Palette": [
                 ""
             ],
-            "Color palette": [
+            "Colors": [
                 ""
             ],
-            "Colors": [
+            "Colors & Options": [
                 ""
             ],
             "Column": [
@@ -499,9 +505,6 @@
             "Component": [
                 ""
             ],
-            "Component ": [
-                ""
-            ],
             "Component Plot": [
                 ""
             ],
@@ -509,6 +512,9 @@
                 ""
             ],
             "Confidence Band Methods": [
+                ""
+            ],
+            "Confidence interval": [
                 ""
             ],
             "Connect ordinal categories": [
@@ -586,6 +592,9 @@
             "Dark gray": [
                 ""
             ],
+            "Dashed line": [
+                ""
+            ],
             "Data": [
                 ""
             ],
@@ -593,6 +602,12 @@
                 ""
             ],
             "Date Breaks": [
+                ""
+            ],
+            "Dec": [
+                ""
+            ],
+            "December": [
                 ""
             ],
             "Decreasing": [
@@ -604,10 +619,13 @@
             "Density": [
                 ""
             ],
+            "Density opacity": [
+                ""
+            ],
             "Descending": [
                 ""
             ],
-            "Detrended ": [
+            "Detrended {distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
             "Detrended Plot": [
@@ -623,9 +641,6 @@
                 ""
             ],
             "Dimension": [
-                ""
-            ],
-            "Dimension ": [
                 ""
             ],
             "Discrimination": [
@@ -644,6 +659,9 @@
                 ""
             ],
             "Distribution": [
+                ""
+            ],
+            "doesn't have a valid date format.": [
                 ""
             ],
             "Dot": [
@@ -682,10 +700,10 @@
             "Eigenvalues": [
                 ""
             ],
-            "Empty value as NA": [
+            "Element Size": [
                 ""
             ],
-            "en_US.utf-8": [
+            "Empty value as NA": [
                 ""
             ],
             "Equal Local Levels": [
@@ -703,9 +721,6 @@
             "Exponential": [
                 ""
             ],
-            "Extra Options": [
-                ""
-            ],
             "Extraction Sums of Squared Loadings": [
                 ""
             ],
@@ -719,6 +734,12 @@
                 ""
             ],
             "Factor": [
+                ""
+            ],
+            "Feb": [
+                ""
+            ],
+            "February": [
                 ""
             ],
             "Fill": [
@@ -794,6 +815,12 @@
                 ""
             ],
             "Group (Side by side)": [
+                ""
+            ],
+            "Group + Count": [
+                ""
+            ],
+            "Group + Percent": [
                 ""
             ],
             "Group By": [
@@ -883,6 +910,12 @@
             "Italic": [
                 ""
             ],
+            "Jan": [
+                ""
+            ],
+            "January": [
+                ""
+            ],
             "jmv Blue": [
                 ""
             ],
@@ -901,13 +934,16 @@
             "jmv Yellow": [
                 ""
             ],
+            "Jul": [
+                ""
+            ],
+            "July": [
+                ""
+            ],
             "Jun": [
                 ""
             ],
             "June": [
-                ""
-            ],
-            "June 2035": [
                 ""
             ],
             "Kaiser normalization": [
@@ -934,6 +970,12 @@
             "Label font size": [
                 ""
             ],
+            "Label Options": [
+                ""
+            ],
+            "Label Position": [
+                ""
+            ],
             "Label rotation": [
                 ""
             ],
@@ -956,6 +998,9 @@
                 ""
             ],
             "Legend Title": [
+                ""
+            ],
+            "Lémovice": [
                 ""
             ],
             "Level": [
@@ -1009,7 +1054,13 @@
             "Line Chart": [
                 ""
             ],
+            "Line size": [
+                ""
+            ],
             "Line Width": [
+                ""
+            ],
+            "Linear": [
                 ""
             ],
             "Log-normal": [
@@ -1018,16 +1069,16 @@
             "Logistic": [
                 ""
             ],
-            "Lollipop Color & Size": [
-                ""
-            ],
             "Lollipop Plot": [
                 ""
             ],
             "Lollipop Size": [
                 ""
             ],
-            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source is available at  <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
+            "Lollipop Size & Colors": [
+                ""
+            ],
+            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
             ],
             "Mann-Whitney U": [
@@ -1037,6 +1088,12 @@
                 ""
             ],
             "Manual": [
+                ""
+            ],
+            "Mar": [
+                ""
+            ],
+            "March": [
                 ""
             ],
             "Mass": [
@@ -1049,6 +1106,9 @@
                 ""
             ],
             "Maximum-likelihood (MLE)": [
+                ""
+            ],
+            "May": [
                 ""
             ],
             "MCA {type} Coordinate ({method} method)": [
@@ -1079,6 +1139,9 @@
                 ""
             ],
             "Method:": [
+                ""
+            ],
+            "Middle": [
                 ""
             ],
             "Min": [
@@ -1129,6 +1192,9 @@
             "Normal": [
                 ""
             ],
+            "Normal Curve": [
+                ""
+            ],
             "Normalization": [
                 ""
             ],
@@ -1136,6 +1202,12 @@
                 ""
             ],
             "Notched box": [
+                ""
+            ],
+            "Nov": [
+                ""
+            ],
+            "November": [
                 ""
             ],
             "Nudged boxplots": [
@@ -1178,6 +1250,27 @@
                 ""
             ],
             "Observations": [
+                ""
+            ],
+            "Oct": [
+                ""
+            ],
+            "Oct 2035": [
+                ""
+            ],
+            "Oct 35": [
+                ""
+            ],
+            "October": [
+                ""
+            ],
+            "October 2035": [
+                ""
+            ],
+            "October 35": [
+                ""
+            ],
+            "Offset": [
                 ""
             ],
             "One variable": [
@@ -1294,6 +1387,12 @@
             "Plot": [
                 ""
             ],
+            "Plot & Element Sizes": [
+                ""
+            ],
+            "Plot & Text Sizes": [
+                ""
+            ],
             "Plot Color": [
                 ""
             ],
@@ -1312,6 +1411,12 @@
             "Plot Size & Facets": [
                 ""
             ],
+            "Plot Size & Options": [
+                ""
+            ],
+            "Plot size must be at least 200px (or 0 = default)": [
+                ""
+            ],
             "Plot Titles": [
                 ""
             ],
@@ -1322,6 +1427,9 @@
                 ""
             ],
             "Plots": [
+                ""
+            ],
+            "Point": [
                 ""
             ],
             "Point & Line Size": [
@@ -1450,7 +1558,13 @@
             "Reference Lines": [
                 ""
             ],
+            "Regression Line": [
+                ""
+            ],
             "Reverse disposition": [
+                ""
+            ],
+            "Reverse stack order": [
                 ""
             ],
             "Reverse the staking order": [
@@ -1513,6 +1627,12 @@
             "Sample Probability Deviation": [
                 ""
             ],
+            "Sample Quantiles": [
+                ""
+            ],
+            "Sample Quantiles Deviation": [
+                ""
+            ],
             "Save": [
                 ""
             ],
@@ -1534,6 +1654,12 @@
             "Separator": [
                 ""
             ],
+            "Sept": [
+                ""
+            ],
+            "September": [
+                ""
+            ],
             "Set 1": [
                 ""
             ],
@@ -1552,13 +1678,19 @@
             "Show count labels": [
                 ""
             ],
+            "Show density": [
+                ""
+            ],
+            "Show line": [
+                ""
+            ],
             "Show Lines": [
                 ""
             ],
             "Show Mean": [
                 ""
             ],
-            "Show Normal Curve": [
+            "Show normal curve": [
                 ""
             ],
             "Show outliers": [
@@ -1573,16 +1705,13 @@
             "Show Totals (Centered Only)": [
                 ""
             ],
-            "Side by side": [
-                ""
-            ],
             "Side-by-side": [
                 ""
             ],
-            "Side-by-side 2": [
+            "Side-by-side (tight)": [
                 ""
             ],
-            "Single color": [
+            "Single": [
                 ""
             ],
             "Singular Value": [
@@ -1597,6 +1726,9 @@
             "Smoking": [
                 ""
             ],
+            "Smooth": [
+                ""
+            ],
             "Solution": [
                 ""
             ],
@@ -1606,7 +1738,7 @@
             "Sorting": [
                 ""
             ],
-            "Sorting (Median)": [
+            "Sorting (by median)": [
                 ""
             ],
             "Spectral": [
@@ -1639,7 +1771,10 @@
             "Standardize variables": [
                 ""
             ],
-            "Standardized ": [
+            "Standardized Sample Quantiles": [
+                ""
+            ],
+            "Standardized Sample Quantiles Deviation": [
                 ""
             ],
             "Standardized values": [
@@ -1717,7 +1852,7 @@
             "Text Size": [
                 ""
             ],
-            "The correlation matrix is not positive definite. Computations may not be accurate.\r\n": [
+            "The correlation matrix is not positive definite. Computations may not be accurate.": [
                 ""
             ],
             "The number of dimensions cannot be greater than {max}.": [
@@ -1732,7 +1867,28 @@
             "Tidy up levels": [
                 ""
             ],
-            "Tidyplot": [
+            "Tidy:Alger": [
+                ""
+            ],
+            "Tidy:Apple": [
+                ""
+            ],
+            "Tidy:Candy": [
+                ""
+            ],
+            "Tidy:Friendly": [
+                ""
+            ],
+            "Tidy:Ibm": [
+                ""
+            ],
+            "Tidy:Metro": [
+                ""
+            ],
+            "Tidy:Rainbow": [
+                ""
+            ],
+            "Tidy:Seaside": [
                 ""
             ],
             "Time Series": [
@@ -1849,6 +2005,12 @@
             "Width": [
                 ""
             ],
+            "Within categories": [
+                ""
+            ],
+            "Within groups": [
+                ""
+            ],
             "X-Axis": [
                 ""
             ],
@@ -1859,12 +2021,6 @@
                 ""
             ],
             "Y-Axis": [
-                ""
-            ],
-            "Y-axis (with groups)": [
-                ""
-            ],
-            "Y-axis (without group)": [
                 ""
             ],
             "Y-Axis Range": [
@@ -1889,6 +2045,12 @@
                 ""
             ],
             "boundary\u0004Position": [
+                ""
+            ],
+            "menu\u0004Oct": [
+                ""
+            ],
+            "menu\u0004October": [
                 ""
             ],
             "string\u0004Column Principal": [

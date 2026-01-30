@@ -138,7 +138,7 @@ children:
                 name: computedValues_options
                 optionName: computedValues
                 optionPart: options
-                label: '% by row'
+                label: '% by Row'
       - type: LayoutBox
         cell:
           column: 2
@@ -216,12 +216,10 @@ children:
                     name: bartype_dodge
                     optionName: bartype
                     optionPart: dodge
-                    label: "Side by side"
                   - type: RadioButton
                     name: bartype_stack
                     optionName: bartype
                     optionPart: stack
-                    label: "Stacked"
               - type: Label
                 label: "X-Axis"
                 children:

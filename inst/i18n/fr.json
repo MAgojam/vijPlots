@@ -115,16 +115,10 @@
             "%": [
                 " %"
             ],
-            "% accuracy": [
-                "Précision des %"
-            ],
             "% Accuracy": [
                 "Précision des %"
             ],
             "% by Row": [
-                "% par ligne"
-            ],
-            "% by row": [
                 "% par ligne"
             ],
             "% Inertia": [
@@ -181,9 +175,6 @@
             "0.1": [
                 ""
             ],
-            "06/20/35": [
-                ""
-            ],
             "1 day": [
                 "1 jour"
             ],
@@ -208,28 +199,16 @@
             "2 weeks": [
                 "2 semaines"
             ],
-            "20 June 2035": [
-                "20 juin 2035"
-            ],
             "20 October 2035": [
                 "20 octobre 2035"
             ],
             "20-10-2035": [
                 ""
             ],
-            "20/06/35": [
-                ""
-            ],
             "20/10/35": [
                 ""
             ],
-            "2035 June": [
-                "2035 juin"
-            ],
-            "2035 June 20": [
-                "2035 juin 20"
-            ],
-            "2035 Oct.": [
+            "2035 Oct": [
                 "2035 oct."
             ],
             "2035 October": [
@@ -237,9 +216,6 @@
             ],
             "2035 October 20": [
                 "2035 octobre 20"
-            ],
-            "2035-06-20": [
-                ""
             ],
             "2035-10-20": [
                 ""
@@ -298,6 +274,12 @@
             "Alpha": [
                 ""
             ],
+            "Apr": [
+                "avr."
+            ],
+            "April": [
+                "avril"
+            ],
             "Area Chart": [
                 "Diagramme en aires"
             ],
@@ -306,6 +288,12 @@
             ],
             "Ascending": [
                 "Croissant"
+            ],
+            "Aug": [
+                "août"
+            ],
+            "August": [
+                "août"
             ],
             "Auto": [
                 ""
@@ -416,10 +404,10 @@
                 "Légende"
             ],
             "Caption Style": [
-                ""
+                "Style des légendes"
             ],
             "Caption Text": [
-                ""
+                "Texte des légendes"
             ],
             "Cars": [
                 ""
@@ -613,8 +601,11 @@
             "Date Breaks": [
                 "Intervalle"
             ],
-            "Debug": [
-                ""
+            "Dec": [
+                "déc."
+            ],
+            "December": [
+                "décembre"
             ],
             "Decreasing": [
                 "Décroissant"
@@ -712,9 +703,6 @@
             "Empty value as NA": [
                 "Considérer les valeurs vides comme manquantes"
             ],
-            "en_US.utf-8": [
-                "fr_FR.utf-8"
-            ],
             "Equal Local Levels": [
                 ""
             ],
@@ -744,6 +732,12 @@
             ],
             "Factor": [
                 "Facteur"
+            ],
+            "Feb": [
+                "févr."
+            ],
+            "February": [
+                "février"
             ],
             "Fill": [
                 "Remplissage"
@@ -913,11 +907,11 @@
             "Italic": [
                 "Italique"
             ],
-            "Jan.,Feb.,Mar.,Apr.,May,June,July,Aug.,Sept.,Oct.,Nov.,Dec.": [
-                "janv.,févr.,mars,avril,mai,juin,juil.,août,sept.,oct.,nov.,déc."
+            "Jan": [
+                "janv."
             ],
-            "January,February,March,April,May,June,July,August,September,October,November,December": [
-                "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre"
+            "January": [
+                "janvier"
             ],
             "jmv Blue": [
                 "Bleu jmv"
@@ -937,14 +931,17 @@
             "jmv Yellow": [
                 "Jaune jmv"
             ],
+            "Jul": [
+                "juil."
+            ],
+            "July": [
+                "juillet"
+            ],
             "Jun": [
-                "jui"
+                "juin"
             ],
             "June": [
                 "juin"
-            ],
-            "June 2035": [
-                "juin 2035"
             ],
             "Kaiser normalization": [
                 "Normalisation de Kaiser"
@@ -1090,6 +1087,12 @@
             "Manual": [
                 "Manuel"
             ],
+            "Mar": [
+                "mars"
+            ],
+            "March": [
+                "mars"
+            ],
             "Mass": [
                 "Masse"
             ],
@@ -1101,6 +1104,9 @@
             ],
             "Maximum-likelihood (MLE)": [
                 "Maximum de vraisemblance (MLE)"
+            ],
+            "May": [
+                "mai"
             ],
             "MCA {type} Coordinate ({method} method)": [
                 "Coordonnées {type} ACM  (méthode {method})"
@@ -1195,6 +1201,12 @@
             "Notched box": [
                 "Boite avec encoche"
             ],
+            "Nov": [
+                "nov."
+            ],
+            "November": [
+                "novembre"
+            ],
             "Nudged boxplots": [
                 "Boites à moustaches séparées"
             ],
@@ -1237,17 +1249,17 @@
             "Observations": [
                 ""
             ],
-            "Oct.": [
-                ""
+            "Oct": [
+                "oct."
             ],
-            "Oct. 2035": [
-                ""
+            "Oct 2035": [
+                "Oct. 2035"
             ],
-            "Oct. 35": [
-                ""
+            "Oct 35": [
+                "Oct. 35"
             ],
             "October": [
-                "Octobre"
+                "octobre"
             ],
             "October 2035": [
                 "Octobre 2035"
@@ -1639,6 +1651,12 @@
             "Separator": [
                 "Séparateur"
             ],
+            "Sept": [
+                "sept."
+            ],
+            "September": [
+                "septembre"
+            ],
             "Set 1": [
                 ""
             ],
@@ -1658,7 +1676,7 @@
                 "Afficher les effectifs"
             ],
             "Show density": [
-                ""
+                "Afficher la densité"
             ],
             "Show line": [
                 "Afficher la courbe"
@@ -1683,9 +1701,6 @@
             ],
             "Show Totals (Centered Only)": [
                 "Afficher les totaux (centrées)"
-            ],
-            "Side by side": [
-                "Juxtaposé"
             ],
             "Side-by-side": [
                 "Juxtaposé"
@@ -2005,9 +2020,6 @@
             "Y-Axis": [
                 "Axe Y"
             ],
-            "Y-axis": [
-                ""
-            ],
             "Y-Axis Range": [
                 ""
             ],
@@ -2031,6 +2043,12 @@
             ],
             "boundary\u0004Position": [
                 "Origine"
+            ],
+            "menu\u0004Oct": [
+                "Oct."
+            ],
+            "menu\u0004October": [
+                "Octobre"
             ],
             "string\u0004Column Principal": [
                 "principale en colonnes"

@@ -214,7 +214,7 @@ options:
       default: auto
 
     - name: accuracy
-      title: "% accuracy"
+      title: "% Accuracy"
       type: List
       options:
         - title: "1"

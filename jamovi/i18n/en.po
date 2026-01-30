@@ -76,17 +76,14 @@ msgid "%"
 msgstr ""
 
 #: barplot/options/accuracy.title
-#: likertplot/options/accuracy.title
-#: mrcrosstabs/options/accuracy.title
-#: mrfrequencies/options/accuracy.title
-#: piechart/options/accuracy.title
-msgid "% accuracy"
-msgstr ""
-
 #: barplot/ui[2][0][2][0].label
+#: likertplot/options/accuracy.title
 #: likertplot/ui[4][0][2][0].label
+#: mrcrosstabs/options/accuracy.title
 #: mrcrosstabs/ui[2][0][2][0].label
+#: mrfrequencies/options/accuracy.title
 #: mrfrequencies/ui[2][0][2][0].label
+#: piechart/options/accuracy.title
 #: piechart/ui[2][0][2][0].label
 msgid "% Accuracy"
 msgstr ""
@@ -264,10 +261,6 @@ msgstr ""
 msgid "0.1"
 msgstr ""
 
-#: areachart/options/displayFormat/%m/%d/%y.title
-msgid "06/20/35"
-msgstr ""
-
 #: barplot/options/accuracy/1.title
 #: barplot/ui[2][0][2][0]/accuracy_1.label
 #: likertplot/options/accuracy/1.title
@@ -378,10 +371,12 @@ msgstr ""
 msgid "10 years"
 msgstr ""
 
+#: areachart/options/displayFormat/%m-%d-%Y.title
 #: linechart/options/displayFormat/%m-%d-%Y.title
 msgid "10-20-2035"
 msgstr ""
 
+#: areachart/options/displayFormat/%m/%d/%y.title
 #: linechart/options/displayFormat/%m/%d/%y.title
 msgid "10/20/35"
 msgstr ""
@@ -818,21 +813,16 @@ msgid "20"
 msgstr ""
 
 #: areachart/options/displayFormat/%e %B %Y.title
-msgid "20 June 2035"
-msgstr ""
-
 #: linechart/options/displayFormat/%e %B %Y.title
 msgid "20 October 2035"
 msgstr ""
 
+#: areachart/options/displayFormat/%d-%m-%Y.title
 #: linechart/options/displayFormat/%d-%m-%Y.title
 msgid "20-10-2035"
 msgstr ""
 
 #: areachart/options/displayFormat/%d/%m/%y.title
-msgid "20/06/35"
-msgstr ""
-
 #: linechart/options/displayFormat/%d/%m/%y.title
 msgid "20/10/35"
 msgstr ""
@@ -842,30 +832,22 @@ msgstr ""
 msgid "2035"
 msgstr ""
 
-#: areachart/options/displayFormat/%Y %B.title
-msgid "2035 June"
-msgstr ""
-
-#: areachart/options/displayFormat/%Y %B %e .title
-msgid "2035 June 20"
-msgstr ""
-
+#: areachart/options/displayFormat/%Y %b.title
 #: linechart/options/displayFormat/%Y %b.title
-msgid "2035 Oct."
+msgid "2035 Oct"
 msgstr ""
 
+#: areachart/options/displayFormat/%Y %B.title
 #: linechart/options/displayFormat/%Y %B.title
 msgid "2035 October"
 msgstr ""
 
+#: areachart/options/displayFormat/%Y %B %e.title
 #: linechart/options/displayFormat/%Y %B %e.title
 msgid "2035 October 20"
 msgstr ""
 
 #: areachart/options/displayFormat/%Y-%m-%d.title
-msgid "2035-06-20"
-msgstr ""
-
 #: linechart/options/displayFormat/%Y-%m-%d.title
 msgid "2035-10-20"
 msgstr ""
@@ -1093,6 +1075,16 @@ msgstr ""
 msgid "Alpha"
 msgstr ""
 
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Apr"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "April"
+msgstr ""
+
 #: package/analyses/areachart.title
 #: package/analyses/areachart.menuTitle
 #: areachart/options.title
@@ -1108,6 +1100,16 @@ msgstr ""
 #: likertplot/options/sorting/ascending.title
 #: likertplot/ui[1][1][0]/sorting_ascending.label
 msgid "Ascending"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Aug"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "August"
 msgstr ""
 
 #: areachart/options/dateFormat/auto.title
@@ -1981,8 +1983,14 @@ msgstr ""
 msgid "Date Breaks"
 msgstr ""
 
-#: linechart/results/text.title
-msgid "Debug"
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Dec"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "December"
 msgstr ""
 
 #: barplot/options/order/decreasing.title
@@ -2174,10 +2182,6 @@ msgstr ""
 msgid "Empty value as NA"
 msgstr ""
 
-#: R/areachart.b.R
-msgid "en_US.utf-8"
-msgstr ""
-
 #: qqplot/options/methodQQ/ell.title
 #: qqplot/options/methodPP/ell.title
 msgid "Equal Local Levels"
@@ -2233,6 +2237,16 @@ msgstr ""
 
 #: multcorresp/results/categories.columns.title
 msgid "Factor"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Feb"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "February"
 msgstr ""
 
 #: histogram/options/fillColor.title
@@ -2697,12 +2711,14 @@ msgstr ""
 msgid "Italic"
 msgstr ""
 
+#: R/areachart.b.R
 #: R/linechart.b.R
-msgid "Jan.,Feb.,Mar.,Apr.,May,June,July,Aug.,Sept.,Oct.,Nov.,Dec."
+msgid "Jan"
 msgstr ""
 
+#: R/areachart.b.R
 #: R/linechart.b.R
-msgid "January,February,March,April,May,June,July,August,September,October,November,December"
+msgid "January"
 msgstr ""
 
 #: histogram/options/fillColor/#A6C4F1.title
@@ -2765,16 +2781,24 @@ msgstr ""
 msgid "jmv Yellow"
 msgstr ""
 
-#: areachart/options/displayFormat/%b.title
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Jul"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "July"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
 msgid "Jun"
 msgstr ""
 
-#: areachart/options/displayFormat/%B.title
+#: R/areachart.b.R
+#: R/linechart.b.R
 msgid "June"
-msgstr ""
-
-#: areachart/options/displayFormat/%B %Y.title
-msgid "June 2035"
 msgstr ""
 
 #: principal/options/kaiser.title
@@ -3226,6 +3250,16 @@ msgstr ""
 msgid "Manual"
 msgstr ""
 
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Mar"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "March"
+msgstr ""
+
 #: R/corresp.b.R
 #: multcorresp/results/categories.columns.title
 #: multcorresp/results/observations.columns.title
@@ -3266,6 +3300,11 @@ msgstr ""
 msgid "Maximum-likelihood (MLE)"
 msgstr ""
 
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "May"
+msgstr ""
+
 #: R/multcorresp.b.R
 msgid "MCA {type} Coordinate ({method} method)"
 msgstr ""
@@ -3297,6 +3336,18 @@ msgstr ""
 #: mrcrosstabs/options/size/medium.title
 #: mrfrequencies/options/size/medium.title
 msgid "Medium (400x300)"
+msgstr ""
+
+#: areachart/options/displayFormat/%b.title
+#: linechart/options/displayFormat/%b.title
+msgctxt "menu"
+msgid "Oct"
+msgstr ""
+
+#: areachart/options/displayFormat/%B.title
+#: linechart/options/displayFormat/%B.title
+msgctxt "menu"
+msgid "October"
 msgstr ""
 
 #: likertplot/options/adjustMethod.title
@@ -3521,6 +3572,16 @@ msgstr ""
 msgid "Notched box"
 msgstr ""
 
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Nov"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "November"
+msgstr ""
+
 #: raincloud/options/nudgeBoxplot.title
 msgid "Nudged boxplots"
 msgstr ""
@@ -3594,26 +3655,32 @@ msgstr ""
 msgid "Observations"
 msgstr ""
 
-#: linechart/options/displayFormat/%b.title
-msgid "Oct."
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Oct"
 msgstr ""
 
+#: areachart/options/displayFormat/%b %Y.title
 #: linechart/options/displayFormat/%b %Y.title
-msgid "Oct. 2035"
+msgid "Oct 2035"
 msgstr ""
 
+#: areachart/options/displayFormat/%b %y.title
 #: linechart/options/displayFormat/%b %y.title
-msgid "Oct. 35"
+msgid "Oct 35"
 msgstr ""
 
-#: linechart/options/displayFormat/%B.title
+#: R/areachart.b.R
+#: R/linechart.b.R
 msgid "October"
 msgstr ""
 
+#: areachart/options/displayFormat/%B %Y.title
 #: linechart/options/displayFormat/%B %Y.title
 msgid "October 2035"
 msgstr ""
 
+#: areachart/options/displayFormat/%B %y.title
 #: linechart/options/displayFormat/%B %y.title
 msgid "October 35"
 msgstr ""
@@ -4709,6 +4776,16 @@ msgstr ""
 msgid "Separator"
 msgstr ""
 
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "Sept"
+msgstr ""
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "September"
+msgstr ""
+
 #: areachart/options/colorPalette/Set1.title
 #: barplot/options/colorPalette/Set1.title
 #: boxplot/options/colorPalette/Set1.title
@@ -4804,13 +4881,9 @@ msgstr ""
 msgid "Show Totals (Centered Only)"
 msgstr ""
 
-#: mrcrosstabs/options/bartype/dodge.title
-#: mrcrosstabs/ui[2][0][1][0]/bartype_dodge.label
-msgid "Side by side"
-msgstr ""
-
 #: barplot/options/barType/dodge2.title
 #: barplot/ui[1][1][0]/barType_dodge.label
+#: mrcrosstabs/options/bartype/dodge.title
 msgid "Side-by-side"
 msgstr ""
 
@@ -4940,7 +5013,6 @@ msgstr ""
 #: likertplot/options/type/stacked.title
 #: likertplot/ui[4][0][0][0]/type_stacked.label
 #: mrcrosstabs/options/bartype/stack.title
-#: mrcrosstabs/ui[2][0][1][0]/bartype_stack.label
 msgid "Stacked"
 msgstr ""
 
@@ -5728,6 +5800,8 @@ msgstr ""
 
 #: areachart/ui[3][0][1][0].label
 #: areachart/ui[4][2].label
+#: barplot/options/yaxis.title
+#: barplot/ui[1][0][0].label
 #: barplot/ui[5][0][1][0].label
 #: barplot/ui[6][2].label
 #: boxplot/ui[4][0][1][0].label
@@ -5762,11 +5836,6 @@ msgstr ""
 #: scatterplot/ui[3][0][1][0].label
 #: scatterplot/ui[4][2].label
 msgid "Y-Axis"
-msgstr ""
-
-#: barplot/options/yaxis.title
-#: barplot/ui[1][0][0].label
-msgid "Y-axis"
 msgstr ""
 
 #: areachart/options/yAxisRangeType.title

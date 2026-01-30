@@ -71,7 +71,7 @@ options:
       default: false
 
     - name: yaxis
-      title: Y-axis
+      title: Y-Axis
       type: List
       options:
         - title: Count
@@ -125,7 +125,7 @@ options:
       default: middle
 
     - name: accuracy
-      title: "% accuracy"
+      title: "% Accuracy"
       type: List
       options:
         - title: "1"
