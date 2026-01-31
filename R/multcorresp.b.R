@@ -172,7 +172,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             if (self$options$showCategories) {
                 for (j in seq(nDim))
-                    self$results$categories$addColumn(paste0("coord",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = .("Coordinates †"))
+                    self$results$categories$addColumn(paste0("coord",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = paste(.("Coordinates"),"†"))
                 for (j in seq(nDim))
                     self$results$categories$addColumn(paste0("ctr",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = .("Contributions"))
                 for (j in seq(nDim))
@@ -220,7 +220,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$observations$addColumn("inertia", title = .("% Inertia"), type = "number", format = "zto")
                 self$results$observations$addColumn("qlt", title = "QLT", type = "number", format = "zto")
                 for (j in seq(nDim))
-                    self$results$observations$addColumn(paste0("coord",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = .("Coordinates †"))
+                    self$results$observations$addColumn(paste0("coord",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = paste(.("Coordinates"),"†"))
                 for (j in seq(nDim))
                     self$results$observations$addColumn(paste0("ctr",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = .("Contributions"))
                 for (j in seq(nDim))

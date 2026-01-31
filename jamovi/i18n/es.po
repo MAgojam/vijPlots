@@ -22,7 +22,7 @@ msgid "{distribStr} {typeStr} Plot of {varStr}"
 msgstr ""
 
 #: R/corresp.b.R
-msgid "{normalization} normalization"
+msgid "{normalization} Normalization"
 msgstr ""
 
 #: R/principal.b.R
@@ -41,38 +41,11 @@ msgstr ""
 msgid "{rotation} rotation with Kaiser normalization was used."
 msgstr ""
 
-#: R/multcorresp.b.R
-msgid "* : Suppl. variable(s)"
-msgstr ""
-
-#: R/corresp.b.R
-msgid "* : Supplementary columns"
-msgstr ""
-
-#: R/corresp.b.R
-msgid "* : Supplementary rows"
-msgstr ""
-
-#: R/corresp.b.R
-msgid "* : Supplementary rows/columns"
-msgstr ""
-
-#: R/multcorresp.b.R
-msgid "* : Supplementary variable(s)"
-msgstr ""
-
 #: barplot/options/facetNumber.title
 #: histogram/options/facetNumber.title
 #: lollipop/options/facetNumber.title
 #: piechart/options/facetNumber.title
 msgid "# of rows/columns"
-msgstr ""
-
-#: R/barplot.b.R
-#: R/mrcrosstabs.b.R
-#: R/mrfrequencies.b.R
-#: R/piechart.b.R
-msgid "%"
 msgstr ""
 
 #: barplot/options/accuracy.title
@@ -89,20 +62,13 @@ msgid "% Accuracy"
 msgstr ""
 
 #: mrcrosstabs/options/computedValues/options.title
-msgid "% by Row"
-msgstr ""
-
 #: mrcrosstabs/ui[1][1][0]/computedValues_options.label
-msgid "% by row"
+msgid "% by Row"
 msgstr ""
 
 #: R/multcorresp.b.R
 #: multcorresp/results/categories.columns.title
 msgid "% Inertia"
-msgstr ""
-
-#: likertplot/options/labelColor.title
-msgid "% Label Color"
 msgstr ""
 
 #: likertplot/ui[4][1][0][0].label
@@ -1005,7 +971,7 @@ msgid "Active Margin"
 msgstr ""
 
 #: likertplot/options/addMedianLine.title
-msgid "Add Median Line (Stacked Only)"
+msgid "Add median line (Stacked only)"
 msgstr ""
 
 #: scatterplot/options/plotBorder.title
@@ -1517,12 +1483,14 @@ msgstr ""
 msgid "BY"
 msgstr ""
 
+#: likertplot/options/groupBy/group.title
 #: likertplot/ui[4][0][1][0]/groupBy_group.label
-msgid "By Group"
+msgid "By group"
 msgstr ""
 
+#: likertplot/options/groupBy/variable.title
 #: likertplot/ui[4][0][1][0]/groupBy_variable.label
-msgid "By Variable"
+msgid "By variable"
 msgstr ""
 
 #: areachart/ui[5][2].label
@@ -1596,7 +1564,7 @@ msgid "Category Plot Size"
 msgstr ""
 
 #: multcorresp/options/normalization/catprincipal.title
-msgid "Category Principal"
+msgid "Category principal"
 msgstr ""
 
 #: R/multcorresp.b.R
@@ -1751,11 +1719,11 @@ msgstr ""
 msgid "Column"
 msgstr ""
 
-#: corresp/options/showColPlot.title
 #: corresp/results/colplot.title
 msgid "Column Plot"
 msgstr ""
 
+#: corresp/options/showColPlot.title
 #: corresp/options/columnTitleText.title
 #: corresp/options/columnSubtitleText.title
 #: corresp/options/columnCaptionText.title
@@ -1767,7 +1735,7 @@ msgid "Column Points for"
 msgstr ""
 
 #: corresp/options/normalization/colprincipal.title
-msgid "Column Principal"
+msgid "Column principal"
 msgstr ""
 
 #: corresp/results/colProfiles.title
@@ -1803,7 +1771,7 @@ msgid "Component Plot"
 msgstr ""
 
 #: qqplot/options/band.title
-msgid "Confidence Band"
+msgid "Confidence band"
 msgstr ""
 
 #: qqplot/ui[4][0][1][0].label
@@ -1827,9 +1795,12 @@ msgstr ""
 msgid "Conover's Pairwise Comparisons"
 msgstr ""
 
-#: corresp/options/showContingency.title
 #: corresp/results/contingency.title
 msgid "Contingency Table"
+msgstr ""
+
+#: corresp/options/showContingency.title
+msgid "Contingency table"
 msgstr ""
 
 #: package/analyses/histogram.menuSubgroup
@@ -1857,7 +1828,7 @@ msgstr ""
 
 #: R/corresp.b.R
 #: R/multcorresp.b.R
-msgid "Coordinates †"
+msgid "Coordinates"
 msgstr ""
 
 #: package/analyses/corresp.title
@@ -1887,7 +1858,7 @@ msgstr ""
 
 #: mrcrosstabs/options/endorsed.title
 #: mrfrequencies/options/endorsed.title
-msgid "Counted Value"
+msgid "Counted value"
 msgstr ""
 
 #: R/mrfrequencies.b.R
@@ -1963,7 +1934,7 @@ msgid "Dark 2"
 msgstr ""
 
 #: multcorresp/options/obsColor/darkgray.title
-msgid "Dark gray"
+msgid "Dark Gray"
 msgstr ""
 
 #: histogram/options/dashedDensity.title
@@ -1980,7 +1951,7 @@ msgstr ""
 
 #: areachart/options/dateBreak.title
 #: linechart/options/dateBreak.title
-msgid "Date Breaks"
+msgid "Date breaks"
 msgstr ""
 
 #: R/areachart.b.R
@@ -2053,7 +2024,7 @@ msgid "Detrended {distribStr} {typeStr} Plot of {varStr}"
 msgstr ""
 
 #: qqplot/options/detrend.title
-msgid "Detrended Plot"
+msgid "Detrended plot"
 msgstr ""
 
 #: likertplot/results/comp/kwTable.columns.title
@@ -2109,7 +2080,7 @@ msgstr ""
 
 #: areachart/options/displayFormat.title
 #: linechart/options/displayFormat.title
-msgid "Display Format"
+msgid "Display format"
 msgstr ""
 
 #: qqplot/options/distrib.title
@@ -2121,13 +2092,17 @@ msgstr ""
 msgid "doesn't have a valid date format."
 msgstr ""
 
+#: piechart/options/donut.title
+msgid "Donut chart"
+msgstr ""
+
 #: lollipop/options/dotColor.title
 msgid "Dot"
 msgstr ""
 
 #: linechart/options/dotSize.title
 #: lollipop/options/dotSize.title
-msgid "Dot Size"
+msgid "Dot size"
 msgstr ""
 
 #: principal/options/biplotLines.title
@@ -2193,7 +2168,7 @@ msgstr ""
 
 #: qqplot/options/paramMethod/paraEstimate.title
 #: qqplot/ui[3][0][0]/paramMethod_paraEstimat.label
-msgid "Estimate Parameters from Data"
+msgid "Estimate parameters from data"
 msgstr ""
 
 #: areachart/options/dateFormat/eu.title
@@ -2321,12 +2296,12 @@ msgstr ""
 
 #: histogram/options/usePalette/forBorder.title
 #: histogram/ui[3][1][0][1]/usePalette_forBoder.label
-msgid "For Border"
+msgid "For border"
 msgstr ""
 
 #: histogram/options/usePalette/forFilling.title
 #: histogram/ui[3][1][0][1]/usePalette_forFilling.label
-msgid "For Filling"
+msgid "For filling"
 msgstr ""
 
 #: principal/options/biplotType/formPlot.title
@@ -2350,9 +2325,12 @@ msgstr ""
 msgid "Frequency Plot"
 msgstr ""
 
-#: likertplot/options/frequencyTable.title
 #: likertplot/results/frequencies.title
 msgid "Frequency Table"
+msgstr ""
+
+#: likertplot/options/frequencyTable.title
+msgid "Frequency table"
 msgstr ""
 
 #: likertplot/ui[2][0][1][0].label
@@ -2459,7 +2437,6 @@ msgstr ""
 #: boxplot/ui[0][1].label
 #: histogram/options/group.title
 #: histogram/ui[0][1].label
-#: likertplot/options/groupBy/group.title
 #: likertplot/options/groupSize.title
 #: likertplot/ui[4][0][1][0].label
 #: linechart/options/group.title
@@ -2545,7 +2522,7 @@ msgid "Height"
 msgstr ""
 
 #: likertplot/options/hideLabelsBelow.title
-msgid "Hide % Labels Below 5%"
+msgid "Hide % labels below 5%"
 msgstr ""
 
 #: package/analyses/histogram.title
@@ -2570,7 +2547,7 @@ msgid "Hommel"
 msgstr ""
 
 #: likertplot/options/hLabelWrap.title
-msgid "Horizontal Label Wrap"
+msgid "Horizontal label wrap"
 msgstr ""
 
 #: scatterplot/options/hline.title
@@ -2591,13 +2568,9 @@ msgstr ""
 msgid "Huge (800x500)"
 msgstr ""
 
-#: piechart/options/donut.title
-msgid "I prefer Donuts!"
-msgstr ""
-
 #: qqplot/options/refType/identity.title
 #: qqplot/ui[2][1][0]/refLine[0]/refType_identity.label
-msgid "Identity Line"
+msgid "Identity line"
 msgstr ""
 
 #: barplot/options/ignoreNA.title
@@ -2639,7 +2612,7 @@ msgid "Inertia"
 msgstr ""
 
 #: corresp/options/showInertia.title
-msgid "Inertia Summary"
+msgid "Inertia summary"
 msgstr ""
 
 #: principal/results/summaryTable.columns.superTitle
@@ -2648,7 +2621,7 @@ msgstr ""
 
 #: areachart/options/dateFormat.title
 #: linechart/options/dateFormat.title
-msgid "Input Format"
+msgid "Input format"
 msgstr ""
 
 #: package/datasets/Iris.name
@@ -2809,9 +2782,12 @@ msgstr ""
 msgid "Kaiser-Meyer-Olkin Measure of Sampling Adequacy (MSA)"
 msgstr ""
 
-#: principal/options/showKMO.title
 #: principal/results/kmoTable.title
 msgid "KMO & Bartlett's Test"
+msgstr ""
+
+#: principal/options/showKMO.title
+msgid "KMO & Bartlett's test"
 msgstr ""
 
 #: qqplot/options/methodQQ/ks.title
@@ -2846,6 +2822,10 @@ msgstr ""
 #: scatterplot/options/labelVar.title
 #: scatterplot/ui[0][3].label
 msgid "Label"
+msgstr ""
+
+#: likertplot/options/labelColor.title
+msgid "Label color"
 msgstr ""
 
 #: areachart/options/yAxisLabelFontSize.title
@@ -3084,13 +3064,10 @@ msgstr ""
 #: histogram/options/fillColor/#F2F2F2.title
 #: lollipop/options/dotColor/#F2F2F2.title
 #: lollipop/options/lineColor/#F2F2F2.title
+#: multcorresp/options/obsColor/lightgray.title
 #: principal/options/varColor/#F2F2F2.title
 #: principal/options/obsColor/#F2F2F2.title
 msgid "Light Gray"
-msgstr ""
-
-#: multcorresp/options/obsColor/lightgray.title
-msgid "Light gray"
 msgstr ""
 
 #: histogram/options/fillColor/#CCEBC5.title
@@ -3184,7 +3161,7 @@ msgstr ""
 #: areachart/options/lineWidth.title
 #: linechart/options/lineWidth.title
 #: lollipop/options/lineWidth.title
-msgid "Line Width"
+msgid "Line width"
 msgstr ""
 
 #: scatterplot/options/lineMethod/lm.title
@@ -3216,7 +3193,7 @@ msgid "Lollipop Size & Colors"
 msgstr ""
 
 #: package.description
-msgid "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
+msgid "Main statistical charts (histogram, boxplot, point, bar, line, raincloud…) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
 msgstr ""
 
 #: likertplot/options/showMannU.title
@@ -3466,7 +3443,7 @@ msgid "Name"
 msgstr ""
 
 #: qqplot/options/transLog.title
-msgid "Natural Log Tranform"
+msgid "Natural log tranform"
 msgstr ""
 
 #: R/principal.b.R
@@ -3565,7 +3542,7 @@ msgid "Normalization"
 msgstr ""
 
 #: boxplot/options/notchWidth.title
-msgid "Notch Width"
+msgid "Notch width"
 msgstr ""
 
 #: boxplot/options/notches.title
@@ -3635,7 +3612,7 @@ msgid "Observation Plot Size"
 msgstr ""
 
 #: multcorresp/options/normalization/obsprincipal.title
-msgid "Observation Principal"
+msgid "Observation principal"
 msgstr ""
 
 #: R/multcorresp.b.R
@@ -3818,7 +3795,7 @@ msgstr ""
 
 #: qqplot/options/type/PP.title
 #: qqplot/ui[2][0][0]/type_PP.label
-msgid "P-P Plot"
+msgid "P-P plot"
 msgstr ""
 
 #: likertplot/options/pValue.title
@@ -3885,10 +3862,13 @@ msgstr ""
 msgid "Parameter Estimates"
 msgstr ""
 
-#: qqplot/options/paramMethod/paraValue.title
 #: qqplot/ui[3].label
-#: qqplot/ui[3][0][1]/paramMethod_paraValue.label
 msgid "Parameter Values"
+msgstr ""
+
+#: qqplot/options/paramMethod/paraValue.title
+#: qqplot/ui[3][0][1]/paramMethod_paraValue.label
+msgid "Parameter values"
 msgstr ""
 
 #: principal/options/rotation/parsimax.title
@@ -4368,12 +4348,12 @@ msgstr ""
 
 #: qqplot/options/refType/qqline.title
 #: qqplot/ui[2][1][0]/refLine[0]/refType_qqline.label
-msgid "Q-Q Line"
+msgid "Q-Q line"
 msgstr ""
 
 #: qqplot/options/type/QQ.title
 #: qqplot/ui[2][0][0]/type_QQ.label
-msgid "Q-Q Plot"
+msgid "Q-Q plot"
 msgstr ""
 
 #: multcorresp/results/categories.columns.title
@@ -4537,9 +4517,12 @@ msgstr ""
 msgid "Reds"
 msgstr ""
 
-#: qqplot/options/refLine.title
 #: qqplot/options/refType.title
 msgid "Reference Line"
+msgstr ""
+
+#: qqplot/options/refLine.title
+msgid "Reference line"
 msgstr ""
 
 #: scatterplot/ui[1][2][0].label
@@ -4668,18 +4651,18 @@ msgid "Row and Column Points for {rows} and {cols}"
 msgstr ""
 
 #: corresp/options/showProfiles.title
-msgid "Row and Column Profiles"
+msgid "Row and column profiles"
 msgstr ""
 
 #: corresp/options/showSummaries.title
-msgid "Row and Column Summaries"
+msgid "Row and column summaries"
 msgstr ""
 
-#: corresp/options/showRowPlot.title
 #: corresp/results/rowplot.title
 msgid "Row Plot"
 msgstr ""
 
+#: corresp/options/showRowPlot.title
 #: corresp/options/rowTitleText.title
 #: corresp/options/rowSubtitleText.title
 #: corresp/options/rowCaptionText.title
@@ -4691,7 +4674,7 @@ msgid "Row Points for"
 msgstr ""
 
 #: corresp/options/normalization/rowprincipal.title
-msgid "Row Principal"
+msgid "Row principal"
 msgstr ""
 
 #: corresp/results/rowProfiles.title
@@ -4756,11 +4739,11 @@ msgid "Scatter Plot"
 msgstr ""
 
 #: R/principal.b.R
-#: principal/options/showScreePlot.title
 #: principal/results/screePlot.title
 msgid "Scree Plot"
 msgstr ""
 
+#: principal/options/showScreePlot.title
 #: principal/options/screeTitleText.title
 #: principal/options/screeSubtitleText.title
 #: principal/options/screeCaptionText.title
@@ -4836,7 +4819,7 @@ msgid "Several variables"
 msgstr ""
 
 #: likertplot/options/addLabels.title
-msgid "Show % Labels"
+msgid "Show % labels"
 msgstr ""
 
 #: barplot/options/showLabels.title
@@ -4854,11 +4837,11 @@ msgid "Show line"
 msgstr ""
 
 #: areachart/options/showLine.title
-msgid "Show Lines"
+msgid "Show lines"
 msgstr ""
 
 #: boxplot/options/showMean.title
-msgid "Show Mean"
+msgid "Show mean"
 msgstr ""
 
 #: histogram/options/normalCurve.title
@@ -4870,7 +4853,7 @@ msgid "Show outliers"
 msgstr ""
 
 #: linechart/options/showPoint.title
-msgid "Show Points"
+msgid "Show points"
 msgstr ""
 
 #: scatterplot/options/keepNA.title
@@ -4878,7 +4861,7 @@ msgid "Show points with missing group/label"
 msgstr ""
 
 #: likertplot/options/addTotals.title
-msgid "Show Totals (Centered Only)"
+msgid "Show totals (Centered only)"
 msgstr ""
 
 #: barplot/options/barType/dodge2.title
@@ -5039,7 +5022,7 @@ msgid "Standardize scores"
 msgstr ""
 
 #: qqplot/options/standardize.title
-msgid "Standardize Values"
+msgid "Standardize values"
 msgstr ""
 
 #: principal/options/stdVariables.title
@@ -5059,7 +5042,7 @@ msgid "Standardized values"
 msgstr ""
 
 #: boxplot/options/stapleWidth.title
-msgid "Staple Width"
+msgid "Staple width"
 msgstr ""
 
 #: principal/results/kmoTable.columns.title
@@ -5067,15 +5050,7 @@ msgid "Statistic"
 msgstr ""
 
 #: principal/options/biplotStretch.title
-msgid "Stretch Arrows"
-msgstr ""
-
-#: principal/ui[3][2][0][3]/biplotStretch.label
 msgid "Stretch arrows by"
-msgstr ""
-
-#: principal/options/biplotStretchFactor.title
-msgid "Stretch Arrows Factor"
 msgstr ""
 
 #: R/corresp.b.R
@@ -5153,25 +5128,39 @@ msgstr ""
 msgid "Suppl. Row"
 msgstr ""
 
+#: R/multcorresp.b.R
+msgid "Suppl. variables"
+msgstr ""
+
 #: corresp/options/supColor.title
 msgid "Supplement"
 msgstr ""
 
+#: R/corresp.b.R
 #: corresp/options/supplementaryCols.title
-msgid "Supplementary Columns"
+msgid "Supplementary columns"
 msgstr ""
 
 #: corresp/ui[3][0].label
 msgid "Supplementary Points"
 msgstr ""
 
+#: R/corresp.b.R
 #: corresp/options/supplementaryRows.title
-msgid "Supplementary Rows"
+msgid "Supplementary rows"
+msgstr ""
+
+#: R/corresp.b.R
+msgid "Supplementary rows/columns"
 msgstr ""
 
 #: multcorresp/options/supplVars.title
 #: multcorresp/ui[0][1].label
 msgid "Supplementary Variables"
+msgstr ""
+
+#: R/multcorresp.b.R
+msgid "Supplementary variables"
 msgstr ""
 
 #: corresp/options/normalization/symetric.title
@@ -5433,7 +5422,7 @@ msgid "Total"
 msgstr ""
 
 #: mrcrosstabs/options/totalRow.title
-msgid "Total Row"
+msgid "Total row"
 msgstr ""
 
 #: likertplot/ui[4][0][0][0].label
@@ -5499,7 +5488,6 @@ msgstr ""
 #: areachart/ui/mode/oneVariable[0][0][1].label
 #: histogram/options/aVar.title
 #: histogram/ui[0][0].label
-#: likertplot/options/groupBy/variable.title
 #: lollipop/options/aVar.title
 #: lollipop/ui[0][0].label
 #: multcorresp/results/discrim.columns.title
@@ -5555,7 +5543,7 @@ msgid "Varimax"
 msgstr ""
 
 #: likertplot/options/vLabelWrap.title
-msgid "Vertical Label Wrap"
+msgid "Vertical label wrap"
 msgstr ""
 
 #: scatterplot/options/vline.title

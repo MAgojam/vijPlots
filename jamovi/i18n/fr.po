@@ -1565,7 +1565,7 @@ msgstr "Graphique des catégories"
 
 #: multcorresp/options/normalization/catprincipal.title
 msgid "Category principal"
-msgstr ""
+msgstr "Catégories principales"
 
 #: R/multcorresp.b.R
 msgid "Category principal coordinates"
@@ -1736,7 +1736,7 @@ msgstr "Graphique des colonnes pour"
 
 #: corresp/options/normalization/colprincipal.title
 msgid "Column principal"
-msgstr "Principale en colonnes"
+msgstr "Col. principales"
 
 #: corresp/results/colProfiles.title
 msgid "Column Profiles"
@@ -1828,8 +1828,8 @@ msgstr "Convertir les variables en entiers"
 
 #: R/corresp.b.R
 #: R/multcorresp.b.R
-msgid "Coordinates †"
-msgstr "Coordonnées †"
+msgid "Coordinates"
+msgstr "Coordonnées"
 
 #: package/analyses/corresp.title
 #: package/analyses/corresp.menuTitle

@@ -79,7 +79,7 @@
             "{distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
-            "{normalization} normalization": [
+            "{normalization} Normalization": [
                 ""
             ],
             "{rotation} rotation": [
@@ -94,25 +94,7 @@
             "{rotation} rotation with Kaiser normalization was used.": [
                 ""
             ],
-            "* : Suppl. variable(s)": [
-                ""
-            ],
-            "* : Supplementary columns": [
-                ""
-            ],
-            "* : Supplementary rows": [
-                ""
-            ],
-            "* : Supplementary rows/columns": [
-                ""
-            ],
-            "* : Supplementary variable(s)": [
-                ""
-            ],
             "# of rows/columns": [
-                ""
-            ],
-            "%": [
                 ""
             ],
             "% Accuracy": [
@@ -121,13 +103,7 @@
             "% by Row": [
                 ""
             ],
-            "% by row": [
-                ""
-            ],
             "% Inertia": [
-                ""
-            ],
-            "% Label Color": [
                 ""
             ],
             "% Labels": [
@@ -259,7 +235,7 @@
             "Active Margin": [
                 ""
             ],
-            "Add Median Line (Stacked Only)": [
+            "Add median line (Stacked only)": [
                 ""
             ],
             "Add plot frame": [
@@ -397,10 +373,10 @@
             "BY": [
                 ""
             ],
-            "By Group": [
+            "By group": [
                 ""
             ],
-            "By Variable": [
+            "By variable": [
                 ""
             ],
             "Caption": [
@@ -436,7 +412,7 @@
             "Category Plot Size": [
                 ""
             ],
-            "Category Principal": [
+            "Category principal": [
                 ""
             ],
             "Category principal coordinates": [
@@ -484,7 +460,7 @@
             "Column Points for": [
                 ""
             ],
-            "Column Principal": [
+            "Column principal": [
                 ""
             ],
             "Column Profiles": [
@@ -508,7 +484,7 @@
             "Component Plot": [
                 ""
             ],
-            "Confidence Band": [
+            "Confidence band": [
                 ""
             ],
             "Confidence Band Methods": [
@@ -529,6 +505,9 @@
             "Contingency Table": [
                 ""
             ],
+            "Contingency table": [
+                ""
+            ],
             "Continuous": [
                 ""
             ],
@@ -538,7 +517,7 @@
             "Convert variables to integer": [
                 ""
             ],
-            "Coordinates †": [
+            "Coordinates": [
                 ""
             ],
             "Correspondence Analysis": [
@@ -550,7 +529,7 @@
             "Count": [
                 ""
             ],
-            "Counted Value": [
+            "Counted value": [
                 ""
             ],
             "Counts": [
@@ -589,7 +568,7 @@
             "Dark 2": [
                 ""
             ],
-            "Dark gray": [
+            "Dark Gray": [
                 ""
             ],
             "Dashed line": [
@@ -601,7 +580,7 @@
             "Data Transform": [
                 ""
             ],
-            "Date Breaks": [
+            "Date breaks": [
                 ""
             ],
             "Dec": [
@@ -628,7 +607,7 @@
             "Detrended {distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
-            "Detrended Plot": [
+            "Detrended plot": [
                 ""
             ],
             "df": [
@@ -655,7 +634,7 @@
             "Discrimination Plot Size": [
                 ""
             ],
-            "Display Format": [
+            "Display format": [
                 ""
             ],
             "Distribution": [
@@ -664,10 +643,13 @@
             "doesn't have a valid date format.": [
                 ""
             ],
+            "Donut chart": [
+                ""
+            ],
             "Dot": [
                 ""
             ],
-            "Dot Size": [
+            "Dot size": [
                 ""
             ],
             "Draw arrow lines": [
@@ -712,7 +694,7 @@
             "Equamax": [
                 ""
             ],
-            "Estimate Parameters from Data": [
+            "Estimate parameters from data": [
                 ""
             ],
             "EU (D-M-Y)": [
@@ -754,10 +736,10 @@
             "Font size": [
                 ""
             ],
-            "For Border": [
+            "For border": [
                 ""
             ],
-            "For Filling": [
+            "For filling": [
                 ""
             ],
             "Form (Score principal)": [
@@ -773,6 +755,9 @@
                 ""
             ],
             "Frequency Table": [
+                ""
+            ],
+            "Frequency table": [
                 ""
             ],
             "Frequency Type": [
@@ -841,7 +826,7 @@
             "Height": [
                 ""
             ],
-            "Hide % Labels Below 5%": [
+            "Hide % labels below 5%": [
                 ""
             ],
             "Histogram": [
@@ -856,7 +841,7 @@
             "Hommel": [
                 ""
             ],
-            "Horizontal Label Wrap": [
+            "Horizontal label wrap": [
                 ""
             ],
             "Horizontal line at": [
@@ -868,10 +853,7 @@
             "Huge (800x500)": [
                 ""
             ],
-            "I prefer Donuts!": [
-                ""
-            ],
-            "Identity Line": [
+            "Identity line": [
                 ""
             ],
             "Ignore NA": [
@@ -892,13 +874,13 @@
             "Inertia": [
                 ""
             ],
-            "Inertia Summary": [
+            "Inertia summary": [
                 ""
             ],
             "Initial Eigenvalues": [
                 ""
             ],
-            "Input Format": [
+            "Input format": [
                 ""
             ],
             "Iris": [
@@ -955,6 +937,9 @@
             "KMO & Bartlett's Test": [
                 ""
             ],
+            "KMO & Bartlett's test": [
+                ""
+            ],
             "Kolmogorov-Smirnov": [
                 ""
             ],
@@ -965,6 +950,9 @@
                 ""
             ],
             "Label": [
+                ""
+            ],
+            "Label color": [
                 ""
             ],
             "Label font size": [
@@ -1015,9 +1003,6 @@
             "Light Gray": [
                 ""
             ],
-            "Light gray": [
-                ""
-            ],
             "Light Green": [
                 ""
             ],
@@ -1057,7 +1042,7 @@
             "Line size": [
                 ""
             ],
-            "Line Width": [
+            "Line width": [
                 ""
             ],
             "Linear": [
@@ -1078,7 +1063,7 @@
             "Lollipop Size & Colors": [
                 ""
             ],
-            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud...) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
+            "Main statistical charts (histogram, boxplot, point, bar, line, raincloud…) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
                 ""
             ],
             "Mann-Whitney U": [
@@ -1180,7 +1165,7 @@
             "Name": [
                 ""
             ],
-            "Natural Log Tranform": [
+            "Natural log tranform": [
                 ""
             ],
             "No rotation used.": [
@@ -1198,7 +1183,7 @@
             "Normalization": [
                 ""
             ],
-            "Notch Width": [
+            "Notch width": [
                 ""
             ],
             "Notched box": [
@@ -1240,7 +1225,7 @@
             "Observation Plot Size": [
                 ""
             ],
-            "Observation Principal": [
+            "Observation principal": [
                 ""
             ],
             "Observation principal coordinates": [
@@ -1321,7 +1306,7 @@
             "P-P": [
                 ""
             ],
-            "P-P Plot": [
+            "P-P plot": [
                 ""
             ],
             "p-Value Adjustment": [
@@ -1355,6 +1340,9 @@
                 ""
             ],
             "Parameter Values": [
+                ""
+            ],
+            "Parameter values": [
                 ""
             ],
             "Parsimax": [
@@ -1501,10 +1489,10 @@
             "Q-Q & P-P Plots": [
                 ""
             ],
-            "Q-Q Line": [
+            "Q-Q line": [
                 ""
             ],
-            "Q-Q Plot": [
+            "Q-Q plot": [
                 ""
             ],
             "QLT": [
@@ -1555,6 +1543,9 @@
             "Reference Line": [
                 ""
             ],
+            "Reference line": [
+                ""
+            ],
             "Reference Lines": [
                 ""
             ],
@@ -1585,10 +1576,10 @@
             "Row and Column Points for {rows} and {cols}": [
                 ""
             ],
-            "Row and Column Profiles": [
+            "Row and column profiles": [
                 ""
             ],
-            "Row and Column Summaries": [
+            "Row and column summaries": [
                 ""
             ],
             "Row Plot": [
@@ -1600,7 +1591,7 @@
             "Row Points for": [
                 ""
             ],
-            "Row Principal": [
+            "Row principal": [
                 ""
             ],
             "Row Profiles": [
@@ -1672,7 +1663,7 @@
             "Several variables": [
                 ""
             ],
-            "Show % Labels": [
+            "Show % labels": [
                 ""
             ],
             "Show count labels": [
@@ -1684,10 +1675,10 @@
             "Show line": [
                 ""
             ],
-            "Show Lines": [
+            "Show lines": [
                 ""
             ],
-            "Show Mean": [
+            "Show mean": [
                 ""
             ],
             "Show normal curve": [
@@ -1696,13 +1687,13 @@
             "Show outliers": [
                 ""
             ],
-            "Show Points": [
+            "Show points": [
                 ""
             ],
             "Show points with missing group/label": [
                 ""
             ],
-            "Show Totals (Centered Only)": [
+            "Show totals (Centered only)": [
                 ""
             ],
             "Side-by-side": [
@@ -1765,7 +1756,7 @@
             "Standardize scores": [
                 ""
             ],
-            "Standardize Values": [
+            "Standardize values": [
                 ""
             ],
             "Standardize variables": [
@@ -1780,19 +1771,13 @@
             "Standardized values": [
                 ""
             ],
-            "Staple Width": [
+            "Staple width": [
                 ""
             ],
             "Statistic": [
                 ""
             ],
-            "Stretch Arrows": [
-                ""
-            ],
             "Stretch arrows by": [
-                ""
-            ],
-            "Stretch Arrows Factor": [
                 ""
             ],
             "Student": [
@@ -1816,19 +1801,28 @@
             "Suppl. Row": [
                 ""
             ],
+            "Suppl. variables": [
+                ""
+            ],
             "Supplement": [
                 ""
             ],
-            "Supplementary Columns": [
+            "Supplementary columns": [
                 ""
             ],
             "Supplementary Points": [
                 ""
             ],
-            "Supplementary Rows": [
+            "Supplementary rows": [
+                ""
+            ],
+            "Supplementary rows/columns": [
                 ""
             ],
             "Supplementary Variables": [
+                ""
+            ],
+            "Supplementary variables": [
                 ""
             ],
             "Symetric": [
@@ -1909,7 +1903,7 @@
             "Total": [
                 ""
             ],
-            "Total Row": [
+            "Total row": [
                 ""
             ],
             "Type": [
@@ -1966,7 +1960,7 @@
             "Varimax": [
                 ""
             ],
-            "Vertical Label Wrap": [
+            "Vertical label wrap": [
                 ""
             ],
             "Vertical line at": [

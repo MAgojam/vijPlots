@@ -413,7 +413,7 @@
                 "Graphique des catégories"
             ],
             "Category principal": [
-                ""
+                "Catégories principales"
             ],
             "Category principal coordinates": [
                 "Coordonnées principales des catégories"
@@ -461,7 +461,7 @@
                 "Graphique des colonnes pour"
             ],
             "Column principal": [
-                "Principale en colonnes"
+                "Col. principales"
             ],
             "Column Profiles": [
                 "Profils colonnes"
@@ -517,8 +517,8 @@
             "Convert variables to integer": [
                 "Convertir les variables en entiers"
             ],
-            "Coordinates †": [
-                "Coordonnées †"
+            "Coordinates": [
+                "Coordonnées"
             ],
             "Correspondence Analysis": [
                 "Analyse des correspondances"
