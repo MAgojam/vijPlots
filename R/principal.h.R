@@ -187,8 +187,8 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "biplotStretchFactor",
                 biplotStretchFactor,
                 default=1,
-                min=0.0001,
-                max=100)
+                min=0.1,
+                max=10)
             private$..plotWidth <- jmvcore::OptionNumber$new(
                 "plotWidth",
                 plotWidth,

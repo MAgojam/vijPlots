@@ -83,14 +83,13 @@ options:
       options:
         - title: Principal
           name:  principal
-        - title: Category Principal
+        - title: Category principal
           name:  catprincipal
-        - title: Observation Principal
+        - title: Observation principal
           name:  obsprincipal
         - title: Standard
           name:  standard
       default: principal
-
 
     - name: showSummary
       title: Summary
@@ -350,9 +349,9 @@ options:
           name:  black
         - title: Gray
           name:  gray
-        - title: Dark gray
+        - title: Dark Gray
           name:  darkgray
-        - title: Light gray
+        - title: Light Gray
           name:  lightgray
         - title: Blue
           name:  blue

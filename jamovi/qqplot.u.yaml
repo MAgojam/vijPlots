@@ -47,12 +47,12 @@ children:
                 name: type_QQ
                 optionName: type
                 optionPart: QQ
-                label: Q-Q Plot
+                label: Q-Q plot
               - type: RadioButton
                 name: type_PP
                 optionName: type
                 optionPart: PP
-                label: P-P Plot
+                label: P-P plot
           - type: Label
             label: Data Transform
             children:
@@ -79,13 +79,13 @@ children:
                         name: refType_identity
                         optionName: refType
                         optionPart: identity
-                        label: Identity Line
+                        label: Identity line
                         enable: (refLine)
                       - type: RadioButton
                         name: refType_qqline
                         optionName: refType
                         optionPart: qqline
-                        label: Q-Q Line
+                        label: Q-Q line
                         enable: (refLine && type_QQ)
               - type: CheckBox
                 name: band
@@ -111,7 +111,7 @@ children:
                 name: paramMethod_paraEstimat
                 optionName: paramMethod
                 optionPart: paraEstimate
-                label: Estimate Parameters from Data
+                label: Estimate parameters from data
                 children:
                   - type: RadioButton
                     name: paramEstMethod_mle
@@ -135,7 +135,7 @@ children:
                 name: paramMethod_paraValue
                 optionName: paramMethod
                 optionPart: paraValue
-                label: Parameter Values
+                label: Parameter values
                 children:
                   - type: TextBox
                     name: param1

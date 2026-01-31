@@ -236,13 +236,13 @@ children:
                     name: groupBy_variable
                     optionName: groupBy
                     optionPart: variable
-                    label: By Variable
+                    label: By variable
                     enable: (!(!group))
                   - type: RadioButton
                     name: groupBy_group
                     optionName: groupBy
                     optionPart: group
-                    label: By Group
+                    label: By group
                     enable: (!(!group))
           - type: LayoutBox
             cell:

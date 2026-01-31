@@ -151,10 +151,16 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Percent format (scales)
+            doPercent <- scales::label_percent(
+                accuracy = as.numeric(self$options$accuracy),
+                suffix = ifelse(self$options[['decSymbol']] == ",", " %", "%"),
+                decimal.mark = self$options[['decSymbol']])
+
+            # Percent format (scales)
             if (self$options$computedValues == "count")
                 doNumber <- function (x){x}
             else
-                doNumber <- scales::label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
+                doNumber <- doPercent
 
             # Border color
             if (self$options$borderColor == "none")

@@ -166,7 +166,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
             if (!is.null(supplIdx))
-                self$results$discrim$setNote("sup", .("* : Suppl. variable(s)"))
+                self$results$discrim$setNote("sup", paste("* :", .("Suppl. variables")))
 
             #### Category Table ####
 
@@ -205,7 +205,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 else
                     self$results$categories$setNote("normalization",paste("† :",.("Standard coordinates")))
                 if (!is.null(supplIdx))
-                    self$results$categories$setNote("sup", .("* : Supplementary variable(s)"))
+                    self$results$categories$setNote("sup", paste("* :", .("Supplementary variables")))
             }
 
             #### Observation Table ####

@@ -36,7 +36,7 @@ options:
         - factor
 
     - name: showPoint
-      title: Show Points
+      title: Show points
       type: Bool
       default: true
 
@@ -154,7 +154,7 @@ options:
       default: false
 
     - name: dateFormat
-      title: Input Format
+      title: Input format
       type: List
       options:
         - title: "Auto"
@@ -168,7 +168,7 @@ options:
       default: "auto"
 
     - name: displayFormat
-      title: Display Format
+      title: Display format
       type: List
       options:
         - title: "2035-10-20"
@@ -206,7 +206,7 @@ options:
       default: "%Y-%m-%d"
 
     - name: dateBreak
-      title: Date Breaks
+      title: Date breaks
       type: List
       options:
         - title: "1 day"
@@ -243,14 +243,14 @@ options:
 
     - name: dotSize
       type: Number
-      title: Dot Size
+      title: Dot size
       min: 1
       max: 20
       default: 2
 
     - name: lineWidth
       type: Number
-      title: Line Width
+      title: Line width
       min: 0
       max: 10
       default: 1

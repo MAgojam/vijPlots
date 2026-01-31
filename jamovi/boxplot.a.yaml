@@ -44,7 +44,7 @@ options:
       default: true
 
     - name: showMean
-      title: Show Mean
+      title: Show mean
       type: Bool
       default: false
 
@@ -216,14 +216,14 @@ options:
 
     - name: stapleWidth
       type: Number
-      title: Staple Width
+      title: Staple width
       min: 0
       max: 1
       default: 0.25
 
     - name: notchWidth
       type: Number
-      title: Notch Width
+      title: Notch width
       min: 0
       max: 1
       default: 0.5

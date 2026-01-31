@@ -180,13 +180,13 @@ children:
                     name: usePalette_forFilling
                     optionName: usePalette
                     optionPart: forFilling
-                    label: For Filling
+                    label: For filling
                     enable: (!(!group))
                   - type: RadioButton
                     name: usePalette_forBoder
                     optionName: usePalette
                     optionPart: forBorder
-                    label: For Border
+                    label: For border
                     enable: (!(!group))
   - type: CollapseBox
     label: Plot Size & Facets

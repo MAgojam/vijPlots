@@ -5,7 +5,7 @@ Version: 0.11.7
 Author: Vincent Jalby
 Maintainer: Vincent Jalby <vincent.jalby@unilim.fr>
 Description: Main statistical charts (histogram, boxplot, point, bar, line, 
-    raincloud...) with many options along with Likert plot, multiple response barplot,
+    raincloud…) with many options along with Likert plot, multiple response barplot,
     Principal Component and (Multiple) Correspondence Analyses. 
     Project source (and changelog) is available at  
     <a href="https://github.com/vjalby/vijPlots" target="_blank">Github</a>.

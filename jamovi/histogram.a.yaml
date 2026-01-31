@@ -307,9 +307,9 @@ options:
       title: Use Palette
       type: List
       options:
-        - title: For Filling
+        - title: For filling
           name:  forFilling
-        - title: For Border
+        - title: For border
           name:  forBorder
       default: forFilling
 

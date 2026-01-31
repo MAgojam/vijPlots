@@ -236,7 +236,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
             if (!is.null(supplementaryRows) || !is.null(supplementaryCols))
-                self$results$contingency$setNote("supp",.("* : Supplementary rows/columns"))
+                self$results$contingency$setNote("supp",paste("* :", .("Supplementary rows/columns")))
 
             #### Row and Column Profile Tables ####
 
@@ -253,7 +253,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
                 self$results$rowProfiles$addFormat(rowNo = nrow(rowProfiles), 1, jmvcore::Cell.BEGIN_END_GROUP)
                 if (!is.null(supplementaryRows) || !is.null(supplementaryCols))
-                    self$results$rowProfiles$setNote("supp",.("* : Supplementary rows/columns"))
+                    self$results$rowProfiles$setNote("supp", paste("* :", .("Supplementary rows/columns")))
                 # Column Profiles
                 colProfiles <- t(private$.getProfile(t(contingencyTable),supplementaryCols, supplementaryRows))
                 self$results$colProfiles$addColumn(rowVarName, type = "text", title = private$.varName[[rowVarName]])
@@ -266,7 +266,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
                 self$results$colProfiles$addFormat(rowNo = nrow(colProfiles), 1, jmvcore::Cell.BEGIN_END_GROUP)
                 if (!is.null(supplementaryRows) || !is.null(supplementaryCols))
-                    self$results$colProfiles$setNote("supp",.("* : Supplementary rows/columns"))
+                    self$results$colProfiles$setNote("supp",paste("* :", .("Supplementary rows/columns")))
             }
 
             #### Chi-Squared test ####
@@ -367,7 +367,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$rowSummary$addRow(i, values = theValues)
                 }
                 if (!is.null(supplementaryRows))
-                    self$results$rowSummary$setNote("supp",.("* : Supplementary rows"))
+                    self$results$rowSummary$setNote("supp",paste("* :", .("Supplementary rows")))
                 self$results$rowSummary$setNote("norm", paste("† :", normalizationString))
 
                 # Column Summary Table
@@ -416,7 +416,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$colSummary$addRow(i, values = theValues)
                 }
                 if (!is.null(supplementaryCols))
-                    self$results$colSummary$setNote("supp",.("* : Supplementary columns"))
+                    self$results$colSummary$setNote("supp", paste("* :", .("Supplementary columns")))
                 self$results$colSummary$setNote("norm", paste("† :", normalizationString))
             }
             if (length(res$sv) < 2)
@@ -614,7 +614,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                       colprincipal = .("Column Principal [string]"),
                                       standard = .("Standard [string]")
                                 )
-            normalizationTitle <- jmvcore::format(.("{normalization} normalization"), normalization = normalizationString)
+            normalizationTitle <- jmvcore::format(.("{normalization} Normalization"), normalization = normalizationString)
             return(normalizationTitle)
         }
     )

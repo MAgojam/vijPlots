@@ -166,7 +166,6 @@ children:
                 children:
                   - type: CheckBox
                     name: biplotStretch
-                    label: Stretch arrows by
                     style: inline
                     verticalAlignment: center
                     enable: (showBiplot)

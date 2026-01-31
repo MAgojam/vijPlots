@@ -74,7 +74,10 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Percent format (scales)
-            doPercent <- scales::label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = self$options[['decSymbol']])
+            doPercent <- scales::label_percent(
+                accuracy = as.numeric(self$options$accuracy),
+                suffix = ifelse(self$options[['decSymbol']] == ",", " %", "%"),
+                decimal.mark = self$options[['decSymbol']])
 
             if(self$options$donut) {
                 plot <- ggplot(plotData, aes(x = 10, fill = !!aVar, by = 1)) + xlim(c(8.5,NA))

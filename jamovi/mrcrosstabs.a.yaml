@@ -65,7 +65,7 @@ options:
         - factor
 
     - name: endorsed
-      title: Counted Value
+      title: Counted value
       type: Integer
       default: 1
 
@@ -101,7 +101,7 @@ options:
       default: count
 
     - name: totalRow
-      title: "Total Row"
+      title: "Total row"
       type: Bool
       default: true
 

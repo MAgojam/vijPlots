@@ -59,22 +59,22 @@ options:
       default: norm
 
     - name: transLog
-      title: Natural Log Tranform
+      title: Natural log tranform
       type: Bool
       default: false
 
     - name: standardize
-      title: Standardize Values
+      title: Standardize values
       type: Bool
       default: false
 
     - name: refLine
-      title: Reference Line
+      title: Reference line
       type: Bool
       default: true
 
     - name: band
-      title: Confidence Band
+      title: Confidence band
       type: Bool
       default: false
 
@@ -105,7 +105,7 @@ options:
       default: ell
 
     - name: detrend
-      title: Detrended Plot
+      title: Detrended plot
       type: Bool
       default: false
 
@@ -113,9 +113,9 @@ options:
       title: Plot Type
       type: List
       options:
-        - title: Q-Q Plot
+        - title: Q-Q plot
           name:  QQ
-        - title: P-P Plot
+        - title: P-P plot
           name:  PP
       default: QQ
 
@@ -123,9 +123,9 @@ options:
       title: Reference Line
       type: List
       options:
-        - title: Q-Q Line
+        - title: Q-Q line
           name:  qqline
-        - title: Identity Line
+        - title: Identity line
           name:  identity
       default: identity
 
@@ -147,9 +147,9 @@ options:
       title: ""
       type: List
       options:
-        - title: Estimate Parameters from Data
+        - title: Estimate parameters from data
           name:  paraEstimate
-        - title: Parameter Values
+        - title: Parameter values
           name:  paraValue
       default: paraEstimate
 

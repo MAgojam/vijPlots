@@ -60,7 +60,7 @@ options:
         - factor
 
     - name: showLine
-      title: Show Lines
+      title: Show lines
       type: Bool
       default: true
 
@@ -190,7 +190,7 @@ options:
       default: false
 
     - name: dateFormat
-      title: Input Format
+      title: Input format
       type: List
       options:
         - title: "Auto"
@@ -204,7 +204,7 @@ options:
       default: "auto"
 
     - name: displayFormat
-      title: Display Format
+      title: Display format
       type: List
       options:
         - title: "2035-10-20"
@@ -242,7 +242,7 @@ options:
       default: "%Y-%m-%d"
 
     - name: dateBreak
-      title: Date Breaks
+      title: Date breaks
       type: List
       options:
         - title: "1 day"
@@ -279,7 +279,7 @@ options:
 
     - name: lineWidth
       type: Number
-      title: Line Width
+      title: Line width
       min: 0.1
       max: 10
       default: 0.5

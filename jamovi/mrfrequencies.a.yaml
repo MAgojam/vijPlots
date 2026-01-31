@@ -47,7 +47,7 @@ options:
         - factor
 
     - name: endorsed
-      title: Counted Value
+      title: Counted value
       type: Integer
       default: 1
 

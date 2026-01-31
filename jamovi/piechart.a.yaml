@@ -29,7 +29,7 @@ options:
         - factor
 
     - name: donut
-      title: I prefer Donuts!
+      title: Donut chart
       type: Bool
       default: false
 
