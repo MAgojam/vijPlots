@@ -919,37 +919,37 @@ msgstr ""
 msgid "9"
 msgstr ""
 
-#: package/datasets/Likert.description
-msgid "A demonstration dataset for Likert scale bar plots."
-msgstr "Fichier de démonstration d'un diagramme en barres pour variables de Likert."
-
 #: package/datasets/vijPlots.description
 msgid "A demonstration dataset for vijPlots module."
 msgstr "Fichier de démonstration du module vijPlots."
 
 #: package/datasets/Smoking.description
 msgid "A demonstration dataset for vijPlots/Correspondence Analysis."
-msgstr ""
+msgstr "Fichier de démonstration pour vijPlots/Analyse des correspondances "
+
+#: package/datasets/Likert.description
+msgid "A demonstration dataset for vijPlots/Likert plots."
+msgstr "Fichier de démonstration pour vijPlots/Likert"
 
 #: package/datasets/Cars.description
-msgid "A demonstration dataset for vijPlots/Multiple Component Analysis."
-msgstr ""
+msgid "A demonstration dataset for vijPlots/Multiple Correspondence Analysis."
+msgstr "Fichier de démonstration pour vijPlots/Analyse des correspondances multiples"
+
+#: package/datasets/Credit Cards.description
+msgid "A demonstration dataset for vijPlots/Multiple Response plots."
+msgstr "Fichier de démonstration pour vijPlots/Réponses multiples"
 
 #: package/datasets/Iris.description
 msgid "A demonstration dataset for vijPlots/Principal Component Analysis."
-msgstr ""
+msgstr "Fichier de démonstration pour vijPlots/Analyse en composantes principales "
 
 #: package/datasets/Raincloud.description
 msgid "A demonstration dataset for vijPlots/Raincloud plot."
-msgstr ""
+msgstr "Fichier de démonstration pour vijPlots/Diagramme Raincloud "
 
 #: package/datasets/Time Series.description
-msgid "A demonstration dataset for vijPlots/Time Series functions."
-msgstr ""
-
-#: package/datasets/Credit Cards.description
-msgid "A demonstration dataset with four dichotomous variables describing  the credit cards owned by customers."
-msgstr "Un fichier de démonstration avec quatres variables dichotomiques décrivant les cartes de crédit détenues par des consommateurs."
+msgid "A demonstration dataset for vijPlots/Time Serie plots."
+msgstr "Fichier de démonstration pour vijPlots/Séries temporelles"
 
 #: areachart/options/colorPalette/Accent.title
 #: barplot/options/colorPalette/Accent.title
