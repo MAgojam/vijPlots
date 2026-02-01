@@ -120,7 +120,7 @@ options:
       default: QQ
 
     - name: refType
-      title: Reference Line
+      title: Reference line
       type: List
       options:
         - title: Q-Q line

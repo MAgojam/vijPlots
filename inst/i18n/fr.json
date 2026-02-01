@@ -3,67 +3,67 @@
     "locale_data": {
         "messages": {
             "1": [
-                ""
+                "1"
             ],
             "8": [
-                ""
+                "8"
             ],
             "9": [
-                ""
+                "9"
             ],
             "10": [
-                ""
+                "10"
             ],
             "11": [
-                ""
+                "11"
             ],
             "12": [
-                ""
+                "12"
             ],
             "13": [
-                ""
+                "13"
             ],
             "14": [
-                ""
+                "14"
             ],
             "15": [
-                ""
+                "15"
             ],
             "16": [
-                ""
+                "16"
             ],
             "18": [
-                ""
+                "18"
             ],
             "20": [
-                ""
+                "20"
             ],
             "22": [
-                ""
+                "22"
             ],
             "24": [
-                ""
+                "24"
             ],
             "25": [
-                ""
+                "25"
             ],
             "30": [
-                ""
+                "30"
             ],
             "35": [
-                ""
+                "35"
             ],
             "40": [
-                ""
+                "40"
             ],
             "50": [
-                ""
+                "50"
             ],
             "80": [
-                ""
+                "80"
             ],
             "2035": [
-                ""
+                "2035"
             ],
             "": {
                 "domain": "messages",
@@ -71,10 +71,10 @@
                 "lang": "fr"
             },
             ";": [
-                ""
+                ";"
             ],
             "[0-9]": [
-                ""
+                "[0-9]"
             ],
             "{distribStr} {typeStr} Plot of {varStr}": [
                 "Diagramme {typeStr} {distribStr} de {varStr}"
@@ -128,7 +128,7 @@
                 "% dans"
             ],
             "°": [
-                ""
+                "°"
             ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <h2>Likert Plot Help</h2> <h3>Data & Sorting</h3>\n<ul> <li>Likert variables must be of ordinal measure-type. (Continuous measure-type works as well.)</li> <li>If you plan to compute mean/median/sd or to use comparison tests, they must be of integer data-type.</li> <li><strong>Tidy up levels:</strong> when checked, try to fix the labels order in table and graph (when some variables miss some levels).</li> <li><strong>Convert variables to integer:</strong> when checked, the level labels are ignored and only integer values are used.</li> <li><strong>Sort Variables by Median:</strong> orders the list of Likert variables by median.</li> </ul>\n<h3>Comparison Tests</h3> When using a group variable, several tests are available: <ul> <li><strong>Mann-Whitney U:</strong> Two group comparison</li> <li><strong>Kruskal-Wallis:</strong> n group comparison</li> <li><strong>Post Hoc Tests:</strong> Dunn, Conover and Dwass-Steel-Critchlow-Fligner (DSCF) paiwise comparisons tests.</li> </ul>\n<p>p-Values can be adjusted <strong>groupwise</strong> (for each question) for post hoc tests or <strong>overall</strong> (groupwise and questionwise) for MannWithney U, Kruskal-Wallis and post hoc tests. DSCF p-values are already adjusted (groupwise); no other adjustment is possible.</p> </div>": [
                 ""
@@ -152,10 +152,10 @@
                 ""
             ],
             "0.01": [
-                ""
+                "0,01"
             ],
             "0.1": [
-                ""
+                "0,1"
             ],
             "1 day": [
                 "1 jour"
@@ -173,10 +173,10 @@
                 "10 ans"
             ],
             "10-20-2035": [
-                ""
+                "10-20-2035"
             ],
             "10/20/35": [
-                ""
+                "10/20/35"
             ],
             "2 weeks": [
                 "2 semaines"
@@ -185,10 +185,10 @@
                 "20 octobre 2035"
             ],
             "20-10-2035": [
-                ""
+                "20-10-2035"
             ],
             "20/10/35": [
-                ""
+                "20/10/35"
             ],
             "2035 Oct": [
                 "2035 oct."
@@ -200,7 +200,7 @@
                 "2035 octobre 20"
             ],
             "2035-10-20": [
-                ""
+                "2035-10-20"
             ],
             "3 months": [
                 "3 mois"
@@ -212,28 +212,28 @@
                 "Fichier de démonstration du module vijPlots."
             ],
             "A demonstration dataset for vijPlots/Correspondence Analysis.": [
-                "Fichier de démonstration pour vijPlots/Analyse des correspondances "
+                "Fichier de démonstration pour vijPlots/Analyse des correspondances."
             ],
             "A demonstration dataset for vijPlots/Likert plots.": [
-                "Fichier de démonstration pour vijPlots/Likert"
+                "Fichier de démonstration pour vijPlots/Likert."
             ],
             "A demonstration dataset for vijPlots/Multiple Correspondence Analysis.": [
-                "Fichier de démonstration pour vijPlots/Analyse des correspondances multiples"
+                "Fichier de démonstration pour vijPlots/Analyse des correspondances multiples."
             ],
             "A demonstration dataset for vijPlots/Multiple Response plots.": [
-                "Fichier de démonstration pour vijPlots/Réponses multiples"
+                "Fichier de démonstration pour vijPlots/Réponses multiples."
             ],
             "A demonstration dataset for vijPlots/Principal Component Analysis.": [
-                "Fichier de démonstration pour vijPlots/Analyse en composantes principales "
+                "Fichier de démonstration pour vijPlots/Analyse en composantes principales."
             ],
             "A demonstration dataset for vijPlots/Raincloud plot.": [
-                "Fichier de démonstration pour vijPlots/Diagramme Raincloud "
+                "Fichier de démonstration pour vijPlots/Diagramme Raincloud."
             ],
             "A demonstration dataset for vijPlots/Time Serie plots.": [
-                "Fichier de démonstration pour vijPlots/Séries temporelles"
+                "Fichier de démonstration pour vijPlots/Séries temporelles."
             ],
             "Accent": [
-                ""
+                "Accent"
             ],
             "Active Margin": [
                 "Marge active"
@@ -254,7 +254,7 @@
                 "Align."
             ],
             "Alpha": [
-                ""
+                "Alpha"
             ],
             "Apr": [
                 "avr."
@@ -278,10 +278,10 @@
                 "août"
             ],
             "Auto": [
-                ""
+                "Auto"
             ],
             "Axes": [
-                ""
+                "Axes"
             ],
             "Axis Titles": [
                 "Titre des axes"
@@ -296,7 +296,7 @@
                 "Test de sphéricité de Bartlett"
             ],
             "Bentler T": [
-                ""
+                "Bentler T"
             ],
             "Benzécri Correction": [
                 "Correction de Benzécri"
@@ -305,10 +305,10 @@
                 "Correction de Benzécri"
             ],
             "Beta": [
-                ""
+                "Beta"
             ],
             "BH": [
-                ""
+                "BH"
             ],
             "Bin Color": [
                 "Couleur des bâtons"
@@ -347,10 +347,10 @@
                 "Gras Ital."
             ],
             "Bonferroni": [
-                ""
+                "Bonferroni"
             ],
             "Boostrap": [
-                ""
+                "Boostrap"
             ],
             "Border": [
                 "Bordures"
@@ -374,7 +374,7 @@
                 "Tableau de Burt"
             ],
             "BY": [
-                ""
+                "BY"
             ],
             "By group": [
                 "Par groupe"
@@ -392,7 +392,7 @@
                 "Texte des légendes"
             ],
             "Cars": [
-                ""
+                "Cars"
             ],
             "Categorical": [
                 "Variables qualitatives"
@@ -425,7 +425,7 @@
                 "Résumés des catégories"
             ],
             "Cauchy": [
-                ""
+                "Cauchy"
             ],
             "Center": [
                 "Centrer"
@@ -500,7 +500,7 @@
                 "Joindre les catégories ordinales"
             ],
             "Conover": [
-                ""
+                "Conover"
             ],
             "Conover's Pairwise Comparisons": [
                 "Comparaisons par paires de Conover"
@@ -515,7 +515,7 @@
                 "Variables quantitatives"
             ],
             "Contributions": [
-                ""
+                "Contributions"
             ],
             "Convert variables to integer": [
                 "Convertir les variables en entiers"
@@ -527,7 +527,7 @@
                 "Analyse des correspondances"
             ],
             "COS2": [
-                ""
+                "COS2"
             ],
             "Count": [
                 "Effectif"
@@ -551,7 +551,7 @@
                 "Graphique double (Covariance)"
             ],
             "Credit Cards": [
-                ""
+                "Credit Cards"
             ],
             "Crosstab": [
                 "Tableau croisé"
@@ -569,10 +569,10 @@
                 "% cumulés"
             ],
             "Dark 2": [
-                ""
+                "Dark 2"
             ],
             "Dark Gray": [
-                ""
+                "Gris foncé"
             ],
             "Dashed line": [
                 "Pointillée"
@@ -596,7 +596,7 @@
                 "Décroissant"
             ],
             "default": [
-                ""
+                "default"
             ],
             "Density": [
                 "Densité"
@@ -617,16 +617,16 @@
                 "ddl"
             ],
             "Dichromat:Categorical": [
-                ""
+                "Dichromat:Categorical"
             ],
             "Dim": [
-                ""
+                "Dim"
             ],
             "Dimension": [
-                ""
+                "Dimension"
             ],
             "Discrimination": [
-                ""
+                "Discrimination"
             ],
             "Discrimination Plot": [
                 "Graphique des discriminations"
@@ -641,7 +641,7 @@
                 "Affichage"
             ],
             "Distribution": [
-                ""
+                "Distribution"
             ],
             "doesn't have a valid date format.": [
                 "n'a pas un format de date valide."
@@ -662,16 +662,16 @@
                 "Tracer les agrafes"
             ],
             "DSCF": [
-                ""
+                "DSCF"
             ],
             "DSCF p-values are adjusted groupwise.": [
-                "Les probabilités critiques DSCF sont corrigées par groupe"
+                "Les probabilités critiques DSCF sont corrigées par groupe."
             ],
             "Dummy Variables": [
                 "Variables dichotomiques"
             ],
             "Dunn": [
-                ""
+                "Dunn"
             ],
             "Dunn's Pairwise Comparisons": [
                 "Comparaisons par paires de Dunn"
@@ -692,10 +692,10 @@
                 "Considérer les valeurs vides comme manquantes"
             ],
             "Equal Local Levels": [
-                ""
+                "Equal Local Levels"
             ],
             "Equamax": [
-                ""
+                "Equamax"
             ],
             "Estimate parameters from data": [
                 "Estimer les paramètres à partir des données"
@@ -710,7 +710,7 @@
                 "Sommes des carrés des composantes extraites"
             ],
             "F": [
-                ""
+                "F"
             ],
             "Facet": [
                 "Facette"
@@ -767,7 +767,7 @@
                 "Type de fréquences"
             ],
             "Gamma": [
-                ""
+                "Gamma"
             ],
             "Gray": [
                 "Gris"
@@ -836,13 +836,13 @@
                 "Histogramme"
             ],
             "Hochberg": [
-                ""
+                "Hochberg"
             ],
             "Holm": [
-                ""
+                "Holm"
             ],
             "Hommel": [
-                ""
+                "Hommel"
             ],
             "Horizontal label wrap": [
                 "Largeur des étiquettes horizontales"
@@ -887,7 +887,7 @@
                 "Entrée"
             ],
             "Iris": [
-                ""
+                "Iris"
             ],
             "ISO (Y-M-D)": [
                 "ISO (A-M-J)"
@@ -944,10 +944,10 @@
                 "KMO & test de Bartlett"
             ],
             "Kolmogorov-Smirnov": [
-                ""
+                "Kolmogorov-Smirnov"
             ],
             "Kruskal-Wallis": [
-                ""
+                "Kruskal-Wallis"
             ],
             "Kruskal-Wallis Tests": [
                 "Tests de Kruskal-Wallis"
@@ -992,7 +992,7 @@
                 "Titre de la légende"
             ],
             "Lémovice": [
-                ""
+                "Lémovice"
             ],
             "Level": [
                 "Niveau"
@@ -1025,7 +1025,7 @@
                 "Jaune clair"
             ],
             "Likert": [
-                ""
+                "Likert"
             ],
             "Likert Plot": [
                 "Diagramme Likert"
@@ -1070,7 +1070,7 @@
                 ""
             ],
             "Mann-Whitney U": [
-                ""
+                "Mann-Whitney U"
             ],
             "Mann-Whitney U Tests": [
                 "Tests U de Mann-Whitney"
@@ -1088,7 +1088,7 @@
                 "Masse"
             ],
             "Max": [
-                ""
+                "Max"
             ],
             "Maximum of": [
                 "Maximum de"
@@ -1121,7 +1121,7 @@
                 "Moyen (400x300)"
             ],
             "Method": [
-                ""
+                "Méthode"
             ],
             "Method of moments (MME)": [
                 "Méthode des moments (MME)"
@@ -1133,10 +1133,10 @@
                 "Milieu"
             ],
             "Min": [
-                ""
+                "Min"
             ],
             "Min / Max": [
-                ""
+                "Min / Max"
             ],
             "Minimum entropy": [
                 "Entropie minimale"
@@ -1238,7 +1238,7 @@
                 "Résumé des observations"
             ],
             "Observations": [
-                ""
+                "Observations"
             ],
             "Oct": [
                 "oct."
@@ -1259,7 +1259,7 @@
                 "Octobre 35"
             ],
             "Offset": [
-                ""
+                "Offset"
             ],
             "One variable": [
                 "Une variable"
@@ -1286,7 +1286,7 @@
                 "Orange à rouge"
             ],
             "Oranges": [
-                ""
+                "Oranges"
             ],
             "Original Eigenvalues": [
                 "Valeurs propres originales"
@@ -1304,10 +1304,10 @@
                 "Superposé"
             ],
             "p": [
-                ""
+                "p"
             ],
             "P-P": [
-                ""
+                "P-P"
             ],
             "P-P plot": [
                 "Diagramme P-P"
@@ -1325,13 +1325,13 @@
                 "Les probabilités critiques sont corrigées selon la méthode {method}."
             ],
             "Paired": [
-                ""
+                "Paired"
             ],
             "Pairwise Comparisons": [
                 "Comparaisons par paires"
             ],
             "Palette": [
-                ""
+                "Palette"
             ],
             "Parameter 1": [
                 "Paramètre 1"
@@ -1349,16 +1349,16 @@
                 "Valeurs des paramètres"
             ],
             "Parsimax": [
-                ""
+                "Parsimax"
             ],
             "Pastel 1": [
-                ""
+                "Pastel 1"
             ],
             "Pastel 2": [
-                ""
+                "Pastel 2"
             ],
             "PCA {norm} Coordinate{rotation}": [
-                ""
+                "Coordonnées ACP {norm}{rotation}"
             ],
             "Percent": [
                 "Pourcent"
@@ -1421,7 +1421,7 @@
                 "Graphiques"
             ],
             "Point": [
-                ""
+                "Point"
             ],
             "Point & Line Size": [
                 "Taile des points et lignes"
@@ -1436,7 +1436,7 @@
                 "Points"
             ],
             "Pointwise": [
-                ""
+                "Pointwise"
             ],
             "Position": [
                 "Position"
@@ -1487,7 +1487,7 @@
                 "px"
             ],
             "Q-Q": [
-                ""
+                "Q-Q"
             ],
             "Q-Q & P-P Plots": [
                 "Diagrammes Q-Q & P-P"
@@ -1499,16 +1499,16 @@
                 "Diagramme Q-Q"
             ],
             "QLT": [
-                ""
+                "QLT"
             ],
             "Quartimax": [
-                ""
+                "Quartimax"
             ],
             "Questions": [
-                ""
+                "Questions"
             ],
             "Raincloud": [
-                ""
+                "Raincloud"
             ],
             "Raincloud Plot": [
                 "Diagramme Raincloud"
@@ -1546,9 +1546,6 @@
             "Reference line": [
                 "Droite de référence"
             ],
-            "Reference Line": [
-                ""
-            ],
             "Reference Lines": [
                 "Lignes de référence"
             ],
@@ -1571,7 +1568,7 @@
                 "Rotation des vecteurs propres"
             ],
             "Rotation": [
-                ""
+                "Rotation"
             ],
             "Row": [
                 "Ligne"
@@ -1655,13 +1652,13 @@
                 "septembre"
             ],
             "Set 1": [
-                ""
+                "Set 1"
             ],
             "Set 2": [
-                ""
+                "Set 2"
             ],
             "Set 3": [
-                ""
+                "Set 3"
             ],
             "Several variables": [
                 "Plusieurs variables"
@@ -1718,13 +1715,13 @@
                 "Petit (300x200)"
             ],
             "Smoking": [
-                ""
+                "Smoking"
             ],
             "Smooth": [
                 "Lisse"
             ],
             "Solution": [
-                ""
+                "Solution"
             ],
             "Sort Variables by Median": [
                 "Trier les variable selon la médiane"
@@ -1736,7 +1733,7 @@
                 "Tri (selon médiane)"
             ],
             "Spectral": [
-                ""
+                "Spectral"
             ],
             "SS Loadings": [
                 "Total"
@@ -1784,7 +1781,7 @@
                 "Taille vecteurs"
             ],
             "Student": [
-                ""
+                "Student"
             ],
             "Subtitle": [
                 "Sous-titre"
@@ -1832,16 +1829,16 @@
                 "Symétrique"
             ],
             "Table": [
-                ""
+                "Table"
             ],
             "Tables": [
-                ""
+                "Tables"
             ],
             "Tail-Sensitive (Normal)": [
-                ""
+                "Tail-Sensitive (Normal)"
             ],
             "Tests": [
-                ""
+                "Tests"
             ],
             "Text": [
                 "Texte"
@@ -1865,28 +1862,28 @@
                 "Corriger les niveaux"
             ],
             "Tidy:Alger": [
-                ""
+                "Tidy:Alger"
             ],
             "Tidy:Apple": [
-                ""
+                "Tidy:Apple"
             ],
             "Tidy:Candy": [
-                ""
+                "Tidy:Candy"
             ],
             "Tidy:Friendly": [
-                ""
+                "Tidy:Friendly"
             ],
             "Tidy:Ibm": [
-                ""
+                "Tidy:Ibm"
             ],
             "Tidy:Metro": [
-                ""
+                "Tidy:Metro"
             ],
             "Tidy:Rainbow": [
-                ""
+                "Tidy:Rainbow"
             ],
             "Tidy:Seaside": [
-                ""
+                "Tidy:Seaside"
             ],
             "Time Series": [
                 "Séries temporelles"
@@ -1904,16 +1901,16 @@
                 "Haut"
             ],
             "Total": [
-                ""
+                "Total"
             ],
             "Total row": [
                 "Ligne Total"
             ],
             "Type": [
-                ""
+                "Type"
             ],
             "U": [
-                ""
+                "U"
             ],
             "Unable to use {rotation} rotation.": [
                 "Impossible d'utiliser la rotation {rotation}."
@@ -1943,7 +1940,7 @@
                 "Valeurs"
             ],
             "Variable": [
-                ""
+                "Variable"
             ],
             "Variable dicriminations": [
                 "Discrimination des variables"
@@ -1958,10 +1955,10 @@
                 "Variables"
             ],
             "Variables": [
-                ""
+                "Variables"
             ],
             "Varimax": [
-                ""
+                "Varimax"
             ],
             "Vertical label wrap": [
                 "Hauteur des étiquettes verticales"
@@ -1970,28 +1967,28 @@
                 "Ligne verticale à"
             ],
             "vijPlots": [
-                ""
+                "vijPlots"
             ],
             "vijPlots: Yet Another jamovi Plotting Module": [
-                ""
+                "vijPlots: Yet Another jamovi Plotting Module"
             ],
             "Viridis:Inferno": [
-                ""
+                "Viridis:Inferno"
             ],
             "Viridis:Magma": [
-                ""
+                "Viridis:Magma"
             ],
             "Viridis:Plasma": [
-                ""
+                "Viridis:Plasma"
             ],
             "Viridis:Turbo": [
-                ""
+                "Viridis:Turbo"
             ],
             "Viridis:Viridis": [
-                ""
+                "Viridis:Viridis"
             ],
             "Weibull": [
-                ""
+                "Weibull"
             ],
             "White": [
                 "Blanc"
@@ -2039,7 +2036,7 @@
                 "Jaune à rouge"
             ],
             "χ²": [
-                ""
+                "χ²"
             ],
             "boundary\u0004Position": [
                 "Origine"

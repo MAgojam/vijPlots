@@ -11,11 +11,11 @@ msgstr ""
 #: mrcrosstabs/options/separator.default
 #: mrfrequencies/options/separator.default
 msgid ";"
-msgstr ""
+msgstr ";"
 
 #: piechart/ui[2][0][1][0]/labOffset.suffix
 msgid "[0-9]"
-msgstr ""
+msgstr "[0-9]"
 
 #: R/qqplot.b.R
 msgid "{distribStr} {typeStr} Plot of {varStr}"
@@ -143,7 +143,7 @@ msgstr "% dans"
 #: scatterplot/ui[3][0][0][0]/xAxisLabelRotation.suffix
 #: scatterplot/ui[3][0][1][0]/yAxisLabelRotation.suffix
 msgid "°"
-msgstr ""
+msgstr "°"
 
 #: likertplot/results/helpMessage.content
 msgid "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <h2>Likert Plot Help</h2> <h3>Data & Sorting</h3>\n"
@@ -219,7 +219,7 @@ msgstr ""
 #: piechart/options/accuracy/0.01.title
 #: piechart/ui[2][0][2][0]/accuracy_001.label
 msgid "0.01"
-msgstr ""
+msgstr "0,01"
 
 #: barplot/options/accuracy/0.1.title
 #: barplot/ui[2][0][2][0]/accuracy_01.label
@@ -232,7 +232,7 @@ msgstr ""
 #: piechart/options/accuracy/0.1.title
 #: piechart/ui[2][0][2][0]/accuracy_01.label
 msgid "0.1"
-msgstr ""
+msgstr "0,1"
 
 #: barplot/options/accuracy/1.title
 #: barplot/ui[2][0][2][0]/accuracy_1.label
@@ -245,7 +245,7 @@ msgstr ""
 #: piechart/options/accuracy/1.title
 #: piechart/ui[2][0][2][0]/accuracy_1.label
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: areachart/options/dateBreak/1 day.title
 #: linechart/options/dateBreak/1 day.title
@@ -337,7 +337,7 @@ msgstr "1 an"
 #: scatterplot/options/xAxisFontSize/10.title
 #: scatterplot/options/yAxisFontSize/10.title
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #: areachart/options/dateBreak/10 year.title
 #: linechart/options/dateBreak/10 year.title
@@ -347,16 +347,16 @@ msgstr "10 ans"
 #: areachart/options/displayFormat/%m-%d-%Y.title
 #: linechart/options/displayFormat/%m-%d-%Y.title
 msgid "10-20-2035"
-msgstr ""
+msgstr "10-20-2035"
 
 #: areachart/options/displayFormat/%m/%d/%y.title
 #: linechart/options/displayFormat/%m/%d/%y.title
 msgid "10/20/35"
-msgstr ""
+msgstr "10/20/35"
 
 #: likertplot/options/legendFontSize/11.title
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #: areachart/options/titleFontSize/12.title
 #: areachart/options/subtitleFontSize/12.title
@@ -439,11 +439,11 @@ msgstr ""
 #: scatterplot/options/xAxisFontSize/12.title
 #: scatterplot/options/yAxisFontSize/12.title
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #: likertplot/options/legendFontSize/13.title
 msgid "13"
-msgstr ""
+msgstr "13"
 
 #: areachart/options/titleFontSize/14.title
 #: areachart/options/subtitleFontSize/14.title
@@ -526,11 +526,11 @@ msgstr ""
 #: scatterplot/options/xAxisFontSize/14.title
 #: scatterplot/options/yAxisFontSize/14.title
 msgid "14"
-msgstr ""
+msgstr "14"
 
 #: likertplot/options/vLabelWrap/15.title
 msgid "15"
-msgstr ""
+msgstr "15"
 
 #: areachart/options/titleFontSize/16.title
 #: areachart/options/subtitleFontSize/16.title
@@ -612,7 +612,7 @@ msgstr ""
 #: scatterplot/options/xAxisFontSize/16.title
 #: scatterplot/options/yAxisFontSize/16.title
 msgid "16"
-msgstr ""
+msgstr "16"
 
 #: areachart/options/titleFontSize/18.title
 #: areachart/options/subtitleFontSize/18.title
@@ -694,7 +694,7 @@ msgstr ""
 #: scatterplot/options/xAxisFontSize/18.title
 #: scatterplot/options/yAxisFontSize/18.title
 msgid "18"
-msgstr ""
+msgstr "18"
 
 #: areachart/options/dateBreak/2 week.title
 #: linechart/options/dateBreak/2 week.title
@@ -783,7 +783,7 @@ msgstr "2 semaines"
 #: scatterplot/options/xAxisFontSize/20.title
 #: scatterplot/options/yAxisFontSize/20.title
 msgid "20"
-msgstr ""
+msgstr "20"
 
 #: areachart/options/displayFormat/%e %B %Y.title
 #: linechart/options/displayFormat/%e %B %Y.title
@@ -793,17 +793,17 @@ msgstr "20 octobre 2035"
 #: areachart/options/displayFormat/%d-%m-%Y.title
 #: linechart/options/displayFormat/%d-%m-%Y.title
 msgid "20-10-2035"
-msgstr ""
+msgstr "20-10-2035"
 
 #: areachart/options/displayFormat/%d/%m/%y.title
 #: linechart/options/displayFormat/%d/%m/%y.title
 msgid "20/10/35"
-msgstr ""
+msgstr "20/10/35"
 
 #: areachart/options/displayFormat/%Y.title
 #: linechart/options/displayFormat/%Y.title
 msgid "2035"
-msgstr ""
+msgstr "2035"
 
 #: areachart/options/displayFormat/%Y %b.title
 #: linechart/options/displayFormat/%Y %b.title
@@ -823,7 +823,7 @@ msgstr "2035 octobre 20"
 #: areachart/options/displayFormat/%Y-%m-%d.title
 #: linechart/options/displayFormat/%Y-%m-%d.title
 msgid "2035-10-20"
-msgstr ""
+msgstr "2035-10-20"
 
 #: areachart/options/titleFontSize/22.title
 #: areachart/options/subtitleFontSize/22.title
@@ -852,7 +852,7 @@ msgstr ""
 #: scatterplot/options/titleFontSize/22.title
 #: scatterplot/options/subtitleFontSize/22.title
 msgid "22"
-msgstr ""
+msgstr "22"
 
 #: areachart/options/titleFontSize/24.title
 #: barplot/options/titleFontSize/24.title
@@ -868,11 +868,11 @@ msgstr ""
 #: raincloud/options/titleFontSize/24.title
 #: scatterplot/options/titleFontSize/24.title
 msgid "24"
-msgstr ""
+msgstr "24"
 
 #: likertplot/options/vLabelWrap/25.title
 msgid "25"
-msgstr ""
+msgstr "25"
 
 #: areachart/options/dateBreak/3 month.title
 #: linechart/options/dateBreak/3 month.title
@@ -882,19 +882,19 @@ msgstr "3 mois"
 #: likertplot/options/vLabelWrap/30.title
 #: likertplot/options/hLabelWrap/30.title
 msgid "30"
-msgstr ""
+msgstr "30"
 
 #: likertplot/options/vLabelWrap/35.title
 msgid "35"
-msgstr ""
+msgstr "35"
 
 #: likertplot/options/hLabelWrap/40.title
 msgid "40"
-msgstr ""
+msgstr "40"
 
 #: likertplot/options/hLabelWrap/60.title
 msgid "50"
-msgstr ""
+msgstr "50"
 
 #: areachart/options/dateBreak/6 month.title
 #: linechart/options/dateBreak/6 month.title
@@ -916,15 +916,15 @@ msgstr "6 mois"
 #: raincloud/options/captionFontSize/8.title
 #: scatterplot/options/captionFontSize/8.title
 msgid "8"
-msgstr ""
+msgstr "8"
 
 #: likertplot/options/hLabelWrap/80.title
 msgid "80"
-msgstr ""
+msgstr "80"
 
 #: likertplot/options/legendFontSize/9.title
 msgid "9"
-msgstr ""
+msgstr "9"
 
 #: package/datasets/vijPlots.description
 msgid "A demonstration dataset for vijPlots module."
@@ -932,31 +932,31 @@ msgstr "Fichier de démonstration du module vijPlots."
 
 #: package/datasets/Smoking.description
 msgid "A demonstration dataset for vijPlots/Correspondence Analysis."
-msgstr "Fichier de démonstration pour vijPlots/Analyse des correspondances "
+msgstr "Fichier de démonstration pour vijPlots/Analyse des correspondances."
 
 #: package/datasets/Likert.description
 msgid "A demonstration dataset for vijPlots/Likert plots."
-msgstr "Fichier de démonstration pour vijPlots/Likert"
+msgstr "Fichier de démonstration pour vijPlots/Likert."
 
 #: package/datasets/Cars.description
 msgid "A demonstration dataset for vijPlots/Multiple Correspondence Analysis."
-msgstr "Fichier de démonstration pour vijPlots/Analyse des correspondances multiples"
+msgstr "Fichier de démonstration pour vijPlots/Analyse des correspondances multiples."
 
 #: package/datasets/Credit Cards.description
 msgid "A demonstration dataset for vijPlots/Multiple Response plots."
-msgstr "Fichier de démonstration pour vijPlots/Réponses multiples"
+msgstr "Fichier de démonstration pour vijPlots/Réponses multiples."
 
 #: package/datasets/Iris.description
 msgid "A demonstration dataset for vijPlots/Principal Component Analysis."
-msgstr "Fichier de démonstration pour vijPlots/Analyse en composantes principales "
+msgstr "Fichier de démonstration pour vijPlots/Analyse en composantes principales."
 
 #: package/datasets/Raincloud.description
 msgid "A demonstration dataset for vijPlots/Raincloud plot."
-msgstr "Fichier de démonstration pour vijPlots/Diagramme Raincloud "
+msgstr "Fichier de démonstration pour vijPlots/Diagramme Raincloud."
 
 #: package/datasets/Time Series.description
 msgid "A demonstration dataset for vijPlots/Time Serie plots."
-msgstr "Fichier de démonstration pour vijPlots/Séries temporelles"
+msgstr "Fichier de démonstration pour vijPlots/Séries temporelles."
 
 #: areachart/options/colorPalette/Accent.title
 #: barplot/options/colorPalette/Accent.title
@@ -971,7 +971,7 @@ msgstr "Fichier de démonstration pour vijPlots/Séries temporelles"
 #: raincloud/options/colorPalette/Accent.title
 #: scatterplot/options/colorPalette/Accent.title
 msgid "Accent"
-msgstr ""
+msgstr "Accent"
 
 #: R/corresp.b.R
 msgid "Active Margin"
@@ -1046,7 +1046,7 @@ msgstr "Align."
 
 #: raincloud/options/alphaC.title
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 #: R/areachart.b.R
 #: R/linechart.b.R
@@ -1113,7 +1113,7 @@ msgstr "août"
 #: scatterplot/options/yAxisRangeType/auto.title
 #: scatterplot/options/xAxisRangeType/auto.title
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: areachart/ui[3].label
 #: barplot/ui[5].label
@@ -1128,7 +1128,7 @@ msgstr ""
 #: raincloud/ui[3].label
 #: scatterplot/ui[3].label
 msgid "Axes"
-msgstr ""
+msgstr "Axes"
 
 #: corresp/ui[7].label
 #: mrfrequencies/ui[6].label
@@ -1156,7 +1156,7 @@ msgstr "Test de sphéricité de Bartlett"
 
 #: principal/options/rotation/bentlerT.title
 msgid "Bentler T"
-msgstr ""
+msgstr "Bentler T"
 
 #: R/multcorresp.b.R
 msgid "Benzécri Correction"
@@ -1168,11 +1168,11 @@ msgstr "Correction de Benzécri"
 
 #: qqplot/options/distrib/beta.title
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: likertplot/options/adjustMethod/BH.title
 msgid "BH"
-msgstr ""
+msgstr "BH"
 
 #: histogram/ui[3][0][0].label
 msgid "Bin Color"
@@ -1393,12 +1393,12 @@ msgstr "Gras Ital."
 
 #: likertplot/options/adjustMethod/bonferroni.title
 msgid "Bonferroni"
-msgstr ""
+msgstr "Bonferroni"
 
 #: qqplot/options/methodQQ/boot.title
 #: qqplot/options/methodPP/boot.title
 msgid "Boostrap"
-msgstr ""
+msgstr "Boostrap"
 
 #: barplot/options/borderColor.title
 #: histogram/options/borderColor.title
@@ -1488,7 +1488,7 @@ msgstr "Tableau de Burt"
 
 #: likertplot/options/adjustMethod/BY.title
 msgid "BY"
-msgstr ""
+msgstr "BY"
 
 #: likertplot/options/groupBy/group.title
 #: likertplot/ui[4][0][1][0]/groupBy_group.label
@@ -1530,7 +1530,7 @@ msgstr "Texte des légendes"
 
 #: package/datasets/Cars.name
 msgid "Cars"
-msgstr ""
+msgstr "Cars"
 
 #: package/analyses/barplot.menuSubgroup
 #: package/analyses/piechart.menuSubgroup
@@ -1584,7 +1584,7 @@ msgstr "Résumés des catégories"
 
 #: qqplot/options/distrib/cauchy.title
 msgid "Cauchy"
-msgstr ""
+msgstr "Cauchy"
 
 #: areachart/options/titleAlign/0.5.title
 #: areachart/options/subtitleAlign/0.5.title
@@ -1796,7 +1796,7 @@ msgstr "Joindre les catégories ordinales"
 #: likertplot/options/postHoc/conover.title
 #: likertplot/ui[3][0][1][0]/postHoc_conover.label
 msgid "Conover"
-msgstr ""
+msgstr "Conover"
 
 #: R/likertplot.b.R
 msgid "Conover's Pairwise Comparisons"
@@ -1827,7 +1827,7 @@ msgstr "Variables quantitatives"
 
 #: R/multcorresp.b.R
 msgid "Contributions"
-msgstr ""
+msgstr "Contributions"
 
 #: likertplot/options/toInteger.title
 msgid "Convert variables to integer"
@@ -1848,7 +1848,7 @@ msgstr "Analyse des correspondances"
 
 #: R/multcorresp.b.R
 msgid "COS2"
-msgstr ""
+msgstr "COS2"
 
 #: R/barplot.b.R
 #: R/histogram.b.R
@@ -1897,7 +1897,7 @@ msgstr "Graphique double (Covariance)"
 
 #: package/datasets/Credit Cards.name
 msgid "Credit Cards"
-msgstr ""
+msgstr "Credit Cards"
 
 #: package/analyses/mrcrosstabs.title
 #: package/analyses/mrcrosstabs.menuTitle
@@ -1938,11 +1938,11 @@ msgstr "% cumulés"
 #: raincloud/options/colorPalette/Dark2.title
 #: scatterplot/options/colorPalette/Dark2.title
 msgid "Dark 2"
-msgstr ""
+msgstr "Dark 2"
 
 #: multcorresp/options/obsColor/darkgray.title
 msgid "Dark Gray"
-msgstr ""
+msgstr "Gris foncé"
 
 #: histogram/options/dashedDensity.title
 msgid "Dashed line"
@@ -2008,7 +2008,7 @@ msgstr "Décroissant"
 #: principal/options/obsCaptionText.default
 #: qqplot/options/titleText.default
 msgid "default"
-msgstr ""
+msgstr "default"
 
 #: R/histogram.b.R
 #: histogram/options/histtype/density.title
@@ -2052,23 +2052,23 @@ msgstr "ddl"
 #: raincloud/options/colorPalette/dichromat::Categorical.12.title
 #: scatterplot/options/colorPalette/dichromat::Categorical.12.title
 msgid "Dichromat:Categorical"
-msgstr ""
+msgstr "Dichromat:Categorical"
 
 #: R/multcorresp.b.R
 #: R/principal.b.R
 msgid "Dim"
-msgstr ""
+msgstr "Dim"
 
 #: R/corresp.b.R
 #: R/multcorresp.b.R
 #: corresp/results/eigenvalues.columns.title
 #: multcorresp/results/eigenvalues.columns.title
 msgid "Dimension"
-msgstr ""
+msgstr "Dimension"
 
 #: R/multcorresp.b.R
 msgid "Discrimination"
-msgstr ""
+msgstr "Discrimination"
 
 #: R/multcorresp.b.R
 #: multcorresp/results/discrimplot.title
@@ -2092,7 +2092,7 @@ msgstr "Affichage"
 
 #: qqplot/options/distrib.title
 msgid "Distribution"
-msgstr ""
+msgstr "Distribution"
 
 #: R/areachart.b.R
 #: R/linechart.b.R
@@ -2123,11 +2123,11 @@ msgstr "Tracer les agrafes"
 #: likertplot/options/postHoc/dscf.title
 #: likertplot/ui[3][0][1][0]/postHoc_dscf.label
 msgid "DSCF"
-msgstr ""
+msgstr "DSCF"
 
 #: R/likertplot.b.R
 msgid "DSCF p-values are adjusted groupwise."
-msgstr "Les probabilités critiques DSCF sont corrigées par groupe"
+msgstr "Les probabilités critiques DSCF sont corrigées par groupe."
 
 #: mrcrosstabs/options/mode/morevar.title
 #: mrfrequencies/options/mode/morevar.title
@@ -2137,7 +2137,7 @@ msgstr "Variables dichotomiques"
 #: likertplot/options/postHoc/dunn.title
 #: likertplot/ui[3][0][1][0]/postHoc_dunn.label
 msgid "Dunn"
-msgstr ""
+msgstr "Dunn"
 
 #: R/likertplot.b.R
 msgid "Dunn's Pairwise Comparisons"
@@ -2167,11 +2167,11 @@ msgstr "Considérer les valeurs vides comme manquantes"
 #: qqplot/options/methodQQ/ell.title
 #: qqplot/options/methodPP/ell.title
 msgid "Equal Local Levels"
-msgstr ""
+msgstr "Equal Local Levels"
 
 #: principal/options/rotation/equamax.title
 msgid "Equamax"
-msgstr ""
+msgstr "Equamax"
 
 #: qqplot/options/paramMethod/paraEstimate.title
 #: qqplot/ui[3][0][0]/paramMethod_paraEstimat.label
@@ -2193,7 +2193,7 @@ msgstr "Sommes des carrés des composantes extraites"
 
 #: qqplot/options/distrib/f.title
 msgid "F"
-msgstr ""
+msgstr "F"
 
 #: barplot/options/facet.title
 #: barplot/options/facetBy.title
@@ -2346,7 +2346,7 @@ msgstr "Type de fréquences"
 
 #: qqplot/options/distrib/gamma.title
 msgid "Gamma"
-msgstr ""
+msgstr "Gamma"
 
 #: barplot/options/borderColor/gray.title
 #: corresp/options/supColor/darkgray.title
@@ -2543,15 +2543,15 @@ msgstr "Histogramme"
 
 #: likertplot/options/adjustMethod/hochberg.title
 msgid "Hochberg"
-msgstr ""
+msgstr "Hochberg"
 
 #: likertplot/options/adjustMethod/holm.title
 msgid "Holm"
-msgstr ""
+msgstr "Holm"
 
 #: likertplot/options/adjustMethod/hommel.title
 msgid "Hommel"
-msgstr ""
+msgstr "Hommel"
 
 #: likertplot/options/hLabelWrap.title
 msgid "Horizontal label wrap"
@@ -2633,7 +2633,7 @@ msgstr "Entrée"
 
 #: package/datasets/Iris.name
 msgid "Iris"
-msgstr ""
+msgstr "Iris"
 
 #: areachart/options/dateFormat/iso.title
 #: linechart/options/dateFormat/iso.title
@@ -2799,11 +2799,11 @@ msgstr "KMO & test de Bartlett"
 
 #: qqplot/options/methodQQ/ks.title
 msgid "Kolmogorov-Smirnov"
-msgstr ""
+msgstr "Kolmogorov-Smirnov"
 
 #: likertplot/options/showKW.title
 msgid "Kruskal-Wallis"
-msgstr ""
+msgstr "Kruskal-Wallis"
 
 #: likertplot/results/comp/kwTable.title
 msgid "Kruskal-Wallis Tests"
@@ -3046,7 +3046,7 @@ msgstr "Titre de la légende"
 #: raincloud/options/colorPalette/custom::lemovice.title
 #: scatterplot/options/colorPalette/custom::lemovice.title
 msgid "Lémovice"
-msgstr ""
+msgstr "Lémovice"
 
 #: multcorresp/results/categories.columns.title
 msgid "Level"
@@ -3127,7 +3127,7 @@ msgstr "Jaune clair"
 
 #: package/datasets/Likert.name
 msgid "Likert"
-msgstr ""
+msgstr "Likert"
 
 #: package/analyses/likertplot.title
 #: package/analyses/likertplot.menuTitle
@@ -3205,7 +3205,7 @@ msgstr ""
 
 #: likertplot/options/showMannU.title
 msgid "Mann-Whitney U"
-msgstr ""
+msgstr "Mann-Whitney U"
 
 #: likertplot/results/comp/uTestTable.title
 msgid "Mann-Whitney U Tests"
@@ -3273,7 +3273,7 @@ msgstr "Masse"
 #: scatterplot/options/yAxisRangeMax.title
 #: scatterplot/options/xAxisRangeMax.title
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #: R/lollipop.b.R
 msgid "Maximum of"
@@ -3339,7 +3339,7 @@ msgstr "Octobre"
 #: multcorresp/ui[3][0].label
 #: scatterplot/options/lineMethod.title
 msgid "Method"
-msgstr ""
+msgstr "Méthode"
 
 #: qqplot/options/paramEstMethod/mme.title
 #: qqplot/ui[3][0][0]/paramMethod_paraEstimat/paramEstMethod_mme.label
@@ -3382,12 +3382,12 @@ msgstr "Milieu"
 #: scatterplot/options/yAxisRangeMin.title
 #: scatterplot/options/xAxisRangeMin.title
 msgid "Min"
-msgstr ""
+msgstr "Min"
 
 #: lollipop/options/yaxis/minmax.title
 #: lollipop/ui[2][0][0][1]/yaxis_minmax.label
 msgid "Min / Max"
-msgstr ""
+msgstr "Min / Max"
 
 #: principal/options/rotation/entropy.title
 msgid "Minimum entropy"
@@ -3637,7 +3637,7 @@ msgstr "Résumé des observations"
 #: principal/options/obsLabelSize.title
 #: principal/results/obsTable.title
 msgid "Observations"
-msgstr ""
+msgstr "Observations"
 
 #: R/areachart.b.R
 #: R/linechart.b.R
@@ -3671,7 +3671,7 @@ msgstr "Octobre 35"
 
 #: piechart/options/labOffset.title
 msgid "Offset"
-msgstr ""
+msgstr "Offset"
 
 #: areachart/options/mode/oneVariable.title
 msgid "One variable"
@@ -3762,7 +3762,7 @@ msgstr "Orange à rouge"
 #: raincloud/options/colorPalette/Oranges.title
 #: scatterplot/options/colorPalette/Oranges.title
 msgid "Oranges"
-msgstr ""
+msgstr "Oranges"
 
 #: multcorresp/results/eigenvalues.columns.superTitle
 msgid "Original Eigenvalues"
@@ -3793,12 +3793,12 @@ msgstr "Superposé"
 #: likertplot/results/comp/kwTable.columns.title
 #: principal/results/kmoTable.columns.title
 msgid "p"
-msgstr ""
+msgstr "p"
 
 #: R/qqplot.b.R
 #: qqplot/options/methodPP.title
 msgid "P-P"
-msgstr ""
+msgstr "P-P"
 
 #: qqplot/options/type/PP.title
 #: qqplot/ui[2][0][0]/type_PP.label
@@ -3835,7 +3835,7 @@ msgstr "Les probabilités critiques sont corrigées selon la méthode {method}."
 #: raincloud/options/colorPalette/Paired.title
 #: scatterplot/options/colorPalette/Paired.title
 msgid "Paired"
-msgstr ""
+msgstr "Paired"
 
 #: likertplot/results/comp/pwTable.title
 msgid "Pairwise Comparisons"
@@ -3854,7 +3854,7 @@ msgstr "Comparaisons par paires"
 #: raincloud/options/colorPalette.title
 #: scatterplot/options/colorPalette.title
 msgid "Palette"
-msgstr ""
+msgstr "Palette"
 
 #: qqplot/options/param1.title
 msgid "Parameter 1"
@@ -3880,7 +3880,7 @@ msgstr "Valeurs des paramètres"
 
 #: principal/options/rotation/parsimax.title
 msgid "Parsimax"
-msgstr ""
+msgstr "Parsimax"
 
 #: areachart/options/colorPalette/Pastel1.title
 #: barplot/options/colorPalette/Pastel1.title
@@ -3895,7 +3895,7 @@ msgstr ""
 #: raincloud/options/colorPalette/Pastel1.title
 #: scatterplot/options/colorPalette/Pastel1.title
 msgid "Pastel 1"
-msgstr ""
+msgstr "Pastel 1"
 
 #: areachart/options/colorPalette/Pastel2.title
 #: barplot/options/colorPalette/Pastel2.title
@@ -3910,11 +3910,11 @@ msgstr ""
 #: raincloud/options/colorPalette/Pastel2.title
 #: scatterplot/options/colorPalette/Pastel2.title
 msgid "Pastel 2"
-msgstr ""
+msgstr "Pastel 2"
 
 #: R/principal.b.R
 msgid "PCA {norm} Coordinate{rotation}"
-msgstr ""
+msgstr "Coordonnées ACP {norm}{rotation}"
 
 #: R/barplot.b.R
 #: barplot/options/yaxis/percent.title
@@ -4096,7 +4096,7 @@ msgstr "Graphiques"
 
 #: scatterplot/options/pointSize.title
 msgid "Point"
-msgstr ""
+msgstr "Point"
 
 #: linechart/ui[2][0][1][0].label
 msgid "Point & Line Size"
@@ -4117,7 +4117,7 @@ msgstr "Points"
 
 #: qqplot/options/methodQQ/pointwise.title
 msgid "Pointwise"
-msgstr ""
+msgstr "Pointwise"
 
 #: areachart/options/position.title
 #: areachart/options/legendPosition.title
@@ -4343,7 +4343,7 @@ msgstr "px"
 #: R/qqplot.b.R
 #: qqplot/options/methodQQ.title
 msgid "Q-Q"
-msgstr ""
+msgstr "Q-Q"
 
 #: package/analyses/qqplot.title
 #: package/analyses/qqplot.menuTitle
@@ -4365,21 +4365,21 @@ msgstr "Diagramme Q-Q"
 
 #: multcorresp/results/categories.columns.title
 msgid "QLT"
-msgstr ""
+msgstr "QLT"
 
 #: principal/options/rotation/quartimax.title
 msgid "Quartimax"
-msgstr ""
+msgstr "Quartimax"
 
 #: likertplot/results/frequencies.columns.title
 #: likertplot/results/comp/uTestTable.columns.title
 #: likertplot/results/comp/kwTable.columns.title
 msgid "Questions"
-msgstr ""
+msgstr "Questions"
 
 #: package/datasets/Raincloud.name
 msgid "Raincloud"
-msgstr ""
+msgstr "Raincloud"
 
 #: package/analyses/raincloud.title
 #: package/analyses/raincloud.menuTitle
@@ -4525,12 +4525,9 @@ msgid "Reds"
 msgstr "Rouges"
 
 #: qqplot/options/refLine.title
+#: qqplot/options/refType.title
 msgid "Reference line"
 msgstr "Droite de référence"
-
-#: qqplot/options/refType.title
-msgid "Reference Line"
-msgstr ""
 
 #: scatterplot/ui[1][2][0].label
 msgid "Reference Lines"
@@ -4639,7 +4636,7 @@ msgstr "Rotation des vecteurs propres"
 #: principal/ui[2][1][0].label
 #: principal/ui[7][0][1][0].label
 msgid "Rotation"
-msgstr ""
+msgstr "Rotation"
 
 #: barplot/options/facetBy/row.title
 #: barplot/ui[4][0][1][0][0]/facetBy_row.label
@@ -4789,7 +4786,7 @@ msgstr "septembre"
 #: raincloud/options/colorPalette/Set1.title
 #: scatterplot/options/colorPalette/Set1.title
 msgid "Set 1"
-msgstr ""
+msgstr "Set 1"
 
 #: areachart/options/colorPalette/Set2.title
 #: barplot/options/colorPalette/Set2.title
@@ -4804,7 +4801,7 @@ msgstr ""
 #: raincloud/options/colorPalette/Set2.title
 #: scatterplot/options/colorPalette/Set2.title
 msgid "Set 2"
-msgstr ""
+msgstr "Set 2"
 
 #: areachart/options/colorPalette/Set3.title
 #: barplot/options/colorPalette/Set3.title
@@ -4819,7 +4816,7 @@ msgstr ""
 #: raincloud/options/colorPalette/Set3.title
 #: scatterplot/options/colorPalette/Set3.title
 msgid "Set 3"
-msgstr ""
+msgstr "Set 3"
 
 #: areachart/options/mode/severalVariables.title
 msgid "Several variables"
@@ -4941,7 +4938,7 @@ msgstr "Petit (300x200)"
 
 #: package/datasets/Smoking.name
 msgid "Smoking"
-msgstr ""
+msgstr "Smoking"
 
 #: scatterplot/options/lineMethod/loess.title
 msgid "Smooth"
@@ -4951,7 +4948,7 @@ msgstr "Lisse"
 #: multcorresp/ui[2][0].label
 #: principal/ui[2][0][0].label
 msgid "Solution"
-msgstr ""
+msgstr "Solution"
 
 #: likertplot/options/sorting.title
 #: likertplot/ui[1][1][0].label
@@ -4988,7 +4985,7 @@ msgstr "Tri (selon médiane)"
 #: raincloud/options/colorPalette/Spectral.title
 #: scatterplot/options/colorPalette/Spectral.title
 msgid "Spectral"
-msgstr ""
+msgstr "Spectral"
 
 #: principal/results/summaryTable.columns.title
 msgid "SS Loadings"
@@ -5089,7 +5086,7 @@ msgstr "symétrique"
 
 #: qqplot/options/distrib/t.title
 msgid "Student"
-msgstr ""
+msgstr "Student"
 
 #: areachart/ui[5][1].label
 #: barplot/ui[7][1].label
@@ -5179,21 +5176,21 @@ msgstr "Symétrique"
 #: mrcrosstabs/ui[1][0][0].label
 #: mrfrequencies/ui[1][0][0].label
 msgid "Table"
-msgstr ""
+msgstr "Table"
 
 #: corresp/ui[5][0][0].label
 #: multcorresp/ui[5][0][0].label
 #: principal/ui[3][0][0].label
 msgid "Tables"
-msgstr ""
+msgstr "Tables"
 
 #: qqplot/options/methodQQ/ts.title
 msgid "Tail-Sensitive (Normal)"
-msgstr ""
+msgstr "Tail-Sensitive (Normal)"
 
 #: likertplot/ui[3][0][0][0].label
 msgid "Tests"
-msgstr ""
+msgstr "Tests"
 
 #: mrcrosstabs/options/textColor.title
 #: piechart/options/labType/text.title
@@ -5244,7 +5241,7 @@ msgstr "Corriger les niveaux"
 #: raincloud/options/colorPalette/tidy::alger.title
 #: scatterplot/options/colorPalette/tidy::alger.title
 msgid "Tidy:Alger"
-msgstr ""
+msgstr "Tidy:Alger"
 
 #: areachart/options/colorPalette/tidy::apple.title
 #: barplot/options/colorPalette/tidy::apple.title
@@ -5259,7 +5256,7 @@ msgstr ""
 #: raincloud/options/colorPalette/tidy::apple.title
 #: scatterplot/options/colorPalette/tidy::apple.title
 msgid "Tidy:Apple"
-msgstr ""
+msgstr "Tidy:Apple"
 
 #: areachart/options/colorPalette/tidy::candy.title
 #: barplot/options/colorPalette/tidy::candy.title
@@ -5274,7 +5271,7 @@ msgstr ""
 #: raincloud/options/colorPalette/tidy::candy.title
 #: scatterplot/options/colorPalette/tidy::candy.title
 msgid "Tidy:Candy"
-msgstr ""
+msgstr "Tidy:Candy"
 
 #: areachart/options/colorPalette/tidy::friendly.title
 #: barplot/options/colorPalette/tidy::friendly.title
@@ -5289,7 +5286,7 @@ msgstr ""
 #: raincloud/options/colorPalette/tidy::friendly.title
 #: scatterplot/options/colorPalette/tidy::friendly.title
 msgid "Tidy:Friendly"
-msgstr ""
+msgstr "Tidy:Friendly"
 
 #: areachart/options/colorPalette/tidy::ibm.title
 #: barplot/options/colorPalette/tidy::ibm.title
@@ -5304,7 +5301,7 @@ msgstr ""
 #: raincloud/options/colorPalette/tidy::ibm.title
 #: scatterplot/options/colorPalette/tidy::ibm.title
 msgid "Tidy:Ibm"
-msgstr ""
+msgstr "Tidy:Ibm"
 
 #: areachart/options/colorPalette/tidy::metro.title
 #: barplot/options/colorPalette/tidy::metro.title
@@ -5319,7 +5316,7 @@ msgstr ""
 #: raincloud/options/colorPalette/tidy::metro.title
 #: scatterplot/options/colorPalette/tidy::metro.title
 msgid "Tidy:Metro"
-msgstr ""
+msgstr "Tidy:Metro"
 
 #: areachart/options/colorPalette/tidy::rainbow.title
 #: barplot/options/colorPalette/tidy::rainbow.title
@@ -5334,7 +5331,7 @@ msgstr ""
 #: raincloud/options/colorPalette/tidy::rainbow.title
 #: scatterplot/options/colorPalette/tidy::rainbow.title
 msgid "Tidy:Rainbow"
-msgstr ""
+msgstr "Tidy:Rainbow"
 
 #: areachart/options/colorPalette/tidy::seaside.title
 #: barplot/options/colorPalette/tidy::seaside.title
@@ -5349,7 +5346,7 @@ msgstr ""
 #: raincloud/options/colorPalette/tidy::seaside.title
 #: scatterplot/options/colorPalette/tidy::seaside.title
 msgid "Tidy:Seaside"
-msgstr ""
+msgstr "Tidy:Seaside"
 
 #: package/analyses/linechart.menuSubgroup
 #: package/analyses/areachart.menuSubgroup
@@ -5426,7 +5423,7 @@ msgstr "Haut"
 #: R/multcorresp.b.R
 #: mrfrequencies/options/showTotal.title
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: mrcrosstabs/options/totalRow.title
 msgid "Total row"
@@ -5436,11 +5433,11 @@ msgstr "Ligne Total"
 #: piechart/options/labType.title
 #: piechart/ui[2][0][0][0].label
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: likertplot/results/comp/uTestTable.columns.title
 msgid "U"
-msgstr ""
+msgstr "U"
 
 #: R/principal.b.R
 msgid "Unable to use {rotation} rotation."
@@ -5505,7 +5502,7 @@ msgstr "Valeurs"
 #: raincloud/options/aVar.title
 #: raincloud/ui[0][0].label
 msgid "Variable"
-msgstr ""
+msgstr "Variable"
 
 #: multcorresp/options/showDiscriminations.title
 #: multcorresp/options/showDiscriminationPlot.title
@@ -5543,11 +5540,11 @@ msgstr "Variables"
 #: principal/ui[0][0].label
 #: principal/results/loadingTable.title
 msgid "Variables"
-msgstr ""
+msgstr "Variables"
 
 #: principal/options/rotation/Varimax.title
 msgid "Varimax"
-msgstr ""
+msgstr "Varimax"
 
 #: likertplot/options/vLabelWrap.title
 msgid "Vertical label wrap"
@@ -5591,11 +5588,11 @@ msgstr "Ligne verticale à"
 #: raincloud/options.menuGroup
 #: scatterplot/options.menuGroup
 msgid "vijPlots"
-msgstr ""
+msgstr "vijPlots"
 
 #: package.title
 msgid "vijPlots: Yet Another jamovi Plotting Module"
-msgstr ""
+msgstr "vijPlots: Yet Another jamovi Plotting Module"
 
 #: areachart/options/colorPalette/viridis::inferno.title
 #: barplot/options/colorPalette/viridis::inferno.title
@@ -5610,7 +5607,7 @@ msgstr ""
 #: raincloud/options/colorPalette/viridis::inferno.title
 #: scatterplot/options/colorPalette/viridis::inferno.title
 msgid "Viridis:Inferno"
-msgstr ""
+msgstr "Viridis:Inferno"
 
 #: areachart/options/colorPalette/viridis::magma.title
 #: barplot/options/colorPalette/viridis::magma.title
@@ -5625,7 +5622,7 @@ msgstr ""
 #: raincloud/options/colorPalette/viridis::magma.title
 #: scatterplot/options/colorPalette/viridis::magma.title
 msgid "Viridis:Magma"
-msgstr ""
+msgstr "Viridis:Magma"
 
 #: areachart/options/colorPalette/viridis::plasma.title
 #: barplot/options/colorPalette/viridis::plasma.title
@@ -5640,7 +5637,7 @@ msgstr ""
 #: raincloud/options/colorPalette/viridis::plasma.title
 #: scatterplot/options/colorPalette/viridis::plasma.title
 msgid "Viridis:Plasma"
-msgstr ""
+msgstr "Viridis:Plasma"
 
 #: areachart/options/colorPalette/viridis::turbo.title
 #: barplot/options/colorPalette/viridis::turbo.title
@@ -5655,7 +5652,7 @@ msgstr ""
 #: raincloud/options/colorPalette/viridis::turbo.title
 #: scatterplot/options/colorPalette/viridis::turbo.title
 msgid "Viridis:Turbo"
-msgstr ""
+msgstr "Viridis:Turbo"
 
 #: areachart/options/colorPalette/viridis::viridis.title
 #: barplot/options/colorPalette/viridis::viridis.title
@@ -5670,11 +5667,11 @@ msgstr ""
 #: raincloud/options/colorPalette/viridis::viridis.title
 #: scatterplot/options/colorPalette/viridis::viridis.title
 msgid "Viridis:Viridis"
-msgstr ""
+msgstr "Viridis:Viridis"
 
 #: qqplot/options/distrib/weibull.title
 msgid "Weibull"
-msgstr ""
+msgstr "Weibull"
 
 #: barplot/options/borderColor/white.title
 #: barplot/options/textColor/white.title
@@ -5919,4 +5916,4 @@ msgstr "Jaune à rouge"
 
 #: likertplot/results/comp/kwTable.columns.title
 msgid "χ²"
-msgstr ""
+msgstr "χ²"
