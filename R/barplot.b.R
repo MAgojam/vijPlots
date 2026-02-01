@@ -98,7 +98,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Percent format (scales)
             doPercent <- scales::label_percent(
                             accuracy = as.numeric(self$options$accuracy),
-                            suffix = ifelse(self$options[['decSymbol']] == ",", " %", "%"),
+                            suffix = .("%"),
                             decimal.mark = self$options[['decSymbol']])
             if (self$options$horizontal)
                 doNumber <- function(x){ifelse(x<10, paste0(" ",x), x)}

@@ -48,6 +48,13 @@ msgstr "La rotation {rotation} avec normalisation de Kaiser a été utilisée."
 msgid "# of rows/columns"
 msgstr "Nbre de lignes/colonnes"
 
+#: R/barplot.b.R
+#: R/mrcrosstabs.b.R
+#: R/mrfrequencies.b.R
+#: R/piechart.b.R
+msgid "%"
+msgstr " %"
+
 #: barplot/options/accuracy.title
 #: barplot/ui[2][0][2][0].label
 #: likertplot/options/accuracy.title

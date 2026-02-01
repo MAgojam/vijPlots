@@ -116,7 +116,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             # Percent format (scales)
             doPercent <- scales::label_percent(
                 accuracy = as.numeric(self$options$accuracy),
-                suffix = ifelse(self$options[['decSymbol']] == ",", " %", "%"),
+                suffix = .("%"),
                 decimal.mark = self$options[['decSymbol']])
 
             # Border color
