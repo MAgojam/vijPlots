@@ -53,7 +53,7 @@ msgstr "Nbre de lignes/colonnes"
 #: R/mrfrequencies.b.R
 #: R/piechart.b.R
 msgid "%"
-msgstr " %"
+msgstr " %"
 
 #: barplot/options/accuracy.title
 #: barplot/ui[2][0][2][0].label
@@ -2008,7 +2008,7 @@ msgstr "Décroissant"
 #: principal/options/obsCaptionText.default
 #: qqplot/options/titleText.default
 msgid "default"
-msgstr "default"
+msgstr "par défaut"
 
 #: R/histogram.b.R
 #: histogram/options/histtype/density.title

@@ -70,20 +70,22 @@ vijTitlesAndLabels = function(options, defaults = list(), plotType = '') {
         subtitle <- options[[paste0(plotType,"SubtitleText")]] %||% ''
         caption <- options[[paste0(plotType,"CaptionText")]] %||% ''
     }
+    default <- eval.parent(quote(.("default")))
+    default <- c("default", default)
     # Title
     if (title == "")
         title <- NULL
-    else if (title == "default")
+    else if (title %in% default)
         title <- defaults$title
     # Subtitle
     if (subtitle == "")
         subtitle <- NULL
-    else if (subtitle == "default")
+    else if (subtitle %in% default)
         subtitle <- defaults$subtitle
     # Caption
     if (caption == "")
         caption <- NULL
-    else if (caption == "default")
+    else if (caption %in% default)
         caption <- defaults$caption
     # Legend
     legend <- options[["legendText"]] %||% ''

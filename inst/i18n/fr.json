@@ -98,7 +98,7 @@
                 "Nbre de lignes/colonnes"
             ],
             "%": [
-                " %"
+                " %"
             ],
             "% Accuracy": [
                 "Précision des %"
@@ -596,7 +596,7 @@
                 "Décroissant"
             ],
             "default": [
-                "default"
+                "par défaut"
             ],
             "Density": [
                 "Densité"
