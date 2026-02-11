@@ -16,8 +16,6 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             lineColor = "black",
             dotSize = 4,
             lineWidth = 0.5,
-            plotWidth = 0,
-            plotHeight = 0,
             facetBy = "column",
             facetNumber = 1,
             titleText = NULL,
@@ -173,18 +171,6 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 min=0.1,
                 max=10,
                 default=0.5)
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..facetBy <- jmvcore::OptionList$new(
                 "facetBy",
                 facetBy,
@@ -399,8 +385,6 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..lineColor)
             self$.addOption(private$..dotSize)
             self$.addOption(private$..lineWidth)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..facetBy)
             self$.addOption(private$..facetNumber)
             self$.addOption(private$..titleText)
@@ -443,8 +427,6 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         lineColor = function() private$..lineColor$value,
         dotSize = function() private$..dotSize$value,
         lineWidth = function() private$..lineWidth$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         facetBy = function() private$..facetBy$value,
         facetNumber = function() private$..facetNumber$value,
         titleText = function() private$..titleText$value,
@@ -486,8 +468,6 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..lineColor = NA,
         ..dotSize = NA,
         ..lineWidth = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..facetBy = NA,
         ..facetNumber = NA,
         ..titleText = NA,
@@ -575,8 +555,6 @@ lollipopBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param lineColor .
 #' @param dotSize .
 #' @param lineWidth .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param facetBy .
 #' @param facetNumber .
 #' @param titleText .
@@ -625,8 +603,6 @@ lollipop <- function(
     lineColor = "black",
     dotSize = 4,
     lineWidth = 0.5,
-    plotWidth = 0,
-    plotHeight = 0,
     facetBy = "column",
     facetNumber = 1,
     titleText,
@@ -685,8 +661,6 @@ lollipop <- function(
         lineColor = lineColor,
         dotSize = dotSize,
         lineWidth = lineWidth,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         facetBy = facetBy,
         facetNumber = facetNumber,
         titleText = titleText,

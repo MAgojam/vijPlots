@@ -6,42 +6,37 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = piechartBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
-
-            # Compute the size according to facet
-            if (userWidth * userHeight == 0 ) {
-                if (!is.null(self$options$facet)) {
-                    nbOfFacet <- nlevels(self$data[[self$options$facet]])
-                    nbOfColumn <-self$options$facetNumber
-                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn )
-
-                    if (self$options$facetBy == "column" ) {
-                        height <- max(400,300*nbOfRow)
-                        width <- max(600, 200*nbOfColumn)
-                    } else {
-                        height <- max(400,300*nbOfColumn)
-                        width <- max(600, 200*nbOfRow)
-                    }
+            # Stretchable dimensions
+            if (!is.null(self$options$facet)) {
+                nbOfFacet <- nlevels(self$data[[self$options$facet]])
+                if (self$options$facetBy == "column") {
+                    nbOfColumn <- self$options$facetNumber
+                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn)
                 } else {
-                    width <- 600
-                    height <- 400
+                    nbOfRow <- self$options$facetNumber
+                    nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
                 }
-                if (self$options$legendPosition %in% c('top','bottom')) {
-                    height <- height + 50
-                    width <- width - 50
-                }
+                height <- max(500, 300*nbOfRow)
+                width <- max(400, 200*nbOfColumn)
+            } else {
+                height <- 400
+                width <- 400
             }
-            if (userWidth >0 )
-                width = userWidth
-            if (userHeight >0 )
-                height = userHeight
+            # Fixed dimension
+            if (self$options$legendPosition %in% c('top','bottom')) {
+                fixed_height <- 50
+                fixed_width <- 0
+            } else {
+                fixed_width <- 100
+                fixed_height <- 0
+            }
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
 
         .run = function() {
@@ -87,7 +82,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 xOffset <- 1
             }
 
-            plot <- plot + geom_bar(position = "fill", color = borderColor) + coord_polar("y")
+            plot <- plot + geom_bar(position = "fill", color = borderColor, show.legend = TRUE) + coord_polar("y")
 
             if (self$options$labType == "text") {
                 if (self$options$overlap)
@@ -142,7 +137,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill", drop = FALSE)
 
             # Guide
             if (self$options$labels %in% c("group","group+count","group+percent"))

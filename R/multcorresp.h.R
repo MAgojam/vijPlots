@@ -45,14 +45,6 @@ multcorrespOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             captionAlign = "1",
             captionFontSize = 12,
             captionFontFace = "plain",
-            discrimWidth = 600,
-            discrimHeight = 600,
-            catWidth = 650,
-            catHeight = 600,
-            obsWidth = 600,
-            obsHeight = 600,
-            biplotWidth = 650,
-            biplotHeight = 600,
             obsColor = "black",
             colorPalette = "jmv",
             labelSize = 12,
@@ -285,54 +277,6 @@ multcorrespOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "italic",
                     "bold.italic"),
                 default="plain")
-            private$..discrimWidth <- jmvcore::OptionNumber$new(
-                "discrimWidth",
-                discrimWidth,
-                default=600,
-                min=200,
-                max=1000)
-            private$..discrimHeight <- jmvcore::OptionNumber$new(
-                "discrimHeight",
-                discrimHeight,
-                default=600,
-                min=200,
-                max=1000)
-            private$..catWidth <- jmvcore::OptionNumber$new(
-                "catWidth",
-                catWidth,
-                default=650,
-                min=200,
-                max=1000)
-            private$..catHeight <- jmvcore::OptionNumber$new(
-                "catHeight",
-                catHeight,
-                default=600,
-                min=200,
-                max=1000)
-            private$..obsWidth <- jmvcore::OptionNumber$new(
-                "obsWidth",
-                obsWidth,
-                default=600,
-                min=200,
-                max=1000)
-            private$..obsHeight <- jmvcore::OptionNumber$new(
-                "obsHeight",
-                obsHeight,
-                default=600,
-                min=200,
-                max=1000)
-            private$..biplotWidth <- jmvcore::OptionNumber$new(
-                "biplotWidth",
-                biplotWidth,
-                default=650,
-                min=200,
-                max=1000)
-            private$..biplotHeight <- jmvcore::OptionNumber$new(
-                "biplotHeight",
-                biplotHeight,
-                default=600,
-                min=200,
-                max=1000)
             private$..obsColor <- jmvcore::OptionList$new(
                 "obsColor",
                 obsColor,
@@ -535,14 +479,6 @@ multcorrespOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..captionAlign)
             self$.addOption(private$..captionFontSize)
             self$.addOption(private$..captionFontFace)
-            self$.addOption(private$..discrimWidth)
-            self$.addOption(private$..discrimHeight)
-            self$.addOption(private$..catWidth)
-            self$.addOption(private$..catHeight)
-            self$.addOption(private$..obsWidth)
-            self$.addOption(private$..obsHeight)
-            self$.addOption(private$..biplotWidth)
-            self$.addOption(private$..biplotHeight)
             self$.addOption(private$..obsColor)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..labelSize)
@@ -602,14 +538,6 @@ multcorrespOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         captionAlign = function() private$..captionAlign$value,
         captionFontSize = function() private$..captionFontSize$value,
         captionFontFace = function() private$..captionFontFace$value,
-        discrimWidth = function() private$..discrimWidth$value,
-        discrimHeight = function() private$..discrimHeight$value,
-        catWidth = function() private$..catWidth$value,
-        catHeight = function() private$..catHeight$value,
-        obsWidth = function() private$..obsWidth$value,
-        obsHeight = function() private$..obsHeight$value,
-        biplotWidth = function() private$..biplotWidth$value,
-        biplotHeight = function() private$..biplotHeight$value,
         obsColor = function() private$..obsColor$value,
         colorPalette = function() private$..colorPalette$value,
         labelSize = function() private$..labelSize$value,
@@ -668,14 +596,6 @@ multcorrespOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..captionAlign = NA,
         ..captionFontSize = NA,
         ..captionFontFace = NA,
-        ..discrimWidth = NA,
-        ..discrimHeight = NA,
-        ..catWidth = NA,
-        ..catHeight = NA,
-        ..obsWidth = NA,
-        ..obsHeight = NA,
-        ..biplotWidth = NA,
-        ..biplotHeight = NA,
         ..obsColor = NA,
         ..colorPalette = NA,
         ..labelSize = NA,
@@ -869,8 +789,6 @@ multcorrespResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "yAxisText",
                     "yAxisFontSize",
                     "yAxisPosition",
-                    "discrimWidth",
-                    "discrimHeight",
                     "labelSize",
                     "descAsVarName")))
             self$add(jmvcore::Image$new(
@@ -909,8 +827,6 @@ multcorrespResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "legendText",
                     "legendFontSize",
                     "legendPosition",
-                    "catWidth",
-                    "catHeight",
                     "colorPalette",
                     "labelSize",
                     "connectOrdinalCat",
@@ -953,8 +869,6 @@ multcorrespResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "legendText",
                     "legendFontSize",
                     "legendPosition",
-                    "obsWidth",
-                    "obsHeight",
                     "obsColor",
                     "labelSize",
                     "propPoint",
@@ -996,8 +910,6 @@ multcorrespResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "legendText",
                     "legendFontSize",
                     "legendPosition",
-                    "biplotWidth",
-                    "biplotHeight",
                     "obsColor",
                     "colorPalette",
                     "labelSize",
@@ -1082,14 +994,6 @@ multcorrespBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param captionAlign .
 #' @param captionFontSize .
 #' @param captionFontFace .
-#' @param discrimWidth .
-#' @param discrimHeight .
-#' @param catWidth .
-#' @param catHeight .
-#' @param obsWidth .
-#' @param obsHeight .
-#' @param biplotWidth .
-#' @param biplotHeight .
 #' @param obsColor .
 #' @param colorPalette .
 #' @param labelSize .
@@ -1169,14 +1073,6 @@ multcorresp <- function(
     captionAlign = "1",
     captionFontSize = 12,
     captionFontFace = "plain",
-    discrimWidth = 600,
-    discrimHeight = 600,
-    catWidth = 650,
-    catHeight = 600,
-    obsWidth = 600,
-    obsHeight = 600,
-    biplotWidth = 650,
-    biplotHeight = 600,
     obsColor = "black",
     colorPalette = "jmv",
     labelSize = 12,
@@ -1251,14 +1147,6 @@ multcorresp <- function(
         captionAlign = captionAlign,
         captionFontSize = captionFontSize,
         captionFontFace = captionFontFace,
-        discrimWidth = discrimWidth,
-        discrimHeight = discrimHeight,
-        catWidth = catWidth,
-        catHeight = catHeight,
-        obsWidth = obsWidth,
-        obsHeight = obsHeight,
-        biplotWidth = biplotWidth,
-        biplotHeight = biplotHeight,
         obsColor = obsColor,
         colorPalette = colorPalette,
         labelSize = labelSize,

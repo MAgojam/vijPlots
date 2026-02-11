@@ -131,7 +131,7 @@ children:
                     name: lineSE
                     enable: (regLine)
   - type: CollapseBox
-    label: Plot & Element Sizes
+    label: Element Sizes
     collapsed: true
     stretchFactor: 1
     children:
@@ -146,24 +146,7 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
-                children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
-          - type: LayoutBox
-            cell:
-              column: 1
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
-                label: Element Size
+                label: Element Sizes
                 children:
                   - type: TextBox
                     name: pointSize

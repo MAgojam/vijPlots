@@ -6,45 +6,38 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = barplotBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
-
-            if (userWidth * userHeight == 0) {
-                if( !is.null(self$options$columns)) {
-                    width <- 600 #+ 50 * nlevels(self$data[[self$options$columns]]))
+            # Stretchable dimensions
+            if (!is.null(self$options$facet)) {
+                nbOfFacet <- nlevels(self$data[[self$options$facet]])
+                if (self$options$facetBy == "column") {
+                    nbOfColumn <- self$options$facetNumber
+                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn)
                 } else {
-                    width <- 500
+                    nbOfRow <- self$options$facetNumber
+                    nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
                 }
-                if (!is.null(self$options$facet)) {
-                    nbOfFacet <- nlevels(self$data[[self$options$facet]])
-                    nbOfColumn <-self$options$facetNumber
-                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn )
-
-                    if (self$options$facetBy == "column") {
-                        height <- max(400,300*nbOfRow)
-                        width <- max(500, 200*nbOfColumn)
-                    } else {
-                        height <- max(400,300*nbOfColumn)
-                        width <- max(500, 200*nbOfRow)
-                    }
-                } else {
-                    height <- 400
-                }
-                if (self$options$legendPosition %in% c('top','bottom')) {
-                    width <- width - 50
-                    height <- height + 50
-                }
+                height <- max(350, 300*nbOfRow)
+                width <- max(450, 200*nbOfColumn)
+            } else {
+                height <- 350
+                width <- 450
             }
-            if (userWidth >0)
-                width = userWidth
-            if (userHeight >0)
-                height = userHeight
+            # Fixed dimension
+            fixed_height <- 50 # X-Axis legend
+            fixed_width <- 50 # Y-Axis legend
+            if( !is.null(self$options$columns)) {
+                if (self$options$legendPosition %in% c('top','bottom'))
+                    fixed_height <- fixed_height + 50
+                else
+                    fixed_width <- fixed_width + 100
+            }
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
         .run = function() {
             if (!is.null(self$options$rows) && nrow(self$data) != 0) {
@@ -77,10 +70,11 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else
                 borderColor = self$options$borderColor
 
-            position <- self$options$barType
-            positionStack <- (position == "stack")
-            if(position == "dodge2")
+            positionStack <- (self$options$barType == "stack")
+            if(self$options$barType == "dodge2")
                 position <- position_dodge2(preserve = "single")
+            else
+                position <- self$options$barType
 
             yaxis <- self$options$yaxis
 
@@ -160,14 +154,14 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                             color = borderColor, fill = oneColorOfPalette)
                 else
                     plot <- plot + geom_bar(aes(y = after_stat(count)), stat = "count", position = position,
-                                            color = borderColor)
+                                            color = borderColor, show.legend = TRUE) # show.legend needed to display unused levels
             } else {
                 if (singleColor)
                     plot <- plot + geom_bar(aes(y = after_stat(prop)), stat = ggstats::StatProp, position = position,
                                             color = borderColor, fill = oneColorOfPalette)
                 else
                     plot <- plot + geom_bar(aes(y = after_stat(prop)), stat = ggstats::StatProp, position = position,
-                                            color = borderColor)
+                                            color = borderColor, show.legend = TRUE)
             }
 
             #### Labels ####
@@ -185,11 +179,15 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     else
                         labPosition <- position_stack(vjust = 0.5)
                 } else {
-                    if (self$options$labelPosition == "middle") {
+                    if(self$options$barType == "dodge2")
+                        labPosition <- position_dodge2(preserve = "single", width = 0.9)
+                    else
                         labPosition <- position_dodge(width = 0.9)
+                    if (self$options$labelPosition == "middle") {
+                        #labPosition <- position_dodge(width = 0.9)
                         vfactor <- 2
                     } else {
-                        labPosition <- position_dodge(width = 0.9)
+                        #labPosition <- position_dodge(width = 0.9)
                         if (self$options$horizontal) {
                             hjust2 <- -0.2
                         } else {
@@ -197,6 +195,9 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         }
                     }
                 }
+
+
+
 
                 # geom_text
                 if (yaxis == "count") {
@@ -239,6 +240,10 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 yScaleFactor <- 100
                 plot <- plot + scale_y_continuous(labels = scales::label_percent())
             }
+
+            # Show unused levels (if checked in data/var setting)
+            plot <- plot + scale_x_discrete(drop = FALSE) #+ scale_fill_manual(drop = FALSE)
+
             # Axis Limits & flip
             if (self$options$horizontal) {
                 if (self$options$xAxisRangeType == "manual") { # Horizontal and manual
@@ -268,7 +273,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill", drop = FALSE) # drop to include unused levels in color scales
 
             # Titles & Labels
             defaults <- list(y = yLab, x = category, legend = group)

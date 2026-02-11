@@ -134,10 +134,13 @@ children:
                 children:
                   - type: CheckBox
                     name: showMannU
+                    enable: (!(!group))
                   - type: CheckBox
                     name: showKW
+                    enable: (!(!group))
                   - type: CheckBox
                     name: showPostHoc
+                    enable: (!(!group))
           - type: LayoutBox
             cell:
               column: 1
@@ -152,19 +155,19 @@ children:
                     optionName: postHoc
                     optionPart: dunn
                     label: Dunn
-                    enable: (showPostHoc)
+                    enable: (!(!group) && showPostHoc)
                   - type: RadioButton
                     name: postHoc_conover
                     optionName: postHoc
                     optionPart: conover
                     label: Conover
-                    enable: (showPostHoc)
+                    enable: (!(!group) && showPostHoc)
                   - type: RadioButton
                     name: postHoc_dscf
                     optionName: postHoc
                     optionPart: dscf
                     label: DSCF
-                    enable: (showPostHoc)
+                    enable: (!(!group) && showPostHoc)
           - type: LayoutBox
             cell:
               column: 2
@@ -179,22 +182,22 @@ children:
                     optionName: pValue
                     optionPart: none
                     label: None
-                    enable: (showKW || showMannU || showPostHoc)
+                    enable: (!(!group) && (showKW || showMannU || showPostHoc))
                   - type: RadioButton
                     name: pValue_group
                     optionName: pValue
                     optionPart: group
                     label: Groupwise
-                    enable: (showPostHoc)
+                    enable: (!(!group) && showPostHoc)
                   - type: RadioButton
                     name: pValue_overall
                     optionName: pValue
                     optionPart: overall
                     label: Overall
-                    enable: (showKW || showMannU || showPostHoc)
+                    enable: (!(!group) && (showKW || showMannU || showPostHoc))
               - type: ComboBox
                 name: adjustMethod
-                enable: ((pValue_group || pValue_overall) && (showKW || showMannU || showPostHoc))
+                enable: (!(!group) && (pValue_group || pValue_overall) && (showKW || showMannU || showPostHoc))
   - type: CollapseBox
     label: Plot
     collapsed: false
@@ -331,7 +334,7 @@ children:
                     name: labelColor
                     enable: (addLabels)
   - type: CollapseBox
-    label: Plot & Text Sizes
+    label: Text Sizes
     collapsed: true
     stretchFactor: 1
     children:
@@ -342,23 +345,6 @@ children:
           - type: LayoutBox
             cell:
               column: 0
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
-                label: Plot Size
-                children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
-          - type: LayoutBox
-            cell:
-              column: 1
               row: 0
             stretchFactor: 1
             children:

@@ -6,43 +6,40 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = boxplotBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
-            # Compute the size according to facet
-            if (userWidth * userHeight == 0) {
-                if (self$options$horizontal)
-                    step <- 75
-                else
-                    step <- 100
-                if( is.null(self$options$group) ) {
-                    mainSize <- 100 + 1.5*step*length(self$options$vars)
-                } else {
-                    mainSize <- 100 + step*length(self$options$vars) * nlevels(self$data[[self$options$group]])
-                }
+            # Stretchable dimensions
+            if( is.null(self$options$group) ) {
                 if (self$options$horizontal) {
-                    height <- min(max(mainSize, 300),600)
+                    height <- min(max(100*length(self$options$vars), 300), 600)
                     width <- 600
                 } else {
-                    width <-  min(max(mainSize, 400),800)
                     height <- 400
+                    width <- min(max(150*length(self$options$vars), 400), 800)
                 }
-                if (!is.null(self$options$group) & length(self$options$vars)>1 ) {
-                    if (self$options$legendPosition %in% c('top','bottom'))
-                        height <- height + 50
-                    else
-                        width <- width + 50
+            } else {
+                if (self$options$horizontal) {
+                    height <- min(max(75*length(self$options$vars) * nlevels(self$data[[self$options$group]]), 300), 600)
+                    width <- 600
+                } else {
+                    height <- 400
+                    width <- min(max(100*length(self$options$vars) * nlevels(self$data[[self$options$group]]),400), 800)
                 }
             }
-            if (userWidth >0)
-                width = userWidth
-            if (userHeight >0)
-                height = userHeight
+            # Fixed dimension
+            fixed_height <- 50 # X-Axis legend
+            fixed_width <- 50 # Y-Axis legend
+            if (!is.null(self$options$group) && length(self$options$vars) > 1) {
+                if (self$options$legendPosition %in% c('top','bottom'))
+                    fixed_height <- fixed_height + 50
+                else
+                    fixed_width <- fixed_width + 100
+            }
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
         .run = function() {
             if( length(self$options$vars) == 0 || nrow(self$data) == 0)
@@ -155,7 +152,7 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     if (length(depVarNames) > 1) {
                         plot <- plot + geom_boxplot(aes(y = !!aVar, x = !!varName, fill = !!groupVar),
                                                     outliers = self$options$showOutliers, staplewidth = stapleWidth,
-                                                    notch = notches, notchwidth = notchWidth, key_glyph = draw_key_rect)
+                                                    notch = notches, notchwidth = notchWidth, key_glyph = draw_key_rect, show.legend = TRUE)
                         if (self$options$showMean) {
                             plot <- plot + stat_summary(aes(y = !!aVar, x = !!varName, group = !!groupVar), fun = mean, geom = "point",
                                                         position = position_dodge(.75), shape = 15, size = 3, show.legend = FALSE)
@@ -202,11 +199,13 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else if (!is.null(groupVar) && self$options$order != "none") {
                 orderedLevelsData <- forcats::fct_reorder(plotData[[groupVar]], plotData[[aVar]], .desc = (self$options$order == "decreasing"))
                 orderedLevels <- levels(addNA(orderedLevelsData, ifany=TRUE))
-                plot <- plot + scale_x_discrete(limits = orderedLevels)
+                plot <- plot + scale_x_discrete(limits = orderedLevels, drop = FALSE)
+            } else if (!is.null(groupVar)) {
+                plot <- plot + scale_x_discrete(drop = FALSE) # keep unused levels
             }
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill", drop = FALSE)
 
             # Axis Limits & flip
             if (self$options$horizontal) {

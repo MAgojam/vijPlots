@@ -21,10 +21,6 @@ msgstr "[0-9]"
 msgid "{distribStr} {typeStr} Plot of {varStr}"
 msgstr "Diagramme {typeStr} {distribStr} de {varStr}"
 
-#: R/corresp.b.R
-msgid "{normalization} Normalization"
-msgstr "Normalisation {normalization}"
-
 #: R/principal.b.R
 msgid "{rotation} rotation"
 msgstr "Rotation {rotation}"
@@ -1745,6 +1741,10 @@ msgstr "Graphique des colonnes pour"
 msgid "Column principal"
 msgstr "Col. principales"
 
+#: R/corresp.b.R
+msgid "Column principal normalization"
+msgstr "Normalisation principale en colonnes"
+
 #: corresp/results/colProfiles.title
 msgid "Column Profiles"
 msgstr "Profils colonnes"
@@ -1984,6 +1984,7 @@ msgstr "décembre"
 msgid "Decreasing"
 msgstr "Décroissant"
 
+#: R/utils.R
 #: corresp/options/columnTitleText.default
 #: corresp/options/rowTitleText.default
 #: corresp/options/biplotTitleText.default
@@ -4197,6 +4198,10 @@ msgstr "Analyse en composantes principales"
 msgid "Principal coordinates"
 msgstr "Coordonnées principales"
 
+#: R/corresp.b.R
+msgid "Principal normalization"
+msgstr "Normalisation principale"
+
 #: multcorresp/options/propPoint.title
 msgid "Proportional point size"
 msgstr "Points proportionnels"
@@ -4681,6 +4686,10 @@ msgstr "Graphique des lignes pour"
 msgid "Row principal"
 msgstr "Lignes principales"
 
+#: R/corresp.b.R
+msgid "Row principal normalization"
+msgstr "Normalisation principale en lignes"
+
 #: corresp/results/rowProfiles.title
 msgid "Row Profiles"
 msgstr "Profils lignes"
@@ -5017,6 +5026,10 @@ msgstr "Standard"
 msgid "Standard coordinates"
 msgstr "Coordonnées standardisées"
 
+#: R/corresp.b.R
+msgid "Standard normalization"
+msgstr "Normalisation standard"
+
 #: principal/options/stdLoadings.title
 msgid "Standardize loadings (eigenvectors)"
 msgstr "Coord. des variables standardisées"
@@ -5057,32 +5070,15 @@ msgstr "Statistique"
 msgid "Stretch arrows by"
 msgstr "Taille vecteurs"
 
-#: R/corresp.b.R
-msgctxt "string"
-msgid "Column Principal"
-msgstr "principale en colonnes"
-
-#: R/corresp.b.R
 #: R/multcorresp.b.R
 msgctxt "string"
 msgid "Principal"
 msgstr "principale"
 
-#: R/corresp.b.R
-msgctxt "string"
-msgid "Row Principal"
-msgstr "principale en lignes"
-
-#: R/corresp.b.R
 #: R/multcorresp.b.R
 msgctxt "string"
 msgid "Standard"
 msgstr "standard"
-
-#: R/corresp.b.R
-msgctxt "string"
-msgid "Symetric"
-msgstr "symétrique"
 
 #: qqplot/options/distrib/t.title
 msgid "Student"
@@ -5170,6 +5166,10 @@ msgstr "Variables supplémentaires"
 #: corresp/options/normalization/symetric.title
 msgid "Symetric"
 msgstr "Symétrique"
+
+#: R/corresp.b.R
+msgid "Symetric normalization"
+msgstr "Normalisation symétrique"
 
 #: likertplot/ui[2].label
 #: likertplot/ui[2][0][0][0].label

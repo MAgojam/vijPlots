@@ -27,9 +27,6 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             showLabels = FALSE,
             labelPosition = "middle",
             accuracy = "0.1",
-            size = "medium",
-            plotWidth = 0,
-            plotHeight = 0,
             labelFontSize = 12,
             colorPalette = "jmv",
             borderColor = "none",
@@ -164,6 +161,7 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 "bartype",
                 bartype,
                 options=list(
+                    "dodge2",
                     "dodge",
                     "stack"),
                 default="dodge")
@@ -194,29 +192,6 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "0.1",
                     "0.01"),
                 default="0.1")
-            private$..size <- jmvcore::OptionList$new(
-                "size",
-                size,
-                hidden=TRUE,
-                options=list(
-                    "small",
-                    "medium",
-                    "large",
-                    "wide",
-                    "huge"),
-                default="medium")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..labelFontSize <- jmvcore::OptionNumber$new(
                 "labelFontSize",
                 labelFontSize,
@@ -531,9 +506,6 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..showLabels)
             self$.addOption(private$..labelPosition)
             self$.addOption(private$..accuracy)
-            self$.addOption(private$..size)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..labelFontSize)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..borderColor)
@@ -592,9 +564,6 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         showLabels = function() private$..showLabels$value,
         labelPosition = function() private$..labelPosition$value,
         accuracy = function() private$..accuracy$value,
-        size = function() private$..size$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         labelFontSize = function() private$..labelFontSize$value,
         colorPalette = function() private$..colorPalette$value,
         borderColor = function() private$..borderColor$value,
@@ -652,9 +621,6 @@ mrcrosstabsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..showLabels = NA,
         ..labelPosition = NA,
         ..accuracy = NA,
-        ..size = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..labelFontSize = NA,
         ..colorPalette = NA,
         ..borderColor = NA,
@@ -790,9 +756,6 @@ mrcrosstabsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showLabels .
 #' @param labelPosition .
 #' @param accuracy .
-#' @param size .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param labelFontSize .
 #' @param colorPalette .
 #' @param borderColor .
@@ -865,9 +828,6 @@ mrcrosstabs <- function(
     showLabels = FALSE,
     labelPosition = "middle",
     accuracy = "0.1",
-    size = "medium",
-    plotWidth = 0,
-    plotHeight = 0,
     labelFontSize = 12,
     colorPalette = "jmv",
     borderColor = "none",
@@ -946,9 +906,6 @@ mrcrosstabs <- function(
         showLabels = showLabels,
         labelPosition = labelPosition,
         accuracy = accuracy,
-        size = size,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         labelFontSize = labelFontSize,
         colorPalette = colorPalette,
         borderColor = borderColor,

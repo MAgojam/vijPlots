@@ -32,11 +32,6 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 self$results$helpMessage$setVisible(FALSE)
             }
-
-            self$results$discrimplot$setSize(as.numeric(self$options$discrimWidth), as.numeric(self$options$discrimHeight))
-            self$results$categoryplot$setSize(as.numeric(self$options$catWidth), as.numeric(self$options$catHeight))
-            self$results$obsplot$setSize(as.numeric(self$options$obsWidth), as.numeric(self$options$obsHeight))
-            self$results$biplot$setSize(as.numeric(self$options$biplotWidth), as.numeric(self$options$biplotHeight))
         },
         .run = function() {
             if (is.null(self$options$vars) || length(self$options$vars) < 3  || nrow(self$data) == 0)
@@ -273,9 +268,9 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             #### Saving coordinates  ####
 
             if (self$options$normalization %in% c("principal", "obsprincipal"))
-                private$.saveCoordinates(res$ind$coord, .("Principal [string]"))
+                private$.saveCoordinates(res$ind$coord, "principal")
             else
-                private$.saveCoordinates(res$ind$stdcoord, .("Standard [string]"))
+                private$.saveCoordinates(res$ind$stdcoord, "standard")
         },
         .mca = function(data, method, nd, supcol, rowlabels = NULL, rownames = NULL) {
             res <- FactoMineR::MCA(data, method = method, ncp = 999, quali.sup = supcol, graph = FALSE)
@@ -579,13 +574,17 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 measureTypes <- rep("continuous", nDim)
 
                 titles <- paste(.("Dim"), keys)
+
+                if (type == "principal")
+                    descriptionString <- .("MCA Principal Coordinates")
+                else
+                    descriptionString <- .("MCA Standard Coordinates")
+
+                descriptionString <- paste0(descriptionString, " (", self$options$method, ")")
+
                 descriptions <- character(length(keys))
                 for (i in keys) {
-                    descriptions[i] = jmvcore::format(
-                            .("MCA {type} Coordinate ({method} method)"),
-                            type = type,
-                            method = self$options$method
-                        )
+                    descriptions[i] = descriptionString
                 }
 
                 self$results$obsCoordOV$set(

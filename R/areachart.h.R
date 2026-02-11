@@ -13,14 +13,13 @@ areachartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             var = NULL,
             group = NULL,
             showLine = TRUE,
+            ignoreNA = TRUE,
             position = "stack",
             colorPalette = "jmv",
             isDate = FALSE,
             dateFormat = "auto",
             displayFormat = "%Y-%m-%d",
             dateBreak = "1 month",
-            plotWidth = 0,
-            plotHeight = 0,
             lineWidth = 0.5,
             titleText = NULL,
             titleFontFace = "bold",
@@ -100,6 +99,10 @@ areachartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showLine <- jmvcore::OptionBool$new(
                 "showLine",
                 showLine,
+                default=TRUE)
+            private$..ignoreNA <- jmvcore::OptionBool$new(
+                "ignoreNA",
+                ignoreNA,
                 default=TRUE)
             private$..position <- jmvcore::OptionList$new(
                 "position",
@@ -212,18 +215,6 @@ areachartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "1 year",
                     "10 year"),
                 default="1 month")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1000,
-                default=0)
             private$..lineWidth <- jmvcore::OptionNumber$new(
                 "lineWidth",
                 lineWidth,
@@ -436,14 +427,13 @@ areachartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..var)
             self$.addOption(private$..group)
             self$.addOption(private$..showLine)
+            self$.addOption(private$..ignoreNA)
             self$.addOption(private$..position)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..isDate)
             self$.addOption(private$..dateFormat)
             self$.addOption(private$..displayFormat)
             self$.addOption(private$..dateBreak)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..lineWidth)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
@@ -482,14 +472,13 @@ areachartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         var = function() private$..var$value,
         group = function() private$..group$value,
         showLine = function() private$..showLine$value,
+        ignoreNA = function() private$..ignoreNA$value,
         position = function() private$..position$value,
         colorPalette = function() private$..colorPalette$value,
         isDate = function() private$..isDate$value,
         dateFormat = function() private$..dateFormat$value,
         displayFormat = function() private$..displayFormat$value,
         dateBreak = function() private$..dateBreak$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         lineWidth = function() private$..lineWidth$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
@@ -527,14 +516,13 @@ areachartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..var = NA,
         ..group = NA,
         ..showLine = NA,
+        ..ignoreNA = NA,
         ..position = NA,
         ..colorPalette = NA,
         ..isDate = NA,
         ..dateFormat = NA,
         ..displayFormat = NA,
         ..dateBreak = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..lineWidth = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
@@ -618,14 +606,13 @@ areachartBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param var .
 #' @param group .
 #' @param showLine .
+#' @param ignoreNA .
 #' @param position .
 #' @param colorPalette .
 #' @param isDate .
 #' @param dateFormat .
 #' @param displayFormat .
 #' @param dateBreak .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param lineWidth .
 #' @param titleText .
 #' @param titleFontFace .
@@ -670,14 +657,13 @@ areachart <- function(
     var,
     group,
     showLine = TRUE,
+    ignoreNA = TRUE,
     position = "stack",
     colorPalette = "jmv",
     isDate = FALSE,
     dateFormat = "auto",
     displayFormat = "%Y-%m-%d",
     dateBreak = "1 month",
-    plotWidth = 0,
-    plotHeight = 0,
     lineWidth = 0.5,
     titleText,
     titleFontFace = "bold",
@@ -735,14 +721,13 @@ areachart <- function(
         var = var,
         group = group,
         showLine = showLine,
+        ignoreNA = ignoreNA,
         position = position,
         colorPalette = colorPalette,
         isDate = isDate,
         dateFormat = dateFormat,
         displayFormat = displayFormat,
         dateBreak = dateBreak,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         lineWidth = lineWidth,
         titleText = titleText,
         titleFontFace = titleFontFace,

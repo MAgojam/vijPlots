@@ -164,7 +164,7 @@ children:
               - type: CheckBox
                 name: showBiPlot
   - type: CollapseBox
-    label: Plot Size & Colors
+    label: Text Size & Colors
     collapsed: true
     stretchFactor: 1
     children:
@@ -180,16 +180,8 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Text Size
                 children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
                   - type: TextBox
                     name: labelSize
                     format: number

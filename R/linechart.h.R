@@ -10,13 +10,12 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             vars = NULL,
             group = NULL,
             showPoint = TRUE,
+            ignoreNA = TRUE,
             colorPalette = "jmv",
             isDate = FALSE,
             dateFormat = "auto",
             displayFormat = "%Y-%m-%d",
             dateBreak = "1 month",
-            plotWidth = 0,
-            plotHeight = 0,
             dotSize = 2,
             lineWidth = 1,
             titleText = NULL,
@@ -78,6 +77,10 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showPoint <- jmvcore::OptionBool$new(
                 "showPoint",
                 showPoint,
+                default=TRUE)
+            private$..ignoreNA <- jmvcore::OptionBool$new(
+                "ignoreNA",
+                ignoreNA,
                 default=TRUE)
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
@@ -182,18 +185,6 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "1 year",
                     "10 year"),
                 default="1 month")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1000,
-                default=0)
             private$..dotSize <- jmvcore::OptionNumber$new(
                 "dotSize",
                 dotSize,
@@ -409,13 +400,12 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..vars)
             self$.addOption(private$..group)
             self$.addOption(private$..showPoint)
+            self$.addOption(private$..ignoreNA)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..isDate)
             self$.addOption(private$..dateFormat)
             self$.addOption(private$..displayFormat)
             self$.addOption(private$..dateBreak)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..dotSize)
             self$.addOption(private$..lineWidth)
             self$.addOption(private$..titleText)
@@ -452,13 +442,12 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         vars = function() private$..vars$value,
         group = function() private$..group$value,
         showPoint = function() private$..showPoint$value,
+        ignoreNA = function() private$..ignoreNA$value,
         colorPalette = function() private$..colorPalette$value,
         isDate = function() private$..isDate$value,
         dateFormat = function() private$..dateFormat$value,
         displayFormat = function() private$..displayFormat$value,
         dateBreak = function() private$..dateBreak$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         dotSize = function() private$..dotSize$value,
         lineWidth = function() private$..lineWidth$value,
         titleText = function() private$..titleText$value,
@@ -494,13 +483,12 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..vars = NA,
         ..group = NA,
         ..showPoint = NA,
+        ..ignoreNA = NA,
         ..colorPalette = NA,
         ..isDate = NA,
         ..dateFormat = NA,
         ..displayFormat = NA,
         ..dateBreak = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..dotSize = NA,
         ..lineWidth = NA,
         ..titleText = NA,
@@ -582,13 +570,12 @@ linechartBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param vars .
 #' @param group .
 #' @param showPoint .
+#' @param ignoreNA .
 #' @param colorPalette .
 #' @param isDate .
 #' @param dateFormat .
 #' @param displayFormat .
 #' @param dateBreak .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param dotSize .
 #' @param lineWidth .
 #' @param titleText .
@@ -631,13 +618,12 @@ linechart <- function(
     vars,
     group,
     showPoint = TRUE,
+    ignoreNA = TRUE,
     colorPalette = "jmv",
     isDate = FALSE,
     dateFormat = "auto",
     displayFormat = "%Y-%m-%d",
     dateBreak = "1 month",
-    plotWidth = 0,
-    plotHeight = 0,
     dotSize = 2,
     lineWidth = 1,
     titleText,
@@ -689,13 +675,12 @@ linechart <- function(
         vars = vars,
         group = group,
         showPoint = showPoint,
+        ignoreNA = ignoreNA,
         colorPalette = colorPalette,
         isDate = isDate,
         dateFormat = dateFormat,
         displayFormat = displayFormat,
         dateBreak = dateBreak,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         dotSize = dotSize,
         lineWidth = lineWidth,
         titleText = titleText,

@@ -208,8 +208,6 @@ items:
         - varColor
         - colorPalette
         - labelColor
-        - plotWidth
-        - plotHeight
         - obsLabelSize
         - varLabelSize
         - pointSize
@@ -256,8 +254,6 @@ items:
         - varColor
         - colorPalette
         - labelColor
-        - plotWidth
-        - plotHeight
         - obsLabelSize
         - varLabelSize
         - pointSize
@@ -310,8 +306,6 @@ items:
         - varColor
         - colorPalette
         - labelColor
-        - plotWidth
-        - plotHeight
         - obsLabelSize
         - varLabelSize
         - pointSize

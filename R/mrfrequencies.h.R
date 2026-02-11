@@ -23,9 +23,6 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             horizontal = FALSE,
             showLabels = FALSE,
             accuracy = "0.1",
-            size = "medium",
-            plotWidth = 0,
-            plotHeight = 0,
             labelFontSize = 12,
             colorPalette = "jmv",
             singleColor = TRUE,
@@ -158,29 +155,6 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "0.1",
                     "0.01"),
                 default="0.1")
-            private$..size <- jmvcore::OptionList$new(
-                "size",
-                size,
-                hidden=TRUE,
-                options=list(
-                    "small",
-                    "medium",
-                    "large",
-                    "wide",
-                    "huge"),
-                default="medium")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..labelFontSize <- jmvcore::OptionNumber$new(
                 "labelFontSize",
                 labelFontSize,
@@ -478,9 +452,6 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..horizontal)
             self$.addOption(private$..showLabels)
             self$.addOption(private$..accuracy)
-            self$.addOption(private$..size)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..labelFontSize)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..singleColor)
@@ -534,9 +505,6 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         horizontal = function() private$..horizontal$value,
         showLabels = function() private$..showLabels$value,
         accuracy = function() private$..accuracy$value,
-        size = function() private$..size$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         labelFontSize = function() private$..labelFontSize$value,
         colorPalette = function() private$..colorPalette$value,
         singleColor = function() private$..singleColor$value,
@@ -589,9 +557,6 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         ..horizontal = NA,
         ..showLabels = NA,
         ..accuracy = NA,
-        ..size = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..labelFontSize = NA,
         ..colorPalette = NA,
         ..singleColor = NA,
@@ -734,9 +699,6 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param horizontal .
 #' @param showLabels .
 #' @param accuracy .
-#' @param size .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param labelFontSize .
 #' @param colorPalette .
 #' @param singleColor .
@@ -804,9 +766,6 @@ mrfrequencies <- function(
     horizontal = FALSE,
     showLabels = FALSE,
     accuracy = "0.1",
-    size = "medium",
-    plotWidth = 0,
-    plotHeight = 0,
     labelFontSize = 12,
     colorPalette = "jmv",
     singleColor = TRUE,
@@ -874,9 +833,6 @@ mrfrequencies <- function(
         horizontal = horizontal,
         showLabels = showLabels,
         accuracy = accuracy,
-        size = size,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         labelFontSize = labelFontSize,
         colorPalette = colorPalette,
         singleColor = singleColor,

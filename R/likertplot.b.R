@@ -30,16 +30,37 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             return( list('statistic' = statistic, 'p.value' = res1$p.value) )
         },
         .init = function() {
-            # Set the size of the plot
-            image <- self$results$plot
-            image$setSize(self$options$plotWidth, self$options$plotHeight)
-        },
-        .run = function() {
-            if (length(self$options$liks) == 0 || nrow(self$data) == 0) {
+            if (length(self$options$liks) == 0) {
+                self$results$plot$setVisible(FALSE)
+                self$results$frequencies$setVisible(FALSE)
+                self$results$comp$setVisible(FALSE)
                 return()
             } else {
                 self$results$helpMessage$setVisible(FALSE)
+                if (is.null(self$options$group))
+                    self$results$comp$setVisible(FALSE)
             }
+            # Stretchable dimensions
+            if (!is.null(self$options$group))
+                nbOfBars<- nlevels(self$data[[self$options$group]]) * max(1,length(self$options$liks))
+            else
+                nbOfBars <- max(1,length(self$options$liks))
+            width <- 500
+            height <- max(200, nbOfBars*50)
+            # Fixed dimension
+            fixed_width <- 75 # Y-Axis legend
+            fixed_height <- 50 # X-Axis legend
+            # Set the image dimensions
+            image <- self$results$plot
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
+        },
+        .run = function() {
+            if (length(self$options$liks) == 0 || nrow(self$data) == 0)
+                return()
 
             mainData <- self$data[c(self$options$liks, self$options$group)]
 

@@ -271,20 +271,6 @@ options:
           name: custom::lemovice
       default: jmv
 
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1600
-      default: 0
-
     - name: titleText
       title: ""
       type: String

@@ -34,35 +34,17 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 table$addRow(rowKey='.total', values=list(var="Total"))
                 table$addFormat(rowKey=".total", col=1, jmvcore::Cell.BEGIN_GROUP)
             }
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
-            if (userWidth * userHeight == 0) {
-                # use as default the obsolete (and hidden) size menu preset
-                width <- switch (self$options$size,
-                                 "small" = 300,
-                                 "medium" = 400,
-                                 "large" = 600,
-                                 "wide" = 700,
-                                 "huge" = 800,
-                                 400)
-                height <- switch (self$options$size,
-                                 "small" = 200,
-                                 "medium" = 300,
-                                 "large" = 400,
-                                 "wide" = 400,
-                                 "huge" = 500,
-                                 300)
-            }
-            if (userWidth >0)
-                width = userWidth
-            if (userHeight >0)
-                height = userHeight
+            # Set the image dimensions
+            width <- 525
+            height <- 350
+            fixed_width <- 75
+            fixed_height <- 50
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
         .run = function() {
             if (self$options$mode == "morevar") { # Several dychotomous variables

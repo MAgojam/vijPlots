@@ -19,8 +19,6 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             singleColor = FALSE,
             colorNo = 1,
             order = "none",
-            plotWidth = 0,
-            plotHeight = 0,
             stapleWidth = 0.25,
             notchWidth = 0.5,
             titleText = NULL,
@@ -183,18 +181,6 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "increasing",
                     "none"),
                 default="none")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..stapleWidth <- jmvcore::OptionNumber$new(
                 "stapleWidth",
                 stapleWidth,
@@ -434,8 +420,6 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..singleColor)
             self$.addOption(private$..colorNo)
             self$.addOption(private$..order)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..stapleWidth)
             self$.addOption(private$..notchWidth)
             self$.addOption(private$..titleText)
@@ -484,8 +468,6 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         singleColor = function() private$..singleColor$value,
         colorNo = function() private$..colorNo$value,
         order = function() private$..order$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         stapleWidth = function() private$..stapleWidth$value,
         notchWidth = function() private$..notchWidth$value,
         titleText = function() private$..titleText$value,
@@ -533,8 +515,6 @@ boxplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..singleColor = NA,
         ..colorNo = NA,
         ..order = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..stapleWidth = NA,
         ..notchWidth = NA,
         ..titleText = NA,
@@ -628,8 +608,6 @@ boxplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param singleColor .
 #' @param colorNo .
 #' @param order .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param stapleWidth .
 #' @param notchWidth .
 #' @param titleText .
@@ -684,8 +662,6 @@ boxplot <- function(
     singleColor = FALSE,
     colorNo = 1,
     order = "none",
-    plotWidth = 0,
-    plotHeight = 0,
     stapleWidth = 0.25,
     notchWidth = 0.5,
     titleText,
@@ -749,8 +725,6 @@ boxplot <- function(
         singleColor = singleColor,
         colorNo = colorNo,
         order = order,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         stapleWidth = stapleWidth,
         notchWidth = notchWidth,
         titleText = titleText,

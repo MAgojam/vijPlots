@@ -66,7 +66,7 @@ options:
       default: none
 
     - name: reverseStack
-      title: Reverse stack order
+      title: Reverse stacking order
       type: Bool
       default: false
 
@@ -106,9 +106,9 @@ options:
       title: Bar Type
       type: List
       options:
-        - title: Side-by-side
+        - title: Grouped
           name:  dodge2
-        - title: Side-by-side (tight)
+        - title: Grouped (tight)
           name:  dodge
         - title: Stacked
           name:  stack
@@ -269,20 +269,6 @@ options:
         - title: Auto
           name:  auto
       default: auto
-
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1600
-      default: 0
 
     - name: labelFontSize
       type: Number

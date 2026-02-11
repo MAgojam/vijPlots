@@ -155,8 +155,6 @@ items:
         - yaxis
         - rowColor
         - supColor
-        - plotWidth
-        - plotHeight
         - supplementaryRows
         - supplementaryCols
         - normalization
@@ -196,8 +194,6 @@ items:
         - yaxis
         - colColor
         - supColor
-        - plotWidth
-        - plotHeight
         - supplementaryRows
         - supplementaryCols
         - normalization
@@ -238,8 +234,6 @@ items:
         - rowColor
         - colColor
         - supColor
-        - plotWidth
-        - plotHeight
         - supplementaryRows
         - supplementaryCols
         - normalization

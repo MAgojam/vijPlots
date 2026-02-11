@@ -163,8 +163,6 @@ items:
         - toInteger
         - tidyUp
         - ignoreNA
-        - plotWidth
-        - plotHeight
         - labelSize
         - groupSize
         - accuracy

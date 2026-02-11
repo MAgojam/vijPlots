@@ -115,19 +115,6 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 self$results$helpMessage$setVisible(FALSE)
             }
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            if (userWidth == 0)
-                userWidth <- 600
-            if (userHeight == 0)
-                userHeight <- 600
-            image <- self$results$rowplot
-            image$setSize(userWidth, userHeight)
-            image <- self$results$colplot
-            image$setSize(userWidth, userHeight)
-            image <- self$results$biplot
-            image$setSize(userWidth, userHeight)
         },
         .run = function() {
             data <- private$.getData()
@@ -208,8 +195,13 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 jmvcore::reject("Axis numbers cannot be equal!")
 
             #### Normalisation ####
-
-            normalizationString <- private$.normalizationTitle(self$options$normalization)
+            normalizationString <- switch(self$options$normalization,
+                                          principal = .("Principal normalization"),
+                                          symetric = .("Symetric normalization"),
+                                          rowprincipal = .("Row principal normalization"),
+                                          colprincipal = .("Column principal normalization"),
+                                          standard = .("Standard normalization")
+                                    )
 
             #### Contingency Table (with supplementary rows/columns ####
 
@@ -526,10 +518,6 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Apply jmv theme
             plot <- plot + ggtheme
 
-            # Axes
-            # if (self$options$fixedRatio)
-            #     plot <- plot + coord_fixed()
-
             # Set point colors
             plot <- plot +
                 scale_color_manual(
@@ -552,7 +540,13 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                             cols = private$.varName[[self$options$cols]])
             )
             # Plot subtitle
-            subtitle <- private$.normalizationTitle(self$options$normalization)
+            subtitle <- switch(self$options$normalization,
+                              principal = .("Principal normalization"),
+                              symetric = .("Symetric normalization"),
+                              rowprincipal = .("Row principal normalization"),
+                              colprincipal = .("Column principal normalization"),
+                              standard = .("Standard normalization")
+                        )
 
             # Titles & Labels
             defaults <- list(title = title, subtitle = subtitle, y = dim2name, x = dim1name)
@@ -605,17 +599,6 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             class(columns) <- 'data.frame'
 
             columns
-        },
-        .normalizationTitle = function(type){
-            normalizationString <- switch(type,
-                                      principal = .("Principal [string]"),
-                                      symetric = .("Symetric [string]"),
-                                      rowprincipal = .("Row Principal [string]"),
-                                      colprincipal = .("Column Principal [string]"),
-                                      standard = .("Standard [string]")
-                                )
-            normalizationTitle <- jmvcore::format(.("{normalization} Normalization"), normalization = normalizationString)
-            return(normalizationTitle)
         }
     )
 )

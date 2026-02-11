@@ -178,7 +178,7 @@ children:
                         width: small
                         enable: (biplotStretch && showBiplot)
   - type: CollapseBox
-    label: Plot Size & Colors
+    label: Sizes & Colors
     collapsed: true
     stretchFactor: 1
     children:
@@ -194,16 +194,8 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Text Sizes
                 children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
                   - type: TextBox
                     name: varLabelSize
                     format: number
@@ -212,6 +204,9 @@ children:
                     name: obsLabelSize
                     format: number
                     suffix: pt
+              - type: Label
+                label: Element Sizes
+                children:
                   - type: TextBox
                     name: pointSize
                     format: number

@@ -225,20 +225,6 @@ options:
           name: "0.01"
       default: "0.1"
 
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1600
-      default: 0
-
     - name: facetBy
       title: Facets
       type: List

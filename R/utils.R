@@ -1,7 +1,7 @@
-vijScale = function(pal, type = "fill") {
+vijScale = function(pal, type = "fill", drop = TRUE) {
     themePal <- get('theme', envir = parent.frame())$palette
     palette <- vijPalette(pal, type, themePal)
-    return(discrete_scale(aesthetics = type, palette = palette, na.value="gray"))
+    return(discrete_scale(aesthetics = type, palette = palette, na.value="gray", drop = drop))
 }
 
 vijPalette = function(pal, type = "fill", themePal = NULL) {
@@ -91,6 +91,8 @@ vijTitlesAndLabels = function(options, defaults = list(), plotType = '') {
     legend <- options[["legendText"]] %||% ''
     if (legend == "")
         legend <- defaults$legend
+    # Size Legend
+    sizeLegend <- defaults$sizeLegend
     # xAxis
     if (horizontal)
         x <- options[["yAxisText"]] %||% ''
@@ -107,7 +109,7 @@ vijTitlesAndLabels = function(options, defaults = list(), plotType = '') {
     if (y == "")
         y <- defaults$y
 
-    return(ggplot2::labs(title = title, subtitle = subtitle, caption = caption, fill = legend, color = legend, shape = legend, size = legend, x = x, y = y))
+    return(ggplot2::labs(title = title, subtitle = subtitle, caption = caption, fill = legend, color = legend, shape = legend, size = sizeLegend, x = x, y = y))
 }
 
 vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
@@ -144,6 +146,8 @@ vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
         legend.text=element_text(
             size = legendFontSize),
         legend.position = legendPosition,
+        legend.box = "vertical", # for legend at bottom
+        legend.margin = margin(b=0), # for multiple legends
         # Facet Label ~ subtitle
         strip.text = element_text(
             size = options$subtitleFontSize,

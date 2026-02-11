@@ -6,48 +6,47 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = lollipopBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
+            if (!is.null(self$options$group))
+                nbOfLevel <- nlevels(self$data[[self$options$group]])
+            else
+                nbOfLevel <- 5
 
-            if (userWidth * userHeight == 0) {
-                if (!is.null(self$options$group))
-                    nbOfLevel <- nlevels(self$data[[self$options$group]])
-                else
-                    nbOfLevel <- 4
-
-                # width/height between 400 and 600
-                if (self$options$horizontal) {
-                    height <- min(max(300,nbOfLevel*75),800)
-                    width <- 600
-                } else {
-                    width <- min(max(400,nbOfLevel*100),600)
-                    height <- 400
-                }
-
-                if (!is.null(self$options$facet)) {
-                    nbOfFacet <- nlevels(self$data[[self$options$facet]])
-                    nbOfColumn <-self$options$facetNumber
-                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn)
-
-                    if (self$options$facetBy == "column") {
-                        height <- max(height,(height-100)*nbOfRow)
-                        width <- max(width, (width-100)*nbOfColumn)
-                    } else {
-                        height <- max(height,(height-100)*nbOfColumn)
-                        width <- max(width, (width-100)*nbOfRow)
-                    }
-                }
+            # Stretchable dimensions
+            if (self$options$horizontal) {
+                height <- min(max(250,nbOfLevel*50),650)
+                width <- 400
+            } else {
+                width <- min(max(350,nbOfLevel*75),600)
+                height <- 350
             }
-            if (userWidth >0)
-                width = userWidth
-            if (userHeight >0)
-                height = userHeight
+            # With facets
+            if (!is.null(self$options$facet)) {
+                nbOfFacet <- nlevels(self$data[[self$options$facet]])
+                if (self$options$facetBy == "column") {
+                    nbOfColumn <- self$options$facetNumber
+                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn)
+                } else {
+                    nbOfRow <- self$options$facetNumber
+                    nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
+                }
+                height <- max(height, 0.75*height*nbOfRow)
+                width <- max(width, 0.75*width*nbOfColumn)
+            }
+            # Fixed dimension
+            if (self$options$horizontal) {
+                fixed_height <- 50
+                fixed_width <- 100
+            } else {
+                fixed_height <- 50
+                fixed_width <- 75
+            }
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
         .run = function() {
             if (!is.null(self$options$aVar) && !is.null(self$options$group) && nrow(self$data) != 0) {
@@ -113,6 +112,8 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
                 plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
             }
+
+            plot <- plot + scale_x_discrete(drop = FALSE) # keep unused levels
 
             # Axis Labels
             if (self$options$yaxis == "mean")

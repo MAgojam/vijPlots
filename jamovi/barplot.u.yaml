@@ -79,17 +79,14 @@ children:
                 name: barType_dodge
                 optionName: barType
                 optionPart: dodge2
-                label: Side-by-side
               - type: RadioButton
                 name: barType_dodge2
                 optionName: barType
                 optionPart: dodge
-                label: Side-by-side (tight)
               - type: RadioButton
                 name: barType_stack
                 optionName: barType
                 optionPart: stack
-                label: Stacked
       - type: LayoutBox
         cell:
           column: 2
@@ -240,7 +237,7 @@ children:
                     name: textColor
                     enable: (showLabels && (labelPosition_middle || barType_stack))
   - type: CollapseBox
-    label: Plot Size & Facets
+    label: Text Size & Facets
     collapsed: true
     stretchFactor: 1
     children:
@@ -255,17 +252,6 @@ children:
               row: 0
             stretchFactor: 1
             children:
-              - type: Label
-                label: Plot Size
-                children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
               - type: Label
                 label: Text Size
                 children:

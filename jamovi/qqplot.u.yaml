@@ -146,7 +146,7 @@ children:
                     format: number
                     enable: (paramMethod_paraValue && norm)
   - type: CollapseBox
-    label: Plot Size & Options
+    label: Colors & Options
     collapsed: true
     stretchFactor: 1
     children:
@@ -162,16 +162,12 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Color Palette
                 children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
+                  - type: ComboBox
+                    name: colorPalette
+                    label: ''
+                    enable: (!(!group))
           - type: LayoutBox
             cell:
               column: 1

@@ -20,7 +20,7 @@ options:
         - numeric
 
     - name: groupOne
-      title: Group (Side by side)
+      title: Group (Side-by-side)
       type: Variable
       suggested:
         - nominal
@@ -178,20 +178,6 @@ options:
       min: 1
       max: 255
       default: 1
-
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1600
-      default: 0
 
     - name: titleText
       title: ""

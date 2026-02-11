@@ -21,10 +21,6 @@ msgstr ""
 msgid "{distribStr} {typeStr} Plot of {varStr}"
 msgstr ""
 
-#: R/corresp.b.R
-msgid "{normalization} Normalization"
-msgstr ""
-
 #: R/principal.b.R
 msgid "{rotation} rotation"
 msgstr ""
@@ -1745,6 +1741,10 @@ msgstr ""
 msgid "Column principal"
 msgstr ""
 
+#: R/corresp.b.R
+msgid "Column principal normalization"
+msgstr ""
+
 #: corresp/results/colProfiles.title
 msgid "Column Profiles"
 msgstr ""
@@ -1984,6 +1984,7 @@ msgstr ""
 msgid "Decreasing"
 msgstr ""
 
+#: R/utils.R
 #: corresp/options/columnTitleText.default
 #: corresp/options/rowTitleText.default
 #: corresp/options/biplotTitleText.default
@@ -4197,6 +4198,10 @@ msgstr ""
 msgid "Principal coordinates"
 msgstr ""
 
+#: R/corresp.b.R
+msgid "Principal normalization"
+msgstr ""
+
 #: multcorresp/options/propPoint.title
 msgid "Proportional point size"
 msgstr ""
@@ -4524,11 +4529,8 @@ msgstr ""
 msgid "Reds"
 msgstr ""
 
-#: qqplot/options/refType.title
-msgid "Reference Line"
-msgstr ""
-
 #: qqplot/options/refLine.title
+#: qqplot/options/refType.title
 msgid "Reference line"
 msgstr ""
 
@@ -4682,6 +4684,10 @@ msgstr ""
 
 #: corresp/options/normalization/rowprincipal.title
 msgid "Row principal"
+msgstr ""
+
+#: R/corresp.b.R
+msgid "Row principal normalization"
 msgstr ""
 
 #: corresp/results/rowProfiles.title
@@ -5020,6 +5026,10 @@ msgstr ""
 msgid "Standard coordinates"
 msgstr ""
 
+#: R/corresp.b.R
+msgid "Standard normalization"
+msgstr ""
+
 #: principal/options/stdLoadings.title
 msgid "Standardize loadings (eigenvectors)"
 msgstr ""
@@ -5060,31 +5070,14 @@ msgstr ""
 msgid "Stretch arrows by"
 msgstr ""
 
-#: R/corresp.b.R
-msgctxt "string"
-msgid "Column Principal"
-msgstr ""
-
-#: R/corresp.b.R
 #: R/multcorresp.b.R
 msgctxt "string"
 msgid "Principal"
 msgstr ""
 
-#: R/corresp.b.R
-msgctxt "string"
-msgid "Row Principal"
-msgstr ""
-
-#: R/corresp.b.R
 #: R/multcorresp.b.R
 msgctxt "string"
 msgid "Standard"
-msgstr ""
-
-#: R/corresp.b.R
-msgctxt "string"
-msgid "Symetric"
 msgstr ""
 
 #: qqplot/options/distrib/t.title
@@ -5172,6 +5165,10 @@ msgstr ""
 
 #: corresp/options/normalization/symetric.title
 msgid "Symetric"
+msgstr ""
+
+#: R/corresp.b.R
+msgid "Symetric normalization"
 msgstr ""
 
 #: likertplot/ui[2].label

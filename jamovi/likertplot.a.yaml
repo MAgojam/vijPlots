@@ -82,7 +82,7 @@ options:
       default: true
 
     - name: reverseLikert
-      title: Reverse the staking order
+      title: Reverse stacking order
       type: Bool
       default: false
 
@@ -100,20 +100,6 @@ options:
       title: Ignore NA groups
       type: Bool
       default: true
-
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 300
-      max: 800
-      default: 600
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 200
-      max: 1600
-      default: 400
 
 # textSize replaced with labelSize
     - name: textSize

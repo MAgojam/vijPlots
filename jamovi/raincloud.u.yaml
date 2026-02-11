@@ -16,7 +16,7 @@ children:
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Group (Side by side)
+        label: Group (Side-by-side)
         children:
           - type: VariablesListBox
             name: groupOne
@@ -78,22 +78,6 @@ children:
                 name: alphaC
                 format: number
                 enable: (!(!groupTwo))
-  - type: CollapseBox
-    label: Plot Size
-    collapsed: true
-    stretchFactor: 1
-    children:
-      - type: Label
-        label: Plot Size
-        children:
-          - type: TextBox
-            name: plotWidth
-            format: number
-            suffix: px
-          - type: TextBox
-            name: plotHeight
-            format: number
-            suffix: px
   - type: CollapseBox
     label: Axes
     collapsed: true

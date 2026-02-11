@@ -19,8 +19,6 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             toInteger = FALSE,
             tidyUp = FALSE,
             ignoreNA = TRUE,
-            plotWidth = 600,
-            plotHeight = 400,
             textSize = NULL,
             labelSize = 11,
             groupSize = 12,
@@ -136,18 +134,6 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "ignoreNA",
                 ignoreNA,
                 default=TRUE)
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=300,
-                max=800,
-                default=600)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=200,
-                max=1600,
-                default=400)
             private$..textSize <- jmvcore::OptionNumber$new(
                 "textSize",
                 textSize,
@@ -432,8 +418,6 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..toInteger)
             self$.addOption(private$..tidyUp)
             self$.addOption(private$..ignoreNA)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..textSize)
             self$.addOption(private$..labelSize)
             self$.addOption(private$..groupSize)
@@ -487,8 +471,6 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         toInteger = function() private$..toInteger$value,
         tidyUp = function() private$..tidyUp$value,
         ignoreNA = function() private$..ignoreNA$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         textSize = function() private$..textSize$value,
         labelSize = function() private$..labelSize$value,
         groupSize = function() private$..groupSize$value,
@@ -541,8 +523,6 @@ likertplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..toInteger = NA,
         ..tidyUp = NA,
         ..ignoreNA = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..textSize = NA,
         ..labelSize = NA,
         ..groupSize = NA,
@@ -741,8 +721,6 @@ likertplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "toInteger",
                     "tidyUp",
                     "ignoreNA",
-                    "plotWidth",
-                    "plotHeight",
                     "labelSize",
                     "groupSize",
                     "accuracy",
@@ -809,8 +787,6 @@ likertplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param toInteger .
 #' @param tidyUp .
 #' @param ignoreNA .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param textSize .
 #' @param labelSize .
 #' @param groupSize .
@@ -881,8 +857,6 @@ likertplot <- function(
     toInteger = FALSE,
     tidyUp = FALSE,
     ignoreNA = TRUE,
-    plotWidth = 600,
-    plotHeight = 400,
     textSize,
     labelSize = 11,
     groupSize = 12,
@@ -949,8 +923,6 @@ likertplot <- function(
         toInteger = toInteger,
         tidyUp = tidyUp,
         ignoreNA = ignoreNA,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         textSize = textSize,
         labelSize = labelSize,
         groupSize = groupSize,

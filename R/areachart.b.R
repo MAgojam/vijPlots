@@ -6,30 +6,25 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = areachartBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
-
-            width <- 600
-            height <- 400
-            # Compute the size according to options
-            if (userWidth * userHeight == 0) {
-                if (!is.null(self$options$group) || length(self$options$vars) > 1) {
-                    if (self$options$legendPosition %in% c('top','bottom'))
-                        height <- height + 50
-                    else
-                        width <- width + 50
-                }
+            # Stretchable dimensions
+            width <- 425
+            height <- 350
+            # Fixed dimension
+            fixed_height <- 50 # X-Axis legend
+            fixed_width <- 75 # Y-Axis legend
+            if (!is.null(self$options$group) || length(self$options$vars) > 1) {
+                if (self$options$legendPosition %in% c('top','bottom'))
+                    fixed_height <- fixed_height + 50
+                else
+                    fixed_width <- fixed_width + 100
             }
-            if (userWidth >0)
-                width = userWidth
-            if (userHeight >0)
-                height = userHeight
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
         .run = function() {
             oneVariable <- (self$options$mode == "oneVariable")
@@ -42,12 +37,16 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 timeVar <- self$options$timeVar1
                 depVars <- self$options$vars
                 varNames <- c(timeVar, depVars)
+                groupVar <- NULL
             }
             if (length(depVars) == 0 || is.null(timeVar))
                 return()
             data <- jmvcore::select(self$data, varNames)
             # Delete row with missing time
             data <- subset(data, !is.na(data[timeVar]))
+            # Ignore NA
+            if (!is.null(groupVar) && self$options$ignoreNA)
+                data <- subset(data, !is.na(data[groupVar]))
             # Be sure dep var are numeric
             for (aVar in depVars)
                 data[[aVar]] <- jmvcore::toNumeric(data[[aVar]])

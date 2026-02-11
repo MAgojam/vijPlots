@@ -90,13 +90,13 @@ options:
       title: Values
       type: List
       options:
-        - title: Count
+        - title: Counts
           name:  count
-        - title: "% of Responses"
+        - title: "% of responses"
           name:  responses
-        - title: "% of Cases"
+        - title: "% of cases"
           name:  cases
-        - title: "% by Row"
+        - title: "% by row"
           name:  options
       default: count
 
@@ -129,14 +129,16 @@ options:
       title: "Bar Type"
       type: List
       options:
-        - title: "Side-by-side"
+        - title: "Grouped"
+          name:  dodge2
+        - title: "Grouped (tight)"
           name:  dodge
         - title: "Stacked"
           name:  stack
       default: dodge
 
     - name: reverseStack
-      title: Reverse stack order
+      title: Reverse stacking order
       type: Bool
       default: false
 
@@ -171,39 +173,6 @@ options:
         - title: "0.01"
           name: "0.01"
       default: "0.1"
-
-    - name: size
-      title: ""
-      type: List
-      hidden: true
-      options:
-        - title: Small (300x200)
-          name:  small
-        - title: Medium (400x300)
-          name:  medium
-        - title: Large (600x400)
-          name:  large
-        - title: Wide (700x400)
-          name:  wide
-        - title: Huge (800x500)
-          name:  huge
-      default: medium
-
-# Size is obsolete and replace with plotWidth & plotHeight
-
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1600
-      default: 0
 
     - name: labelFontSize
       type: Number

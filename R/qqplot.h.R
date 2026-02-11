@@ -18,12 +18,11 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             detrend = FALSE,
             type = "QQ",
             refType = "identity",
-            plotWidth = 0,
-            plotHeight = 0,
             paramMethod = "paraEstimate",
             paramEstMethod = "mle",
             param1 = 0,
             param2 = 1,
+            colorPalette = "jmv",
             titleText = "default",
             titleFontFace = "bold",
             titleFontSize = "14",
@@ -145,18 +144,6 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "qqline",
                     "identity"),
                 default="identity")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..paramMethod <- jmvcore::OptionList$new(
                 "paramMethod",
                 paramMethod,
@@ -179,6 +166,62 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "param2",
                 param2,
                 default=1)
+            private$..colorPalette <- jmvcore::OptionList$new(
+                "colorPalette",
+                colorPalette,
+                options=list(
+                    "jmv",
+                    "Set1",
+                    "Set2",
+                    "Set3",
+                    "Pastel1",
+                    "Pastel2",
+                    "Accent",
+                    "Paired",
+                    "Dark2",
+                    "Spectral",
+                    "RdYlGn",
+                    "RdYlBu",
+                    "RdGy",
+                    "RdBu",
+                    "PuOr",
+                    "PRGn",
+                    "PiYG",
+                    "BrBG",
+                    "Blues",
+                    "Greens",
+                    "Greys",
+                    "Oranges",
+                    "Purples",
+                    "Reds",
+                    "BuGn",
+                    "BuPu",
+                    "GnBu",
+                    "OrRd",
+                    "PuBu",
+                    "PuBuGn",
+                    "PuRd",
+                    "RdPu",
+                    "YlGn",
+                    "YlGnBu",
+                    "YlOrBr",
+                    "YlOrRd",
+                    "viridis::viridis",
+                    "viridis::magma",
+                    "viridis::inferno",
+                    "viridis::plasma",
+                    "viridis::turbo",
+                    "dichromat::Categorical.12",
+                    "tidy::friendly",
+                    "tidy::seaside",
+                    "tidy::apple",
+                    "tidy::ibm",
+                    "tidy::candy",
+                    "tidy::alger",
+                    "tidy::rainbow",
+                    "tidy::metro",
+                    "custom::lemovice"),
+                default="jmv")
             private$..titleText <- jmvcore::OptionString$new(
                 "titleText",
                 titleText,
@@ -406,12 +449,11 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..detrend)
             self$.addOption(private$..type)
             self$.addOption(private$..refType)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..paramMethod)
             self$.addOption(private$..paramEstMethod)
             self$.addOption(private$..param1)
             self$.addOption(private$..param2)
+            self$.addOption(private$..colorPalette)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
             self$.addOption(private$..titleFontSize)
@@ -457,12 +499,11 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         detrend = function() private$..detrend$value,
         type = function() private$..type$value,
         refType = function() private$..refType$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         paramMethod = function() private$..paramMethod$value,
         paramEstMethod = function() private$..paramEstMethod$value,
         param1 = function() private$..param1$value,
         param2 = function() private$..param2$value,
+        colorPalette = function() private$..colorPalette$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
         titleFontSize = function() private$..titleFontSize$value,
@@ -507,12 +548,11 @@ qqplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..detrend = NA,
         ..type = NA,
         ..refType = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..paramMethod = NA,
         ..paramEstMethod = NA,
         ..param1 = NA,
         ..param2 = NA,
+        ..colorPalette = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
         ..titleFontSize = NA,
@@ -629,12 +669,11 @@ qqplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param detrend .
 #' @param type .
 #' @param refType .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param paramMethod .
 #' @param paramEstMethod .
 #' @param param1 .
 #' @param param2 .
+#' @param colorPalette .
 #' @param titleText .
 #' @param titleFontFace .
 #' @param titleFontSize .
@@ -695,12 +734,11 @@ qqplot <- function(
     detrend = FALSE,
     type = "QQ",
     refType = "identity",
-    plotWidth = 0,
-    plotHeight = 0,
     paramMethod = "paraEstimate",
     paramEstMethod = "mle",
     param1 = 0,
     param2 = 1,
+    colorPalette = "jmv",
     titleText = "default",
     titleFontFace = "bold",
     titleFontSize = "14",
@@ -759,12 +797,11 @@ qqplot <- function(
         detrend = detrend,
         type = type,
         refType = refType,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         paramMethod = paramMethod,
         paramEstMethod = paramEstMethod,
         param1 = param1,
         param2 = param2,
+        colorPalette = colorPalette,
         titleText = titleText,
         titleFontFace = titleFontFace,
         titleFontSize = titleFontSize,

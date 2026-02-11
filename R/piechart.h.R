@@ -18,8 +18,6 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             borderColor = "black",
             textColor = "auto",
             accuracy = "0.1",
-            plotWidth = 0,
-            plotHeight = 0,
             facetBy = "column",
             facetNumber = 1,
             titleText = NULL,
@@ -177,18 +175,6 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "0.1",
                     "0.01"),
                 default="0.1")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..facetBy <- jmvcore::OptionList$new(
                 "facetBy",
                 facetBy,
@@ -334,8 +320,6 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..borderColor)
             self$.addOption(private$..textColor)
             self$.addOption(private$..accuracy)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..facetBy)
             self$.addOption(private$..facetNumber)
             self$.addOption(private$..titleText)
@@ -367,8 +351,6 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         borderColor = function() private$..borderColor$value,
         textColor = function() private$..textColor$value,
         accuracy = function() private$..accuracy$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         facetBy = function() private$..facetBy$value,
         facetNumber = function() private$..facetNumber$value,
         titleText = function() private$..titleText$value,
@@ -399,8 +381,6 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..borderColor = NA,
         ..textColor = NA,
         ..accuracy = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..facetBy = NA,
         ..facetNumber = NA,
         ..titleText = NA,
@@ -477,8 +457,6 @@ piechartBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param borderColor .
 #' @param textColor .
 #' @param accuracy .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param facetBy .
 #' @param facetNumber .
 #' @param titleText .
@@ -516,8 +494,6 @@ piechart <- function(
     borderColor = "black",
     textColor = "auto",
     accuracy = "0.1",
-    plotWidth = 0,
-    plotHeight = 0,
     facetBy = "column",
     facetNumber = 1,
     titleText,
@@ -563,8 +539,6 @@ piechart <- function(
         borderColor = borderColor,
         textColor = textColor,
         accuracy = accuracy,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         facetBy = facetBy,
         facetNumber = facetNumber,
         titleText = titleText,

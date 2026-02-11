@@ -89,12 +89,12 @@ options:
       default: middle
 
     - name: showResponses
-      title: "% of Responses"
+      title: "% of responses"
       type: Bool
       default: true
 
     - name: showCases
-      title: "% of Cases"
+      title: "% of cases"
       type: Bool
       default: true
 
@@ -104,9 +104,9 @@ options:
       options:
         - title: Counts
           name:  counts
-        - title: '% of Responses'
+        - title: '% of responses'
           name:  responses
-        - title: '% of Cases'
+        - title: '% of cases'
           name:  cases
       default: cases
 
@@ -131,39 +131,6 @@ options:
         - title: "0.01"
           name: "0.01"
       default: "0.1"
-
-    - name: size
-      title: ""
-      type: List
-      hidden: true
-      options:
-        - title: Small (300x200)
-          name:  small
-        - title: Medium (400x300)
-          name:  medium
-        - title: Large (600x400)
-          name:  large
-        - title: Wide (700x400)
-          name:  wide
-        - title: Huge (800x500)
-          name:  huge
-      default: medium
-
-# Size is obsolete and replace with plotWidth & plotHeight
-
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1600
-      default: 0
 
     - name: labelFontSize
       type: Number

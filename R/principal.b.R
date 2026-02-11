@@ -39,25 +39,6 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 n <- max(nchar(levels(self$data[[self$options$groupVar]])))
                 extraWidth <- 50 + n*8
             }
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject("Plot size must be between 200 and 1000 (or 0 = default)")
-
-            image <- self$results$varPlot
-            width <- image$width
-            height <- image$height
-
-            if (userWidth > 0)
-                width <- userWidth
-            if (userHeight > 0)
-                height <- userHeight
-            image$setSize(width, height)
-            image <- self$results$obsPlot
-            image$setSize(width + extraWidth, height)
-            image <- self$results$biPlot
-            image$setSize(width + extraWidth, height)
         },
         .run = function() {
             if (is.null(self$options$vars) || length(self$options$vars) < 2 || nrow(self$data) == 0)
@@ -273,9 +254,9 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             #### Saving coordinates  ####
             if (self$options$stdScores)
-                private$.saveCoordinates(res$stdScores, norm = "Standard")
+                private$.saveCoordinates(res$stdScores, norm = "standard")
             else
-                private$.saveCoordinates(res$scores, norm = "Principal")
+                private$.saveCoordinates(res$scores, norm = "principal")
 
         },
         .screeplot = function(image, ggtheme, theme, ...) {
@@ -561,17 +542,20 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 titles <- paste(.("Dim"), keys)
                 descriptions <- character(length(keys))
 
-                if (self$options$rotation == "none")
-                    rotationStr <- ""
-                else
-                    rotationStr <- paste0(" (", self$options$rotation, ")")
+                if (norm == "principal") {
+                    if (self$options$rotation == "none")
+                        descriptionString <- .("PCA Principal Coordinates")
+                    else
+                        descriptionString <- paste0(.("PCA Principal Coordinates"), " (", self$options$rotation, ")")
+                } else {
+                    if (self$options$rotation == "none")
+                        descriptionString <- .("PCA Standard Coordinates")
+                    else
+                        descriptionString <- paste0(.("PCA Standard Coordinates"), " (", self$options$rotation, ")")
+                }
 
                 for (i in keys) {
-                    descriptions[i] = jmvcore::format(
-                        .("PCA {norm} Coordinate{rotation}"),
-                        norm = norm,
-                        rotation = rotationStr
-                    )
+                    descriptions[i] = descriptionString
                 }
 
                 self$results$obsCoordOV$set(

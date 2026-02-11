@@ -79,9 +79,6 @@
             "{distribStr} {typeStr} Plot of {varStr}": [
                 "Diagramme {typeStr} {distribStr} de {varStr}"
             ],
-            "{normalization} Normalization": [
-                "Normalisation {normalization}"
-            ],
             "{rotation} rotation": [
                 "Rotation {rotation}"
             ],
@@ -103,8 +100,8 @@
             "% Accuracy": [
                 "Précision des %"
             ],
-            "% by Row": [
-                "% par ligne"
+            "% by row": [
+                "% par lignes"
             ],
             "% Inertia": [
                 "% d'inertie"
@@ -112,11 +109,17 @@
             "% Labels": [
                 "Etiquettes des %"
             ],
+            "% of cases": [
+                "% d'observations"
+            ],
             "% of Cases": [
                 "% d'observations"
             ],
             "% of Inertia": [
                 "% d'inertie"
+            ],
+            "% of responses": [
+                "% de réponses"
             ],
             "% of Responses": [
                 "% de réponses"
@@ -319,9 +322,6 @@
             "Biplot": [
                 "Graphique double"
             ],
-            "Biplot Size": [
-                "Graphique double"
-            ],
             "Biplot Type": [
                 "Type de graphique double"
             ],
@@ -412,9 +412,6 @@
             "Category Plot Options": [
                 "Graphique des catégories"
             ],
-            "Category Plot Size": [
-                "Graphique des catégories"
-            ],
             "Category principal": [
                 "Catégories principales"
             ],
@@ -465,6 +462,9 @@
             ],
             "Column principal": [
                 "Col. principales"
+            ],
+            "Column principal normalization": [
+                "Normalisation principale en colonnes"
             ],
             "Column Profiles": [
                 "Profils colonnes"
@@ -559,10 +559,10 @@
             "Crosstab (% by row)": [
                 "Tableau croisé (% en ligne)"
             ],
-            "Crosstab (% of Cases)": [
+            "Crosstab (% of cases)": [
                 "Tableau croisé (% des observations)"
             ],
-            "Crosstab (% of Responses)": [
+            "Crosstab (% of responses)": [
                 "Tableau croisé (% des réponses)"
             ],
             "Cumulative %": [
@@ -634,9 +634,6 @@
             "Discrimination plot": [
                 "Discriminations"
             ],
-            "Discrimination Plot Size": [
-                "Graphique des discriminations"
-            ],
             "Display format": [
                 "Affichage"
             ],
@@ -685,7 +682,7 @@
             "Eigenvalues": [
                 "Valeurs propres"
             ],
-            "Element Size": [
+            "Element Sizes": [
                 "Taille des éléments"
             ],
             "Empty value as NA": [
@@ -802,7 +799,7 @@
             "Group (Overlapped)": [
                 "Groupe (Superposé)"
             ],
-            "Group (Side by side)": [
+            "Group (Side-by-side)": [
                 "Groupe (Juxtaposé)"
             ],
             "Group + Count": [
@@ -817,6 +814,9 @@
             "Grouped": [
                 "Groupé"
             ],
+            "Grouped (tight)": [
+                "Groupé (serré)"
+            ],
             "Grouping": [
                 "Groupes"
             ],
@@ -825,9 +825,6 @@
             ],
             "Groupwise": [
                 "Par groupe"
-            ],
-            "Height": [
-                "Hauteur"
             ],
             "Hide % labels below 5%": [
                 "Masquer les % inférieurs à 5 %"
@@ -852,9 +849,6 @@
             ],
             "Horizontal plot": [
                 "Graphe horizontal"
-            ],
-            "Huge (800x500)": [
-                "Énorme (800x500)"
             ],
             "Identity line": [
                 "Droite identitée"
@@ -976,9 +970,6 @@
             "Labels": [
                 "Étiquettes"
             ],
-            "Large (600x400)": [
-                "Grand (600x400)"
-            ],
             "Left": [
                 "Gauche"
             ],
@@ -1099,8 +1090,11 @@
             "May": [
                 "mai"
             ],
-            "MCA {type} Coordinate ({method} method)": [
-                "Coordonnées {type} ACM (méthode {method})"
+            "MCA Principal Coordinates": [
+                "Coordonnées principales ACM"
+            ],
+            "MCA Standard Coordinates": [
+                "Coordonnées standardisées ACM"
             ],
             "Mean": [
                 "Moyenne"
@@ -1116,9 +1110,6 @@
             ],
             "Median of": [
                 "Médiane de"
-            ],
-            "Medium (400x300)": [
-                "Moyen (400x300)"
             ],
             "Method": [
                 "Méthode"
@@ -1223,9 +1214,6 @@
                 "Observations"
             ],
             "Observation Plot Options": [
-                "Graphique des observations"
-            ],
-            "Observation Plot Size": [
                 "Graphique des observations"
             ],
             "Observation principal": [
@@ -1357,8 +1345,11 @@
             "Pastel 2": [
                 "Pastel 2"
             ],
-            "PCA {norm} Coordinate{rotation}": [
-                "Coordonnées ACP {norm}{rotation}"
+            "PCA Principal Coordinates": [
+                "Coordonnées principales ACP"
+            ],
+            "PCA Standard Coordinates": [
+                "Coordonnées standardisées ACP"
             ],
             "Percent": [
                 "Pourcent"
@@ -1378,12 +1369,6 @@
             "Plot": [
                 "Graphique"
             ],
-            "Plot & Element Sizes": [
-                "Tailles du graphique et des éléments"
-            ],
-            "Plot & Text Sizes": [
-                "Tailles du graphique et du texte"
-            ],
             "Plot Color": [
                 "Couleurs du graphique"
             ],
@@ -1392,21 +1377,6 @@
             ],
             "Plot Options": [
                 "Options du graphique"
-            ],
-            "Plot Size": [
-                "Taille du graphique"
-            ],
-            "Plot Size & Colors": [
-                "Taille et couleurs du graphique"
-            ],
-            "Plot Size & Facets": [
-                "Taille du graphique & facettes"
-            ],
-            "Plot Size & Options": [
-                "Taille du graphique & options"
-            ],
-            "Plot size must be at least 200px (or 0 = default)": [
-                "La taille du graphique doit être au moins 200 px ou 0 (= default)"
             ],
             "Plot Titles": [
                 "Titres du graphique"
@@ -1422,9 +1392,6 @@
             ],
             "Point": [
                 "Point"
-            ],
-            "Point & Line Size": [
-                "Taile des points et lignes"
             ],
             "Point Size": [
                 "Taille des points"
@@ -1458,6 +1425,9 @@
             ],
             "Principal coordinates": [
                 "Coordonnées principales"
+            ],
+            "Principal normalization": [
+                "Normalisation principale"
             ],
             "Proportional point size": [
                 "Points proportionnels"
@@ -1555,10 +1525,7 @@
             "Reverse disposition": [
                 "Renverser la disposition"
             ],
-            "Reverse stack order": [
-                "Inverser les piles"
-            ],
-            "Reverse the staking order": [
+            "Reverse stacking order": [
                 "Inverser les modalités"
             ],
             "Right": [
@@ -1593,6 +1560,9 @@
             ],
             "Row principal": [
                 "Lignes principales"
+            ],
+            "Row principal normalization": [
+                "Normalisation principale en lignes"
             ],
             "Row Profiles": [
                 "Profils lignes"
@@ -1696,12 +1666,6 @@
             "Show totals (Centered only)": [
                 "Afficher les totaux (centrées)"
             ],
-            "Side-by-side": [
-                "Juxtaposé"
-            ],
-            "Side-by-side (tight)": [
-                "Juxtaposé (étroit)"
-            ],
             "Single": [
                 "Unique"
             ],
@@ -1711,8 +1675,8 @@
             "Size": [
                 "Taille"
             ],
-            "Small (300x200)": [
-                "Petit (300x200)"
+            "Sizes & Colors": [
+                "Tailles et couleurs"
             ],
             "Smoking": [
                 "Smoking"
@@ -1749,6 +1713,9 @@
             ],
             "Standard coordinates": [
                 "Coordonnées standardisées"
+            ],
+            "Standard normalization": [
+                "Normalisation standard"
             ],
             "Standardize loadings (eigenvectors)": [
                 "Coord. des variables standardisées"
@@ -1828,6 +1795,9 @@
             "Symetric": [
                 "Symétrique"
             ],
+            "Symetric normalization": [
+                "Normalisation symétrique"
+            ],
             "Table": [
                 "Table"
             ],
@@ -1845,6 +1815,15 @@
             ],
             "Text Size": [
                 "Texte"
+            ],
+            "Text Size & Colors": [
+                "Taille du texte & couleurs"
+            ],
+            "Text Size & Facets": [
+                "Taille du texte & facettes"
+            ],
+            "Text Sizes": [
+                "Taille du texte"
             ],
             "The correlation matrix is not positive definite. Computations may not be accurate.": [
                 "La matrice des corrélations n'est pas définie-posivite. Les calculs peuvent être approximatifs."
@@ -1993,9 +1972,6 @@
             "White": [
                 "Blanc"
             ],
-            "Wide (700x400)": [
-                "Large (700x400)"
-            ],
             "Width": [
                 "Largeur"
             ],
@@ -2046,21 +2022,6 @@
             ],
             "menu\u0004October": [
                 "Octobre"
-            ],
-            "string\u0004Column Principal": [
-                "principale en colonnes"
-            ],
-            "string\u0004Principal": [
-                "principale"
-            ],
-            "string\u0004Row Principal": [
-                "principale en lignes"
-            ],
-            "string\u0004Standard": [
-                "standard"
-            ],
-            "string\u0004Symetric": [
-                "symétrique"
             ]
         }
     },

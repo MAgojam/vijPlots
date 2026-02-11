@@ -40,6 +40,11 @@ options:
       type: Bool
       default: true
 
+    - name: ignoreNA
+      title: Ignore NA
+      type: Bool
+      default: true
+
     - name: colorPalette
       title: Palette
       type: List
@@ -226,20 +231,6 @@ options:
         - title: "10 years"
           name:  "10 year"
       default: "1 month"
-
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1000
-      default: 0
 
     - name: dotSize
       type: Number

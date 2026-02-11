@@ -6,27 +6,27 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = qqplotBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
-
-            # Compute the size according to facet
-            if (userWidth * userHeight == 0) {
-                width <- 400
-                height <- 400
-                if (!is.null(self$options$group))
-                    width <- width + 75
+            # Stretchable dimensions
+            width <- 450
+            height <- 450
+            # Fixed dimensions
+            fixed_height <- 50 # X-Axis legend
+            fixed_width <- 75 # Y-Axis legend
+            # Legend
+            if (!is.null(self$options$group)) {
+                if (self$options$legendPosition %in% c('top','bottom'))
+                    fixed_height <- fixed_height + 50
+                else
+                    fixed_width <- fixed_width + 100
             }
-            if (userWidth >0)
-                width = userWidth
-            if (userHeight >0)
-                height = userHeight
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
-
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
+            # Show help
             if (is.null(self$options$dep)) {
                 self$results$paramTable$setVisible(FALSE)
                 self$results$plot$setVisible(FALSE)
@@ -72,7 +72,7 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else
                 detrend = FALSE
 
-            identity = ifelse(self$options$refType == "identity", TRUE, FALSE)
+            identity = (self$options$refType == "identity")
 
             plotData <- image$state
 
@@ -170,11 +170,16 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- ggplot(data = plotData, mapping = aes(sample = !!depVar, color = !!groupVar, fill = !!groupVar))
 
             if (self$options$type == "QQ") {
-                if (self$options$band)
-                    plot <- plot + qqplotr::geom_qq_band(distribution = distrib, dparams = params, bandType = self$options$methodQQ,
-                                                         identity = identity, detrend = detrend, alpha=0.5)
-                if (self$options$refLine) {
+                if (self$options$band) {
                     if (is.null(groupVar))
+                        plot <- plot + qqplotr::geom_qq_band(distribution = distrib, dparams = params, bandType = self$options$methodQQ,
+                                                         identity = identity, detrend = detrend, alpha=0.5, fill = "darkgrey")
+                    else
+                        plot <- plot + qqplotr::geom_qq_band(distribution = distrib, dparams = params, bandType = self$options$methodQQ,
+                                                             identity = identity, detrend = detrend, alpha=0.5)
+                }
+                if (self$options$refLine) {
+                    if (is.null(groupVar) || identity)
                         plot <- plot + qqplotr::stat_qq_line(distribution = distrib, dparams = params, identity = identity,
                                                              detrend = detrend, color = "darkgrey")
                     else
@@ -182,7 +187,7 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                              detrend = detrend)
                 }
                 plot <- plot + qqplotr::stat_qq_point(distribution = distrib, identity = identity, dparams = params,
-                                                      detrend = detrend, key_glyph = draw_key_rect)
+                                                      detrend = detrend, key_glyph = draw_key_rect, show.legend = TRUE)
                 if (detrend) {
                     if (self$options$standardize)
                         yLab <- .("Standardized Sample Quantiles Deviation")
@@ -196,9 +201,14 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
                 xLab <- .("Theoretical Quantiles")
             } else { # PP
-                if (self$options$band)
-                    plot <- plot + qqplotr::stat_pp_band(distribution = distrib, dparams = params, bandType = self$options$methodPP,
-                                                         identity = identity, detrend = detrend, alpha=0.5)
+                if (self$options$band) {
+                    if (is.null(groupVar))
+                        plot <- plot + qqplotr::stat_pp_band(distribution = distrib, dparams = params, bandType = self$options$methodPP,
+                                                             identity = identity, detrend = detrend, alpha=0.5, fill = "darkgrey")
+                    else
+                        plot <- plot + qqplotr::stat_pp_band(distribution = distrib, dparams = params, bandType = self$options$methodPP,
+                                                             identity = identity, detrend = detrend, alpha=0.5)
+                }
                 if (self$options$refLine) {
                     if (detrend)
                         plot <- plot + geom_segment(aes(x = 0, y = 0, xend = 1, yend = 0), color = "darkgrey")
@@ -206,12 +216,25 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         plot <- plot + geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1), color = "darkgrey")
                 }
                 plot <- plot + qqplotr::stat_pp_point(distribution = distrib, dparams = params,  detrend = detrend,
-                                                      key_glyph = draw_key_rect)
+                                                      key_glyph = draw_key_rect, show.legend = TRUE)
                 xLab <- .("Theoretical Probabilities")
                 yLab <-  ifelse(detrend, .("Sample Probability Deviation"), .("Sample Probabilities"))
             }
 
-            plot <- plot + ggtheme + guides(fill = guide_legend(override.aes = list(alpha = 1)))
+
+
+            # colors
+            #plot <- plot + vijScale(self$options$colorPalette, "color", drop = FALSE) + vijScale(self$options$colorPalette, "fill", drop = FALSE)
+            #plot <- plot + vijScale("jmv", "color", drop = FALSE) + vijScale("jmv", "fill", drop = FALSE)
+
+            # Theme and colors
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color", drop = FALSE) + vijScale(self$options$colorPalette, "fill", drop = FALSE)
+
+            # Legend
+            if (is.null(groupVar))
+                plot <- plot + guides(fill = "none")
+            else
+                plot <- plot + guides(fill = guide_legend(override.aes = list(alpha = 1)))
 
             # Axis Limits
             if (self$options$yAxisRangeType == "manual")

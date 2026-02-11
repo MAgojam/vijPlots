@@ -24,8 +24,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             colorPalette = "jmv",
             borderColor = "none",
             textColor = "auto",
-            plotWidth = 0,
-            plotHeight = 0,
             labelFontSize = 12,
             facetBy = "column",
             facetNumber = 1,
@@ -235,18 +233,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "white",
                     "auto"),
                 default="auto")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..labelFontSize <- jmvcore::OptionNumber$new(
                 "labelFontSize",
                 labelFontSize,
@@ -498,8 +484,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..borderColor)
             self$.addOption(private$..textColor)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..labelFontSize)
             self$.addOption(private$..facetBy)
             self$.addOption(private$..facetNumber)
@@ -554,8 +538,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         colorPalette = function() private$..colorPalette$value,
         borderColor = function() private$..borderColor$value,
         textColor = function() private$..textColor$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         labelFontSize = function() private$..labelFontSize$value,
         facetBy = function() private$..facetBy$value,
         facetNumber = function() private$..facetNumber$value,
@@ -609,8 +591,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..colorPalette = NA,
         ..borderColor = NA,
         ..textColor = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..labelFontSize = NA,
         ..facetBy = NA,
         ..facetNumber = NA,
@@ -710,8 +690,6 @@ barplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param colorPalette .
 #' @param borderColor .
 #' @param textColor .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param labelFontSize .
 #' @param facetBy .
 #' @param facetNumber .
@@ -772,8 +750,6 @@ barplot <- function(
     colorPalette = "jmv",
     borderColor = "none",
     textColor = "auto",
-    plotWidth = 0,
-    plotHeight = 0,
     labelFontSize = 12,
     facetBy = "column",
     facetNumber = 1,
@@ -845,8 +821,6 @@ barplot <- function(
         colorPalette = colorPalette,
         borderColor = borderColor,
         textColor = textColor,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         labelFontSize = labelFontSize,
         facetBy = facetBy,
         facetNumber = facetNumber,

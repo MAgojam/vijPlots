@@ -192,7 +192,7 @@ children:
                     name: textColor
                     enable: (!labels:none)
   - type: CollapseBox
-    label: Plot Size & Facets
+    label: Text Size & Facets
     collapsed: true
     stretchFactor: 1
     children:
@@ -207,17 +207,6 @@ children:
               row: 0
             stretchFactor: 1
             children:
-              - type: Label
-                label: Plot Size
-                children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
               - type: Label
                 label: Text Size
                 children:

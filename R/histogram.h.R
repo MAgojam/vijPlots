@@ -45,8 +45,6 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             yAxisText = NULL,
             yAxisFontSize = "16",
             yAxisPosition = "0.5",
-            plotWidth = 0,
-            plotHeight = 0,
             facetBy = "column",
             facetNumber = 1,
             yAxisLabelFontSize = 12,
@@ -420,18 +418,6 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "0.5",
                     "0"),
                 default="0.5")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..facetBy <- jmvcore::OptionList$new(
                 "facetBy",
                 facetBy,
@@ -535,8 +521,6 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..yAxisText)
             self$.addOption(private$..yAxisFontSize)
             self$.addOption(private$..yAxisPosition)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..facetBy)
             self$.addOption(private$..facetNumber)
             self$.addOption(private$..yAxisLabelFontSize)
@@ -590,8 +574,6 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         yAxisText = function() private$..yAxisText$value,
         yAxisFontSize = function() private$..yAxisFontSize$value,
         yAxisPosition = function() private$..yAxisPosition$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         facetBy = function() private$..facetBy$value,
         facetNumber = function() private$..facetNumber$value,
         yAxisLabelFontSize = function() private$..yAxisLabelFontSize$value,
@@ -644,8 +626,6 @@ histogramOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..yAxisText = NA,
         ..yAxisFontSize = NA,
         ..yAxisPosition = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..facetBy = NA,
         ..facetNumber = NA,
         ..yAxisLabelFontSize = NA,
@@ -744,8 +724,6 @@ histogramBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisText .
 #' @param yAxisFontSize .
 #' @param yAxisPosition .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param facetBy .
 #' @param facetNumber .
 #' @param yAxisLabelFontSize .
@@ -805,8 +783,6 @@ histogram <- function(
     yAxisText,
     yAxisFontSize = "16",
     yAxisPosition = "0.5",
-    plotWidth = 0,
-    plotHeight = 0,
     facetBy = "column",
     facetNumber = 1,
     yAxisLabelFontSize = 12,
@@ -876,8 +852,6 @@ histogram <- function(
         yAxisText = yAxisText,
         yAxisFontSize = yAxisFontSize,
         yAxisPosition = yAxisPosition,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         facetBy = facetBy,
         facetNumber = facetNumber,
         yAxisLabelFontSize = yAxisLabelFontSize,

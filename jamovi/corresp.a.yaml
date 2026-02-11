@@ -119,20 +119,6 @@ options:
           name:  standard
       default: principal
 
-    - name: plotWidth
-      type: Integer
-      title: Width
-      min: 200
-      max: 1000
-      default: 600
-
-    - name: plotHeight
-      type: Integer
-      title: Height
-      min: 200
-      max: 1000
-      default: 450
-
     - name: labelSize
       type: Integer
       title: Label

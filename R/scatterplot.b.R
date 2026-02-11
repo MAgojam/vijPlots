@@ -6,29 +6,29 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = scatterplotBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                jmvcore::reject(.("Plot size must be at least 200px (or 0 = default)"))
-            # Compute the size according to legend position
-            if (userWidth * userHeight == 0) {
-                width <- 600
-                height <- 600
-                if( !is.null(self$options$group) || !is.null(self$options$ptSize) ) {
-                    if (self$options$legendPosition %in% c('top','bottom'))
-                        height <- 650
+            # Stretchable dimensions
+            width <- 450
+            height <- 450
+            # Fixed dimensions
+            fixed_height <- 50 # X-Axis legend
+            fixed_width <- 75 # Y-Axis legend
+            if( !is.null(self$options$group) || !is.null(self$options$ptSize) ) {
+                if (self$options$legendPosition %in% c('top','bottom')) {
+                    if( !is.null(self$options$group) && !is.null(self$options$ptSize) )
+                        fixed_height <- fixed_height + 100 # two legends
                     else
-                        width <- 700
+                        fixed_height <- fixed_height + 50 # one legend
+                } else {
+                    fixed_width <- fixed_width + 100
                 }
             }
-            if (userWidth > 0)
-                width <- userWidth
-            if (userHeight > 0)
-                height <- userHeight
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
         .run = function() {
             xaxis <- self$options$xaxis
@@ -81,14 +81,14 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if( is.null(groupVar)) {
                     plot <- plot + geom_point(color = self$options$singleColor)
                 } else {
-                    plot <- plot + geom_point(aes(color = !!groupVar))
+                    plot <- plot + geom_point(aes(color = !!groupVar), show.legend = TRUE)
                 }
             } else {
                 plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis, color = !!groupVar, fill = !!groupVar))
                 if( is.null(groupVar)) {
                     plot <- plot + geom_point(color = self$options$singleColor, size = self$options$pointSize)
                 } else {
-                    plot <- plot + geom_point(aes(color = !!groupVar), size = self$options$pointSize)
+                    plot <- plot + geom_point(aes(color = !!groupVar), size = self$options$pointSize, show.legend = TRUE)
                 }
             }
 
@@ -114,7 +114,7 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + geom_vline(xintercept= self$options$xinter,  color="black", size = self$options$lineSize/2)
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color") + vijScale(self$options$colorPalette, "fill")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color", drop = FALSE) + vijScale(self$options$colorPalette, "fill", drop = FALSE)
 
             # Axis Limits
             if (self$options$yAxisRangeType == "manual")
@@ -132,7 +132,7 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Titles & Labels
-            defaults <- list(y = yaxis, x = xaxis, legend = groupVar)
+            defaults <- list(y = yaxis, x = xaxis, legend = groupVar, sizeLegend = sizeVar)
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
 
             return(plot)

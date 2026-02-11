@@ -185,8 +185,6 @@ items:
         - yAxisText
         - yAxisFontSize
         - yAxisPosition
-        - discrimWidth
-        - discrimHeight
         - labelSize
         - descAsVarName
 
@@ -225,8 +223,6 @@ items:
         - legendText
         - legendFontSize
         - legendPosition
-        - catWidth
-        - catHeight
         - colorPalette
         - labelSize
         - connectOrdinalCat
@@ -269,8 +265,6 @@ items:
         - legendText
         - legendFontSize
         - legendPosition
-        - obsWidth
-        - obsHeight
         - obsColor
         - labelSize
         - propPoint
@@ -312,8 +306,6 @@ items:
         - legendText
         - legendFontSize
         - legendPosition
-        - biplotWidth
-        - biplotHeight
         - obsColor
         - colorPalette
         - labelSize

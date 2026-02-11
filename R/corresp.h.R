@@ -22,8 +22,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             xaxis = 1,
             yaxis = 2,
             normalization = "principal",
-            plotWidth = 600,
-            plotHeight = 450,
             labelSize = 12,
             rowColor = "blue",
             colColor = "red",
@@ -145,18 +143,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "colprincipal",
                     "standard"),
                 default="principal")
-            private$..plotWidth <- jmvcore::OptionInteger$new(
-                "plotWidth",
-                plotWidth,
-                min=200,
-                max=1000,
-                default=600)
-            private$..plotHeight <- jmvcore::OptionInteger$new(
-                "plotHeight",
-                plotHeight,
-                min=200,
-                max=1000,
-                default=450)
             private$..labelSize <- jmvcore::OptionInteger$new(
                 "labelSize",
                 labelSize,
@@ -361,8 +347,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..xaxis)
             self$.addOption(private$..yaxis)
             self$.addOption(private$..normalization)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..labelSize)
             self$.addOption(private$..rowColor)
             self$.addOption(private$..colColor)
@@ -410,8 +394,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         xaxis = function() private$..xaxis$value,
         yaxis = function() private$..yaxis$value,
         normalization = function() private$..normalization$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         labelSize = function() private$..labelSize$value,
         rowColor = function() private$..rowColor$value,
         colColor = function() private$..colColor$value,
@@ -458,8 +440,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..xaxis = NA,
         ..yaxis = NA,
         ..normalization = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..labelSize = NA,
         ..rowColor = NA,
         ..colColor = NA,
@@ -632,8 +612,6 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yaxis",
                     "rowColor",
                     "supColor",
-                    "plotWidth",
-                    "plotHeight",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
@@ -673,8 +651,6 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yaxis",
                     "colColor",
                     "supColor",
-                    "plotWidth",
-                    "plotHeight",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
@@ -715,8 +691,6 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "rowColor",
                     "colColor",
                     "supColor",
-                    "plotWidth",
-                    "plotHeight",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
@@ -782,8 +756,6 @@ correspBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param xaxis .
 #' @param yaxis .
 #' @param normalization .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param labelSize .
 #' @param rowColor .
 #' @param colColor .
@@ -852,8 +824,6 @@ corresp <- function(
     xaxis = 1,
     yaxis = 2,
     normalization = "principal",
-    plotWidth = 600,
-    plotHeight = 450,
     labelSize = 12,
     rowColor = "blue",
     colColor = "red",
@@ -917,8 +887,6 @@ corresp <- function(
         xaxis = xaxis,
         yaxis = yaxis,
         normalization = normalization,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         labelSize = labelSize,
         rowColor = rowColor,
         colColor = colColor,

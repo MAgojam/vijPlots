@@ -26,8 +26,6 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             biplotLines = FALSE,
             biplotStretch = FALSE,
             biplotStretchFactor = 1,
-            plotWidth = 0,
-            plotHeight = 0,
             obsLabelSize = 10,
             varLabelSize = 12,
             pointSize = 3,
@@ -189,18 +187,6 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 default=1,
                 min=0.1,
                 max=10)
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1000,
-                default=0)
             private$..obsLabelSize <- jmvcore::OptionNumber$new(
                 "obsLabelSize",
                 obsLabelSize,
@@ -560,8 +546,6 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..biplotLines)
             self$.addOption(private$..biplotStretch)
             self$.addOption(private$..biplotStretchFactor)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..obsLabelSize)
             self$.addOption(private$..varLabelSize)
             self$.addOption(private$..pointSize)
@@ -627,8 +611,6 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         biplotLines = function() private$..biplotLines$value,
         biplotStretch = function() private$..biplotStretch$value,
         biplotStretchFactor = function() private$..biplotStretchFactor$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         obsLabelSize = function() private$..obsLabelSize$value,
         varLabelSize = function() private$..varLabelSize$value,
         pointSize = function() private$..pointSize$value,
@@ -693,8 +675,6 @@ principalOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..biplotLines = NA,
         ..biplotStretch = NA,
         ..biplotStretchFactor = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..obsLabelSize = NA,
         ..varLabelSize = NA,
         ..pointSize = NA,
@@ -940,8 +920,6 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "varColor",
                     "colorPalette",
                     "labelColor",
-                    "plotWidth",
-                    "plotHeight",
                     "obsLabelSize",
                     "varLabelSize",
                     "pointSize",
@@ -988,8 +966,6 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "varColor",
                     "colorPalette",
                     "labelColor",
-                    "plotWidth",
-                    "plotHeight",
                     "obsLabelSize",
                     "varLabelSize",
                     "pointSize",
@@ -1042,8 +1018,6 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "varColor",
                     "colorPalette",
                     "labelColor",
-                    "plotWidth",
-                    "plotHeight",
                     "obsLabelSize",
                     "varLabelSize",
                     "pointSize",
@@ -1128,8 +1102,6 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param biplotLines .
 #' @param biplotStretch .
 #' @param biplotStretchFactor .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param obsLabelSize .
 #' @param varLabelSize .
 #' @param pointSize .
@@ -1215,8 +1187,6 @@ principal <- function(
     biplotLines = FALSE,
     biplotStretch = FALSE,
     biplotStretchFactor = 1,
-    plotWidth = 0,
-    plotHeight = 0,
     obsLabelSize = 10,
     varLabelSize = 12,
     pointSize = 3,
@@ -1296,8 +1266,6 @@ principal <- function(
         biplotLines = biplotLines,
         biplotStretch = biplotStretch,
         biplotStretchFactor = biplotStretchFactor,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         obsLabelSize = obsLabelSize,
         varLabelSize = varLabelSize,
         pointSize = pointSize,

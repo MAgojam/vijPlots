@@ -81,11 +81,24 @@ children:
               - type: LayoutBox
                 children:
                   - type: CheckBox
+                    name: ignoreNA
+                    enable: (!(!group) && mode:oneVariable)
+                  - type: CheckBox
                     name: showLine
+          - type: Label
+            label: Other Options
+            children:
+              - type: LayoutBox
+                children:
                   - type: ComboBox
                     name: position
                   - type: ComboBox
                     name: colorPalette
+                  - type: TextBox
+                    name: lineWidth
+                    format: number
+                    suffix: px
+                    enable: (showLine)
       - type: LayoutBox
         cell:
           column: 1
@@ -106,47 +119,6 @@ children:
               - type: ComboBox
                 name: dateBreak
                 enable: (isDate)
-  - type: CollapseBox
-    label: Plot Size & Options
-    collapsed: true
-    stretchFactor: 1
-    children:
-      - type: LayoutBox
-        margin: large
-        stretchFactor: 1
-        style: inline
-        children:
-          - type: LayoutBox
-            cell:
-              column: 0
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
-                label: Plot Size
-                children:
-                  - type: TextBox
-                    name: plotWidth
-                    format: number
-                    suffix: px
-                  - type: TextBox
-                    name: plotHeight
-                    format: number
-                    suffix: px
-          - type: LayoutBox
-            cell:
-              column: 1
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
-                label: Other Options
-                children:
-                  - type: TextBox
-                    name: lineWidth
-                    format: number
-                    suffix: px
-                    enable: (showLine)
   - type: CollapseBox
     label: Axes
     collapsed: true
