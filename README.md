@@ -69,7 +69,7 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
-### 2026-02-11 / 0.11.9 (dev)
+### 2026-02-12 / 0.11.9 (dev)
 
 -   Remove plot sizing options (built in jamovi 2.7.16+)
 -   Axis options to set axis label sizes, rotation, range
