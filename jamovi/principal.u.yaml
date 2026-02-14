@@ -113,16 +113,14 @@ children:
           - type: Label
             label: Tables
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: showSummary
-                  - type: CheckBox
-                    name: showKMO
-                  - type: CheckBox
-                    name: showLoadings
-                  - type: CheckBox
-                    name: showObservations
+              - type: CheckBox
+                name: showSummary
+              - type: CheckBox
+                name: showKMO
+              - type: CheckBox
+                name: showLoadings
+              - type: CheckBox
+                name: showObservations
       - type: LayoutBox
         cell:
           column: 1
@@ -132,16 +130,14 @@ children:
           - type: Label
             label: Plots
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: showScreePlot
-                  - type: CheckBox
-                    name: showVarPlot
-                  - type: CheckBox
-                    name: showObsPlot
-                  - type: CheckBox
-                    name: showBiplot
+              - type: CheckBox
+                name: showScreePlot
+              - type: CheckBox
+                name: showVarPlot
+              - type: CheckBox
+                name: showObsPlot
+              - type: CheckBox
+                name: showBiplot
       - type: LayoutBox
         cell:
           column: 2
@@ -151,41 +147,38 @@ children:
           - type: Label
             label: Biplot
             children:
+              - type: RadioButton
+                name: biplotType_formPlot
+                optionName: biplotType
+                optionPart: formPlot
+                label: Form (Score principal)
+                enable: (showBiplot)
+              - type: RadioButton
+                name: biplotType_covPlot
+                optionName: biplotType
+                optionPart: covPlot
+                label: Cov (Loading principal)
+                enable: (showBiplot)
+              - type: CheckBox
+                name: biplotLines
+                enable: (showBiplot)
               - type: LayoutBox
                 children:
-                  - type: RadioButton
-                    name: biplotType_formPlot
-                    optionName: biplotType
-                    optionPart: formPlot
-                    label: Form (Score principal)
-                    enable: (showBiplot)
-                  - type: RadioButton
-                    name: biplotType_covPlot
-                    optionName: biplotType
-                    optionPart: covPlot
-                    label: Cov (Loading principal)
-                    enable: (showBiplot)
                   - type: CheckBox
-                    name: biplotLines
+                    name: biplotStretch
+                    style: inline
+                    verticalAlignment: center
                     enable: (showBiplot)
-                  - type: LayoutBox
                     children:
-                      - type: CheckBox
-                        name: biplotStretch
-                        label: Stretch arrows by
-                        style: inline
-                        verticalAlignment: center
-                        enable: (showBiplot)
-                        children:
-                          - type: TextBox
-                            name: biplotStretchFactor
-                            label: ''
-                            suffix: ''
-                            format: number
-                            width: small
-                            enable: (biplotStretch && showBiplot)
+                      - type: TextBox
+                        name: biplotStretchFactor
+                        label: ''
+                        suffix: ''
+                        format: number
+                        width: small
+                        enable: (biplotStretch && showBiplot)
   - type: CollapseBox
-    label: Plot Options
+    label: Sizes & Colors
     collapsed: true
     stretchFactor: 1
     children:
@@ -201,30 +194,20 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Text Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: varLabelSize
-                        format: number
-                        suffix: pt
-                      - type: TextBox
-                        name: obsLabelSize
-                        format: number
-                        suffix: pt
-                      - type: TextBox
-                        name: pointSize
-                        format: number
-                        suffix: pt
+                  - type: TextBox
+                    name: varLabelSize
+                    format: number
+                  - type: TextBox
+                    name: obsLabelSize
+                    format: number
+              - type: Label
+                label: Element Sizes
+                children:
+                  - type: TextBox
+                    name: pointSize
+                    format: number
           - type: LayoutBox
             cell:
               column: 1
@@ -243,7 +226,7 @@ children:
                   - type: ComboBox
                     name: labelColor
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

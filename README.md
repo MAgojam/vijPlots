@@ -69,9 +69,27 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
+### 2026-02-12 / 0.99.1 (dev)
+
+-   Remove plot sizing options (built in jamovi 2.7.16+)
+-   Axis options to set axis label sizes, rotation, range
+-   Regression line in scatter plot
+-   Density line in histogram
+-   Bar plot (much) improved with labels and percent by group/category
+-   Pie chart label options
+-   Option to show % labels in MR Frequencies & Crosstabs plots
+-   Single color option for scatter plot without group
+-   Option to choose 1 color from palette for bar plot, box plot, MR plot without group
+-   Unused levels are now retained in boxplot, barplot, raincloud (if checked in variable settings)
+-   More color palettes
+-   Option UI tidied up
+-   Spanish translation (first draft)
+-   Module icon (coming in the next version of jamovi app)
+-   Almost ready for 1.0
+
 ### 2025-12-21 / 0.11.1 (beta)
 
--   Multiple Response Frequencies/crosstab can handle multi-valued variable
+-   Multiple Response Frequencies/crosstab can handle multi-valued variables
 
 ### 2025-12-16 / 0.11.0 (beta)
 
@@ -149,3 +167,4 @@ Principal component analysis and (Multiple) Correspondence analysis.
 -   Bernaards, C., Gilbert, P., Jennrich, R. (2025), GPArotation: Gradient Projection Factor Rotation. R package version 2025.3.1, <https://cran.r-project.org/package=GPArotation>.
 -   Greenacre, M. (2010), Biplots in Practice, Fundación BBVA. <https://www.fbbva.es/en/publicaciones/biplots-in-practice-7/>.
 -   Husson, F., Josse, J., Le, S., Mazet, J. (2025). FactoMineR: Multivariate Exploratory Data Analysis and Data Mining. R package version 2.12, <https://cran.r-project.org/package=FactoMineR>
+-   Engler, J.B. (2026). tidyplots: Tidy Plots for Scientific Papers, R package version 0.4.0, <https://CRAN.R-project.org/package=tidyplots>

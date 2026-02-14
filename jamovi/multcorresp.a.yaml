@@ -83,14 +83,13 @@ options:
       options:
         - title: Principal
           name:  principal
-        - title: Category Principal
+        - title: Category principal
           name:  catprincipal
-        - title: Observation Principal
+        - title: Observation principal
           name:  obsprincipal
         - title: Standard
           name:  standard
       default: principal
-
 
     - name: showSummary
       title: Summary
@@ -286,62 +285,6 @@ options:
           title: Bold Italic
       default: plain
 
-    - name: discrimWidth
-      title: Width
-      type: Number
-      default: 600
-      min: 200
-      max: 1000
-
-    - name: discrimHeight
-      title: Height
-      type: Number
-      default: 600
-      min: 200
-      max: 1000
-
-    - name: catWidth
-      title: Width
-      type: Number
-      default: 650
-      min: 200
-      max: 1000
-
-    - name: catHeight
-      title: Height
-      type: Number
-      default: 600
-      min: 200
-      max: 1000
-
-    - name: obsWidth
-      title: Width
-      type: Number
-      default: 600
-      min: 200
-      max: 1000
-
-    - name: obsHeight
-      title: Height
-      type: Number
-      default: 600
-      min: 200
-      max: 1000
-
-    - name: biplotWidth
-      title: Width
-      type: Number
-      default: 650
-      min: 200
-      max: 1000
-
-    - name: biplotHeight
-      title: Height
-      type: Number
-      default: 600
-      min: 200
-      max: 1000
-
     - name: obsColor
       title: Obs color
       type: List
@@ -350,9 +293,9 @@ options:
           name:  black
         - title: Gray
           name:  gray
-        - title: Dark gray
+        - title: Dark Gray
           name:  darkgray
-        - title: Light gray
+        - title: Light Gray
           name:  lightgray
         - title: Blue
           name:  blue
@@ -437,17 +380,35 @@ options:
         - title: Yellow to Red
           name:  YlOrRd
         - title: Viridis:Viridis
-          name:  viridis::viridis
+          name: viridis::viridis
         - title: Viridis:Magma
-          name:  viridis::magma
+          name: viridis::magma
         - title: Viridis:Inferno
-          name:  viridis::inferno
+          name: viridis::inferno
         - title: Viridis:Plasma
-          name:  viridis::plasma
+          name: viridis::plasma
         - title: Viridis:Turbo
-          name:  viridis::turbo
+          name: viridis::turbo
         - title: Dichromat:Categorical
-          name:  dichromat::Categorical.12
+          name: dichromat::Categorical.12
+        - title: Tidy:Friendly
+          name: tidy::friendly
+        - title: Tidy:Seaside
+          name: tidy::seaside
+        - title: Tidy:Apple
+          name: tidy::apple
+        - title: Tidy:Ibm
+          name: tidy::ibm
+        - title: Tidy:Candy
+          name: tidy::candy
+        - title: Tidy:Alger
+          name: tidy::alger
+        - title: Tidy:Rainbow
+          name: tidy::rainbow
+        - title: Tidy:Metro
+          name: tidy::metro
+        - title: Lémovice
+          name: custom::lemovice
       default: jmv
 
     - name: labelSize

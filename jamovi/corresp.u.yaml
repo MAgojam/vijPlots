@@ -110,10 +110,10 @@ children:
                 name: normalization_principal
                 optionName: normalization
                 optionPart: principal
-              - name: normalization_symetric
+              - name: normalization_symmetric
                 type: RadioButton
                 optionName: normalization
-                optionPart: symetric
+                optionPart: symmetric
               - type: RadioButton
                 name: normalization_rowprincipal
                 optionName: normalization
@@ -140,16 +140,14 @@ children:
           - type: Label
             label: Tables
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: showContingency
-                  - type: CheckBox
-                    name: showProfiles
-                  - type: CheckBox
-                    name: showInertia
-                  - type: CheckBox
-                    name: showSummaries
+              - type: CheckBox
+                name: showContingency
+              - type: CheckBox
+                name: showProfiles
+              - type: CheckBox
+                name: showInertia
+              - type: CheckBox
+                name: showSummaries
       - type: LayoutBox
         cell:
           column: 1
@@ -159,16 +157,14 @@ children:
           - type: Label
             label: Plots
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: showRowPlot
-                  - type: CheckBox
-                    name: showColPlot
-                  - type: CheckBox
-                    name: showBiPlot
+              - type: CheckBox
+                name: showRowPlot
+              - type: CheckBox
+                name: showColPlot
+              - type: CheckBox
+                name: showBiPlot
   - type: CollapseBox
-    label: Plot Options
+    label: Text Size & Colors
     collapsed: true
     stretchFactor: 1
     children:
@@ -184,22 +180,11 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Text Size
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: labelSize
-                        format: number
-                        suffix: pt
+                  - type: TextBox
+                    name: labelSize
+                    format: number
           - type: LayoutBox
             cell:
               column: 1
@@ -209,16 +194,14 @@ children:
               - type: Label
                 label: Colors
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: ComboBox
-                        name: rowColor
-                      - type: ComboBox
-                        name: colColor
-                      - type: ComboBox
-                        name: supColor
+                  - type: ComboBox
+                    name: rowColor
+                  - type: ComboBox
+                    name: colColor
+                  - type: ComboBox
+                    name: supColor
   - type: CollapseBox
-    label: Axis Labels
+    label: Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

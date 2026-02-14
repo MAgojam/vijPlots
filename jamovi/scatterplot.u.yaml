@@ -64,8 +64,25 @@ children:
                 name: plotBorder
               - type: CheckBox
                 name: keepNA
+                enable: (!(!labelVar) || !(!group))
               - type: CheckBox
                 name: overlap
+                enable: (!(!labelVar))
+      - type: LayoutBox
+        cell:
+          column: 0
+          row: 1
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Color Options
+            children:
+              - type: ComboBox
+                name: singleColor
+                enable: (!group)
+              - type: ComboBox
+                name: colorPalette
+                enable: (!(!group))
       - type: LayoutBox
         cell:
           column: 1
@@ -95,13 +112,133 @@ children:
                     label: ''
                     format: number
                     enable: (vline)
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: ComboBox
-        name: colorPalette
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 1
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Regression Line
+            children:
+              - type: CheckBox
+                name: regLine
+                children:
+                  - type: ComboBox
+                    name: lineMethod
+                    enable: (regLine)
+                  - type: CheckBox
+                    name: lineSE
+                    enable: (regLine)
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Element Sizes
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Element Sizes
+                children:
+                  - type: TextBox
+                    name: pointSize
+                    format: number
+                    enable: (!ptSize)
+                  - type: TextBox
+                    name: lineSize
+                    format: number
+                    enable: (hline || vline || regLine)
+  - type: CollapseBox
+    label: Axes
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: X-Axis
+                children:
+                  - type: TextBox
+                    name: xAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: xAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: xAxisRangeType_auto
+                    optionName: xAxisRangeType
+                    optionPart: auto
+                  - type: RadioButton
+                    name: xAxisRangeType_manual
+                    optionName: xAxisRangeType
+                    optionPart: manual
+                    children:
+                      - type: TextBox
+                        name: xAxisRangeMin
+                        format: number
+                        enable: (xAxisRangeType:manual)
+                      - type: TextBox
+                        name: xAxisRangeMax
+                        format: number
+                        enable: (xAxisRangeType:manual)
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Y-Axis
+                children:
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: yAxisRangeType_auto
+                    optionName: yAxisRangeType
+                    optionPart: auto
+                  - type: RadioButton
+                    name: yAxisRangeType_manual
+                    optionName: yAxisRangeType
+                    optionPart: manual
+                    children:
+                      - type: TextBox
+                        name: yAxisRangeMin
+                        format: number
+                        enable: (yAxisRangeType:manual)
+                      - type: TextBox
+                        name: yAxisRangeMax
+                        format: number
+                        enable: (yAxisRangeType:manual)
+  - type: CollapseBox
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

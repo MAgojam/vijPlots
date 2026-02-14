@@ -25,9 +25,10 @@ jmvtools::addAnalysis(name='areachart', title='Area Chart')
 jmvtools::addAnalysis(name='raincloud', title='Raincloud Plot')
 jmvtools::addAnalysis(name='qqplot', title='Q-Q & P-P Plots')
 jmvtools::addAnalysis(name='corresp', title='Correspondence Analysis')
-jmvtools::addAnalysis(name='corresp2', title='Correspondence Analysis2')
+#jmvtools::addAnalysis(name='corresp2', title='Correspondence Analysis2')
 jmvtools::addAnalysis(name='principal', title='Principal Component Analysis')
 jmvtools::addAnalysis(name='multcorresp', title='Multiple Correspondence Analysis')
+jmvtools::addAnalysis(name='barplot2', title='Bar Plot 2')
 
 # Install module
 
@@ -37,9 +38,10 @@ jmvtools::install()
 
 
 
- ## i18n (update)
+## i18n (update)
 jmvtools::i18nUpdate("en")
 jmvtools::i18nUpdate("fr")
+jmvtools::i18nUpdate("es")
 
 
 
@@ -48,6 +50,7 @@ jmvtools::i18nUpdate("fr")
 ## i18n (creation)
 jmvtools::i18nCreate("en")
 jmvtools::i18nCreate("fr")
+jmvtools::i18nCreate("es")
 
 
 

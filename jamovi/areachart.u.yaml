@@ -81,13 +81,23 @@ children:
               - type: LayoutBox
                 children:
                   - type: CheckBox
-                    name: showLine
+                    name: ignoreNA
+                    enable: (!(!group) && mode:oneVariable)
                   - type: CheckBox
-                    name: rotateLabels
+                    name: showLine
+          - type: Label
+            label: Other Options
+            children:
+              - type: LayoutBox
+                children:
                   - type: ComboBox
                     name: position
                   - type: ComboBox
                     name: colorPalette
+                  - type: TextBox
+                    name: lineWidth
+                    format: number
+                    enable: (showLine)
       - type: LayoutBox
         cell:
           column: 1
@@ -97,28 +107,25 @@ children:
           - type: Label
             label: X-Axis
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: isDate
-                  - type: ComboBox
-                    name: dateFormat
-                    enable: (isDate)
-                  - type: ComboBox
-                    name: displayFormat
-                    enable: (isDate)
-                  - type: ComboBox
-                    name: dateBreak
-                    enable: (isDate)
+              - type: CheckBox
+                name: isDate
+              - type: ComboBox
+                name: dateFormat
+                enable: (isDate)
+              - type: ComboBox
+                name: displayFormat
+                enable: (isDate)
+              - type: ComboBox
+                name: dateBreak
+                enable: (isDate)
   - type: CollapseBox
-    label: Extra Options
+    label: Axes
     collapsed: true
     stretchFactor: 1
     children:
       - type: LayoutBox
         margin: large
         stretchFactor: 1
-        style: inline
         children:
           - type: LayoutBox
             cell:
@@ -127,18 +134,15 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: X-Axis
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                  - type: TextBox
+                    name: xAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: xAxisLabelRotation
+                    suffix: °
+                    format: number
           - type: LayoutBox
             cell:
               column: 1
@@ -146,17 +150,39 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Other Options
+                label: Y-Axis
                 children:
-                  - type: LayoutBox
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: °
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: yAxisRangeType_auto
+                    optionName: yAxisRangeType
+                    optionPart: auto
+                    enable: (!horizontal)
+                  - type: RadioButton
+                    name: yAxisRangeType_manual
+                    optionName: yAxisRangeType
+                    optionPart: manual
+                    enable: (!horizontal)
                     children:
                       - type: TextBox
-                        name: lineWidth
+                        name: yAxisRangeMin
                         format: number
-                        suffix: px
-                        enable: (showLine)
+                        enable: (yAxisRangeType:manual)
+                      - type: TextBox
+                        name: yAxisRangeMax
+                        format: number
+                        enable: (yAxisRangeType:manual)
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

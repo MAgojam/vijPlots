@@ -22,8 +22,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             xaxis = 1,
             yaxis = 2,
             normalization = "principal",
-            plotWidth = 600,
-            plotHeight = 450,
             labelSize = 12,
             rowColor = "blue",
             colColor = "red",
@@ -140,23 +138,11 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 normalization,
                 options=list(
                     "principal",
-                    "symetric",
+                    "symmetric",
                     "rowprincipal",
                     "colprincipal",
                     "standard"),
                 default="principal")
-            private$..plotWidth <- jmvcore::OptionInteger$new(
-                "plotWidth",
-                plotWidth,
-                min=200,
-                max=1000,
-                default=600)
-            private$..plotHeight <- jmvcore::OptionInteger$new(
-                "plotHeight",
-                plotHeight,
-                min=200,
-                max=1000,
-                default=450)
             private$..labelSize <- jmvcore::OptionInteger$new(
                 "labelSize",
                 labelSize,
@@ -361,8 +347,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..xaxis)
             self$.addOption(private$..yaxis)
             self$.addOption(private$..normalization)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..labelSize)
             self$.addOption(private$..rowColor)
             self$.addOption(private$..colColor)
@@ -410,8 +394,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         xaxis = function() private$..xaxis$value,
         yaxis = function() private$..yaxis$value,
         normalization = function() private$..normalization$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         labelSize = function() private$..labelSize$value,
         rowColor = function() private$..rowColor$value,
         colColor = function() private$..colColor$value,
@@ -458,8 +440,6 @@ correspOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..xaxis = NA,
         ..yaxis = NA,
         ..normalization = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..labelSize = NA,
         ..rowColor = NA,
         ..colColor = NA,
@@ -519,7 +499,7 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="helpMessage",
                 title="",
                 visible=TRUE,
-                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Correspondence Plot Help</strong></p>\n<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the \"Counts\" variable.</p>\n<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>\n<p>Four normalizations (scaling of row and column scores before plotting) are avalaible : <ul> <li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li> <li><strong>Symetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li> <li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li> <li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li> <li><strong>Standard:</strong> The raw coordinates without normalization.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>\n</div>"))
+                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Correspondence Plot Help</strong></p>\n<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the \"Counts\" variable.</p>\n<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>\n<p>Four normalizations (scaling of row and column scores before plotting) are avalaible : <ul> <li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li> <li><strong>Symmetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li> <li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li> <li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li> <li><strong>Standard:</strong> The raw coordinates without normalization.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>\n</div>"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="contingency",
@@ -632,8 +612,6 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yaxis",
                     "rowColor",
                     "supColor",
-                    "plotWidth",
-                    "plotHeight",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
@@ -673,8 +651,6 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yaxis",
                     "colColor",
                     "supColor",
-                    "plotWidth",
-                    "plotHeight",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
@@ -715,8 +691,6 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "rowColor",
                     "colColor",
                     "supColor",
-                    "plotWidth",
-                    "plotHeight",
                     "supplementaryRows",
                     "supplementaryCols",
                     "normalization",
@@ -782,8 +756,6 @@ correspBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param xaxis .
 #' @param yaxis .
 #' @param normalization .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param labelSize .
 #' @param rowColor .
 #' @param colColor .
@@ -852,8 +824,6 @@ corresp <- function(
     xaxis = 1,
     yaxis = 2,
     normalization = "principal",
-    plotWidth = 600,
-    plotHeight = 450,
     labelSize = 12,
     rowColor = "blue",
     colColor = "red",
@@ -917,8 +887,6 @@ corresp <- function(
         xaxis = xaxis,
         yaxis = yaxis,
         normalization = normalization,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         labelSize = labelSize,
         rowColor = rowColor,
         colColor = colColor,

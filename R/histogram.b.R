@@ -6,39 +6,46 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = histogramBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject("Plot size must be at least 200px (or 0 = default)")
-            # Compute the size according to facet
-            if (userWidth * userHeight == 0) {
-                if (!is.null(self$options$facet)) {
-                    nbOfFacet <- nlevels(self$data[[self$options$facet]])
-                    nbOfColumn <-self$options$facetNumber
-                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn )
-                    if (self$options$facetBy == "column") {
-                        height <- max(400,250*nbOfRow)
-                        width <- max(600, 300*nbOfColumn)
-                    } else {
-                        height <- max(400,250*nbOfColumn)
-                        width <- max(600, 300*nbOfRow)
-                    }
+            # Default size
+            # single facet : w = 550 + 50, h = 350 + 50
+            # multiple facets : w = 450*ncol + 50 , h = 300*nrow + 50
+            # legend :  w + 100 if left/right, h + 50 if top/bttom
+
+            # Stretchable dimensions
+            if (!is.null(self$options$facet)) {
+                nbOfFacet <- nlevels(self$data[[self$options$facet]])
+                if (self$options$facetBy == "column") {
+                    nbOfColumn <- self$options$facetNumber
+                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn)
                 } else {
-                    width <- 600
-                    height <- 400
+                    nbOfRow <- self$options$facetNumber
+                    nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
                 }
+                width <- max(550, 450*nbOfColumn)
+                height <- max(350,300*nbOfRow)
+            } else {
+                width <- 550
+                height <- 350
             }
-            if (userWidth >0)
-                width = userWidth
-            if (userHeight >0)
-                height = userHeight
+            # Fixed dimension
+            fixed_width <- 50 # Y-Axis legend
+            fixed_height <- 50 # X-Axis legend
+            if (!is.null(self$options$group)) {
+                if (self$options$legendPosition %in% c('top','bottom'))
+                    fixed_height <- fixed_height + 50
+                else
+                    fixed_width <- fixed_width + 100
+            }
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
         .run = function() {
-            if (! is.null(self$options$aVar)) {
+            if (! is.null(self$options$aVar) && nrow(self$data) != 0) {
                 plotData <- self$data[c(self$options$aVar, self$options$group, self$options$facet)]
                 plotData[[self$options$aVar]] <- jmvcore::toNumeric(plotData[[self$options$aVar]])
                 image <- self$results$plot
@@ -48,7 +55,7 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
         },
         .plot = function(image, ggtheme, theme, ...) {  # <-- the plot function
-            if (is.null(self$options$aVar))
+            if (is.null(image$state))
                 return(FALSE)
             plotData <- image$state
 
@@ -100,9 +107,11 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 hist_arg = list()
             }
-            if (self$options$grouping != "none" && !is.null(groupVar)) {
-                hist_arg[["position"]] <- self$options$grouping
-                if (self$options$grouping == "identity" && (fillColor != "white" || self$options$usePalette == "forFilling")) {
+            if (!is.null(groupVar)) {
+                hist_arg[["position"]] <- self$options$groupingN
+                hist_arg[["show.legend"]] <- TRUE
+                #if (self$options$groupingN == "identity" && (fillColor != "white" || self$options$usePalette == "forFilling")) {
+                if (self$options$groupingN == "identity") {
                     hist_arg[["alpha"]] <- 0.5
                 }
                 if (self$options$usePalette == "forFilling") {
@@ -118,19 +127,44 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             hist_arg[["boundary"]] <- binBoundary
 
             plot <- ggplot(plotData, aes(x = !!xVar, fill = !!groupVar, color = !!groupVar))
+
             plot <- plot + do.call(geom_histogram, hist_arg)
 
-            plot <- plot + labs(x = self$options$aVar)
+            # get binwidth value from ggplot dat
+            ggData <- layer_data(plot)
+            bw <- unique(ggData$xmax - ggData$xmin)[1]
 
             # Normal Curve
-            if (self$options$normalCurve && is.null(groupVar)) {
-                # get binwidth value from ggplot dat
-                ggData <- layer_data(plot)
-                bw <- unique(ggData$xmax - ggData$xmin)[1]
-                if (self$options$histtype == "density")
-                    plot <- plot + ggh4x::stat_theodensity(na.rm=TRUE, color='red', linewidth = 1)
-                else
-                    plot <- plot + ggh4x::stat_theodensity(aes(y = after_stat(count)*bw), na.rm=TRUE, color='red', linewidth = 1)
+            if (self$options$normalCurve) {
+                linetype = ifelse(self$options$dashedDensity,2,1)
+                if (!is.null(groupVar)) {
+                    if (self$options$histtype == "density")
+                        plot <- plot + ggh4x::stat_theodensity(na.rm=TRUE, linewidth = self$options$normalCurveLineSize, linetype = linetype, show.legend = FALSE)
+                    else
+                        plot <- plot + ggh4x::stat_theodensity(aes(y = after_stat(count)*bw), na.rm=TRUE, linewidth = self$options$normalCurveLineSize, linetype = linetype, show.legend = FALSE)
+                } else {
+                    if (self$options$histtype == "density")
+                        plot <- plot + ggh4x::stat_theodensity(na.rm=TRUE, color='red', linewidth = self$options$normalCurveLineSize, linetype = linetype)
+                    else
+                        plot <- plot + ggh4x::stat_theodensity(aes(y = after_stat(count)*bw), na.rm=TRUE, color='red', linewidth = self$options$normalCurveLineSize, linetype = linetype)
+                }
+            }
+
+            # Density
+            if (self$options$density) {
+                if (!is.null(groupVar)) {
+                    if (self$options$histtype == "density") {
+                        plot <- plot + geom_density(aes(y = after_stat(density)), alpha = self$options$densityOpacity, linewidth = self$options$densityLineSize)
+                    } else {
+                        plot <- plot + geom_density(aes(y = after_stat(count) * bw), alpha = self$options$densityOpacity, linewidth = self$options$densityLineSize)
+                    }
+                } else {
+                    if (self$options$histtype == "density") {
+                        plot <- plot + geom_density(aes(y = after_stat(density)), fill = fillColor, alpha = self$options$densityOpacity, linewidth = self$options$densityLineSize)
+                    } else {
+                        plot <- plot + geom_density(aes(y = after_stat(count) * bw), fill = fillColor, alpha = self$options$densityOpacity, linewidth = self$options$densityLineSize)
+                    }
+                }
             }
 
             # Y-Axix label
@@ -141,6 +175,17 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 yLab <- .("Count")
             }
 
+            # Axis Limits
+            if (self$options$yAxisRangeType == "manual")
+                yLim <- c(self$options$yAxisRangeMin, self$options$yAxisRangeMax)
+            else
+                yLim <- NULL
+            if (self$options$xAxisRangeType == "manual")
+                xLim <- c(self$options$xAxisRangeMin, self$options$xAxisRangeMax)
+            else
+                xLim <- NULL
+            plot <- plot + coord_cartesian(ylim = yLim, xlim = xLim)
+
             # Facet
             if (!is.null(facetVar)) {
                 if (self$options$facetBy == "column")
@@ -150,14 +195,16 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill") + vijScale(self$options$colorPalette, "color")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill", drop = FALSE) +
+                                    vijScale(self$options$colorPalette, "color", drop = FALSE)
 
             # Legend spacing
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
             # Titles & Labels
             defaults <- list(legend = groupVar, x = xVar, y = yLab)
-            plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
+            plot <- plot + vijTitlesAndLabels(self$options, defaults) +
+                            vijTitleAndLabelFormat(self$options)
 
             return(plot)
         }

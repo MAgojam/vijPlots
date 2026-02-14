@@ -6,45 +6,46 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = raincloudBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject("Plot size must be at least 200px (or 0 = default)")
-            if (self$options$horizontal) {
-                height <- 300
-                width <- 400
-            } else {
-                height <- 400
-                width <- 500
-            }
+            # Stretchable dimensions
             if (!is.null(self$options$groupOne))
                 k <- nlevels( self$data[[self$options$groupOne]])
             else
                 k <- 0
-            # Compute the size according to facet
-            if (userWidth * userHeight == 0)
-                if (self$options$horizontal)
-                    height <- height + min(200, k*100)
-                else
-                    width <- width + min(200, k*100)
-            if (!is.null(self$options$groupTwo)) {
-                if (self$options$horizontal) {
-                    height <- height + 50
-                    width <- width + 100
-                } else {
-                    width <- width + 50
-                }
+            if (self$options$horizontal) {
+                height <- 300 + min(400, k*100)
+                width <- 400
+            } else {
+                height <- 400
+                width <- 300 + min(400, k*100)
             }
-            if (userWidth >0)
-                width = userWidth
-            if (userHeight >0)
-                height = userHeight
+            # Fixed dimensions
+            if (self$options$horizontal) {
+                fixed_height <- 50 # X-Axis legend
+                if (!is.null(self$options$groupOne))
+                    fixed_width <- 100
+                else
+                    fixed_width <- 0
+            } else {
+                fixed_width <- 50 # Y-Axis legend
+                if (!is.null(self$options$groupOne))
+                    fixed_height <- 50
+                else
+                    fixed_height <- 0
+            }
+            if (!is.null(self$options$groupTwo)) {
+                if (self$options$legendPosition %in% c('top','bottom'))
+                    fixed_height <- fixed_height + 50
+                else
+                    fixed_width <- fixed_width + 100
+            }
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
-
         .run = function() {
             if (! is.null(self$options$aVar)) {
                 plotData <- self$data[c(self$options$aVar, self$options$groupOne, self$options$groupTwo)]
@@ -102,27 +103,37 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 boxplotAlpha <- alphaC
             }
 
+            # One color only
+            nbColors <- attr(vijPalette(self$options$colorPalette, "fill"),"nlevels")
+            colorNo <- self$options$colorNo
+            if (self$options$singleColor) {
+                oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[min(colorNo,nbColors)]
+            } else {
+                oneColorOfPalette <- vijPalette(self$options$colorPalette, "fill")(nbColors)[1]
+            }
+
             if (is.null(groupOne)) {
                 if (is.null(groupTwo)) {
                     jitter_nudge <- ggpp::position_jitternudge(width = 0.03, height = 0,
                                                          seed = 42, x = ifrev(0.08,-0.08),
                                                          nudge.from = "jittered")
-                    plot <- ggplot(plotData, aes(x = 1, y = !!aVar, fill = "1")) +
-                                geom_boxplot(width = 0.05, outlier.shape = NA) +
-                                geom_point(position = jitter_nudge, size=1.2) +
-                                ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.25,-0.25), width = 0.2, .width = 0, point_color = NA,
-                                                        slab_color = "black", slab_linewidth = 0.5) +
-                                guides(fill = FALSE)
+                    plot <- ggplot(plotData, aes(x = 1, y = !!aVar))
+                    plot <- plot + geom_boxplot(width = 0.05, outlier.shape = NA, fill = oneColorOfPalette)
+                    plot <- plot + geom_point(position = jitter_nudge, size=1.2)
+                    plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.25,-0.25), width = 0.2, .width = 0,
+                                                        point_color = NA, slab_color = "black", slab_linewidth = 0.5, fill = oneColorOfPalette)
+                    plot <- plot + guides(fill = FALSE)
                 } else {
+                    # show.legend needed to display unused colors, guide size & slab_color needed to hide extra legends
                     jitter_nudge <- ggpp::position_jitternudge(width = 0.02, height = 0,
                                                          seed = 42, x = ifrev(+0.05,-0.05),
                                                          nudge.from = "jittered")
-                    plot <- ggplot(plotData, aes(x = 1, y = !!aVar, fill = !!groupTwo, color = !!groupTwo, slab_color = !!groupTwo)) +
-                                geom_boxplot(position = boxplotPosition, width = boxplotWidth, outlier.shape = NA, color="black", alpha = boxplotAlpha, key_glyph = draw_key_rect) +
-                                geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2, show.legend = FALSE) +
-                                ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.1,-0.1), width = 0.3, .width = 0, point_color=NA,
+                    plot <- ggplot(plotData, aes(x = 1, y = !!aVar, fill = !!groupTwo, color = !!groupTwo, slab_color = !!groupTwo))
+                    plot <- plot + geom_boxplot(position = boxplotPosition, width = boxplotWidth, outlier.shape = NA, color="black", alpha = boxplotAlpha, key_glyph = draw_key_rect, show.legend = TRUE)
+                    plot <- plot + geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2, show.legend = FALSE)
+                    plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.1,-0.1), width = 0.3, .width = 0, point_color=NA,
                                                      alpha = alphaC, slab_linewidth = 0.8, show.legend = FALSE)
-                    plot <- plot + guides(fill = guide_legend(override.aes = list(alpha = 1)))
+                    plot <- plot + guides(fill = guide_legend(override.aes = list(alpha = 1)), size = "none", slab_color = "none")
                 }
                 plot <- plot + labs(x = "") + scale_x_continuous(breaks = NULL)
             } else {
@@ -130,30 +141,49 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     jitter_nudge <- ggpp::position_jitternudge(width = 0.02, height = 0,
                                                          seed = 42, x = ifrev(+0.12,-0.12),
                                                          nudge.from = "jittered")
-                    plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar, fill = !!groupOne)) +
-                                geom_boxplot(position = position_nudge(), width = 0.09, outlier.shape = NA) +
-                                geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2) +
-                                ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0, point_color = NA,
-                                                     slab_color = "black", slab_linewidth = 0.5) + guides(fill = FALSE)
+                    if (self$options$singleColor) {
+                        plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar))
+                        plot <- plot + geom_boxplot(position = position_nudge(), width = 0.09, outlier.shape = NA, fill = oneColorOfPalette)
+                        plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0,
+                                                            point_color = NA, slab_color = "black", fill = oneColorOfPalette, slab_linewidth = 0.5)
+                    } else {
+                        plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar, fill = !!groupOne))
+                        plot <- plot + geom_boxplot(position = position_nudge(), width = 0.09, outlier.shape = NA)
+                        plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0,
+                                                            point_color = NA, slab_color = "black", slab_linewidth = 0.5)
+                    }
+                    plot <- plot + geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2) + guides(fill = FALSE)
+
 
                 } else {
                     jitter_nudge <- ggpp::position_jitternudge(width = 0.05, height = 0,
                                                          seed = 42, x = ifrev(+0.15,-0.15),
                                                          nudge.from = "jittered")
-                    plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar, fill =  !!groupTwo, color = !!groupTwo, slab_color = !!groupTwo)) +
-                                geom_boxplot(position = boxplotPosition, width = boxplotWidth2, outlier.shape = NA, color = "black", alpha = boxplotAlpha, key_glyph = draw_key_rect) +
-                                geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2, show.legend = FALSE) +
-                                ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0, point_color = NA,
+                    plot <- ggplot(plotData, aes(x = !!groupOne, y = !!aVar, fill =  !!groupTwo, color = !!groupTwo, slab_color = !!groupTwo))
+                    plot <- plot + geom_boxplot(position = boxplotPosition, width = boxplotWidth2, outlier.shape = NA, color = "black", alpha = boxplotAlpha, key_glyph = draw_key_rect, show.legend = TRUE)
+                    plot <- plot + geom_point(aes(color = !!groupTwo), position = jitter_nudge, size=1.2, show.legend = FALSE)
+                    plot <- plot + ggdist::stat_halfeye(side = rainSide, justification = ifrev(1.30,-0.30), width = 0.3, .width = 0, point_color = NA,
                                                      slab_alpha = alphaC, slab_linewidth = 0.8, show.legend = FALSE)
-                    plot <- plot + guides(fill = guide_legend(override.aes = list(alpha = 1)))
+                    plot <- plot + guides(fill = guide_legend(override.aes = list(alpha = 1)), size = "none", slab_color = "none")
                 }
+                plot <- plot + scale_x_discrete(drop = FALSE) # keep unused levels
             }
 
-            if (self$options$horizontal)
-                plot <- plot + coord_flip()
-
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color") + vijScale(self$options$colorPalette, "fill") + vijScale(self$options$colorPalette, "slab_color")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color", drop = FALSE) +
+                                    vijScale(self$options$colorPalette, "fill", drop = FALSE) +
+                                    vijScale(self$options$colorPalette, "slab_color", drop = FALSE)
+
+            # Axis Limits & flip
+            if (self$options$horizontal) {
+                if (self$options$xAxisRangeType == "manual") {
+                    plot <- plot + coord_flip(ylim = c(self$options$xAxisRangeMin, self$options$xAxisRangeMax))
+                } else {
+                    plot <- plot + coord_flip()
+                }
+            } else if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
+                plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
+            }
 
             # Legend spacing
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)

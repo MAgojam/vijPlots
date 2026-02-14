@@ -40,32 +40,32 @@ options:
         - numeric
 
     - name: showContingency
-      title: Contingency Table
+      title: Contingency table
       type: Bool
       default: false
 
     - name: showProfiles
-      title: Row and Column Profiles
+      title: Row and column profiles
       type: Bool
       default: false
 
     - name: showInertia
-      title: Inertia Summary
+      title: Inertia summary
       type: Bool
       default: true
 
     - name: showSummaries
-      title: Row and Column Summaries
+      title: Row and column summaries
       type: Bool
       default: false
 
     - name: showRowPlot
-      title: Row Plot
+      title: Row plot
       type: Bool
       default: false
 
     - name: showColPlot
-      title: Column Plot
+      title: Column plot
       type: Bool
       default: false
 
@@ -76,11 +76,11 @@ options:
 
     - name: supplementaryRows
       type: String
-      title: Supplementary Rows
+      title: Supplementary rows
 
     - name: supplementaryCols
       type: String
-      title: Supplementary Columns
+      title: Supplementary columns
 
     - name: dimNum
       type: Number
@@ -109,29 +109,15 @@ options:
       options:
         - title: Principal
           name:  principal
-        - title: Symetric
-          name:  symetric
-        - title: Row Principal
+        - title: Symmetric
+          name:  symmetric
+        - title: Row principal
           name:  rowprincipal
-        - title: Column Principal
+        - title: Column principal
           name:  colprincipal
         - title: Standard
           name:  standard
       default: principal
-
-    - name: plotWidth
-      type: Integer
-      title: Width
-      min: 200
-      max: 1000
-      default: 600
-
-    - name: plotHeight
-      type: Integer
-      title: Height
-      min: 200
-      max: 1000
-      default: 450
 
     - name: labelSize
       type: Integer
@@ -139,11 +125,6 @@ options:
       default: 12
       min: 8
       max: 24
-
-    # - name: fixedRatio
-    #   type: Bool
-    #   title: Fixed X/Y Ratio
-    #   default: true
 
     - name: rowColor
       title: Row

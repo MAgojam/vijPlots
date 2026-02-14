@@ -68,7 +68,7 @@
             "": {
                 "domain": "messages",
                 "plural_forms": "nplurals=2; plural=(n != 1)",
-                "lang": "en"
+                "lang": "es"
             },
             ";": [
                 ""
@@ -100,7 +100,7 @@
             "% Accuracy": [
                 ""
             ],
-            "% by row": [
+            "% by Row": [
                 ""
             ],
             "% Inertia": [
@@ -112,16 +112,10 @@
             "% of Cases": [
                 ""
             ],
-            "% of cases": [
-                ""
-            ],
             "% of Inertia": [
                 ""
             ],
             "% of Responses": [
-                ""
-            ],
-            "% of responses": [
                 ""
             ],
             "% of Variance": [
@@ -322,6 +316,9 @@
             "Biplot": [
                 ""
             ],
+            "Biplot Size": [
+                ""
+            ],
             "Biplot Type": [
                 ""
             ],
@@ -410,6 +407,9 @@
                 ""
             ],
             "Category Plot Options": [
+                ""
+            ],
+            "Category Plot Size": [
                 ""
             ],
             "Category principal": [
@@ -559,10 +559,10 @@
             "Crosstab (% by row)": [
                 ""
             ],
-            "Crosstab (% of cases)": [
+            "Crosstab (% of Cases)": [
                 ""
             ],
-            "Crosstab (% of responses)": [
+            "Crosstab (% of Responses)": [
                 ""
             ],
             "Cumulative %": [
@@ -634,6 +634,9 @@
             "Discrimination plot": [
                 ""
             ],
+            "Discrimination Plot Size": [
+                ""
+            ],
             "Display format": [
                 ""
             ],
@@ -682,7 +685,7 @@
             "Eigenvalues": [
                 ""
             ],
-            "Element Sizes": [
+            "Element Size": [
                 ""
             ],
             "Empty value as NA": [
@@ -799,7 +802,7 @@
             "Group (Overlapped)": [
                 ""
             ],
-            "Group (Side-by-side)": [
+            "Group (Side by side)": [
                 ""
             ],
             "Group + Count": [
@@ -814,9 +817,6 @@
             "Grouped": [
                 ""
             ],
-            "Grouped (tight)": [
-                ""
-            ],
             "Grouping": [
                 ""
             ],
@@ -824,6 +824,9 @@
                 ""
             ],
             "Groupwise": [
+                ""
+            ],
+            "Height": [
                 ""
             ],
             "Hide % labels below 5%": [
@@ -848,6 +851,9 @@
                 ""
             ],
             "Horizontal plot": [
+                ""
+            ],
+            "Huge (800x500)": [
                 ""
             ],
             "Identity line": [
@@ -970,6 +976,9 @@
             "Labels": [
                 ""
             ],
+            "Large (600x400)": [
+                ""
+            ],
             "Left": [
                 ""
             ],
@@ -1090,10 +1099,7 @@
             "May": [
                 ""
             ],
-            "MCA Principal Coordinates": [
-                ""
-            ],
-            "MCA Standard Coordinates": [
+            "MCA {type} Coordinate ({method} method)": [
                 ""
             ],
             "Mean": [
@@ -1109,6 +1115,9 @@
                 ""
             ],
             "Median of": [
+                ""
+            ],
+            "Medium (400x300)": [
                 ""
             ],
             "Method": [
@@ -1214,6 +1223,9 @@
                 ""
             ],
             "Observation Plot Options": [
+                ""
+            ],
+            "Observation Plot Size": [
                 ""
             ],
             "Observation principal": [
@@ -1345,10 +1357,7 @@
             "Pastel 2": [
                 ""
             ],
-            "PCA Principal Coordinates": [
-                ""
-            ],
-            "PCA Standard Coordinates": [
+            "PCA {norm} Coordinate{rotation}": [
                 ""
             ],
             "Percent": [
@@ -1369,6 +1378,12 @@
             "Plot": [
                 ""
             ],
+            "Plot & Element Sizes": [
+                ""
+            ],
+            "Plot & Text Sizes": [
+                ""
+            ],
             "Plot Color": [
                 ""
             ],
@@ -1376,6 +1391,21 @@
                 ""
             ],
             "Plot Options": [
+                ""
+            ],
+            "Plot Size": [
+                ""
+            ],
+            "Plot Size & Colors": [
+                ""
+            ],
+            "Plot Size & Facets": [
+                ""
+            ],
+            "Plot Size & Options": [
+                ""
+            ],
+            "Plot size must be at least 200px (or 0 = default)": [
                 ""
             ],
             "Plot Titles": [
@@ -1391,6 +1421,9 @@
                 ""
             ],
             "Point": [
+                ""
+            ],
+            "Point & Line Size": [
                 ""
             ],
             "Point size": [
@@ -1525,7 +1558,10 @@
             "Reverse disposition": [
                 ""
             ],
-            "Reverse stacking order": [
+            "Reverse stack order": [
+                ""
+            ],
+            "Reverse the staking order": [
                 ""
             ],
             "Right": [
@@ -1666,6 +1702,12 @@
             "Show totals (Centered only)": [
                 ""
             ],
+            "Side-by-side": [
+                ""
+            ],
+            "Side-by-side (tight)": [
+                ""
+            ],
             "Single": [
                 ""
             ],
@@ -1675,7 +1717,7 @@
             "Size": [
                 ""
             ],
-            "Sizes & Colors": [
+            "Small (300x200)": [
                 ""
             ],
             "Smoking": [
@@ -1792,7 +1834,7 @@
             "Supplementary variables": [
                 ""
             ],
-            "Symmetric": [
+            "Symetric": [
                 ""
             ],
             "Symetric normalization": [
@@ -1814,15 +1856,6 @@
                 ""
             ],
             "Text Size": [
-                ""
-            ],
-            "Text Size & Colors": [
-                ""
-            ],
-            "Text Size & Facets": [
-                ""
-            ],
-            "Text Sizes": [
                 ""
             ],
             "The correlation matrix is not positive definite. Computations may not be accurate.": [
@@ -1927,10 +1960,10 @@
             "Variable Discriminations": [
                 ""
             ],
-            "Variable Plot": [
+            "Variable plot": [
                 ""
             ],
-            "Variable plot": [
+            "Variable Plot": [
                 ""
             ],
             "Variables": [
@@ -1970,6 +2003,9 @@
                 ""
             ],
             "White": [
+                ""
+            ],
+            "Wide (700x400)": [
                 ""
             ],
             "Width": [
@@ -2022,8 +2058,14 @@
             ],
             "menu\u0004October": [
                 ""
+            ],
+            "string\u0004Principal": [
+                ""
+            ],
+            "string\u0004Standard": [
+                ""
             ]
         }
     },
-    "code": "en"
+    "code": "es"
 }

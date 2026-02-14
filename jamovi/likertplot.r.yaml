@@ -163,9 +163,8 @@ items:
         - toInteger
         - tidyUp
         - ignoreNA
-        - plotWidth
-        - plotHeight
-        - textSize
+        - labelSize
+        - groupSize
         - accuracy
         - plotColor
         - labelColor
@@ -187,5 +186,9 @@ items:
         - legendText
         - legendFontSize
         - legendPosition
+        - yAxisLabelFontSize
+        - yAxisLabelRotation
+        - xAxisLabelFontSize
+        - xAxisLabelRotation
 
 ...

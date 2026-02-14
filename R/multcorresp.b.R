@@ -32,22 +32,17 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 self$results$helpMessage$setVisible(FALSE)
             }
-
-            self$results$discrimplot$setSize(as.numeric(self$options$discrimWidth), as.numeric(self$options$discrimHeight))
-            self$results$categoryplot$setSize(as.numeric(self$options$catWidth), as.numeric(self$options$catHeight))
-            self$results$obsplot$setSize(as.numeric(self$options$obsWidth), as.numeric(self$options$obsHeight))
-            self$results$biplot$setSize(as.numeric(self$options$biplotWidth), as.numeric(self$options$biplotHeight))
         },
         .run = function() {
-            if (is.null(self$options$vars) || length(self$options$vars) < 3)
+            if (is.null(self$options$vars) || length(self$options$vars) < 3  || nrow(self$data) == 0)
                 return()
 
             # check dim values
             nDim <- self$options$dimNum
             if (self$options$xaxis > nDim || self$options$yaxis > nDim)
-                reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
+                jmvcore::reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
             if (self$options$xaxis == self$options$yaxis)
-                reject("X-Axis and Y-Axis cannot be equal")
+                jmvcore::reject("X-Axis and Y-Axis cannot be equal")
 
             activeVars <- self$options$vars
             supplVars <- self$options$supplVars
@@ -91,7 +86,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             res <- private$.mca(data[,allVars], method = method, nd = nDim, supcol = supplIdx, rowlabels = rowLabels, rownames = rownames(data))
 
             if (nDim > res$nd.max)
-                reject(jmvcore::format(.("The number of dimensions cannot be greater than {max}."), max = res$nd.max))
+                jmvcore::reject(jmvcore::format(.("The number of dimensions cannot be greater than {max}."), max = res$nd.max))
 
             #### Inertia Table ####
 
@@ -146,7 +141,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     values["C%G"] <- NULL
                 }
                 self$results$eigenvalues$addRow(rowKey="Total", values = values)
-                self$results$eigenvalues$addFormat(rowKey="Total", 1, Cell.BEGIN_END_GROUP)
+                self$results$eigenvalues$addFormat(rowKey="Total", 1, jmvcore::Cell.BEGIN_END_GROUP)
             }
             self$results$eigenvalues$setNote("method", paste(.("Method:"), methodStr))
             if (method == "Burt" && self$options$GreenacreAdj)
@@ -166,13 +161,13 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
             if (!is.null(supplIdx))
-                self$results$discrim$setNote("sup", .("* : Suppl. variable(s)"))
+                self$results$discrim$setNote("sup", paste("* :", .("Suppl. variables")))
 
             #### Category Table ####
 
             if (self$options$showCategories) {
                 for (j in seq(nDim))
-                    self$results$categories$addColumn(paste0("coord",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = .("Coordinates †"))
+                    self$results$categories$addColumn(paste0("coord",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = paste(.("Coordinates"),"†"))
                 for (j in seq(nDim))
                     self$results$categories$addColumn(paste0("ctr",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = .("Contributions"))
                 for (j in seq(nDim))
@@ -196,7 +191,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     }
                     self$results$categories$addRow(rowKey = i, values = values)
                     if( res$cat$factors[i] != previousfactor) {
-                        self$results$categories$addFormat(rowKey = i, 1, Cell.BEGIN_END_GROUP)
+                        self$results$categories$addFormat(rowKey = i, 1, jmvcore::Cell.BEGIN_END_GROUP)
                         previousfactor <- res$cat$factors[i]
                     }
                 }
@@ -205,7 +200,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 else
                     self$results$categories$setNote("normalization",paste("† :",.("Standard coordinates")))
                 if (!is.null(supplIdx))
-                    self$results$categories$setNote("sup", .("* : Supplementary variable(s)"))
+                    self$results$categories$setNote("sup", paste("* :", .("Supplementary variables")))
             }
 
             #### Observation Table ####
@@ -220,7 +215,7 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$observations$addColumn("inertia", title = .("% Inertia"), type = "number", format = "zto")
                 self$results$observations$addColumn("qlt", title = "QLT", type = "number", format = "zto")
                 for (j in seq(nDim))
-                    self$results$observations$addColumn(paste0("coord",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = .("Coordinates †"))
+                    self$results$observations$addColumn(paste0("coord",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = paste(.("Coordinates"),"†"))
                 for (j in seq(nDim))
                     self$results$observations$addColumn(paste0("ctr",j), title = paste("Dim",j), type = "number", format = "zto", superTitle = .("Contributions"))
                 for (j in seq(nDim))
@@ -273,9 +268,9 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             #### Saving coordinates  ####
 
             if (self$options$normalization %in% c("principal", "obsprincipal"))
-                private$.saveCoordinates(res$ind$coord, .("Principal [string]"))
+                private$.saveCoordinates(res$ind$coord, "principal")
             else
-                private$.saveCoordinates(res$ind$stdcoord, .("Standard [string]"))
+                private$.saveCoordinates(res$ind$stdcoord, "standard")
         },
         .mca = function(data, method, nd, supcol, rowlabels = NULL, rownames = NULL) {
             res <- FactoMineR::MCA(data, method = method, ncp = 999, quali.sup = supcol, graph = FALSE)
@@ -405,8 +400,8 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             dim1 <- self$options$xaxis
             dim2 <- self$options$yaxis
-            dim1name <- paste0(.("Dimension "), dim1, " (", round(res$eig[dim1,2]*100,1),"%)")
-            dim2name <- paste0(.("Dimension "), dim2, " (", round(res$eig[dim2,2]*100,1),"%)")
+            dim1name <- paste0(.("Dimension"), " ", dim1, " (", round(res$eig[dim1,2]*100,1),"%)")
+            dim2name <- paste0(.("Dimension"), " ", dim2, " (", round(res$eig[dim2,2]*100,1),"%)")
 
             data <- res$allvar$eta2[,c(dim1, dim2)]
             colnames(data) <- c("x","y")
@@ -436,8 +431,8 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             #### Define the dimensions ####
             dim1 <- self$options$xaxis
             dim2 <- self$options$yaxis
-            dim1name <- paste0(.("Dimension "), dim1, " (", round(res$eig[dim1,2]*100,1),"%)")
-            dim2name <- paste0(.("Dimension "), dim2, " (", round(res$eig[dim2,2]*100,1),"%)")
+            dim1name <- paste0(.("Dimension"), " ", dim1, " (", round(res$eig[dim1,2]*100,1),"%)")
+            dim2name <- paste0(.("Dimension"), " ", dim2, " (", round(res$eig[dim2,2]*100,1),"%)")
 
             #### Prepare data ####
             if (self$options$normalization == "principal") {
@@ -579,13 +574,17 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 measureTypes <- rep("continuous", nDim)
 
                 titles <- paste(.("Dim"), keys)
+
+                if (type == "principal")
+                    descriptionString <- .("MCA Principal Coordinates")
+                else
+                    descriptionString <- .("MCA Standard Coordinates")
+
+                descriptionString <- paste0(descriptionString, " (", self$options$method, ")")
+
                 descriptions <- character(length(keys))
                 for (i in keys) {
-                    descriptions[i] = jmvcore::format(
-                            .("MCA {type} Coordinate ({method} method)"),
-                            type = type,
-                            method = self$options$method
-                        )
+                    descriptions[i] = descriptionString
                 }
 
                 self$results$obsCoordOV$set(

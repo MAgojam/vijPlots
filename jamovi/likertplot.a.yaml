@@ -55,34 +55,34 @@ options:
       title: Group By
       type: List
       options:
-        - title: Variable
+        - title: By variable
           name:  variable
-        - title: Group
+        - title: By group
           name:  group
       default: variable
 
     - name: addLabels
-      title: Show % Labels
+      title: Show % labels
       type: Bool
       default: true
 
     - name: hideLabelsBelow
-      title: "Hide % Labels Below 5%"
+      title: "Hide % labels below 5%"
       type: Bool
       default: false
 
     - name: addTotals
-      title: Show Totals (Centered Only)
+      title: Show totals (Centered only)
       type: Bool
       default: true
 
     - name: addMedianLine
-      title: Add Median Line (Stacked Only)
+      title: Add median line (Stacked only)
       type: Bool
       default: true
 
     - name: reverseLikert
-      title: Reverse the staking order
+      title: Reverse stacking order
       type: Bool
       default: false
 
@@ -97,33 +97,32 @@ options:
       default: false
 
     - name: ignoreNA
-      title: Ignore NA groups
+      title: Ignore missing groups
       type: Bool
       default: true
 
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 300
-      max: 800
-      default: 600
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 200
-      max: 1600
-      default: 400
-
+# textSize replaced with labelSize
     - name: textSize
       type: Number
-      title: Text
+      title: Label
+      hidden: true
+
+    - name: labelSize
+      type: Number
+      title: Label
+      min: 6
+      max: 24
+      default: 11
+
+    - name: groupSize
+      type: Number
+      title: Group
       min: 6
       max: 24
       default: 12
 
     - name: accuracy
-      title: "% accuracy"
+      title: "% Accuracy"
       type: List
       options:
         - title: "1"
@@ -133,7 +132,7 @@ options:
       default: "1"
 
     - name: vLabelWrap
-      title: "Vertical Label Wrap"
+      title: "Vertical label wrap"
       type: List
       options:
         - title: "10"
@@ -151,7 +150,7 @@ options:
       default: "20"
 
     - name: hLabelWrap
-      title: "Horizontal Label Wrap"
+      title: "Horizontal label wrap"
       type: List
       options:
         - title: "10"
@@ -193,7 +192,7 @@ options:
       default: BrBG
 
     - name: labelColor
-      title: "% Label Color"
+      title: "Label color"
       type: List
       options:
         - title: Auto
@@ -207,7 +206,7 @@ options:
       default: auto
 
     - name: frequencyTable
-      title: "Frequency Table"
+      title: "Frequency table"
       type: Bool
       default: false
 
@@ -483,4 +482,27 @@ options:
           title: Top
       default: bottom
 
+    - name: yAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 11
+
+    - name: yAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
+
+    - name: xAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 11
+
+    - name: xAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
 ...

@@ -11,18 +11,20 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             facet = NULL,
             ignoreNA = TRUE,
             horizontal = FALSE,
-            rotateLabels = FALSE,
             showLabels = TRUE,
             order = "none",
-            yaxis1var = "count",
+            reverseStack = FALSE,
+            yaxis = "count",
+            percentWithin = "group",
             singleColor = TRUE,
-            position = "dodge",
+            colorNo = 1,
+            barType = "dodge2",
+            labelPosition = "middle",
+            accuracy = "0.1",
             colorPalette = "jmv",
             borderColor = "none",
             textColor = "auto",
-            accuracy = "0.1",
-            plotWidth = 0,
-            plotHeight = 0,
+            labelFontSize = 12,
             facetBy = "column",
             facetNumber = 1,
             titleText = NULL,
@@ -45,7 +47,17 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             xAxisPosition = "0.5",
             yAxisText = NULL,
             yAxisFontSize = "16",
-            yAxisPosition = "0.5", ...) {
+            yAxisPosition = "0.5",
+            yAxisLabelFontSize = 12,
+            yAxisLabelRotation = 0,
+            yAxisRangeType = "auto",
+            yAxisRangeMin = 0,
+            yAxisRangeMax = 10,
+            xAxisLabelFontSize = 12,
+            xAxisLabelRotation = 0,
+            xAxisRangeType = "auto",
+            xAxisRangeMin = 0,
+            xAxisRangeMax = 10, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -85,10 +97,6 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "horizontal",
                 horizontal,
                 default=FALSE)
-            private$..rotateLabels <- jmvcore::OptionBool$new(
-                "rotateLabels",
-                rotateLabels,
-                default=FALSE)
             private$..showLabels <- jmvcore::OptionBool$new(
                 "showLabels",
                 showLabels,
@@ -101,26 +109,57 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "increasing",
                     "none"),
                 default="none")
-            private$..yaxis1var <- jmvcore::OptionList$new(
-                "yaxis1var",
-                yaxis1var,
+            private$..reverseStack <- jmvcore::OptionBool$new(
+                "reverseStack",
+                reverseStack,
+                default=FALSE)
+            private$..yaxis <- jmvcore::OptionList$new(
+                "yaxis",
+                yaxis,
                 options=list(
                     "count",
                     "percent"),
                 default="count")
+            private$..percentWithin <- jmvcore::OptionList$new(
+                "percentWithin",
+                percentWithin,
+                options=list(
+                    "group",
+                    "category"),
+                default="group")
             private$..singleColor <- jmvcore::OptionBool$new(
                 "singleColor",
                 singleColor,
                 default=TRUE)
-            private$..position <- jmvcore::OptionList$new(
-                "position",
-                position,
+            private$..colorNo <- jmvcore::OptionNumber$new(
+                "colorNo",
+                colorNo,
+                min=1,
+                max=255,
+                default=1)
+            private$..barType <- jmvcore::OptionList$new(
+                "barType",
+                barType,
                 options=list(
-                    "dodge",
                     "dodge2",
-                    "stack",
-                    "fill"),
-                default="dodge")
+                    "dodge",
+                    "stack"),
+                default="dodge2")
+            private$..labelPosition <- jmvcore::OptionList$new(
+                "labelPosition",
+                labelPosition,
+                options=list(
+                    "middle",
+                    "top"),
+                default="middle")
+            private$..accuracy <- jmvcore::OptionList$new(
+                "accuracy",
+                accuracy,
+                options=list(
+                    "1",
+                    "0.1",
+                    "0.01"),
+                default="0.1")
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -166,7 +205,16 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "viridis::inferno",
                     "viridis::plasma",
                     "viridis::turbo",
-                    "dichromat::Categorical.12"),
+                    "dichromat::Categorical.12",
+                    "tidy::friendly",
+                    "tidy::seaside",
+                    "tidy::apple",
+                    "tidy::ibm",
+                    "tidy::candy",
+                    "tidy::alger",
+                    "tidy::rainbow",
+                    "tidy::metro",
+                    "custom::lemovice"),
                 default="jmv")
             private$..borderColor <- jmvcore::OptionList$new(
                 "borderColor",
@@ -185,26 +233,12 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "white",
                     "auto"),
                 default="auto")
-            private$..accuracy <- jmvcore::OptionList$new(
-                "accuracy",
-                accuracy,
-                options=list(
-                    "1",
-                    "0.1",
-                    "0.01"),
-                default="0.1")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
+            private$..labelFontSize <- jmvcore::OptionNumber$new(
+                "labelFontSize",
+                labelFontSize,
+                min=8,
+                max=24,
+                default=12)
             private$..facetBy <- jmvcore::OptionList$new(
                 "facetBy",
                 facetBy,
@@ -381,24 +415,76 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "0.5",
                     "0"),
                 default="0.5")
+            private$..yAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "yAxisLabelFontSize",
+                yAxisLabelFontSize,
+                default=12)
+            private$..yAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "yAxisLabelRotation",
+                yAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..yAxisRangeType <- jmvcore::OptionList$new(
+                "yAxisRangeType",
+                yAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..yAxisRangeMin <- jmvcore::OptionNumber$new(
+                "yAxisRangeMin",
+                yAxisRangeMin,
+                default=0)
+            private$..yAxisRangeMax <- jmvcore::OptionNumber$new(
+                "yAxisRangeMax",
+                yAxisRangeMax,
+                default=10)
+            private$..xAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "xAxisLabelFontSize",
+                xAxisLabelFontSize,
+                default=12)
+            private$..xAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "xAxisLabelRotation",
+                xAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..xAxisRangeType <- jmvcore::OptionList$new(
+                "xAxisRangeType",
+                xAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..xAxisRangeMin <- jmvcore::OptionNumber$new(
+                "xAxisRangeMin",
+                xAxisRangeMin,
+                default=0)
+            private$..xAxisRangeMax <- jmvcore::OptionNumber$new(
+                "xAxisRangeMax",
+                xAxisRangeMax,
+                default=10)
 
             self$.addOption(private$..rows)
             self$.addOption(private$..columns)
             self$.addOption(private$..facet)
             self$.addOption(private$..ignoreNA)
             self$.addOption(private$..horizontal)
-            self$.addOption(private$..rotateLabels)
             self$.addOption(private$..showLabels)
             self$.addOption(private$..order)
-            self$.addOption(private$..yaxis1var)
+            self$.addOption(private$..reverseStack)
+            self$.addOption(private$..yaxis)
+            self$.addOption(private$..percentWithin)
             self$.addOption(private$..singleColor)
-            self$.addOption(private$..position)
+            self$.addOption(private$..colorNo)
+            self$.addOption(private$..barType)
+            self$.addOption(private$..labelPosition)
+            self$.addOption(private$..accuracy)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..borderColor)
             self$.addOption(private$..textColor)
-            self$.addOption(private$..accuracy)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
+            self$.addOption(private$..labelFontSize)
             self$.addOption(private$..facetBy)
             self$.addOption(private$..facetNumber)
             self$.addOption(private$..titleText)
@@ -422,6 +508,16 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..yAxisText)
             self$.addOption(private$..yAxisFontSize)
             self$.addOption(private$..yAxisPosition)
+            self$.addOption(private$..yAxisLabelFontSize)
+            self$.addOption(private$..yAxisLabelRotation)
+            self$.addOption(private$..yAxisRangeType)
+            self$.addOption(private$..yAxisRangeMin)
+            self$.addOption(private$..yAxisRangeMax)
+            self$.addOption(private$..xAxisLabelFontSize)
+            self$.addOption(private$..xAxisLabelRotation)
+            self$.addOption(private$..xAxisRangeType)
+            self$.addOption(private$..xAxisRangeMin)
+            self$.addOption(private$..xAxisRangeMax)
         }),
     active = list(
         rows = function() private$..rows$value,
@@ -429,18 +525,20 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         facet = function() private$..facet$value,
         ignoreNA = function() private$..ignoreNA$value,
         horizontal = function() private$..horizontal$value,
-        rotateLabels = function() private$..rotateLabels$value,
         showLabels = function() private$..showLabels$value,
         order = function() private$..order$value,
-        yaxis1var = function() private$..yaxis1var$value,
+        reverseStack = function() private$..reverseStack$value,
+        yaxis = function() private$..yaxis$value,
+        percentWithin = function() private$..percentWithin$value,
         singleColor = function() private$..singleColor$value,
-        position = function() private$..position$value,
+        colorNo = function() private$..colorNo$value,
+        barType = function() private$..barType$value,
+        labelPosition = function() private$..labelPosition$value,
+        accuracy = function() private$..accuracy$value,
         colorPalette = function() private$..colorPalette$value,
         borderColor = function() private$..borderColor$value,
         textColor = function() private$..textColor$value,
-        accuracy = function() private$..accuracy$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
+        labelFontSize = function() private$..labelFontSize$value,
         facetBy = function() private$..facetBy$value,
         facetNumber = function() private$..facetNumber$value,
         titleText = function() private$..titleText$value,
@@ -463,25 +561,37 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         xAxisPosition = function() private$..xAxisPosition$value,
         yAxisText = function() private$..yAxisText$value,
         yAxisFontSize = function() private$..yAxisFontSize$value,
-        yAxisPosition = function() private$..yAxisPosition$value),
+        yAxisPosition = function() private$..yAxisPosition$value,
+        yAxisLabelFontSize = function() private$..yAxisLabelFontSize$value,
+        yAxisLabelRotation = function() private$..yAxisLabelRotation$value,
+        yAxisRangeType = function() private$..yAxisRangeType$value,
+        yAxisRangeMin = function() private$..yAxisRangeMin$value,
+        yAxisRangeMax = function() private$..yAxisRangeMax$value,
+        xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value,
+        xAxisRangeType = function() private$..xAxisRangeType$value,
+        xAxisRangeMin = function() private$..xAxisRangeMin$value,
+        xAxisRangeMax = function() private$..xAxisRangeMax$value),
     private = list(
         ..rows = NA,
         ..columns = NA,
         ..facet = NA,
         ..ignoreNA = NA,
         ..horizontal = NA,
-        ..rotateLabels = NA,
         ..showLabels = NA,
         ..order = NA,
-        ..yaxis1var = NA,
+        ..reverseStack = NA,
+        ..yaxis = NA,
+        ..percentWithin = NA,
         ..singleColor = NA,
-        ..position = NA,
+        ..colorNo = NA,
+        ..barType = NA,
+        ..labelPosition = NA,
+        ..accuracy = NA,
         ..colorPalette = NA,
         ..borderColor = NA,
         ..textColor = NA,
-        ..accuracy = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
+        ..labelFontSize = NA,
         ..facetBy = NA,
         ..facetNumber = NA,
         ..titleText = NA,
@@ -504,7 +614,17 @@ barplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..xAxisPosition = NA,
         ..yAxisText = NA,
         ..yAxisFontSize = NA,
-        ..yAxisPosition = NA)
+        ..yAxisPosition = NA,
+        ..yAxisLabelFontSize = NA,
+        ..yAxisLabelRotation = NA,
+        ..yAxisRangeType = NA,
+        ..yAxisRangeMin = NA,
+        ..yAxisRangeMax = NA,
+        ..xAxisLabelFontSize = NA,
+        ..xAxisLabelRotation = NA,
+        ..xAxisRangeType = NA,
+        ..xAxisRangeMin = NA,
+        ..xAxisRangeMax = NA)
 )
 
 barplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -557,18 +677,20 @@ barplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param facet .
 #' @param ignoreNA .
 #' @param horizontal .
-#' @param rotateLabels .
 #' @param showLabels .
 #' @param order .
-#' @param yaxis1var .
+#' @param reverseStack .
+#' @param yaxis .
+#' @param percentWithin .
 #' @param singleColor .
-#' @param position .
+#' @param colorNo .
+#' @param barType .
+#' @param labelPosition .
+#' @param accuracy .
 #' @param colorPalette .
 #' @param borderColor .
 #' @param textColor .
-#' @param accuracy .
-#' @param plotWidth .
-#' @param plotHeight .
+#' @param labelFontSize .
 #' @param facetBy .
 #' @param facetNumber .
 #' @param titleText .
@@ -592,6 +714,16 @@ barplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisText .
 #' @param yAxisFontSize .
 #' @param yAxisPosition .
+#' @param yAxisLabelFontSize .
+#' @param yAxisLabelRotation .
+#' @param yAxisRangeType .
+#' @param yAxisRangeMin .
+#' @param yAxisRangeMax .
+#' @param xAxisLabelFontSize .
+#' @param xAxisLabelRotation .
+#' @param xAxisRangeType .
+#' @param xAxisRangeMin .
+#' @param xAxisRangeMax .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -605,18 +737,20 @@ barplot <- function(
     facet,
     ignoreNA = TRUE,
     horizontal = FALSE,
-    rotateLabels = FALSE,
     showLabels = TRUE,
     order = "none",
-    yaxis1var = "count",
+    reverseStack = FALSE,
+    yaxis = "count",
+    percentWithin = "group",
     singleColor = TRUE,
-    position = "dodge",
+    colorNo = 1,
+    barType = "dodge2",
+    labelPosition = "middle",
+    accuracy = "0.1",
     colorPalette = "jmv",
     borderColor = "none",
     textColor = "auto",
-    accuracy = "0.1",
-    plotWidth = 0,
-    plotHeight = 0,
+    labelFontSize = 12,
     facetBy = "column",
     facetNumber = 1,
     titleText,
@@ -639,7 +773,17 @@ barplot <- function(
     xAxisPosition = "0.5",
     yAxisText,
     yAxisFontSize = "16",
-    yAxisPosition = "0.5") {
+    yAxisPosition = "0.5",
+    yAxisLabelFontSize = 12,
+    yAxisLabelRotation = 0,
+    yAxisRangeType = "auto",
+    yAxisRangeMin = 0,
+    yAxisRangeMax = 10,
+    xAxisLabelFontSize = 12,
+    xAxisLabelRotation = 0,
+    xAxisRangeType = "auto",
+    xAxisRangeMin = 0,
+    xAxisRangeMax = 10) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("barplot requires jmvcore to be installed (restart may be required)")
@@ -664,18 +808,20 @@ barplot <- function(
         facet = facet,
         ignoreNA = ignoreNA,
         horizontal = horizontal,
-        rotateLabels = rotateLabels,
         showLabels = showLabels,
         order = order,
-        yaxis1var = yaxis1var,
+        reverseStack = reverseStack,
+        yaxis = yaxis,
+        percentWithin = percentWithin,
         singleColor = singleColor,
-        position = position,
+        colorNo = colorNo,
+        barType = barType,
+        labelPosition = labelPosition,
+        accuracy = accuracy,
         colorPalette = colorPalette,
         borderColor = borderColor,
         textColor = textColor,
-        accuracy = accuracy,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
+        labelFontSize = labelFontSize,
         facetBy = facetBy,
         facetNumber = facetNumber,
         titleText = titleText,
@@ -698,7 +844,17 @@ barplot <- function(
         xAxisPosition = xAxisPosition,
         yAxisText = yAxisText,
         yAxisFontSize = yAxisFontSize,
-        yAxisPosition = yAxisPosition)
+        yAxisPosition = yAxisPosition,
+        yAxisLabelFontSize = yAxisLabelFontSize,
+        yAxisLabelRotation = yAxisLabelRotation,
+        yAxisRangeType = yAxisRangeType,
+        yAxisRangeMin = yAxisRangeMin,
+        yAxisRangeMax = yAxisRangeMax,
+        xAxisLabelFontSize = xAxisLabelFontSize,
+        xAxisLabelRotation = xAxisLabelRotation,
+        xAxisRangeType = xAxisRangeType,
+        xAxisRangeMin = xAxisRangeMin,
+        xAxisRangeMax = xAxisRangeMax)
 
     analysis <- barplotClass$new(
         options = options,

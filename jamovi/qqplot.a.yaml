@@ -59,22 +59,22 @@ options:
       default: norm
 
     - name: transLog
-      title: Natural Log Tranform
+      title: Natural log tranform
       type: Bool
       default: false
 
     - name: standardize
-      title: Standardize Values
+      title: Standardize values
       type: Bool
       default: false
 
     - name: refLine
-      title: Reference Line
+      title: Reference line
       type: Bool
       default: true
 
     - name: band
-      title: Confidence Band
+      title: Confidence band
       type: Bool
       default: false
 
@@ -105,7 +105,7 @@ options:
       default: ell
 
     - name: detrend
-      title: Detrended Plot
+      title: Detrended plot
       type: Bool
       default: false
 
@@ -113,50 +113,29 @@ options:
       title: Plot Type
       type: List
       options:
-        - title: Q-Q Plot
+        - title: Q-Q plot
           name:  QQ
-        - title: P-P Plot
+        - title: P-P plot
           name:  PP
       default: QQ
 
     - name: refType
-      title: Reference Line
+      title: Reference line
       type: List
       options:
-        - title: Q-Q Line
+        - title: Q-Q line
           name:  qqline
-        - title: Identity Line
+        - title: Identity line
           name:  identity
       default: identity
-
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1600
-      default: 0
-
-    - name: textSize
-      type: Number
-      title: Text
-      min: 6
-      max: 24
-      default: 16
 
     - name: paramMethod
       title: ""
       type: List
       options:
-        - title: Estimate Parameters from Data
+        - title: Estimate parameters from data
           name:  paraEstimate
-        - title: Parameter Values
+        - title: Parameter values
           name:  paraValue
       default: paraEstimate
 
@@ -179,6 +158,114 @@ options:
       type: Number
       title: Parameter 2
       default: 1
+
+    - name: colorPalette
+      title: Palette
+      type: List
+      options:
+        - title: jmv Default
+          name:  jmv
+        - title: Set 1
+          name:  Set1
+        - title: Set 2
+          name:  Set2
+        - title: Set 3
+          name:  Set3
+        - title: Pastel 1
+          name:  Pastel1
+        - title: Pastel 2
+          name:  Pastel2
+        - title: Accent
+          name:  Accent
+        - title: Paired
+          name:  Paired
+        - title: Dark 2
+          name:  Dark2
+        - title: Spectral
+          name:  Spectral
+        - title: Red, Yellow, Green
+          name:  RdYlGn
+        - title: Red, Yellow, Blue
+          name:  RdYlBu
+        - title: Red and Gray
+          name:  RdGy
+        - title: Red and Blue
+          name:  RdBu
+        - title: Orange and Purple
+          name:  PuOr
+        - title: Purple and Green
+          name:  PRGn
+        - title: Pink and Green
+          name:  PiYG
+        - title: Brown and Green
+          name:  BrBG
+        - title: Blues
+          name:  Blues
+        - title: Greens
+          name:  Greens
+        - title: Greys
+          name:  Greys
+        - title: Oranges
+          name:  Oranges
+        - title: Purples
+          name:  Purples
+        - title: Reds
+          name:  Reds
+        - title: Blue to Green
+          name:  BuGn
+        - title: Blue to Purple
+          name:  BuPu
+        - title: Green to Blue
+          name:  GnBu
+        - title: Orange to Red
+          name:  OrRd
+        - title: Purple to Blue
+          name:  PuBu
+        - title: Purple to Green
+          name:  PuBuGn
+        - title: Purple to Red
+          name:  PuRd
+        - title: Red to Purple
+          name:  RdPu
+        - title: Yellow to Green
+          name:  YlGn
+        - title: Yellow to Blue
+          name:  YlGnBu
+        - title: Yellow to Brown
+          name:  YlOrBr
+        - title: Yellow to Red
+          name:  YlOrRd
+        - title: Viridis:Viridis
+          name: viridis::viridis
+        - title: Viridis:Magma
+          name: viridis::magma
+        - title: Viridis:Inferno
+          name: viridis::inferno
+        - title: Viridis:Plasma
+          name: viridis::plasma
+        - title: Viridis:Turbo
+          name: viridis::turbo
+        - title: Dichromat:Categorical
+          name: dichromat::Categorical.12
+        - title: Tidy:Friendly
+          name: tidy::friendly
+        - title: Tidy:Seaside
+          name: tidy::seaside
+        - title: Tidy:Apple
+          name: tidy::apple
+        - title: Tidy:Ibm
+          name: tidy::ibm
+        - title: Tidy:Candy
+          name: tidy::candy
+        - title: Tidy:Alger
+          name: tidy::alger
+        - title: Tidy:Rainbow
+          name: tidy::rainbow
+        - title: Tidy:Metro
+          name: tidy::metro
+        - title: Lémovice
+          name: custom::lemovice
+      default: jmv
 
     - name: titleText
       title: ""
@@ -434,5 +521,69 @@ options:
         - name: "0"
           title: Bottom
       default: "0.5"
+
+    - name: yAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 12
+
+    - name: yAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
+
+    - name: yAxisRangeType
+      title: Y-Axis Range
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: yAxisRangeMin
+      title: Min
+      type: Number
+      default: 0
+
+    - name: yAxisRangeMax
+      title: Max
+      type: Number
+      default: 10
+
+    - name: xAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 12
+
+    - name: xAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
+
+    - name: xAxisRangeType
+      title: X-Axis Range
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: xAxisRangeMin
+      title: Min
+      type: Number
+      default: 0
+
+    - name: xAxisRangeMax
+      title: Max
+      type: Number
+      default: 10
 
 ...

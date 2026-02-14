@@ -6,46 +6,41 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = piechartBase,
     private = list(
         .init = function() {
-            # Set the size of the plot
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-            # Check min size
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject("Plot size must be at least 200px (or 0 = default)")
-
-            # Compute the size according to facet
-            if( userWidth * userHeight == 0 ) {
-                if( !is.null(self$options$facet)) {
-                    nbOfFacet <- nlevels(self$data[[self$options$facet]])
-                    nbOfColumn <-self$options$facetNumber
-                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn )
-
-                    if( self$options$facetBy == "column" ) {
-                        height <- max(400,300*nbOfRow)
-                        width <- max(600, 200*nbOfColumn)
-                    } else {
-                        height <- max(400,300*nbOfColumn)
-                        width <- max(600, 200*nbOfRow)
-                    }
+            # Stretchable dimensions
+            if (!is.null(self$options$facet)) {
+                nbOfFacet <- nlevels(self$data[[self$options$facet]])
+                if (self$options$facetBy == "column") {
+                    nbOfColumn <- self$options$facetNumber
+                    nbOfRow <- ceiling(nbOfFacet / nbOfColumn)
                 } else {
-                    width <- 600
-                    height <- 400
+                    nbOfRow <- self$options$facetNumber
+                    nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
                 }
-                if (self$options$legendPosition %in% c('top','bottom')) {
-                    height <- height + 50
-                    width <- width - 50
-                }
+                width <- max(400, 200*nbOfColumn)
+                height <- max(500, 300*nbOfRow)
+            } else {
+                width <- 400
+                height <- 400
             }
-            if( userWidth >0 )
-                width = userWidth
-            if( userHeight >0 )
-                height = userHeight
+            # Fixed dimension
+            if (self$options$legendPosition %in% c('top','bottom')) {
+                fixed_width <- 0
+                fixed_height <- 50
+            } else {
+                fixed_width <- 100
+                fixed_height <- 0
+            }
+            # Set the image dimensions
             image <- self$results$plot
-            image$setSize(width, height)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
 
         .run = function() {
-            if( ! is.null(self$options$aVar) ) {
+            if (!is.null(self$options$aVar) && nrow(self$data) != 0) {
                 plotData <- self$data[c(self$options$aVar, self$options$facet)]
                 plotData <- jmvcore::naOmit(plotData)
                 image <- self$results$plot
@@ -53,13 +48,13 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
         },
         .plot = function(image, ggtheme, theme, ...) {
-            if( is.null(self$options$aVar) )
+            if (is.null(image$state))
                 return(FALSE)
             plotData <- image$state
             aVar <- self$options$aVar
             aVar <- ensym(aVar)
 
-            if( !is.null(self$options$facet) ) {
+            if (!is.null(self$options$facet) ) {
                 facetVar <- self$options$facet
                 facetVar <- ensym(facetVar)
             } else {
@@ -67,62 +62,91 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # set the border color
-            if( self$options$borderColor == "none") {
+            if (self$options$borderColor == "none") {
                 borderColor <- NA
             } else {
                 borderColor = self$options$borderColor
             }
 
             # Percent format (scales)
-            doPercent <- label_percent(accuracy = as.numeric(self$options$accuracy), suffix = .("%"), decimal.mark = .("."))
+            doPercent <- scales::label_percent(
+                accuracy = as.numeric(self$options$accuracy),
+                suffix = .("%"),
+                decimal.mark = self$options[['decSymbol']])
 
             if(self$options$donut) {
-                plot <- ggplot(plotData, aes(x = 10, fill = !!aVar, by = 1)) + xlim(c(8.5,10.5))
+                plot <- ggplot(plotData, aes(x = 10, fill = !!aVar, by = 1)) + xlim(c(8.5,NA))
+                xOffset <- 10
             } else {
                 plot <- ggplot(plotData, aes(x = "", fill = !!aVar, by = 1))
+                xOffset <- 1
             }
 
-            plot <- plot + geom_bar(position = "fill", color = borderColor) + coord_polar("y")
+            plot <- plot + geom_bar(position = "fill", color = borderColor, show.legend = TRUE) + coord_polar("y")
 
-            # Labels
-            if( self$options$labels == "count" ) {
+            if (self$options$labType == "text") {
+                if (self$options$overlap)
+                    geomLab <- ggrepel::geom_text_repel
+                else
+                    geomLab <- geom_text
+            } else {
+                if (self$options$overlap)
+                    geomLab <- ggrepel::geom_label_repel
+                else
+                    geomLab <- geom_label
+            }
+
+            if (self$options$labels != "none") {
                 if (self$options$textColor == "auto") { # using hex_bw
-                    plot <- plot + geom_text(aes(fill = !!aVar, label = after_stat(count),
-                                                 color = after_scale(ggstats::hex_bw(.data$fill))),
-                                             stat = "count", position = position_fill(vjust = 0.5), fontface = "bold")
+                    plot <- plot + geomLab(aes(x = self$options$labOffset/10 + xOffset,
+                                               label = switch(self$options$labels,
+                                                              "count" = after_stat(count),
+                                                              "percent" = doPercent(after_stat(prop)),
+                                                              "group" = fill,
+                                                              "group+count" = paste0(fill, "\n", after_stat(count)),
+                                                              "group+percent" = paste0(fill, "\n", doPercent(after_stat(prop)))),
+                                                color = after_scale(ggstats::hex_bw(.data$fill))
+                                               ),
+                                            stat = switch(self$options$labels, "percent" = ggstats::StatProp, "group+percent" = ggstats::StatProp, "count"),
+                                            position = position_fill(vjust = 0.5), direction = "both",
+                                            fontface = "bold", size = self$options$labSize / .pt,
+                                            show.legend = FALSE, seed = 123, min.segment.length = 1)
                 } else {
-                    plot <- plot + geom_text(aes(label = after_stat(count)), stat = "count",
-                                                 position = position_fill(vjust = 0.5),
-                                                 color = self$options$textColor, fontface = "bold")
-                }
-            } else if( self$options$labels == "percent" ) {
-                if (self$options$textColor == "auto") { # using hex_bw
-                    plot <- plot + geom_text(aes(label = doPercent(after_stat(prop)),
-                                                 color = after_scale(ggstats::hex_bw(.data$fill))),
-                                             stat = StatProp, position = position_fill(vjust = 0.5), fontface = "bold")
-                } else {
-                    plot <- plot + geom_text(aes(label = doPercent(after_stat(prop))), stat = StatProp, position = position_fill(vjust = 0.5),
-                                             color = self$options$textColor, fontface = "bold")
+                    plot <- plot + geomLab(aes(x = self$options$labOffset/10 + xOffset,
+                                               label = switch(self$options$labels,
+                                                              "count" = after_stat(count),
+                                                              "percent" = doPercent(after_stat(prop)),
+                                                              "group" = fill,
+                                                              "group+count" = paste0(fill, "\n", after_stat(count)),
+                                                              "group+percent" = paste0(fill, "\n", doPercent(after_stat(prop)))),
+                                                ),
+                                           stat = switch(self$options$labels, "percent" = ggstats::StatProp, "group+percent" = ggstats::StatProp, "count"),
+                                           position = position_fill(vjust = 0.5), direction = "both",
+                                           color = self$options$textColor,
+                                           fontface = "bold", size = self$options$labSize / .pt,
+                                           show.legend = FALSE, seed = 123, min.segment.length = 1)
                 }
             }
 
             # Facet
-            if( !is.null(facetVar) ) {
-                if( self$options$facetBy == "column")
+            if (!is.null(facetVar) ) {
+                if (self$options$facetBy == "column")
                     plot <- plot + facet_wrap(vars(!!facetVar), ncol = as.numeric(self$options$facetNumber), scales = "free")
                 else
                     plot <- plot + facet_wrap(vars(!!facetVar), nrow = as.numeric(self$options$facetNumber), scales = "free")
             }
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "fill", drop = FALSE)
+
+            # Guide
+            if (self$options$labels %in% c("group","group+count","group+percent"))
+                plot <- plot + guides(fill = "none")
 
             # Titles & Labels
             defaults <- list(y = "", x = "", legend = aVar)
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
-
-            plot
 
             # Labs
             plot <- plot + theme(axis.ticks = element_blank(),

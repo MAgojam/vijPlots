@@ -18,6 +18,12 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             yinter = 0,
             vline = FALSE,
             xinter = 0,
+            pointSize = 3,
+            lineSize = 1,
+            regLine = FALSE,
+            lineMethod = "lm",
+            lineSE = TRUE,
+            singleColor = "#999999",
             colorPalette = "jmv",
             titleText = NULL,
             titleFontFace = "bold",
@@ -39,7 +45,17 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             xAxisPosition = "0.5",
             yAxisText = NULL,
             yAxisFontSize = "16",
-            yAxisPosition = "0.5", ...) {
+            yAxisPosition = "0.5",
+            yAxisLabelFontSize = 12,
+            yAxisLabelRotation = 0,
+            yAxisRangeType = "auto",
+            yAxisRangeMin = 0,
+            yAxisRangeMax = 10,
+            xAxisLabelFontSize = 12,
+            xAxisLabelRotation = 0,
+            xAxisRangeType = "auto",
+            xAxisRangeMin = 0,
+            xAxisRangeMax = 10, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -113,6 +129,55 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 "xinter",
                 xinter,
                 default=0)
+            private$..pointSize <- jmvcore::OptionNumber$new(
+                "pointSize",
+                pointSize,
+                default=3,
+                min=0.1,
+                max=10)
+            private$..lineSize <- jmvcore::OptionNumber$new(
+                "lineSize",
+                lineSize,
+                default=1,
+                min=0.1,
+                max=5)
+            private$..regLine <- jmvcore::OptionBool$new(
+                "regLine",
+                regLine,
+                default=FALSE)
+            private$..lineMethod <- jmvcore::OptionList$new(
+                "lineMethod",
+                lineMethod,
+                options=list(
+                    "lm",
+                    "loess"),
+                default="lm")
+            private$..lineSE <- jmvcore::OptionBool$new(
+                "lineSE",
+                lineSE,
+                default=TRUE)
+            private$..singleColor <- jmvcore::OptionList$new(
+                "singleColor",
+                singleColor,
+                options=list(
+                    "none",
+                    "white",
+                    "black",
+                    "#999999",
+                    "#A6C4F1",
+                    "#C5C5C5",
+                    "#F0CD8C",
+                    "#88C38B",
+                    "#E18A8A",
+                    "#E41A1C",
+                    "#377EB8",
+                    "#4DAF4A",
+                    "#984EA3",
+                    "#FF7F00",
+                    "#FFFF33",
+                    "#A65628",
+                    "#F781BF"),
+                default="#999999")
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -158,7 +223,16 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "viridis::inferno",
                     "viridis::plasma",
                     "viridis::turbo",
-                    "dichromat::Categorical.12"),
+                    "dichromat::Categorical.12",
+                    "tidy::friendly",
+                    "tidy::seaside",
+                    "tidy::apple",
+                    "tidy::ibm",
+                    "tidy::candy",
+                    "tidy::alger",
+                    "tidy::rainbow",
+                    "tidy::metro",
+                    "custom::lemovice"),
                 default="jmv")
             private$..titleText <- jmvcore::OptionString$new(
                 "titleText",
@@ -323,6 +397,56 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "0.5",
                     "0"),
                 default="0.5")
+            private$..yAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "yAxisLabelFontSize",
+                yAxisLabelFontSize,
+                default=12)
+            private$..yAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "yAxisLabelRotation",
+                yAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..yAxisRangeType <- jmvcore::OptionList$new(
+                "yAxisRangeType",
+                yAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..yAxisRangeMin <- jmvcore::OptionNumber$new(
+                "yAxisRangeMin",
+                yAxisRangeMin,
+                default=0)
+            private$..yAxisRangeMax <- jmvcore::OptionNumber$new(
+                "yAxisRangeMax",
+                yAxisRangeMax,
+                default=10)
+            private$..xAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "xAxisLabelFontSize",
+                xAxisLabelFontSize,
+                default=12)
+            private$..xAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "xAxisLabelRotation",
+                xAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..xAxisRangeType <- jmvcore::OptionList$new(
+                "xAxisRangeType",
+                xAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..xAxisRangeMin <- jmvcore::OptionNumber$new(
+                "xAxisRangeMin",
+                xAxisRangeMin,
+                default=0)
+            private$..xAxisRangeMax <- jmvcore::OptionNumber$new(
+                "xAxisRangeMax",
+                xAxisRangeMax,
+                default=10)
 
             self$.addOption(private$..xaxis)
             self$.addOption(private$..yaxis)
@@ -336,6 +460,12 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..yinter)
             self$.addOption(private$..vline)
             self$.addOption(private$..xinter)
+            self$.addOption(private$..pointSize)
+            self$.addOption(private$..lineSize)
+            self$.addOption(private$..regLine)
+            self$.addOption(private$..lineMethod)
+            self$.addOption(private$..lineSE)
+            self$.addOption(private$..singleColor)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
@@ -358,6 +488,16 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..yAxisText)
             self$.addOption(private$..yAxisFontSize)
             self$.addOption(private$..yAxisPosition)
+            self$.addOption(private$..yAxisLabelFontSize)
+            self$.addOption(private$..yAxisLabelRotation)
+            self$.addOption(private$..yAxisRangeType)
+            self$.addOption(private$..yAxisRangeMin)
+            self$.addOption(private$..yAxisRangeMax)
+            self$.addOption(private$..xAxisLabelFontSize)
+            self$.addOption(private$..xAxisLabelRotation)
+            self$.addOption(private$..xAxisRangeType)
+            self$.addOption(private$..xAxisRangeMin)
+            self$.addOption(private$..xAxisRangeMax)
         }),
     active = list(
         xaxis = function() private$..xaxis$value,
@@ -372,6 +512,12 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         yinter = function() private$..yinter$value,
         vline = function() private$..vline$value,
         xinter = function() private$..xinter$value,
+        pointSize = function() private$..pointSize$value,
+        lineSize = function() private$..lineSize$value,
+        regLine = function() private$..regLine$value,
+        lineMethod = function() private$..lineMethod$value,
+        lineSE = function() private$..lineSE$value,
+        singleColor = function() private$..singleColor$value,
         colorPalette = function() private$..colorPalette$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
@@ -393,7 +539,17 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         xAxisPosition = function() private$..xAxisPosition$value,
         yAxisText = function() private$..yAxisText$value,
         yAxisFontSize = function() private$..yAxisFontSize$value,
-        yAxisPosition = function() private$..yAxisPosition$value),
+        yAxisPosition = function() private$..yAxisPosition$value,
+        yAxisLabelFontSize = function() private$..yAxisLabelFontSize$value,
+        yAxisLabelRotation = function() private$..yAxisLabelRotation$value,
+        yAxisRangeType = function() private$..yAxisRangeType$value,
+        yAxisRangeMin = function() private$..yAxisRangeMin$value,
+        yAxisRangeMax = function() private$..yAxisRangeMax$value,
+        xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value,
+        xAxisRangeType = function() private$..xAxisRangeType$value,
+        xAxisRangeMin = function() private$..xAxisRangeMin$value,
+        xAxisRangeMax = function() private$..xAxisRangeMax$value),
     private = list(
         ..xaxis = NA,
         ..yaxis = NA,
@@ -407,6 +563,12 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..yinter = NA,
         ..vline = NA,
         ..xinter = NA,
+        ..pointSize = NA,
+        ..lineSize = NA,
+        ..regLine = NA,
+        ..lineMethod = NA,
+        ..lineSE = NA,
+        ..singleColor = NA,
         ..colorPalette = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
@@ -428,7 +590,17 @@ scatterplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..xAxisPosition = NA,
         ..yAxisText = NA,
         ..yAxisFontSize = NA,
-        ..yAxisPosition = NA)
+        ..yAxisPosition = NA,
+        ..yAxisLabelFontSize = NA,
+        ..yAxisLabelRotation = NA,
+        ..yAxisRangeType = NA,
+        ..yAxisRangeMin = NA,
+        ..yAxisRangeMax = NA,
+        ..xAxisLabelFontSize = NA,
+        ..xAxisLabelRotation = NA,
+        ..xAxisRangeType = NA,
+        ..xAxisRangeMin = NA,
+        ..xAxisRangeMax = NA)
 )
 
 scatterplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -488,6 +660,12 @@ scatterplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yinter .
 #' @param vline .
 #' @param xinter .
+#' @param pointSize .
+#' @param lineSize .
+#' @param regLine .
+#' @param lineMethod .
+#' @param lineSE .
+#' @param singleColor .
 #' @param colorPalette .
 #' @param titleText .
 #' @param titleFontFace .
@@ -510,6 +688,16 @@ scatterplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisText .
 #' @param yAxisFontSize .
 #' @param yAxisPosition .
+#' @param yAxisLabelFontSize .
+#' @param yAxisLabelRotation .
+#' @param yAxisRangeType .
+#' @param yAxisRangeMin .
+#' @param yAxisRangeMax .
+#' @param xAxisLabelFontSize .
+#' @param xAxisLabelRotation .
+#' @param xAxisRangeType .
+#' @param xAxisRangeMin .
+#' @param xAxisRangeMax .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -530,6 +718,12 @@ scatterplot <- function(
     yinter = 0,
     vline = FALSE,
     xinter = 0,
+    pointSize = 3,
+    lineSize = 1,
+    regLine = FALSE,
+    lineMethod = "lm",
+    lineSE = TRUE,
+    singleColor = "#999999",
     colorPalette = "jmv",
     titleText,
     titleFontFace = "bold",
@@ -551,7 +745,17 @@ scatterplot <- function(
     xAxisPosition = "0.5",
     yAxisText,
     yAxisFontSize = "16",
-    yAxisPosition = "0.5") {
+    yAxisPosition = "0.5",
+    yAxisLabelFontSize = 12,
+    yAxisLabelRotation = 0,
+    yAxisRangeType = "auto",
+    yAxisRangeMin = 0,
+    yAxisRangeMax = 10,
+    xAxisLabelFontSize = 12,
+    xAxisLabelRotation = 0,
+    xAxisRangeType = "auto",
+    xAxisRangeMin = 0,
+    xAxisRangeMax = 10) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("scatterplot requires jmvcore to be installed (restart may be required)")
@@ -585,6 +789,12 @@ scatterplot <- function(
         yinter = yinter,
         vline = vline,
         xinter = xinter,
+        pointSize = pointSize,
+        lineSize = lineSize,
+        regLine = regLine,
+        lineMethod = lineMethod,
+        lineSE = lineSE,
+        singleColor = singleColor,
         colorPalette = colorPalette,
         titleText = titleText,
         titleFontFace = titleFontFace,
@@ -606,7 +816,17 @@ scatterplot <- function(
         xAxisPosition = xAxisPosition,
         yAxisText = yAxisText,
         yAxisFontSize = yAxisFontSize,
-        yAxisPosition = yAxisPosition)
+        yAxisPosition = yAxisPosition,
+        yAxisLabelFontSize = yAxisLabelFontSize,
+        yAxisLabelRotation = yAxisLabelRotation,
+        yAxisRangeType = yAxisRangeType,
+        yAxisRangeMin = yAxisRangeMin,
+        yAxisRangeMax = yAxisRangeMax,
+        xAxisLabelFontSize = xAxisLabelFontSize,
+        xAxisLabelRotation = xAxisLabelRotation,
+        xAxisRangeType = xAxisRangeType,
+        xAxisRangeMin = xAxisRangeMin,
+        xAxisRangeMax = xAxisRangeMax)
 
     analysis <- scatterplotClass$new(
         options = options,

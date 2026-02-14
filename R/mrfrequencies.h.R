@@ -16,12 +16,19 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             order = "decreasing",
             showTotal = TRUE,
             showCounts = TRUE,
+            labelPosition = "middle",
             showResponses = TRUE,
             showCases = TRUE,
             yaxis = "cases",
-            size = "medium",
+            horizontal = FALSE,
+            showLabels = FALSE,
+            accuracy = "0.1",
+            labelFontSize = 12,
             colorPalette = "jmv",
             singleColor = TRUE,
+            colorNo = 1,
+            borderColor = "none",
+            textColor = "auto",
             titleText = NULL,
             titleFontFace = "bold",
             titleFontSize = "14",
@@ -39,7 +46,17 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             xAxisPosition = "0.5",
             yAxisText = NULL,
             yAxisFontSize = "16",
-            yAxisPosition = "0.5", ...) {
+            yAxisPosition = "0.5",
+            yAxisLabelFontSize = 12,
+            yAxisLabelRotation = 0,
+            yAxisRangeType = "auto",
+            yAxisRangeMin = 0,
+            yAxisRangeMax = 10,
+            xAxisLabelFontSize = 12,
+            xAxisLabelRotation = 0,
+            xAxisRangeType = "auto",
+            xAxisRangeMin = 0,
+            xAxisRangeMax = 10, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -99,6 +116,13 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 "showCounts",
                 showCounts,
                 default=TRUE)
+            private$..labelPosition <- jmvcore::OptionList$new(
+                "labelPosition",
+                labelPosition,
+                options=list(
+                    "middle",
+                    "top"),
+                default="middle")
             private$..showResponses <- jmvcore::OptionBool$new(
                 "showResponses",
                 showResponses,
@@ -115,16 +139,28 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "responses",
                     "cases"),
                 default="cases")
-            private$..size <- jmvcore::OptionList$new(
-                "size",
-                size,
+            private$..horizontal <- jmvcore::OptionBool$new(
+                "horizontal",
+                horizontal,
+                default=FALSE)
+            private$..showLabels <- jmvcore::OptionBool$new(
+                "showLabels",
+                showLabels,
+                default=FALSE)
+            private$..accuracy <- jmvcore::OptionList$new(
+                "accuracy",
+                accuracy,
                 options=list(
-                    "small",
-                    "medium",
-                    "large",
-                    "wide",
-                    "huge"),
-                default="medium")
+                    "1",
+                    "0.1",
+                    "0.01"),
+                default="0.1")
+            private$..labelFontSize <- jmvcore::OptionNumber$new(
+                "labelFontSize",
+                labelFontSize,
+                min=8,
+                max=24,
+                default=12)
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -170,12 +206,44 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "viridis::inferno",
                     "viridis::plasma",
                     "viridis::turbo",
-                    "dichromat::Categorical.12"),
+                    "dichromat::Categorical.12",
+                    "tidy::friendly",
+                    "tidy::seaside",
+                    "tidy::apple",
+                    "tidy::ibm",
+                    "tidy::candy",
+                    "tidy::alger",
+                    "tidy::rainbow",
+                    "tidy::metro",
+                    "custom::lemovice"),
                 default="jmv")
             private$..singleColor <- jmvcore::OptionBool$new(
                 "singleColor",
                 singleColor,
                 default=TRUE)
+            private$..colorNo <- jmvcore::OptionNumber$new(
+                "colorNo",
+                colorNo,
+                min=1,
+                max=255,
+                default=1)
+            private$..borderColor <- jmvcore::OptionList$new(
+                "borderColor",
+                borderColor,
+                options=list(
+                    "none",
+                    "black",
+                    "white",
+                    "gray"),
+                default="none")
+            private$..textColor <- jmvcore::OptionList$new(
+                "textColor",
+                textColor,
+                options=list(
+                    "black",
+                    "white",
+                    "auto"),
+                default="auto")
             private$..titleText <- jmvcore::OptionString$new(
                 "titleText",
                 titleText)
@@ -316,6 +384,56 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                     "0.5",
                     "0"),
                 default="0.5")
+            private$..yAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "yAxisLabelFontSize",
+                yAxisLabelFontSize,
+                default=12)
+            private$..yAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "yAxisLabelRotation",
+                yAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..yAxisRangeType <- jmvcore::OptionList$new(
+                "yAxisRangeType",
+                yAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..yAxisRangeMin <- jmvcore::OptionNumber$new(
+                "yAxisRangeMin",
+                yAxisRangeMin,
+                default=0)
+            private$..yAxisRangeMax <- jmvcore::OptionNumber$new(
+                "yAxisRangeMax",
+                yAxisRangeMax,
+                default=10)
+            private$..xAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "xAxisLabelFontSize",
+                xAxisLabelFontSize,
+                default=12)
+            private$..xAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "xAxisLabelRotation",
+                xAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..xAxisRangeType <- jmvcore::OptionList$new(
+                "xAxisRangeType",
+                xAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..xAxisRangeMin <- jmvcore::OptionNumber$new(
+                "xAxisRangeMin",
+                xAxisRangeMin,
+                default=0)
+            private$..xAxisRangeMax <- jmvcore::OptionNumber$new(
+                "xAxisRangeMax",
+                xAxisRangeMax,
+                default=10)
 
             self$.addOption(private$..mode)
             self$.addOption(private$..repVar)
@@ -327,12 +445,19 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..order)
             self$.addOption(private$..showTotal)
             self$.addOption(private$..showCounts)
+            self$.addOption(private$..labelPosition)
             self$.addOption(private$..showResponses)
             self$.addOption(private$..showCases)
             self$.addOption(private$..yaxis)
-            self$.addOption(private$..size)
+            self$.addOption(private$..horizontal)
+            self$.addOption(private$..showLabels)
+            self$.addOption(private$..accuracy)
+            self$.addOption(private$..labelFontSize)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..singleColor)
+            self$.addOption(private$..colorNo)
+            self$.addOption(private$..borderColor)
+            self$.addOption(private$..textColor)
             self$.addOption(private$..titleText)
             self$.addOption(private$..titleFontFace)
             self$.addOption(private$..titleFontSize)
@@ -351,6 +476,16 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
             self$.addOption(private$..yAxisText)
             self$.addOption(private$..yAxisFontSize)
             self$.addOption(private$..yAxisPosition)
+            self$.addOption(private$..yAxisLabelFontSize)
+            self$.addOption(private$..yAxisLabelRotation)
+            self$.addOption(private$..yAxisRangeType)
+            self$.addOption(private$..yAxisRangeMin)
+            self$.addOption(private$..yAxisRangeMax)
+            self$.addOption(private$..xAxisLabelFontSize)
+            self$.addOption(private$..xAxisLabelRotation)
+            self$.addOption(private$..xAxisRangeType)
+            self$.addOption(private$..xAxisRangeMin)
+            self$.addOption(private$..xAxisRangeMax)
         }),
     active = list(
         mode = function() private$..mode$value,
@@ -363,12 +498,19 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         order = function() private$..order$value,
         showTotal = function() private$..showTotal$value,
         showCounts = function() private$..showCounts$value,
+        labelPosition = function() private$..labelPosition$value,
         showResponses = function() private$..showResponses$value,
         showCases = function() private$..showCases$value,
         yaxis = function() private$..yaxis$value,
-        size = function() private$..size$value,
+        horizontal = function() private$..horizontal$value,
+        showLabels = function() private$..showLabels$value,
+        accuracy = function() private$..accuracy$value,
+        labelFontSize = function() private$..labelFontSize$value,
         colorPalette = function() private$..colorPalette$value,
         singleColor = function() private$..singleColor$value,
+        colorNo = function() private$..colorNo$value,
+        borderColor = function() private$..borderColor$value,
+        textColor = function() private$..textColor$value,
         titleText = function() private$..titleText$value,
         titleFontFace = function() private$..titleFontFace$value,
         titleFontSize = function() private$..titleFontSize$value,
@@ -386,7 +528,17 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         xAxisPosition = function() private$..xAxisPosition$value,
         yAxisText = function() private$..yAxisText$value,
         yAxisFontSize = function() private$..yAxisFontSize$value,
-        yAxisPosition = function() private$..yAxisPosition$value),
+        yAxisPosition = function() private$..yAxisPosition$value,
+        yAxisLabelFontSize = function() private$..yAxisLabelFontSize$value,
+        yAxisLabelRotation = function() private$..yAxisLabelRotation$value,
+        yAxisRangeType = function() private$..yAxisRangeType$value,
+        yAxisRangeMin = function() private$..yAxisRangeMin$value,
+        yAxisRangeMax = function() private$..yAxisRangeMax$value,
+        xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value,
+        xAxisRangeType = function() private$..xAxisRangeType$value,
+        xAxisRangeMin = function() private$..xAxisRangeMin$value,
+        xAxisRangeMax = function() private$..xAxisRangeMax$value),
     private = list(
         ..mode = NA,
         ..repVar = NA,
@@ -398,12 +550,19 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         ..order = NA,
         ..showTotal = NA,
         ..showCounts = NA,
+        ..labelPosition = NA,
         ..showResponses = NA,
         ..showCases = NA,
         ..yaxis = NA,
-        ..size = NA,
+        ..horizontal = NA,
+        ..showLabels = NA,
+        ..accuracy = NA,
+        ..labelFontSize = NA,
         ..colorPalette = NA,
         ..singleColor = NA,
+        ..colorNo = NA,
+        ..borderColor = NA,
+        ..textColor = NA,
         ..titleText = NA,
         ..titleFontFace = NA,
         ..titleFontSize = NA,
@@ -421,7 +580,17 @@ mrfrequenciesOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
         ..xAxisPosition = NA,
         ..yAxisText = NA,
         ..yAxisFontSize = NA,
-        ..yAxisPosition = NA)
+        ..yAxisPosition = NA,
+        ..yAxisLabelFontSize = NA,
+        ..yAxisLabelRotation = NA,
+        ..yAxisRangeType = NA,
+        ..yAxisRangeMin = NA,
+        ..yAxisRangeMax = NA,
+        ..xAxisLabelFontSize = NA,
+        ..xAxisLabelRotation = NA,
+        ..xAxisRangeType = NA,
+        ..xAxisRangeMin = NA,
+        ..xAxisRangeMax = NA)
 )
 
 mrfrequenciesResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -523,12 +692,19 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param order .
 #' @param showTotal .
 #' @param showCounts .
+#' @param labelPosition .
 #' @param showResponses .
 #' @param showCases .
 #' @param yaxis .
-#' @param size .
+#' @param horizontal .
+#' @param showLabels .
+#' @param accuracy .
+#' @param labelFontSize .
 #' @param colorPalette .
 #' @param singleColor .
+#' @param colorNo .
+#' @param borderColor .
+#' @param textColor .
 #' @param titleText .
 #' @param titleFontFace .
 #' @param titleFontSize .
@@ -547,6 +723,16 @@ mrfrequenciesBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisText .
 #' @param yAxisFontSize .
 #' @param yAxisPosition .
+#' @param yAxisLabelFontSize .
+#' @param yAxisLabelRotation .
+#' @param yAxisRangeType .
+#' @param yAxisRangeMin .
+#' @param yAxisRangeMax .
+#' @param xAxisLabelFontSize .
+#' @param xAxisLabelRotation .
+#' @param xAxisRangeType .
+#' @param xAxisRangeMin .
+#' @param xAxisRangeMax .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
@@ -573,12 +759,19 @@ mrfrequencies <- function(
     order = "decreasing",
     showTotal = TRUE,
     showCounts = TRUE,
+    labelPosition = "middle",
     showResponses = TRUE,
     showCases = TRUE,
     yaxis = "cases",
-    size = "medium",
+    horizontal = FALSE,
+    showLabels = FALSE,
+    accuracy = "0.1",
+    labelFontSize = 12,
     colorPalette = "jmv",
     singleColor = TRUE,
+    colorNo = 1,
+    borderColor = "none",
+    textColor = "auto",
     titleText,
     titleFontFace = "bold",
     titleFontSize = "14",
@@ -596,7 +789,17 @@ mrfrequencies <- function(
     xAxisPosition = "0.5",
     yAxisText,
     yAxisFontSize = "16",
-    yAxisPosition = "0.5") {
+    yAxisPosition = "0.5",
+    yAxisLabelFontSize = 12,
+    yAxisLabelRotation = 0,
+    yAxisRangeType = "auto",
+    yAxisRangeMin = 0,
+    yAxisRangeMax = 10,
+    xAxisLabelFontSize = 12,
+    xAxisLabelRotation = 0,
+    xAxisRangeType = "auto",
+    xAxisRangeMin = 0,
+    xAxisRangeMax = 10) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("mrfrequencies requires jmvcore to be installed (restart may be required)")
@@ -623,12 +826,19 @@ mrfrequencies <- function(
         order = order,
         showTotal = showTotal,
         showCounts = showCounts,
+        labelPosition = labelPosition,
         showResponses = showResponses,
         showCases = showCases,
         yaxis = yaxis,
-        size = size,
+        horizontal = horizontal,
+        showLabels = showLabels,
+        accuracy = accuracy,
+        labelFontSize = labelFontSize,
         colorPalette = colorPalette,
         singleColor = singleColor,
+        colorNo = colorNo,
+        borderColor = borderColor,
+        textColor = textColor,
         titleText = titleText,
         titleFontFace = titleFontFace,
         titleFontSize = titleFontSize,
@@ -646,7 +856,17 @@ mrfrequencies <- function(
         xAxisPosition = xAxisPosition,
         yAxisText = yAxisText,
         yAxisFontSize = yAxisFontSize,
-        yAxisPosition = yAxisPosition)
+        yAxisPosition = yAxisPosition,
+        yAxisLabelFontSize = yAxisLabelFontSize,
+        yAxisLabelRotation = yAxisLabelRotation,
+        yAxisRangeType = yAxisRangeType,
+        yAxisRangeMin = yAxisRangeMin,
+        yAxisRangeMax = yAxisRangeMax,
+        xAxisLabelFontSize = xAxisLabelFontSize,
+        xAxisLabelRotation = xAxisLabelRotation,
+        xAxisRangeType = xAxisRangeType,
+        xAxisRangeMin = xAxisRangeMin,
+        xAxisRangeMax = xAxisRangeMax)
 
     analysis <- mrfrequenciesClass$new(
         options = options,

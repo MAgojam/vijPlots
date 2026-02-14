@@ -33,60 +33,59 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$helpMessage$setVisible(FALSE)
             }
 
-            if (is.null(self$options$groupVar)) {
-                extraWidth <- 0
-            } else {
-                n <- max(nchar(levels(self$data[[self$options$groupVar]])))
-                extraWidth <- 50 + n*8
+            if (!is.null(self$options$groupVar)) {
+                if (self$options$legendPosition %in% c('top','bottom')) {
+                    fixed_width <- 0
+                    fixed_height <- 50
+                } else {
+                    fixed_width <- 100
+                    fixed_height <- 0
+                }
+                # Set the image dimensions
+                image <- self$results$obsPlot
+                image2 <- self$results$biPlot
+                if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                    image$setSize(600 + fixed_width, 600 + fixed_height)
+                    image2$setSize(600 + fixed_width, 600 + fixed_height)
+                } else {
+                    image$setSize2(600, 600, fixed_width, fixed_height)
+                    image2$setSize2(600, 600, fixed_width, fixed_height)
+                }
             }
-            userWidth <- as.numeric(self$options$plotWidth)
-            userHeight <- as.numeric(self$options$plotHeight)
-
-            if ((userWidth != 0 && userWidth < 200) || (userHeight != 0 && userHeight < 200))
-                reject("Plot size must be between 200 and 1000 (or 0 = default)")
-
-            image <- self$results$varPlot
-            width <- image$width
-            height <- image$height
-
-            if (userWidth > 0)
-                width <- userWidth
-            if (userHeight > 0)
-                height <- userHeight
-            image$setSize(width, height)
-            image <- self$results$obsPlot
-            image$setSize(width + extraWidth, height)
-            image <- self$results$biPlot
-            image$setSize(width + extraWidth, height)
         },
         .run = function() {
-            if (is.null(self$options$vars) || length(self$options$vars) < 2)
+            if (is.null(self$options$vars) || length(self$options$vars) < 2 || nrow(self$data) == 0)
                 return()
             # check dim values
             nDim <- self$options$dimNum
             if (nDim > length(self$options$vars))
-                reject("The number of dimensions cannot be greater than the number of variables")
+                jmvcore::reject("The number of dimensions cannot be greater than the number of variables")
             if (self$options$xaxis > nDim || self$options$yaxis > nDim)
-                reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
+                jmvcore::reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
             if (self$options$xaxis == self$options$yaxis)
-                reject("X-Axis and Y-Axis cannot be equal")
+                jmvcore::reject("X-Axis and Y-Axis cannot be equal")
 
             # Set variable names
             private$.setVarNames(c(self$options$vars, self$options$labelVar, self$options$groupVar))
 
-            # remove cases with with NA in vars
-            data <- self$data[complete.cases(self$data[,self$options$vars]),]
+            #### Prepare data ####
+            data <- self$data[,c(self$options$vars, self$options$labelVar, self$options$groupVar)]
             # Be sure data is numeric (for ordinal data)
             for (aVar in self$options$vars) {
-                data[[aVar]] <- as.numeric(data[[aVar]])
+                data[[aVar]] <- jmvcore::toNumeric(data[[aVar]])
             }
+            # remove cases with NA in vars
+            data <- data[complete.cases(data[,self$options$vars]),]
 
             # Verify that cor Matrice is positive definite
             corrMat <- cor(data[,self$options$vars])
-            if ( abs(det(corrMat)) < .Machine$double.eps)
-                warningMsg <- .("The correlation matrix is not positive definite. Computations may not be accurate.\r\n")
-            else
-                warningMsg <- ""
+            if (abs(det(corrMat)) < .Machine$double.eps) {
+                warningMsg <- .("The correlation matrix is not positive definite. Computations may not be accurate.")
+                warningNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING,
+                                                     name = '.warning',
+                                                     content = warningMsg)
+                self$results$insert(1, warningNotice)
+            }
 
             #### KMO & Bartlett's test ####
             if (self$options$showKMO) {
@@ -131,8 +130,12 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             )
 
             if (res$rotation != self$options$rotation) {
-                warningMsg <- paste0(warningMsg, jmvcore::format(.("Unable to use {rotation} rotation."), rotation = rotationName))
+                rotationMsg <- jmvcore::format(.("Unable to use {rotation} rotation."), rotation = rotationName)
                 rotationNote <- .("No rotation used.")
+                rotationNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING,
+                                                         name = '.rotationMsg',
+                                                         content = rotationMsg)
+                self$results$insert(1, rotationNotice)
             } else if (self$options$rotation != "none") {
                 if (self$options$kaiser) {
                     rotationNote <- jmvcore::format(.("{rotation} rotation with Kaiser normalization was used."), rotation = rotationName)
@@ -143,14 +146,6 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             } else {
                 rotationNote <- NULL
-            }
-
-            # Warning (rotation / positive definite)
-            if (warningMsg !=""){
-                weightsNotice <- jmvcore::Notice$new(self$options, type = NoticeType$WARNING,
-                                                     name = '.weights',
-                                                     content = warningMsg)
-                self$results$insert(1, weightsNotice)
             }
 
             #### Summary Table ####
@@ -272,9 +267,9 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             #### Saving coordinates  ####
             if (self$options$stdScores)
-                private$.saveCoordinates(res$stdScores, norm = "Standard")
+                private$.saveCoordinates(res$stdScores, norm = "standard")
             else
-                private$.saveCoordinates(res$scores, norm = "Principal")
+                private$.saveCoordinates(res$scores, norm = "principal")
 
         },
         .screeplot = function(image, ggtheme, theme, ...) {
@@ -316,8 +311,8 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             propIn <- round(100*res$SSL/eigenSum,1)
             dim1 <- self$options$xaxis
             dim2 <- self$options$yaxis
-            dim1name <- paste0(.("Component "), dim1, " (", propIn[dim1],"%)")
-            dim2name <- paste0(.("Component "), dim2, " (", propIn[dim2],"%)")
+            dim1name <- paste0(.("Component"), " ", dim1, " (", propIn[dim1],"%)")
+            dim2name <- paste0(.("Component"), " ", dim2, " (", propIn[dim2],"%)")
 
             type <- self$options$biplotType
             if (plotType == "biplot" && type == "formPlot") {
@@ -560,17 +555,20 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 titles <- paste(.("Dim"), keys)
                 descriptions <- character(length(keys))
 
-                if (self$options$rotation == "none")
-                    rotationStr <- ""
-                else
-                    rotationStr <- paste0(" (", self$options$rotation, ")")
+                if (norm == "principal") {
+                    if (self$options$rotation == "none")
+                        descriptionString <- .("PCA Principal Coordinates")
+                    else
+                        descriptionString <- paste0(.("PCA Principal Coordinates"), " (", self$options$rotation, ")")
+                } else {
+                    if (self$options$rotation == "none")
+                        descriptionString <- .("PCA Standard Coordinates")
+                    else
+                        descriptionString <- paste0(.("PCA Standard Coordinates"), " (", self$options$rotation, ")")
+                }
 
                 for (i in keys) {
-                    descriptions[i] = jmvcore::format(
-                        .("PCA {norm} Coordinate{rotation}"),
-                        norm = norm,
-                        rotation = rotationStr
-                    )
+                    descriptions[i] = descriptionString
                 }
 
                 self$results$obsCoordOV$set(

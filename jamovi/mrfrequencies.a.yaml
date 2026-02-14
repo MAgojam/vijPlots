@@ -34,7 +34,7 @@ options:
       default: ';'
 
     - name: emptyAsNA
-      title: Empty value as NA
+      title: Treat empty values as missing
       type: Bool
       default: true
 
@@ -47,7 +47,7 @@ options:
         - factor
 
     - name: endorsed
-      title: Counted Value
+      title: Counted value
       type: Integer
       default: 1
 
@@ -78,13 +78,23 @@ options:
       type: Bool
       default: true
 
+    - name: labelPosition
+      title: Label Position
+      type: List
+      options:
+        - title: Middle
+          name:  middle
+        - title: Top
+          name:  top
+      default: middle
+
     - name: showResponses
-      title: "% of Responses"
+      title: "% of responses"
       type: Bool
       default: true
 
     - name: showCases
-      title: "% of Cases"
+      title: "% of cases"
       type: Bool
       default: true
 
@@ -94,27 +104,40 @@ options:
       options:
         - title: Counts
           name:  counts
-        - title: '% of Responses'
+        - title: '% of responses'
           name:  responses
-        - title: '% of Cases'
+        - title: '% of cases'
           name:  cases
       default: cases
 
-    - name: size
-      title: ""
+    - name: horizontal
+      title: Horizontal plot
+      type: Bool
+      default: false
+
+    - name: showLabels
+      title: Show count labels
+      type: Bool
+      default: false
+
+    - name: accuracy
+      title: "% Accuracy"
       type: List
       options:
-        - title: Small (300x200)
-          name:  small
-        - title: Medium (400x300)
-          name:  medium
-        - title: Large (600x400)
-          name:  large
-        - title: Wide (700x400)
-          name:  wide
-        - title: Huge (800x500)
-          name:  huge
-      default: medium
+        - title: "1"
+          name:  "1"
+        - title: "0.1"
+          name:  "0.1"
+        - title: "0.01"
+          name: "0.01"
+      default: "0.1"
+
+    - name: labelFontSize
+      type: Number
+      title: Label
+      min: 8
+      max: 24
+      default: 12
 
     - name: colorPalette
       title: Palette
@@ -193,23 +216,74 @@ options:
         - title: Yellow to Red
           name:  YlOrRd
         - title: Viridis:Viridis
-          name:  viridis::viridis
+          name: viridis::viridis
         - title: Viridis:Magma
-          name:  viridis::magma
+          name: viridis::magma
         - title: Viridis:Inferno
-          name:  viridis::inferno
+          name: viridis::inferno
         - title: Viridis:Plasma
-          name:  viridis::plasma
+          name: viridis::plasma
         - title: Viridis:Turbo
-          name:  viridis::turbo
+          name: viridis::turbo
         - title: Dichromat:Categorical
-          name:  dichromat::Categorical.12
+          name: dichromat::Categorical.12
+        - title: Tidy:Friendly
+          name: tidy::friendly
+        - title: Tidy:Seaside
+          name: tidy::seaside
+        - title: Tidy:Apple
+          name: tidy::apple
+        - title: Tidy:Ibm
+          name: tidy::ibm
+        - title: Tidy:Candy
+          name: tidy::candy
+        - title: Tidy:Alger
+          name: tidy::alger
+        - title: Tidy:Rainbow
+          name: tidy::rainbow
+        - title: Tidy:Metro
+          name: tidy::metro
+        - title: Lémovice
+          name: custom::lemovice
       default: jmv
 
     - name: singleColor
       title: Same color for all bars
       type: Bool
       default: true
+
+    - name: colorNo
+      type: Number
+      title: Color Number
+      min: 1
+      max: 255
+      default: 1
+
+    - name: borderColor
+      title: Border
+      type: List
+      options:
+        - title: None
+          name:  none
+        - title: Black
+          name:  black
+        - title: White
+          name:  white
+        - title: Gray
+          name:  gray
+      default: none
+
+    - name: textColor
+      title: Label
+      type: List
+      options:
+        - title: Black
+          name:  black
+        - title: White
+          name:  white
+        - title: Auto
+          name:  auto
+      default: auto
 
     - name: titleText
       title: ""
@@ -428,5 +502,69 @@ options:
         - name: "0"
           title: Bottom
       default: "0.5"
+
+    - name: yAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 12
+
+    - name: yAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
+
+    - name: yAxisRangeType
+      title: Y-Axis Range
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: yAxisRangeMin
+      title: Min
+      type: Number
+      default: 0
+
+    - name: yAxisRangeMax
+      title: Max
+      type: Number
+      default: 10
+
+    - name: xAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 12
+
+    - name: xAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
+
+    - name: xAxisRangeType
+      title: X-Axis Range
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: xAxisRangeMin
+      title: Min
+      type: Number
+      default: 0
+
+    - name: xAxisRangeMax
+      title: Max
+      type: Number
+      default: 10
 
 ...

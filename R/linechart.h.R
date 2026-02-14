@@ -10,14 +10,12 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             vars = NULL,
             group = NULL,
             showPoint = TRUE,
+            ignoreNA = TRUE,
             colorPalette = "jmv",
             isDate = FALSE,
             dateFormat = "auto",
             displayFormat = "%Y-%m-%d",
             dateBreak = "1 month",
-            rotateLabels = FALSE,
-            plotWidth = 0,
-            plotHeight = 0,
             dotSize = 2,
             lineWidth = 1,
             titleText = NULL,
@@ -40,7 +38,14 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             xAxisPosition = "0.5",
             yAxisText = NULL,
             yAxisFontSize = "16",
-            yAxisPosition = "0.5", ...) {
+            yAxisPosition = "0.5",
+            yAxisLabelFontSize = 12,
+            yAxisLabelRotation = 0,
+            yAxisRangeType = "auto",
+            yAxisRangeMin = 0,
+            yAxisRangeMax = 10,
+            xAxisLabelFontSize = 12,
+            xAxisLabelRotation = 0, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -72,6 +77,10 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showPoint <- jmvcore::OptionBool$new(
                 "showPoint",
                 showPoint,
+                default=TRUE)
+            private$..ignoreNA <- jmvcore::OptionBool$new(
+                "ignoreNA",
+                ignoreNA,
                 default=TRUE)
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
@@ -118,7 +127,16 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "viridis::inferno",
                     "viridis::plasma",
                     "viridis::turbo",
-                    "dichromat::Categorical.12"),
+                    "dichromat::Categorical.12",
+                    "tidy::friendly",
+                    "tidy::seaside",
+                    "tidy::apple",
+                    "tidy::ibm",
+                    "tidy::candy",
+                    "tidy::alger",
+                    "tidy::rainbow",
+                    "tidy::metro",
+                    "custom::lemovice"),
                 default="jmv")
             private$..isDate <- jmvcore::OptionBool$new(
                 "isDate",
@@ -138,12 +156,18 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 displayFormat,
                 options=list(
                     "%Y-%m-%d",
+                    "%m-%d-%Y",
+                    "%d-%m-%Y",
                     "%m/%d/%y",
                     "%d/%m/%y",
-                    "%Y %B %e ",
+                    "%Y %B %e",
                     "%e %B %Y",
                     "%B %Y",
+                    "%B %y",
+                    "%b %Y",
+                    "%b %y",
                     "%Y %B",
+                    "%Y %b",
                     "%b",
                     "%B",
                     "%Y"),
@@ -161,22 +185,6 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "1 year",
                     "10 year"),
                 default="1 month")
-            private$..rotateLabels <- jmvcore::OptionBool$new(
-                "rotateLabels",
-                rotateLabels,
-                default=FALSE)
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1000,
-                default=0)
             private$..dotSize <- jmvcore::OptionNumber$new(
                 "dotSize",
                 dotSize,
@@ -352,19 +360,52 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "0.5",
                     "0"),
                 default="0.5")
+            private$..yAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "yAxisLabelFontSize",
+                yAxisLabelFontSize,
+                default=12)
+            private$..yAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "yAxisLabelRotation",
+                yAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
+            private$..yAxisRangeType <- jmvcore::OptionList$new(
+                "yAxisRangeType",
+                yAxisRangeType,
+                options=list(
+                    "auto",
+                    "manual"),
+                default="auto")
+            private$..yAxisRangeMin <- jmvcore::OptionNumber$new(
+                "yAxisRangeMin",
+                yAxisRangeMin,
+                default=0)
+            private$..yAxisRangeMax <- jmvcore::OptionNumber$new(
+                "yAxisRangeMax",
+                yAxisRangeMax,
+                default=10)
+            private$..xAxisLabelFontSize <- jmvcore::OptionNumber$new(
+                "xAxisLabelFontSize",
+                xAxisLabelFontSize,
+                default=12)
+            private$..xAxisLabelRotation <- jmvcore::OptionNumber$new(
+                "xAxisLabelRotation",
+                xAxisLabelRotation,
+                default=0,
+                min=0,
+                max=360)
 
             self$.addOption(private$..timeVar)
             self$.addOption(private$..vars)
             self$.addOption(private$..group)
             self$.addOption(private$..showPoint)
+            self$.addOption(private$..ignoreNA)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..isDate)
             self$.addOption(private$..dateFormat)
             self$.addOption(private$..displayFormat)
             self$.addOption(private$..dateBreak)
-            self$.addOption(private$..rotateLabels)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..dotSize)
             self$.addOption(private$..lineWidth)
             self$.addOption(private$..titleText)
@@ -388,20 +429,25 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..yAxisText)
             self$.addOption(private$..yAxisFontSize)
             self$.addOption(private$..yAxisPosition)
+            self$.addOption(private$..yAxisLabelFontSize)
+            self$.addOption(private$..yAxisLabelRotation)
+            self$.addOption(private$..yAxisRangeType)
+            self$.addOption(private$..yAxisRangeMin)
+            self$.addOption(private$..yAxisRangeMax)
+            self$.addOption(private$..xAxisLabelFontSize)
+            self$.addOption(private$..xAxisLabelRotation)
         }),
     active = list(
         timeVar = function() private$..timeVar$value,
         vars = function() private$..vars$value,
         group = function() private$..group$value,
         showPoint = function() private$..showPoint$value,
+        ignoreNA = function() private$..ignoreNA$value,
         colorPalette = function() private$..colorPalette$value,
         isDate = function() private$..isDate$value,
         dateFormat = function() private$..dateFormat$value,
         displayFormat = function() private$..displayFormat$value,
         dateBreak = function() private$..dateBreak$value,
-        rotateLabels = function() private$..rotateLabels$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         dotSize = function() private$..dotSize$value,
         lineWidth = function() private$..lineWidth$value,
         titleText = function() private$..titleText$value,
@@ -424,20 +470,25 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         xAxisPosition = function() private$..xAxisPosition$value,
         yAxisText = function() private$..yAxisText$value,
         yAxisFontSize = function() private$..yAxisFontSize$value,
-        yAxisPosition = function() private$..yAxisPosition$value),
+        yAxisPosition = function() private$..yAxisPosition$value,
+        yAxisLabelFontSize = function() private$..yAxisLabelFontSize$value,
+        yAxisLabelRotation = function() private$..yAxisLabelRotation$value,
+        yAxisRangeType = function() private$..yAxisRangeType$value,
+        yAxisRangeMin = function() private$..yAxisRangeMin$value,
+        yAxisRangeMax = function() private$..yAxisRangeMax$value,
+        xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value),
     private = list(
         ..timeVar = NA,
         ..vars = NA,
         ..group = NA,
         ..showPoint = NA,
+        ..ignoreNA = NA,
         ..colorPalette = NA,
         ..isDate = NA,
         ..dateFormat = NA,
         ..displayFormat = NA,
         ..dateBreak = NA,
-        ..rotateLabels = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..dotSize = NA,
         ..lineWidth = NA,
         ..titleText = NA,
@@ -460,7 +511,14 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..xAxisPosition = NA,
         ..yAxisText = NA,
         ..yAxisFontSize = NA,
-        ..yAxisPosition = NA)
+        ..yAxisPosition = NA,
+        ..yAxisLabelFontSize = NA,
+        ..yAxisLabelRotation = NA,
+        ..yAxisRangeType = NA,
+        ..yAxisRangeMin = NA,
+        ..yAxisRangeMax = NA,
+        ..xAxisLabelFontSize = NA,
+        ..xAxisLabelRotation = NA)
 )
 
 linechartResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -512,14 +570,12 @@ linechartBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param vars .
 #' @param group .
 #' @param showPoint .
+#' @param ignoreNA .
 #' @param colorPalette .
 #' @param isDate .
 #' @param dateFormat .
 #' @param displayFormat .
 #' @param dateBreak .
-#' @param rotateLabels .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param dotSize .
 #' @param lineWidth .
 #' @param titleText .
@@ -543,6 +599,13 @@ linechartBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisText .
 #' @param yAxisFontSize .
 #' @param yAxisPosition .
+#' @param yAxisLabelFontSize .
+#' @param yAxisLabelRotation .
+#' @param yAxisRangeType .
+#' @param yAxisRangeMin .
+#' @param yAxisRangeMax .
+#' @param xAxisLabelFontSize .
+#' @param xAxisLabelRotation .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -555,14 +618,12 @@ linechart <- function(
     vars,
     group,
     showPoint = TRUE,
+    ignoreNA = TRUE,
     colorPalette = "jmv",
     isDate = FALSE,
     dateFormat = "auto",
     displayFormat = "%Y-%m-%d",
     dateBreak = "1 month",
-    rotateLabels = FALSE,
-    plotWidth = 0,
-    plotHeight = 0,
     dotSize = 2,
     lineWidth = 1,
     titleText,
@@ -585,7 +646,14 @@ linechart <- function(
     xAxisPosition = "0.5",
     yAxisText,
     yAxisFontSize = "16",
-    yAxisPosition = "0.5") {
+    yAxisPosition = "0.5",
+    yAxisLabelFontSize = 12,
+    yAxisLabelRotation = 0,
+    yAxisRangeType = "auto",
+    yAxisRangeMin = 0,
+    yAxisRangeMax = 10,
+    xAxisLabelFontSize = 12,
+    xAxisLabelRotation = 0) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("linechart requires jmvcore to be installed (restart may be required)")
@@ -607,14 +675,12 @@ linechart <- function(
         vars = vars,
         group = group,
         showPoint = showPoint,
+        ignoreNA = ignoreNA,
         colorPalette = colorPalette,
         isDate = isDate,
         dateFormat = dateFormat,
         displayFormat = displayFormat,
         dateBreak = dateBreak,
-        rotateLabels = rotateLabels,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         dotSize = dotSize,
         lineWidth = lineWidth,
         titleText = titleText,
@@ -637,7 +703,14 @@ linechart <- function(
         xAxisPosition = xAxisPosition,
         yAxisText = yAxisText,
         yAxisFontSize = yAxisFontSize,
-        yAxisPosition = yAxisPosition)
+        yAxisPosition = yAxisPosition,
+        yAxisLabelFontSize = yAxisLabelFontSize,
+        yAxisLabelRotation = yAxisLabelRotation,
+        yAxisRangeType = yAxisRangeType,
+        yAxisRangeMin = yAxisRangeMin,
+        yAxisRangeMax = yAxisRangeMax,
+        xAxisLabelFontSize = xAxisLabelFontSize,
+        xAxisLabelRotation = xAxisLabelRotation)
 
     analysis <- linechartClass$new(
         options = options,

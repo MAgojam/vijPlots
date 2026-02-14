@@ -47,21 +47,19 @@ children:
                 name: type_QQ
                 optionName: type
                 optionPart: QQ
-                label: Q-Q Plot
+                label: Q-Q plot
               - type: RadioButton
                 name: type_PP
                 optionName: type
                 optionPart: PP
-                label: P-P Plot
+                label: P-P plot
           - type: Label
             label: Data Transform
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: transLog
-                  - type: CheckBox
-                    name: standardize
+              - type: CheckBox
+                name: transLog
+              - type: CheckBox
+                name: standardize
       - type: LayoutBox
         cell:
           column: 1
@@ -81,13 +79,13 @@ children:
                         name: refType_identity
                         optionName: refType
                         optionPart: identity
-                        label: Identity Line
+                        label: Identity line
                         enable: (refLine)
                       - type: RadioButton
                         name: refType_qqline
                         optionName: refType
                         optionPart: qqline
-                        label: Q-Q Line
+                        label: Q-Q line
                         enable: (refLine && type_QQ)
               - type: CheckBox
                 name: band
@@ -113,22 +111,20 @@ children:
                 name: paramMethod_paraEstimat
                 optionName: paramMethod
                 optionPart: paraEstimate
-                label: Estimate Parameters from Data
+                label: Estimate parameters from data
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: RadioButton
-                        name: paramEstMethod_mle
-                        optionName: paramEstMethod
-                        optionPart: mle
-                        label: Maximum-likelihood (MLE)
-                        enable: (paramMethod_paraEstimat)
-                      - type: RadioButton
-                        name: paramEstMethod_mme
-                        optionName: paramEstMethod
-                        optionPart: mme
-                        label: Method of moments (MME)
-                        enable: (paramMethod_paraEstimat)
+                  - type: RadioButton
+                    name: paramEstMethod_mle
+                    optionName: paramEstMethod
+                    optionPart: mle
+                    label: Maximum-likelihood (MLE)
+                    enable: (paramMethod_paraEstimat)
+                  - type: RadioButton
+                    name: paramEstMethod_mme
+                    optionName: paramEstMethod
+                    optionPart: mme
+                    label: Method of moments (MME)
+                    enable: (paramMethod_paraEstimat)
           - type: LayoutBox
             cell:
               column: 1
@@ -139,20 +135,18 @@ children:
                 name: paramMethod_paraValue
                 optionName: paramMethod
                 optionPart: paraValue
-                label: Parameter Values
+                label: Parameter values
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: param1
-                        format: number
-                        enable: (paramMethod_paraValue)
-                      - type: TextBox
-                        name: param2
-                        format: number
-                        enable: (paramMethod_paraValue && norm)
+                  - type: TextBox
+                    name: param1
+                    format: number
+                    enable: (paramMethod_paraValue)
+                  - type: TextBox
+                    name: param2
+                    format: number
+                    enable: (paramMethod_paraValue && norm)
   - type: CollapseBox
-    label: Extra Options
+    label: Colors & Options
     collapsed: true
     stretchFactor: 1
     children:
@@ -168,22 +162,12 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Color Palette
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: textSize
-                        format: number
-                        suffix: pt
+                  - type: ComboBox
+                    name: colorPalette
+                    label: ''
+                    enable: (!(!group))
           - type: LayoutBox
             cell:
               column: 1
@@ -193,14 +177,95 @@ children:
               - type: Label
                 label: Confidence Band Methods
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: ComboBox
-                        name: methodQQ
-                      - type: ComboBox
-                        name: methodPP
+                  - type: ComboBox
+                    name: methodQQ
+                    enable: (type:QQ && band)
+                  - type: ComboBox
+                    name: methodPP
+                    enable: (type:PP&& band)
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Axes
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: X-Axis
+                children:
+                  - type: TextBox
+                    name: xAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: xAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: xAxisRangeType_auto
+                    optionName: xAxisRangeType
+                    optionPart: auto
+                  - type: RadioButton
+                    name: xAxisRangeType_manual
+                    optionName: xAxisRangeType
+                    optionPart: manual
+                    children:
+                      - type: TextBox
+                        name: xAxisRangeMin
+                        format: number
+                        enable: (xAxisRangeType:manual)
+                      - type: TextBox
+                        name: xAxisRangeMax
+                        format: number
+                        enable: (xAxisRangeType:manual)
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Y-Axis
+                children:
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: yAxisRangeType_auto
+                    optionName: yAxisRangeType
+                    optionPart: auto
+                  - type: RadioButton
+                    name: yAxisRangeType_manual
+                    optionName: yAxisRangeType
+                    optionPart: manual
+                    children:
+                      - type: TextBox
+                        name: yAxisRangeMin
+                        format: number
+                        enable: (yAxisRangeType:manual)
+                      - type: TextBox
+                        name: yAxisRangeMax
+                        format: number
+                        enable: (yAxisRangeType:manual)
+  - type: CollapseBox
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

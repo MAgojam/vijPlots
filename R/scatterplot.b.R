@@ -6,9 +6,28 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = scatterplotBase,
     private = list(
         .init = function() {
-            image <- self$results$plot
+            # Stretchable dimensions
+            width <- 450
+            height <- 450
+            # Fixed dimensions
+            fixed_height <- 50 # X-Axis legend
+            fixed_width <- 75 # Y-Axis legend
             if( !is.null(self$options$group) || !is.null(self$options$ptSize) ) {
-                image$setSize(700, 600)
+                if (self$options$legendPosition %in% c('top','bottom')) {
+                    if( !is.null(self$options$group) && !is.null(self$options$ptSize) )
+                        fixed_height <- fixed_height + 100 # two legends
+                    else
+                        fixed_height <- fixed_height + 50 # one legend
+                } else {
+                    fixed_width <- fixed_width + 100
+                }
+            }
+            # Set the image dimensions
+            image <- self$results$plot
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
             }
         },
         .run = function() {
@@ -58,19 +77,24 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             plotData <- image$state
 
             if( !is.null(sizeVar) ) {
-                plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis, size = !!sizeVar))
+                plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis, size = !!sizeVar, color = !!groupVar, fill = !!groupVar))
                 if( is.null(groupVar)) {
-                    plot <- plot + geom_point(color = "dimgrey")
+                    plot <- plot + geom_point(color = self$options$singleColor)
                 } else {
-                    plot <- plot + geom_point(aes(color = !!groupVar))
+                    plot <- plot + geom_point(aes(color = !!groupVar), show.legend = TRUE)
                 }
             } else {
-                plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis))
+                plot <- ggplot(plotData, aes(x = !!xaxis, y = !!yaxis, color = !!groupVar, fill = !!groupVar))
                 if( is.null(groupVar)) {
-                    plot <- plot + geom_point(color = "dimgrey", size = 3)
+                    plot <- plot + geom_point(color = self$options$singleColor, size = self$options$pointSize)
                 } else {
-                    plot <- plot + geom_point(aes(color = !!groupVar), size = 3)
+                    plot <- plot + geom_point(aes(color = !!groupVar), size = self$options$pointSize, show.legend = TRUE)
                 }
+            }
+
+            if (self$options$regLine) {
+                plot <- plot + ggplot2::geom_smooth(method = self$options$lineMethod, se = self$options$lineSE, formula = y ~ x,
+                                                    size = self$options$lineSize, show.legend = FALSE)
             }
 
             plot <- plot + guides(color = guide_legend(override.aes = list(size=4)))
@@ -84,20 +108,31 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 maxx <- max(plotData[[xaxis]], na.rm=T) + 0.1*(max(plotData[[xaxis]], na.rm=T) - min(plotData[[xaxis]], na.rm=T))
                 plot <- plot + expand_limits(x = maxx)
             }
-            if( self$options$hline )
-                plot <- plot + geom_hline(yintercept= self$options$yinter,  color="black")
-            if( self$options$vline )
-            plot <- plot + geom_vline(xintercept= self$options$xinter,  color="black")
+            if (self$options$hline)
+                plot <- plot + geom_hline(yintercept= self$options$yinter,  color="black", size = self$options$lineSize/2)
+            if (self$options$vline)
+                plot <- plot + geom_vline(xintercept= self$options$xinter,  color="black", size = self$options$lineSize/2)
 
             # Theme and colors
-            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color")
+            plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color", drop = FALSE) + vijScale(self$options$colorPalette, "fill", drop = FALSE)
+
+            # Axis Limits
+            if (self$options$yAxisRangeType == "manual")
+                yLim <- c(self$options$yAxisRangeMin, self$options$yAxisRangeMax)
+            else
+                yLim <- NULL
+            if (self$options$xAxisRangeType == "manual")
+                xLim <- c(self$options$xAxisRangeMin, self$options$xAxisRangeMax)
+            else
+                xLim <- NULL
+            plot <- plot + coord_cartesian(ylim = yLim, xlim = xLim)
 
             if( self$options$plotBorder ) {
                 plot <- plot + theme(axis.line = element_line(linewidth = 0), panel.border = element_rect(color = "black", fill = NA, size = 1))
             }
 
             # Titles & Labels
-            defaults <- list(y = yaxis, x = xaxis, legend = groupVar)
+            defaults <- list(y = yaxis, x = xaxis, legend = groupVar, sizeLegend = sizeVar)
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
 
             return(plot)

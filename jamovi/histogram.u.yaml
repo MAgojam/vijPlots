@@ -32,23 +32,16 @@ children:
   - type: LayoutBox
     margin: large
     style: inline
-    children:
-      - type: CheckBox
-        name: normalCurve
-        enable: (!group)
-  - type: LayoutBox
-    margin: large
-    style: inline
     stretchFactor: 1
     children:
       - type: LayoutBox
         cell:
           column: 0
           row: 0
-        stretchFactor: 2
+        stretchFactor: 1
         children:
           - type: Label
-            label: Histogram
+            label: Y-Axis
             children:
               - type: RadioButton
                 name: histtype_count
@@ -64,112 +57,139 @@ children:
         cell:
           column: 1
           row: 0
-        stretchFactor: 2
+        stretchFactor: 1
         children:
           - type: Label
             label: Bin Size
             children:
-              - type: LayoutBox
-                stretchFactor: 1
-                children:
-                  - type: TextBox
-                    name: binWidth
-                    format: number
-                  - type: TextBox
-                    name: binBoundary
-                    format: number
+              - type: TextBox
+                name: binWidth
+                format: number
+              - type: TextBox
+                name: binBoundary
+                format: number
       - type: LayoutBox
         cell:
           column: 2
           row: 0
-        stretchFactor: 3
+        stretchFactor: 1
         children:
           - type: Label
-            label: Bin Color
+            label: Grouping
             children:
-              - type: LayoutBox
-                stretchFactor: 1
-                children:
-                  - type: ComboBox
-                    name: borderColor
-                  - type: ComboBox
-                    name: fillColor
+              - type: RadioButton
+                name: groupingN_stack
+                optionName: groupingN
+                optionPart: stack
+                label: Stacked
+                enable: (!(!group))
+              - type: RadioButton
+                name: groupingN_identity
+                optionName: groupingN
+                optionPart: identity
+                label: Overlapping
+                enable: (!(!group))
+              # - type: RadioButton
+              #   name: groupingN_dodge
+              #   optionName: groupingN
+              #   optionPart: dodge
+              #   label: Grouped
+              #   enable: (!(!group))
   - type: CollapseBox
-    label: Grouping Plot
+    label: Options
     collapsed: true
     stretchFactor: 1
     children:
       - type: LayoutBox
-        margin: large
+        cell:
+          column: 0
+          row: 0
         stretchFactor: 1
         children:
-          - type: LayoutBox
-            cell:
-              column: 0
-              row: 0
-            stretchFactor: 1
+          - type: Label
+            label: Density
             children:
-              - type: Label
-                label: Grouping
+              - type: CheckBox
+                name: density
                 children:
-                  - type: RadioButton
-                    name: grouping_none
-                    optionName: grouping
-                    optionPart: none
-                    label: None
-                  - type: RadioButton
-                    name: grouping_stack
-                    optionName: grouping
-                    optionPart: stack
-                    label: Stacked
-                    enable: (!(!group))
-                  - type: RadioButton
-                    name: grouping_identity
-                    optionName: grouping
-                    optionPart: identity
-                    label: Overlapping
-                    enable: (!(!group))
-                  - type: RadioButton
-                    name: grouping_dodge
-                    optionName: grouping
-                    optionPart: dodge
-                    label: Grouped
-                    enable: (!(!group))
-          - type: LayoutBox
-            cell:
-              column: 1
-              row: 0
-            stretchFactor: 1
+                  - type: TextBox
+                    name: densityOpacity
+                    format: number
+                    enable: (density)
+                  - type: TextBox
+                    name: densityLineSize
+                    format: number
+                    enable: (density)
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Normal Curve
             children:
-              - type: Label
-                label: Use Palette
+              - type: CheckBox
+                name: normalCurve
+#                enable: (!group)
+                children:
+                  - type: TextBox
+                    name: normalCurveLineSize
+                    format: number
+                    enable: (normalCurve)
+                  - type: CheckBox
+                    name: dashedDensity
+                    enable: (normalCurve)
+  - type: CollapseBox
+    label: Colors
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        cell:
+          column: 0
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Bin Color
+            children:
+              - type: ComboBox
+                name: borderColor
+                enable: (!group || usePalette:forFilling)
+              - type: ComboBox
+                name: fillColor
+                enable: (!group || usePalette:forBorder)
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Color Palette
+            children:
+              - type: ComboBox
+                name: colorPalette
+                label: ''
+                enable: (!(!group))
+              - type: LayoutBox
+                style: inline
                 children:
                   - type: RadioButton
                     name: usePalette_forFilling
                     optionName: usePalette
                     optionPart: forFilling
-                    label: For Filling
+                    label: For filling
                     enable: (!(!group))
                   - type: RadioButton
                     name: usePalette_forBoder
                     optionName: usePalette
                     optionPart: forBorder
-                    label: For Border
+                    label: For border
                     enable: (!(!group))
-          - type: LayoutBox
-            cell:
-              column: 2
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
-                label: Color Palette
-                children:
-                  - type: ComboBox
-                    name: colorPalette
-                    label: ''
   - type: CollapseBox
-    label: Extra Options
+    label: Facets
     collapsed: true
     stretchFactor: 1
     children:
@@ -185,18 +205,72 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Facets
                 children:
                   - type: LayoutBox
+                    style: inline
+                    children:
+                      - type: RadioButton
+                        name: facetBy_row
+                        optionName: facetBy
+                        optionPart: row
+                        label: Row
+                        enable: (!(!facet))
+                      - type: RadioButton
+                        name: facetBy_column
+                        optionName: facetBy
+                        optionPart: column
+                        label: Column
+                        enable: (!(!facet))
+                  - type: TextBox
+                    name: facetNumber
+                    format: number
+                    enable: (!(!facet))
+  - type: CollapseBox
+    label: Axes
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: X-Axis
+                children:
+                  - type: TextBox
+                    name: xAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: xAxisLabelRotation
+                    suffix: °
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: xAxisRangeType_auto
+                    optionName: xAxisRangeType
+                    optionPart: auto
+                  - type: RadioButton
+                    name: xAxisRangeType_manual
+                    optionName: xAxisRangeType
+                    optionPart: manual
                     children:
                       - type: TextBox
-                        name: plotWidth
+                        name: xAxisRangeMin
                         format: number
-                        suffix: px
+                        enable: (xAxisRangeType:manual)
                       - type: TextBox
-                        name: plotHeight
+                        name: xAxisRangeMax
                         format: number
-                        suffix: px
+                        enable: (xAxisRangeType:manual)
           - type: LayoutBox
             cell:
               column: 1
@@ -204,32 +278,37 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Facets
+                label: Y-Axis
                 children:
-                  - type: LayoutBox
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: °
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: yAxisRangeType_auto
+                    optionName: yAxisRangeType
+                    optionPart: auto
+                  - type: RadioButton
+                    name: yAxisRangeType_manual
+                    optionName: yAxisRangeType
+                    optionPart: manual
                     children:
-                      - type: LayoutBox
-                        margin: large
-                        style: inline
-                        children:
-                          - type: RadioButton
-                            name: facetBy_row
-                            optionName: facetBy
-                            optionPart: row
-                            label: Row
-                            enable: (!(!facet))
-                          - type: RadioButton
-                            name: facetBy_column
-                            optionName: facetBy
-                            optionPart: column
-                            label: Column
-                            enable: (!(!facet))
                       - type: TextBox
-                        name: facetNumber
+                        name: yAxisRangeMin
                         format: number
-                        enable: (!(!facet))
+                        enable: (yAxisRangeType:manual)
+                      - type: TextBox
+                        name: yAxisRangeMax
+                        format: number
+                        enable: (yAxisRangeType:manual)
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

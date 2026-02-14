@@ -10,12 +10,14 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             facet = NULL,
             donut = FALSE,
             labels = "none",
+            labType = NULL,
+            overlap = FALSE,
+            labOffset = 0,
+            labSize = 12,
             colorPalette = "jmv",
             borderColor = "black",
             textColor = "auto",
             accuracy = "0.1",
-            plotWidth = 0,
-            plotHeight = 0,
             facetBy = "column",
             facetNumber = 1,
             titleText = NULL,
@@ -65,8 +67,33 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "none",
                     "count",
-                    "percent"),
+                    "percent",
+                    "group",
+                    "group+count",
+                    "group+percent"),
                 default="none")
+            private$..labType <- jmvcore::OptionList$new(
+                "labType",
+                labType,
+                options=list(
+                    "text",
+                    "label"))
+            private$..overlap <- jmvcore::OptionBool$new(
+                "overlap",
+                overlap,
+                default=FALSE)
+            private$..labOffset <- jmvcore::OptionNumber$new(
+                "labOffset",
+                labOffset,
+                min=0,
+                max=9,
+                default=0)
+            private$..labSize <- jmvcore::OptionNumber$new(
+                "labSize",
+                labSize,
+                min=8,
+                max=24,
+                default=12)
             private$..colorPalette <- jmvcore::OptionList$new(
                 "colorPalette",
                 colorPalette,
@@ -112,7 +139,16 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "viridis::inferno",
                     "viridis::plasma",
                     "viridis::turbo",
-                    "dichromat::Categorical.12"),
+                    "dichromat::Categorical.12",
+                    "tidy::friendly",
+                    "tidy::seaside",
+                    "tidy::apple",
+                    "tidy::ibm",
+                    "tidy::candy",
+                    "tidy::alger",
+                    "tidy::rainbow",
+                    "tidy::metro",
+                    "custom::lemovice"),
                 default="jmv")
             private$..borderColor <- jmvcore::OptionList$new(
                 "borderColor",
@@ -139,18 +175,6 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "0.1",
                     "0.01"),
                 default="0.1")
-            private$..plotWidth <- jmvcore::OptionNumber$new(
-                "plotWidth",
-                plotWidth,
-                min=0,
-                max=1000,
-                default=0)
-            private$..plotHeight <- jmvcore::OptionNumber$new(
-                "plotHeight",
-                plotHeight,
-                min=0,
-                max=1600,
-                default=0)
             private$..facetBy <- jmvcore::OptionList$new(
                 "facetBy",
                 facetBy,
@@ -288,12 +312,14 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..facet)
             self$.addOption(private$..donut)
             self$.addOption(private$..labels)
+            self$.addOption(private$..labType)
+            self$.addOption(private$..overlap)
+            self$.addOption(private$..labOffset)
+            self$.addOption(private$..labSize)
             self$.addOption(private$..colorPalette)
             self$.addOption(private$..borderColor)
             self$.addOption(private$..textColor)
             self$.addOption(private$..accuracy)
-            self$.addOption(private$..plotWidth)
-            self$.addOption(private$..plotHeight)
             self$.addOption(private$..facetBy)
             self$.addOption(private$..facetNumber)
             self$.addOption(private$..titleText)
@@ -317,12 +343,14 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         facet = function() private$..facet$value,
         donut = function() private$..donut$value,
         labels = function() private$..labels$value,
+        labType = function() private$..labType$value,
+        overlap = function() private$..overlap$value,
+        labOffset = function() private$..labOffset$value,
+        labSize = function() private$..labSize$value,
         colorPalette = function() private$..colorPalette$value,
         borderColor = function() private$..borderColor$value,
         textColor = function() private$..textColor$value,
         accuracy = function() private$..accuracy$value,
-        plotWidth = function() private$..plotWidth$value,
-        plotHeight = function() private$..plotHeight$value,
         facetBy = function() private$..facetBy$value,
         facetNumber = function() private$..facetNumber$value,
         titleText = function() private$..titleText$value,
@@ -345,12 +373,14 @@ piechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..facet = NA,
         ..donut = NA,
         ..labels = NA,
+        ..labType = NA,
+        ..overlap = NA,
+        ..labOffset = NA,
+        ..labSize = NA,
         ..colorPalette = NA,
         ..borderColor = NA,
         ..textColor = NA,
         ..accuracy = NA,
-        ..plotWidth = NA,
-        ..plotHeight = NA,
         ..facetBy = NA,
         ..facetNumber = NA,
         ..titleText = NA,
@@ -419,12 +449,14 @@ piechartBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param facet .
 #' @param donut .
 #' @param labels .
+#' @param labType .
+#' @param overlap .
+#' @param labOffset .
+#' @param labSize .
 #' @param colorPalette .
 #' @param borderColor .
 #' @param textColor .
 #' @param accuracy .
-#' @param plotWidth .
-#' @param plotHeight .
 #' @param facetBy .
 #' @param facetNumber .
 #' @param titleText .
@@ -454,12 +486,14 @@ piechart <- function(
     facet,
     donut = FALSE,
     labels = "none",
+    labType,
+    overlap = FALSE,
+    labOffset = 0,
+    labSize = 12,
     colorPalette = "jmv",
     borderColor = "black",
     textColor = "auto",
     accuracy = "0.1",
-    plotWidth = 0,
-    plotHeight = 0,
     facetBy = "column",
     facetNumber = 1,
     titleText,
@@ -497,12 +531,14 @@ piechart <- function(
         facet = facet,
         donut = donut,
         labels = labels,
+        labType = labType,
+        overlap = overlap,
+        labOffset = labOffset,
+        labSize = labSize,
         colorPalette = colorPalette,
         borderColor = borderColor,
         textColor = textColor,
         accuracy = accuracy,
-        plotWidth = plotWidth,
-        plotHeight = plotHeight,
         facetBy = facetBy,
         facetNumber = facetNumber,
         titleText = titleText,

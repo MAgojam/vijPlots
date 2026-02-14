@@ -35,73 +35,52 @@ children:
   - type: LayoutBox
     margin: large
     style: inline
+    stretchFactor: 1
     children:
       - type: LayoutBox
         cell:
           column: 0
           row: 0
-        stretchFactor: 6
+        stretchFactor: 1
         children:
           - type: Label
             label: Plot Options
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: ignoreNA
-                    enable: (!(!group))
-                  - type: CheckBox
-                    name: showOutliers
-                  - type: CheckBox
-                    name: showMean
-                  - type: CheckBox
-                    name: staple
-                  - type: CheckBox
-                    name: notches
+              - type: CheckBox
+                name: ignoreNA
+                enable: (!(!group))
+              - type: CheckBox
+                name: showOutliers
+              - type: CheckBox
+                name: showMean
+              - type: CheckBox
+                name: horizontal
       - type: LayoutBox
         cell:
           column: 1
           row: 0
-        stretchFactor: 5
+        stretchFactor: 1
         children:
           - type: Label
-            label: Sorting (Median)
+            label: Sorting (by median)
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: order_none
-                    optionName: order
-                    optionPart: none
-                    label: None
-                  - type: RadioButton
-                    name: order_increasing
-                    optionName: order
-                    optionPart: increasing
-                    label: Increasing
-                  - type: RadioButton
-                    name: order_decreasing
-                    optionName: order
-                    optionPart: decreasing
-                    label: Decreasing
-      - type: LayoutBox
-        cell:
-          column: 2
-          row: 0
-        stretchFactor: 9
-        children:
-          - type: Label
-            label: Color Options
-            children:
-              - type: LayoutBox
-                children:
-                  - type: ComboBox
-                    name: colorPalette
-                  - type: CheckBox
-                    name: singleColor
-                    enable: (!group)
+              - type: RadioButton
+                name: order_none
+                optionName: order
+                optionPart: none
+                label: None
+              - type: RadioButton
+                name: order_increasing
+                optionName: order
+                optionPart: increasing
+                label: Increasing
+              - type: RadioButton
+                name: order_decreasing
+                optionName: order
+                optionPart: decreasing
+                label: Decreasing
   - type: CollapseBox
-    label: Extra Options
+    label: Colors & Options
     collapsed: true
     stretchFactor: 1
     children:
@@ -117,18 +96,23 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Color Palette
                 children:
-                  - type: LayoutBox
+                  - type: ComboBox
+                    name: colorPalette
+                    label: ''
+                  - type: CheckBox
+                    name: singleColor
+                    label: Use color No.
+                    style: inline
+                    verticalAlignment: center
                     children:
                       - type: TextBox
-                        name: plotWidth
+                        name: colorNo
+                        label: ''
+                        suffix: only
                         format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                        enable: (singleColor)
           - type: LayoutBox
             cell:
               column: 1
@@ -136,29 +120,109 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Options
+                label: Box Elements
                 children:
                   - type: CheckBox
-                    name: horizontal
-          - type: LayoutBox
-            cell:
-              column: 2
-              row: 0
-            stretchFactor: 1
-            children:
-              - type: Label
-                label: Boxplot Elements
-                children:
-                  - type: LayoutBox
+                    name: staple
                     children:
                       - type: TextBox
                         name: stapleWidth
                         format: number
+                        enable: (staple)
+                  - type: CheckBox
+                    name: notches
+                    children:
                       - type: TextBox
                         name: notchWidth
                         format: number
+                        enable: (notches)
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Axes
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: X-Axis
+                children:
+                  - type: TextBox
+                    name: xAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: xAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: xAxisRangeType_auto
+                    optionName: xAxisRangeType
+                    optionPart: auto
+                    enable: (horizontal)
+                  - type: RadioButton
+                    name: xAxisRangeType_manual
+                    optionName: xAxisRangeType
+                    optionPart: manual
+                    enable: (horizontal)
+                    children:
+                      - type: TextBox
+                        name: xAxisRangeMin
+                        format: number
+                        enable: (xAxisRangeType:manual && horizontal)
+                      - type: TextBox
+                        name: xAxisRangeMax
+                        format: number
+                        enable: (xAxisRangeType:manual && horizontal)
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Y-Axis
+                children:
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: yAxisRangeType_auto
+                    optionName: yAxisRangeType
+                    optionPart: auto
+                    enable: (!horizontal)
+                  - type: RadioButton
+                    name: yAxisRangeType_manual
+                    optionName: yAxisRangeType
+                    optionPart: manual
+                    enable: (!horizontal)
+                    children:
+                      - type: TextBox
+                        name: yAxisRangeMin
+                        format: number
+                        enable: (yAxisRangeType:manual && !horizontal)
+                      - type: TextBox
+                        name: yAxisRangeMax
+                        format: number
+                        enable: (yAxisRangeType:manual && !horizontal)
+  - type: CollapseBox
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

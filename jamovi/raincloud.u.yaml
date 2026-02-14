@@ -16,7 +16,7 @@ children:
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Group (Side by side)
+        label: Group (Side-by-side)
         children:
           - type: VariablesListBox
             name: groupOne
@@ -43,14 +43,13 @@ children:
           - type: Label
             label: Plot Options
             children:
-              - type: LayoutBox
-                children:
-                  - type: CheckBox
-                    name: nudgeBoxplot
-                  - type: CheckBox
-                    name: horizontal
-                  - type: CheckBox
-                    name: reverse
+              - type: CheckBox
+                name: nudgeBoxplot
+                enable: (!(!groupTwo))
+              - type: CheckBox
+                name: horizontal
+              - type: CheckBox
+                name: reverse
       - type: LayoutBox
         cell:
           column: 1
@@ -60,22 +59,33 @@ children:
           - type: Label
             label: Color Options
             children:
-              - type: LayoutBox
+              - type: ComboBox
+                name: colorPalette
+              - type: CheckBox
+                name: singleColor
+                label: Use color No.
+                enable: (!groupTwo)
+                style: inline
+                verticalAlignment: center
                 children:
-                  - type: ComboBox
-                    name: colorPalette
                   - type: TextBox
-                    name: alphaC
+                    name: colorNo
+                    label: ''
+                    suffix: only
                     format: number
+                    enable: (singleColor && !groupTwo)
+              - type: TextBox
+                name: alphaC
+                format: number
+                enable: (!(!groupTwo))
   - type: CollapseBox
-    label: Extra Options
+    label: Axes
     collapsed: true
     stretchFactor: 1
     children:
       - type: LayoutBox
         margin: large
         stretchFactor: 1
-        style: inline
         children:
           - type: LayoutBox
             cell:
@@ -84,20 +94,77 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: X-Axis
                 children:
-                  - type: LayoutBox
+                  - type: TextBox
+                    name: xAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: xAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: xAxisRangeType_auto
+                    optionName: xAxisRangeType
+                    optionPart: auto
+                    enable: (horizontal)
+                  - type: RadioButton
+                    name: xAxisRangeType_manual
+                    optionName: xAxisRangeType
+                    optionPart: manual
+                    enable: (horizontal)
                     children:
                       - type: TextBox
-                        name: plotWidth
+                        name: xAxisRangeMin
                         format: number
-                        suffix: px
+                        enable: (xAxisRangeType:manual && horizontal)
                       - type: TextBox
-                        name: plotHeight
+                        name: xAxisRangeMax
                         format: number
-                        suffix: px
+                        enable: (xAxisRangeType:manual && horizontal)
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Y-Axis
+                children:
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: yAxisRangeType_auto
+                    optionName: yAxisRangeType
+                    optionPart: auto
+                    enable: (!horizontal)
+                  - type: RadioButton
+                    name: yAxisRangeType_manual
+                    optionName: yAxisRangeType
+                    optionPart: manual
+                    enable: (!horizontal)
+                    children:
+                      - type: TextBox
+                        name: yAxisRangeMin
+                        format: number
+                        enable: (yAxisRangeType:manual && !horizontal)
+                      - type: TextBox
+                        name: yAxisRangeMax
+                        format: number
+                        enable: (yAxisRangeType:manual && !horizontal)
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

@@ -36,7 +36,12 @@ options:
         - factor
 
     - name: showPoint
-      title: Show Points
+      title: Show points
+      type: Bool
+      default: true
+
+    - name: ignoreNA
+      title: Ignore missing values
       type: Bool
       default: true
 
@@ -117,17 +122,35 @@ options:
         - title: Yellow to Red
           name:  YlOrRd
         - title: Viridis:Viridis
-          name:  viridis::viridis
+          name: viridis::viridis
         - title: Viridis:Magma
-          name:  viridis::magma
+          name: viridis::magma
         - title: Viridis:Inferno
-          name:  viridis::inferno
+          name: viridis::inferno
         - title: Viridis:Plasma
-          name:  viridis::plasma
+          name: viridis::plasma
         - title: Viridis:Turbo
-          name:  viridis::turbo
+          name: viridis::turbo
         - title: Dichromat:Categorical
-          name:  dichromat::Categorical.12
+          name: dichromat::Categorical.12
+        - title: Tidy:Friendly
+          name: tidy::friendly
+        - title: Tidy:Seaside
+          name: tidy::seaside
+        - title: Tidy:Apple
+          name: tidy::apple
+        - title: Tidy:Ibm
+          name: tidy::ibm
+        - title: Tidy:Candy
+          name: tidy::candy
+        - title: Tidy:Alger
+          name: tidy::alger
+        - title: Tidy:Rainbow
+          name: tidy::rainbow
+        - title: Tidy:Metro
+          name: tidy::metro
+        - title: Lémovice
+          name: custom::lemovice
       default: jmv
 
     - name: isDate
@@ -136,7 +159,7 @@ options:
       default: false
 
     - name: dateFormat
-      title: Input Format
+      title: Input format
       type: List
       options:
         - title: "Auto"
@@ -150,33 +173,45 @@ options:
       default: "auto"
 
     - name: displayFormat
-      title: Display Format
+      title: Display format
       type: List
       options:
-        - title: "2035-06-20"
+        - title: "2035-10-20"
           name:  "%Y-%m-%d"
-        - title: "06/20/35"
+        - title: "10-20-2035"
+          name:  "%m-%d-%Y"
+        - title: "20-10-2035"
+          name:  "%d-%m-%Y"
+        - title: "10/20/35"
           name:  "%m/%d/%y"
-        - title: "20/06/35"
+        - title: "20/10/35"
           name:  "%d/%m/%y"
-        - title: "2035 June 20"
-          name:  "%Y %B %e "
-        - title: "20 June 2035"
+        - title: "2035 October 20"
+          name:  "%Y %B %e"
+        - title: "20 October 2035"
           name:  "%e %B %Y"
-        - title: "June 2035"
+        - title: "October 2035"
           name:  "%B %Y"
-        - title: "2035 June"
+        - title: "October 35"
+          name:  "%B %y"
+        - title: "Oct 2035"
+          name:  "%b %Y"
+        - title: "Oct 35"
+          name:  "%b %y"
+        - title: "2035 October"
           name:  "%Y %B"
-        - title: "Jun"
+        - title: "2035 Oct"
+          name:  "%Y %b"
+        - title: Oct [menu]
           name:  "%b"
-        - title: "June"
+        - title: October [menu]
           name:  "%B"
         - title: "2035"
           name:  "%Y"
       default: "%Y-%m-%d"
 
     - name: dateBreak
-      title: Date Breaks
+      title: Date breaks
       type: List
       options:
         - title: "1 day"
@@ -197,35 +232,16 @@ options:
           name:  "10 year"
       default: "1 month"
 
-    - name: rotateLabels
-      title: Rotate X-Axis Labels
-      type: Bool
-      default: false
-
-    - name: plotWidth
-      type: Number
-      title: Width
-      min: 0
-      max: 1000
-      default: 0
-
-    - name: plotHeight
-      type: Number
-      title: Height
-      min: 0
-      max: 1000
-      default: 0
-
     - name: dotSize
       type: Number
-      title: Dot Size
+      title: Dot size
       min: 1
       max: 20
       default: 2
 
     - name: lineWidth
       type: Number
-      title: Line Width
+      title: Line width
       min: 0
       max: 10
       default: 1
@@ -483,5 +499,49 @@ options:
         - name: "0"
           title: Bottom
       default: "0.5"
+
+    - name: yAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 12
+
+    - name: yAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
+
+    - name: yAxisRangeType
+      title: Y-Axis Range
+      type: List
+      options:
+        - name: auto
+          title: Auto
+        - name: manual
+          title: Manual
+      default: auto
+
+    - name: yAxisRangeMin
+      title: Min
+      type: Number
+      default: 0
+
+    - name: yAxisRangeMax
+      title: Max
+      type: Number
+      default: 10
+
+    - name: xAxisLabelFontSize
+      title: Label font size
+      type: Number
+      default: 12
+
+    - name: xAxisLabelRotation
+      title: Label rotation
+      type: Number
+      default: 0
+      min: 0
+      max: 360
 
 ...

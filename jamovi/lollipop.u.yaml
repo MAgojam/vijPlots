@@ -44,7 +44,7 @@ children:
           column: 0
           row: 0
         fitToGrid: true
-        stretchFactor: 3
+        stretchFactor: 1
         children:
           - type: Label
             label: Y-Axis
@@ -90,45 +90,28 @@ children:
         cell:
           column: 1
           row: 0
-        stretchFactor: 2
+        stretchFactor: 1
         children:
           - type: Label
             label: Sorting
             children:
-              - type: LayoutBox
-                children:
-                  - type: RadioButton
-                    name: order_none
-                    optionName: order
-                    optionPart: none
-                    label: None
-                  - type: RadioButton
-                    name: order_increasing
-                    optionName: order
-                    optionPart: increasing
-                    label: Increasing
-                  - type: RadioButton
-                    name: order_decreasing
-                    optionName: order
-                    optionPart: decreasing
-                    label: Decreasing
-      - type: LayoutBox
-        cell:
-          column: 2
-          row: 0
-        stretchFactor: 3
-        children:
-          - type: Label
-            label: Colors
-            children:
-              - type: LayoutBox
-                children:
-                  - type: ComboBox
-                    name: dotColor
-                  - type: ComboBox
-                    name: lineColor
+              - type: RadioButton
+                name: order_none
+                optionName: order
+                optionPart: none
+                label: None
+              - type: RadioButton
+                name: order_increasing
+                optionName: order
+                optionPart: increasing
+                label: Increasing
+              - type: RadioButton
+                name: order_decreasing
+                optionName: order
+                optionPart: decreasing
+                label: Decreasing
   - type: CollapseBox
-    label: Extra Options
+    label: Lollipop Size & Colors
     collapsed: true
     stretchFactor: 1
     children:
@@ -141,71 +124,155 @@ children:
             cell:
               column: 0
               row: 0
-            stretchFactor: 6
+            stretchFactor: 1
             children:
               - type: Label
-                label: Plot Size
+                label: Colors
                 children:
-                  - type: LayoutBox
-                    children:
-                      - type: TextBox
-                        name: plotWidth
-                        format: number
-                        suffix: px
-                      - type: TextBox
-                        name: plotHeight
-                        format: number
-                        suffix: px
+                  - type: ComboBox
+                    name: dotColor
+                  - type: ComboBox
+                    name: lineColor
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Lollipop Size
+            children:
+              - type: TextBox
+                name: dotSize
+                format: number
+              - type: TextBox
+                name: lineWidth
+                format: number
+  - type: CollapseBox
+    label: Facets
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        style: inline
+        children:
           - type: LayoutBox
             cell:
-              column: 1
+              column: 0
               row: 0
-            stretchFactor: 8
+            stretchFactor: 1
             children:
               - type: Label
                 label: Facets
                 children:
                   - type: LayoutBox
+                    style: inline
                     children:
-                      - type: LayoutBox
-                        margin: large
-                        style: inline
-                        children:
-                          - type: RadioButton
-                            name: facetBy_row
-                            optionName: facetBy
-                            optionPart: row
-                            label: Row
-                            enable: (!(!facet))
-                          - type: RadioButton
-                            name: facetBy_column
-                            optionName: facetBy
-                            optionPart: column
-                            label: Column
-                            enable: (!(!facet))
-                      - type: TextBox
-                        name: facetNumber
-                        format: number
+                      - type: RadioButton
+                        name: facetBy_row
+                        optionName: facetBy
+                        optionPart: row
+                        label: Row
                         enable: (!(!facet))
+                      - type: RadioButton
+                        name: facetBy_column
+                        optionName: facetBy
+                        optionPart: column
+                        label: Column
+                        enable: (!(!facet))
+                  - type: TextBox
+                    name: facetNumber
+                    format: number
+                    enable: (!(!facet))
+  - type: CollapseBox
+    label: Axes
+    collapsed: true
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
           - type: LayoutBox
             cell:
-              column: 2
+              column: 0
               row: 0
-            stretchFactor: 6
+            stretchFactor: 1
             children:
               - type: Label
-                label: Lollipop Size
+                label: X-Axis
                 children:
                   - type: TextBox
-                    name: dotSize
+                    name: xAxisLabelFontSize
                     format: number
-                    suffix: px
                   - type: TextBox
-                    name: lineWidth
+                    name: xAxisLabelRotation
+                    suffix: "°"
                     format: number
-                    suffix: px
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: xAxisRangeType_auto
+                    optionName: xAxisRangeType
+                    optionPart: auto
+                    enable: (horizontal)
+                  - type: RadioButton
+                    name: xAxisRangeType_manual
+                    optionName: xAxisRangeType
+                    optionPart: manual
+                    enable: (horizontal)
+                    children:
+                      - type: TextBox
+                        name: xAxisRangeMin
+                        format: number
+                        enable: (xAxisRangeType:manual && horizontal)
+                      - type: TextBox
+                        name: xAxisRangeMax
+                        format: number
+                        enable: (xAxisRangeType:manual && horizontal)
+          - type: LayoutBox
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Y-Axis
+                children:
+                  - type: TextBox
+                    name: yAxisLabelFontSize
+                    format: number
+                  - type: TextBox
+                    name: yAxisLabelRotation
+                    suffix: "°"
+                    format: number
+              - type: Label
+                label: Range
+                children:
+                  - type: RadioButton
+                    name: yAxisRangeType_auto
+                    optionName: yAxisRangeType
+                    optionPart: auto
+                    enable: (!horizontal)
+                  - type: RadioButton
+                    name: yAxisRangeType_manual
+                    optionName: yAxisRangeType
+                    optionPart: manual
+                    enable: (!horizontal)
+                    children:
+                      - type: TextBox
+                        name: yAxisRangeMin
+                        format: number
+                        enable: (yAxisRangeType:manual && !horizontal)
+                      - type: TextBox
+                        name: yAxisRangeMax
+                        format: number
+                        enable: (yAxisRangeType:manual && !horizontal)
   - type: CollapseBox
-    label: Legend & Axis Labels
+    label: Legend & Axis Titles
     collapsed: true
     stretchFactor: 1
     children:

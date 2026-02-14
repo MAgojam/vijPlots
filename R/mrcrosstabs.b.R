@@ -18,9 +18,9 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if ( self$options$computedValues == "options" ) {
                 table$setTitle(.("Crosstab (% by row)"))
             } else if (self$options$computedValues == "cases") {
-                table$setTitle(.("Crosstab (% of Cases)"))
+                table$setTitle(.("Crosstab (% of cases)"))
             } else if (self$options$computedValues == "responses") {
-                table$setTitle(.("Crosstab (% of Responses)"))
+                table$setTitle(.("Crosstab (% of responses)"))
             }
             # Table rows
             if (morevar) {
@@ -36,11 +36,11 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Add the "total" row here (to prevent flickering)
             if ( self$options$totalRow ) {
                 table$addRow(rowKey='.total', values=list(var="Total"))
-                table$addFormat(rowKey=".total", col=1, Cell.BEGIN_GROUP)
+                table$addFormat(rowKey=".total", col=1, jmvcore::Cell.BEGIN_GROUP)
             }
             if ( self$options$showNbOfCases && ( self$options$computedValues == "count" || self$options$computedValues == "options") ) {
                 table$addRow(rowKey='.nbofcases', values=list(var=.("Number of cases")))
-                table$addFormat(rowKey=".nbofcases", col=1, Cell.BEGIN_GROUP)
+                table$addFormat(rowKey=".nbofcases", col=1, jmvcore::Cell.BEGIN_GROUP)
             }
             # Set custom name for options column
             if (morevar)
@@ -67,24 +67,26 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
             table$addColumn(name = "Total", title=.("Overall"), type=cellType, format=cellFormat, visible=self$options$overall)
 
-            # Set the size of the plot
+            # Set the image dimensions
+            width <- 450
+            height <- 350
+            fixed_width <- 75
+            fixed_height <- 50
+            if (self$options$legendPosition %in% c('top','bottom'))
+                fixed_height <- fixed_height + 50
+            else
+                fixed_width <- fixed_width + 100
             image <- self$results$plot
-            size <- self$options$size
-            if ( size == "small" )
-                image$setSize(300, 200)
-            else if ( size == "medium" )
-                image$setSize(400,300)
-            else if ( size == "large" )
-                image$setSize(600,400)
-            else if ( size == "wide" )
-                image$setSize(700,400)
-            else if ( size == "huge" )
-                image$setSize(800,500)
+            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                image$setSize(width + fixed_width, height + fixed_height)
+            } else {
+                image$setSize2(width, height, fixed_width, fixed_height)
+            }
         },
 
         .run = function() {
             if (self$options$mode == "morevar") { # Several dychotomous variables
-                if (length(self$options$resps) < 1 || is.null(self$options$group)) {
+                if (length(self$options$resps) < 1 || is.null(self$options$group) || nrow(self$data) == 0) {
                     return()
                 } else {
                     nGroups <- nlevels(self$data[,self$options$group])
@@ -93,7 +95,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                   self$options$endorsed, self$options$order, self$options$computedValues)
                 }
             } else { # One Multiple Value Variables
-                if (is.null(self$options$repVar) || self$options$separator == '' || is.null(self$options$group2)) {
+                if (is.null(self$options$repVar) || self$options$separator == '' || is.null(self$options$group2) || nrow(self$data) == 0) {
                     return()
                 } else {
                     nGroups <- nlevels(self$data[,self$options$group2])
@@ -134,29 +136,90 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 optionName <- self$options$repVar
             }
 
-            #self$results$text$setContent(image$state)
-            #return(FALSE)
+            # Percent format (scales)
+            doPercent <- scales::label_percent(
+                accuracy = as.numeric(self$options$accuracy),
+                suffix = .("%"),
+                decimal.mark = self$options[['decSymbol']])
+
+            # Percent format (scales)
+            if (self$options$computedValues == "count")
+                doNumber <- function (x){x}
+            else
+                doNumber <- doPercent
+
+            # Border color
+            if (self$options$borderColor == "none")
+                borderColor = NA
+            else
+                borderColor = self$options$borderColor
+
+            # Reverse stack option
+            bartype <- self$options$bartype
+            reverseStack <- (!self$options$reverseStack && bartype == "stack")
+            if (reverseStack)
+                bartype <- position_stack(reverse = TRUE)
 
             # Data
             plotData <- cbind("Options" = factor(rownames(image$state), levels=rownames(image$state)),image$state)
-            plotData <- pivot_longer(plotData, cols=colnames(image$state), names_to = groupVar, values_to = "Count")
+            plotData <- tidyr::pivot_longer(plotData, cols=colnames(image$state), names_to = groupVar, values_to = "Count")
             plotData[[groupVar]] <- factor(plotData[[groupVar]], levels = names(image$state) )
             # Plot
             optionsVar <- "Options"
             if (self$options$xaxis == "xcols") {
                 xVarName <- ensym(groupVar)
                 zVarName <- ensym(optionsVar)
-                plot <- ggplot(plotData, aes(x=!!xVarName, y=Count)) +
-                            geom_col( aes(fill=!!zVarName), position = self$options$bartype)
                 xLab <- groupVar
                 gLab <- optionName
             } else {
                 xVarName <- ensym(optionsVar)
                 zVarName <- ensym(groupVar)
-                plot <- ggplot(plotData, aes(x=!!xVarName, y=Count)) +
-                            geom_col( aes(fill=!!zVarName), position = self$options$bartype)
                 xLab <- optionName
                 gLab <- groupVar
+            }
+            plot <- ggplot(plotData, aes(x=!!xVarName, y = Count, label = doNumber(Count)))
+            plot <- plot + geom_col( aes(fill=!!zVarName), position = bartype, color = borderColor)
+
+            #### Labels ####
+            if( self$options$showLabels ) {
+                vjust2 <- 0.5
+                hjust2 <- 0.5
+                vfactor <- 1
+
+                if (self$options$bartype == "stack") {
+                    if(reverseStack)
+                        labelPosition <- position_stack(vjust = 0.5, reverse = TRUE)
+                    else
+                        labelPosition <- position_stack(vjust = 0.5)
+                } else {
+                    if (self$options$labelPosition == "middle") {
+                        labelPosition <- position_dodge(width = 0.9)
+                        vfactor <- 2
+                    } else {
+                        labelPosition <- position_dodge(width = 0.9)
+                        if (self$options$horizontal) {
+                            hjust2 <- -0.2
+                        } else {
+                            vjust2 <- -0.6
+                        }
+                    }
+                }
+
+                if (self$options$labelPosition == "top")
+                    textColor <- "black"
+                else
+                    textColor <- self$options$textColor
+
+
+                if (self$options$textColor == "auto" && self$options$labelPosition == "middle") { # using hex_bw
+                    plot <- plot + geom_text(aes(fill = !!zVarName, y = Count / vfactor, color = after_scale(ggstats::hex_bw(.data$fill))),
+                                             position = labelPosition, vjust = vjust2, hjust = hjust2,
+                                             fontface = "bold", size = self$options$labelFontSize / .pt)
+                } else {
+                    plot <- plot + geom_text(aes(fill = !!zVarName, y = Count / vfactor), color = textColor,
+                                             position = labelPosition, vjust = vjust2, hjust = hjust2,
+                                             fontface = "bold", size = self$options$labelFontSize / .pt)
+                }
             }
 
             # Theme and colors
@@ -164,16 +227,38 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Y scale and lab
             if (self$options$computedValues == "responses") {
-                plot <- plot + scale_y_continuous(labels=percent_format())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent())
                 yLab <- .("% of Responses")
+                yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$computedValues == "cases") {
-                plot <- plot + scale_y_continuous(labels=percent_format())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent())
                 yLab <- .("% of Cases")
+                yScaleFactor <- 100
             } else if (self$options$computedValues == "options") {
-                plot <- plot + scale_y_continuous(labels=percent_format())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent())
                 yLab <- paste(.("% within"), optionName)
+                yScaleFactor <- 100
             } else {
                 yLab <- .("Count")
+                yScaleFactor <- 1
+            }
+
+            # Axis Limits & flip
+            if (self$options$horizontal) {
+                if (self$options$xAxisRangeType == "manual") {
+                    plot <- plot + coord_flip(ylim = c(self$options$xAxisRangeMin/yScaleFactor, self$options$xAxisRangeMax/yScaleFactor))
+                } else {
+                    if (self$options$showLabels && self$options$labelPosition == "top")
+                        plot <- plot + coord_flip(clip = "off", ylim = layer_scales(plot)$y$get_limits()*1.1) # Gives more room for labels !
+                    else
+                        plot <- plot + coord_flip(clip = "off")
+                }
+            } else {
+                if (self$options$yAxisRangeType == "manual") {
+                    plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin/yScaleFactor, self$options$yAxisRangeMax/yScaleFactor))
+                } else {
+                    plot <- plot + coord_cartesian(clip = "off")
+                }
             }
 
             # Titles & Labels
