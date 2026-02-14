@@ -34,7 +34,7 @@ options:
       default: ';'
 
     - name: emptyAsNA
-      title: Empty value as NA
+      title: Treat empty values as missing
       type: Bool
       default: true
 

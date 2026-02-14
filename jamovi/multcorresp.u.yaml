@@ -196,7 +196,6 @@ children:
                   - type: TextBox
                     name: labelSize
                     format: number
-                    suffix: pt
           - type: LayoutBox
             cell:
               column: 1

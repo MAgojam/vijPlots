@@ -9,24 +9,24 @@ boxplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Stretchable dimensions
             if( is.null(self$options$group) ) {
                 if (self$options$horizontal) {
-                    height <- min(max(100*length(self$options$vars), 300), 600)
                     width <- 600
+                    height <- min(max(100*length(self$options$vars), 300), 600)
                 } else {
-                    height <- 400
                     width <- min(max(150*length(self$options$vars), 400), 800)
+                    height <- 400
                 }
             } else {
                 if (self$options$horizontal) {
-                    height <- min(max(75*length(self$options$vars) * nlevels(self$data[[self$options$group]]), 300), 600)
                     width <- 600
+                    height <- min(max(75*length(self$options$vars) * nlevels(self$data[[self$options$group]]), 300), 600)
                 } else {
-                    height <- 400
                     width <- min(max(100*length(self$options$vars) * nlevels(self$data[[self$options$group]]),400), 800)
+                    height <- 400
                 }
             }
             # Fixed dimension
-            fixed_height <- 50 # X-Axis legend
             fixed_width <- 50 # Y-Axis legend
+            fixed_height <- 50 # X-Axis legend
             if (!is.null(self$options$group) && length(self$options$vars) > 1) {
                 if (self$options$legendPosition %in% c('top','bottom'))
                     fixed_height <- fixed_height + 50

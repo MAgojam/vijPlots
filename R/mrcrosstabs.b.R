@@ -67,7 +67,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
             table$addColumn(name = "Total", title=.("Overall"), type=cellType, format=cellFormat, visible=self$options$overall)
 
-                        # Set the image dimensions
+            # Set the image dimensions
             width <- 450
             height <- 350
             fixed_width <- 75

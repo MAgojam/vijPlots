@@ -79,9 +79,6 @@
             "{distribStr} {typeStr} Plot of {varStr}": [
                 ""
             ],
-            "{normalization} Normalization": [
-                ""
-            ],
             "{rotation} rotation": [
                 ""
             ],
@@ -103,7 +100,7 @@
             "% Accuracy": [
                 ""
             ],
-            "% by Row": [
+            "% by row": [
                 ""
             ],
             "% Inertia": [
@@ -115,10 +112,16 @@
             "% of Cases": [
                 ""
             ],
+            "% of cases": [
+                ""
+            ],
             "% of Inertia": [
                 ""
             ],
             "% of Responses": [
+                ""
+            ],
+            "% of responses": [
                 ""
             ],
             "% of Variance": [
@@ -319,9 +322,6 @@
             "Biplot": [
                 ""
             ],
-            "Biplot Size": [
-                ""
-            ],
             "Biplot Type": [
                 ""
             ],
@@ -412,9 +412,6 @@
             "Category Plot Options": [
                 ""
             ],
-            "Category Plot Size": [
-                ""
-            ],
             "Category principal": [
                 ""
             ],
@@ -464,6 +461,9 @@
                 ""
             ],
             "Column principal": [
+                ""
+            ],
+            "Column principal normalization": [
                 ""
             ],
             "Column Profiles": [
@@ -559,10 +559,10 @@
             "Crosstab (% by row)": [
                 ""
             ],
-            "Crosstab (% of Cases)": [
+            "Crosstab (% of cases)": [
                 ""
             ],
-            "Crosstab (% of Responses)": [
+            "Crosstab (% of responses)": [
                 ""
             ],
             "Cumulative %": [
@@ -634,9 +634,6 @@
             "Discrimination plot": [
                 ""
             ],
-            "Discrimination Plot Size": [
-                ""
-            ],
             "Display format": [
                 ""
             ],
@@ -685,7 +682,7 @@
             "Eigenvalues": [
                 ""
             ],
-            "Element Size": [
+            "Element Sizes": [
                 ""
             ],
             "Empty value as NA": [
@@ -802,7 +799,7 @@
             "Group (Overlapped)": [
                 ""
             ],
-            "Group (Side by side)": [
+            "Group (Side-by-side)": [
                 ""
             ],
             "Group + Count": [
@@ -817,6 +814,9 @@
             "Grouped": [
                 ""
             ],
+            "Grouped (tight)": [
+                ""
+            ],
             "Grouping": [
                 ""
             ],
@@ -824,9 +824,6 @@
                 ""
             ],
             "Groupwise": [
-                ""
-            ],
-            "Height": [
                 ""
             ],
             "Hide % labels below 5%": [
@@ -851,9 +848,6 @@
                 ""
             ],
             "Horizontal plot": [
-                ""
-            ],
-            "Huge (800x500)": [
                 ""
             ],
             "Identity line": [
@@ -976,9 +970,6 @@
             "Labels": [
                 ""
             ],
-            "Large (600x400)": [
-                ""
-            ],
             "Left": [
                 ""
             ],
@@ -1099,7 +1090,10 @@
             "May": [
                 ""
             ],
-            "MCA {type} Coordinate ({method} method)": [
+            "MCA Principal Coordinates": [
+                ""
+            ],
+            "MCA Standard Coordinates": [
                 ""
             ],
             "Mean": [
@@ -1115,9 +1109,6 @@
                 ""
             ],
             "Median of": [
-                ""
-            ],
-            "Medium (400x300)": [
                 ""
             ],
             "Method": [
@@ -1223,9 +1214,6 @@
                 ""
             ],
             "Observation Plot Options": [
-                ""
-            ],
-            "Observation Plot Size": [
                 ""
             ],
             "Observation principal": [
@@ -1357,7 +1345,10 @@
             "Pastel 2": [
                 ""
             ],
-            "PCA {norm} Coordinate{rotation}": [
+            "PCA Principal Coordinates": [
+                ""
+            ],
+            "PCA Standard Coordinates": [
                 ""
             ],
             "Percent": [
@@ -1378,12 +1369,6 @@
             "Plot": [
                 ""
             ],
-            "Plot & Element Sizes": [
-                ""
-            ],
-            "Plot & Text Sizes": [
-                ""
-            ],
             "Plot Color": [
                 ""
             ],
@@ -1391,21 +1376,6 @@
                 ""
             ],
             "Plot Options": [
-                ""
-            ],
-            "Plot Size": [
-                ""
-            ],
-            "Plot Size & Colors": [
-                ""
-            ],
-            "Plot Size & Facets": [
-                ""
-            ],
-            "Plot Size & Options": [
-                ""
-            ],
-            "Plot size must be at least 200px (or 0 = default)": [
                 ""
             ],
             "Plot Titles": [
@@ -1421,9 +1391,6 @@
                 ""
             ],
             "Point": [
-                ""
-            ],
-            "Point & Line Size": [
                 ""
             ],
             "Point size": [
@@ -1457,6 +1424,9 @@
                 ""
             ],
             "Principal coordinates": [
+                ""
+            ],
+            "Principal normalization": [
                 ""
             ],
             "Proportional point size": [
@@ -1543,9 +1513,6 @@
             "Reds": [
                 ""
             ],
-            "Reference Line": [
-                ""
-            ],
             "Reference line": [
                 ""
             ],
@@ -1558,10 +1525,7 @@
             "Reverse disposition": [
                 ""
             ],
-            "Reverse stack order": [
-                ""
-            ],
-            "Reverse the staking order": [
+            "Reverse stacking order": [
                 ""
             ],
             "Right": [
@@ -1595,6 +1559,9 @@
                 ""
             ],
             "Row principal": [
+                ""
+            ],
+            "Row principal normalization": [
                 ""
             ],
             "Row Profiles": [
@@ -1699,12 +1666,6 @@
             "Show totals (Centered only)": [
                 ""
             ],
-            "Side-by-side": [
-                ""
-            ],
-            "Side-by-side (tight)": [
-                ""
-            ],
             "Single": [
                 ""
             ],
@@ -1714,7 +1675,7 @@
             "Size": [
                 ""
             ],
-            "Small (300x200)": [
+            "Sizes & Colors": [
                 ""
             ],
             "Smoking": [
@@ -1751,6 +1712,9 @@
                 ""
             ],
             "Standard coordinates": [
+                ""
+            ],
+            "Standard normalization": [
                 ""
             ],
             "Standardize loadings (eigenvectors)": [
@@ -1828,7 +1792,10 @@
             "Supplementary variables": [
                 ""
             ],
-            "Symetric": [
+            "Symmetric": [
+                ""
+            ],
+            "Symetric normalization": [
                 ""
             ],
             "Table": [
@@ -1847,6 +1814,15 @@
                 ""
             ],
             "Text Size": [
+                ""
+            ],
+            "Text Size & Colors": [
+                ""
+            ],
+            "Text Size & Facets": [
+                ""
+            ],
+            "Text Sizes": [
                 ""
             ],
             "The correlation matrix is not positive definite. Computations may not be accurate.": [
@@ -1996,9 +1972,6 @@
             "White": [
                 ""
             ],
-            "Wide (700x400)": [
-                ""
-            ],
             "Width": [
                 ""
             ],
@@ -2048,21 +2021,6 @@
                 ""
             ],
             "menu\u0004October": [
-                ""
-            ],
-            "string\u0004Column Principal": [
-                ""
-            ],
-            "string\u0004Principal": [
-                ""
-            ],
-            "string\u0004Row Principal": [
-                ""
-            ],
-            "string\u0004Standard": [
-                ""
-            ],
-            "string\u0004Symetric": [
                 ""
             ]
         }

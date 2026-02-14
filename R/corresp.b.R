@@ -197,7 +197,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             #### Normalisation ####
             normalizationString <- switch(self$options$normalization,
                                           principal = .("Principal normalization"),
-                                          symetric = .("Symetric normalization"),
+                                          symmetric = .("Symetric normalization"),
                                           rowprincipal = .("Row principal normalization"),
                                           colprincipal = .("Column principal normalization"),
                                           standard = .("Standard normalization")
@@ -434,7 +434,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             res$col$inertia <- res$col$inertia / sum(res$eig[,1])
             names(res$row$inertia) <- rownames(res$row$coord)
             names(res$col$inertia) <- rownames(res$col$coord)
-            if (norm == "symetric") {
+            if (norm == "symmetric") {
                 res$col$coord <- sweep(res$col$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
                 res$row$coord <- sweep(res$row$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
                 if (!is.null(col.sup))
@@ -542,7 +542,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Plot subtitle
             subtitle <- switch(self$options$normalization,
                               principal = .("Principal normalization"),
-                              symetric = .("Symetric normalization"),
+                              symmetric = .("Symmetric normalization"),
                               rowprincipal = .("Row principal normalization"),
                               colprincipal = .("Column principal normalization"),
                               standard = .("Standard normalization")

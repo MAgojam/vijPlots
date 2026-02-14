@@ -16,16 +16,16 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     nbOfRow <- self$options$facetNumber
                     nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
                 }
-                height <- max(500, 300*nbOfRow)
                 width <- max(400, 200*nbOfColumn)
+                height <- max(500, 300*nbOfRow)
             } else {
-                height <- 400
                 width <- 400
+                height <- 400
             }
             # Fixed dimension
             if (self$options$legendPosition %in% c('top','bottom')) {
-                fixed_height <- 50
                 fixed_width <- 0
+                fixed_height <- 50
             } else {
                 fixed_width <- 100
                 fixed_height <- 0

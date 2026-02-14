@@ -9,7 +9,7 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Default size
             # single facet : w = 550 + 50, h = 350 + 50
             # multiple facets : w = 450*ncol + 50 , h = 300*nrow + 50
-            # legend : h + 50 if top/bttom, w + 100 if left/right
+            # legend :  w + 100 if left/right, h + 50 if top/bttom
 
             # Stretchable dimensions
             if (!is.null(self$options$facet)) {
@@ -21,15 +21,15 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     nbOfRow <- self$options$facetNumber
                     nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
                 }
-                height <- max(350,300*nbOfRow)
                 width <- max(550, 450*nbOfColumn)
+                height <- max(350,300*nbOfRow)
             } else {
                 width <- 550
                 height <- 350
             }
             # Fixed dimension
-            fixed_height <- 50 # X-Axis legend
             fixed_width <- 50 # Y-Axis legend
+            fixed_height <- 50 # X-Axis legend
             if (!is.null(self$options$group)) {
                 if (self$options$legendPosition %in% c('top','bottom'))
                     fixed_height <- fixed_height + 50

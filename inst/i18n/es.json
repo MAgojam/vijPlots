@@ -3,67 +3,67 @@
     "locale_data": {
         "messages": {
             "1": [
-                "1"
+                ""
             ],
             "8": [
-                "8"
+                ""
             ],
             "9": [
-                "9"
+                ""
             ],
             "10": [
-                "10"
+                ""
             ],
             "11": [
-                "11"
+                ""
             ],
             "12": [
-                "12"
+                ""
             ],
             "13": [
-                "13"
+                ""
             ],
             "14": [
-                "14"
+                ""
             ],
             "15": [
-                "15"
+                ""
             ],
             "16": [
-                "16"
+                ""
             ],
             "18": [
-                "18"
+                ""
             ],
             "20": [
-                "20"
+                ""
             ],
             "22": [
-                "22"
+                ""
             ],
             "24": [
-                "24"
+                ""
             ],
             "25": [
-                "25"
+                ""
             ],
             "30": [
-                "30"
+                ""
             ],
             "35": [
-                "35"
+                ""
             ],
             "40": [
-                "40"
+                ""
             ],
             "50": [
-                "50"
+                ""
             ],
             "80": [
-                "80"
+                ""
             ],
             "2035": [
-                "2035"
+                ""
             ],
             "": {
                 "domain": "messages",
@@ -71,13 +71,13 @@
                 "lang": "es"
             },
             ";": [
-                ";"
+                ""
             ],
             "[0-9]": [
-                "[0-9]"
+                ""
             ],
             "{distribStr} {typeStr} Plot of {varStr}": [
-                "Gráfico {typeStr} {distribStr} de {varStr}"
+                ""
             ],
             "{rotation} rotation": [
                 ""
@@ -92,36 +92,30 @@
                 ""
             ],
             "# of rows/columns": [
-                "Nº de filas/columnas"
+                ""
             ],
             "%": [
-                "%"
+                ""
             ],
             "% Accuracy": [
-                "Precisión de los %"
+                ""
             ],
-            "% by row": [
+            "% by Row": [
                 ""
             ],
             "% Inertia": [
                 ""
             ],
             "% Labels": [
-                "Etiquetas de los %"
-            ],
-            "% of Cases": [
                 ""
             ],
-            "% of cases": [
+            "% of Cases": [
                 ""
             ],
             "% of Inertia": [
                 ""
             ],
             "% of Responses": [
-                ""
-            ],
-            "% of responses": [
                 ""
             ],
             "% of Variance": [
@@ -131,10 +125,10 @@
                 ""
             ],
             "°": [
-                "°"
+                ""
             ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <h2>Likert Plot Help</h2> <h3>Data & Sorting</h3>\n<ul> <li>Likert variables must be of ordinal measure-type. (Continuous measure-type works as well.)</li> <li>If you plan to compute mean/median/sd or to use comparison tests, they must be of integer data-type.</li> <li><strong>Tidy up levels:</strong> when checked, try to fix the labels order in table and graph (when some variables miss some levels).</li> <li><strong>Convert variables to integer:</strong> when checked, the level labels are ignored and only integer values are used.</li> <li><strong>Sort Variables by Median:</strong> orders the list of Likert variables by median.</li> </ul>\n<h3>Comparison Tests</h3> When using a group variable, several tests are available: <ul> <li><strong>Mann-Whitney U:</strong> Two group comparison</li> <li><strong>Kruskal-Wallis:</strong> n group comparison</li> <li><strong>Post Hoc Tests:</strong> Dunn, Conover and Dwass-Steel-Critchlow-Fligner (DSCF) paiwise comparisons tests.</li> </ul>\n<p>p-Values can be adjusted <strong>groupwise</strong> (for each question) for post hoc tests or <strong>overall</strong> (groupwise and questionwise) for MannWithney U, Kruskal-Wallis and post hoc tests. DSCF p-values are already adjusted (groupwise); no other adjustment is possible.</p> </div>": [
-                "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <h2>Ayuda para gráficos Likert</h2> <h3>Datos y ordenación</h3>\n<ul> <li>Las variables de los gráficos Likert deben ser de tipo Ordinal (el tipo de medida Continua también se admite).</li> <li>Si tiene previsto calcular la media, la mediana o la desviación típica, o bien utilizar tests de comparativos, entonces el tipo de dato ha de ser entero.</li> <li><strong>Corregir niveles:</strong> cuando se selecciona, se intenta corregir el orden de las etiquetas en la tabla y el gráfico (en el caso de que a alguna de las variables le falten niveles).</li> <li><strong>Convertir variables a entero:</strong> cuando se selecciona, se ignoran las etiquetas de los niveles y solo se utilizan los valores enteros.</li> <li><strong>Ordenar variables según mediana:</strong> ordena la lista de variables según su mediana.</li> </ul>\n<h3>Test de comparación</h3> Cuando se utiliza una variable de agrupación, es posible llevar a cabo varios test: <ul> <li><strong>U de Mann-Whitney:</strong> comparación de dos grupos.</li> <li><strong>Kruskal-Wallis:</strong> comparación de n grupos.</li> <li><strong>Tests Post Hoc:</strong> tests de comparación por pares de Dunn, Conover y Dwass-Steel-Critchlow-Fligner (DSCF).</li> </ul>\n<p>Los p-valores se pueden ajustar <strong>por grupo</strong> (para cada pregunta) en los test post hoc o <strong>globalmente</strong> (por grupo y por pregunta) para la U de Mann-Whitney, Kruskal-Wallis y los test post hoc. Los p-valores del test DSCF ya están ajustados (por grupo); no es posible realizar ningún otro ajuste.</p> </div>"
+                ""
             ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Correspondence Plot Help</strong></p>\n<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the \"Counts\" variable.</p>\n<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>\n<p>Four normalizations (scaling of row and column scores before plotting) are avalaible : <ul> <li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li> <li><strong>Symetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li> <li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li> <li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li> <li><strong>Standard:</strong> The raw coordinates without normalization.</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>\n</div>": [
                 ""
@@ -152,13 +146,13 @@
                 ""
             ],
             "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>QQ & PP Plots Help</strong></p>\n<p>This module uses <a href = \"https://CRAN.R-project.org/package=qqplotr\" target=\"_blank\">qqplotr R package<a/> by Alexandre Almeida, Adam Loy and Heike Hofmann. In-depth information can be found in the package documentation on CRAN site.</p>\n<p><strong>Reference line:</strong> Draws either the <em>identity line</em> (y = x) or the commonly-used <em>Q-Q line</em> that intercepts two data quantiles (Q<sub>0.25</sub> and Q<sub>0.75</sub>). P-P plot only supports identity line.</p>\n<p><strong>Confidence band:</strong> Draws a confidence band around the reference line. qqplotr package provides several methods to compute the confidence band : <ul> <li><strong><em>Pointwise</em></strong> constructs pointwise confidence bands based on Normal confidence intervals;</li> <li><strong><em>Bootstrap</em></strong> creates pointwise confidence bands based on a parametric bootstrap;</li> <li><strong><em>Kolmogorov-Smirnov</em></strong> band is based on the Kolmogorov-Smirnov test;</li> <li><strong><em>Tail-Sensitive</em></strong> constructs a tail-sensitive confidence bands but is only implemented for Normal Q-Q plots;</li> <li><strong><em>Equal Local Levels (ELL)</em></strong> constructs simultaneous bands using the equal local levels.</li> </ul> P-P plots only support \"ELL\" and \"Bootstrap\" methods. </p>\n<p><strong>Detrended plot:</strong> The objects are <em>detrended</em> according to the reference line. This procedure may help reducing visual bias caused by the orthogonal distances from the points to the reference line. </p>\n<p><strong>Parameter values:</strong> The distribution parameters can be estimated from data using <ul> <li><strong>Maximum Likelihood Method</strong> (using MASS package) : it should work with all distributions but \"t\" and \"uniform\";</li> <li><strong>Method of Moments</strong> for moment based parameters : it should work with \"normal\", \"log-normal\", \"Beta\", \"Exponential\", \"Gamma\", \"Logistic\", \"Uniform\";</li> </ul> or entered by user: <ul> <li><strong>Parameter 1:</strong> : mean (Normal), meanlog (Log-normal), shape1 (Beta), location (Cauchy, Logistic), df (Chi-squared, Student), df1 (F), rate (Exponential), shape (Gamma, Weibull) and min (Uniform);</li> <li><strong>Parameter 2:</strong> : sd (normal), sdlog (Log-normal), shape2 (Beta), scale (Cauchy, Logistic), df2 (F), rate (Gamma, Weibull) and max (Uniform).</li> </ul> </p>\n</div>": [
-                "<style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Ayuda para gráficos QQ y PP</strong></p>\n<div><p>Este módulo utiliza el <a href=\"https://CRAN.R-project.org/package=qqplotr\" target=\"_blank\">paquete de R qqplotr<a/>, desarrollado por Alexandre Almeida, Adam Loy y Heike Hofmann. Se puede encontrar información detallada en la documentación del paquete disponible en la web de CRAN.</p>\n<p><strong>Recta de referencia:</strong> Dibuja la <em>recta identidad</em> (y = x) o la <em>recta Q-Q</em> que pasa por dos cuantiles específicos (Q<sub>0.25</sub> y Q<sub>0.75</sub>). Los gráficos P-P solo admiten la línea identidad.</p>\n<p><strong>Banda de confianza:</strong> Dibuja una banda de confianza alrededor de la línea de referencia. El paquete qqplotr ofrece varios métodos para calcular la banda de confianza: <ul> <li><strong><em>Puntual</em></strong> construye bandas de confianza puntuales basadas en intervalos de confianza normales;</li> <li><strong><em>Bootstrap</em></strong> crea bandas de confianza puntuales basadas en un bootstrap paramétrico;</li> <li><strong><em>Kolmogorov-Smirnov</em></strong>: la banda se basa en el test de Kolmogorov-Smirnov;</li> <li><strong><em>Sensible a las colas</em></strong> construye bandas de confianza sensibles a las colas, pero solo está implementado para gráficos Q-Q normales;</li> <li><strong><em>Niveles locales iguales</em></strong> construye bandas simultáneas utilizando niveles locales iguales.</li> </ul> Los gráficos P-P solo admiten los métodos \"Niveles locales iguales\" y \"Bootstrap\". </p>\n<p><strong>Gráfico sin tendencia (Detrended):</strong> Los objetos se representan <em>sin tendencia</em> en relación a la línea de referencia. Este procedimiento puede ayudar a reducir el sesgo visual causado por las distancias ortogonales de los puntos a la línea de referencia. </p>\n<p><strong>Valores de los parámetros:</strong> Los parámetros de la distribución pueden estimarse a partir de los datos mediante <ul> <li><strong>Método de máxima verosimilitud</strong> (utilizando el paquete MASS) : funciona con todas las distribuciones excepto \"t-Student\" y \"Uniform\";</li> <li><strong>Método de los momentos</strong> para parámetros basados en momentos : funciona con \"Normal\", \"Log-normal\", \"Beta\", \"Exponencial\", \"Gamma\", \"Logística\", \"Uniforme\";</li> </ul> o introducidos por el usuario: <ul> <li><strong>Parámetro 1:</strong> : media (Normal), media-log (Log-normal), forma 1 (Beta), localización (Cauchy, Logística), grados de libertad (Chi-cuadrado, t-Student), grados de libertad 1 (F), tasa (Exponencial), forma (Gamma, Weibull) y mínimo (Uniforme);</li> <li><strong>Parámetro 2:</strong> : desviación típica (Normal), desviación típica-log (Log-normal), forma 2 (Beta), escala (Cauchy, Logística), grados de libertad 2 (F), escala (Gamma, Weibull) y máximo (Uniforme).</li> </ul></p>\n</div>"
+                ""
             ],
             "0.01": [
-                "0,01"
+                ""
             ],
             "0.1": [
-                "0,1"
+                ""
             ],
             "1 day": [
                 ""
@@ -176,22 +170,22 @@
                 ""
             ],
             "10-20-2035": [
-                "10-20-2035"
+                ""
             ],
             "10/20/35": [
-                "10/20/35"
+                ""
             ],
             "2 weeks": [
                 ""
             ],
             "20 October 2035": [
-                "20 October 2035"
+                ""
             ],
             "20-10-2035": [
-                "20-10-2035"
+                ""
             ],
             "20/10/35": [
-                "20/10/35"
+                ""
             ],
             "2035 Oct": [
                 ""
@@ -203,7 +197,7 @@
                 ""
             ],
             "2035-10-20": [
-                "2035-10-20"
+                ""
             ],
             "3 months": [
                 ""
@@ -230,22 +224,22 @@
                 ""
             ],
             "A demonstration dataset for vijPlots/Raincloud plot.": [
-                "Conjunto de datos de ejemplo para vijPlots/Nube de lluvia."
+                ""
             ],
             "A demonstration dataset for vijPlots/Time Serie plots.": [
                 ""
             ],
             "Accent": [
-                "Resaltado"
+                ""
             ],
             "Active Margin": [
                 ""
             ],
             "Add median line (Stacked only)": [
-                "Mostrar mediana (solo apilado)"
+                ""
             ],
             "Add plot frame": [
-                "Añadir marco del gráfico"
+                ""
             ],
             "Adj. p": [
                 ""
@@ -254,10 +248,10 @@
                 ""
             ],
             "Align": [
-                "Alin."
+                ""
             ],
             "Alpha": [
-                "Alfa"
+                ""
             ],
             "Apr": [
                 ""
@@ -272,7 +266,7 @@
                 ""
             ],
             "Ascending": [
-                "Creciente"
+                ""
             ],
             "Aug": [
                 ""
@@ -284,22 +278,22 @@
                 ""
             ],
             "Axes": [
-                "Ejes"
+                ""
             ],
             "Axis Titles": [
                 ""
             ],
             "Bar Plot": [
-                "Gráfico de barras"
+                ""
             ],
             "Bar Type": [
-                "Tipo de barras"
+                ""
             ],
             "Bartlett's Test of Sphericity": [
                 ""
             ],
             "Bentler T": [
-                "Bentler T"
+                ""
             ],
             "Benzécri Correction": [
                 ""
@@ -311,13 +305,13 @@
                 ""
             ],
             "BH": [
-                "BH"
+                ""
             ],
             "Bin Color": [
-                "Color de las barras"
+                ""
             ],
             "Bin Size": [
-                "Tamaño de las barras"
+                ""
             ],
             "Biplot": [
                 ""
@@ -329,64 +323,64 @@
                 ""
             ],
             "Black": [
-                "Negro"
+                ""
             ],
             "Blue": [
-                "Azul"
+                ""
             ],
             "Blue to Green": [
-                "Azul y verde"
+                ""
             ],
             "Blue to Purple": [
-                "Azul y morado"
+                ""
             ],
             "Blues": [
-                "Azules"
+                ""
             ],
             "Bold": [
-                "Negrita"
+                ""
             ],
             "Bold Italic": [
-                "Negrita cursiva"
+                ""
             ],
             "Bonferroni": [
-                "Bonferroni"
+                ""
             ],
             "Boostrap": [
-                "Boostrap"
+                ""
             ],
             "Border": [
-                "Borde"
+                ""
             ],
             "Bottom": [
-                "Abajo"
+                ""
             ],
             "Box Plot": [
-                "Gráfico de caja"
+                ""
             ],
             "Boxplot Elements": [
-                "Elementos del gráfico"
+                ""
             ],
             "Brown": [
-                "Marrón"
+                ""
             ],
             "Brown and Green": [
-                "Marrón y verde"
+                ""
             ],
             "Burt matrix": [
                 ""
             ],
             "BY": [
-                "BY"
+                ""
             ],
             "By group": [
-                "Por grupo"
+                ""
             ],
             "By variable": [
-                "Por variable"
+                ""
             ],
             "Caption": [
-                "Descripción"
+                ""
             ],
             "Caption Style": [
                 ""
@@ -398,13 +392,13 @@
                 ""
             ],
             "Categorical": [
-                "Variables cualitativas"
+                ""
             ],
             "Categories": [
                 ""
             ],
             "Category Axis": [
-                "Eje de categorías"
+                ""
             ],
             "Category Plot": [
                 ""
@@ -428,34 +422,34 @@
                 ""
             ],
             "Cauchy": [
-                "Cauchy"
+                ""
             ],
             "Center": [
-                "Centro"
+                ""
             ],
             "Centered": [
-                "Centrado"
+                ""
             ],
             "Chi-squared": [
-                "Chi-cuadrado"
+                ""
             ],
             "Color Number": [
-                "Número del color"
+                ""
             ],
             "Color Options": [
-                "Opciones de color"
+                ""
             ],
             "Color Palette": [
-                "Paleta de colores"
+                ""
             ],
             "Colors": [
-                "Colores"
+                ""
             ],
             "Colors & Options": [
                 ""
             ],
             "Column": [
-                "Columna"
+                ""
             ],
             "Column Plot": [
                 ""
@@ -485,7 +479,7 @@
                 ""
             ],
             "Comparison Tests": [
-                "Test de comparación"
+                ""
             ],
             "Component": [
                 ""
@@ -494,10 +488,10 @@
                 ""
             ],
             "Confidence band": [
-                "Banda de confianza"
+                ""
             ],
             "Confidence Band Methods": [
-                "Cálculo de la banda de confianza"
+                ""
             ],
             "Confidence interval": [
                 ""
@@ -509,7 +503,7 @@
                 ""
             ],
             "Conover's Pairwise Comparisons": [
-                "Comparaciones por pares de Conover"
+                ""
             ],
             "Contingency Table": [
                 ""
@@ -518,13 +512,13 @@
                 ""
             ],
             "Continuous": [
-                "Variables cuantitativas"
+                ""
             ],
             "Contributions": [
                 ""
             ],
             "Convert variables to integer": [
-                "Convertir variables en enteros"
+                ""
             ],
             "Coordinates": [
                 ""
@@ -533,16 +527,16 @@
                 ""
             ],
             "COS2": [
-                "COS2"
+                ""
             ],
             "Count": [
-                "Frecuencia"
+                ""
             ],
             "Counted value": [
                 ""
             ],
             "Counts": [
-                "Recuento"
+                ""
             ],
             "Counts (optional)": [
                 ""
@@ -565,17 +559,17 @@
             "Crosstab (% by row)": [
                 ""
             ],
-            "Crosstab (% of cases)": [
+            "Crosstab (% of Cases)": [
                 ""
             ],
-            "Crosstab (% of responses)": [
+            "Crosstab (% of Responses)": [
                 ""
             ],
             "Cumulative %": [
                 ""
             ],
             "Dark 2": [
-                "Oscuro 2"
+                ""
             ],
             "Dark Gray": [
                 ""
@@ -584,10 +578,10 @@
                 ""
             ],
             "Data": [
-                "Datos"
+                ""
             ],
             "Data Transform": [
-                "Transformación de datos"
+                ""
             ],
             "Date breaks": [
                 ""
@@ -599,31 +593,31 @@
                 ""
             ],
             "Decreasing": [
-                "Decreciente"
+                ""
             ],
             "default": [
                 ""
             ],
             "Density": [
-                "Densidad"
+                ""
             ],
             "Density opacity": [
                 ""
             ],
             "Descending": [
-                "Decreciente"
+                ""
             ],
             "Detrended {distribStr} {typeStr} Plot of {varStr}": [
-                "Gráfico {typeStr} {distribStr} sin tendencia de {varStr}"
+                ""
             ],
             "Detrended plot": [
-                "Gráfico sin tendencia"
+                ""
             ],
             "df": [
-                "gl"
+                ""
             ],
             "Dichromat:Categorical": [
-                "Dicromático:Categórico"
+                ""
             ],
             "Dim": [
                 ""
@@ -647,43 +641,43 @@
                 ""
             ],
             "Distribution": [
-                "Distribución"
+                ""
             ],
             "doesn't have a valid date format.": [
                 ""
             ],
             "Donut chart": [
-                "Gráfico de anillo"
+                ""
             ],
             "Dot": [
-                "Punto"
+                ""
             ],
             "Dot size": [
-                "Punto"
+                ""
             ],
             "Draw arrow lines": [
                 ""
             ],
             "Draw staples": [
-                "Dibujar barreras"
+                ""
             ],
             "DSCF": [
-                "DSCF"
+                ""
             ],
             "DSCF p-values are adjusted groupwise.": [
-                "Los p-valores de DSCF están ajustados por grupo."
+                ""
             ],
             "Dummy Variables": [
                 ""
             ],
             "Dunn": [
-                "Dunn"
+                ""
             ],
             "Dunn's Pairwise Comparisons": [
-                "Comparaciones por pares de Dunn"
+                ""
             ],
             "Dwass-Steel-Critchlow-Fligner Pairwise Comparisons": [
-                "Comparaciones por pares de Dwass-Steel-Critchlow-Fligner"
+                ""
             ],
             "Eigenvalue": [
                 ""
@@ -698,10 +692,10 @@
                 ""
             ],
             "Equal Local Levels": [
-                "Niveles locales iguales"
+                ""
             ],
             "Equamax": [
-                "Equamax"
+                ""
             ],
             "Estimate parameters from data": [
                 ""
@@ -710,19 +704,19 @@
                 ""
             ],
             "Exponential": [
-                "Exponencial"
+                ""
             ],
             "Extraction Sums of Squared Loadings": [
                 ""
             ],
             "F": [
-                "F"
+                ""
             ],
             "Facet": [
-                "Subgráfico"
+                ""
             ],
             "Facets": [
-                "Subgráficos"
+                ""
             ],
             "Factor": [
                 ""
@@ -734,10 +728,10 @@
                 ""
             ],
             "Fill": [
-                "Relleno"
+                ""
             ],
             "Font": [
-                "Fuente"
+                ""
             ],
             "Font face": [
                 ""
@@ -746,10 +740,10 @@
                 ""
             ],
             "For border": [
-                "Para el borde"
+                ""
             ],
             "For filling": [
-                "Para el relleno"
+                ""
             ],
             "Form (Score principal)": [
                 ""
@@ -758,31 +752,31 @@
                 ""
             ],
             "Frequencies": [
-                "Frecuencias"
+                ""
             ],
             "Frequency Plot": [
                 ""
             ],
             "Frequency Table": [
-                "Tabla de frecuencias"
+                ""
             ],
             "Frequency table": [
-                "Tabla de frecuencias"
+                ""
             ],
             "Frequency Type": [
-                "Tipo de frecuencia"
+                ""
             ],
             "Gamma": [
                 ""
             ],
             "Gray": [
-                "Gris"
+                ""
             ],
             "Green": [
-                "Verde"
+                ""
             ],
             "Green to Blue": [
-                "Verde y azul"
+                ""
             ],
             "Greenacre Correction": [
                 ""
@@ -794,22 +788,22 @@
                 ""
             ],
             "Greens": [
-                "Verdes"
+                ""
             ],
             "Grey": [
-                "Gris"
+                ""
             ],
             "Greys": [
-                "Grises"
+                ""
             ],
             "Group": [
-                "Grupo"
+                ""
             ],
             "Group (Overlapped)": [
-                "Grupo (superpuesto)"
+                ""
             ],
-            "Group (Side-by-side)": [
-                "Grupo (en paralelo)"
+            "Group (Side by side)": [
+                ""
             ],
             "Group + Count": [
                 ""
@@ -818,67 +812,64 @@
                 ""
             ],
             "Group By": [
-                "Agrupar por"
+                ""
             ],
             "Grouped": [
-                "Al lado"
-            ],
-            "Grouped (tight)": [
                 ""
             ],
             "Grouping": [
-                "Agrupamiento"
+                ""
             ],
             "Grouping Variable": [
-                "Agrupar por:"
+                ""
             ],
             "Groupwise": [
-                "Por grupo"
+                ""
             ],
             "Height": [
-                "Altura"
+                ""
             ],
             "Hide % labels below 5%": [
-                "Ocultar % inferiores al 5%"
+                ""
             ],
             "Histogram": [
-                "Histograma"
+                ""
             ],
             "Hochberg": [
-                "Hochberg"
+                ""
             ],
             "Holm": [
-                "Holm"
+                ""
             ],
             "Hommel": [
-                "Hommel"
+                ""
             ],
             "Horizontal label wrap": [
-                "Ancho de las etiquetas horizontales"
+                ""
             ],
             "Horizontal line at": [
-                "Línea horizontal en"
+                ""
             ],
             "Horizontal plot": [
-                "Gráfico horizonal"
+                ""
             ],
             "Huge (800x500)": [
                 ""
             ],
             "Identity line": [
-                "Recta identidad"
+                ""
             ],
             "Ignore NA": [
-                "Ignorar los NA"
+                ""
             ],
             "Ignore NA groups": [
-                "Ignorar grupos faltantes"
+                ""
             ],
             "Improve label display": [
                 ""
             ],
             "Increasing": [
-                "Creciente"
+                ""
             ],
             "Indicator matrix": [
                 ""
@@ -902,7 +893,7 @@
                 ""
             ],
             "Italic": [
-                "Cursiva"
+                ""
             ],
             "Jan": [
                 ""
@@ -911,22 +902,22 @@
                 ""
             ],
             "jmv Blue": [
-                "Azul jmv"
+                ""
             ],
             "jmv Default": [
-                "Colores jmv"
+                ""
             ],
             "jmv Gray": [
-                "Gris jmv"
+                ""
             ],
             "jmv Green": [
-                "Verde jmv"
+                ""
             ],
             "jmv Red": [
-                "Rojo jmv"
+                ""
             ],
             "jmv Yellow": [
-                "Amarillo jmv"
+                ""
             ],
             "Jul": [
                 ""
@@ -959,16 +950,16 @@
                 ""
             ],
             "Kruskal-Wallis Tests": [
-                "Test de Kruskal-Wallis"
+                ""
             ],
             "Label": [
-                "Etiquetas"
+                ""
             ],
             "Label color": [
-                "Color de los %"
+                ""
             ],
             "Label font size": [
-                "Tamaño de las etiquetas"
+                ""
             ],
             "Label Options": [
                 ""
@@ -977,28 +968,28 @@
                 ""
             ],
             "Label rotation": [
-                "Rotación de las etiquetas"
+                ""
             ],
             "Label Size": [
-                "Tamaño de las etiquetas"
+                ""
             ],
             "Labels": [
-                "Etiquetas"
+                ""
             ],
             "Large (600x400)": [
                 ""
             ],
             "Left": [
-                "Izquierda"
+                ""
             ],
             "Legend": [
-                "Leyenda"
+                ""
             ],
             "Legend & Axis Titles": [
-                "Títulos de leyenda y ejes"
+                ""
             ],
             "Legend Title": [
-                "Título de la leyenda"
+                ""
             ],
             "Lémovice": [
                 ""
@@ -1007,46 +998,46 @@
                 ""
             ],
             "Light Blue": [
-                "Azul claro"
+                ""
             ],
             "Light Brown": [
-                "Marrón claro"
+                ""
             ],
             "Light Gray": [
-                "Gris claro"
+                ""
             ],
             "Light Green": [
-                "Verde claro"
+                ""
             ],
             "Light Orange": [
-                "Naranja claro"
+                ""
             ],
             "Light Pink": [
-                "Rosa claro"
+                ""
             ],
             "Light Purple": [
-                "Morado claro"
+                ""
             ],
             "Light Red": [
-                "Rojo claro"
+                ""
             ],
             "Light Yellow": [
-                "Amarillo claro"
+                ""
             ],
             "Likert": [
                 ""
             ],
             "Likert Plot": [
-                "Gráfico de Likert"
+                ""
             ],
             "Likert Variables": [
-                "Variable de tipo Likert"
+                ""
             ],
             "Limited to the first 100 observations": [
                 ""
             ],
             "Line": [
-                "Línea"
+                ""
             ],
             "Line Chart": [
                 ""
@@ -1055,7 +1046,7 @@
                 ""
             ],
             "Line width": [
-                "Línea"
+                ""
             ],
             "Linear": [
                 ""
@@ -1064,13 +1055,13 @@
                 ""
             ],
             "Logistic": [
-                "Logística"
+                ""
             ],
             "Lollipop Plot": [
-                "Grafico de Piruleta"
+                ""
             ],
             "Lollipop Size": [
-                "Tamaño de la piruleta"
+                ""
             ],
             "Lollipop Size & Colors": [
                 ""
@@ -1079,10 +1070,10 @@
                 ""
             ],
             "Mann-Whitney U": [
-                "U de Mann-Withney"
+                ""
             ],
             "Mann-Whitney U Tests": [
-                "Tests U de Mann-Whitney"
+                ""
             ],
             "Manual": [
                 ""
@@ -1100,43 +1091,40 @@
                 ""
             ],
             "Maximum of": [
-                "Máximo de"
+                ""
             ],
             "Maximum-likelihood (MLE)": [
-                "Máxima verosimilitud (MLE)"
+                ""
             ],
             "May": [
                 ""
             ],
-            "MCA Principal Coordinates": [
-                ""
-            ],
-            "MCA Standard Coordinates": [
+            "MCA {type} Coordinate ({method} method)": [
                 ""
             ],
             "Mean": [
-                "Media"
+                ""
             ],
             "Mean & SD": [
-                "Media y desviación típica"
+                ""
             ],
             "Mean of": [
-                "Media de"
+                ""
             ],
             "Median": [
-                "Mediana"
+                ""
             ],
             "Median of": [
-                "Mediana de"
+                ""
             ],
             "Medium (400x300)": [
                 ""
             ],
             "Method": [
-                "Método"
+                ""
             ],
             "Method of moments (MME)": [
-                "Método de los momentos (MME)"
+                ""
             ],
             "Method:": [
                 ""
@@ -1154,7 +1142,7 @@
                 ""
             ],
             "Minimum of": [
-                "Mínimo de"
+                ""
             ],
             "Multi-valued Variable": [
                 ""
@@ -1187,7 +1175,7 @@
                 ""
             ],
             "None": [
-                "Ninguno"
+                ""
             ],
             "Normal": [
                 ""
@@ -1202,7 +1190,7 @@
                 ""
             ],
             "Notched box": [
-                "Caja con cintura"
+                ""
             ],
             "Nov": [
                 ""
@@ -1211,7 +1199,7 @@
                 ""
             ],
             "Nudged boxplots": [
-                "Gráficos de caja separados"
+                ""
             ],
             "Number of cases": [
                 ""
@@ -1277,7 +1265,7 @@
                 ""
             ],
             "only": [
-                "solo"
+                ""
             ],
             "Option name": [
                 ""
@@ -1286,19 +1274,19 @@
                 ""
             ],
             "Options": [
-                "Opciones"
+                ""
             ],
             "Orange": [
-                "Naranja"
+                ""
             ],
             "Orange and Purple": [
-                "Naranja y morado"
+                ""
             ],
             "Orange to Red": [
-                "Naranja y rojo"
+                ""
             ],
             "Oranges": [
-                "Naranjas"
+                ""
             ],
             "Original Eigenvalues": [
                 ""
@@ -1307,13 +1295,13 @@
                 ""
             ],
             "Overall": [
-                "Globalmente"
+                ""
             ],
             "Overall (all groups)": [
                 ""
             ],
             "Overlapping": [
-                "Superpuesto"
+                ""
             ],
             "p": [
                 ""
@@ -1322,46 +1310,46 @@
                 ""
             ],
             "P-P plot": [
-                "Gráfico P-P"
+                ""
             ],
             "p-Value Adjustment": [
-                "Ajuste de los p-valores"
+                ""
             ],
             "p-values are adjusted groupwise using {method} method.": [
-                "Los p-valores se ajustan por grupo utilizando el método {method}."
+                ""
             ],
             "p-values are adjusted overall using {method} method.": [
-                "Los p-valores se ajustan globalmente utilizando el método {method}."
+                ""
             ],
             "p-values are adjusted using {method} method.": [
-                "Los p-valores se ajustan utilizando el método {method}."
+                ""
             ],
             "Paired": [
-                "Por parejas"
+                ""
             ],
             "Pairwise Comparisons": [
-                "Comparaciones por pares"
+                ""
             ],
             "Palette": [
-                "Paleta"
+                ""
             ],
             "Parameter 1": [
-                "Parámetro 1"
+                ""
             ],
             "Parameter 2": [
-                "Parámetro 2"
+                ""
             ],
             "Parameter Estimates": [
-                "Estimación de los parámetros"
+                ""
             ],
             "Parameter Values": [
-                "Valor de los parámetros"
+                ""
             ],
             "Parameter values": [
-                "Valor de los parámetros"
+                ""
             ],
             "Parsimax": [
-                "Parsimax"
+                ""
             ],
             "Pastel 1": [
                 ""
@@ -1369,29 +1357,26 @@
             "Pastel 2": [
                 ""
             ],
-            "PCA Principal Coordinates": [
-                ""
-            ],
-            "PCA Standard Coordinates": [
+            "PCA {norm} Coordinate{rotation}": [
                 ""
             ],
             "Percent": [
-                "Porcentaje"
+                ""
             ],
             "Percentages": [
-                "Porcentajes"
+                ""
             ],
             "Pie Chart": [
-                "Gráfico de sectores"
+                ""
             ],
             "Pink": [
-                "Rosa"
+                ""
             ],
             "Pink and Green": [
-                "Rosa y verde"
+                ""
             ],
             "Plot": [
-                "Gráfico"
+                ""
             ],
             "Plot & Element Sizes": [
                 ""
@@ -1400,22 +1385,22 @@
                 ""
             ],
             "Plot Color": [
-                "Colores del gráfico"
+                ""
             ],
             "Plot Colors": [
                 ""
             ],
             "Plot Options": [
-                "Opciones del gráfico"
+                ""
             ],
             "Plot Size": [
-                "Tamaño del gráfico"
+                ""
             ],
             "Plot Size & Colors": [
                 ""
             ],
             "Plot Size & Facets": [
-                "Tamaño de gráfico y subgráficos"
+                ""
             ],
             "Plot Size & Options": [
                 ""
@@ -1424,13 +1409,13 @@
                 ""
             ],
             "Plot Titles": [
-                "Títulos del gráfico"
+                ""
             ],
             "Plot Titles & Subtitles": [
                 ""
             ],
             "Plot Type": [
-                "Tipo de gráfico"
+                ""
             ],
             "Plots": [
                 ""
@@ -1445,25 +1430,25 @@
                 ""
             ],
             "Point Size": [
-                "Tamaño de los puntos"
+                ""
             ],
             "Points": [
                 ""
             ],
             "Pointwise": [
-                "Puntual"
+                ""
             ],
             "Position": [
-                "Posición"
+                ""
             ],
             "Post Hoc": [
                 ""
             ],
             "Post Hoc Tests": [
-                "Tests Post Hoc"
+                ""
             ],
             "Prevent overlap": [
-                "Evitar superposición"
+                ""
             ],
             "Principal": [
                 ""
@@ -1484,22 +1469,22 @@
                 ""
             ],
             "Purple": [
-                "Morado"
+                ""
             ],
             "Purple and Green": [
-                "Morado y verde"
+                ""
             ],
             "Purple to Blue": [
-                "Morado y azul"
+                ""
             ],
             "Purple to Green": [
-                "Morado y verde"
+                ""
             ],
             "Purple to Red": [
-                "Morado y rojo"
+                ""
             ],
             "Purples": [
-                "Morados"
+                ""
             ],
             "px": [
                 ""
@@ -1508,13 +1493,13 @@
                 ""
             ],
             "Q-Q & P-P Plots": [
-                "Gráficos Q-Q y P-P"
+                ""
             ],
             "Q-Q line": [
                 ""
             ],
             "Q-Q plot": [
-                "Gráfico Q-Q"
+                ""
             ],
             "QLT": [
                 ""
@@ -1523,49 +1508,49 @@
                 ""
             ],
             "Questions": [
-                "Preguntas"
+                ""
             ],
             "Raincloud": [
-                "Nube de lluvia"
+                ""
             ],
             "Raincloud Plot": [
-                "Gráfico de Nube de lluvia"
+                ""
             ],
             "Range": [
-                "Rango"
+                ""
             ],
             "Red": [
-                "Rojo"
+                ""
             ],
             "Red and Blue": [
-                "Rojo y azul"
+                ""
             ],
             "Red and Gray": [
-                "Rojo y gris"
+                ""
             ],
             "Red to Purple": [
-                "Rojo y morado"
+                ""
             ],
             "Red, Yellow and Blue": [
-                "Rojo, amarillo y azul"
+                ""
             ],
             "Red, Yellow and Green": [
-                "Rojo, amarillo y verde"
+                ""
             ],
             "Red, Yellow, Blue": [
-                "Rojo, amarillo y azul"
+                ""
             ],
             "Red, Yellow, Green": [
-                "Rojo, amarillo y verde"
+                ""
             ],
             "Reds": [
-                "Rojos"
+                ""
             ],
             "Reference line": [
                 ""
             ],
             "Reference Lines": [
-                "Líneas de referencia"
+                ""
             ],
             "Regression Line": [
                 ""
@@ -1573,11 +1558,14 @@
             "Reverse disposition": [
                 ""
             ],
-            "Reverse stacking order": [
+            "Reverse stack order": [
+                ""
+            ],
+            "Reverse the staking order": [
                 ""
             ],
             "Right": [
-                "Derecha"
+                ""
             ],
             "Rotate eigenvectors": [
                 ""
@@ -1586,7 +1574,7 @@
                 ""
             ],
             "Row": [
-                "Fila"
+                ""
             ],
             "Row and Column Points for {rows} and {cols}": [
                 ""
@@ -1637,7 +1625,7 @@
                 ""
             ],
             "Sample Quantiles": [
-                "Cuantiles observados"
+                ""
             ],
             "Sample Quantiles Deviation": [
                 ""
@@ -1670,22 +1658,22 @@
                 ""
             ],
             "Set 1": [
-                "Conjunto 1"
+                ""
             ],
             "Set 2": [
-                "Conjunto 2"
+                ""
             ],
             "Set 3": [
-                "Conjunto 3"
+                ""
             ],
             "Several variables": [
                 ""
             ],
             "Show % labels": [
-                "Mostrar los %"
+                ""
             ],
             "Show count labels": [
-                "Mostrar frecuencias"
+                ""
             ],
             "Show density": [
                 ""
@@ -1697,22 +1685,28 @@
                 ""
             ],
             "Show mean": [
-                "Mostrar media"
+                ""
             ],
             "Show normal curve": [
-                "Mostrar curva normal"
+                ""
             ],
             "Show outliers": [
-                "Mostrar atípicos"
+                ""
             ],
             "Show points": [
                 ""
             ],
             "Show points with missing group/label": [
-                "Mostrar puntos con grupo faltante"
+                ""
             ],
             "Show totals (Centered only)": [
-                "Mostrar totales (solo centrado)"
+                ""
+            ],
+            "Side-by-side": [
+                ""
+            ],
+            "Side-by-side (tight)": [
+                ""
             ],
             "Single": [
                 ""
@@ -1721,7 +1715,7 @@
                 ""
             ],
             "Size": [
-                "Tamaño"
+                ""
             ],
             "Small (300x200)": [
                 ""
@@ -1736,25 +1730,25 @@
                 ""
             ],
             "Sort Variables by Median": [
-                "Ordenar variables según la mediana"
+                ""
             ],
             "Sorting": [
-                "Orden"
+                ""
             ],
             "Sorting (by median)": [
-                "Ordenar (mediana)"
+                ""
             ],
             "Spectral": [
-                "Espectro"
+                ""
             ],
             "SS Loadings": [
                 ""
             ],
             "Stacked": [
-                "Aplilado"
+                ""
             ],
             "Stacked 100%": [
-                "Apilado 100%"
+                ""
             ],
             "Standard": [
                 ""
@@ -1772,22 +1766,22 @@
                 ""
             ],
             "Standardize values": [
-                "Valores estandarizados"
+                ""
             ],
             "Standardize variables": [
                 ""
             ],
             "Standardized Sample Quantiles": [
-                "Cuantiles observados estandarizados"
+                ""
             ],
             "Standardized Sample Quantiles Deviation": [
                 ""
             ],
             "Standardized values": [
-                "Valores estandarizados"
+                ""
             ],
             "Staple width": [
-                "Ancho de la barrera"
+                ""
             ],
             "Statistic": [
                 ""
@@ -1796,10 +1790,10 @@
                 ""
             ],
             "Student": [
-                "t-Student"
+                ""
             ],
             "Subtitle": [
-                "Subtítulo"
+                ""
             ],
             "Subtitle Style": [
                 ""
@@ -1847,19 +1841,19 @@
                 ""
             ],
             "Table": [
-                "Tabla"
+                ""
             ],
             "Tables": [
                 ""
             ],
             "Tail-Sensitive (Normal)": [
-                "Sensible a colas (Normal)"
+                ""
             ],
             "Tests": [
                 ""
             ],
             "Text": [
-                "Texto"
+                ""
             ],
             "Text Size": [
                 ""
@@ -1871,13 +1865,13 @@
                 ""
             ],
             "Theoretical Probabilities": [
-                "Probabilidades teóricas"
+                ""
             ],
             "Theoretical Quantiles": [
-                "Cuantiles teóricos"
+                ""
             ],
             "Tidy up levels": [
-                "Corregir niveles"
+                ""
             ],
             "Tidy:Alger": [
                 ""
@@ -1907,7 +1901,7 @@
                 ""
             ],
             "Title": [
-                "Título"
+                ""
             ],
             "Title Style": [
                 ""
@@ -1916,7 +1910,7 @@
                 ""
             ],
             "Top": [
-                "Arriba"
+                ""
             ],
             "Total": [
                 ""
@@ -1925,16 +1919,16 @@
                 ""
             ],
             "Type": [
-                "Tipo"
+                ""
             ],
             "U": [
-                "U"
+                ""
             ],
             "Unable to use {rotation} rotation.": [
                 ""
             ],
             "Uniform": [
-                "Uniforme"
+                ""
             ],
             "US (M-D-Y)": [
                 ""
@@ -1943,19 +1937,19 @@
                 ""
             ],
             "Use color No.": [
-                "Color nº"
+                ""
             ],
             "Use Palette": [
-                "Utilizar la paleta"
+                ""
             ],
             "Use the same color for variables": [
-                "Utilizar un único color"
+                ""
             ],
             "Use variable's description as name": [
-                "Utilizar descripción de las variables como nombre"
+                ""
             ],
             "Values": [
-                "Valores"
+                ""
             ],
             "Variable": [
                 ""
@@ -1982,7 +1976,7 @@
                 ""
             ],
             "Vertical line at": [
-                "Línea vertical en"
+                ""
             ],
             "vijPlots": [
                 ""
@@ -2009,13 +2003,13 @@
                 ""
             ],
             "White": [
-                "Blanco"
+                ""
             ],
             "Wide (700x400)": [
                 ""
             ],
             "Width": [
-                "Ancho"
+                ""
             ],
             "Within categories": [
                 ""
@@ -2024,45 +2018,51 @@
                 ""
             ],
             "X-Axis": [
-                "Eje X"
+                ""
             ],
             "X-Axis is a date": [
                 ""
             ],
             "X-Axis Range": [
-                "Rango del eje X"
+                ""
             ],
             "Y-Axis": [
-                "Eje Y"
+                ""
             ],
             "Y-Axis Range": [
-                "Rango del eje Y"
+                ""
             ],
             "Yellow": [
-                "Amarillo"
+                ""
             ],
             "Yellow to Blue": [
-                "Amarillo y azul"
+                ""
             ],
             "Yellow to Brown": [
-                "Amarillo y marrón"
+                ""
             ],
             "Yellow to Green": [
-                "Amarillo y verde"
+                ""
             ],
             "Yellow to Red": [
-                "Amarillo y rojo"
+                ""
             ],
             "χ²": [
                 ""
             ],
             "boundary\u0004Position": [
-                "Posición"
+                ""
             ],
             "menu\u0004Oct": [
                 ""
             ],
             "menu\u0004October": [
+                ""
+            ],
+            "string\u0004Principal": [
+                ""
+            ],
+            "string\u0004Standard": [
                 ""
             ]
         }

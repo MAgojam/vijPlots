@@ -110,10 +110,10 @@ children:
                 name: normalization_principal
                 optionName: normalization
                 optionPart: principal
-              - name: normalization_symetric
+              - name: normalization_symmetric
                 type: RadioButton
                 optionName: normalization
-                optionPart: symetric
+                optionPart: symmetric
               - type: RadioButton
                 name: normalization_rowprincipal
                 optionName: normalization
@@ -185,7 +185,6 @@ children:
                   - type: TextBox
                     name: labelSize
                     format: number
-                    suffix: pt
           - type: LayoutBox
             cell:
               column: 1

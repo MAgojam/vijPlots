@@ -74,7 +74,7 @@ options:
 
     - name: labSize
       type: Number
-      title: Text Size
+      title: Label
       min: 8
       max: 24
       default: 12

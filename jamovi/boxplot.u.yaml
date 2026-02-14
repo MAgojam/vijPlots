@@ -120,7 +120,7 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Boxplot Elements
+                label: Box Elements
                 children:
                   - type: CheckBox
                     name: staple

@@ -334,7 +334,7 @@ children:
                     name: labelColor
                     enable: (addLabels)
   - type: CollapseBox
-    label: Text Sizes
+    label: Text Size
     collapsed: true
     stretchFactor: 1
     children:
@@ -354,12 +354,10 @@ children:
                   - type: TextBox
                     name: labelSize
                     format: number
-                    suffix: pt
                     enable: ((type_stacked && addLabels) || (type_centered && (addLabels || addTotals)))
                   - type: TextBox
                     name: groupSize
                     format: number
-                    suffix: pt
                     enable: (!(!group))
   - type: CollapseBox
     label: Axes

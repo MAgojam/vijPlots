@@ -10,8 +10,8 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             width <- 425
             height <- 350
             # Fixed dimension
-            fixed_height <- 50 # X-Axis legend
             fixed_width <- 75 # Y-Axis legend
+            fixed_height <- 50 # X-Axis legend
             if (!is.null(self$options$group) || length(self$options$vars) > 1) {
                 if (self$options$legendPosition %in% c('top','bottom'))
                     fixed_height <- fixed_height + 50

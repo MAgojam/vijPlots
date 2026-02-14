@@ -213,7 +213,6 @@ children:
                   - type: TextBox
                     name: labSize
                     format: number
-                    suffix: 'pt'
                     enable: (!labels_none)
           - type: LayoutBox
             cell:

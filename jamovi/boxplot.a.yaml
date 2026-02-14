@@ -59,7 +59,7 @@ options:
       default: false
 
     - name: ignoreNA
-      title: Ignore NA
+      title: Ignore missing values
       type: Bool
       default: true
 

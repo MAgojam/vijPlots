@@ -171,7 +171,6 @@ children:
                   - type: TextBox
                     name: labelFontSize
                     format: number
-                    suffix: pt
                     enable: (showLabels)
           - type: LayoutBox
             cell:

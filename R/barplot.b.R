@@ -16,15 +16,15 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     nbOfRow <- self$options$facetNumber
                     nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
                 }
-                height <- max(350, 300*nbOfRow)
                 width <- max(450, 200*nbOfColumn)
+                height <- max(350, 300*nbOfRow)
             } else {
-                height <- 350
                 width <- 450
+                height <- 350
             }
             # Fixed dimension
-            fixed_height <- 50 # X-Axis legend
             fixed_width <- 50 # Y-Axis legend
+            fixed_height <- 50 # X-Axis legend
             if( !is.null(self$options$columns)) {
                 if (self$options$legendPosition %in% c('top','bottom'))
                     fixed_height <- fixed_height + 50

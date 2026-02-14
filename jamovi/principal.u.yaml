@@ -194,23 +194,20 @@ children:
             stretchFactor: 1
             children:
               - type: Label
-                label: Text Sizes
+                label: Text Size
                 children:
                   - type: TextBox
                     name: varLabelSize
                     format: number
-                    suffix: pt
                   - type: TextBox
                     name: obsLabelSize
                     format: number
-                    suffix: pt
               - type: Label
                 label: Element Sizes
                 children:
                   - type: TextBox
                     name: pointSize
                     format: number
-                    suffix: pt
           - type: LayoutBox
             cell:
               column: 1

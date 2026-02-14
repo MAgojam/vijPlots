@@ -33,11 +33,24 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$helpMessage$setVisible(FALSE)
             }
 
-            if (is.null(self$options$groupVar)) {
-                extraWidth <- 0
-            } else {
-                n <- max(nchar(levels(self$data[[self$options$groupVar]])))
-                extraWidth <- 50 + n*8
+            if (!is.null(self$options$groupVar)) {
+                if (self$options$legendPosition %in% c('top','bottom')) {
+                    fixed_width <- 0
+                    fixed_height <- 50
+                } else {
+                    fixed_width <- 100
+                    fixed_height <- 0
+                }
+                # Set the image dimensions
+                image <- self$results$obsPlot
+                image2 <- self$results$biPlot
+                if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                    image$setSize(600 + fixed_width, 600 + fixed_height)
+                    image2$setSize(600 + fixed_width, 600 + fixed_height)
+                } else {
+                    image$setSize2(600, 600, fixed_width, fixed_height)
+                    image2$setSize2(600, 600, fixed_width, fixed_height)
+                }
             }
         },
         .run = function() {

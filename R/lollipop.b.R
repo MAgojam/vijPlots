@@ -13,8 +13,8 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Stretchable dimensions
             if (self$options$horizontal) {
-                height <- min(max(250,nbOfLevel*50),650)
                 width <- 400
+                height <- min(max(250,nbOfLevel*50),650)
             } else {
                 width <- min(max(350,nbOfLevel*75),600)
                 height <- 350
@@ -29,16 +29,16 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     nbOfRow <- self$options$facetNumber
                     nbOfColumn <- ceiling(nbOfFacet / nbOfRow)
                 }
-                height <- max(height, 0.75*height*nbOfRow)
                 width <- max(width, 0.75*width*nbOfColumn)
+                height <- max(height, 0.75*height*nbOfRow)
             }
             # Fixed dimension
             if (self$options$horizontal) {
-                fixed_height <- 50
                 fixed_width <- 100
-            } else {
                 fixed_height <- 50
+            } else {
                 fixed_width <- 75
+                fixed_height <- 50
             }
             # Set the image dimensions
             image <- self$results$plot

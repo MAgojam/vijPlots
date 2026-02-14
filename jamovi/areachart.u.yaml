@@ -97,7 +97,6 @@ children:
                   - type: TextBox
                     name: lineWidth
                     format: number
-                    suffix: px
                     enable: (showLine)
       - type: LayoutBox
         cell:

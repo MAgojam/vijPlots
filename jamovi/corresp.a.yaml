@@ -109,8 +109,8 @@ options:
       options:
         - title: Principal
           name:  principal
-        - title: Symetric
-          name:  symetric
+        - title: Symmetric
+          name:  symmetric
         - title: Row principal
           name:  rowprincipal
         - title: Column principal

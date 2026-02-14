@@ -53,11 +53,9 @@ children:
               - type: TextBox
                 name: dotSize
                 format: number
-                suffix: px
               - type: TextBox
                 name: lineWidth
                 format: number
-                suffix: px
               - type: ComboBox
                 name: colorPalette
       - type: LayoutBox
