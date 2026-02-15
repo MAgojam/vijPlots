@@ -531,9 +531,9 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Plot title
             title <- switch(plotType,
-                                   row = paste(.("Row Points for"), private$.varName[[self$options$rows]]),
-                                   column = paste(.("Column Points for"), private$.varName[[self$options$cols]]),
-                                   biplot = jmvcore::format(.("Row and Column Points for {rows} and {cols}"),
+                                    row = jmvcore::format(.("Row Points for {rows}"), rows = private$.varName[[self$options$rows]]),
+                                    column = jmvcore::format(.("Column Points for {cols}"), cols = private$.varName[[self$options$cols]]),
+                                    biplot = jmvcore::format(.("Row and Column Points for {rows} and {cols}"),
                                                             rows = private$.varName[[self$options$rows]],
                                                             cols = private$.varName[[self$options$cols]])
             )

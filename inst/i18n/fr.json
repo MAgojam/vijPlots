@@ -457,8 +457,8 @@
             "Column plot": [
                 "Graphique des colonnes"
             ],
-            "Column Points for": [
-                "Graphique des colonnes pour"
+            "Column Points for {cols}": [
+                "Graphique des colonnes pour {cols}"
             ],
             "Column principal": [
                 "Col. principales"
@@ -1078,8 +1078,8 @@
             "Max": [
                 "Max"
             ],
-            "Maximum of": [
-                "Maximum de"
+            "Maximum of {var}": [
+                "Maximum de {var}"
             ],
             "Maximum-likelihood (MLE)": [
                 "Maximum de vraisemblance (MLE)"
@@ -1099,14 +1099,14 @@
             "Mean & SD": [
                 "Moyenne et écart-type"
             ],
-            "Mean of": [
-                "Moyenne de"
+            "Mean of {var}": [
+                "Moyenne de {var}"
             ],
             "Median": [
                 "Médiane"
             ],
-            "Median of": [
-                "Médiane de"
+            "Median of {var}": [
+                "Médiane de {var}"
             ],
             "Method": [
                 "Méthode"
@@ -1129,8 +1129,8 @@
             "Minimum entropy": [
                 "Entropie minimale"
             ],
-            "Minimum of": [
-                "Minimum de"
+            "Minimum of {var}": [
+                "Minimum de {var}"
             ],
             "Multi-valued Variable": [
                 "Variable à valeurs multiples"
@@ -1546,8 +1546,8 @@
             "Row plot": [
                 "Graphique des lignes"
             ],
-            "Row Points for": [
-                "Graphique des lignes pour"
+            "Row Points for {rows}": [
+                "Graphique des lignes pour {rows}"
             ],
             "Row principal": [
                 "Lignes principales"

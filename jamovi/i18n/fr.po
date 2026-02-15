@@ -1875,8 +1875,8 @@ msgid "Column plot"
 msgstr "Graphique des colonnes"
 
 #: R/corresp.b.R
-msgid "Column Points for"
-msgstr "Graphique des colonnes pour"
+msgid "Column Points for {cols}"
+msgstr "Graphique des colonnes pour {cols}"
 
 #: corresp/options/normalization/colprincipal.title
 msgid "Column principal"
@@ -3396,8 +3396,8 @@ msgid "Max"
 msgstr "Max"
 
 #: R/lollipop.b.R
-msgid "Maximum of"
-msgstr "Maximum de"
+msgid "Maximum of {var}"
+msgstr "Maximum de {var}"
 
 #: qqplot/options/paramEstMethod/mle.title
 #: qqplot/ui[3][0][0]/paramMethod_paraEstimat/paramEstMethod_mle.label
@@ -3427,8 +3427,8 @@ msgid "Mean & SD"
 msgstr "Moyenne et écart-type"
 
 #: R/lollipop.b.R
-msgid "Mean of"
-msgstr "Moyenne de"
+msgid "Mean of {var}"
+msgstr "Moyenne de {var}"
 
 #: R/likertplot.b.R
 #: likertplot/options/showMedian.title
@@ -3438,8 +3438,8 @@ msgid "Median"
 msgstr "Médiane"
 
 #: R/lollipop.b.R
-msgid "Median of"
-msgstr "Médiane de"
+msgid "Median of {var}"
+msgstr "Médiane de {var}"
 
 #: areachart/options/displayFormat/%b.title
 #: linechart/options/displayFormat/%b.title
@@ -3513,8 +3513,8 @@ msgid "Minimum entropy"
 msgstr "Entropie minimale"
 
 #: R/lollipop.b.R
-msgid "Minimum of"
-msgstr "Minimum de"
+msgid "Minimum of {var}"
+msgstr "Minimum de {var}"
 
 #: mrcrosstabs/options/mode/onevar.title
 #: mrcrosstabs/ui/mode/onevar[0][0][0].label
@@ -4693,8 +4693,8 @@ msgid "Row plot"
 msgstr "Graphique des lignes"
 
 #: R/corresp.b.R
-msgid "Row Points for"
-msgstr "Graphique des lignes pour"
+msgid "Row Points for {rows}"
+msgstr "Graphique des lignes pour {rows}"
 
 #: corresp/options/normalization/rowprincipal.title
 msgid "Row principal"
