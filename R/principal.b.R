@@ -29,8 +29,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$varPlot$setVisible(FALSE)
                 self$results$obsPlot$setVisible(FALSE)
                 self$results$biPlot$setVisible(FALSE)
-            } else {
-                self$results$helpMessage$setVisible(FALSE)
+                private$.showHelpMessage()
             }
 
             if (!is.null(self$options$groupVar)) {
@@ -583,9 +582,25 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 for (i in 1:nDim)
                     self$results$obsCoordOV$setValues(index=i, coord[, i])
             }
-
+        },
+        .showHelpMessage = function() {
+            helpMsg <- .('<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>
+<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>
+<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).</p>
+<p>Biplot follows "Biplots in Practice" (Michael Greenacre, 2010):</p>
+<ul>
+<li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li>
+<li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li>
+</ul>
+<p><strong>Advanced options</strong>:</p>
+<ul>
+<li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li>
+<li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li>
+<li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (STATA way).</li>
+</ul>
+<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>')
+            vijHelpMessage(self, helpMsg)
         }
-
     )
 )
 

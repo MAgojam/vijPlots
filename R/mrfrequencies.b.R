@@ -8,9 +8,8 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             if ((!morevar && is.null(self$options$repVar)) || (morevar && length(self$options$resps) < 1)) {
                 self$results$responses$setVisible(FALSE)
                 self$results$plot$setVisible(FALSE)
+                private$.showHelpMessage()
                 return()
-            } else {
-                self$results$helpMessage$setVisible(FALSE)
             }
             table <- self$results$responses
             # Set custom name for options column
@@ -234,6 +233,16 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 onehotDF[is.na(aCol),] <- NA
             onehotDF[,"X__priVate__X"] <- NULL
             return(onehotDF)
+        },
+        .showHelpMessage = function() {
+            helpMsg <- .('<p>This module computes frequencies for multiple response questions, also known as "Check All That Apply" (CATA) questions.</p>
+<p>Questions may be coded as:
+<ul>
+<li>several <strong>dummy (or indicator) variables</strong> using 0/1, 1/2, Y/N for each possible answer;</li>
+<li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually "," or ";").</li>
+</ul></p>
+<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>')
+            vijHelpMessage(self, helpMsg)
         }
     )
 )

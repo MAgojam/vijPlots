@@ -34,9 +34,9 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$plot$setVisible(FALSE)
                 self$results$frequencies$setVisible(FALSE)
                 self$results$comp$setVisible(FALSE)
+                private$.showHelpMessage()
                 return()
             } else {
-                self$results$helpMessage$setVisible(FALSE)
                 if (is.null(self$options$group))
                     self$results$comp$setVisible(FALSE)
             }
@@ -697,6 +697,26 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             return( list(p.values = p.values, statistics = statistics) )
+        },
+        .showHelpMessage = function() {
+            helpMsg <- .('<h3>Data & Sorting</h3>
+<ul>
+<li>Likert variables must be of ordinal measure-type. (Continuous measure-type works as well.)</li>
+<li>If you plan to compute mean/median/sd or to use comparison tests, they must be of integer data-type.</li>
+<li><strong>Tidy up levels:</strong> when checked, try to fix the labels order in table and graph (when some variables miss some levels).</li>
+<li><strong>Convert variables to integer:</strong> when checked, the level labels are ignored and only integer values are used.</li>
+<li><strong>Sort Variables by Median:</strong> orders the list of Likert variables by median.</li>
+</ul>
+<h3>Comparison Tests</h3>
+<p>When using a group variable, several tests are available:</p>
+<ul>
+<li><strong>Mann-Whitney U:</strong> Two group comparison</li>
+<li><strong>Kruskal-Wallis:</strong> n group comparison</li>
+<li><strong>Post Hoc Tests:</strong> Dunn, Conover and Dwass-Steel-Critchlow-Fligner (DSCF) paiwise comparisons tests.</li>
+</ul>
+<p>The p-values can be adjusted <strong>groupwise</strong> (for each question) for post hoc tests or <strong>overall</strong> (groupwise and questionwise) for MannWithney U, Kruskal-Wallis and post hoc tests. DSCF p-values are already adjusted (groupwise); no other adjustment is possible.</p>')
+
+            vijHelpMessage(self, helpMsg)
         }
     )
 )

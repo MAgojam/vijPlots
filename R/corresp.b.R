@@ -111,9 +111,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 self$results$rowplot$setVisible(FALSE)
                 self$results$colplot$setVisible(FALSE)
                 self$results$biplot$setVisible(FALSE)
-                self$results$helpMessage$setVisible(TRUE)
-            } else {
-                self$results$helpMessage$setVisible(FALSE)
+                private$.showHelpMessage()
             }
         },
         .run = function() {
@@ -599,6 +597,21 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             class(columns) <- 'data.frame'
 
             columns
+        },
+        .showHelpMessage = function() {
+            helpMsg <- .('<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = "https://CRAN.R-project.org/package=FactoMineR" target="_blank">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>
+<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the "Counts" variable.</p>
+<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>
+<p>Four normalizations (scaling of row and column scores before plotting) are avalaible :
+<ul>
+<li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li>
+<li><strong>Symmetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li>
+<li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li>
+<li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li>
+<li><strong>Standard:</strong> The raw coordinates without normalization.</li>
+</ul></p>
+<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>')
+            vijHelpMessage(self, helpMsg)
         }
     )
 )

@@ -30,9 +30,7 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (is.null(self$options$dep)) {
                 self$results$paramTable$setVisible(FALSE)
                 self$results$plot$setVisible(FALSE)
-                self$results$helpMessage$setVisible(TRUE)
-            } else {
-                self$results$helpMessage$setVisible(FALSE)
+                private$.showHelpMessage()
             }
         },
         .run = function() {
@@ -363,6 +361,32 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 params <- NULL
             }
             return(params)
+        },
+        .showHelpMessage = function() {
+            helpMsg <- .('<p>This module uses <a href = "https://CRAN.R-project.org/package=qqplotr" target="_blank">qqplotr R package<a/> by Alexandre Almeida, Adam Loy and Heike Hofmann. In-depth information can be found in the package documentation on CRAN site.</p>
+<p><strong>Reference line:</strong> Draws either the <em>identity line</em> (y = x) or the commonly-used <em>Q-Q line</em> that intercepts two data quantiles (Q<sub>0.25</sub> and Q<sub>0.75</sub>). P-P plot only supports identity line.</p>
+<p><strong>Confidence band:</strong> Draws a confidence band around the reference line. qqplotr package provides several methods to compute the confidence band:</p>
+<ul>
+<li><strong><em>Pointwise</em></strong> constructs pointwise confidence bands based on Normal confidence intervals;</li>
+<li><strong><em>Bootstrap</em></strong> creates pointwise confidence bands based on a parametric bootstrap;</li>
+<li><strong><em>Kolmogorov-Smirnov</em></strong> band is based on the Kolmogorov-Smirnov test;</li>
+<li><strong><em>Tail-Sensitive</em></strong> constructs a tail-sensitive confidence bands but is only implemented for Normal Q-Q plots;</li>
+<li><strong><em>Equal Local Levels (ELL)</em></strong> constructs simultaneous bands using the equal local levels.</li>
+</ul>
+<p>P-P plots only support "ELL" and "Bootstrap" methods.</p>
+<p><strong>Detrended plot:</strong> The objects are <em>detrended</em> according to the reference line. This procedure may help reducing visual bias caused by the orthogonal distances from the points to the reference line.</p>
+<p><strong>Parameter values:</strong> The distribution parameters can be estimated from data using:</p>
+<ul>
+<li><strong>Maximum Likelihood Method</strong> (using MASS package) : it should work with all distributions but "t" and "uniform";</li>
+<li><strong>Method of Moments</strong> for moment based parameters : it should work with "normal", "log-normal", "Beta", "Exponential", "Gamma", "Logistic" and "Uniform" distributions;</li>
+</ul>
+<p>or entered by user:</p>
+<ul>
+<li><strong>Parameter 1:</strong> mean (Normal), meanlog (Log-normal), shape1 (Beta), location (Cauchy, Logistic), df (Chi-squared, Student), df1 (F), rate (Exponential), shape (Gamma, Weibull) and min (Uniform);</li>
+<li><strong>Parameter 2:</strong> sd (normal), sdlog (Log-normal), shape2 (Beta), scale (Cauchy, Logistic), df2 (F), rate (Gamma, Weibull) and max (Uniform).</li>
+</ul>
+</p>')
+            vijHelpMessage(self, helpMsg)
         }
     )
 )

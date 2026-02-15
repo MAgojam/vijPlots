@@ -69,7 +69,7 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
-### 2026-02-12 / 0.99.1 (dev)
+### 2026-02-15 / 0.99.1 (dev)
 
 -   Remove plot sizing options (built in jamovi 2.7.16+)
 -   Axis options to set axis label sizes, rotation, range
@@ -83,6 +83,7 @@ Principal component analysis and (Multiple) Correspondence analysis.
 -   Unused levels are now retained in boxplot, barplot, raincloud (if checked in variable settings)
 -   More color palettes
 -   Option UI tidied up
+-   French translation completed
 -   Spanish translation (first draft)
 -   Module icon (coming in the next version of jamovi app)
 -   Almost ready for 1.0

@@ -172,3 +172,13 @@ vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
             angle = yAxisLabelRotation)
     ))
 }
+
+vijHelpMessage = function(self, htmlText) {
+    helpMsg <- paste(
+        "<style>.block {border: 2px solid gray;border-radius: 15px;background-color: WhiteSmoke;padding: 5px 20px;text-align: justify;}</style>",
+        "<div class=\"block\">",
+        htmlText,
+        "</div>")
+    self$results$helpMessage$setContent(helpMsg)
+    self$results$helpMessage$setVisible(TRUE)
+}

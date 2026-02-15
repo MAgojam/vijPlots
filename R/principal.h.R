@@ -748,8 +748,7 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="helpMessage",
                 title="",
-                visible=TRUE,
-                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Principal Component Analysis Help</strong></p>\n<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).\n<p>Biplot follows \"Biplots in Practice\" [Michael Greenacre, 2010]: <ul> <li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li> <li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li> </ul></p>\n<p><strong>Advanced options</strong>: <ul> <li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li> <li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li> <li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (Stata way).</li> </ul> </p>\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>\n</div>"))
+                visible=FALSE))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="summaryTable",

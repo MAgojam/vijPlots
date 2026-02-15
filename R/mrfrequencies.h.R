@@ -611,8 +611,7 @@ mrfrequenciesResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cla
                 options=options,
                 name="helpMessage",
                 title="",
-                visible=TRUE,
-                content=" <style> .block { border: 2px solid gray; border-radius: 15px; background-color: WhiteSmoke; padding: 0px 20px; text-align: justify; } </style> <div class=\"block\"> <p><strong>Multiple Response Frequencies Help</strong></p>\n<p>This module computes frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n<p>Questions may be coded as : <ul> <li>several <strong>dummy (or indicator) variables</strong> using 0/1 or 1/2 for each possible answer</li> <li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li> </ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>\n</div>"))
+                visible=FALSE))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="responses",

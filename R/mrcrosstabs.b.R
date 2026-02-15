@@ -9,9 +9,8 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     || (morevar && length(self$options$resps) < 1)) {
                 self$results$crosstab$setVisible(FALSE)
                 self$results$plot$setVisible(FALSE)
+                private$.showHelpMessage()
                 return()
-            } else {
-                self$results$helpMessage$setVisible(FALSE)
             }
             table <- self$results$crosstab
             # Table title
@@ -325,6 +324,16 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 onehotDF[is.na(aCol),] <- NA
             onehotDF[,"X__priVate__X"] <- NULL
             return(onehotDF)
+        },
+        .showHelpMessage = function() {
+            helpMsg <- .('<p>This module computes two-way frequencies for multiple response questions, also known as "Check All That Apply" (CATA) questions.</p>
+<p>Questions may be coded as:
+<ul>
+<li>several <strong>dummy (or indicator) variables</strong> using 0/1, 1/2, Y/N for each possible answer;</li>
+<li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually "," or ";").</li>
+</ul></p>
+<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>')
+            vijHelpMessage(self, helpMsg)
         }
     )
 )
