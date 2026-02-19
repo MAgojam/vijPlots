@@ -76,7 +76,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else
                 fixed_width <- fixed_width + 100
             image <- self$results$plot
-            if (is.null(image$setSize2)) { # jamovi < 2.7.16
+            if (is.null(image[['setSize2']])) { # jamovi < 2.7.16
                 image$setSize(width + fixed_width, height + fixed_height)
             } else {
                 image$setSize2(width, height, fixed_width, fixed_height)

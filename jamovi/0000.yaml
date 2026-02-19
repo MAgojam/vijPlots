@@ -1,12 +1,12 @@
 ---
 title: 'vijPlots: Yet Another jamovi Plotting Module'
 name: vijPlots
-version: 0.99.1
+version: 0.99.2
 jms: '1.0'
 authors:
   - Vincent Jalby
 maintainer: Vincent Jalby <vincent.jalby@unilim.fr>
-date: '2026-02-14'
+date: '2026-02-19'
 type: R
 description: >-
   Main statistical charts (histogram, boxplot, point, bar, line, raincloud…)

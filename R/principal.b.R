@@ -43,7 +43,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 # Set the image dimensions
                 image <- self$results$obsPlot
                 image2 <- self$results$biPlot
-                if (is.null(image$setSize2)) { # jamovi < 2.7.16
+                if (is.null(image[['setSize2']])) { # jamovi < 2.7.16
                     image$setSize(600 + fixed_width, 600 + fixed_height)
                     image2$setSize(600 + fixed_width, 600 + fixed_height)
                 } else {
