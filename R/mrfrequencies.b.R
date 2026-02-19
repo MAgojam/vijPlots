@@ -34,7 +34,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 table$addFormat(rowKey=".total", col=1, jmvcore::Cell.BEGIN_GROUP)
             }
             # Set the image dimensions
-            width <- 525
+            width <- 425
             height <- 350
             fixed_width <- 75
             fixed_height <- 50
