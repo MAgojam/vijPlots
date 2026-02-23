@@ -475,7 +475,6 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "correspResults",
     inherit = jmvcore::Group,
     active = list(
-        helpMessage = function() private$.items[["helpMessage"]],
         contingency = function() private$.items[["contingency"]],
         rowProfiles = function() private$.items[["rowProfiles"]],
         colProfiles = function() private$.items[["colProfiles"]],
@@ -494,11 +493,6 @@ correspResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="Correspondence Analysis",
                 refs=list(
                     "factominer"))
-            self$add(jmvcore::Html$new(
-                options=options,
-                name="helpMessage",
-                title="",
-                visible=FALSE))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="contingency",
@@ -786,7 +780,6 @@ correspBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param descAsVarName .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$contingency} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$rowProfiles} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$colProfiles} \tab \tab \tab \tab \tab a table \cr

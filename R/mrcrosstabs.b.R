@@ -5,10 +5,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         .init = function() {
             morevar <- (self$options$mode == "morevar")
             # Show help message (and hide results)
-            if ((!morevar && (is.null(self$options$repVar) || self$options$separator == ''))
-                    || (morevar && length(self$options$resps) < 1)) {
-                self$results$crosstab$setVisible(FALSE)
-                self$results$plot$setVisible(FALSE)
+            if ((!morevar && (is.null(self$options$repVar) || self$options$separator == '')) || (morevar && length(self$options$resps) < 1)) {
                 private$.showHelpMessage()
                 return()
             }

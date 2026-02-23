@@ -32,7 +32,7 @@ options:
       title: Distribution
       type: List
       options:
-        - title: Normal
+        - title: Normal [distribution]
           name:  norm
         - title: Log-normal
           name:  lnorm

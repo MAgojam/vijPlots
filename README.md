@@ -69,24 +69,22 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
-### 2026-02-19 / 0.99.2 (pre-release)
+### 2026-02-23 / 0.99.3
 
--   Remove plot sizing options (built in jamovi 2.7.16+)
 -   Axis options to set axis label sizes, rotation, range
 -   Regression line in scatter plot
 -   Density line in histogram
--   Bar plot (much) improved with labels and percent by group/category
+-   Bar plot reworked with labels and percent by group/category
 -   Pie chart label options
 -   Option to show % labels in MR Frequencies & Crosstabs plots
 -   Single color option for scatter plot without group
 -   Option to choose 1 color from palette for bar plot, box plot, MR plot without group
 -   Unused levels are now retained in boxplot, barplot, raincloud (if checked in variable settings)
 -   More color palettes
--   Option UI tidied up
+-   Tidy up Option UI
 -   French translation completed
--   Spanish translation (first draft)
--   Module icon (coming in the next version of jamovi app)
--   Almost ready for 1.0
+-   Plot sizing options removed (built in jamovi 2.7.16+)
+-   Module icon (with jamovi 2.7.19+)
 
 ### 2025-12-21 / 0.11.1 (beta)
 

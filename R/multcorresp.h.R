@@ -620,7 +620,6 @@ multcorrespResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
     "multcorrespResults",
     inherit = jmvcore::Group,
     active = list(
-        helpMessage = function() private$.items[["helpMessage"]],
         eigenvalues = function() private$.items[["eigenvalues"]],
         discrim = function() private$.items[["discrim"]],
         categories = function() private$.items[["categories"]],
@@ -639,11 +638,6 @@ multcorrespResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 title="Multiple Correspondence Analysis",
                 refs=list(
                     "factominer"))
-            self$add(jmvcore::Html$new(
-                options=options,
-                name="helpMessage",
-                title="",
-                visible=FALSE))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="eigenvalues",
@@ -1012,7 +1006,6 @@ multcorrespBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$eigenvalues} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$discrim} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$categories} \tab \tab \tab \tab \tab a table \cr

@@ -590,8 +590,6 @@ qqplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "qqplotResults",
     inherit = jmvcore::Group,
     active = list(
-        helpMessage = function() private$.items[["helpMessage"]],
-        ErrorMessage = function() private$.items[["ErrorMessage"]],
         plot = function() private$.items[["plot"]],
         paramTable = function() private$.items[["paramTable"]]),
     private = list(),
@@ -603,16 +601,6 @@ qqplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="Q-Q & P-P Plots",
                 refs=list(
                     "qqplotr"))
-            self$add(jmvcore::Html$new(
-                options=options,
-                name="helpMessage",
-                title="",
-                visible=FALSE))
-            self$add(jmvcore::Preformatted$new(
-                options=options,
-                name="ErrorMessage",
-                title="",
-                visible=FALSE))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
@@ -706,8 +694,6 @@ qqplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param xAxisRangeMax .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$ErrorMessage} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$paramTable} \tab \tab \tab \tab \tab a table \cr
 #' }

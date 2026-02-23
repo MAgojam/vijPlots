@@ -724,7 +724,6 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "principalResults",
     inherit = jmvcore::Group,
     active = list(
-        helpMessage = function() private$.items[["helpMessage"]],
         summaryTable = function() private$.items[["summaryTable"]],
         kmoTable = function() private$.items[["kmoTable"]],
         loadingTable = function() private$.items[["loadingTable"]],
@@ -744,11 +743,6 @@ principalResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 refs=list(
                     "greenacre",
                     "gpa"))
-            self$add(jmvcore::Html$new(
-                options=options,
-                name="helpMessage",
-                title="",
-                visible=FALSE))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="summaryTable",
@@ -1145,7 +1139,6 @@ principalBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisPosition .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$helpMessage} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summaryTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$kmoTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$loadingTable} \tab \tab \tab \tab \tab a table \cr

@@ -6,8 +6,6 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             morevar <- (self$options$mode == "morevar")
             # Show help message (and hide results)
             if ((!morevar && is.null(self$options$repVar)) || (morevar && length(self$options$resps) < 1)) {
-                self$results$responses$setVisible(FALSE)
-                self$results$plot$setVisible(FALSE)
                 private$.showHelpMessage()
                 return()
             }

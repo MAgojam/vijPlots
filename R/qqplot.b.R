@@ -28,8 +28,6 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
             # Show help
             if (is.null(self$options$dep)) {
-                self$results$paramTable$setVisible(FALSE)
-                self$results$plot$setVisible(FALSE)
                 private$.showHelpMessage()
             }
         },
@@ -77,25 +75,24 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Check data compatibility with distribution
             varMin <- min(plotData[[depVar]])
             varMax <- max(plotData[[depVar]])
-            errMes <- NULL
             if (self$options$transLog && !is.finite(varMin))
-                errMes <- "Natural Log Tranform requires positive (>0) data."
-            if (varMin <= 0 & distrib %in% c("lnorm", "chisq", "f", "gamma", "weibull"))
-                errMes <- paste(private$.corresp(distrib), "distribution requires positive (>0) data.")
-            if (varMin < 0 & distrib == "exp")
-                errMes <- "Exponential distribution requires non-negative (≥0) data."
-            if (distrib == "beta" && (varMin <=0 || varMax >= 1))
-                errMes <- "Beta distribution requires data between 0 and 1."
+                errorMessage <- .("Natural Log Tranform requires positive (>0) data.")
+            else if (varMin <= 0 && distrib %in% c("lnorm", "chisq", "f", "gamma", "weibull"))
+                errorMessage <- jmvcore::format(.("{distrib} distribution requires positive (>0) data."), distrib = private$.distTitleName(distrib))
+            else if (varMin < 0 && distrib == "exp")
+                errorMessage <- .("Exponential distribution requires non-negative (≥0) data.")
+            else if (distrib == "beta" && (varMin <=0 || varMax >= 1))
+                errorMessage <- .("Beta distribution requires data between 0 and 1.")
+            else
+                errorMessage <- NULL
 
-            if (!is.null(errMes)) {
-                self$results$paramTable$setVisible(FALSE)
-                self$results$plot$setVisible(FALSE)
-                self$results$ErrorMessage$setVisible(TRUE)
-                self$results$ErrorMessage$setContent(errMes)
+            if (!is.null(errorMessage)) {
+                vijErrorMessage(self, errorMessage)
                 return(TRUE)
             }
 
             # Parameter estimations
+            paramErrorMessage <- NULL
             if (self$options$paramMethod == "paraEstimate") {
                 if (self$options$paramEstMethod == "mle") {
                     try(
@@ -109,39 +106,34 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     ) -> tryResult
                 }
                 if (class(tryResult) == "try-error" || is.null(params)) {
-                    self$results$paramTable$setVisible(FALSE)
-                    self$results$plot$setVisible(FALSE)
-                    self$results$ErrorMessage$setVisible(TRUE)
-                    self$results$ErrorMessage$setContent("Unable to estimate the distribution parameters")
-                    return(TRUE)
+                    paramErrorMessage <- .("Unable to estimate the distribution parameters.")
                 }
             } else {
                 params <- private$.userParams(distrib, as.numeric(self$options$param1), as.numeric(self$options$param2))
                 if (is.null(params)) {
-                    self$results$paramTable$setVisible(FALSE)
-                    self$results$plot$setVisible(FALSE)
-                    self$results$ErrorMessage$setVisible(TRUE)
-                    self$results$ErrorMessage$setContent("Wrong parameter values.")
-                    return(TRUE)
+                    paramErrorMessage <- .("Wrong parameter values.")
                 }
             }
 
+            if (!is.null(paramErrorMessage)) {
+                vijErrorMessage(self, paramErrorMessage)
+                return(TRUE)
+            }
+
             # Everthing is OK
-            self$results$ErrorMessage$setVisible(FALSE)
-            self$results$ErrorMessage$setContent("")
             self$results$paramTable$setVisible(TRUE)
             self$results$plot$setVisible(TRUE)
 
             # Define the title of the plot (it will be set at the end)
             if (detrend) {
                 plotTitle <- jmvcore::format(.("Detrended {distribStr} {typeStr} Plot of {varStr}"),
-                                             distribStr = .(private$.distTitleName(distrib)),
+                                             distribStr = private$.distTitleName(distrib),
                                              typeStr = ifelse(self$options$type == "PP", .("P-P"), .("Q-Q")),
                                              varStr = ifelse(self$options$transLog, paste0("LN(",self$options$dep,")"), self$options$dep)
                                         )
             } else {
                 plotTitle <- jmvcore::format(.("{distribStr} {typeStr} Plot of {varStr}"),
-                                             distribStr = .(private$.distTitleName(distrib)),
+                                             distribStr = private$.distTitleName(distrib),
                                              typeStr = ifelse(self$options$type == "PP", .("P-P"), .("Q-Q")),
                                              varStr = ifelse(self$options$transLog, paste0("LN(",self$options$dep,")"), self$options$dep)
                 )
@@ -219,12 +211,6 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 yLab <-  ifelse(detrend, .("Sample Probability Deviation"), .("Sample Probabilities"))
             }
 
-
-
-            # colors
-            #plot <- plot + vijScale(self$options$colorPalette, "color", drop = FALSE) + vijScale(self$options$colorPalette, "fill", drop = FALSE)
-            #plot <- plot + vijScale("jmv", "color", drop = FALSE) + vijScale("jmv", "fill", drop = FALSE)
-
             # Theme and colors
             plot <- plot + ggtheme + vijScale(self$options$colorPalette, "color", drop = FALSE) + vijScale(self$options$colorPalette, "fill", drop = FALSE)
 
@@ -286,18 +272,18 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         .distTitleName = function(distName) {
             switch(
                 distName,
-                beta = "Beta",
-                cauchy = "Cauchy",
-                chisq = "Chi-squared",
-                exp = "Exponential",
-                f = "F",
-                gamma = "Gamma",
-                lnorm = "Log-normal",
-                logis = "Logistic",
-                norm = "Normal",
-                t = "Student",
-                unif = "Uniform",
-                weibull = "Weibull",
+                beta = .("Beta"),
+                cauchy = .("Cauchy"),
+                chisq = .("Chi-squared"),
+                exp = .("Exponential"),
+                f = .("F"),
+                gamma = .("Gamma"),
+                lnorm = .("Log-normal"),
+                logis = .("Logistic"),
+                norm = .("Normal [distribution]"),
+                t = .("Student"),
+                unif = .("Uniform"),
+                weibull = .("Weibull"),
                 NULL
             )
         },

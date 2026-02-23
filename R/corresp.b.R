@@ -88,30 +88,16 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             return(contingencyTable)
         },
         .init = function() {
-            # Weight message
-            countsName <- self$countsName
-            if ( ! is.null(countsName)) {
-                message <- ..('The data is weighted by the variable {}.', countsName)
-                type <- jmvcore::NoticeType$WARNING
-                weightsNotice <- jmvcore::Notice$new(
-                    self$options,
-                    name='.weights',
-                    type=type,
-                    content=message)
-                self$results$insert(1, weightsNotice)
-            }
             #
             if (is.null(self$options$rows) || is.null(self$options$cols)) {
-                self$results$contingency$setVisible(FALSE)
-                self$results$rowProfiles$setVisible(FALSE)
-                self$results$colProfiles$setVisible(FALSE)
-                self$results$eigenvalues$setVisible(FALSE)
-                self$results$rowSummary$setVisible(FALSE)
-                self$results$colSummary$setVisible(FALSE)
-                self$results$rowplot$setVisible(FALSE)
-                self$results$colplot$setVisible(FALSE)
-                self$results$biplot$setVisible(FALSE)
                 private$.showHelpMessage()
+            } else {
+                # Weight message
+                countsName <- self$countsName
+                if (!is.null(countsName)) {
+                    warningMessage <- ..('The data is weighted by the variable {}.', countsName)
+                    vijWarningMessage(self, warningMessage, '.weights')
+                }
             }
         },
         .run = function() {
@@ -149,26 +135,36 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (is.null(self$options$supplementaryRows) || self$options$supplementaryRows == "0" || self$options$supplementaryRows == "") {
                 supplementaryRows <- NULL
             } else {
-                supplementaryRows <- sort(unique(as.numeric(unlist(strsplit(self$options$supplementaryRows,",")))))
+                supplementaryRows <- as.integer(unlist(strsplit(self$options$supplementaryRows,",")))
                 if (any(is.na(supplementaryRows))) {
-                    jmvcore::reject("Supplementary row numbers must be a list of numbers, e.g. 1,2,9")
+                    vijErrorMessage(self, .("Supplementary row numbers must be a list of numbers, e.g. 1,2,9"))
+                    return(TRUE)
                 } else {
+                    supplementaryRows <- sort(unique(supplementaryRows))
                     nmax <- nlevels(self$data[[rowVarName]])
-                    if (!all(supplementaryRows %in% 1:nmax))
-                        jmvcore::reject("Supplementary row numbers must be between 1 and {nmax}", code=NULL, nmax=nmax)
+                    if (!all(supplementaryRows %in% 1:nmax)) {
+                        errorMessage <- jmvcore::format(.("Supplementary row numbers must be between 1 and {nmax}."), nmax = nmax)
+                        vijErrorMessage(self, errorMessage)
+                        return(TRUE)
+                    }
                 }
             }
             # Columns
             if (is.null(self$options$supplementaryCols) || self$options$supplementaryCols == "0" || self$options$supplementaryCols == "") {
                 supplementaryCols <- NULL
             } else {
-                supplementaryCols <- sort(unique(as.numeric(unlist(strsplit(self$options$supplementaryCols,",")))))
+                supplementaryCols <- as.integer(unlist(strsplit(self$options$supplementaryCols,",")))
                 if (any(is.na(supplementaryCols))) {
-                    jmvcore::reject("Supplementary column numbers must be a list of numbers, e.g. 1,2,9")
+                    vijErrorMessage(self,.("Supplementary column numbers must be a list of numbers, e.g. 1,2,9"))
+                    return(TRUE)
                 } else {
+                    supplementaryCols <- sort(unique(supplementaryCols))
                     nmax <- nlevels(self$data[[colVarName]])
-                    if (!all(supplementaryCols %in% 1:nmax))
-                        jmvcore::reject("Supplementary column numbers must be between 1 and {nmax}", code=NULL, nmax=nmax)
+                    if (!all(supplementaryCols %in% 1:nmax)) {
+                        errorMessage <- jmvcore::format(.("Supplementary column numbers must be between 1 and {nmax}."), nmax=nmax)
+                        vijErrorMessage(self, errorMessage)
+                        return(TRUE)
+                    }
                 }
             }
             # Modify the supplementary row/col names
@@ -182,15 +178,23 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Solution dimension
             maxDim = min(nrow(contingencyTable)-length(supplementaryRows), ncol(contingencyTable)-length(supplementaryCols)) - 1
             nDim <-self$options$dimNum
-            if (nDim > maxDim)
-                jmvcore::reject("Number of dimensions must be less than or equal to {maxDim}", code=NULL, maxDim = maxDim)
+            if (nDim > maxDim) {
+                errorMessage <- jmvcore::format(.("Number of dimensions must be less than or equal to {maxDim}."), maxDim = maxDim)
+                vijErrorMessage(self,errorMessage)
+                return(TRUE)
+            }
             # Axis
             xaxis <- self$options$xaxis
             yaxis <- self$options$yaxis
-            if (xaxis > nDim || yaxis > nDim)
-                jmvcore::reject("Axis numbers must be less than or equal to the number of dimensions ({nDim})", code=NULL, nDim=nDim)
-            if (xaxis == yaxis)
-                jmvcore::reject("Axis numbers cannot be equal!")
+            if (xaxis > nDim || yaxis > nDim) {
+                errorMessage <- jmvcore::format(.("Axis numbers must be less than or equal to the number of dimensions ({nDim})."), nDim = nDim)
+                vijErrorMessage(self, errorMessage)
+                return(TRUE)
+            }
+            if (xaxis == yaxis) {
+                vijErrorMessage(self, .("Axis numbers cannot be equal."))
+                return(TRUE)
+            }
 
             #### Normalisation ####
             normalizationString <- switch(self$options$normalization,

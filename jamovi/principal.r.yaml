@@ -7,11 +7,6 @@ refs:
     - gpa
 
 items:
-    - name:  helpMessage
-      title: ""
-      type:  Html
-      visible: false
-
     - name: summaryTable
       title: Summary
       visible: (showSummary)

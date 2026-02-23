@@ -21,14 +21,6 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
         .init = function() {
             if (is.null(self$options$vars)) {
-                self$results$eigenvalues$setVisible(FALSE)
-                self$results$discrim$setVisible(FALSE)
-                self$results$categories$setVisible(FALSE)
-                self$results$observations$setVisible(FALSE)
-                self$results$discrimplot$setVisible(FALSE)
-                self$results$categoryplot$setVisible(FALSE)
-                self$results$obsplot$setVisible(FALSE)
-                self$results$biplot$setVisible(FALSE)
                 private$.showHelpMessage()
             }
         },
@@ -39,9 +31,16 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # check dim values
             nDim <- self$options$dimNum
             if (self$options$xaxis > nDim || self$options$yaxis > nDim)
-                jmvcore::reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
-            if (self$options$xaxis == self$options$yaxis)
-                jmvcore::reject("X-Axis and Y-Axis cannot be equal")
+                errorMessage <- .("X-Axis and Y-Axis cannot be greater than the number of dimensions.")
+            else if (self$options$xaxis == self$options$yaxis)
+                errorMessage <- .("X-Axis and Y-Axis cannot be equal.")
+            else
+                errorMessage <- NULL
+
+            if (!is.null(errorMessage)) {
+                vijErrorMessage(self, errorMessage)
+                return(TRUE)
+            }
 
             activeVars <- self$options$vars
             supplVars <- self$options$supplVars
@@ -84,8 +83,11 @@ multcorrespClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             res <- private$.mca(data[,allVars], method = method, nd = nDim, supcol = supplIdx, rowlabels = rowLabels, rownames = rownames(data))
 
-            if (nDim > res$nd.max)
-                jmvcore::reject(jmvcore::format(.("The number of dimensions cannot be greater than {max}."), max = res$nd.max))
+            if (nDim > res$nd.max) {
+                errorMessage <- jmvcore::format(.("The number of dimensions cannot be greater than {max}."), max = res$nd.max)
+                vijErrorMessage(self, errorMessage)
+                return(TRUE)
+            }
 
             #### Inertia Table ####
 

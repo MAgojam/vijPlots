@@ -21,14 +21,6 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
         .init = function() {
             if (is.null(self$options$vars)) {
-                self$results$summaryTable$setVisible(FALSE)
-                self$results$kmoTable$setVisible(FALSE)
-                self$results$loadingTable$setVisible(FALSE)
-                self$results$obsTable$setVisible(FALSE)
-                self$results$screePlot$setVisible(FALSE)
-                self$results$varPlot$setVisible(FALSE)
-                self$results$obsPlot$setVisible(FALSE)
-                self$results$biPlot$setVisible(FALSE)
                 private$.showHelpMessage()
             }
 
@@ -58,11 +50,18 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # check dim values
             nDim <- self$options$dimNum
             if (nDim > length(self$options$vars))
-                jmvcore::reject("The number of dimensions cannot be greater than the number of variables")
-            if (self$options$xaxis > nDim || self$options$yaxis > nDim)
-                jmvcore::reject("X-Axis and Y-Axis cannot be greater than the number of dimensions")
-            if (self$options$xaxis == self$options$yaxis)
-                jmvcore::reject("X-Axis and Y-Axis cannot be equal")
+                errorMessage <- .("The number of dimensions cannot be greater than the number of variables.")
+            else if (self$options$xaxis > nDim || self$options$yaxis > nDim)
+                errorMessage <- .("X-Axis and Y-Axis cannot be greater than the number of dimensions.")
+            else if (self$options$xaxis == self$options$yaxis)
+                errorMessage <- .("X-Axis and Y-Axis cannot be equal.")
+            else
+                errorMessage <- NULL
+
+            if (!is.null(errorMessage)) {
+                vijErrorMessage(self, errorMessage)
+                return(TRUE)
+            }
 
             # Set variable names
             private$.setVarNames(c(self$options$vars, self$options$labelVar, self$options$groupVar))
@@ -79,11 +78,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Verify that cor Matrice is positive definite
             corrMat <- cor(data[,self$options$vars])
             if (abs(det(corrMat)) < .Machine$double.eps) {
-                warningMsg <- .("The correlation matrix is not positive definite. Computations may not be accurate.")
-                warningNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING,
-                                                     name = '.warning',
-                                                     content = warningMsg)
-                self$results$insert(1, warningNotice)
+                vijWarningMessage(self, .("The correlation matrix is not positive definite. Computations may not be accurate."))
             }
 
             #### KMO & Bartlett's test ####
@@ -129,12 +124,9 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             )
 
             if (res$rotation != self$options$rotation) {
-                rotationMsg <- jmvcore::format(.("Unable to use {rotation} rotation."), rotation = rotationName)
                 rotationNote <- .("No rotation used.")
-                rotationNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING,
-                                                         name = '.rotationMsg',
-                                                         content = rotationMsg)
-                self$results$insert(1, rotationNotice)
+                rotationMsg <- jmvcore::format(.("Unable to use {rotation} rotation."), rotation = rotationName)
+                vijWarningMessage(self, rotationMsg, '.rotation')
             } else if (self$options$rotation != "none") {
                 if (self$options$kaiser) {
                     rotationNote <- jmvcore::format(.("{rotation} rotation with Kaiser normalization was used."), rotation = rotationName)

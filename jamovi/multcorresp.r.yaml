@@ -5,15 +5,6 @@ jrs:   '1.1'
 refs:
     - factominer
 items:
-    # - name:  text
-    #   title: Debug
-    #   type:  Preformatted
-
-    - name:  helpMessage
-      title: ""
-      type:  Html
-      visible: false
-
     - name:  eigenvalues
       title: Summary
       type: Table

@@ -6,16 +6,6 @@ refs:
     - qqplotr
 
 items:
-    - name:  helpMessage
-      title: ""
-      type:  Html
-      visible: false
-
-    - name:  ErrorMessage
-      title: ""
-      type:  Preformatted
-      visible: false
-
     - name: plot
       title: ""
       type: Image

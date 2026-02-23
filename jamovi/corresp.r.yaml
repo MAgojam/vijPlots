@@ -6,16 +6,6 @@ refs:
     - factominer
 
 items:
-    # - name:  text
-    #   title: "Debug"
-    #   type:  Preformatted
-    #   visible: true
-
-    - name:  helpMessage
-      title: ""
-      type:  Html
-      visible: false
-
     - name: contingency
       title: Contingency Table
       type: Table

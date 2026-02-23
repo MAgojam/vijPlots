@@ -75,8 +75,9 @@ linechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if (!is.null(timeVarAsDate)) {
                     plotData[[timeVar]] <- timeVarAsDate
                 } else {
-                    jmvcore::reject(paste(self$options$timeVar, .("doesn't have a valid date format.")))
-                    timeVarIsDate <- FALSE
+                    errorMessage <- jmvcore::format(.("{var} doesn't have a valid date format."), var = self$options$timeVar)
+                    vijErrorMessage(self, errorMessage)
+                    return(TRUE)
                 }
             }
 

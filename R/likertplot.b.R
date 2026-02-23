@@ -31,9 +31,6 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
         .init = function() {
             if (length(self$options$liks) == 0) {
-                self$results$plot$setVisible(FALSE)
-                self$results$frequencies$setVisible(FALSE)
-                self$results$comp$setVisible(FALSE)
                 private$.showHelpMessage()
                 return()
             } else {
@@ -67,8 +64,10 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Check if ordered factor
             for (ques in self$options$liks) {
                 varAttrib <- attr(mainData[[ques]],"class",TRUE)
-                if ( ("factor" %in% varAttrib)  && !("ordered" %in% varAttrib) )
-                    jmvcore::reject("Likert Plot requires ordinal (or numeric) variables")
+                if ( ("factor" %in% varAttrib)  && !("ordered" %in% varAttrib) ) {
+                    vijErrorMessage(self, .("Likert Plot requires ordinal (or numeric) variables"))
+                    return(TRUE)
+                }
             }
 
             # Check if canBeNumeric (if median/mean/tests/to integer / tidy up requested)
@@ -77,13 +76,20 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 canbeNum <- canbeNum && jmvcore::canBeNumeric(mainData[[ques]])
 
             if (!canbeNum && self$options$frequencyTable && (self$options$showMedian || self$options$showMean))
-                jmvcore::reject("Median and mean require numeric variables")
-            if (!canbeNum && (self$options$showMannU || self$options$showKW || self$options$showPostHoc))
-                jmvcore::reject("Comparison tests require numeric variables")
-            if (!canbeNum && self$options$toInteger)
-                jmvcore::reject("Cannot convert text variables to integers")
-            if (!canbeNum && self$options$tidyUp)
-                jmvcore::reject("Cannot tidy up text variables")
+                errorMessage <- .("Median and mean require numeric variables")
+            else if (!canbeNum && (self$options$showMannU || self$options$showKW || self$options$showPostHoc))
+                errorMessage <- .("Comparison tests require numeric variables")
+            else if (!canbeNum && self$options$toInteger)
+                errorMessage <- .("Cannot convert text variables to integers")
+            else if (!canbeNum && self$options$tidyUp)
+                errorMessage <- .("Cannot tidy up text variables")
+            else
+                errorMessage <- NULL
+
+            if (!is.null(errorMessage)) {
+                vijErrorMessage(self, errorMessage)
+                return(TRUE)
+            }
 
             # Set variable names
             private$.setVarNames(c(self$options$liks, self$options$group))
@@ -306,8 +312,10 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Pairwise comparison table
             if (ng > 1 && self$options$showPostHoc) {
-                if (oneFreqIsNull == 0)
-                    jmvcore::reject("Comparison tests cannot be computed with empty (N=0) groups")
+                if (oneFreqIsNull == 0) {
+                    vijErrorMessage(self, .("Comparison tests cannot be computed with empty (N=0) groups"))
+                    return(TRUE)
+                }
                 # Set title and statistic column title
                 self$results$comp$pwTable$setTitle(switch(self$options$postHoc,
                                                           "conover" = .("Conover's Pairwise Comparisons"),

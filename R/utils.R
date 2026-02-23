@@ -174,11 +174,35 @@ vijTitleAndLabelFormat = function(options, showLegend = TRUE) {
 }
 
 vijHelpMessage = function(self, htmlText) {
+    # Hide other results
+    for (resName in names(self$results)) {
+        aResult <- get0(resName, self$results)
+        if (!is.null(aResult))
+            aResult$setVisible(FALSE)
+    }
+    # Display Help message
     helpMsg <- paste(
         "<style>.block {border: 2px solid gray;border-radius: 15px;background-color: WhiteSmoke;padding: 5px 20px;text-align: justify;}</style>",
         "<div class=\"block\">",
         htmlText,
         "</div>")
-    self$results$helpMessage$setContent(helpMsg)
-    self$results$helpMessage$setVisible(TRUE)
+    helpHtml <- jmvcore::Html$new(self$options, name = '.help', content = helpMsg)
+    self$results$insert(1, helpHtml)
+}
+
+vijErrorMessage = function(self, errorMessage) {
+    # Hide other results
+    for (resName in names(self$results)) {
+        aResult <- get0(resName, self$results)
+        if (!is.null(aResult))
+            aResult$setVisible(FALSE)
+    }
+    # Display Error message
+    errorNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING, name = '.warning', content = errorMessage)
+    self$results$insert(1, errorNotice)
+}
+
+vijWarningMessage = function(self, warningMessage, name = '.warning') {
+    warningNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING, name = name, content = warningMessage)
+    self$results$insert(1, warningNotice)
 }

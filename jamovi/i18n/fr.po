@@ -18,6 +18,10 @@ msgid "[0-9]"
 msgstr "[0-9]"
 
 #: R/qqplot.b.R
+msgid "{distrib} distribution requires positive (>0) data."
+msgstr "La loi {distrib} nécessite des données strictement positives."
+
+#: R/qqplot.b.R
 msgid "{distribStr} {typeStr} Plot of {varStr}"
 msgstr "Diagramme {typeStr} {distribStr} de {varStr}"
 
@@ -36,6 +40,11 @@ msgstr "Rotation {rotation} avec normalisation de Kaiser"
 #: R/principal.b.R
 msgid "{rotation} rotation with Kaiser normalization was used."
 msgstr "La rotation {rotation} avec normalisation de Kaiser a été utilisée."
+
+#: R/areachart.b.R
+#: R/linechart.b.R
+msgid "{var} doesn't have a valid date format."
+msgstr "{var} n'a pas un format de date valide."
 
 #: barplot/options/facetNumber.title
 #: histogram/options/facetNumber.title
@@ -222,8 +231,8 @@ msgid "<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</s
 msgstr "<p>Ce module effectue une <strong>Analyse des Correspondances Multiples (ACM)</strong> de plusieurs variables catégorielles. Les calculs sont basés sur le package <a href=\"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR</a/> de F. Husson, J. Josse, S. Le et J. Mazet.</p>\n"
 "<p>Les deux méthodes classiques sont disponibles :</p>\n"
 "<ul>\n"
-"<li><strong>Matrice indicatrice :</strong> ACM de la matrice indicatrice</li>\n"
-"<li><strong>Matrice de Burt :</strong> ACM de la matrice de Burt. Les valeurs propres sont les carrés de celles de la méthode de la matrice indicatrice.</li>\n"
+"<li><strong>Tableau disjonctif :</strong> ACM de la matrice indicatrice</li>\n"
+"<li><strong>Tableau de Burt :</strong> ACM de la matrice de Burt. Les valeurs propres sont les carrés de celles de la méthode de la matrice indicatrice.</li>\n"
 "</ul>\n"
 "<p>Les deux méthodes donnent Les mêmes coordonnées <em>standards</em> (mais des coordonnées <em>principales</em> différentes).</p>\n"
 "<p>Lorsque l'option <strong>correction de Benzécri</strong> ou <strong>correction de Greenacre</strong> est sélectionnée, les corrections sont appliquées uniquement aux valeurs propres (<strong>tableau récapitulatif</strong>). Les coordonnées (et l'inertie) des catégories et des observations sont calculées à partir des valeurs propres originales de la matrice de Burt.</p>\n"
@@ -252,7 +261,7 @@ msgid "<p>This module computes <strong>Principal Component Analysis (PCA)</stron
 "<li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (STATA way).</li>\n"
 "</ul>\n"
 "<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>"
-msgstr "<p>Ce module calcule l'<strong>Analyse en Composantes Principales (ACP)</strong> pour plusieurs variables continues. Les calculs sont basés sur la fonction <tt>stats::prcomp</tt>.</p>\n"
+msgstr "<p>Ce module effectue une <strong>Analyse en Composantes Principales (ACP)</strong> de plusieurs variables continues. Les calculs sont basés sur la fonction <tt>stats::prcomp</tt>.</p>\n"
 "<p>Bien que les composantes après rotation ne soient pas des composantes principales, elles sont largement utilisées. Seules les rotations orthogonales sont disponibles (via le package GPArotation).</p>\n"
 "<p>Les coordonnées des variables et des observations sont principles (mis à l'échelle par la racine carrée des valeurs propres).</p>\n"
 "<p>Le diagramme double suit l'approche de « Biplots in Practice » (Michael Greenacre, 2010) :</p>\n"
@@ -260,7 +269,7 @@ msgstr "<p>Ce module calcule l'<strong>Analyse en Composantes Principales (ACP)<
 "<li><strong>Form :</strong> Les coordonnées des observations sont principales (mis à l'échelle par les valeurs propres) tandis que celles des variables sont standardisées.</li>\n"
 "<li><strong>Cov :</strong> Les coordonnées des variables sont principales tandis que celles des observations sont standardisées. </li>\n"
 "</ul>\n"
-"<p><strong>Options avancées</strong>:</p>\n"
+"<p><strong>Options avancées :</strong></p>\n"
 "<ul>\n"
 "<li><strong>Variables standardisées :</strong> les coordonnées des variables sont normalisées avec la somme des carrés égale à 1 (au lieu des valeurs propres).</li>\n"
 "<li><strong>Observations standardisées :</strong> les coordonnées des observations sont normalisées avec la variance égale à 1 (au lieu des valeurs propres).</li>\n"
@@ -279,7 +288,7 @@ msgid "<p>This module computes frequencies for multiple response questions, also
 msgstr "<p>Ce module calcule les fréquences des questions à réponses multiples, également appelées questions « Cochez toutes les réponses qui s'appliquent » (CATA).</p>\n"
 "<p>Les questions peuvent être codées comme suit :\n"
 "<ul>\n"
-"<li>plusieurs variables indicatrices (ou variables binaires) utilisant 0/1, 1/2, O/N pour chaque réponse possible ;</li>\n"
+"<li>plusieurs variables dichotomiques (ou variables indicatrices) utilisant 0/1, 1/2 ou O/N pour chaque réponse possible ;</li>\n"
 "<li>une seule variable à valeurs multiples contenant les réponses cochées, séparées par un symbole (généralement « , » ou « ; »).</li>\n"
 "</ul></p>\n"
 "<p>Un fichier de démonstration est disponible dans Ouvrir > Bibliothèque de données > vijPlots > Credit Cards</p>"
@@ -295,7 +304,7 @@ msgid "<p>This module computes two-way frequencies for multiple response questio
 msgstr "<p>Ce module calcule les fréquences croisées des questions à réponses multiples, également appelées questions « Cochez toutes les réponses qui s'appliquent » (CATA).</p>\n"
 "<p>Les questions peuvent être codées comme suit :\n"
 "<ul>\n"
-"<li>plusieurs variables indicatrices (ou variables binaires) utilisant 0/1, 1/2, O/N pour chaque réponse possible ;</li>\n"
+"<li>plusieurs variables dichotomiques (ou variables indicatrices) utilisant 0/1, 1/2 ou O/N pour chaque réponse possible ;</li>\n"
 "<li>une seule variable à valeurs multiples contenant les réponses cochées, séparées par un symbole (généralement « , » ou « ; »).</li>\n"
 "</ul></p>\n"
 "<p>Un fichier de démonstration est disponible dans Ouvrir > Bibliothèque de données > vijPlots > Credit Cards</p>"
@@ -325,26 +334,26 @@ msgid "<p>This module uses <a href = \"https://CRAN.R-project.org/package=qqplot
 "</ul>\n"
 "</p>"
 msgstr "<p>Ce module utilise l'extension R <a href = \"https://CRAN.R-project.org/package=qqplotr\" target=\"_blank\">qqplotr<a/> par Alexandre Almeida, Adam Loy et Heike Hofmann. Les informations détaillées sont disponibles dans la documentation de l'extension sur le site CRAN.</p>\n"
-"<p><strong>Droite de référence :</strong> Trace soit la <em>droite identitée</em> (y = x) ou la <em>droite Q-Q</em> usuelle qui relie les deux quantiles (Q<sub>0.25</sub> et Q<sub>0.75</sub>). Le diagramme P-P plot n'utilise que la droite identitée.</p>\n"
+"<p><strong>Droite de référence :</strong> Trace soit la <em>droite identitée</em> (y = x) ou la <em>droite Q-Q</em> usuelle qui relie deux quantiles (Q<sub>0.25</sub> et Q<sub>0.75</sub>). Le diagramme P-P n'utilise que la droite identitée.</p>\n"
 "<p><strong>Bande de confiance :</strong> Trace une bande de confiance autour de la droite de référence. Le package qqplotr propose plusieurs méthodes pour calculer la bande de confiance :</p>\n"
 "<ul>\n"
 "<li><strong><em>Pointwise</em></strong> construit des bandes de confiance ponctuelles basées sur des intervalles de confiance normaux ;</li>\n"
 "<li><strong><em>Bootstrap</em></strong> crée des bandes de confiance ponctuelles basées sur un bootstrap paramétrique ;</li>\n"
 "<li><strong><em>Kolmogorov-Smirnov</em></strong> est basé sur le test de Kolmogorov-Smirnov ;</li>\n"
 "<li><strong><em>Tail-Sensitive</em></strong> construit des bandes de confiance sensibles à la queue de distribution, mais n'est implémenté que pour les graphiques Q-Q normaux ;</li>\n"
-"<li><strong><em>Equal Local Levels (ELL)</em></strong> construit des bandes simultanées utilisant les niveaux locaux égaux.</li>\n"
+"<li><strong><em>Equal Local Levels (ELL)</em></strong> construit des bandes simultanées utilisant des niveaux locaux égaux.</li>\n"
 "</ul>\n"
 "<p>Les graphiques P-P ne prennent en charge que les méthodes \"ELL\" et \"Bootstrap\".</p>\n"
 "<p><strong>Graphique redressé :</strong> Le graphique est <em>redressé</em> par rapport à la droite de référence. Cette procédure peut contribuer à réduire le biais visuel causé par les distances orthogonales entre les points et la droite de référence.</p>\n"
 "<p><strong>Valeurs des paramètres :</strong> Les paramètres de la distribution peuvent être estimés à partir des données à l'aide de :</p>\n"
 "<ul>\n"
 "<li><strong>Méthode du maximum de vraisemblance</strong> (avec le package MASS) : elle devrait fonctionner avec toutes les distributions sauf \"Student\" et \"Uniforme\";</li>\n"
-"<li><strong>Méthode des moments</strong> pour les paramètres basés sur les moments : elle devrait fonctionner avec les distributions \"normale\", \"log-normale\", \"Beta\", \"Exponentielle\", \"Gamma\", \"Logistique\" et \"Uniforme\";</li>\n"
+"<li><strong>Méthode des moments</strong> pour les paramètres basés sur les moments : elle devrait fonctionner avec les distributions \"Normale\", \"Log-normale\", \"Beta\", \"Exponentielle\", \"Gamma\", \"Logistique\" et \"Uniforme\";</li>\n"
 "</ul>\n"
 "<p>ou saisi par l'utilisateur :</p>\n"
 "<ul>\n"
 "<li><strong>Paramètre 1 :</strong> moyenne (normale), moyenne logarithmique (log-normale), forme 1 (bêta), position (Cauchy, logistique), ddl (Khi-deux, Student), ddl 1 (F), taux (exponentielle), forme (gamma, Weibull) et min (uniforme) ;</li>\n"
-"<li><strong>Paramètre 2 :</strong> écart-type (normale), écart-type logarithmique (log-normale), forme 2 (bêta), échelle (Cauchy, logistique), ddl 2 (F), taux (gamma, Weibull) et max (Uniforme).</li>\n"
+"<li><strong>Paramètre 2 :</strong> écart-type (normale), écart-type logarithmique (log-normale), forme 2 (bêta), échelle (Cauchy, logistique), ddl 2 (F), taux (gamma, Weibull) et max (uniforme).</li>\n"
 "</ul>\n"
 "</p>"
 
@@ -1110,7 +1119,7 @@ msgstr "Fichier de démonstration pour vijPlots/Séries temporelles."
 #: raincloud/options/colorPalette/Accent.title
 #: scatterplot/options/colorPalette/Accent.title
 msgid "Accent"
-msgstr "Accent"
+msgstr "Accentué"
 
 #: R/corresp.b.R
 msgid "Active Margin"
@@ -1269,6 +1278,14 @@ msgstr "Auto"
 msgid "Axes"
 msgstr "Axes"
 
+#: R/corresp.b.R
+msgid "Axis numbers cannot be equal."
+msgstr "Les axes ne peuvent pas être identiques."
+
+#: R/corresp.b.R
+msgid "Axis numbers must be less than or equal to the number of dimensions ({nDim})."
+msgstr "Les axes doivent être inférieurs ou égaux au nombre de dimensions ({nDim})."
+
 #: corresp/ui[7].label
 #: mrfrequencies/ui[5].label
 msgid "Axis Titles"
@@ -1305,9 +1322,14 @@ msgstr "Correction de Benzécri"
 msgid "Benzécri correction"
 msgstr "Correction de Benzécri"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/beta.title
 msgid "Beta"
 msgstr "Beta"
+
+#: R/qqplot.b.R
+msgid "Beta distribution requires data between 0 and 1."
+msgstr "La loi Bêta nécessite des données comprise entre 0 et 1"
 
 #: likertplot/options/adjustMethod/BH.title
 msgid "BH"
@@ -1639,6 +1661,14 @@ msgstr "Par groupe"
 msgid "By variable"
 msgstr "Par variable"
 
+#: R/likertplot.b.R
+msgid "Cannot convert text variables to integers"
+msgstr "Impossible de convertir une variable de type texte en entiers."
+
+#: R/likertplot.b.R
+msgid "Cannot tidy up text variables"
+msgstr "Impossible de corriger les niveaux d'un variable de type texte."
+
 #: areachart/ui[4][2].label
 #: barplot/ui[7][2].label
 #: boxplot/ui[5][2].label
@@ -1717,6 +1747,7 @@ msgstr "Coordonnées principales des catégories"
 msgid "Category Summary"
 msgstr "Résumés des catégories"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/cauchy.title
 msgid "Cauchy"
 msgstr "Cauchy"
@@ -1803,8 +1834,9 @@ msgstr "Centrer"
 #: likertplot/options/type/centered.title
 #: likertplot/ui[4][0][0][0]/type_centered.label
 msgid "Centered"
-msgstr "Centrées"
+msgstr "Centré"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/chisq.title
 msgid "Chi-squared"
 msgstr "Khi-deux"
@@ -1902,12 +1934,20 @@ msgstr "Colonnes"
 #: mrcrosstabs/options/xaxis/xcols.title
 #: mrcrosstabs/ui[2][0][1][1]/xaxis_xcols.label
 msgid "Columns (Groups)"
-msgstr "Colonnes (groupes)"
+msgstr "Colonnes (Groupes)"
 
 #: likertplot/ui[3].label
 #: likertplot/results/comp.title
 msgid "Comparison Tests"
 msgstr "Tests de comparaison"
+
+#: R/likertplot.b.R
+msgid "Comparison tests cannot be computed with empty (N=0) groups"
+msgstr "Les tests de comparaison ne peuvent pas être appliqués avec des groupes vides."
+
+#: R/likertplot.b.R
+msgid "Comparison tests require numeric variables"
+msgstr "Les tests de comparaison nécessitent des variables numériques."
 
 #: R/principal.b.R
 #: principal/results/summaryTable.columns.title
@@ -2078,7 +2118,7 @@ msgstr "% cumulés"
 #: raincloud/options/colorPalette/Dark2.title
 #: scatterplot/options/colorPalette/Dark2.title
 msgid "Dark 2"
-msgstr "Dark 2"
+msgstr "Sombre 2"
 
 #: multcorresp/options/obsColor/darkgray.title
 msgid "Dark Gray"
@@ -2232,10 +2272,11 @@ msgstr "Affichage"
 msgid "Distribution"
 msgstr "Distribution"
 
-#: R/areachart.b.R
-#: R/linechart.b.R
-msgid "doesn't have a valid date format."
-msgstr "n'a pas un format de date valide."
+#: R/qqplot.b.R
+#: qqplot/options/distrib/norm.title
+msgctxt "distribution"
+msgid "Normal"
+msgstr "Normale"
 
 #: piechart/options/donut.title
 msgid "Donut chart"
@@ -2318,14 +2359,20 @@ msgstr "Estimer les paramètres à partir des données"
 msgid "EU (D-M-Y)"
 msgstr "EU (J-M-A)"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/exp.title
 msgid "Exponential"
 msgstr "Exponentielle"
+
+#: R/qqplot.b.R
+msgid "Exponential distribution requires non-negative (≥0) data."
+msgstr "La loi Exponentielle nécessite des données positives."
 
 #: principal/results/summaryTable.columns.superTitle
 msgid "Extraction Sums of Squared Loadings"
 msgstr "Sommes des carrés des composantes extraites"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/f.title
 msgid "F"
 msgstr "F"
@@ -2481,6 +2528,7 @@ msgstr "Table des fréquences"
 msgid "Frequency Type"
 msgstr "Type de fréquences"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/gamma.title
 msgid "Gamma"
 msgstr "Gamma"
@@ -2601,12 +2649,12 @@ msgstr "Groupe"
 #: raincloud/options/groupTwo.title
 #: raincloud/ui[0][2].label
 msgid "Group (Overlapped)"
-msgstr "Groupe (Superposé)"
+msgstr "Groupe (superposé)"
 
 #: raincloud/options/groupOne.title
 #: raincloud/ui[0][1].label
 msgid "Group (Side-by-side)"
-msgstr "Groupe (Juxtaposé)"
+msgstr "Groupe (juxtaposé)"
 
 #: piechart/options/labels/group+count.title
 msgid "Group + Count"
@@ -3257,6 +3305,10 @@ msgstr "Likert"
 msgid "Likert Plot"
 msgstr "Diagramme Likert"
 
+#: R/likertplot.b.R
+msgid "Likert Plot requires ordinal (or numeric) variables"
+msgstr "Les diagrammes de Likert nécessitent des variables ordinales (ou numériques)."
+
 #: likertplot/options/liks.title
 #: likertplot/ui[0][0].label
 msgid "Likert Variables"
@@ -3295,10 +3347,12 @@ msgstr "Ligne"
 msgid "Linear"
 msgstr "Linéaire"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/lnorm.title
 msgid "Log-normal"
 msgstr "Log-normale"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/logis.title
 msgid "Logistic"
 msgstr "Logistique"
@@ -3321,7 +3375,7 @@ msgstr "Taille et couleurs des sucettes"
 
 #: package.description
 msgid "Main statistical charts (histogram, boxplot, point, bar, line, raincloud…) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
-msgstr "Principaux graphiques statistiques (histogramme, boite à moustache, bâtons, ligne, secteurs…) avec de nombreuses options ainsi que les diagramme de Likert, réponses multiples, Analyse en composantes principales et Analyse des correspondances (multiples). Le code source du projet est disponible sur <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
+msgstr "Principaux graphiques statistiques (histogramme, boite à moustache, bâtons, lignes, secteurs…) avec de nombreuses options ainsi que diagramme de Likert, réponses multiples, analyse en composantes principales et analyse des correspondances (multiples). Le code source du projet est disponible sur <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
 
 #: likertplot/options/showMannU.title
 msgid "Mann-Whitney U"
@@ -3436,6 +3490,10 @@ msgstr "Moyenne de {var}"
 #: lollipop/ui[2][0][0][0]/yaxis_median.label
 msgid "Median"
 msgstr "Médiane"
+
+#: R/likertplot.b.R
+msgid "Median and mean require numeric variables"
+msgstr "Médiane et moyenne nécessitent des variables numériques"
 
 #: R/lollipop.b.R
 msgid "Median of {var}"
@@ -3572,6 +3630,10 @@ msgstr "Nom"
 msgid "Natural log tranform"
 msgstr "Transformation logarithme népérien"
 
+#: R/qqplot.b.R
+msgid "Natural Log Tranform requires positive (>0) data."
+msgstr "La transformation logarithmique nécessite des données strictement positives."
+
 #: R/principal.b.R
 msgid "No rotation used."
 msgstr "Aucune rotation appliquée."
@@ -3642,7 +3704,6 @@ msgstr "Aucun"
 #: principal/options/titleFontFace/plain.title
 #: principal/options/subtitleFontFace/plain.title
 #: principal/options/captionFontFace/plain.title
-#: qqplot/options/distrib/norm.title
 #: qqplot/options/titleFontFace/plain.title
 #: qqplot/options/subtitleFontFace/plain.title
 #: qqplot/options/captionFontFace/plain.title
@@ -3703,6 +3764,10 @@ msgstr "Nombre d'observations :"
 #: principal/options/dimNum.title
 msgid "Number of dimensions"
 msgstr "Nombre de dimensions"
+
+#: R/corresp.b.R
+msgid "Number of dimensions must be less than or equal to {maxDim}."
+msgstr "Le nombre de dimensions doit être inférieur ou égal à {maxDim}."
 
 #: multcorresp/options/obsColor.title
 msgid "Obs color"
@@ -3954,7 +4019,7 @@ msgstr "Les probabilités critiques sont corrigées selon la méthode {method}."
 #: raincloud/options/colorPalette/Paired.title
 #: scatterplot/options/colorPalette/Paired.title
 msgid "Paired"
-msgstr "Paired"
+msgstr "Apparié"
 
 #: likertplot/results/comp/pwTable.title
 msgid "Pairwise Comparisons"
@@ -4810,7 +4875,7 @@ msgstr "septembre"
 #: raincloud/options/colorPalette/Set1.title
 #: scatterplot/options/colorPalette/Set1.title
 msgid "Set 1"
-msgstr "Set 1"
+msgstr "Ensemble 1"
 
 #: areachart/options/colorPalette/Set2.title
 #: barplot/options/colorPalette/Set2.title
@@ -4826,7 +4891,7 @@ msgstr "Set 1"
 #: raincloud/options/colorPalette/Set2.title
 #: scatterplot/options/colorPalette/Set2.title
 msgid "Set 2"
-msgstr "Set 2"
+msgstr "Ensemble 2"
 
 #: areachart/options/colorPalette/Set3.title
 #: barplot/options/colorPalette/Set3.title
@@ -4842,7 +4907,7 @@ msgstr "Set 2"
 #: raincloud/options/colorPalette/Set3.title
 #: scatterplot/options/colorPalette/Set3.title
 msgid "Set 3"
-msgstr "Set 3"
+msgstr "Ensemble 3"
 
 #: areachart/options/mode/severalVariables.title
 msgid "Several variables"
@@ -4892,7 +4957,7 @@ msgstr "Afficher les points avec groupe manquant"
 
 #: likertplot/options/addTotals.title
 msgid "Show totals (Centered only)"
-msgstr "Afficher les totaux (centrées)"
+msgstr "Afficher les totaux"
 
 #: scatterplot/options/singleColor.title
 msgid "Single"
@@ -5076,6 +5141,7 @@ msgstr "Statistique"
 msgid "Stretch arrows by"
 msgstr "Taille vecteurs"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/t.title
 msgid "Student"
 msgstr "Student"
@@ -5133,6 +5199,14 @@ msgid "Supplement"
 msgstr "Supplémentaire"
 
 #: R/corresp.b.R
+msgid "Supplementary column numbers must be a list of numbers, e.g. 1,2,9"
+msgstr "Les colonnes supplémentaires doivent être une liste de nombres, e.g. 1,2,9"
+
+#: R/corresp.b.R
+msgid "Supplementary column numbers must be between 1 and {nmax}."
+msgstr "Les numéros des colonnes supplémentaires doivent être compris entre 1 et {nmax}."
+
+#: R/corresp.b.R
 #: corresp/options/supplementaryCols.title
 msgid "Supplementary columns"
 msgstr "Colonnes supplémentaires"
@@ -5140,6 +5214,14 @@ msgstr "Colonnes supplémentaires"
 #: corresp/ui[3][0].label
 msgid "Supplementary Points"
 msgstr "Points supplémentaires"
+
+#: R/corresp.b.R
+msgid "Supplementary row numbers must be a list of numbers, e.g. 1,2,9"
+msgstr "Les lignes supplémentaires doivent être une liste de nombres, e.g. 1,2,9"
+
+#: R/corresp.b.R
+msgid "Supplementary row numbers must be between 1 and {nmax}."
+msgstr "Les numéros des lignes supplémentaires doivent être compris entre 1 et {nmax}."
 
 #: R/corresp.b.R
 #: corresp/options/supplementaryRows.title
@@ -5226,6 +5308,10 @@ msgstr "La matrice des corrélations n'est pas définie-posivite. Les calculs pe
 #: R/multcorresp.b.R
 msgid "The number of dimensions cannot be greater than {max}."
 msgstr "Le nombre de dimensions ne peut pas être supérieur à {max}."
+
+#: R/principal.b.R
+msgid "The number of dimensions cannot be greater than the number of variables."
+msgstr "Le nombre de dimensions ne peut pas être supérieur au nombre de variables."
 
 #: R/qqplot.b.R
 msgid "Theoretical Probabilities"
@@ -5463,10 +5549,15 @@ msgstr "Type"
 msgid "U"
 msgstr "U"
 
+#: R/qqplot.b.R
+msgid "Unable to estimate the distribution parameters."
+msgstr "Impossible d'estimer les paramètres de la distribution."
+
 #: R/principal.b.R
 msgid "Unable to use {rotation} rotation."
 msgstr "Impossible d'utiliser la rotation {rotation}."
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/unif.title
 msgid "Uniform"
 msgstr "Uniforme"
@@ -5698,6 +5789,7 @@ msgstr "Viridis:Turbo"
 msgid "Viridis:Viridis"
 msgstr "Viridis:Viridis"
 
+#: R/qqplot.b.R
 #: qqplot/options/distrib/weibull.title
 msgid "Weibull"
 msgstr "Weibull"
@@ -5733,6 +5825,10 @@ msgstr "dans les catégories"
 #: barplot/ui[1][0][0]/yaxis_percent/percentWithin_gGroup.label
 msgid "Within groups"
 msgstr "dans les groupes"
+
+#: R/qqplot.b.R
+msgid "Wrong parameter values."
+msgstr "Paramètres de la distribution incorrects."
 
 #: areachart/options/timeVar.title
 #: areachart/options/timeVar1.title
@@ -5777,6 +5873,16 @@ msgstr "dans les groupes"
 #: scatterplot/ui[4][1].label
 msgid "X-Axis"
 msgstr "Axe X"
+
+#: R/multcorresp.b.R
+#: R/principal.b.R
+msgid "X-Axis and Y-Axis cannot be equal."
+msgstr "Les axes X et Y ne peuvent pas être égaux."
+
+#: R/multcorresp.b.R
+#: R/principal.b.R
+msgid "X-Axis and Y-Axis cannot be greater than the number of dimensions."
+msgstr "Les axes X et Y ne peuvent pas être supérieurs au nombre de dimensions."
 
 #: areachart/options/isDate.title
 #: linechart/options/isDate.title

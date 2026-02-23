@@ -199,15 +199,18 @@ children:
                   - type: TextBox
                     name: varLabelSize
                     format: number
+                    enable: (showVarPlot || showBiplot)
                   - type: TextBox
                     name: obsLabelSize
                     format: number
+                    enable: (!(!labelVar) && (showObsPlot || showBiplot))
               - type: Label
                 label: Element Sizes
                 children:
                   - type: TextBox
                     name: pointSize
                     format: number
+                    enable: (showObsPlot || showBiplot)
           - type: LayoutBox
             cell:
               column: 1
@@ -218,13 +221,17 @@ children:
                 label: Plot Colors
                 children:
                   - type: ComboBox
-                    name: obsColor
-                  - type: ComboBox
                     name: varColor
+                    enable: (showVarPlot || showBiplot)
+                  - type: ComboBox
+                    name: obsColor
+                    enable: (!groupVar && (showObsPlot || showBiplot))
                   - type: ComboBox
                     name: colorPalette
+                    enable: (!(!groupVar) && (showObsPlot || showBiplot))
                   - type: ComboBox
                     name: labelColor
+                    enable: (showObsPlot || showVarPlot || showBiplot)
   - type: CollapseBox
     label: Legend & Axis Titles
     collapsed: true
