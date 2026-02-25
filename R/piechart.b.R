@@ -71,7 +71,7 @@ piechartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Percent format (scales)
             doPercent <- scales::label_percent(
                 accuracy = as.numeric(self$options$accuracy),
-                suffix = .("%"),
+                suffix = '\u2009%',
                 decimal.mark = self$options[['decSymbol']])
 
             if(self$options$donut) {

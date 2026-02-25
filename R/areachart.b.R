@@ -139,7 +139,7 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             if (self$options$position == "fill")
-                plot <- plot + scale_y_continuous(labels = scales::label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
 
             if (!oneVariable) {
                 if(length(self$options$vars) > 1) {

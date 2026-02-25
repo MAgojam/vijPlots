@@ -5,18 +5,15 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     "likertplotClass",
     inherit = likertplotBase,
     private = list(
-        .varName = list(),
-        .setVarNames = function(vars) {
+        .getVarName = function(aVar) {
             if (self$options$descAsVarName) {
-                for (aVar in vars) {
-                    aVarName <- attr(self$data[[aVar]], "jmv-desc", TRUE)
-                    if (!is.null(aVarName))
-                        private$.varName[[aVar]] <- aVarName
-                    else
-                        private$.varName[[aVar]] <- aVar
-                }
+                aVarName <- attr(self$data[[aVar]], "jmv-desc", TRUE)
+                if (!is.null(aVarName))
+                    return(aVarName)
+                else
+                    return(aVar)
             } else {
-                private$.varName[vars] <- vars
+                return(aVar)
             }
         },
         .mannU = function(var, group, data, level1=1, level2=2) { # Two groups
@@ -91,10 +88,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 return(TRUE)
             }
 
-            # Set variable names
-            private$.setVarNames(c(self$options$liks, self$options$group))
-
-            # Convert to integer
+            #### Convert to integer ####
             if (self$options$toInteger) {
                 for (var in self$options$liks) {
                     mainData[[var]] <- factor(jmvcore::toNumeric(mainData[[var]]))
@@ -103,7 +97,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
 
-            # Tidy up levels
+            #### Tidy up levels ####
             if (self$options$tidyUp) {
                 all_values <- c()
                 level_value <- list()
@@ -145,10 +139,6 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 groupingVar <- NULL
             }
 
-            # Set image data
-            image <- self$results$plot
-            image$setState(mainData)
-
             # Data for table
             ggLikertData <- ggstats::gglikert_data(tibble::as_tibble(mainData), include = self$options$liks, sort = self$options$sorting)
             questions <- levels(ggLikertData[['.question']])
@@ -160,7 +150,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 ng <- 0
             }
 
-            # Frequency table
+            #### Frequency table ####
             oneFreqIsNull <- 1
             if (self$options$frequencyTable) {
                 if (self$options$frequencies == "counts") {
@@ -192,7 +182,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
                     for (ques in questions) {
                         values = as.list(freqTable[ques,])
-                        values["ques"] <- private$.varName[[ques]]
+                        values["ques"] <- private$.getVarName(ques)
                         numericData <-jmvcore::toNumeric(mainData[[ques]])
                         if (self$options$showMedian)
                             values['Median'] <- as.numeric(median(numericData, na.rm = TRUE))
@@ -214,10 +204,9 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         freqTable <- cbind(freqTable, "Sum" = sumCol)
                         freqTables[[aGroup]] <- freqTable
                     }
-                    self$results$frequencies$addColumn(self$options$group, type = "text")
+                    self$results$frequencies$addColumn(self$options$group, type = "text", title = private$.getVarName(self$options$group))
                     self$results$frequencies$addColumn("Sum", type="integer", title = "N")
                     for (col in levels(ggLikertData[['.answer']])) {
-                        #self$results$frequencies$addColumn(col, type = fType, format = fmt, title = paste0(strwrap(col, 15), collapse="<br />"))
                         self$results$frequencies$addColumn(col, type = fType, format = fmt, title = col)
                     }
                     if (self$options$showMedian)
@@ -232,7 +221,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             groupAndQues <- paste0(group,ques)
                             values = as.list(freqTables[[group]][ques,])
                             if (firstGroup) # Workaround to not use combineBelow
-                                values["ques"] <- private$.varName[[ques]]
+                                values["ques"] <- private$.getVarName(ques)
                             else
                                 values["ques"] <- " "
                             values[self$options$group] = group
@@ -262,19 +251,19 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else if (adjustMethod == "BY")
                 adjustMethodStr <- "Benjamini-Yekutieli"
 
-            # 2-group Mann Whitney U
+            #### Mann Whitney U ####
             if ( ng > 1 && self$options$showMannU) {
                 if (ng != 2) {
                     self$results$comp$uTestTable$setNote("p","Mann-Whitney tests require two groups")
                     for (ques in questions) { # Empty table
                         self$results$comp$uTestTable$setRow(rowKey = ques,
-                                                            values = list("ques" = private$.varName[[ques]], statistic = NULL, p.value = NULL, adjusted.p = NULL))
+                                                            values = list("ques" = private$.getVarName(ques), statistic = NULL, p.value = NULL, adjusted.p = NULL))
                     }
                 } else {
                     p <- c()
                     for (ques in questions) {
                         mannU <- private$.mannU(ques, groupingVar, mainData)
-                        mannU[["ques"]] <- private$.varName[[ques]]
+                        mannU[["ques"]] <- private$.getVarName(ques)
                         self$results$comp$uTestTable$setRow(rowKey = ques, values = mannU)
                         p <- c(p, mannU[["p.value"]])
                     }
@@ -290,12 +279,12 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
 
-            # Kruskal-Wallis tests
+            #### Kruskal-Wallis tests ####
             if (ng > 1 && self$options$showKW) {
                 p <- c()
                 for (ques in questions) {
                     res <- kruskal.test(jmvcore::toNumeric(mainData[[ques]]), mainData[[groupingVar]])
-                    res[["ques"]] <- private$.varName[[ques]]
+                    res[["ques"]] <- private$.getVarName(ques)
                     self$results$comp$kwTable$setRow(rowKey = ques, values = res)
                     p <- c(p, res[["p.value"]])
                 }
@@ -310,7 +299,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
             }
 
-            # Pairwise comparison table
+            #### Pairwise comparison table ####
             if (ng > 1 && self$options$showPostHoc) {
                 if (oneFreqIsNull == 0) {
                     vijErrorMessage(self, .("Comparison tests cannot be computed with empty (N=0) groups"))
@@ -370,8 +359,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
                 # Add table's columns
                 for (ques in questions) {
-                    #superTitle <- paste0(strwrap(private$.varName[[ques]], ifelse(self$options$pValue == "overall",28,15)), collapse="<br />")
-                    superTitle <- private$.varName[[ques]]
+                    superTitle <- private$.getVarName(ques)
                     self$results$comp$pwTable$addColumn(name = paste(ques, "stat"), title = statString, superTitle = superTitle, type = 'number')
                     self$results$comp$pwTable$addColumn(name = paste(ques, "p"), title = "p",
                                                         superTitle = superTitle, type = 'number', format = 'zto,pvalue')
@@ -379,7 +367,7 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         self$results$comp$pwTable$addColumn(name = paste(ques, "p.adj"), title = .("Adj. p"), superTitle = superTitle, type = 'number', format = 'zto,pvalue')
                 }
 
-                # Populate table
+                #### Populate table ####
                 k <- 0
                 for (i in 1:(ng-1)) {
                     for (j in (i+1):ng) {
@@ -417,23 +405,30 @@ likertplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 }
                 self$results$comp$pwTable$setStatus('complete')
             }
+
+            # Set image data
+            plotData <- list()
+            plotData$mainData <- mainData
+            plotData$variableLabels <- sapply(self$options$liks, FUN = private$.getVarName) #, USE.NAMES = FALSE)
+            if (!is.null(self$options$group))
+                plotData$groupLabel <- private$.getVarName(self$options$group)
+            image <- self$results$plot
+            image$setState(plotData)
+
         },
         .plot = function(image, ggtheme, theme, ...) {
             if (is.null(image$state))
                 return(FALSE)
-            mainData <- image$state
+            mainData <- image$state$mainData
 
             if (self$options$reverseLikert ) { #&& !self$options$toInteger) {
                 for (var in self$options$liks)
                     mainData[[var]] <- forcats::fct_rev(mainData[[var]])
             }
 
-            # Variable Label
-            variable_labels <- c()
-            for (var in self$options$liks)
-                variable_labels[var] <- private$.varName[[var]]
-            # Get the group variable name
-            if( ! is.null(self$options$group) ) {
+            # Variable & group Labels
+            variable_labels <- image$state$variableLabels
+            if (!is.null(self$options$group)) {
                 groupingVar <- names(mainData)[length(names(mainData))]
             } else {
                 groupingVar <- NULL

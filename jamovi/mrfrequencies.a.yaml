@@ -248,7 +248,7 @@ options:
       default: jmv
 
     - name: singleColor
-      title: Same color for all bars
+      title: Use color No.
       type: Bool
       default: true
 

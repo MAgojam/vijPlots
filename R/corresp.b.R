@@ -16,18 +16,15 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         }
     ),
     private = list(
-        .varName = list(),
-        .setVarNames = function(vars) {
+        .getVarName = function(aVar) {
             if (self$options$descAsVarName) {
-                for (aVar in vars) {
-                    aVarName <- attr(self$data[[aVar]], "jmv-desc", TRUE)
-                    if (!is.null(aVarName))
-                        private$.varName[[aVar]] <- aVarName
-                    else
-                        private$.varName[[aVar]] <- aVar
-                }
+                aVarName <- attr(self$data[[aVar]], "jmv-desc", TRUE)
+                if (!is.null(aVarName))
+                    return(aVarName)
+                else
+                    return(aVar)
             } else {
-                private$.varName[vars] <- vars
+                return(aVar)
             }
         },
         .getData = function() {
@@ -118,7 +115,8 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             countsVarName <- self$countsName
 
             # Set variable names
-            private$.setVarNames(c(rowVarName, colVarName))
+            rowVarNameString <-private$.getVarName(rowVarName)
+            colVarNameString <- private$.getVarName(colVarName)
 
             #### Contingency Table (base) ####
 
@@ -203,17 +201,17 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                           rowprincipal = .("Row principal normalization"),
                                           colprincipal = .("Column principal normalization"),
                                           standard = .("Standard normalization")
-                                    )
+            )
 
             #### Contingency Table (with supplementary rows/columns ####
 
             fullTable <- private$.getContingencyTable(contingencyTable, supplementaryRows, supplementaryCols)
             rownames(fullTable)[nrow(fullTable)] <- .("Active Margin")
             colnames(fullTable)[length(colnames(fullTable))] <- .("Active Margin")
-            self$results$contingency$addColumn(rowVarName, type="text", title = private$.varName[[rowVarName]])
+            self$results$contingency$addColumn(rowVarName, type="text", title = rowVarNameString)
             for (col in colnames(fullTable)) {
                 if (col != .("Active Margin"))
-                    self$results$contingency$addColumn(col, type="integer", superTitle = private$.varName[[colVarName]])
+                    self$results$contingency$addColumn(col, type="integer", superTitle = colVarNameString)
                 else
                     self$results$contingency$addColumn(col, type="integer")
             }
@@ -237,9 +235,9 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if(self$options$showProfiles) {
                 # Row Profiles
                 rowProfiles <- private$.getProfile(contingencyTable, supplementaryRows, supplementaryCols)
-                self$results$rowProfiles$addColumn(rowVarName, type = "text", title = private$.varName[[rowVarName]])
+                self$results$rowProfiles$addColumn(rowVarName, type = "text", title = rowVarNameString)
                 for (j in seq(ncol(rowProfiles))) {
-                    self$results$rowProfiles$addColumn(colnames(rowProfiles)[j], type = "number", format = "zto", superTitle = private$.varName[[colVarName]])
+                    self$results$rowProfiles$addColumn(colnames(rowProfiles)[j], type = "number", format = "zto", superTitle = colVarNameString)
                 }
                 for (i in seq(nrow(rowProfiles))) {
                     self$results$rowProfiles$addRow(i, values = rowProfiles[i,])
@@ -250,9 +248,9 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                     self$results$rowProfiles$setNote("supp", paste("* :", .("Supplementary rows/columns")))
                 # Column Profiles
                 colProfiles <- t(private$.getProfile(t(contingencyTable),supplementaryCols, supplementaryRows))
-                self$results$colProfiles$addColumn(rowVarName, type = "text", title = private$.varName[[rowVarName]])
+                self$results$colProfiles$addColumn(rowVarName, type = "text", title = rowVarNameString)
                 for (j in seq(ncol(colProfiles))) {
-                    self$results$colProfiles$addColumn(colnames(colProfiles)[j], type = "number", format = "zto", superTitle = private$.varName[[colVarName]])
+                    self$results$colProfiles$addColumn(colnames(colProfiles)[j], type = "number", format = "zto", superTitle = colVarNameString)
                 }
                 for (i in seq(nrow(colProfiles))) {
                     self$results$colProfiles$addRow(i, values = colProfiles[i,])
@@ -316,7 +314,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if(self$options$showSummaries) {
                 # Row Summary Table
                 self$results$rowSummary$addColumn(name = "id", title = "#", type = "integer")
-                self$results$rowSummary$addColumn(name = "row", title = private$.varName[[rowVarName]], type = "text")
+                self$results$rowSummary$addColumn(name = "row", title = rowVarNameString, type = "text")
                 self$results$rowSummary$addColumn(name = "margin", title = "Mass", type = "number", format = "zto")
                 for (i in seq(nDim))
                     self$results$rowSummary$addColumn(name = paste0("score",i), title = paste("Dim",i), superTitle = paste(.("Coordinates"),"†"), type = "number", format = "zto")
@@ -366,7 +364,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
                 # Column Summary Table
                 self$results$colSummary$addColumn(name = "id", title = "#", type = "integer")
-                self$results$colSummary$addColumn(name = "col", title = private$.varName[[colVarName]], type = "text")
+                self$results$colSummary$addColumn(name = "col", title = colVarNameString, type = "text")
                 self$results$colSummary$addColumn(name = "margin", title = "Mass", type = "number", format = "zto")
                 for (i in seq_len(nDim))
                     self$results$colSummary$addColumn(name = paste0("score",i), title = paste("Dim",i), superTitle = paste(.("Coordinates"),"†"), type = "number", format = "zto")
@@ -418,7 +416,11 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (res$sv[2] < .Machine$double.eps)
                 return()
 
-            # Plots
+            #### Plots ####
+
+            res$rowVarNameString <- rowVarNameString
+            res$colVarNameString <- colVarNameString
+
             rowplot <- self$results$rowplot
             rowplot$setState(res)
             colplot <- self$results$colplot
@@ -442,7 +444,7 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if (!is.null(col.sup))
                     res$col.sup$coord <- sweep(res$col.sup$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
                 if (!is.null(row.sup))
-                res$row.sup$coord <- sweep(res$row.sup$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
+                    res$row.sup$coord <- sweep(res$row.sup$coord, 2, sqrt(res$sv[1:ncp]), FUN = "/")
             } else if (norm == "rowprincipal") {
                 res$col$coord <- sweep(res$col$coord, 2, res$sv[1:ncp], FUN = "/")
                 if (!is.null(col.sup))
@@ -506,10 +508,10 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Plot axis
             xaxis <- self$options$xaxis
             xaxisdim <- paste("Dim", xaxis)
-            dim1name <- paste0(.("Dimension"), " ", xaxis, " (", percentInertia[xaxis], "%)")
+            dim1name <- paste0(.("Dimension"), " ", xaxis, " (", percentInertia[xaxis], '\u2009%)')
             yaxis <- self$options$yaxis
             yaxisdim <- paste("Dim", yaxis)
-            dim2name <- paste0(.("Dimension"), " ", yaxis, " (", percentInertia[yaxis], "%)")
+            dim2name <- paste0(.("Dimension"), " ", yaxis, " (", percentInertia[yaxis], '\u2009%)')
 
             # Building the plot
             plot <-  ggplot(ptcoord, aes(x = ptcoord[,xaxisdim], y = ptcoord[,yaxisdim], color = ptcoord$sup, shape = ptcoord$sup))
@@ -535,20 +537,20 @@ correspClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Plot title
             title <- switch(plotType,
-                                    row = jmvcore::format(.("Row Points for {rows}"), rows = private$.varName[[self$options$rows]]),
-                                    column = jmvcore::format(.("Column Points for {cols}"), cols = private$.varName[[self$options$cols]]),
-                                    biplot = jmvcore::format(.("Row and Column Points for {rows} and {cols}"),
-                                                            rows = private$.varName[[self$options$rows]],
-                                                            cols = private$.varName[[self$options$cols]])
+                            row = jmvcore::format(.("Row Points for {rows}"), rows = res$rowVarNameString),
+                            column = jmvcore::format(.("Column Points for {cols}"), cols = res$colVarNameString),
+                            biplot = jmvcore::format(.("Row and Column Points for {rows} and {cols}"),
+                                                     rows = res$rowVarNameString,
+                                                     cols = res$colVarNameString)
             )
             # Plot subtitle
             subtitle <- switch(self$options$normalization,
-                              principal = .("Principal normalization"),
-                              symmetric = .("Symmetric normalization"),
-                              rowprincipal = .("Row principal normalization"),
-                              colprincipal = .("Column principal normalization"),
-                              standard = .("Standard normalization")
-                        )
+                               principal = .("Principal normalization"),
+                               symmetric = .("Symmetric normalization"),
+                               rowprincipal = .("Row principal normalization"),
+                               colprincipal = .("Column principal normalization"),
+                               standard = .("Standard normalization")
+            )
 
             # Titles & Labels
             defaults <- list(title = title, subtitle = subtitle, y = dim2name, x = dim1name)

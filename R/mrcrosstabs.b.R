@@ -135,7 +135,7 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Percent format (scales)
             doPercent <- scales::label_percent(
                 accuracy = as.numeric(self$options$accuracy),
-                suffix = .("%"),
+                suffix = '\u2009%',
                 decimal.mark = self$options[['decSymbol']])
 
             # Percent format (scales)
@@ -223,15 +223,15 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Y scale and lab
             if (self$options$computedValues == "responses") {
-                plot <- plot + scale_y_continuous(labels = scales::label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
                 yLab <- .("% of Responses")
                 yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$computedValues == "cases") {
-                plot <- plot + scale_y_continuous(labels = scales::label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
                 yLab <- .("% of Cases")
                 yScaleFactor <- 100
             } else if (self$options$computedValues == "options") {
-                plot <- plot + scale_y_continuous(labels = scales::label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
                 yLab <- paste(.("% within"), optionName)
                 yScaleFactor <- 100
             } else {

@@ -5,18 +5,15 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     "principalClass",
     inherit = principalBase,
     private = list(
-        .varName = list(),
-        .setVarNames = function(vars) {
+        .getVarName = function(aVar) {
             if (self$options$descAsVarName) {
-                for (aVar in vars) {
-                    aVarName <- attr(self$data[[aVar]], "jmv-desc", TRUE)
-                    if (!is.null(aVarName))
-                        private$.varName[[aVar]] <- aVarName
-                    else
-                        private$.varName[[aVar]] <- aVar
-                }
+                aVarName <- attr(self$data[[aVar]], "jmv-desc", TRUE)
+                if (!is.null(aVarName))
+                    return(aVarName)
+                else
+                    return(aVar)
             } else {
-                private$.varName[vars] <- vars
+                return(aVar)
             }
         },
         .init = function() {
@@ -64,7 +61,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             # Set variable names
-            private$.setVarNames(c(self$options$vars, self$options$labelVar, self$options$groupVar))
+            #private$.setVarNames(c(self$options$vars, self$options$labelVar, self$options$groupVar))
 
             #### Prepare data ####
             data <- self$data[,c(self$options$vars, self$options$labelVar, self$options$groupVar)]
@@ -184,7 +181,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                     type = "number")
                 for(aVar in rownames(res$loadings)) {
                     values = list()
-                    values[["var"]] <- private$.varName[[aVar]]
+                    values[["var"]] <- private$.getVarName(aVar)
                     for(i in 1:nDim) {
                         if (self$options$stdLoadings)
                             values[[paste0("loading:",i)]] <- res$stdLoadings[aVar, i]
@@ -205,9 +202,9 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if (is.null(self$options$labelVar))
                     self$results$obsTable$addColumn("obs", title = "Observation", type = "integer")
                 else
-                    self$results$obsTable$addColumn("obs", title = private$.varName[[self$options$labelVar]], type = "text")
+                    self$results$obsTable$addColumn("obs", title = private$.getVarName(self$options$labelVar), type = "text")
                 if (!is.null(self$options$groupVar))
-                    self$results$obsTable$addColumn("group", title = private$.varName[[self$options$groupVar]], type = "text")
+                    self$results$obsTable$addColumn("group", title = private$.getVarName(self$options$groupVar), type = "text")
                 for(i in 1:nDim) {
                     self$results$obsTable$addColumn(as.character(i), title = as.character(i), , superTitle = "Component", type = "number", format = "zto")
                 }
@@ -239,6 +236,11 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             #### Plots ####
+
+            rownames(res$loadings) <- sapply(rownames(res$loadings), FUN = private$.getVarName, USE.NAMES = FALSE)
+            rownames(res$stdLoadings) <- sapply(rownames(res$loadings), FUN = private$.getVarName, USE.NAMES = FALSE)
+            res$groupVarName <- private$.getVarName(self$options$groupVar)
+
             if (self$options$showScreePlot) {
                 screeplot <- self$results$screePlot
                 screeplot$setState(res$eigenvalues)
@@ -302,8 +304,8 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             propIn <- round(100*res$SSL/eigenSum,1)
             dim1 <- self$options$xaxis
             dim2 <- self$options$yaxis
-            dim1name <- paste0(.("Component"), " ", dim1, " (", propIn[dim1],"%)")
-            dim2name <- paste0(.("Component"), " ", dim2, " (", propIn[dim2],"%)")
+            dim1name <- paste0(.("Component"), " ", dim1, " (", propIn[dim1], '\u2009%)')
+            dim2name <- paste0(.("Component"), " ", dim2, " (", propIn[dim2], '\u2009%)')
 
             type <- self$options$biplotType
             if (plotType == "biplot" && type == "formPlot") {
@@ -366,8 +368,6 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 if (self$options$biplotStretch && plotType == "biplot")
                     res$loadings <- res$loadings * self$options$biplotStretchFactor
                 varData <- as.data.frame.array(res$loadings)
-
-                rownames(varData) <- unlist(private$.varName[rownames(varData)])
 
                 if (self$options$labelColor == "none")
                     labelColor <- self$options$varColor
@@ -442,7 +442,7 @@ principalClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Plot legend
             if (!is.null(self$options$groupVar) && plotType != "var")
-                legend <- private$.varName[[self$options$groupVar]]
+                legend <- res$groupVarName  #private$.varName[[self$options$groupVar]]
             else
                 legend <- NULL
 

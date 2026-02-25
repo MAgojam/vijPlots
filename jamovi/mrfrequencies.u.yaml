@@ -185,13 +185,13 @@ children:
                     name: labelPosition_middle
                     optionName: labelPosition
                     optionPart: middle
-                    label: 'Middle'
+                    label: Middle
                     enable: (showLabels)
                   - type: RadioButton
                     name: labelPosition_top
                     optionName: labelPosition
                     optionPart: top
-                    label: 'Top'
+                    label: Top
                     enable: (showLabels)
           - type: LayoutBox
             cell:
@@ -241,10 +241,8 @@ children:
                   - type: ComboBox
                     name: colorPalette
                     label: ''
-                  - type: CheckBox
-                    name: singleColor
-                    label: Use color No.
-                    style: inline
+                  - type: LayoutBox
+                    margin: large
                     verticalAlignment: center
                     children:
                       - type: TextBox
@@ -253,6 +251,11 @@ children:
                         suffix: only
                         format: number
                         enable: (singleColor)
+              - type: LayoutBox
+                margin: large
+                children:
+                  - type: CheckBox
+                    name: singleColor
           - type: LayoutBox
             cell:
               column: 1

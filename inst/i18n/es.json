@@ -68,7 +68,7 @@
             "": {
                 "domain": "messages",
                 "plural_forms": "nplurals=2; plural=(n != 1)",
-                "lang": "fr"
+                "lang": "es"
             },
             ";": [
                 ";"
@@ -77,85 +77,85 @@
                 "[0-9]"
             ],
             "{distrib} distribution requires positive (>0) data.": [
-                "La loi {distrib} nécessite des données strictement positives."
+                ""
             ],
             "{distribStr} {typeStr} Plot of {varStr}": [
-                "Diagramme {typeStr} {distribStr} de {varStr}"
+                "Gráfico {typeStr} {distribStr} de {varStr}"
             ],
             "{rotation} rotation": [
-                "Rotation {rotation}"
+                "Rotación {rotation}"
             ],
             "{rotation} rotation was used.": [
-                "La rotation {rotation} a été utilisée."
+                "Se ha utilizado la rotación {rotation}."
             ],
             "{rotation} rotation with Kaiser normalization": [
-                "Rotation {rotation} avec normalisation de Kaiser"
+                "Rotación {rotation} con normalización de Kaiser"
             ],
             "{rotation} rotation with Kaiser normalization was used.": [
-                "La rotation {rotation} avec normalisation de Kaiser a été utilisée."
+                "Se ha utilizado la rotación {rotation} con normalización de Kaiser."
             ],
             "{var} doesn't have a valid date format.": [
-                "{var} n'a pas un format de date valide."
+                ""
             ],
             "# of rows/columns": [
-                "Nbre de lignes/colonnes"
+                "Nº de filas/columnas"
             ],
             "% Accuracy": [
-                "Précision des %"
+                "Precisión de los %"
             ],
             "% by row": [
-                "% par lignes"
+                "% por fila"
             ],
             "% Inertia": [
-                "% d'inertie"
+                "% de inercia"
             ],
             "% Labels": [
-                "Etiquettes des %"
-            ],
-            "% of cases": [
-                "% d'observations"
+                "Etiquetas de los %"
             ],
             "% of Cases": [
-                "% d'observations"
+                "% de casos"
+            ],
+            "% of cases": [
+                "% de casos"
             ],
             "% of Inertia": [
-                "% d'inertie"
-            ],
-            "% of responses": [
-                "% de réponses"
+                "% de inercia"
             ],
             "% of Responses": [
-                "% de réponses"
+                "% de respuestas"
+            ],
+            "% of responses": [
+                "% de respuestas"
             ],
             "% of Variance": [
-                "% de variance"
+                "% de varianza"
             ],
             "% within": [
-                "% dans"
+                "% en"
             ],
             "°": [
                 "°"
             ],
             "<h3>Data & Sorting</h3>\n<ul>\n<li>Likert variables must be of ordinal measure-type. (Continuous measure-type works as well.)</li>\n<li>If you plan to compute mean/median/sd or to use comparison tests, they must be of integer data-type.</li>\n<li><strong>Tidy up levels:</strong> when checked, try to fix the labels order in table and graph (when some variables miss some levels).</li>\n<li><strong>Convert variables to integer:</strong> when checked, the level labels are ignored and only integer values are used.</li>\n<li><strong>Sort Variables by Median:</strong> orders the list of Likert variables by median.</li>\n</ul>\n<h3>Comparison Tests</h3>\n<p>When using a group variable, several tests are available:</p>\n<ul>\n<li><strong>Mann-Whitney U:</strong> Two group comparison</li>\n<li><strong>Kruskal-Wallis:</strong> n group comparison</li>\n<li><strong>Post Hoc Tests:</strong> Dunn, Conover and Dwass-Steel-Critchlow-Fligner (DSCF) paiwise comparisons tests.</li>\n</ul>\n<p>The p-values can be adjusted <strong>groupwise</strong> (for each question) for post hoc tests or <strong>overall</strong> (groupwise and questionwise) for MannWithney U, Kruskal-Wallis and post hoc tests. DSCF p-values are already adjusted (groupwise); no other adjustment is possible.</p>": [
-                "<h3>Données & Tri</h3>\n<ul>\n<li>Les variables de Likert doivent être de type de mesure ordinal. (Le type continu fonctionne aussi.)</li>\n<li>Pour calculer les moyenne, médiane et écart-type ou pour utiliser les tests de comparaison, le type de données doit être entier.</li>\n<li><strong>Corriger les niveaux :</strong> cette option permet de corriger l'ordre des niveaux lorsque certains niveaux sont absents de certaines variables.</li>\n<li><strong>Convertir les variables en entiers :</strong> avec cette option, les étiquettes des niveaux sont ignorées et seules les valeurs numériques (entières) sont utilisées.</li>\n<li><strong>Trier les variables selon la médiane :</strong> ordonne la liste des variables de Likert selon la valeur de leur médiane.</li>\n</ul>\n<h3>Tests de comparaison</h3>\n<p>Lorsqu'une variable de groupe est utilisée, plusieurs tests sont disponibles :</p>\n<ul>\n<li><strong>Mann-Whitney U :</strong> comparaison de deux groupes</li>\n<li><strong>Kruskal-Wallis:</strong> comparaison de n groupes</li>\n<li><strong>Tests Post-hoc :</strong> tests de comparaison par paires de Dunn, Conover et Dwass-Steel-Critchlow-Fligner (DSCF).</li>\n</ul>\n<p>Les p-valeurs peuvent être corrigées <strong>par groupe</strong> (pour chaque variable) pour les tests post-hoc ou <strong>globalement</strong> (par groupe et par variable) pour les tests Mann-Withney U, Kruskal-Wallis et post-hoc. Les p-valeurs du test DSCF sont toujours corrigées par groupe ; aucune autre correction n'est possible.</p>"
+                ""
             ],
             "<p>This module computes <strong>Correspondence Analysis (CA)</strong> for two categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>The data may be weighted using <em>jamovi</em> built-in weight system or using the \"Counts\" variable.</p>\n<p><strong>Supplementary row or column</strong> numbers may be entered as integer lists : 1,3,6</p>\n<p>Four normalizations (scaling of row and column scores before plotting) are avalaible :\n<ul>\n<li><strong>Principal:</strong> Row an columns scores are scaled by eigenvalues.</li>\n<li><strong>Symmetric:</strong> Row an columns scores are scaled by the square root of eigenvalues. </li>\n<li><strong>Row Principal:</strong> Only row scores are scaled by eigenvalues.</li>\n<li><strong>Column Principal:</strong> Only column scores are scaled by eigenvalues.</li>\n<li><strong>Standard:</strong> The raw coordinates without normalization.</li>\n</ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Smoking</p>": [
-                "<p>Ce module effectue une <strong>Analyse des Correspondances (CA)</strong> pour deux variables catégorielles. Les calculs sont basés sur le package <a href=\"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR</a/> de F. Husson, J. Josse, S. Le et J. Mazet.</p>\n<p>Les données peuvent être pondérées à l'aide du système de pondération intégré de <em>jamovi</em> ou de la variable « Effectifs ».</p>\n<p>Les numéros de <strong>lignes ou de colonnes supplémentaires</strong> doivent être saisis sous forme de listes d'entiers : 1, 3, 6</p>\n<p>Quatre normalisations (mise à l'échelle des coordonnées des points-lignes et des points-colonnes) sont disponibles :\n<ul>\n<li><strong>Principal :</strong> Les coordonnées des points-lignes et des points-colonnes sont normalisées par les valeurs propres.</li>\n<li><strong>Symétrique :</strong> Les coordonnées des points-lignes et des points-colonnes sont normalisées par la racine carrée des valeurs propres.</li>\n<li><strong>Principal des lignes :</strong> Seules les coordonnées des points-lignes sont normalisées par les valeurs propres.</li>\n<li><strong>Principal des colonnes :</strong> Seules les coordonnées des points-colonnes sont normalisées par les valeurs propres.</li>\n<li><strong>Standard :</strong> Les coordonnées ne sont pas normalisées.</li>\n</ul></p>\n<p>Un fichier de démonstration est disponible dans Ouvrir > Bibliothèque de données > vijPlots > Smoking</p>"
+                ""
             ],
             "<p>This module computes <strong>Multiple Correspondence Analysis (MCA)</strong> for several categorical variables. Computations are based on <a href = \"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR<a/> package by F.&nbsp;Husson, J.&nbsp;Josse, S.&nbsp;Le, J.&nbsp;Mazet.</p>\n<p>Both classic methods are available:</p>\n<ul>\n<li><strong>Indicator matrix:</strong> CA of the indicator matrix</li>\n<li><strong>Burt matrix:</strong> CA of the Burt matrix. The eigenvalues are the squares of those of the indicator matrix method. </li>\n</ul>\n<p>Both methods give the same <em>standard</em> coordinates (but different <em>principal</em> coordinates).</p>\n<p>When selected, <strong>Benzécri and Greenacre corrections</strong> are applied to eigenvalues only (<strong>Summary</strong> table). Coordinates (and inertia) of categories and observations are computed from the original eigenvalues of the Burt matrix.</p>\n<p>The <strong>Normalization</strong> options specify how the coordinates are scaled (by eigenvalues):</p>\n<ul>\n<li><strong>Principal:</strong> Both category and observation coordinates are scaled.</li>\n<li><strong>Category principal:</strong> Only category coordinates are scaled.</li>\n<li><strong>Observation principal:</strong> Only observation coordinates are scaled.</li>\n<li><strong>Standard:</strong> Both category and observation coordinates are standard.</li>\n</ul>\n<p>A sample file is included at Open > Data Library > vijPlots > Cars</p>": [
-                "<p>Ce module effectue une <strong>Analyse des Correspondances Multiples (ACM)</strong> de plusieurs variables catégorielles. Les calculs sont basés sur le package <a href=\"https://CRAN.R-project.org/package=FactoMineR\" target=\"_blank\">FactoMineR</a/> de F. Husson, J. Josse, S. Le et J. Mazet.</p>\n<p>Les deux méthodes classiques sont disponibles :</p>\n<ul>\n<li><strong>Tableau disjonctif :</strong> ACM de la matrice indicatrice</li>\n<li><strong>Tableau de Burt :</strong> ACM de la matrice de Burt. Les valeurs propres sont les carrés de celles de la méthode de la matrice indicatrice.</li>\n</ul>\n<p>Les deux méthodes donnent Les mêmes coordonnées <em>standards</em> (mais des coordonnées <em>principales</em> différentes).</p>\n<p>Lorsque l'option <strong>correction de Benzécri</strong> ou <strong>correction de Greenacre</strong> est sélectionnée, les corrections sont appliquées uniquement aux valeurs propres (<strong>tableau récapitulatif</strong>). Les coordonnées (et l'inertie) des catégories et des observations sont calculées à partir des valeurs propres originales de la matrice de Burt.</p>\n<p>Les options de <strong>normalisation</strong> spécifient comment les coordonnées sont mises à l'échelle (par les valeurs propres) :</p>\n<ul>\n<li><strong>Principale :</strong> Les coordonnées des catégories et des observations sont mises à l'échelle.</li>\n<li><strong>Catégories principales :</strong> Seules les coordonnées des catégories sont mises à l'échelle.</li>\n<li><strong>Observations principales :</strong> Seules les coordonnées des observations sont mises à l'échelle.</li>\n<li><strong>Standard :</strong> Les coordonnées des catégories et des observations sont standardisées.</li>\n</ul>\n<p>Un fichier de démonstration est disponible dans Ouvrir > Bibliothèque de données > vijPlots > Cars</p>"
+                ""
             ],
             "<p>This module computes <strong>Principal Component Analysis (PCA)</strong> for several continuous variables. Computations are based on <tt>stats::prcomp</tt> function.</p>\n<p>Although rotated components are not principal components, they are widely used. Only orthogonal rotations are available (from GPArotation package).</p>\n<p>Loadings (variable coordinates) and scores (observation coordinates) are principal (scaled by the squareroot of eigenvalues).</p>\n<p>Biplot follows \"Biplots in Practice\" (Michael Greenacre, 2010):</p>\n<ul>\n<li><strong>Form biplot:</strong> Scores are principal (scaled by eigenvalues) while loadings are standard.</li>\n<li><strong>Covariance biplot:</strong> Loadings are principal while scores are standard. </li>\n</ul>\n<p><strong>Advanced options</strong>:</p>\n<ul>\n<li><strong>Standardize loadings:</strong> loadings are normalized with sums of squared equal to 1 (instead of eigenvalues)</li>\n<li><strong>Standardize scores:</strong> scores are normalized with variances equal to 1 (instead of eigenvalues)</li>\n<li><strong>Rotate eigenvectors:</strong> the rotation (varimax, etc) is applied to eigenvectors (standard loadings) instead of principal loadings (STATA way).</li>\n</ul>\n<p>A sample file is included at Open > Data Library > vijPlots > Iris</p>": [
-                "<p>Ce module effectue une <strong>Analyse en Composantes Principales (ACP)</strong> de plusieurs variables continues. Les calculs sont basés sur la fonction <tt>stats::prcomp</tt>.</p>\n<p>Bien que les composantes après rotation ne soient pas des composantes principales, elles sont largement utilisées. Seules les rotations orthogonales sont disponibles (via le package GPArotation).</p>\n<p>Les coordonnées des variables et des observations sont principles (mis à l'échelle par la racine carrée des valeurs propres).</p>\n<p>Le diagramme double suit l'approche de « Biplots in Practice » (Michael Greenacre, 2010) :</p>\n<ul>\n<li><strong>Form :</strong> Les coordonnées des observations sont principales (mis à l'échelle par les valeurs propres) tandis que celles des variables sont standardisées.</li>\n<li><strong>Cov :</strong> Les coordonnées des variables sont principales tandis que celles des observations sont standardisées. </li>\n</ul>\n<p><strong>Options avancées :</strong></p>\n<ul>\n<li><strong>Variables standardisées :</strong> les coordonnées des variables sont normalisées avec la somme des carrés égale à 1 (au lieu des valeurs propres).</li>\n<li><strong>Observations standardisées :</strong> les coordonnées des observations sont normalisées avec la variance égale à 1 (au lieu des valeurs propres).</li>\n<li><strong>Rotation des vecteurs propres :</strong> la rotation (varimax, etc.) est appliquée aux vecteurs propres (coordonnées standardisées) au lieu des coordonnées principales (méthode STATA).</li>\n</ul>\n<p>Un fichier de démonstration est disponible dans Ouvrir > Bibliothèque de données > vijPlots > Iris</p>"
+                ""
             ],
             "<p>This module computes frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n<p>Questions may be coded as:\n<ul>\n<li>several <strong>dummy (or indicator) variables</strong> using 0/1, 1/2, Y/N for each possible answer;</li>\n<li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li>\n</ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>": [
-                "<p>Ce module calcule les fréquences des questions à réponses multiples, également appelées questions « Cochez toutes les réponses qui s'appliquent » (CATA).</p>\n<p>Les questions peuvent être codées comme suit :\n<ul>\n<li>plusieurs variables dichotomiques (ou variables indicatrices) utilisant 0/1, 1/2 ou O/N pour chaque réponse possible ;</li>\n<li>une seule variable à valeurs multiples contenant les réponses cochées, séparées par un symbole (généralement « , » ou « ; »).</li>\n</ul></p>\n<p>Un fichier de démonstration est disponible dans Ouvrir > Bibliothèque de données > vijPlots > Credit Cards</p>"
+                ""
             ],
             "<p>This module computes two-way frequencies for multiple response questions, also known as \"Check All That Apply\" (CATA) questions.</p>\n<p>Questions may be coded as:\n<ul>\n<li>several <strong>dummy (or indicator) variables</strong> using 0/1, 1/2, Y/N for each possible answer;</li>\n<li>a single <strong>multi-valued variable</strong> containing the checked answers, separated by a symbol (usually \",\" or \";\").</li>\n</ul></p>\n<p>A sample file is included at Open > Data Library > vijPlots > Credit Cards</p>": [
-                "<p>Ce module calcule les fréquences croisées des questions à réponses multiples, également appelées questions « Cochez toutes les réponses qui s'appliquent » (CATA).</p>\n<p>Les questions peuvent être codées comme suit :\n<ul>\n<li>plusieurs variables dichotomiques (ou variables indicatrices) utilisant 0/1, 1/2 ou O/N pour chaque réponse possible ;</li>\n<li>une seule variable à valeurs multiples contenant les réponses cochées, séparées par un symbole (généralement « , » ou « ; »).</li>\n</ul></p>\n<p>Un fichier de démonstration est disponible dans Ouvrir > Bibliothèque de données > vijPlots > Credit Cards</p>"
+                ""
             ],
             "<p>This module uses <a href = \"https://CRAN.R-project.org/package=qqplotr\" target=\"_blank\">qqplotr R package<a/> by Alexandre Almeida, Adam Loy and Heike Hofmann. In-depth information can be found in the package documentation on CRAN site.</p>\n<p><strong>Reference line:</strong> Draws either the <em>identity line</em> (y = x) or the commonly-used <em>Q-Q line</em> that intercepts two data quantiles (Q<sub>0.25</sub> and Q<sub>0.75</sub>). P-P plot only supports identity line.</p>\n<p><strong>Confidence band:</strong> Draws a confidence band around the reference line. qqplotr package provides several methods to compute the confidence band:</p>\n<ul>\n<li><strong><em>Pointwise</em></strong> constructs pointwise confidence bands based on Normal confidence intervals;</li>\n<li><strong><em>Bootstrap</em></strong> creates pointwise confidence bands based on a parametric bootstrap;</li>\n<li><strong><em>Kolmogorov-Smirnov</em></strong> band is based on the Kolmogorov-Smirnov test;</li>\n<li><strong><em>Tail-Sensitive</em></strong> constructs a tail-sensitive confidence bands but is only implemented for Normal Q-Q plots;</li>\n<li><strong><em>Equal Local Levels (ELL)</em></strong> constructs simultaneous bands using the equal local levels.</li>\n</ul>\n<p>P-P plots only support \"ELL\" and \"Bootstrap\" methods.</p>\n<p><strong>Detrended plot:</strong> The objects are <em>detrended</em> according to the reference line. This procedure may help reducing visual bias caused by the orthogonal distances from the points to the reference line.</p>\n<p><strong>Parameter values:</strong> The distribution parameters can be estimated from data using:</p>\n<ul>\n<li><strong>Maximum Likelihood Method</strong> (using MASS package) : it should work with all distributions but \"t\" and \"uniform\";</li>\n<li><strong>Method of Moments</strong> for moment based parameters : it should work with \"normal\", \"log-normal\", \"Beta\", \"Exponential\", \"Gamma\", \"Logistic\" and \"Uniform\" distributions;</li>\n</ul>\n<p>or entered by user:</p>\n<ul>\n<li><strong>Parameter 1:</strong> mean (Normal), meanlog (Log-normal), shape1 (Beta), location (Cauchy, Logistic), df (Chi-squared, Student), df1 (F), rate (Exponential), shape (Gamma, Weibull) and min (Uniform);</li>\n<li><strong>Parameter 2:</strong> sd (normal), sdlog (Log-normal), shape2 (Beta), scale (Cauchy, Logistic), df2 (F), rate (Gamma, Weibull) and max (Uniform).</li>\n</ul>\n</p>": [
-                "<p>Ce module utilise l'extension R <a href = \"https://CRAN.R-project.org/package=qqplotr\" target=\"_blank\">qqplotr<a/> par Alexandre Almeida, Adam Loy et Heike Hofmann. Les informations détaillées sont disponibles dans la documentation de l'extension sur le site CRAN.</p>\n<p><strong>Droite de référence :</strong> Trace soit la <em>droite identitée</em> (y = x) ou la <em>droite Q-Q</em> usuelle qui relie deux quantiles (Q<sub>0.25</sub> et Q<sub>0.75</sub>). Le diagramme P-P n'utilise que la droite identitée.</p>\n<p><strong>Bande de confiance :</strong> Trace une bande de confiance autour de la droite de référence. Le package qqplotr propose plusieurs méthodes pour calculer la bande de confiance :</p>\n<ul>\n<li><strong><em>Pointwise</em></strong> construit des bandes de confiance ponctuelles basées sur des intervalles de confiance normaux ;</li>\n<li><strong><em>Bootstrap</em></strong> crée des bandes de confiance ponctuelles basées sur un bootstrap paramétrique ;</li>\n<li><strong><em>Kolmogorov-Smirnov</em></strong> est basé sur le test de Kolmogorov-Smirnov ;</li>\n<li><strong><em>Tail-Sensitive</em></strong> construit des bandes de confiance sensibles à la queue de distribution, mais n'est implémenté que pour les graphiques Q-Q normaux ;</li>\n<li><strong><em>Equal Local Levels (ELL)</em></strong> construit des bandes simultanées utilisant des niveaux locaux égaux.</li>\n</ul>\n<p>Les graphiques P-P ne prennent en charge que les méthodes \"ELL\" et \"Bootstrap\".</p>\n<p><strong>Graphique redressé :</strong> Le graphique est <em>redressé</em> par rapport à la droite de référence. Cette procédure peut contribuer à réduire le biais visuel causé par les distances orthogonales entre les points et la droite de référence.</p>\n<p><strong>Valeurs des paramètres :</strong> Les paramètres de la distribution peuvent être estimés à partir des données à l'aide de :</p>\n<ul>\n<li><strong>Méthode du maximum de vraisemblance</strong> (avec le package MASS) : elle devrait fonctionner avec toutes les distributions sauf \"Student\" et \"Uniforme\";</li>\n<li><strong>Méthode des moments</strong> pour les paramètres basés sur les moments : elle devrait fonctionner avec les distributions \"Normale\", \"Log-normale\", \"Beta\", \"Exponentielle\", \"Gamma\", \"Logistique\" et \"Uniforme\";</li>\n</ul>\n<p>ou saisi par l'utilisateur :</p>\n<ul>\n<li><strong>Paramètre 1 :</strong> moyenne (normale), moyenne logarithmique (log-normale), forme 1 (bêta), position (Cauchy, logistique), ddl (Khi-deux, Student), ddl 1 (F), taux (exponentielle), forme (gamma, Weibull) et min (uniforme) ;</li>\n<li><strong>Paramètre 2 :</strong> écart-type (normale), écart-type logarithmique (log-normale), forme 2 (bêta), échelle (Cauchy, logistique), ddl 2 (F), taux (gamma, Weibull) et max (uniforme).</li>\n</ul>\n</p>"
+                ""
             ],
             "0.01": [
                 "0,01"
@@ -164,19 +164,19 @@
                 "0,1"
             ],
             "1 day": [
-                "1 jour"
+                "1 día"
             ],
             "1 month": [
-                "1 mois"
+                "1 mes"
             ],
             "1 week": [
-                "1 semaine"
+                "1 semana"
             ],
             "1 year": [
-                "1 an"
+                "1 año"
             ],
             "10 years": [
-                "10 ans"
+                "10 años"
             ],
             "10-20-2035": [
                 "10-20-2035"
@@ -185,10 +185,10 @@
                 "10/20/35"
             ],
             "2 weeks": [
-                "2 semaines"
+                "2 semanas"
             ],
             "20 October 2035": [
-                "20 octobre 2035"
+                "20 de octubre de 2035"
             ],
             "20-10-2035": [
                 "20-10-2035"
@@ -197,166 +197,166 @@
                 "20/10/35"
             ],
             "2035 Oct": [
-                "2035 oct."
+                "2035 oct"
             ],
             "2035 October": [
-                "2023 octobre"
+                "2035 octubre"
             ],
             "2035 October 20": [
-                "2035 octobre 20"
+                "20 de octubre de 2035"
             ],
             "2035-10-20": [
                 "2035-10-20"
             ],
             "3 months": [
-                "3 mois"
+                "3 meses"
             ],
             "6 months": [
-                "6 mois"
+                "6 meses"
             ],
             "A demonstration dataset for vijPlots module.": [
-                "Fichier de démonstration du module vijPlots."
+                "Conjunto de datos de ejemplo para el módulo vijPlots."
             ],
             "A demonstration dataset for vijPlots/Correspondence Analysis.": [
-                "Fichier de démonstration pour vijPlots/Analyse des correspondances."
+                "Conjunto de datos de ejemplo para el módulo vijPlots/Análisis de correspondencia."
             ],
             "A demonstration dataset for vijPlots/Likert plots.": [
-                "Fichier de démonstration pour vijPlots/Likert."
+                "Conjunto de datos de ejemplo para el módulo vijPlots/Likert."
             ],
             "A demonstration dataset for vijPlots/Multiple Correspondence Analysis.": [
-                "Fichier de démonstration pour vijPlots/Analyse des correspondances multiples."
+                "Conjunto de datos de ejemplo para el módulo vijPlots/Análisis de correspondencia múltiple."
             ],
             "A demonstration dataset for vijPlots/Multiple Response plots.": [
-                "Fichier de démonstration pour vijPlots/Réponses multiples."
+                "Conjunto de datos de ejemplo para el módulo vijPlots/Respuesta múltiple."
             ],
             "A demonstration dataset for vijPlots/Principal Component Analysis.": [
-                "Fichier de démonstration pour vijPlots/Analyse en composantes principales."
+                "Conjunto de datos de ejemplo para el módulo vijPlots/Análisis de componentes principales."
             ],
             "A demonstration dataset for vijPlots/Raincloud plot.": [
-                "Fichier de démonstration pour vijPlots/Diagramme Raincloud."
+                "Conjunto de datos de ejemplo para el módulo vijPlots/Nube de lluvia."
             ],
             "A demonstration dataset for vijPlots/Time Serie plots.": [
-                "Fichier de démonstration pour vijPlots/Séries temporelles."
+                "Un conjunto de datos de ejemplo para el módulo vijPlots/Series Temporales."
             ],
             "Accent": [
-                "Accentué"
+                "Resaltado"
             ],
             "Active Margin": [
-                "Marge active"
+                "Margen activo"
             ],
             "Add median line (Stacked only)": [
-                "Ajouter la ligne médiane"
+                "Mostrar mediana (solo apilado)"
             ],
             "Add plot frame": [
-                "Ajouter un cadre au graphique"
+                "Añadir marco del gráfico"
             ],
             "Adj. p": [
-                "p corr."
+                "Adj. p"
             ],
             "Advanced Options": [
-                "Options avancées"
+                "Opciones avanzadas"
             ],
             "Align": [
-                "Align."
+                "Alin."
             ],
             "Alpha": [
-                "Alpha"
+                "Alfa"
             ],
             "Apr": [
-                "avr."
+                "Abr"
             ],
             "April": [
-                "avril"
+                "Abril"
             ],
             "Area Chart": [
-                "Diagramme en aires"
+                "Gráfico de áreas"
             ],
             "Arrows": [
-                "Vecteurs"
+                "Vectores"
             ],
             "Ascending": [
-                "Croissant"
+                "Creciente"
             ],
             "Aug": [
-                "août"
+                "Ago"
             ],
             "August": [
-                "août"
+                "Agosto"
             ],
             "Auto": [
                 "Auto"
             ],
             "Axes": [
-                "Axes"
+                "Ejes"
             ],
             "Axis numbers cannot be equal.": [
-                "Les axes ne peuvent pas être identiques."
+                ""
             ],
             "Axis numbers must be less than or equal to the number of dimensions ({nDim}).": [
-                "Les axes doivent être inférieurs ou égaux au nombre de dimensions ({nDim})."
+                ""
             ],
             "Axis Titles": [
-                "Titre des axes"
+                "Títulos de los ejes"
             ],
             "Bar Plot": [
-                "Diagramme en barres"
+                "Gráfico de barras"
             ],
             "Bar Type": [
-                "Type de barres"
+                "Tipo de barras"
             ],
             "Bartlett's Test of Sphericity": [
-                "Test de sphéricité de Bartlett"
+                "Prueba de esfericidad de Bartlett"
             ],
             "Bentler T": [
                 "Bentler T"
             ],
             "Benzécri Correction": [
-                "Correction de Benzécri"
+                "Corrección de Benzécri"
             ],
             "Benzécri correction": [
-                "Correction de Benzécri"
+                "Corrección de Benzécri"
             ],
             "Beta": [
                 "Beta"
             ],
             "Beta distribution requires data between 0 and 1.": [
-                "La loi Bêta nécessite des données comprise entre 0 et 1"
+                ""
             ],
             "BH": [
                 "BH"
             ],
             "Bin Color": [
-                "Couleur des bâtons"
+                "Color de las barras"
             ],
             "Bin Size": [
-                "Taille des bâtons"
+                "Tamaño de las barras"
             ],
             "Biplot": [
-                "Graphique double"
+                "Biplot"
             ],
             "Biplot Type": [
-                "Type de graphique double"
+                "Tipo de Biplot"
             ],
             "Black": [
-                "Noir"
+                "Negro"
             ],
             "Blue": [
-                "Bleu"
+                "Azul"
             ],
             "Blue to Green": [
-                "Bleu à vert"
+                "Azul y verde"
             ],
             "Blue to Purple": [
-                "Bleu à violet"
+                "Azul y morado"
             ],
             "Blues": [
-                "Bleus"
+                "Azules"
             ],
             "Bold": [
-                "Gras"
+                "Negrita"
             ],
             "Bold Italic": [
-                "Gras Ital."
+                "Negrita cursiva"
             ],
             "Bonferroni": [
                 "Bonferroni"
@@ -365,424 +365,424 @@
                 "Boostrap"
             ],
             "Border": [
-                "Bordures"
+                "Borde"
             ],
             "Bottom": [
-                "Bas"
+                "Abajo"
             ],
             "Box Elements": [
-                "Éléments de la boite"
+                "Elementos del gráfico"
             ],
             "Box Plot": [
-                "Boite à moustaches"
+                "Gráfico de caja"
             ],
             "Brown": [
-                "Marron"
+                "Marrón"
             ],
             "Brown and Green": [
-                "Marron à vert"
+                "Marrón y verde"
             ],
             "Burt matrix": [
-                "Tableau de Burt"
+                "Matriz de Burt"
             ],
             "BY": [
-                "BY"
+                "POR"
             ],
             "By group": [
-                "Par groupe"
+                "Por grupo"
             ],
             "By variable": [
-                "Par variable"
+                "Por variable"
             ],
             "Cannot convert text variables to integers": [
-                "Impossible de convertir une variable de type texte en entiers."
+                ""
             ],
             "Cannot tidy up text variables": [
-                "Impossible de corriger les niveaux d'un variable de type texte."
+                ""
             ],
             "Caption": [
-                "Légende"
+                "Descripción"
             ],
             "Caption Style": [
-                "Style des légendes"
+                "Estilo del pie de gráfico"
             ],
             "Caption Text": [
-                "Texte des légendes"
+                "Texto del pie de gráfico"
             ],
             "Cars": [
                 "Cars"
             ],
             "Categorical": [
-                "Variables qualitatives"
+                "Variables cualitativas"
             ],
             "Categories": [
-                "Catégories"
+                "Categorías"
             ],
             "Category Axis": [
-                "Axe des catégories"
+                "Eje de categorías"
             ],
             "Category Plot": [
-                "Graphique des catégories"
+                "Gráfico de categorías"
             ],
             "Category plot": [
-                "Catégories"
+                "Gráfico de categorías"
             ],
             "Category Plot Options": [
-                "Graphique des catégories"
+                "Opciones del gráfico de categorías"
             ],
             "Category principal": [
-                "Catégories principales"
+                "Categorías principales"
             ],
             "Category principal coordinates": [
-                "Coordonnées principales des catégories"
+                "Coordenadas principales de las categorías"
             ],
             "Category Summary": [
-                "Résumés des catégories"
+                "Resumen de las categorías"
             ],
             "Cauchy": [
                 "Cauchy"
             ],
             "Center": [
-                "Centrer"
+                "Centro"
             ],
             "Centered": [
-                "Centré"
+                "Centrado"
             ],
             "Chi-squared": [
-                "Khi-deux"
+                "Chi-cuadrado"
             ],
             "Color Number": [
-                "Numéro de la couleur"
+                "Número del color"
             ],
             "Color Options": [
-                "Options de couleurs"
+                "Opciones de color"
             ],
             "Color Palette": [
-                "Palette de couleurs"
+                "Paleta de colores"
             ],
             "Colors": [
-                "Couleurs"
+                "Colores"
             ],
             "Colors & Options": [
-                "Couleurs & Options"
+                "Colores y opciones"
             ],
             "Column": [
-                "Colonne"
+                "Columna"
             ],
             "Column Plot": [
-                "Graphique des colonnes"
+                "Gráfico de columnas"
             ],
             "Column plot": [
-                "Graphique des colonnes"
+                "Gráfico de columnas"
             ],
             "Column Points for {cols}": [
-                "Graphique des colonnes pour {cols}"
+                "Puntos de columna para {cols}"
             ],
             "Column principal": [
-                "Col. principales"
+                "Principal de columnas"
             ],
             "Column principal normalization": [
-                "Normalisation principale en colonnes"
+                "Normalización de columna principal"
             ],
             "Column Profiles": [
-                "Profils colonnes"
+                "Perfiles de columna"
             ],
             "Column Summary": [
-                "Résumé des colonnes"
+                "Resumen de columnas"
             ],
             "Columns": [
-                "Colonnes"
+                "Columnas"
             ],
             "Columns (Groups)": [
-                "Colonnes (Groupes)"
+                "Columnas (grupos)"
             ],
             "Comparison Tests": [
-                "Tests de comparaison"
+                "Test de comparación"
             ],
             "Comparison tests cannot be computed with empty (N=0) groups": [
-                "Les tests de comparaison ne peuvent pas être appliqués avec des groupes vides."
+                ""
             ],
             "Comparison tests require numeric variables": [
-                "Les tests de comparaison nécessitent des variables numériques."
+                ""
             ],
             "Component": [
-                "Composante"
+                "Componente"
             ],
             "Component Plot": [
-                "Graphique des composantes"
+                "Gráfico de componentes"
             ],
             "Confidence band": [
-                "Bande de confiance (IC)"
+                "Banda de confianza"
             ],
             "Confidence Band Methods": [
-                "Méthodes de calcul de l'IC"
+                "Cálculo de la banda de confianza"
             ],
             "Confidence interval": [
-                "Intervalle de confiance"
+                "Intervalo de confianza"
             ],
             "Connect ordinal categories": [
-                "Joindre les catégories ordinales"
+                "Unir categorías ordinales"
             ],
             "Conover": [
                 "Conover"
             ],
             "Conover's Pairwise Comparisons": [
-                "Comparaisons par paires de Conover"
+                "Comparaciones por pares de Conover"
             ],
             "Contingency Table": [
-                "Tableau de contingence"
+                "Tabla de contingencia"
             ],
             "Contingency table": [
-                "Tableau de contingence"
+                "Tabla de contingencia"
             ],
             "Continuous": [
-                "Variables quantitatives"
+                "Variables cuantitativas"
             ],
             "Contributions": [
-                "Contributions"
+                "Contribuciones"
             ],
             "Convert variables to integer": [
-                "Convertir les variables en entiers"
+                "Convertir variables en enteros"
             ],
             "Coordinates": [
-                "Coordonnées"
+                "Coordenadas"
             ],
             "Correspondence Analysis": [
-                "Analyse des correspondances"
+                "Análisis de correspondencias"
             ],
             "COS2": [
                 "COS2"
             ],
             "Count": [
-                "Effectif"
+                "Frecuencia"
             ],
             "Counted value": [
-                "Valeur comptée"
+                "Valor contabilizado"
             ],
             "Counts": [
-                "Effectifs"
+                "Recuento"
             ],
             "Counts (optional)": [
-                "Effectifs (optionnel)"
+                "Recuentos (opcional)"
             ],
             "Cov (Loading principal)": [
-                "Cov (Var. principales)"
+                "Cov (cargas principales)"
             ],
             "Covariance (Loading principal)": [
-                "Covariance (Variables principales)"
+                "Covarianza (cargas principales)"
             ],
             "Covariance Biplot": [
-                "Graphique double (Covariance)"
+                "Biplot (Covarianza)"
             ],
             "Credit Cards": [
-                "Credit Cards"
+                "Tarjetas de crédito"
             ],
             "Crosstab": [
-                "Tableau croisé"
+                "Tabla de contingencia"
             ],
             "Crosstab (% by row)": [
-                "Tableau croisé (% en ligne)"
+                "Tabla de contingencia (% por fila)"
             ],
             "Crosstab (% of cases)": [
-                "Tableau croisé (% des observations)"
+                "Tabla de contingencia (% de casos)"
             ],
             "Crosstab (% of responses)": [
-                "Tableau croisé (% des réponses)"
+                "Tabla de contingencia (% de respuestas)"
             ],
             "Cumulative %": [
-                "% cumulés"
+                "% acumulado"
             ],
             "Dark 2": [
-                "Sombre 2"
+                "Oscuro 2"
             ],
             "Dark Gray": [
-                "Gris foncé"
+                "Gris oscuro"
             ],
             "Dashed line": [
-                "Pointillée"
+                "Línea discontinua"
             ],
             "Data": [
-                "Données"
+                "Datos"
             ],
             "Data Transform": [
-                "Tranformation des données"
+                "Transformación de datos"
             ],
             "Date breaks": [
-                "Intervalle"
+                "Intervalos de fecha"
             ],
             "Dec": [
-                "déc."
+                "Dic"
             ],
             "December": [
-                "décembre"
+                "Diciembre"
             ],
             "Decreasing": [
-                "Décroissant"
+                "Decreciente"
             ],
             "default": [
-                "par défaut"
+                "por defecto"
             ],
             "Density": [
-                "Densité"
+                "Densidad"
             ],
             "Density opacity": [
-                "Alpha"
+                "Opacidad"
             ],
             "Descending": [
-                "Décroissant"
+                "Decreciente"
             ],
             "Detrended {distribStr} {typeStr} Plot of {varStr}": [
-                "Diagramme {typeStr} {distribStr} redressé de {varStr}"
+                "Gráfico sin tendencia {typeStr} {distribStr} de {varStr}"
             ],
             "Detrended plot": [
-                "Diagramme redressé"
+                "Gráfico sin tendencia"
             ],
             "df": [
-                "ddl"
+                "gl"
             ],
             "Dichromat:Categorical": [
-                "Dichromat:Categorical"
+                "Dicromático:Categórico"
             ],
             "Dim": [
                 "Dim"
             ],
             "Dimension": [
-                "Dimension"
+                "Dimensión"
             ],
             "Discrimination": [
-                "Discrimination"
+                "Discriminación"
             ],
             "Discrimination Plot": [
-                "Graphique des discriminations"
+                "Gráfico de discriminación"
             ],
             "Discrimination plot": [
-                "Discriminations"
+                "Gráfico de discriminación"
             ],
             "Display format": [
-                "Affichage"
+                "Formato de visualización"
             ],
             "Distribution": [
-                "Distribution"
+                "Distribución"
             ],
             "Donut chart": [
-                "Graphique en anneau"
+                "Gráfico de anillo"
             ],
             "Dot": [
-                "Point"
+                "Punto"
             ],
             "Dot size": [
-                "Point"
+                "Punto"
             ],
             "Draw arrow lines": [
-                "Droites des vecteurs"
+                "Dibujar líneas de los vectores"
             ],
             "Draw staples": [
-                "Tracer les agrafes"
+                "Dibujar barreras"
             ],
             "DSCF": [
                 "DSCF"
             ],
             "DSCF p-values are adjusted groupwise.": [
-                "Les probabilités critiques DSCF sont corrigées par groupe."
+                "Los p-valores de DSCF están ajustados por grupo."
             ],
             "Dummy Variables": [
-                "Variables dichotomiques"
+                "Variables dicotómicas"
             ],
             "Dunn": [
                 "Dunn"
             ],
             "Dunn's Pairwise Comparisons": [
-                "Comparaisons par paires de Dunn"
+                "Comparaciones por pares de Dunn"
             ],
             "Dwass-Steel-Critchlow-Fligner Pairwise Comparisons": [
-                "Comparaisons par paires de Dwass-Steel-Critchlow-Fligner"
+                "Comparaciones por pares de Dwass-Steel-Critchlow-Fligner"
             ],
             "Eigenvalue": [
-                "Valeur propre"
+                "Valor propio"
             ],
             "Eigenvalues": [
-                "Valeurs propres"
+                "Valores propios"
             ],
             "Element Sizes": [
-                "Taille des éléments"
+                "Tamaño de los elementos"
             ],
             "Equal Local Levels": [
-                "Equal Local Levels"
+                "Niveles locales iguales"
             ],
             "Equamax": [
                 "Equamax"
             ],
             "Estimate parameters from data": [
-                "Estimer les paramètres à partir des données"
+                "Estimar parámetros a partir de datos"
             ],
             "EU (D-M-Y)": [
-                "EU (J-M-A)"
+                "UE (D-M-A)"
             ],
             "Exponential": [
-                "Exponentielle"
+                "Exponencial"
             ],
             "Exponential distribution requires non-negative (≥0) data.": [
-                "La loi Exponentielle nécessite des données positives."
+                ""
             ],
             "Extraction Sums of Squared Loadings": [
-                "Sommes des carrés des composantes extraites"
+                "Suma de cuadrados de las cargas extraídas"
             ],
             "F": [
                 "F"
             ],
             "Facet": [
-                "Facette"
+                "Subgráfico"
             ],
             "Facets": [
-                "Facettes"
+                "Subgráficos"
             ],
             "Factor": [
-                "Facteur"
+                ""
             ],
             "Feb": [
-                "févr."
+                "Feb"
             ],
             "February": [
-                "février"
+                "Febrero"
             ],
             "Fill": [
-                "Remplissage"
+                "Relleno"
             ],
             "Font": [
-                "Style"
+                "Fuente"
             ],
             "Font face": [
-                "Style de police"
+                "Tipo de letra"
             ],
             "Font size": [
-                "Taille de police"
+                "Tamaño de letra"
             ],
             "For border": [
-                "Pour bordures"
+                "Para el borde"
             ],
             "For filling": [
-                "Pour remplissage"
+                "Para el relleno"
             ],
             "Form (Score principal)": [
-                "Form (Obs. principales)"
+                "Form (puntuaciones principales)"
             ],
             "Form Biplot": [
-                "Graphique double (Form)"
+                "Biplot de Form"
             ],
             "Frequencies": [
-                "Fréquences"
+                "Frecuencias"
             ],
             "Frequency Plot": [
-                "Graphique"
-            ],
-            "Frequency table": [
-                "Table des fréquences"
+                "Gráfico"
             ],
             "Frequency Table": [
-                "Table des fréquences"
+                "Tabla de frecuencias"
+            ],
+            "Frequency table": [
+                "Tabla de frecuencias"
             ],
             "Frequency Type": [
-                "Type de fréquences"
+                "Tipo de frecuencia"
             ],
             "Gamma": [
                 "Gamma"
@@ -791,67 +791,67 @@
                 "Gris"
             ],
             "Green": [
-                "Vert"
+                "Verde"
             ],
             "Green to Blue": [
-                "Vert à bleu"
+                "Verde y azul"
             ],
             "Greenacre Correction": [
-                "Correction de Greenacre"
+                "Corrección de Greenacre"
             ],
             "Greenacre correction": [
-                "Correction de Greenacre"
+                "Corrección de Greenacre"
             ],
             "Greenacre's corrected inertia =": [
-                "Inertie corrigée (Greenacre) ="
+                "Inercia corregida de Greenacre ="
             ],
             "Greens": [
-                "Verts"
+                "Verdes"
             ],
             "Grey": [
                 "Gris"
             ],
             "Greys": [
-                "Gris"
+                "Grises"
             ],
             "Group": [
-                "Groupe"
+                "Grupo"
             ],
             "Group (Overlapped)": [
-                "Groupe (superposé)"
+                "Grupo (superpuesto)"
             ],
             "Group (Side-by-side)": [
-                "Groupe (juxtaposé)"
+                "Grupo (al lado)"
             ],
             "Group + Count": [
-                "Groupe + Effectif"
+                "Grupo + Frecuencia"
             ],
             "Group + Percent": [
-                "Groupe + Pourcent"
+                "Grupo + Porcentaje"
             ],
             "Group By": [
-                "Grouper par"
+                "Agrupar por"
             ],
             "Grouped": [
-                "Groupé"
+                "Al lado"
             ],
             "Grouped (tight)": [
-                "Groupé (serré)"
+                "Al lado (juntas)"
             ],
             "Grouping": [
-                "Groupes"
+                "Agrupamiento"
             ],
             "Grouping Variable": [
-                "Grouper par"
+                "Agrupar por:"
             ],
             "Groupwise": [
-                "Par groupe"
+                "Por grupo"
             ],
             "Hide % labels below 5%": [
-                "Masquer les % inférieurs à 5 %"
+                "Ocultar % inferiores al 5%"
             ],
             "Histogram": [
-                "Histogramme"
+                "Histograma"
             ],
             "Hochberg": [
                 "Hochberg"
@@ -863,100 +863,100 @@
                 "Hommel"
             ],
             "Horizontal label wrap": [
-                "Largeur des étiquettes horizontales"
+                "Ancho de las etiquetas horizontales"
             ],
             "Horizontal line at": [
-                "Ligne horizontale à"
+                "Línea horizontal en"
             ],
             "Horizontal plot": [
-                "Graphe horizontal"
+                "Gráfico horizontal"
             ],
             "Identity line": [
-                "Droite identitée"
+                "Recta identidad"
             ],
             "Ignore missing groups": [
-                "Ignorer les groupes manquants"
+                "Ignorar grupos faltantes"
             ],
             "Ignore missing values": [
-                "Ignorer les valeurs manquantes"
+                "Ignorar valores faltantes"
             ],
             "Improve label display": [
-                "Améliorer l'affichage des étiquettes"
+                "Mejorar la visualización de etiquetas"
             ],
             "Increasing": [
-                "Croissant"
+                "Creciente"
             ],
             "Indicator matrix": [
-                "Tableau disjonctif"
+                "Matriz de indicadores"
             ],
             "Inertia": [
-                "Inertie"
+                "Inercia"
             ],
             "Inertia summary": [
-                "Récapitulatif de l'inertie"
+                "Resumen de inercia"
             ],
             "Initial Eigenvalues": [
-                "Valeurs propres initiales"
+                "Valores propios iniciales"
             ],
             "Input format": [
-                "Entrée"
+                "Formato de entrada"
             ],
             "Iris": [
                 "Iris"
             ],
             "ISO (Y-M-D)": [
-                "ISO (A-M-J)"
+                "ISO (A-M-D)"
             ],
             "Italic": [
-                "Italique"
+                "Cursiva"
             ],
             "Jan": [
-                "janv."
+                "Ene"
             ],
             "January": [
-                "janvier"
+                "Enero"
             ],
             "jmv Blue": [
-                "Bleu jmv"
+                "Azul jmv"
             ],
             "jmv Default": [
-                "Couleurs jmv"
+                "Colores jmv"
             ],
             "jmv Gray": [
                 "Gris jmv"
             ],
             "jmv Green": [
-                "Vert jmv"
+                "Verde jmv"
             ],
             "jmv Red": [
-                "Rouge jmv"
+                "Rojo jmv"
             ],
             "jmv Yellow": [
-                "Jaune jmv"
+                "Amarillo jmv"
             ],
             "Jul": [
-                "juil."
+                "Jul"
             ],
             "July": [
-                "juillet"
+                "Julio"
             ],
             "Jun": [
-                "juin"
+                "Jun"
             ],
             "June": [
-                "juin"
+                "Junio"
             ],
             "Kaiser normalization": [
-                "Normalisation de Kaiser"
+                "Normalización de Kaiser"
             ],
             "Kaiser-Meyer-Olkin Measure of Sampling Adequacy (MSA)": [
-                "Mesure de Kaiser-Meyer-Olkin d'adéquation de l'échantillonnage"
+                "Medida Kaiser-Meyer-Olkin de adecuación del muestreo (MSA)"
             ],
             "KMO & Bartlett's Test": [
-                "KMO & test de Bartlett"
+                "KMO y prueba de Bartlett"
             ],
             "KMO & Bartlett's test": [
-                "KMO & test de Bartlett"
+                "KMO y prueba de Bartlett"
             ],
             "Kolmogorov-Smirnov": [
                 "Kolmogorov-Smirnov"
@@ -965,190 +965,190 @@
                 "Kruskal-Wallis"
             ],
             "Kruskal-Wallis Tests": [
-                "Tests de Kruskal-Wallis"
+                "Test de Kruskal-Wallis"
             ],
             "Label": [
-                "Étiquettes"
+                "Etiquetas"
             ],
             "Label color": [
-                "Couleur des %"
+                "Color de las etiquetas"
             ],
             "Label font size": [
-                "Taille des étiquettes"
+                "Tamaño de las etiquetas"
             ],
             "Label Options": [
-                "Options des étiquettes"
+                "Opciones de las etiquetas"
             ],
             "Label Position": [
-                "Position des étiquettes"
+                "Posición de las etiquetas"
             ],
             "Label rotation": [
-                "Rotation des étiquettes"
+                "Rotación de las etiquetas"
             ],
             "Label Size": [
-                "Taille des étiquettes"
+                "Tamaño de las etiquetas"
             ],
             "Labels": [
-                "Étiquettes"
+                "Etiquetas"
             ],
             "Left": [
-                "Gauche"
+                "Izquierda"
             ],
             "Legend": [
-                "Légende"
+                "Leyenda"
             ],
             "Legend & Axis Titles": [
-                "Titres de la légende et des axes"
+                "Títulos de leyenda y ejes"
             ],
             "Legend Title": [
-                "Titre de la légende"
+                "Título de la leyenda"
             ],
             "Lémovice": [
                 "Lémovice"
             ],
             "Level": [
-                "Niveau"
+                "Nivel"
             ],
             "Light Blue": [
-                "Bleu clair"
+                "Azul claro"
             ],
             "Light Brown": [
-                "Marron clair"
+                "Marrón claro"
             ],
             "Light Gray": [
-                "Gris clair"
+                "Gris claro"
             ],
             "Light Green": [
-                "Vert clair"
+                "Verde claro"
             ],
             "Light Orange": [
-                "Orange clair"
+                "Naranja claro"
             ],
             "Light Pink": [
-                "Rose clair"
+                "Rosa claro"
             ],
             "Light Purple": [
-                "Violet clair"
+                "Morado claro"
             ],
             "Light Red": [
-                "Rouge clair"
+                "Rojo claro"
             ],
             "Light Yellow": [
-                "Jaune clair"
+                "Amarillo claro"
             ],
             "Likert": [
                 "Likert"
             ],
             "Likert Plot": [
-                "Diagramme Likert"
+                "Gráfico de Likert"
             ],
             "Likert Plot requires ordinal (or numeric) variables": [
-                "Les diagrammes de Likert nécessitent des variables ordinales (ou numériques)."
+                ""
             ],
             "Likert Variables": [
-                "Variables de Likert"
+                "Variable de tipo Likert"
             ],
             "Limited to the first 100 observations": [
-                "Limité aux 100 premières observations"
+                "Limitado a las primeras 100 observaciónes."
             ],
             "Line": [
-                "Ligne"
+                "Línea"
             ],
             "Line Chart": [
-                "Graphique en courbes"
+                "Gráfico de líneas"
             ],
             "Line size": [
-                "Épaisseur"
+                "Grosor de línea"
             ],
             "Line width": [
-                "Ligne"
+                "Línea"
             ],
             "Linear": [
-                "Linéaire"
+                "Lineal"
             ],
             "Log-normal": [
-                "Log-normale"
+                "Log-normal"
             ],
             "Logistic": [
-                "Logistique"
+                "Logística"
             ],
             "Lollipop Plot": [
-                "Lollipop (Sucettes)"
+                "Gráfico de piruleta"
             ],
             "Lollipop Size": [
-                "Taille des sucettes"
+                "Tamaño de la piruleta"
             ],
             "Lollipop Size & Colors": [
-                "Taille et couleurs des sucettes"
+                "Tamaño y colores de la piruleta"
             ],
             "Main statistical charts (histogram, boxplot, point, bar, line, raincloud…) with many options along with Likert plot, multiple response barplot, Principal Component and (Multiple) Correspondence Analyses. Project source (and changelog) is available at <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>.": [
-                "Principaux graphiques statistiques (histogramme, boite à moustache, bâtons, lignes, secteurs…) avec de nombreuses options ainsi que diagramme de Likert, réponses multiples, analyse en composantes principales et analyse des correspondances (multiples). Le code source du projet est disponible sur <a href=\"https://github.com/vjalby/vijPlots\" target=\"_blank\">Github</a>."
+                ""
             ],
             "Mann-Whitney U": [
-                "Mann-Whitney U"
+                "U de Mann-Withney"
             ],
             "Mann-Whitney U Tests": [
-                "Tests U de Mann-Whitney"
+                "Prueba de la U de Mann-Whitney"
             ],
             "Manual": [
-                "Manuel"
+                "Manual"
             ],
             "Mar": [
-                "mars"
+                "Mar"
             ],
             "March": [
-                "mars"
+                "Marzo"
             ],
             "Mass": [
-                "Masse"
+                "Masa"
             ],
             "Max": [
                 "Max"
             ],
             "Maximum of {var}": [
-                "Maximum de {var}"
+                "Máximo de {var}"
             ],
             "Maximum-likelihood (MLE)": [
-                "Maximum de vraisemblance (MLE)"
+                "Máxima verosimilitud (MLE)"
             ],
             "May": [
-                "mai"
+                "Mayo"
             ],
             "MCA Principal Coordinates": [
-                "Coordonnées principales ACM"
+                "Coordenadas principales del ACM"
             ],
             "MCA Standard Coordinates": [
-                "Coordonnées standardisées ACM"
+                "Coordenadas estándar del ACM"
             ],
             "Mean": [
-                "Moyenne"
+                "Media"
             ],
             "Mean & SD": [
-                "Moyenne et écart-type"
+                "Media y desviación típica"
             ],
             "Mean of {var}": [
-                "Moyenne de {var}"
+                "Media de {var}"
             ],
             "Median": [
-                "Médiane"
+                "Mediana"
             ],
             "Median and mean require numeric variables": [
-                "Médiane et moyenne nécessitent des variables numériques"
+                ""
             ],
             "Median of {var}": [
-                "Médiane de {var}"
+                "Mediana de {var}"
             ],
             "Method": [
-                "Méthode"
+                "Método"
             ],
             "Method of moments (MME)": [
-                "Méthode des moments (MME)"
+                "Método de los momentos (MME)"
             ],
             "Method:": [
-                "Méthode :"
+                "Método:"
             ],
             "Middle": [
-                "Milieu"
+                "Medio"
             ],
             "Min": [
                 "Min"
@@ -1157,172 +1157,172 @@
                 "Min / Max"
             ],
             "Minimum entropy": [
-                "Entropie minimale"
+                "Entropía mínima"
             ],
             "Minimum of {var}": [
-                "Minimum de {var}"
+                "Mínimo de {var}"
             ],
             "Multi-valued Variable": [
-                "Variable à valeurs multiples"
+                "Variable multivalor"
             ],
             "Multiple Correspondence Analysis": [
-                "Analyse des correspondances multiples"
+                "Análisis de correspondencias múltiples"
             ],
             "Multiple Response": [
-                "Réponses multiples"
+                "Respuesta múltiple"
             ],
             "Multiple Response Crosstab": [
-                "Réponses multiples - Tableau croisé"
+                "Tabla cruzada de respuestas múltiples"
             ],
             "Multiple Response Frequencies": [
-                "Réponses multiples - Fréquences"
+                "Respuestas Múltiples - Frecuencias"
             ],
             "Multiple Value Variable": [
-                "Variable à valeurs multiples"
+                "Variable con valores múltiples"
             ],
             "Multivariate": [
-                "Multivarié"
+                "Multivariado"
             ],
             "Name": [
-                "Nom"
+                "Nombre"
             ],
             "Natural log tranform": [
-                "Transformation logarithme népérien"
+                "Transformación logaritmo neperiano"
             ],
             "Natural Log Tranform requires positive (>0) data.": [
-                "La transformation logarithmique nécessite des données strictement positives."
+                ""
             ],
             "No rotation used.": [
-                "Aucune rotation appliquée."
+                "No se utiliza rotación."
             ],
             "None": [
-                "Aucun"
+                "Ninguno"
             ],
             "Normal": [
                 "Normal"
             ],
             "Normal Curve": [
-                "Courbe normale"
+                "Curva Normal"
             ],
             "Normalization": [
-                "Normalisation"
+                "Normalización"
             ],
             "Notch width": [
-                "Largeur de l'encoche"
+                "Ancho de la cintura"
             ],
             "Notched box": [
-                "Boite avec encoche"
+                "Caja con cintura"
             ],
             "Nov": [
-                "nov."
+                "Nov"
             ],
             "November": [
-                "novembre"
+                "Noviembre"
             ],
             "Nudged boxplots": [
-                "Boites à moustaches séparées"
+                "Gráficos de caja separados"
             ],
             "Number of cases": [
-                "Nombre d'observations"
+                "Número de observaciones"
             ],
             "Number of cases:": [
-                "Nombre d'observations :"
+                "Número de observaciones:"
             ],
             "Number of dimensions": [
-                "Nombre de dimensions"
+                "Número de dimensiones"
             ],
             "Number of dimensions must be less than or equal to {maxDim}.": [
-                "Le nombre de dimensions doit être inférieur ou égal à {maxDim}."
+                ""
             ],
             "Obs color": [
-                "Couleur obs."
+                "Color obs."
             ],
             "Observation Coordinates": [
-                "Coordonnées des observations"
+                "Coordenadas de las observaciones"
             ],
             "Observation Plot": [
-                "Graphique des observations"
+                "Gráfico de observaciones"
             ],
             "Observation plot": [
-                "Observations"
+                "Gráfico de observaciones"
             ],
             "Observation Plot Options": [
-                "Graphique des observations"
+                "Opciones del gráfico de observaciones"
             ],
             "Observation principal": [
-                "Observations principales"
+                "Observaciones principales"
             ],
             "Observation principal coordinates": [
-                "Coordonnées principales des observations"
+                "Coordenadas principales  de las observaciones"
             ],
             "Observation Summary": [
-                "Résumé des observations"
+                "Resumen de las observaciones"
             ],
             "Observations": [
-                "Observations"
+                "Observaciones"
             ],
             "Oct": [
-                "oct."
+                "Oct"
             ],
             "Oct 2035": [
-                "Oct. 2035"
+                "Oct 2035"
             ],
             "Oct 35": [
-                "Oct. 35"
+                "Oct 35"
             ],
             "October": [
-                "octobre"
+                "Octubre"
             ],
             "October 2035": [
-                "Octobre 2035"
+                "Octubre 2035"
             ],
             "October 35": [
-                "Octobre 35"
+                "Octubre 35"
             ],
             "Offset": [
-                "Offset"
+                "Desplazamiento"
             ],
             "One variable": [
-                "Une variable"
+                "Una variable"
             ],
             "only": [
-                "seulement"
+                "solo"
             ],
             "Option name": [
-                "Nom des options"
+                "Nombre de la opción"
             ],
             "Option Variables": [
-                "Variables d'options"
+                "Variables de opción"
             ],
             "Options": [
-                "Options"
+                "Opciones"
             ],
             "Orange": [
-                "Orange"
+                "Naranja"
             ],
             "Orange and Purple": [
-                "Orange à violet"
+                "Naranja y morado"
             ],
             "Orange to Red": [
-                "Orange à rouge"
+                "Naranja y rojo"
             ],
             "Oranges": [
-                "Oranges"
+                "Naranjas"
             ],
             "Original Eigenvalues": [
-                "Valeurs propres originales"
+                "Valores propios originales"
             ],
             "Other Options": [
-                "Autres options"
+                "Otras opciones"
             ],
             "Overall": [
-                "Globalement"
+                "Globalmente"
             ],
             "Overall (all groups)": [
-                "Ensemble des groupes"
+                "General (todos los grupos)"
             ],
             "Overlapping": [
-                "Superposé"
+                "Superpuesto"
             ],
             "p": [
                 "p"
@@ -1331,43 +1331,43 @@
                 "P-P"
             ],
             "P-P plot": [
-                "Diagramme P-P"
+                "Gráfico P-P"
             ],
             "p-Value Adjustment": [
-                "Correction des p-valeurs"
+                "Ajuste de los p-valores"
             ],
             "p-values are adjusted groupwise using {method} method.": [
-                "Les probabilités critiques sont corrigées par groupe selon la méthode {method}."
+                "Los p-valores se ajustan por grupo utilizando el método {method}."
             ],
             "p-values are adjusted overall using {method} method.": [
-                "Les probabilités critiques sont corrigées globalement selon la méthode {method}."
+                "Los p-valores se ajustan globalmente utilizando el método {method}."
             ],
             "p-values are adjusted using {method} method.": [
-                "Les probabilités critiques sont corrigées selon la méthode {method}."
+                "Los p-valores se ajustan utilizando el método {method}."
             ],
             "Paired": [
-                "Apparié"
+                "Por parejas"
             ],
             "Pairwise Comparisons": [
-                "Comparaisons par paires"
+                "Comparaciones por pares"
             ],
             "Palette": [
-                "Palette"
+                "Paleta"
             ],
             "Parameter 1": [
-                "Paramètre 1"
+                "Parámetro 1"
             ],
             "Parameter 2": [
-                "Paramètre 2"
+                "Parámetro 2"
             ],
             "Parameter Estimates": [
-                "Estimation des paramètres"
-            ],
-            "Parameter values": [
-                "Valeurs des paramètres"
+                "Estimación de los parámetros"
             ],
             "Parameter Values": [
-                "Valeurs des paramètres"
+                "Valor de los parámetros"
+            ],
+            "Parameter values": [
+                "Valor de los parámetros"
             ],
             "Parsimax": [
                 "Parsimax"
@@ -1379,505 +1379,505 @@
                 "Pastel 2"
             ],
             "PCA Principal Coordinates": [
-                "Coordonnées principales ACP"
+                "Coordenadas principales del ACP"
             ],
             "PCA Standard Coordinates": [
-                "Coordonnées standardisées ACP"
+                "Coordenadas estándar del ACP"
             ],
             "Percent": [
-                "Pourcent"
+                "Porcentaje"
             ],
             "Percentages": [
-                "Pourcentages"
+                "Porcentajes"
             ],
             "Pie Chart": [
-                "Diagramme en secteurs"
+                "Gráfico de sectores"
             ],
             "Pink": [
-                "Rose"
+                "Rosa"
             ],
             "Pink and Green": [
-                "Rose et vert"
+                "Rosa y verde"
             ],
             "Plot": [
-                "Graphique"
+                "Gráfico"
             ],
             "Plot Color": [
-                "Couleurs du graphique"
+                "Colores del gráfico"
             ],
             "Plot Colors": [
-                "Couleurs du graphique"
+                "Colores del gráfico"
             ],
             "Plot Options": [
-                "Options du graphique"
+                "Opciones del gráfico"
             ],
             "Plot Titles": [
-                "Titres du graphique"
+                "Títulos del gráfico"
             ],
             "Plot Titles & Subtitles": [
-                "Titres et sous-titres des graphiques"
+                "Títulos y subtítulos de gráficos"
             ],
             "Plot Type": [
-                "Type de graphique"
+                "Tipo de gráfico"
             ],
             "Plots": [
-                "Graphiques"
+                "Gráficos"
             ],
             "Point": [
-                "Point"
-            ],
-            "Point Size": [
-                "Taille des points"
+                "Punto"
             ],
             "Point size": [
-                "Taille des points"
+                "Tamaño del punto"
+            ],
+            "Point Size": [
+                "Tamaño del punto"
             ],
             "Points": [
-                "Points"
+                "Puntos"
             ],
             "Pointwise": [
-                "Pointwise"
+                "Puntual"
             ],
             "Position": [
-                "Position"
+                "Posición"
             ],
             "Post Hoc": [
-                "Post-hoc"
+                "Post Hoc"
             ],
             "Post Hoc Tests": [
-                "Tests Post-hoc"
+                "Tests Post Hoc"
             ],
             "Prevent overlap": [
-                "Empêcher la superposition"
+                "Evitar superposición"
             ],
             "Principal": [
-                "Principale"
+                "Principal"
             ],
             "Principal Component Analysis": [
-                "Analyse en composantes principales"
+                "Análisis de componentes principales"
             ],
             "Principal coordinates": [
-                "Coordonnées principales"
+                "Coordenadas principales"
             ],
             "Principal normalization": [
-                "Normalisation principale"
+                "Normalización principal"
             ],
             "Proportional point size": [
-                "Points proportionnels"
+                "Tamaño de punto proporcional"
             ],
             "Purple": [
-                "Violet"
+                "Morado"
             ],
             "Purple and Green": [
-                "Violet et vert"
+                "Morado y verde"
             ],
             "Purple to Blue": [
-                "Violet à bleu"
+                "Morado y azul"
             ],
             "Purple to Green": [
-                "Violet à vert"
+                "Morado y verde"
             ],
             "Purple to Red": [
-                "Violet à rouge"
+                "Morado y rojo"
             ],
             "Purples": [
-                "Violets"
+                "Morados"
             ],
             "Q-Q": [
                 "Q-Q"
             ],
             "Q-Q & P-P Plots": [
-                "Diagrammes Q-Q & P-P"
+                "Gráficos Q-Q y P-P"
             ],
             "Q-Q line": [
-                "Droite Q-Q"
+                "Recta Q-Q"
             ],
             "Q-Q plot": [
-                "Diagramme Q-Q"
+                "Gráfico Q-Q"
             ],
             "QLT": [
-                "QLT"
+                ""
             ],
             "Quartimax": [
                 "Quartimax"
             ],
             "Questions": [
-                "Questions"
+                "Preguntas"
             ],
             "Raincloud": [
-                "Raincloud"
+                "Nube de lluvia"
             ],
             "Raincloud Plot": [
-                "Diagramme Raincloud"
+                "Gráfico de nube de lluvia"
             ],
             "Range": [
-                "Étendue"
+                "Rango"
             ],
             "Red": [
-                "Rouge"
+                "Rojo"
             ],
             "Red and Blue": [
-                "Rouge et bleu"
+                "Rojo y azul"
             ],
             "Red and Gray": [
-                "Rouge et gris"
+                "Rojo y gris"
             ],
             "Red to Purple": [
-                "Rouge et violet"
+                "Rojo y morado"
             ],
             "Red, Yellow and Blue": [
-                "Rouge, jaune et bleu"
+                "Rojo, amarillo y azul"
             ],
             "Red, Yellow and Green": [
-                "Rouge, jaune et vert"
+                "Rojo, amarillo y verde"
             ],
             "Red, Yellow, Blue": [
-                "Rouge, jaune et bleu"
+                "Rojo, amarillo y azul"
             ],
             "Red, Yellow, Green": [
-                "Rouge, jaune et vert"
+                "Rojo, amarillo y verde"
             ],
             "Reds": [
-                "Rouges"
+                "Rojos"
             ],
             "Reference line": [
-                "Droite de référence"
+                "Línea de referencia"
             ],
             "Reference Lines": [
-                "Lignes de référence"
+                "Líneas de referencia"
             ],
             "Regression Line": [
-                "Courbe de régression"
+                "Recta de regresión"
             ],
             "Reverse disposition": [
-                "Renverser la disposition"
+                "Disposición inversa"
             ],
             "Reverse stacking order": [
-                "Inverser les modalités"
+                "Invertir orden de apilado"
             ],
             "Right": [
-                "Droite"
+                "Derecha"
             ],
             "Rotate eigenvectors": [
-                "Rotation des vecteurs propres"
+                "Rotar vectores propios"
             ],
             "Rotation": [
-                "Rotation"
+                "Rotación"
             ],
             "Row": [
-                "Ligne"
+                "Fila"
             ],
             "Row and Column Points for {rows} and {cols}": [
-                "Graphique des lignes et colonnes pour {rows} et {cols}"
+                "Gráfico de filas y columnas para {rows} y {cols}"
             ],
             "Row and column profiles": [
-                "Profils lignes et colonnes"
+                "Perfiles de filas y columnas"
             ],
             "Row and column summaries": [
-                "Résumés des lignes et colonnes"
+                "Resúmenes de filas y columnas"
             ],
             "Row Plot": [
-                "Graphique des lignes"
+                "Gráfico de filas"
             ],
             "Row plot": [
-                "Graphique des lignes"
+                "Gráfico de filas"
             ],
             "Row Points for {rows}": [
-                "Graphique des lignes pour {rows}"
+                "Gráfico de filas para {rows}"
             ],
             "Row principal": [
-                "Lignes principales"
+                "Principal de filas"
             ],
             "Row principal normalization": [
-                "Normalisation principale en lignes"
+                "Normalización de fila principal"
             ],
             "Row Profiles": [
-                "Profils lignes"
+                "Perfiles de fila"
             ],
             "Row Summary": [
-                "Résumé des lignes"
+                "Resumen de fila"
             ],
             "Rows": [
-                "Lignes"
+                "Filas"
             ],
             "Rows (Options)": [
-                "Lignes (Options)"
+                "Filas (opciones)"
             ],
             "Same as point/arrow": [
-                "Comme les vecteurs/points"
+                "Igual que punto/vector"
             ],
             "Sample Probabilities": [
-                "Probabilités observées"
+                ""
             ],
             "Sample Probability Deviation": [
-                "Écarts des probabilités observées"
+                ""
             ],
             "Sample Quantiles": [
-                "Quantiles observés"
+                "Cuantiles observados"
             ],
             "Sample Quantiles Deviation": [
-                "Écarts des quantiles observés"
+                "Desviaciones de los cuantiles observados"
             ],
             "Save": [
-                "Enregistrer"
+                "Guardar"
             ],
             "Save observation coordinates": [
-                "Enregistrer les coordonnées des observations"
+                "Guardar coordenadas de las observaciones"
             ],
             "Scatter Plot": [
-                "Nuage de points"
+                "Diagrama de dispersión"
             ],
             "Scree Plot": [
-                "Valeurs propres"
+                "Gráfico de sedimentación"
             ],
             "Scree plot": [
-                "Valeurs propres"
+                "Gráfico de sedimentación"
             ],
             "SD": [
-                "Ecart-type"
+                "SD"
             ],
             "Separator": [
-                "Séparateur"
+                "Separador"
             ],
             "Sept": [
-                "sept."
+                "Sept"
             ],
             "September": [
-                "septembre"
+                "Septiembre"
             ],
             "Set 1": [
-                "Ensemble 1"
+                "Conjunto 1"
             ],
             "Set 2": [
-                "Ensemble 2"
+                "Conjunto 2"
             ],
             "Set 3": [
-                "Ensemble 3"
+                "Conjunto 3"
             ],
             "Several variables": [
-                "Plusieurs variables"
+                "Múltiples variables"
             ],
             "Show % labels": [
-                "Afficher les %"
+                "Mostrar los %"
             ],
             "Show count labels": [
-                "Afficher les effectifs"
+                "Mostrar frecuencias"
             ],
             "Show density": [
-                "Afficher la densité"
+                "Mostrar densidad"
             ],
             "Show line": [
-                "Afficher la courbe"
+                "Mostrar recta"
             ],
             "Show lines": [
-                "Afficher les lignes"
+                "Mostrar líneas"
             ],
             "Show mean": [
-                "Afficher la moyenne"
+                "Mostrar media"
             ],
             "Show normal curve": [
-                "Afficher la courbe normale"
+                "Mostrar curva normal"
             ],
             "Show outliers": [
-                "Afficher les extrêmes"
+                "Mostrar atípicos"
             ],
             "Show points": [
-                "Afficher les points"
+                "Mostrar puntos"
             ],
             "Show points with missing group/label": [
-                "Afficher les points avec groupe manquant"
+                "Mostrar puntos con grupo faltante"
             ],
             "Show totals (Centered only)": [
-                "Afficher les totaux"
+                "Mostrar totales (solo centrado)"
             ],
             "Single": [
-                "Unique"
+                "Único"
             ],
             "Singular Value": [
-                "Valeur singulière"
+                "Valor singular"
             ],
             "Size": [
-                "Taille"
+                "Tamaño"
             ],
             "Sizes & Colors": [
-                "Tailles & couleurs"
+                ""
             ],
             "Smoking": [
-                "Smoking"
+                "De fumar"
             ],
             "Smooth": [
-                "Lisse"
+                "Suavizado"
             ],
             "Solution": [
-                "Solution"
+                "Solución"
             ],
             "Sort Variables by Median": [
-                "Trier les variables selon la médiane"
+                "Ordenar variables según la mediana"
             ],
             "Sorting": [
-                "Tri"
+                "Orden"
             ],
             "Sorting (by median)": [
-                "Tri (selon médiane)"
+                "Clasificación (por mediana)"
             ],
             "Spectral": [
-                "Spectral"
+                "Espectro"
             ],
             "SS Loadings": [
-                "Total"
+                "Cargas SS"
             ],
             "Stacked": [
-                "Empilé"
+                "Apilado"
             ],
             "Stacked 100%": [
-                "Empilé à 100 %"
+                "Apilado 100%"
             ],
             "Standard": [
-                "Standard"
+                "Estándar"
             ],
             "Standard coordinates": [
-                "Coordonnées standardisées"
+                "Coordenadas estándar"
             ],
             "Standard normalization": [
-                "Normalisation standard"
+                "Normalización estándar"
             ],
             "Standardize loadings (eigenvectors)": [
-                "Coord. des variables standardisées"
+                "Estandarizar cargas (vectores propios)"
             ],
             "Standardize scores": [
-                "Coord. des observations standardisées"
+                "Estandarizar puntuaciones"
             ],
             "Standardize values": [
-                "Valeurs standadisées"
+                "Valores estandarizados"
             ],
             "Standardize variables": [
-                "Standardiser les variables"
+                "Estandarizar variables"
             ],
             "Standardized Sample Quantiles": [
-                "Quantiles observés standardisés"
+                "Cuantiles observados estandarizados"
             ],
             "Standardized Sample Quantiles Deviation": [
-                "Écarts des quantiles observés standardisés"
+                "Desviaciones de los cuantiles observados estandarizados"
             ],
             "Standardized values": [
-                "Valeurs standardisées"
+                "Valores estandarizados"
             ],
             "Staple width": [
-                "Largeur de l'agrafe"
+                "Ancho de la barrera"
             ],
             "Statistic": [
-                "Statistique"
+                "Estadístico"
             ],
             "Stretch arrows by": [
-                "Taille vecteurs"
+                "Estirar las flechas por"
             ],
             "Student": [
-                "Student"
+                "t-Student"
             ],
             "Subtitle": [
-                "Sous-titre"
+                "Subtítulo"
             ],
             "Subtitle Style": [
-                "Style des sous-titres"
+                "Estilo de subtítulo"
             ],
             "Subtitle Text": [
-                "Texte des sous-titres"
+                "Texto de subtítulo"
             ],
             "Summary": [
-                "Résumé"
+                "Resumen"
             ],
             "Suppl. Column": [
-                "Colonne sup."
+                "Columna adicional"
             ],
             "Suppl. Row": [
-                "Ligne sup."
+                "Fila adicional"
             ],
             "Suppl. variables": [
-                "Variables sup."
+                "Variables adicionales"
             ],
             "Supplement": [
-                "Supplémentaire"
+                "Adicional"
             ],
             "Supplementary column numbers must be a list of numbers, e.g. 1,2,9": [
-                "Les colonnes supplémentaires doivent être une liste de nombres, e.g. 1,2,9"
+                ""
             ],
             "Supplementary column numbers must be between 1 and {nmax}.": [
-                "Les numéros des colonnes supplémentaires doivent être compris entre 1 et {nmax}."
+                ""
             ],
             "Supplementary columns": [
-                "Colonnes supplémentaires"
+                "Columnas adicionales"
             ],
             "Supplementary Points": [
-                "Points supplémentaires"
+                "Puntos adicionales"
             ],
             "Supplementary row numbers must be a list of numbers, e.g. 1,2,9": [
-                "Les lignes supplémentaires doivent être une liste de nombres, e.g. 1,2,9"
+                ""
             ],
             "Supplementary row numbers must be between 1 and {nmax}.": [
-                "Les numéros des lignes supplémentaires doivent être compris entre 1 et {nmax}."
+                ""
             ],
             "Supplementary rows": [
-                "Lignes supplémentaires"
+                "Filas adicionales"
             ],
             "Supplementary rows/columns": [
-                "Lignes et colonnes supplémentaires"
-            ],
-            "Supplementary variables": [
-                "Variables supplémentaires"
+                "Filas/columnas adicionales"
             ],
             "Supplementary Variables": [
-                "Variables supplémentaires"
+                "Variables adicionales"
+            ],
+            "Supplementary variables": [
+                "Variables adicionales"
             ],
             "Symetric normalization": [
-                "Normalisation symétrique"
+                "Normalización simétrica"
             ],
             "Symmetric": [
-                "Symétrique"
+                "Simétrico"
             ],
             "Symmetric normalization": [
-                "Normalisation symétrique"
+                "Normalización simétrica"
             ],
             "Table": [
-                "Table"
+                "Tabla"
             ],
             "Tables": [
-                "Tables"
+                "Tablas"
             ],
             "Tail-Sensitive (Normal)": [
-                "Tail-Sensitive (Normal)"
+                "Sensible a colas (Normal)"
             ],
             "Tests": [
-                "Tests"
+                "Pruebas"
             ],
             "Text": [
-                "Texte"
+                "Texto"
             ],
             "Text Size": [
-                "Taille du texte"
+                "Tamaño del texto"
             ],
             "Text Size & Colors": [
-                "Taille du texte & couleurs"
+                ""
             ],
             "Text Size & Facets": [
-                "Taille du texte & facettes"
+                ""
             ],
             "The correlation matrix is not positive definite. Computations may not be accurate.": [
-                "La matrice des corrélations n'est pas définie-posivite. Les calculs peuvent être approximatifs."
+                "La matriz de correlación no es positiva definida. Es posible que los cálculos no sean precisos."
             ],
             "The number of dimensions cannot be greater than {max}.": [
-                "Le nombre de dimensions ne peut pas être supérieur à {max}."
+                "El número de dimensiones no puede ser mayor que {max}."
             ],
             "The number of dimensions cannot be greater than the number of variables.": [
-                "Le nombre de dimensions ne peut pas être supérieur au nombre de variables."
+                ""
             ],
             "Theoretical Probabilities": [
-                "Probabilités théoriques"
+                "Probabilidades teóricas"
             ],
             "Theoretical Quantiles": [
-                "Quantiles théoriques"
+                "Cuantiles teóricos"
             ],
             "Tidy up levels": [
-                "Corriger les niveaux"
+                "Corregir niveles"
             ],
             "Tidy:Alger": [
                 "Tidy:Alger"
@@ -1889,7 +1889,7 @@
                 "Tidy:Candy"
             ],
             "Tidy:Friendly": [
-                "Tidy:Friendly"
+                "Tidy:Friendly\n\n#: areachart/options/colorPalette/tidy::ibm.title\n#: barplot/options/colorPalette/tidy::ibm.title\n#: boxplot/options/colorPalette/tidy::ibm.title\n#: histogram/options/colorPalette/tidy::ibm.title\n#: linechart/options/colorPalette/tidy::ibm.title\n#: mrcrosstabs/options/colorPalette/tidy::ibm.title\n#: mrfrequencies/options/colorPalette/tidy::ibm.title\n#: multcorresp/options/colorPalette/tidy::ibm.title\n#: piechart/options/colorPalette/tidy::ibm.title\n#: principal/options/colorPalette/tidy::ibm.title\n#: qqplot/options/colorPalette/tidy::ibm.title\n#: raincloud/options/colorPalette/tidy::ibm.title\n#: scatterplot/options/colorPalette/tidy::ibm.title\nmsgid "
             ],
             "Tidy:Ibm": [
                 "Tidy:Ibm"
@@ -1904,79 +1904,79 @@
                 "Tidy:Seaside"
             ],
             "Time Series": [
-                "Séries temporelles"
+                "Series temporales"
             ],
             "Title": [
-                "Titre"
+                "Título"
             ],
             "Title Style": [
-                "Style du titre"
+                "Estilo del título"
             ],
             "Title Text": [
-                "Texte du titre"
+                "Texto del título"
             ],
             "Top": [
-                "Haut"
+                "Arriba"
             ],
             "Total": [
                 "Total"
             ],
             "Total row": [
-                "Ligne Total"
+                "Fila total"
             ],
             "Treat empty values as missing": [
-                "Considérer les valeurs vides comme manquantes"
+                ""
             ],
             "Type": [
-                "Type"
+                "Tipo"
             ],
             "U": [
                 "U"
             ],
             "Unable to estimate the distribution parameters.": [
-                "Impossible d'estimer les paramètres de la distribution."
+                ""
             ],
             "Unable to use {rotation} rotation.": [
-                "Impossible d'utiliser la rotation {rotation}."
+                "No se puede utilizar la rotación {rotation}."
             ],
             "Uniform": [
                 "Uniforme"
             ],
             "US (M-D-Y)": [
-                "US (M-J-A)"
+                "US (M-D-A)"
             ],
             "Use boldface": [
-                "Catégories en gras"
+                "Usar negrita"
             ],
             "Use color No.": [
-                "Couleur nº"
+                "Color nº"
             ],
             "Use Palette": [
-                "Utiliser la palette"
+                "Utilizar la paleta"
             ],
             "Use the same color for variables": [
-                "Utiliser une couleur unique"
+                "Utilizar un único color"
             ],
             "Use variable's description as name": [
-                "Description des variables comme nom"
+                "Utilizar descripción de las variables como nombre"
             ],
             "Values": [
-                "Valeurs"
+                "Valores"
             ],
             "Variable": [
                 "Variable"
             ],
             "Variable dicriminations": [
-                "Discrimination des variables"
+                "Discriminación de variables"
             ],
             "Variable Discriminations": [
-                "Discrimination des variables"
-            ],
-            "Variable Plot": [
-                "Graphique des variables"
+                "Discriminación de variables"
             ],
             "Variable plot": [
-                "Variables"
+                "Gráfico de variables"
+            ],
+            "Variable Plot": [
+                "Gráfico de variables"
             ],
             "Variables": [
                 "Variables"
@@ -1985,16 +1985,16 @@
                 "Varimax"
             ],
             "Vertical label wrap": [
-                "Hauteur des étiquettes verticales"
+                "Altura de las etiquetas horizontales"
             ],
             "Vertical line at": [
-                "Ligne verticale à"
+                "Línea vertical en"
             ],
             "vijPlots": [
                 "vijPlots"
             ],
             "vijPlots: Yet Another jamovi Plotting Module": [
-                "vijPlots: un autre module graphique pour jamovi"
+                "vijPlots: otro módulo de gráficos para jamovi"
             ],
             "Viridis:Inferno": [
                 "Viridis:Inferno"
@@ -2015,72 +2015,72 @@
                 "Weibull"
             ],
             "White": [
-                "Blanc"
+                "Blanco"
             ],
             "Width": [
-                "Largeur"
+                "Ancho"
             ],
             "Within categories": [
-                "dans les catégories"
+                "Dentro de categorías"
             ],
             "Within groups": [
-                "dans les groupes"
+                "Dentro de grupos"
             ],
             "Wrong parameter values.": [
-                "Paramètres de la distribution incorrects."
+                ""
             ],
             "X-Axis": [
-                "Axe X"
+                "Eje X"
             ],
             "X-Axis and Y-Axis cannot be equal.": [
-                "Les axes X et Y ne peuvent pas être identiques."
+                ""
             ],
             "X-Axis and Y-Axis cannot be greater than the number of dimensions.": [
-                "Les axes X et Y ne peuvent pas être supérieurs au nombre de dimensions."
+                ""
             ],
             "X-Axis is a date": [
-                "L'axe X est une date"
+                "El eje X es una fecha"
             ],
             "X-Axis Range": [
-                "Étendue axe X"
+                "Rango del eje X"
             ],
             "Y-Axis": [
-                "Axe Y"
+                "Eje Y"
             ],
             "Y-Axis Range": [
-                "Étendue axe Y"
+                "Rango del eje Y"
             ],
             "Yellow": [
-                "Jaune"
+                "Amarillo"
             ],
             "Yellow to Blue": [
-                "Jaune à bleu"
+                "Amarillo y azul"
             ],
             "Yellow to Brown": [
-                "Jaune à marron"
+                "Amarillo y marrón"
             ],
             "Yellow to Green": [
-                "Jaune à vert"
+                "Amarillo y verde"
             ],
             "Yellow to Red": [
-                "Jaune à rouge"
+                "Amarillo y rojo"
             ],
             "χ²": [
                 "χ²"
             ],
             "boundary\u0004Position": [
-                "Origine"
+                "Posición"
             ],
             "distribution\u0004Normal": [
-                "Normale"
+                "Normal"
             ],
             "menu\u0004Oct": [
-                "Oct."
+                "Oct"
             ],
             "menu\u0004October": [
-                "Octobre"
+                "Octubre"
             ]
         }
     },
-    "code": "fr"
+    "code": "es"
 }

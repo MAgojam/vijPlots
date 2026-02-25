@@ -198,7 +198,7 @@ vijErrorMessage = function(self, errorMessage) {
             aResult$setVisible(FALSE)
     }
     # Display Error message
-    errorNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$WARNING, name = '.warning', content = errorMessage)
+    errorNotice <- jmvcore::Notice$new(self$options, type = jmvcore::NoticeType$ERROR, name = '.warning', content = errorMessage)
     self$results$insert(1, errorNotice)
 }
 

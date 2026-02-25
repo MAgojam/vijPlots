@@ -69,7 +69,7 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
-### 2026-02-23 / 0.99.3
+### 2026-02-23 / 0.99.4
 
 -   Axis options to set axis label sizes, rotation, range
 -   Regression line in scatter plot
@@ -83,6 +83,7 @@ Principal component analysis and (Multiple) Correspondence analysis.
 -   More color palettes
 -   Tidy up Option UI
 -   French translation completed
+-   Spanish translation (second draft)
 -   Plot sizing options removed (built in jamovi 2.7.16+)
 -   Module icon (with jamovi 2.7.19+)
 

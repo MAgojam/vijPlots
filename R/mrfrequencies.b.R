@@ -95,7 +95,7 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
             # Percent format (scales)
             doPercent <- scales::label_percent(
                 accuracy = as.numeric(self$options$accuracy),
-                suffix = .("%"),
+                suffix = '\u2009%',
                 decimal.mark = self$options[['decSymbol']])
 
             # Border color
@@ -105,11 +105,11 @@ mrfrequenciesClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class
                 borderColor = self$options$borderColor
 
             if (self$options$yaxis == "responses") {
-                plot <- ggplot(plotData, aes(Option, Responses, label = doPercent(Responses))) + scale_y_continuous(labels = scales::label_percent())
+                plot <- ggplot(plotData, aes(Option, Responses, label = doPercent(Responses))) + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
                 yLab <- .("% of Responses")
                 yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$yaxis == "cases") {
-                plot <- ggplot(plotData, aes(Option, Cases, label = doPercent(Cases))) + scale_y_continuous(labels = scales::label_percent())
+                plot <- ggplot(plotData, aes(Option, Cases, label = doPercent(Cases))) + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
                 yLab <- .("% of Cases")
                 yScaleFactor <- 100
             } else {

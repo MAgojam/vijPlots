@@ -211,7 +211,6 @@ children:
                     label: ''
                   - type: CheckBox
                     name: singleColor
-                    label: Use color No.
                     enable: (!columns && !barType_stack)
                     style: inline
                     verticalAlignment: center

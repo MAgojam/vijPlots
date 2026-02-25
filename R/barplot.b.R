@@ -92,7 +92,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Percent format (scales)
             doPercent <- scales::label_percent(
                             accuracy = as.numeric(self$options$accuracy),
-                            suffix = .("%"),
+                            suffix = '\u2009%',
                             decimal.mark = self$options[['decSymbol']])
             if (self$options$horizontal)
                 doNumber <- function(x){ifelse(x<10, paste0(" ",x), x)}
@@ -238,7 +238,7 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             } else {
                 yLab <- .("Percent")
                 yScaleFactor <- 100
-                plot <- plot + scale_y_continuous(labels = scales::label_percent())
+                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
             }
 
             # Show unused levels (if checked in data/var setting)
