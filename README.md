@@ -69,7 +69,7 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
-### 2026-02-23 / 0.99.4
+### 2026-02-25 / 0.99.4
 
 -   Axis options to set axis label sizes, rotation, range
 -   Regression line in scatter plot
