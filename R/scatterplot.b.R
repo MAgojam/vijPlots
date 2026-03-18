@@ -147,6 +147,15 @@ scatterplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 xLim <- NULL
             plot <- plot + coord_cartesian(ylim = yLim, xlim = xLim)
 
+            # Ticks
+            if (self$options$xTicks > 0) {
+                plot <- plot  + scale_x_continuous(breaks = scales::breaks_extended(self$options$xTicks + 1))
+            }
+            if (self$options$yTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$yTicks + 1))
+            }
+
+            # Border
             if( self$options$plotBorder ) {
                 plot <- plot + theme(axis.line = element_line(linewidth = 0), panel.border = element_rect(color = "black", fill = NA, size = 1))
             }

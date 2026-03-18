@@ -139,7 +139,9 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             }
 
             if (self$options$position == "fill")
-                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
+                labelFnct <- scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']])
+            else
+                labelFnct <- waiver()
 
             if (!oneVariable) {
                 if(length(self$options$vars) > 1) {
@@ -157,6 +159,13 @@ areachartClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Axis range
             if (self$options$yAxisRangeType == "manual") { # Horizontal and manual
                 plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
+            }
+
+            # Ticks
+            if (self$options$yTicks > 0) {
+                plot <- plot  + scale_y_continuous(label = labelFnct, breaks = scales::breaks_extended(self$options$yTicks + 1))
+            } else {
+                plot <- plot  + scale_y_continuous(label = labelFnct)
             }
 
             # Titles & Labels

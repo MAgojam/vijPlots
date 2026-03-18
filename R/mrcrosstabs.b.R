@@ -223,18 +223,19 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             # Y scale and lab
             if (self$options$computedValues == "responses") {
-                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
+                labelFnct <- scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']])
                 yLab <- .("% of Responses")
                 yScaleFactor <- 100 # yScaleFactor is used for manual range computation (1 = count, 100 = percent)
             } else if (self$options$computedValues == "cases") {
-                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
+                labelFnct <- scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']])
                 yLab <- .("% of Cases")
                 yScaleFactor <- 100
             } else if (self$options$computedValues == "options") {
-                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
+                labelFnct <- scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']])
                 yLab <- paste(.("% within"), optionName)
                 yScaleFactor <- 100
             } else {
+                labelFnct <- waiver()
                 yLab <- .("Count")
                 yScaleFactor <- 1
             }
@@ -255,6 +256,15 @@ mrcrosstabsClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 } else {
                     plot <- plot + coord_cartesian(clip = "off")
                 }
+            }
+
+            # Ticks
+            if (self$options$horizontal && self$options$xTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$xTicks + 1), labels = labelFnct)
+            } else if (!self$options$horizontal && self$options$yTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$yTicks + 1), labels = labelFnct)
+            } else {
+                plot <- plot  + scale_y_continuous(labels = labelFnct)
             }
 
             # Titles & Labels

@@ -45,7 +45,9 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             xAxisLabelRotation = 0,
             xAxisRangeType = "auto",
             xAxisRangeMin = 0,
-            xAxisRangeMax = 10, ...) {
+            xAxisRangeMax = 10,
+            xTicks = 0,
+            yTicks = 0, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -374,6 +376,18 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "xAxisRangeMax",
                 xAxisRangeMax,
                 default=10)
+            private$..xTicks <- jmvcore::OptionNumber$new(
+                "xTicks",
+                xTicks,
+                default=0,
+                min=0,
+                max=99)
+            private$..yTicks <- jmvcore::OptionNumber$new(
+                "yTicks",
+                yTicks,
+                default=0,
+                min=0,
+                max=99)
 
             self$.addOption(private$..aVar)
             self$.addOption(private$..group)
@@ -415,6 +429,8 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..xAxisRangeType)
             self$.addOption(private$..xAxisRangeMin)
             self$.addOption(private$..xAxisRangeMax)
+            self$.addOption(private$..xTicks)
+            self$.addOption(private$..yTicks)
         }),
     active = list(
         aVar = function() private$..aVar$value,
@@ -456,7 +472,9 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         xAxisLabelRotation = function() private$..xAxisLabelRotation$value,
         xAxisRangeType = function() private$..xAxisRangeType$value,
         xAxisRangeMin = function() private$..xAxisRangeMin$value,
-        xAxisRangeMax = function() private$..xAxisRangeMax$value),
+        xAxisRangeMax = function() private$..xAxisRangeMax$value,
+        xTicks = function() private$..xTicks$value,
+        yTicks = function() private$..yTicks$value),
     private = list(
         ..aVar = NA,
         ..group = NA,
@@ -497,7 +515,9 @@ lollipopOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..xAxisLabelRotation = NA,
         ..xAxisRangeType = NA,
         ..xAxisRangeMin = NA,
-        ..xAxisRangeMax = NA)
+        ..xAxisRangeMax = NA,
+        ..xTicks = NA,
+        ..yTicks = NA)
 )
 
 lollipopResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -585,6 +605,8 @@ lollipopBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param xAxisRangeType .
 #' @param xAxisRangeMin .
 #' @param xAxisRangeMax .
+#' @param xTicks .
+#' @param yTicks .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -632,7 +654,9 @@ lollipop <- function(
     xAxisLabelRotation = 0,
     xAxisRangeType = "auto",
     xAxisRangeMin = 0,
-    xAxisRangeMax = 10) {
+    xAxisRangeMax = 10,
+    xTicks = 0,
+    yTicks = 0) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("lollipop requires jmvcore to be installed (restart may be required)")
@@ -690,7 +714,9 @@ lollipop <- function(
         xAxisLabelRotation = xAxisLabelRotation,
         xAxisRangeType = xAxisRangeType,
         xAxisRangeMin = xAxisRangeMin,
-        xAxisRangeMax = xAxisRangeMax)
+        xAxisRangeMax = xAxisRangeMax,
+        xTicks = xTicks,
+        yTicks = yTicks)
 
     analysis <- lollipopClass$new(
         options = options,

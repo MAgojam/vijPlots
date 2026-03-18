@@ -170,11 +170,18 @@ histogramClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # Y-Axix label
             if (self$options$histtype == "density") {
                 yLab <- .("Density")
-                plot <- plot  + scale_y_continuous(labels = scales::comma)
+                #plot <- plot  + scale_y_continuous(labels = scales::comma)
             } else {
                 yLab <- .("Count")
-            }
 
+            }
+            # Ticks
+            if (self$options$xTicks > 0) {
+                plot <- plot  + scale_x_continuous(breaks = scales::breaks_extended(self$options$xTicks + 1))
+            }
+            if (self$options$yTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$yTicks + 1))
+            }
             # Axis Limits
             if (self$options$yAxisRangeType == "manual")
                 yLim <- c(self$options$yAxisRangeMin, self$options$yAxisRangeMax)

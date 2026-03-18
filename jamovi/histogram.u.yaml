@@ -89,12 +89,6 @@ children:
                 optionPart: identity
                 label: Overlapping
                 enable: (!(!group))
-              # - type: RadioButton
-              #   name: groupingN_dodge
-              #   optionName: groupingN
-              #   optionPart: dodge
-              #   label: Grouped
-              #   enable: (!(!group))
   - type: CollapseBox
     label: Options
     collapsed: true
@@ -131,7 +125,6 @@ children:
             children:
               - type: CheckBox
                 name: normalCurve
-#                enable: (!group)
                 children:
                   - type: TextBox
                     name: normalCurveLineSize
@@ -251,6 +244,9 @@ children:
                     name: xAxisLabelRotation
                     suffix: °
                     format: number
+                  - type: TextBox
+                    name: xTicks
+                    format: number
               - type: Label
                 label: Range
                 children:
@@ -286,6 +282,9 @@ children:
                   - type: TextBox
                     name: yAxisLabelRotation
                     suffix: °
+                    format: number
+                  - type: TextBox
+                    name: yTicks
                     format: number
               - type: Label
                 label: Range

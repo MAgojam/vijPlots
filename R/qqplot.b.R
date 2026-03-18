@@ -231,6 +231,14 @@ qqplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 xLim <- NULL
             plot <- plot + coord_cartesian(ylim = yLim, xlim = xLim)
 
+            # Ticks
+            if (self$options$xTicks > 0) {
+                plot <- plot  + scale_x_continuous(breaks = scales::breaks_extended(self$options$xTicks + 1))
+            }
+            if (self$options$yTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$yTicks + 1))
+            }
+
             # Titles & Labels
             defaults <- list(title = plotTitle, x = xLab , y = yLab, legend = groupVar)
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)

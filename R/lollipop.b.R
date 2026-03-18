@@ -113,6 +113,14 @@ lollipopClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
             }
 
+            # Ticks
+            if (self$options$horizontal && self$options$xTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$xTicks + 1))
+            }
+            if (!self$options$horizontal && self$options$yTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$yTicks + 1))
+            }
+
             plot <- plot + scale_x_discrete(drop = FALSE) # keep unused levels
 
             # Axis Labels

@@ -573,4 +573,10 @@ options:
       min: 0
       max: 360
 
+    - name: yTicks
+      title: Ticks
+      type: Number
+      default: 0
+      min: 0
+      max: 99
 ...

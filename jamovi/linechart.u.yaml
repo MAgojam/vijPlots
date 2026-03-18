@@ -119,6 +119,9 @@ children:
                     name: yAxisLabelRotation
                     suffix: °
                     format: number
+                  - type: TextBox
+                    name: yTicks
+                    format: number
               - type: Label
                 label: Range
                 children:

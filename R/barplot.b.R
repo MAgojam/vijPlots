@@ -235,10 +235,11 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (yaxis == "count") {
                 yLab <- .("Count")
                 yScaleFactor <- 1
+                labelFnct <- waiver()
             } else {
                 yLab <- .("Percent")
                 yScaleFactor <- 100
-                plot <- plot + scale_y_continuous(labels = scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']]))
+                labelFnct <- scales::label_percent(suffix = '\u2009%', decimal.mark = self$options[['decSymbol']])
             }
 
             # Show unused levels (if checked in data/var setting)
@@ -260,6 +261,15 @@ barplotClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 } else {
                     plot <- plot + coord_cartesian(clip = "off")
                 }
+            }
+
+            # Ticks
+            if (self$options$horizontal && self$options$xTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$xTicks + 1), labels = labelFnct)
+            } else if (!self$options$horizontal && self$options$yTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$yTicks + 1), labels = labelFnct)
+            } else {
+                plot <- plot  + scale_y_continuous(labels = labelFnct)
             }
 
             # facet

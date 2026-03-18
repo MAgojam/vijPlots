@@ -69,6 +69,9 @@ Principal component analysis and (Multiple) Correspondence analysis.
 
 ## Version history
 
+### 2026-03-18 / 1.0.1
+-   Ticks option
+
 ### 2026-03-01 / 1.0.0
 
 -   Axis options to set axis label sizes, rotation, range

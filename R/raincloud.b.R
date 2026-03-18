@@ -185,6 +185,14 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 plot <- plot + coord_cartesian(ylim = c(self$options$yAxisRangeMin, self$options$yAxisRangeMax))
             }
 
+            # Ticks
+            if (self$options$horizontal && self$options$xTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$xTicks + 1))
+            }
+            if (!self$options$horizontal && self$options$yTicks > 0) {
+                plot <- plot  + scale_y_continuous(breaks = scales::breaks_extended(self$options$yTicks + 1))
+            }
+
             # Legend spacing
             plot <- plot + theme(legend.key.spacing.y = unit(1, "mm"), legend.byrow = TRUE)
 
@@ -192,8 +200,6 @@ raincloudClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             defaults <- list(y = aVar, x = groupOne, legend = groupTwo)
             plot <- plot + vijTitlesAndLabels(self$options, defaults) + vijTitleAndLabelFormat(self$options)
 
-
             return(plot)
-
         })
 )

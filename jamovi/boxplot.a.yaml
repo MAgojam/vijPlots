@@ -565,4 +565,17 @@ options:
       type: Number
       default: 10
 
+    - name: xTicks
+      title: Ticks
+      type: Number
+      default: 0
+      min: 0
+      max: 99
+
+    - name: yTicks
+      title: Ticks
+      type: Number
+      default: 0
+      min: 0
+      max: 99
 ...

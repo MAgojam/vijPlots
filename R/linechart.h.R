@@ -45,7 +45,8 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             yAxisRangeMin = 0,
             yAxisRangeMax = 10,
             xAxisLabelFontSize = 12,
-            xAxisLabelRotation = 0, ...) {
+            xAxisLabelRotation = 0,
+            yTicks = 0, ...) {
 
             super$initialize(
                 package="vijPlots",
@@ -395,6 +396,12 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 default=0,
                 min=0,
                 max=360)
+            private$..yTicks <- jmvcore::OptionNumber$new(
+                "yTicks",
+                yTicks,
+                default=0,
+                min=0,
+                max=99)
 
             self$.addOption(private$..timeVar)
             self$.addOption(private$..vars)
@@ -436,6 +443,7 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..yAxisRangeMax)
             self$.addOption(private$..xAxisLabelFontSize)
             self$.addOption(private$..xAxisLabelRotation)
+            self$.addOption(private$..yTicks)
         }),
     active = list(
         timeVar = function() private$..timeVar$value,
@@ -477,7 +485,8 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         yAxisRangeMin = function() private$..yAxisRangeMin$value,
         yAxisRangeMax = function() private$..yAxisRangeMax$value,
         xAxisLabelFontSize = function() private$..xAxisLabelFontSize$value,
-        xAxisLabelRotation = function() private$..xAxisLabelRotation$value),
+        xAxisLabelRotation = function() private$..xAxisLabelRotation$value,
+        yTicks = function() private$..yTicks$value),
     private = list(
         ..timeVar = NA,
         ..vars = NA,
@@ -518,7 +527,8 @@ linechartOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..yAxisRangeMin = NA,
         ..yAxisRangeMax = NA,
         ..xAxisLabelFontSize = NA,
-        ..xAxisLabelRotation = NA)
+        ..xAxisLabelRotation = NA,
+        ..yTicks = NA)
 )
 
 linechartResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -606,6 +616,7 @@ linechartBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param yAxisRangeMax .
 #' @param xAxisLabelFontSize .
 #' @param xAxisLabelRotation .
+#' @param yTicks .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
@@ -653,7 +664,8 @@ linechart <- function(
     yAxisRangeMin = 0,
     yAxisRangeMax = 10,
     xAxisLabelFontSize = 12,
-    xAxisLabelRotation = 0) {
+    xAxisLabelRotation = 0,
+    yTicks = 0) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("linechart requires jmvcore to be installed (restart may be required)")
@@ -710,7 +722,8 @@ linechart <- function(
         yAxisRangeMin = yAxisRangeMin,
         yAxisRangeMax = yAxisRangeMax,
         xAxisLabelFontSize = xAxisLabelFontSize,
-        xAxisLabelRotation = xAxisLabelRotation)
+        xAxisLabelRotation = xAxisLabelRotation,
+        yTicks = yTicks)
 
     analysis <- linechartClass$new(
         options = options,

@@ -219,6 +219,10 @@ children:
                     name: xAxisLabelRotation
                     suffix: "°"
                     format: number
+                  - type: TextBox
+                    name: xTicks
+                    format: number
+                    enable: (horizontal)
               - type: Label
                 label: Range
                 children:
@@ -257,6 +261,10 @@ children:
                     name: yAxisLabelRotation
                     suffix: "°"
                     format: number
+                  - type: TextBox
+                    name: yTicks
+                    format: number
+                    enable: (!horizontal)
               - type: Label
                 label: Range
                 children:
