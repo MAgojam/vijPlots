@@ -47,6 +47,7 @@ msgid "{var} doesn't have a valid date format."
 msgstr "{var} n'a pas un format de date valide."
 
 #: barplot/options/facetNumber.title
+#: boxplot/options/facetNumber.title
 #: histogram/options/facetNumber.title
 #: lollipop/options/facetNumber.title
 #: piechart/options/facetNumber.title
@@ -122,8 +123,8 @@ msgstr "% dans"
 #: areachart/ui[2][0][1][0]/yAxisLabelRotation.suffix
 #: barplot/ui[5][0][0][0]/xAxisLabelRotation.suffix
 #: barplot/ui[5][0][1][0]/yAxisLabelRotation.suffix
-#: boxplot/ui[3][0][0][0]/xAxisLabelRotation.suffix
-#: boxplot/ui[3][0][1][0]/yAxisLabelRotation.suffix
+#: boxplot/ui[4][0][0][0]/xAxisLabelRotation.suffix
+#: boxplot/ui[4][0][1][0]/yAxisLabelRotation.suffix
 #: histogram/ui[5][0][0][0]/xAxisLabelRotation.suffix
 #: histogram/ui[5][0][1][0]/yAxisLabelRotation.suffix
 #: likertplot/ui[6][0][0][0]/xAxisLabelRotation.suffix
@@ -1261,7 +1262,7 @@ msgstr "Auto"
 
 #: areachart/ui[2].label
 #: barplot/ui[5].label
-#: boxplot/ui[3].label
+#: boxplot/ui[4].label
 #: histogram/ui[5].label
 #: likertplot/ui[6].label
 #: linechart/ui[2].label
@@ -1667,7 +1668,7 @@ msgstr "Impossible de corriger les niveaux d'un variable de type texte."
 
 #: areachart/ui[4][2].label
 #: barplot/ui[7][2].label
-#: boxplot/ui[5][2].label
+#: boxplot/ui[6][2].label
 #: histogram/ui[7][2].label
 #: likertplot/ui[8][2].label
 #: linechart/ui[4][2].label
@@ -1881,6 +1882,8 @@ msgstr "Couleurs & Options"
 
 #: barplot/options/facetBy/column.title
 #: barplot/ui[4][0][1][0][0]/facetBy_column.label
+#: boxplot/options/facetBy/column.title
+#: boxplot/ui[3][0][1][0][0]/facetBy_column.label
 #: corresp/options/colColor.title
 #: histogram/options/facetBy/column.title
 #: histogram/ui[4][0][0][0][0]/facetBy_column.label
@@ -2381,6 +2384,8 @@ msgstr "F"
 #: barplot/options/facet.title
 #: barplot/options/facetBy.title
 #: barplot/ui[0][2].label
+#: boxplot/options/facet.title
+#: boxplot/ui[0][3].label
 #: histogram/options/facet.title
 #: histogram/ui[0][2].label
 #: lollipop/options/facet.title
@@ -2394,6 +2399,8 @@ msgid "Facet"
 msgstr "Facette"
 
 #: barplot/ui[4][0][1][0].label
+#: boxplot/options/facetBy.title
+#: boxplot/ui[3][0][1][0].label
 #: histogram/options/facetBy.title
 #: histogram/ui[4].label
 #: histogram/ui[4][0][0][0].label
@@ -2988,6 +2995,7 @@ msgstr "Tests de Kruskal-Wallis"
 #: barplot/options/textColor.title
 #: barplot/options/labelFontSize.title
 #: boxplot/options/label.title
+#: boxplot/options/labSize.title
 #: boxplot/ui[0][2].label
 #: corresp/options/labelSize.title
 #: likertplot/options/textSize.title
@@ -3171,7 +3179,7 @@ msgstr "Gauche"
 
 #: areachart/ui[3][0].label
 #: barplot/ui[6][0].label
-#: boxplot/ui[4][0].label
+#: boxplot/ui[5][0].label
 #: histogram/ui[6][0].label
 #: likertplot/ui[7][0].label
 #: linechart/ui[3][0].label
@@ -3188,7 +3196,7 @@ msgstr "Légende"
 
 #: areachart/ui[3].label
 #: barplot/ui[6].label
-#: boxplot/ui[4].label
+#: boxplot/ui[5].label
 #: histogram/ui[6].label
 #: linechart/ui[3].label
 #: lollipop/ui[6].label
@@ -4134,7 +4142,8 @@ msgstr "Diagramme en secteurs"
 
 #: R/piechart.b.R
 msgid "Pie charts are for educational use only. Please do not use Pie charts!"
-msgstr "Les diagrammes en secteurs sont réservés à un usage pédagogique.\n Veuillez ne pas les utiliser !"
+msgstr "Les diagrammes en secteurs sont réservés à un usage pédagogique.\n"
+" Veuillez ne pas les utiliser !"
 
 #: corresp/options/rowColor/hotpink.title
 #: corresp/options/colColor/hotpink.title
@@ -4198,7 +4207,7 @@ msgstr "Options du graphique"
 
 #: areachart/ui[4].label
 #: barplot/ui[7].label
-#: boxplot/ui[5].label
+#: boxplot/ui[6].label
 #: histogram/ui[7].label
 #: likertplot/ui[8].label
 #: linechart/ui[4].label
@@ -4482,8 +4491,8 @@ msgstr "Diagramme Raincloud"
 #: areachart/ui[2][0][1][1].label
 #: barplot/ui[5][0][0][1].label
 #: barplot/ui[5][0][1][1].label
-#: boxplot/ui[3][0][0][1].label
-#: boxplot/ui[3][0][1][1].label
+#: boxplot/ui[4][0][0][1].label
+#: boxplot/ui[4][0][1][1].label
 #: histogram/ui[5][0][0][1].label
 #: histogram/ui[5][0][1][1].label
 #: linechart/ui[2][0][1][1].label
@@ -4733,6 +4742,8 @@ msgstr "Rotation"
 
 #: barplot/options/facetBy/row.title
 #: barplot/ui[4][0][1][0][0]/facetBy_row.label
+#: boxplot/options/facetBy/row.title
+#: boxplot/ui[3][0][1][0][0]/facetBy_row.label
 #: corresp/options/rowColor.title
 #: histogram/options/facetBy/row.title
 #: histogram/ui[4][0][0][0][0]/facetBy_row.label
@@ -5154,7 +5165,7 @@ msgstr "Student"
 
 #: areachart/ui[4][1].label
 #: barplot/ui[7][1].label
-#: boxplot/ui[5][1].label
+#: boxplot/ui[6][1].label
 #: histogram/ui[7][1].label
 #: likertplot/ui[8][1].label
 #: linechart/ui[4][1].label
@@ -5287,6 +5298,7 @@ msgid "Text"
 msgstr "Texte"
 
 #: barplot/ui[4][0][0][0].label
+#: boxplot/ui[3][0][0][0].label
 #: corresp/ui[6][0][0][0].label
 #: likertplot/ui[5].label
 #: likertplot/ui[5][0][0][0].label
@@ -5303,6 +5315,7 @@ msgid "Text Size & Colors"
 msgstr "Taille du texte & couleurs"
 
 #: barplot/ui[4].label
+#: boxplot/ui[3].label
 #: piechart/ui[4].label
 msgid "Text Size & Facets"
 msgstr "Taille du texte & facettes"
@@ -5326,6 +5339,29 @@ msgstr "Probabilités théoriques"
 #: R/qqplot.b.R
 msgid "Theoretical Quantiles"
 msgstr "Quantiles théoriques"
+
+#: areachart/options/yTicks.title
+#: barplot/options/xTicks.title
+#: barplot/options/yTicks.title
+#: boxplot/options/xTicks.title
+#: boxplot/options/yTicks.title
+#: histogram/options/xTicks.title
+#: histogram/options/yTicks.title
+#: linechart/options/yTicks.title
+#: lollipop/options/xTicks.title
+#: lollipop/options/yTicks.title
+#: mrcrosstabs/options/xTicks.title
+#: mrcrosstabs/options/yTicks.title
+#: mrfrequencies/options/xTicks.title
+#: mrfrequencies/options/yTicks.title
+#: qqplot/options/xTicks.title
+#: qqplot/options/yTicks.title
+#: raincloud/options/xTicks.title
+#: raincloud/options/yTicks.title
+#: scatterplot/options/xTicks.title
+#: scatterplot/options/yTicks.title
+msgid "Ticks"
+msgstr "Graduations"
 
 #: likertplot/options/tidyUp.title
 msgid "Tidy up levels"
@@ -5469,7 +5505,7 @@ msgstr "Séries temporelles"
 
 #: areachart/ui[4][0].label
 #: barplot/ui[7][0].label
-#: boxplot/ui[5][0].label
+#: boxplot/ui[6][0].label
 #: histogram/ui[7][0].label
 #: likertplot/ui[8][0].label
 #: linechart/ui[4][0].label
@@ -5845,8 +5881,8 @@ msgstr "Paramètres de la distribution incorrects."
 #: areachart/ui[3][1].label
 #: barplot/ui[5][0][0][0].label
 #: barplot/ui[6][1].label
-#: boxplot/ui[3][0][0][0].label
-#: boxplot/ui[4][1].label
+#: boxplot/ui[4][0][0][0].label
+#: boxplot/ui[5][1].label
 #: corresp/options/xaxis.title
 #: corresp/ui[7][0].label
 #: histogram/ui[5][0][0][0].label
@@ -5913,8 +5949,8 @@ msgstr "Étendue axe X"
 #: barplot/ui[1][0][0].label
 #: barplot/ui[5][0][1][0].label
 #: barplot/ui[6][2].label
-#: boxplot/ui[3][0][1][0].label
-#: boxplot/ui[4][2].label
+#: boxplot/ui[4][0][1][0].label
+#: boxplot/ui[5][2].label
 #: corresp/options/yaxis.title
 #: corresp/ui[7][1].label
 #: histogram/ui[1][0][0].label
