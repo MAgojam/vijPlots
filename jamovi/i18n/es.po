@@ -5358,7 +5358,7 @@ msgstr "Cuantiles teóricos"
 #: raincloud/options/yTicks.title
 #: scatterplot/options/xTicks.title
 #: scatterplot/options/yTicks.title
-msgid "Ticks"
+msgid "Tick count"
 msgstr "Número de marcas"
 
 #: likertplot/options/tidyUp.title

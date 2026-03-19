@@ -634,14 +634,14 @@ options:
       default: 10
 
     - name: xTicks
-      title: Ticks
+      title: Tick count
       type: Number
       default: 0
       min: 0
       max: 99
 
     - name: yTicks
-      title: Ticks
+      title: Tick count
       type: Number
       default: 0
       min: 0

@@ -574,7 +574,7 @@ options:
       max: 360
 
     - name: yTicks
-      title: Ticks
+      title: Tick count
       type: Number
       default: 0
       min: 0
